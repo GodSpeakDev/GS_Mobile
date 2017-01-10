@@ -1,22 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
+﻿using MvvmCross.Core.ViewModels;
+using MvvmCross.iOS.Platform;
+using MvvmCross.Platform;
 using Foundation;
 using UIKit;
 
 namespace GodSpeak.iOS
 {
-    [Register ("AppDelegate")]
-    public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
-    {
-        public override bool FinishedLaunching (UIApplication app, NSDictionary options)
-        {
-            global::Xamarin.Forms.Forms.Init ();
+	[Register("AppDelegate")]
+	public partial class AppDelegate : MvxApplicationDelegate
+	{
+		public override UIWindow Window
+		{
+			get;
+			set;
+		}
 
-            LoadApplication (new App ());
+		public override bool FinishedLaunching(UIApplication app, NSDictionary options)
+		{
+			Window = new UIWindow(UIScreen.MainScreen.Bounds);
 
-            return base.FinishedLaunching (app, options);
-        }
-    }
+			var setup = new Setup(this, Window);
+			setup.Initialize();
+
+			var startup = Mvx.Resolve<IMvxAppStart>();
+			startup.Start();
+
+			Window.MakeKeyAndVisible();
+
+			return true;
+		}
+	}
 }
