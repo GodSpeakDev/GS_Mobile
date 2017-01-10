@@ -27,22 +27,60 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Pages\FirstPage.xaml">
+    <EmbeddedResource Include="Pages\HomePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Pages\FirstPage.xaml.cs">
-      <DependentUpon>FirstPage.xaml</DependentUpon>
+    <Compile Include="Pages\HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\FirstViewModel.cs" />
+    <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="App.cs" />
     <Compile Include="ViewModels\CustomViewModel.cs" />
     <Compile Include="Pages\CustomContentPage.cs" />
+    <Compile Include="Api\Response\BaseResponse.cs" />
+    <Compile Include="Api\Response\LoginResponse.cs" />
+    <Compile Include="Api\Response\RegisterUserResponse.cs" />
+    <Compile Include="Api\Dtos\Category.cs" />
+    <Compile Include="Api\Dtos\DeliveredScripture.cs" />
+    <Compile Include="Api\Dtos\GiftedApp.cs" />
+    <Compile Include="Api\Dtos\MessageConfig.cs" />
+    <Compile Include="Api\Dtos\DailyConfig.cs" />
+    <Compile Include="Api\Request\LoginRequest.cs" />
+    <Compile Include="Api\Request\RegisterUserRequest.cs" />
+    <Compile Include="Api\Request\ForgotPasswordRequest.cs" />
+    <Compile Include="Api\Response\ForgotPasswordResponse.cs" />
+    <Compile Include="Api\Request\GetMessagesRequest.cs" />
+    <Compile Include="Api\Response\GetMessagesResponse.cs" />
+    <Compile Include="Api\Dtos\Message.cs" />
+    <Compile Include="Api\Request\LogoutRequest.cs" />
+    <Compile Include="Api\Response\LogoutResponse.cs" />
+    <Compile Include="Api\Request\GetinvitesRequest.cs" />
+    <Compile Include="Api\Dtos\Invite.cs" />
+    <Compile Include="Api\Response\GetInvitesResponse.cs" />
+    <Compile Include="Api\Request\GetCategoriesRequest.cs" />
+    <Compile Include="Api\Response\GetCategoriesResponse.cs" />
+    <Compile Include="Api\Request\SaveCategoriesRequest.cs" />
+    <Compile Include="Api\Response\SaveCategoriesResponse.cs" />
+    <Compile Include="Api\Request\GetImpactRequest.cs" />
+    <Compile Include="Api\Response\GetImpactResponse.cs" />
+    <Compile Include="Api\Request\SetMessagesConfigRequest.cs" />
+    <Compile Include="Api\IWebApiService.cs" />
+    <Compile Include="Api\Response\SetMessagesConfigResponse.cs" />
+    <Compile Include="Api\FakeWebApiService.cs" />
+    <Compile Include="Api\Request\ValidateCodeRequest.cs" />
+    <Compile Include="Api\Response\ValidateCodeResponse.cs" />
+    <Compile Include="Models\GroupedCollection.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />
+    <Folder Include="Api\" />
+    <Folder Include="Api\Request\" />
+    <Folder Include="Api\Response\" />
+    <Folder Include="Api\Dtos\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">
