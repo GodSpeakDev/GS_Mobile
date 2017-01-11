@@ -21,8 +21,7 @@ namespace GodSpeak.Droid
         }
 
 		protected override void OnCreate(Bundle bundle)
-		{
-			Forms.Init(this, bundle);
+		{			
 			// Leverage controls' StyleId attrib. to Xamarin.UITest
 			Forms.ViewInitialized += (object sender, ViewInitializedEventArgs e) =>
 			{

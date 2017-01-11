@@ -34,7 +34,7 @@ namespace GodSpeak.Droid
 			return presenter;
 		}
 
-		private class MvxFormsDroidPagePresenterCustom : MvxFormsDroidPagePresenter
+		private class MvxFormsDroidPagePresenterCustom : MvxFormsDroidMasterDetailPagePresenter
 		{
 			
 		}

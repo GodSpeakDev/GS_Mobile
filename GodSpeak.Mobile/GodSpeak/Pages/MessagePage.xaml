@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+		xmlns="http://xamarin.com/schemas/2014/forms" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+		xmlns:pages="clr-namespace:GodSpeak;assembly=GodSpeak"
+		Title="Messages"
+		x:Class="GodSpeak.MessagePage">	
+	<ContentPage.Resources>
+		<ResourceDictionary>
+			<pages:DayConverter x:Key="dayConverter" />		
+		</ResourceDictionary>
+	</ContentPage.Resources>
+	<ContentPage.Content>		
+		<ListView
+			HorizontalOptions="FillAndExpand"
+			VerticalOptions="FillAndExpand"
+			IsGroupingEnabled="true"
+			ItemsSource="{Binding Messages}"
+			SeparatorVisibility="None"		
+			HasUnevenRows="true"
+			>
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<ViewCell>
+						<Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="auto" />
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="60" />
+								<ColumnDefinition Width="1*" />
+							</Grid.ColumnDefinitions>
+							<Image 
+								Grid.Row="0" 
+								Grid.Column="0" 
+								VerticalOptions="Center"
+								Source="{Binding Image}" 
+							/>
+							<Label 
+								Grid.Row="0" 
+								Grid.Column="1" 
+								Text="{Binding Text}" 
+							/>
+						</Grid>
+					</ViewCell>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+			<ListView.GroupHeaderTemplate>
+				<DataTemplate>
+					<ViewCell>
+	            		<Label HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" Text="{Binding Key, Converter={StaticResource dayConverter}}" />
+					</ViewCell>
+	            </DataTemplate>
+			</ListView.GroupHeaderTemplate>
+		</ListView>
+	</ContentPage.Content>
+</ContentPage>

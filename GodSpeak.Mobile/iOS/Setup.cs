@@ -41,7 +41,7 @@ namespace GodSpeak.iOS
             return new DebugTrace();
         }
 
-		private class MvxFormsIosPagePresenterCustom : MvxFormsIosPagePresenter
+		private class MvxFormsIosPagePresenterCustom : MvxFormsIosMasterDetailPagePresenter
 		{
 			public MvxFormsIosPagePresenterCustom(UIWindow window, Xamarin.Forms.Application application)
 				: base(window, application)

@@ -30,6 +30,15 @@
     <EmbeddedResource Include="Pages\HomePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\MenuPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\MessagePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\InvitesPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -73,6 +82,23 @@
     <Compile Include="Api\Request\ValidateCodeRequest.cs" />
     <Compile Include="Api\Response\ValidateCodeResponse.cs" />
     <Compile Include="Models\GroupedCollection.cs" />
+    <Compile Include="Converters\DayConverter.cs" />
+    <Compile Include="Pages\MenuPage.xaml.cs">
+      <DependentUpon>MenuPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\MenuViewModel.cs" />
+    <Compile Include="Pages\MessagePage.xaml.cs">
+      <DependentUpon>MessagePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MvvmCross\MvxFormsMasterDetailPagePresenter.cs" />
+    <Compile Include="MvvmCross\MvxPresenterHelpers.cs" />
+    <Compile Include="MvvmCross\MvxMasterDetailViewModel.cs" />
+    <Compile Include="MvvmCross\IMvxMasterDetailViewModel.cs" />
+    <Compile Include="ViewModels\MessageViewModel.cs" />
+    <Compile Include="ViewModels\InvitesViewModel.cs" />
+    <Compile Include="Pages\InvitesPage.xaml.cs">
+      <DependentUpon>InvitesPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />
@@ -81,6 +107,8 @@
     <Folder Include="Api\Response\" />
     <Folder Include="Api\Dtos\" />
     <Folder Include="Models\" />
+    <Folder Include="Converters\" />
+    <Folder Include="MvvmCross\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">

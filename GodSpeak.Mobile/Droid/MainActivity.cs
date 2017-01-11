@@ -25,6 +25,8 @@ namespace GodSpeak.Droid
     {
         protected override void OnCreate(Bundle bundle)
 		{
+			Xamarin.Forms.Forms.Init(this, bundle);
+
 			ServicePointManager
 				.ServerCertificateValidationCallback +=
 					(sender, cert, chain, sslPolicyErrors) =>
@@ -37,7 +39,7 @@ namespace GodSpeak.Droid
 			var mvxFormsApp = new MvxFormsApp();
 			LoadApplication(mvxFormsApp);
 
-			var presenter = Mvx.Resolve<IMvxViewPresenter>() as MvxFormsDroidPagePresenter;
+			var presenter = Mvx.Resolve<IMvxViewPresenter>() as MvxFormsDroidMasterDetailPagePresenter;
 			presenter.MvxFormsApp = mvxFormsApp;
 
 			Mvx.Resolve<IMvxAppStart>().Start();
