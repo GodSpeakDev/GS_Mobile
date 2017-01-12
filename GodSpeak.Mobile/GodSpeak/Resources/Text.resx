@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="GetStartedText" xml:space="preserve">
+    	<value>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce at quam pulvinar, rutrum metus vitae, luctus odio. Maecenas auctor vehicula diam ut luctus. Vestibulum ac iaculis metus. Etiam ac pretium felis. Vestibulum feugiat bibendum nibh quis euismod. Ut enim elit, facilisis ac velit sit amet, porttitor luctus odio. Maecenas elit ipsum, faucibus eget efficitur vel, tincidunt sed libero. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec vitae ultricies ipsum, nec porta est. Phasellus aliquam accumsan mollis. Curabitur nibh nunc, porta tristique suscipit at, dapibus a velit. Ut in erat ac orci sagittis dignissim. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Curabitur ut turpis et eros dignissim sodales.
+
+				Quisque et tincidunt enim. Duis rutrum est id libero feugiat efficitur. Ut sollicitudin interdum est eget feugiat. Curabitur felis est, pellentesque sit amet turpis sed, elementum lobortis urna. Duis tempor vitae nulla in malesuada. Ut lobortis luctus lorem ac finibus. Aenean viverra, velit et molestie malesuada, arcu urna posuere velit, vel mollis est velit ac dui. Vivamus pellentesque at mauris non maximus. Sed porta vel dolor ut fringilla. Sed quis metus molestie, maximus nibh eu, rhoncus est. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
+		</value>
+  	</data>
+</root>

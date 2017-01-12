@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<views:CustomContentPage 
+		xmlns="http://xamarin.com/schemas/2014/forms" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+		xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
+		x:Class="GodSpeak.WelcomePage">
+	<views:CustomContentPage.Content>
+		<views:CustomCarouselView 
+				HorizontalOptions="FillAndExpand"
+				VerticalOptions="FillAndExpand"
+				Position="{Binding SelectedPosition}"
+				ItemTemplate="{StaticResource pageSelector}"
+				ItemsSource="{Binding Pages}">    		
+			<views:CustomCarouselView.Resources>
+        		<ResourceDictionary>
+            		<views:WelcomePageSelector x:Key="pageSelector" />
+        		</ResourceDictionary>
+    		</views:CustomCarouselView.Resources>
+  		</views:CustomCarouselView>
+	</views:CustomContentPage.Content>
+</views:CustomContentPage>

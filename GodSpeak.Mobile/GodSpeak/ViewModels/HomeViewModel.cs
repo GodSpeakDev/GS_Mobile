@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 using MvvmCross.Forms.Presenter.Core;
 using System.Windows.Input;
 
-namespace GodSpeak.ViewModels
+namespace GodSpeak
 {
     public class HomeViewModel : MvxMasterDetailViewModel<MessageViewModel>
     {

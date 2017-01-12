@@ -11,7 +11,7 @@ namespace GodSpeak
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
 
-            RegisterAppStart<ViewModels.HomeViewModel>();
+            RegisterAppStart<WelcomeViewModel>();
         }
     }
 }

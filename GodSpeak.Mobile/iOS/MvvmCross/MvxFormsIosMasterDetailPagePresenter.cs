@@ -26,7 +26,7 @@ namespace GodSpeak.iOS
 		{
 		}
 
-		protected override void CustomPlatformInitialization(MasterDetailPage mainPage)
+		protected override void CustomPlatformInitialization(Page mainPage)
 		{
 			_window.RootViewController = mainPage.CreateViewController();
 		}
