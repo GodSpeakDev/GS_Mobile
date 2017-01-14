@@ -51,26 +51,7 @@ namespace GodSpeak
 					StatusCode = System.Net.HttpStatusCode.OK,
 					Content = new LoginResponse() 
 					{
-						Payload = new User() 
-						{
-							Id = Guid.NewGuid(),
-							Email = "godspeak@gmail.com",
-							City = "St. Louis",
-							State = "MO",
-							Credits = 15.0m,
-							FirstName = "GodSpeak",
-							LastName = "GodSpeak",
-							PhotoUrl = "http://images.clipartpanda.com/happy-man-images-A-Happy-Man.jpg",
-							Token = Guid.NewGuid().ToString(),
-							SelectedCategories = new List<MessageCategory>() 
-							{
-								
-							},
-							DayOfWeekSettings = new List<DayOfWeekSettings>()
-							{
-								
-							}
-						}
+						Payload = GetTestPayload()
 					}
 				};
 			}
@@ -168,7 +149,15 @@ namespace GodSpeak
 
 		public async Task<BaseResponse<RegisterUserResponse>> RegisterUser(RegisterUserRequest request)
 		{
-			return null;
+			await Task.Delay(delay);
+			return new BaseResponse<RegisterUserResponse>()
+			{
+				StatusCode = System.Net.HttpStatusCode.OK,
+				Content = new RegisterUserResponse()
+				{
+					Payload = GetTestPayload()
+				}
+			};
 		}
 
 		public async Task<BaseResponse<SaveCategoriesResponse>> SaveCategories(SaveCategoriesRequest request)
@@ -179,6 +168,30 @@ namespace GodSpeak
 		public async Task<BaseResponse<SetMessagesConfigResponse>> SetMessagesConfigUser(SetMessagesConfigRequest request)
 		{
 			return null;
+		}
+
+		private User GetTestPayload()
+		{
+			return new User()
+			{
+				Id = Guid.NewGuid(),
+				Email = "godspeak@gmail.com",
+				City = "St. Louis",
+				State = "MO",
+				Credits = 15.0m,
+				FirstName = "GodSpeak",
+				LastName = "GodSpeak",
+				PhotoUrl = "http://images.clipartpanda.com/happy-man-images-A-Happy-Man.jpg",
+				Token = Guid.NewGuid().ToString(),
+				SelectedCategories = new List<MessageCategory>()
+				{
+
+				},
+				DayOfWeekSettings = new List<DayOfWeekSettings>()
+				{
+
+				}
+			};
 		}
 	}
 }

@@ -50,17 +50,41 @@
 	<data name="InviteCodePlaceholder" xml:space="preserve">
     	<value>Your invite code eg.: FJ8TYR3</value>
   	</data>
-	<data name="EmailPlaceHolder" xml:space="preserve">
+	<data name="EmailPlaceholder" xml:space="preserve">
     	<value>Type your email</value>
   	</data>
-	<data name="PasswordPlaceHolder" xml:space="preserve">
+	<data name="PasswordPlaceholder" xml:space="preserve">
     	<value>Type your password</value>
+  	</data>
+	<data name="FirstNamePlaceholder" xml:space="preserve">
+    	<value>Type your first name</value>
+  	</data>
+	<data name="LastNamePlaceholder" xml:space="preserve">
+    	<value>Type your last name</value>
+  	</data>
+	<data name="CityPlaceholder" xml:space="preserve">
+    	<value>Type your city</value>
+  	</data>
+	<data name="StatePlaceholder" xml:space="preserve">
+    	<value>Type your state</value>
   	</data>
 	<data name="EmailRequiredMessage" xml:space="preserve">
     	<value>Please, type your email.</value>
   	</data>
 	<data name="PasswordRequiredMessage" xml:space="preserve">
     	<value>Please, type your password.</value>
+  	</data>
+	<data name="FirstNameRequiredMessage" xml:space="preserve">
+    	<value>Please, type your first name.</value>
+  	</data>
+	<data name="LastNameRequiredMessage" xml:space="preserve">
+    	<value>Please, type your last name.</value>
+  	</data>
+	<data name="CityRequiredMessage" xml:space="preserve">
+    	<value>Please, type your city.</value>
+  	</data>
+	<data name="StateRequiredMessage" xml:space="preserve">
+    	<value>Please, type your state.</value>
   	</data>
 	<data name="RequestInviteSuccessfully" xml:space="preserve">
     	<value>Your invite was sent successfully. Please check your email.</value>

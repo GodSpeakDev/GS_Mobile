@@ -1,10 +1,14 @@
 ﻿using System;
 using MvvmCross.Core.ViewModels;
+using GodSpeak.Resources;
 
 namespace GodSpeak
 {
 	public class RegisterViewModel : CustomViewModel
 	{
+		private IWebApiService _webApi;
+		private ISessionService _sessionService;
+
 		private object _image;
 		public object Image
 		{
@@ -55,7 +59,7 @@ namespace GodSpeak
 		}
 
 		private MvxCommand _saveCommand;
-		public MvxCommand LoginCommand
+		public MvxCommand SaveCommand
 		{
 			get
 			{
@@ -63,14 +67,72 @@ namespace GodSpeak
 			}
 		}
 
-		public RegisterViewModel(IDialogService dialogService) : base(dialogService)
+		public RegisterViewModel(IDialogService dialogService, IWebApiService webApi, ISessionService sessionService) : base(dialogService)
 		{
-			
+			_webApi = webApi;
+			_sessionService = sessionService;
 		}
 
-		private void DoSaveCommand()
+		private async void DoSaveCommand()
 		{
-			
+			if (string.IsNullOrEmpty(FirstName))
+			{
+				await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.FirstNameRequiredMessage);
+				return;
+			}
+
+			if (string.IsNullOrEmpty(LastName))
+			{
+				await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.LastNameRequiredMessage);
+				return;
+			}
+
+			if (string.IsNullOrEmpty(City))
+			{
+				await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.CityRequiredMessage);
+				return;
+			}
+
+			if (string.IsNullOrEmpty(State))
+			{
+				await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.StateRequiredMessage);
+				return;
+			}
+
+			if (string.IsNullOrEmpty(Email))
+			{
+				await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.EmailRequiredMessage);
+				return;
+			}
+
+			if (string.IsNullOrEmpty(Password))
+			{
+				await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.PasswordRequiredMessage);
+				return;
+			}
+
+			var request = new RegisterUserRequest() 
+			{
+				FirstName = FirstName,
+				LastName = LastName,
+				City = City,
+				State = State,
+				Email = Email,
+				Password = Password,
+				ProfilePhoto = Image as byte[]
+			};
+
+			var response = await _webApi.RegisterUser(request);
+
+			if (response.IsSuccess)
+			{
+				await _sessionService.SaveUser(response.Content.Payload);
+				this.ShowViewModel<HomeViewModel>();
+			}
+			else
+			{
+				await HandleResponse(response);
+			}
 		}
 	}
 }

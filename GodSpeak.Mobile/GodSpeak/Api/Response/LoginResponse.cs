@@ -5,10 +5,6 @@ namespace GodSpeak
 {
 	public class LoginResponse
 	{
-		public LoginResponse()
-		{			
-		}
-
 		public User Payload
 		{
 			get;

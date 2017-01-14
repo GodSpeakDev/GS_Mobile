@@ -1,7 +1,8 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <views:CustomContentPage  
 		xmlns="http://xamarin.com/schemas/2014/forms" 
 		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+		xmlns:res="clr-namespace:GodSpeak.Resources;assembly=GodSpeak"
 		xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
 		x:Class="GodSpeak.RegisterPage">
 	<views:CustomContentPage.Content>
@@ -41,11 +42,13 @@
 					<Entry
 						Grid.Row="0"
 						Grid.Column="1"
+						Placeholder="{x:Static res:Text.FirstNamePlaceholder}" 							
 						Text="{Binding FirstName}" 
 					/>
 					<Entry
 						Grid.Row="1"
 						Grid.Column="1"
+						Placeholder="{x:Static res:Text.LastNamePlaceholder}" 							
 						Text="{Binding LastName}" 
 					/>
 
@@ -53,6 +56,7 @@
 						Grid.Row="2"
 						Grid.Column="0"
 						Grid.ColumnSpan="2"
+						Placeholder="{x:Static res:Text.CityPlaceholder}"
 						Text="{Binding City}" 
 					/>
 
@@ -60,6 +64,7 @@
 						Grid.Row="3"
 						Grid.Column="0"
 						Grid.ColumnSpan="2"
+						Placeholder="{x:Static res:Text.StatePlaceholder}"
 						Text="{Binding State}" 
 					/>
 
@@ -74,6 +79,8 @@
 						Grid.Row="5"
 						Grid.Column="0"
 						Grid.ColumnSpan="2"
+						Keyboard="Email"
+						Placeholder="{x:Static res:Text.EmailPlaceholder}"	
 						Text="{Binding Email}" 
 					/>
 
@@ -81,6 +88,8 @@
 						Grid.Row="6"
 						Grid.Column="0"
 						Grid.ColumnSpan="2"
+						IsPassword="true"
+						Placeholder="{x:Static res:Text.PasswordPlaceholder}"	
 						Text="{Binding Password}" 
 					/>			
 				</Grid>			

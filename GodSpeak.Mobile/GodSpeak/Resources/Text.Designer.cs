@@ -113,15 +113,39 @@ namespace GodSpeak.Resources {
             }
         }
         
-        internal static string EmailPlaceHolder {
+        internal static string EmailPlaceholder {
             get {
-                return ResourceManager.GetString("EmailPlaceHolder", resourceCulture);
+                return ResourceManager.GetString("EmailPlaceholder", resourceCulture);
             }
         }
         
-        internal static string PasswordPlaceHolder {
+        internal static string PasswordPlaceholder {
             get {
-                return ResourceManager.GetString("PasswordPlaceHolder", resourceCulture);
+                return ResourceManager.GetString("PasswordPlaceholder", resourceCulture);
+            }
+        }
+        
+        internal static string FirstNamePlaceholder {
+            get {
+                return ResourceManager.GetString("FirstNamePlaceholder", resourceCulture);
+            }
+        }
+        
+        internal static string LastNamePlaceholder {
+            get {
+                return ResourceManager.GetString("LastNamePlaceholder", resourceCulture);
+            }
+        }
+        
+        internal static string CityPlaceholder {
+            get {
+                return ResourceManager.GetString("CityPlaceholder", resourceCulture);
+            }
+        }
+        
+        internal static string StatePlaceholder {
+            get {
+                return ResourceManager.GetString("StatePlaceholder", resourceCulture);
             }
         }
         
@@ -134,6 +158,30 @@ namespace GodSpeak.Resources {
         internal static string PasswordRequiredMessage {
             get {
                 return ResourceManager.GetString("PasswordRequiredMessage", resourceCulture);
+            }
+        }
+        
+        internal static string FirstNameRequiredMessage {
+            get {
+                return ResourceManager.GetString("FirstNameRequiredMessage", resourceCulture);
+            }
+        }
+        
+        internal static string LastNameRequiredMessage {
+            get {
+                return ResourceManager.GetString("LastNameRequiredMessage", resourceCulture);
+            }
+        }
+        
+        internal static string CityRequiredMessage {
+            get {
+                return ResourceManager.GetString("CityRequiredMessage", resourceCulture);
+            }
+        }
+        
+        internal static string StateRequiredMessage {
+            get {
+                return ResourceManager.GetString("StateRequiredMessage", resourceCulture);
             }
         }
         
