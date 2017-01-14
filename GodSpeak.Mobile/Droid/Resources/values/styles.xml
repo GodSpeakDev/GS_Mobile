@@ -1,4 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <resources>
-	
+	<style name="AppTheme.Base" parent="Theme.AppCompat.NoActionBar">
+		
+	</style>	
+
+	<style name="AppTheme" parent="AppTheme.Base">
+		
+  	</style>
 </resources>

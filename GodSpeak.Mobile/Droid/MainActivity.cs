@@ -20,8 +20,8 @@ using System.Net;
 
 namespace GodSpeak.Droid
 {
-    [Activity(Theme = "@style/MyTheme", Label = "MvxFormsApplicationActivity", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.ScreenSize)]
-    public class MainActivity : FormsApplicationActivity
+    [Activity(Theme = "@style/AppTheme", Label = "MvxFormsApplicationActivity", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.ScreenSize)]
+    public class MainActivity : FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle bundle)
 		{

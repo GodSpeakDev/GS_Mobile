@@ -5,9 +5,9 @@ using Xamarin.Forms;
 
 namespace GodSpeak
 {
-	public partial class WelcomePage : CustomContentPage
+	public partial class RegisterPage : CustomContentPage
 	{
-		public WelcomePage()
+		public RegisterPage()
 		{
 			InitializeComponent();
 		}

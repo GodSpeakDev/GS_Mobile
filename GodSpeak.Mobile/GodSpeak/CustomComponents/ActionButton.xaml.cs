@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-
 using Xamarin.Forms;
 
 namespace GodSpeak
 {
-	public partial class WelcomePage : CustomContentPage
+	public partial class ActionButton : Button
 	{
-		public WelcomePage()
+		public ActionButton()
 		{
 			InitializeComponent();
 		}

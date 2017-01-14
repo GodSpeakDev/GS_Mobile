@@ -52,5 +52,17 @@ namespace GodSpeak.Resources {
                 return ResourceManager.GetString("GetStartedText", resourceCulture);
             }
         }
+        
+        internal static string ClaimInviteCodeText {
+            get {
+                return ResourceManager.GetString("ClaimInviteCodeText", resourceCulture);
+            }
+        }
+        
+        internal static string RequestInviteCodeText {
+            get {
+                return ResourceManager.GetString("RequestInviteCodeText", resourceCulture);
+            }
+        }
     }
 }

@@ -18,4 +18,12 @@
 				Quisque et tincidunt enim. Duis rutrum est id libero feugiat efficitur. Ut sollicitudin interdum est eget feugiat. Curabitur felis est, pellentesque sit amet turpis sed, elementum lobortis urna. Duis tempor vitae nulla in malesuada. Ut lobortis luctus lorem ac finibus. Aenean viverra, velit et molestie malesuada, arcu urna posuere velit, vel mollis est velit ac dui. Vivamus pellentesque at mauris non maximus. Sed porta vel dolor ut fringilla. Sed quis metus molestie, maximus nibh eu, rhoncus est. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
 		</value>
   	</data>
+	<data name="ClaimInviteCodeText" xml:space="preserve">
+    	<value>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce at quam pulvinar, rutrum metus vitae, luctus odio. 
+		</value>
+  	</data>
+	<data name="RequestInviteCodeText" xml:space="preserve">
+    	<value>Quisque et tincidunt enim. Duis rutrum est id libero feugiat efficitur. Ut sollicitudin interdum est eget feugiat.
+		</value>
+  	</data>
 </root>

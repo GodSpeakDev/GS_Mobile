@@ -30,7 +30,7 @@ namespace GodSpeak
 		{
 			var pages = new List<CustomViewModel>();
 			pages.Add(new GetStartedViewModel(this));
-			pages.Add(new ClaimInviteCodeViewModel());
+			pages.Add(new ClaimInviteCodeViewModel(this));
 			pages.Add(new RequestInviteCodeViewModel());
 
 			Pages = new ObservableCollection<CustomViewModel>(pages);

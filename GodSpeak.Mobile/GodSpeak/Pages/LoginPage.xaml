@@ -1,6 +1,49 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="GodSpeak.LoginPage">
+<views:CustomContentPage 
+		xmlns="http://xamarin.com/schemas/2014/forms" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+		xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
+		x:Class="GodSpeak.LoginPage">
 	<ContentPage.Content>
-		<Button Text="Login" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Command="{Binding TapLoginCommand}" />
+		<Grid 
+			HorizontalOptions="FillAndExpand"
+			VerticalOptions="FillAndExpand">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="auto" />
+				<RowDefinition Height="auto" />
+				<RowDefinition Height="auto" />
+				<RowDefinition Height="auto" />
+				<RowDefinition Height="auto" />
+				<RowDefinition Height="auto" />
+			</Grid.RowDefinitions>
+			
+			<Entry 
+				Grid.Row="0"
+				Margin="30, 0"
+				Text="{Binding Email}" />
+			<Entry 
+				Grid.Row="1"
+				Margin="30, 0"
+				Text="{Binding Password}" />
+			<Button 
+				Grid.Row="2"
+				Text="Login" 
+				HorizontalOptions="CenterAndExpand" 
+				VerticalOptions="Center" 
+				Command="{Binding LoginCommand}" />
+			<views:ActionButton 
+				Grid.Row="3"
+				Text="Register" 
+				HorizontalOptions="CenterAndExpand" 
+				VerticalOptions="Center" 
+				Command="{Binding RegisterCommand}" />
+			<views:Link
+				Grid.Row="4"	
+				Text="Forgot Password?">
+				<Label.GestureRecognizers>
+			        <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" />
+			    </Label.GestureRecognizers>
+			</views:Link>
+		</Grid>
 	</ContentPage.Content>
-</ContentPage>
+</views:CustomContentPage>

@@ -58,6 +58,21 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Text.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\RegisterPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ForgotPasswordPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomComponents\Link.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomComponents\ActionButton.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomComponents\Header.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -139,9 +154,26 @@
     <Compile Include="Pages\ClaimInviteCodeView.xaml.cs">
       <DependentUpon>ClaimInviteCodeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Components\CustomCarouselView.cs" />
+    <Compile Include="CustomComponents\CustomCarouselView.cs" />
     <Compile Include="Resources\Text.Designer.cs">
       <DependentUpon>Text.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\RegisterViewModel.cs" />
+    <Compile Include="Pages\RegisterPage.xaml.cs">
+      <DependentUpon>RegisterPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\ForgotPasswordViewModel.cs" />
+    <Compile Include="Pages\ForgotPasswordPage.xaml.cs">
+      <DependentUpon>ForgotPasswordPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomComponents\Link.xaml.cs">
+      <DependentUpon>Link.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomComponents\ActionButton.xaml.cs">
+      <DependentUpon>ActionButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomComponents\Header.xaml.cs">
+      <DependentUpon>Header.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -154,7 +186,7 @@
     <Folder Include="Converters\" />
     <Folder Include="MvvmCross\" />
     <Folder Include="ViewModels\Welcome\" />
-    <Folder Include="Components\" />
+    <Folder Include="CustomComponents\" />
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>

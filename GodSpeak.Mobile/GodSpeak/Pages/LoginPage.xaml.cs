@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace GodSpeak
 {
-	public partial class LoginPage : ContentPage
+	public partial class LoginPage : CustomContentPage
 	{
 		public LoginPage()
 		{
