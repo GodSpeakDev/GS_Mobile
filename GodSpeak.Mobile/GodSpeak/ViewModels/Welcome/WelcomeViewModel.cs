@@ -7,6 +7,8 @@ namespace GodSpeak
 {
 	public class WelcomeViewModel : CustomViewModel
 	{
+		private IWebApiService _webApi;
+
 		private int _selectedPosition;
 		public int SelectedPosition
 		{
@@ -21,17 +23,17 @@ namespace GodSpeak
 			set { SetProperty(ref _pages, value); }
 		}
 
-		public WelcomeViewModel()
+		public WelcomeViewModel(IDialogService dialogService, IWebApiService webApi) : base(dialogService)
 		{
-			
+			_webApi = webApi;	
 		}
 
 		public void Init()
 		{
 			var pages = new List<CustomViewModel>();
-			pages.Add(new GetStartedViewModel(this));
-			pages.Add(new ClaimInviteCodeViewModel(this));
-			pages.Add(new RequestInviteCodeViewModel());
+			pages.Add(new GetStartedViewModel(this, DialogService));
+			pages.Add(new ClaimInviteCodeViewModel(this, DialogService, _webApi));
+			pages.Add(new RequestInviteCodeViewModel(this, DialogService, _webApi));
 
 			Pages = new ObservableCollection<CustomViewModel>(pages);
 		}

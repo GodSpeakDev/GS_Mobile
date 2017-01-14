@@ -1,19 +1,23 @@
 ﻿using System;
 using MvvmCross.Core.ViewModels;
 using System.Threading.Tasks;
+using GodSpeak.Resources;
 
 namespace GodSpeak
 {
 	public class CustomViewModel : MvxViewModel
 	{
+		public IDialogService DialogService { get; private set;}
+
 		private MvxCommand closeCommand;
 		public MvxCommand CloseCommand
 		{
 			get { return closeCommand ?? (closeCommand = new MvxCommand(DoCloseCommand)); }
 		}
 
-		public CustomViewModel()
+		public CustomViewModel(IDialogService dialogService)
 		{
+			DialogService = dialogService;
 		}
 
 		protected void DoCloseCommand()
@@ -23,20 +27,26 @@ namespace GodSpeak
 
 		public async Task HandleResponse<T>(BaseResponse<T> response)
 		{
-			//if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
-			//{
-			//	Settings.Token = null;
-			//	await this.ShowAlert(Text.SessionExpiredPopupTitle, Text.SessionExpiredPopupTitle);
-			//	await GoToRoot();
-			//}
-			//else if (response.StatusCode == System.Net.HttpStatusCode.RequestTimeout)
-			//{
-			//	await this.ShowAlert(Text.NoConnectionPopupTitle, Text.NoConnectionPopupText);
-			//}
-			//else
-			//{
-			//	await this.ShowAlert(Text.ErrorPopupTitle, Text.ErrorPopupText);
-			//}
+			if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+			{
+				//Settings.Token = null;
+				//await this.ShowAlert(Text.SessionExpiredPopupTitle, Text.SessionExpiredPopupTitle);
+				//await GoToRoot();
+			}
+			else if (response.StatusCode == System.Net.HttpStatusCode.RequestTimeout)
+			{
+				//await this.ShowAlert(Text.NoConnectionPopupTitle, Text.NoConnectionPopupText);
+			}
+			else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+			{
+				await DialogService.ShowAlert(response.ErrorTitle ?? Text.ErrorPopupTitle, 
+				                              response.ErrorMessage ?? Text.ErrorPopupText);
+			}
+			else
+			{
+				
+				//await this.ShowAlert(Text.ErrorPopupTitle, Text.ErrorPopupText);
+			}
 		}
 	}
 }

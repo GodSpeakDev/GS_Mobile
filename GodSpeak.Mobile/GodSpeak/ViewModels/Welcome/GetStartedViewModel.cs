@@ -16,7 +16,7 @@ namespace GodSpeak
 			}
 		}
 
-		public GetStartedViewModel(WelcomeViewModel parentViewModel)
+		public GetStartedViewModel(WelcomeViewModel parentViewModel, IDialogService dialogService) : base(dialogService)
 		{
 			_parentViewModel = parentViewModel;
 		}

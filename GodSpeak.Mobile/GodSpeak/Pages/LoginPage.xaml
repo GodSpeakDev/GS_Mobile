@@ -3,6 +3,7 @@
 		xmlns="http://xamarin.com/schemas/2014/forms" 
 		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 		xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
+		xmlns:res="clr-namespace:GodSpeak.Resources;assembly=GodSpeak"
 		x:Class="GodSpeak.LoginPage">
 	<ContentPage.Content>
 		<Grid 
@@ -20,10 +21,14 @@
 			<Entry 
 				Grid.Row="0"
 				Margin="30, 0"
+				Keyboard="Email"
+				Placeholder="{x:Static res:Text.EmailPlaceHolder}" 
 				Text="{Binding Email}" />
 			<Entry 
 				Grid.Row="1"
 				Margin="30, 0"
+				IsPassword="true"
+				Placeholder="{x:Static res:Text.PasswordPlaceHolder}" 
 				Text="{Binding Password}" />
 			<Button 
 				Grid.Row="2"

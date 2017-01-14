@@ -86,11 +86,10 @@
     <Compile Include="Api\Response\BaseResponse.cs" />
     <Compile Include="Api\Response\LoginResponse.cs" />
     <Compile Include="Api\Response\RegisterUserResponse.cs" />
-    <Compile Include="Api\Dtos\Category.cs" />
+    <Compile Include="Api\Dtos\MessageCategory.cs" />
     <Compile Include="Api\Dtos\DeliveredScripture.cs" />
     <Compile Include="Api\Dtos\GiftedApp.cs" />
-    <Compile Include="Api\Dtos\MessageConfig.cs" />
-    <Compile Include="Api\Dtos\DailyConfig.cs" />
+    <Compile Include="Api\Dtos\DayOfWeekSettings.cs" />
     <Compile Include="Api\Request\LoginRequest.cs" />
     <Compile Include="Api\Request\RegisterUserRequest.cs" />
     <Compile Include="Api\Request\ForgotPasswordRequest.cs" />
@@ -175,6 +174,13 @@
     <Compile Include="CustomComponents\Header.xaml.cs">
       <DependentUpon>Header.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Services\IDialogService.cs" />
+    <Compile Include="Services\DialogService.cs" />
+    <Compile Include="Api\Request\RequestInviteRequest.cs" />
+    <Compile Include="Api\Response\RequestInviteResponse.cs" />
+    <Compile Include="Services\ISessionService.cs" />
+    <Compile Include="Api\Dtos\User.cs" />
+    <Compile Include="Services\SessionService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />
@@ -188,6 +194,7 @@
     <Folder Include="ViewModels\Welcome\" />
     <Folder Include="CustomComponents\" />
     <Folder Include="Resources\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">

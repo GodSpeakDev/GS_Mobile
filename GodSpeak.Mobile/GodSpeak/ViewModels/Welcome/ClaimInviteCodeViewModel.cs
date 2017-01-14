@@ -1,11 +1,13 @@
 ﻿using System;
 using MvvmCross.Core.ViewModels;
+using GodSpeak.Resources;
 
 namespace GodSpeak
 {
 	public class ClaimInviteCodeViewModel : CustomViewModel
 	{
 		private WelcomeViewModel _parentViewModel;
+		private IWebApiService _webApi;
 
 		private string _inviteCode;
 		public string InviteCode
@@ -41,14 +43,40 @@ namespace GodSpeak
 			}
 		}
 
-		public ClaimInviteCodeViewModel(WelcomeViewModel parentViewModel)
+		public ClaimInviteCodeViewModel(WelcomeViewModel parentViewModel, IDialogService dialogService, IWebApiService webApi) : base(dialogService)
 		{
 			_parentViewModel = parentViewModel;
+			_webApi = webApi;
 		}
 
-		public void DoClaimInviteCodeCommand()
+		public async void DoClaimInviteCodeCommand()
 		{
-			
+			if (string.IsNullOrEmpty(InviteCode))
+			{
+				await this.DialogService.ShowAlert(Text.ErrorPopupTitle, Text.InviteCodeRequiredMessage);
+				return;
+			}
+
+			var response = await _webApi.ValidateCode(new ValidateCodeRequest() { Code=this.InviteCode});
+			if (response.IsSuccess)
+			{
+				ShowViewModel<RegisterViewModel>();
+			}
+			else
+			{
+				if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+				{
+					var shouldGetACode = await this.DialogService.ShowConfirmation(response.ErrorTitle, response.ErrorMessage, Text.GetACode, Text.TryAgain);
+					if (shouldGetACode)
+					{
+						_parentViewModel.SelectPage<RequestInviteCodeViewModel>();
+					}
+				}
+				else
+				{
+					await HandleResponse(response);
+				}
+			}
 		}
 
 		public void DoDontHaveCodeCommand()

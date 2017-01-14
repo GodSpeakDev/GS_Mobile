@@ -26,4 +26,46 @@
     	<value>Quisque et tincidunt enim. Duis rutrum est id libero feugiat efficitur. Ut sollicitudin interdum est eget feugiat.
 		</value>
   	</data>
+	<data name="OkPopup" xml:space="preserve">
+    	<value>Ok</value>
+  	</data>
+	<data name="ErrorPopupTitle" xml:space="preserve">
+    	<value>Error</value>
+  	</data>
+	<data name="SuccessPopupTitle" xml:space="preserve">
+    	<value>Success</value>
+  	</data>
+	<data name="ErrorPopupText" xml:space="preserve">
+    	<value>An error occured on our servers, please try again or contact our technical support.</value>
+  	</data>
+	<data name="GetACode" xml:space="preserve">
+    	<value>Get a Code</value>
+  	</data>
+	<data name="TryAgain" xml:space="preserve">
+    	<value>Try Again</value>
+  	</data>
+	<data name="InviteCodeRequiredMessage" xml:space="preserve">
+    	<value>Please, you can't claim a empty invite code.</value>
+  	</data>
+	<data name="InviteCodePlaceholder" xml:space="preserve">
+    	<value>Your invite code eg.: FJ8TYR3</value>
+  	</data>
+	<data name="EmailPlaceHolder" xml:space="preserve">
+    	<value>Type your email</value>
+  	</data>
+	<data name="PasswordPlaceHolder" xml:space="preserve">
+    	<value>Type your password</value>
+  	</data>
+	<data name="EmailRequiredMessage" xml:space="preserve">
+    	<value>Please, type your email.</value>
+  	</data>
+	<data name="PasswordRequiredMessage" xml:space="preserve">
+    	<value>Please, type your password.</value>
+  	</data>
+	<data name="RequestInviteSuccessfully" xml:space="preserve">
+    	<value>Your invite was sent successfully. Please check your email.</value>
+  	</data>
+	<data name="ForgotPasswordSuccessfully" xml:space="preserve">
+    	<value>Instructions to help you reset your password were sent to you. Please check your email.</value>
+  	</data>
 </root>

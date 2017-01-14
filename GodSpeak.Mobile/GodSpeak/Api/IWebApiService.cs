@@ -6,6 +6,7 @@ namespace GodSpeak
 	public interface IWebApiService
 	{
 		Task<BaseResponse<ValidateCodeResponse>> ValidateCode(ValidateCodeRequest request);
+		Task<BaseResponse<RequestInviteResponse>> RequestInvite(RequestInviteRequest request);
 		Task<BaseResponse<LoginResponse>> Login(LoginRequest request);
 		Task<BaseResponse<LogoutResponse>> Logout(LogoutRequest request);
 		Task<BaseResponse<GetCategoriesResponse>> GetCategories(GetCategoriesRequest request);

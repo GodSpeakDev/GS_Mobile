@@ -1,21 +1,21 @@
 ﻿using System;
 namespace GodSpeak
 {
-	public class DailyConfig
+	public class MessageCategory
 	{
-		public int Weekday
+		public Guid Id 
 		{
 			get;
 			set;
 		}
 
-		public DateTime StartTime
+		public bool Enabled
 		{
 			get;
 			set;
-		}
+		}	
 
-		public DateTime EndTime
+		public string Title
 		{
 			get;
 			set;

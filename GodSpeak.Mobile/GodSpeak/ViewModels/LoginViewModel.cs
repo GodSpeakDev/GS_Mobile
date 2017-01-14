@@ -1,10 +1,14 @@
 ﻿using System;
 using MvvmCross.Core.ViewModels;
+using GodSpeak.Resources;
 
 namespace GodSpeak
 {
 	public class LoginViewModel : CustomViewModel
 	{
+		private IWebApiService _webApi;
+		private ISessionService _sessionService;
+
 		private string _email;
 		public string Email
 		{
@@ -46,13 +50,37 @@ namespace GodSpeak
 			}
 		}
 
-		public LoginViewModel()
+		public LoginViewModel(IDialogService dialogService, IWebApiService webApi, ISessionService sessionService) : base(dialogService)
 		{
+			_sessionService = sessionService;
+			_webApi = webApi;
 		}
 
-		private void DoLoginCommand()
+		private async void DoLoginCommand()
 		{
-			this.ShowViewModel<HomeViewModel>();
+			if (string.IsNullOrEmpty(Email))
+			{
+				await this.DialogService.ShowAlert(Text.ErrorPopupTitle, Text.EmailRequiredMessage);
+				return;
+			}
+
+			if (string.IsNullOrEmpty(Password))
+			{
+				await this.DialogService.ShowAlert(Text.ErrorPopupTitle, Text.PasswordRequiredMessage);
+				return;
+			}
+
+			var response = await _webApi.Login(new LoginRequest() {Email=Email, Password=Password});
+
+			if (response.IsSuccess)
+			{
+				await _sessionService.SaveUser(response.Content.Payload);
+				this.ShowViewModel<HomeViewModel>();
+			}
+			else
+			{
+				await HandleResponse(response);	
+			}
 		}
 
 		private void DoRegisterCommand()

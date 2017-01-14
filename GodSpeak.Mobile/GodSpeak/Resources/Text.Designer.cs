@@ -64,5 +64,89 @@ namespace GodSpeak.Resources {
                 return ResourceManager.GetString("RequestInviteCodeText", resourceCulture);
             }
         }
+        
+        internal static string OkPopup {
+            get {
+                return ResourceManager.GetString("OkPopup", resourceCulture);
+            }
+        }
+        
+        internal static string ErrorPopupTitle {
+            get {
+                return ResourceManager.GetString("ErrorPopupTitle", resourceCulture);
+            }
+        }
+        
+        internal static string SuccessPopupTitle {
+            get {
+                return ResourceManager.GetString("SuccessPopupTitle", resourceCulture);
+            }
+        }
+        
+        internal static string ErrorPopupText {
+            get {
+                return ResourceManager.GetString("ErrorPopupText", resourceCulture);
+            }
+        }
+        
+        internal static string GetACode {
+            get {
+                return ResourceManager.GetString("GetACode", resourceCulture);
+            }
+        }
+        
+        internal static string TryAgain {
+            get {
+                return ResourceManager.GetString("TryAgain", resourceCulture);
+            }
+        }
+        
+        internal static string InviteCodeRequiredMessage {
+            get {
+                return ResourceManager.GetString("InviteCodeRequiredMessage", resourceCulture);
+            }
+        }
+        
+        internal static string InviteCodePlaceholder {
+            get {
+                return ResourceManager.GetString("InviteCodePlaceholder", resourceCulture);
+            }
+        }
+        
+        internal static string EmailPlaceHolder {
+            get {
+                return ResourceManager.GetString("EmailPlaceHolder", resourceCulture);
+            }
+        }
+        
+        internal static string PasswordPlaceHolder {
+            get {
+                return ResourceManager.GetString("PasswordPlaceHolder", resourceCulture);
+            }
+        }
+        
+        internal static string EmailRequiredMessage {
+            get {
+                return ResourceManager.GetString("EmailRequiredMessage", resourceCulture);
+            }
+        }
+        
+        internal static string PasswordRequiredMessage {
+            get {
+                return ResourceManager.GetString("PasswordRequiredMessage", resourceCulture);
+            }
+        }
+        
+        internal static string RequestInviteSuccessfully {
+            get {
+                return ResourceManager.GetString("RequestInviteSuccessfully", resourceCulture);
+            }
+        }
+        
+        internal static string ForgotPasswordSuccessfully {
+            get {
+                return ResourceManager.GetString("ForgotPasswordSuccessfully", resourceCulture);
+            }
+        }
     }
 }

@@ -18,7 +18,7 @@ namespace GodSpeak
 			set { SetProperty(ref _messages, value);}
 		}
 
-		public MessageViewModel(IWebApiService apiService)
+		public MessageViewModel(IDialogService dialogService, IWebApiService apiService) : base(dialogService)
 		{
 			_apiService = apiService;
 			Messages = new ObservableCollection<GroupedCollection<Message, DateTime>>();

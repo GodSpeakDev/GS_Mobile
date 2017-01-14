@@ -3,7 +3,7 @@ namespace GodSpeak
 {
 	public class InvitesViewModel : CustomViewModel
 	{
-		public InvitesViewModel()
+		public InvitesViewModel(IDialogService dialogService) : base(dialogService)
 		{
 		}
 	}

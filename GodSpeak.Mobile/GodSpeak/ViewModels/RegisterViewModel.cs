@@ -63,7 +63,7 @@ namespace GodSpeak
 			}
 		}
 
-		public RegisterViewModel()
+		public RegisterViewModel(IDialogService dialogService) : base(dialogService)
 		{
 			
 		}

@@ -40,6 +40,7 @@
 				Grid.Row="2" 					
 				Margin="30,0"
 				HorizontalOptions="FillAndExpand"
+				Placeholder="{x:Static res:Text.InviteCodePlaceholder}"
 				Text="{Binding InviteCode}"
 			/>
 			<views:ActionButton 

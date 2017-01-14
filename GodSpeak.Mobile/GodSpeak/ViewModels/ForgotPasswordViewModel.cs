@@ -1,10 +1,13 @@
 ﻿using System;
 using MvvmCross.Core.ViewModels;
+using GodSpeak.Resources;
 
 namespace GodSpeak
 {
 	public class ForgotPasswordViewModel : CustomViewModel
 	{
+		private IWebApiService _webApi;
+
 		private string _email;
 		public string Email
 		{
@@ -21,13 +24,29 @@ namespace GodSpeak
 			}
 		}
 
-		public ForgotPasswordViewModel()
+		public ForgotPasswordViewModel(IDialogService dialogService, IWebApiService webApi) : base(dialogService)
 		{
+			_webApi = webApi;
 		}
 
-		private void DoSendInstructionsCommand()
+		private async void DoSendInstructionsCommand()
 		{
-			
+			if (string.IsNullOrEmpty(Email))
+			{
+				await this.DialogService.ShowAlert(Text.ErrorPopupTitle, Text.EmailRequiredMessage);
+				return;
+			}
+
+			var response = await _webApi.ForgotPassword(new ForgotPasswordRequest() {Email=Email});
+
+			if (response.IsSuccess)
+			{
+				await this.DialogService.ShowAlert(Text.SuccessPopupTitle, Text.ForgotPasswordSuccessfully);
+			}
+			else
+			{
+				await HandleResponse(response);
+			}
 		}
 	}
 }

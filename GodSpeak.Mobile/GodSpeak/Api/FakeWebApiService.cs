@@ -10,12 +10,79 @@ namespace GodSpeak
 
 		public async Task<BaseResponse<ValidateCodeResponse>> ValidateCode(ValidateCodeRequest request)
 		{
-			return null;	
+			await Task.Delay(1000);
+
+			if (request.Code == "123456")
+			{
+				return new BaseResponse<ValidateCodeResponse>()
+				{
+					StatusCode = System.Net.HttpStatusCode.OK,
+				};
+			}
+			else
+			{
+				return new BaseResponse<ValidateCodeResponse>()
+				{
+					StatusCode = System.Net.HttpStatusCode.BadRequest,
+					ErrorMessage = "Sorry, that code is not valid.",
+					ErrorTitle = "Error Code"
+				};	
+			}
+		}
+
+		public async Task<BaseResponse<RequestInviteResponse>> RequestInvite(RequestInviteRequest request)
+		{
+			await Task.Delay(1000);
+
+			return new BaseResponse<RequestInviteResponse>()
+			{
+				StatusCode = System.Net.HttpStatusCode.OK,
+			};
 		}
 
 		public async Task<BaseResponse<LoginResponse>> Login(LoginRequest request)
 		{
-			return null;
+			await Task.Delay(1000);
+
+			if (request.Email == "godspeak@gmail.com" && request.Password == "123456")
+			{
+				return new BaseResponse<LoginResponse>()
+				{
+					StatusCode = System.Net.HttpStatusCode.OK,
+					Content = new LoginResponse() 
+					{
+						Payload = new User() 
+						{
+							Id = Guid.NewGuid(),
+							Email = "godspeak@gmail.com",
+							City = "St. Louis",
+							State = "MO",
+							Credits = 15.0m,
+							FirstName = "GodSpeak",
+							LastName = "GodSpeak",
+							PhotoUrl = "http://images.clipartpanda.com/happy-man-images-A-Happy-Man.jpg",
+							Token = Guid.NewGuid().ToString(),
+							SelectedCategories = new List<MessageCategory>() 
+							{
+								
+							},
+							DayOfWeekSettings = new List<DayOfWeekSettings>()
+							{
+								
+							}
+						}
+					}
+				};
+			}
+			else
+			{
+				return new BaseResponse<LoginResponse>() 
+				{
+					StatusCode = System.Net.HttpStatusCode.BadRequest,
+					ErrorTitle = "Invalid Credentials",
+					ErrorMessage = "Your login or password doesn't match."
+				};
+			}
 		}
 
 		public async Task<BaseResponse<LogoutResponse>> Logout(LogoutRequest request)
@@ -92,7 +159,11 @@ namespace GodSpeak
 
 		public async Task<BaseResponse<ForgotPasswordResponse>> ForgotPassword(ForgotPasswordRequest request)
 		{
-			return null;
+			await Task.Delay(delay);
+			return new BaseResponse<ForgotPasswordResponse>()
+			{
+				StatusCode = System.Net.HttpStatusCode.OK
+			};
 		}
 
 		public async Task<BaseResponse<RegisterUserResponse>> RegisterUser(RegisterUserRequest request)

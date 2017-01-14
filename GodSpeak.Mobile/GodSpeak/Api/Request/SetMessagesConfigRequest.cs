@@ -9,10 +9,10 @@ namespace GodSpeak
 			set;
 		}
 
-		public MessageConfig MessageConfig
-		{
-			get;
-			set;
-		}
+		//public MessageConfig MessageConfig
+		//{
+		//	get;
+		//	set;
+		//}
 	}
 }

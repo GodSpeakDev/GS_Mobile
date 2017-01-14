@@ -1,10 +1,14 @@
 ﻿using System;
 using MvvmCross.Core.ViewModels;
+using GodSpeak.Resources;
 
 namespace GodSpeak
 {
 	public class RequestInviteCodeViewModel : CustomViewModel
 	{
+		private IWebApiService _webApi;
+		private WelcomeViewModel _parentViewModel;
+
 		private string _email;
 		public string Email
 		{
@@ -30,13 +34,31 @@ namespace GodSpeak
 			}
 		}
 
-		public RequestInviteCodeViewModel()
+		public RequestInviteCodeViewModel(WelcomeViewModel parentViewModel, IDialogService dialogService, IWebApiService webApi) : base(dialogService)
 		{
+			_webApi = webApi;
+			_parentViewModel = parentViewModel;
 		}
 
-		public void DoRequestInviteCodeCommand()
+		public async void DoRequestInviteCodeCommand()
 		{
+			if (string.IsNullOrEmpty(Email))
+			{
+				await this.DialogService.ShowAlert(Text.ErrorPopupTitle, Text.EmailRequiredMessage);
+				return;
+			}
 
+			var response = await _webApi.RequestInvite(new RequestInviteRequest() {Email=Email});
+			if (response.IsSuccess)
+			{
+				await this.DialogService.ShowAlert(Text.SuccessPopupTitle, Text.RequestInviteSuccessfully);
+				Email = string.Empty;
+				_parentViewModel.SelectPage<ClaimInviteCodeViewModel>();
+			}
+			else
+			{
+				await HandleResponse(response);
+			}
 		}
 
 		public void DoPurchaseCreditCommand()
