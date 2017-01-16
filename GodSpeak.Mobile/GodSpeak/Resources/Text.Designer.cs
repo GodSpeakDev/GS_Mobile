@@ -196,5 +196,23 @@ namespace GodSpeak.Resources {
                 return ResourceManager.GetString("ForgotPasswordSuccessfully", resourceCulture);
             }
         }
+        
+        internal static string PictureSourceQuestion {
+            get {
+                return ResourceManager.GetString("PictureSourceQuestion", resourceCulture);
+            }
+        }
+        
+        internal static string PictureSourceFromGallery {
+            get {
+                return ResourceManager.GetString("PictureSourceFromGallery", resourceCulture);
+            }
+        }
+        
+        internal static string PictureSourceFromCamera {
+            get {
+                return ResourceManager.GetString("PictureSourceFromCamera", resourceCulture);
+            }
+        }
     }
 }

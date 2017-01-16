@@ -5,6 +5,11 @@
 		xmlns:res="clr-namespace:GodSpeak.Resources;assembly=GodSpeak"
 		xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
 		x:Class="GodSpeak.RegisterPage">
+	<views:CustomContentPage.Resources>
+		<ResourceDictionary>
+			<views:ImageObjectToImageSourceConverter x:Key="imageConverter" />		
+		</ResourceDictionary>
+	</views:CustomContentPage.Resources>
 	<views:CustomContentPage.Content>
 		<Grid>
 			<Grid.RowDefinitions>
@@ -37,8 +42,11 @@
 						Grid.Row="0"
 						Grid.Column="0"
 						Grid.RowSpan="2"
-						Source="{Binding Source}" 
-					/>
+						Source="{Binding Image, Converter={StaticResource imageConverter}}">
+						<Image.GestureRecognizers>
+			        		<TapGestureRecognizer Command="{Binding ChoosePictureCommand}" />
+			    		</Image.GestureRecognizers>
+					</Image>
 					<Entry
 						Grid.Row="0"
 						Grid.Column="1"

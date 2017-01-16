@@ -1,6 +1,10 @@
 ﻿using System;
+using System.IO;
 using MvvmCross.Core.ViewModels;
 using GodSpeak.Resources;
+using MvvmCross.Core;
+using MvvmCross.Forms;
+using MvvmCross.Platform;
 
 namespace GodSpeak
 {
@@ -8,6 +12,7 @@ namespace GodSpeak
 	{
 		private IWebApiService _webApi;
 		private ISessionService _sessionService;
+		private IMediaPicker _mediaPicker;
 
 		private object _image;
 		public object Image
@@ -67,10 +72,25 @@ namespace GodSpeak
 			}
 		}
 
-		public RegisterViewModel(IDialogService dialogService, IWebApiService webApi, ISessionService sessionService) : base(dialogService)
+		private MvxCommand _choosePictureCommand;
+		public MvxCommand ChoosePictureCommand
+		{
+			get
+			{
+				return _choosePictureCommand ?? (_choosePictureCommand = new MvxCommand(DoChoosePictureCommand));
+			}
+		}
+
+		public RegisterViewModel(IDialogService dialogService, IWebApiService webApi, ISessionService sessionService, IMediaPicker mediaPicker) : base(dialogService)
 		{
 			_webApi = webApi;
 			_sessionService = sessionService;
+			_mediaPicker = mediaPicker;
+		}
+
+		public void Init()
+		{
+			Image = "http://www.gravatar.com/avatar/a1c6e240931b44f7f4b21492232cd3fc.png?s=160";
 		}
 
 		private async void DoSaveCommand()
@@ -111,7 +131,7 @@ namespace GodSpeak
 				return;
 			}
 
-			var request = new RegisterUserRequest() 
+			var request = new RegisterUserRequest()
 			{
 				FirstName = FirstName,
 				LastName = LastName,
@@ -133,6 +153,32 @@ namespace GodSpeak
 			{
 				await HandleResponse(response);
 			}
+		}
+
+		private async void DoChoosePictureCommand()
+		{
+			var menuResponse = await this.DialogService.ShowMenu(Text.PictureSourceQuestion, "Cancel", null, Text.PictureSourceFromGallery, Text.PictureSourceFromCamera);
+
+			MediaFile response;
+
+			if (menuResponse == "Cancel")
+			{
+				return;
+			}
+			else if (menuResponse == Text.PictureSourceFromCamera)
+			{
+				response = await _mediaPicker.TakePhotoAsync(new CameraMediaStorageOptions());
+			}
+			else if (menuResponse == Text.PictureSourceFromGallery)
+			{
+				response = await _mediaPicker.SelectPhotoAsync(new CameraMediaStorageOptions());
+			}
+			else
+			{
+				return;
+			}
+
+			Image = response.Source.ToByteArray();
 		}
 	}
 }

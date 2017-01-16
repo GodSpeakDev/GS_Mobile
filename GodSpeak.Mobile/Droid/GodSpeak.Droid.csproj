@@ -131,6 +131,8 @@
     <Compile Include="DebugTrace.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="MvvmCross\MvxFormsDroidMasterDetailPagePresenter.cs" />
+    <Compile Include="MediaPicker\MediaPicker.cs" />
+    <Compile Include="MediaPicker\MediaPickerActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -154,6 +156,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="MvvmCross\" />
+    <Folder Include="MediaPicker\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets')" />

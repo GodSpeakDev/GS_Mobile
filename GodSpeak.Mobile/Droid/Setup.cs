@@ -18,6 +18,8 @@ namespace GodSpeak.Droid
 
         protected override IMvxApplication CreateApp()
         {
+			Mvx.LazyConstructAndRegisterSingleton<IMediaPicker, MediaPicker>();
+
             return new App();
         }
 

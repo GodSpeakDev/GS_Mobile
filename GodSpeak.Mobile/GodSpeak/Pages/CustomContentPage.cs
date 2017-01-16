@@ -27,6 +27,7 @@ namespace GodSpeak
 				{
 					dialogService.DoShowAlert = DisplayAlert;
 					dialogService.DoShowConfirmation = DisplayAlert;
+					dialogService.DoShowMenu = DisplayActionSheet;
 				}
 			}
 		}

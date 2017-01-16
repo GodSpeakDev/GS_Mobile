@@ -8,6 +8,7 @@ namespace GodSpeak
 	{
 		public Func<string, string, string, Task> DoShowAlert { get; set; }
 		public Func<string, string, string, string, Task<bool>> DoShowConfirmation { get; set; }
+		public Func<string, string, string, string[], Task<string>> DoShowMenu { get; set; }
 
 		public async Task ShowAlert(string title, string message)
 		{
@@ -25,6 +26,16 @@ namespace GodSpeak
 			}
 
 			return false;
+		}
+
+		public async Task<string> ShowMenu(string title, string cancel, string destruction, params string[] buttons)
+		{
+			if (DoShowMenu != null)
+			{
+				return await DoShowMenu(title, cancel, destruction, buttons);
+			}
+
+			return null;
 		}
 	}
 }

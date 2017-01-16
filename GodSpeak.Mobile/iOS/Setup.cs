@@ -2,6 +2,7 @@ using MvvmCross.Core.ViewModels;
 using MvvmCross.iOS.Platform;
 using MvvmCross.iOS.Views.Presenters;
 using MvvmCross.Platform.Platform;
+using MvvmCross.Platform;
 using UIKit;
 using GodSpeak;
 using Xamarin.Forms;
@@ -33,6 +34,8 @@ namespace GodSpeak.iOS
 
         protected override IMvxApplication CreateApp()
         {
+			Mvx.LazyConstructAndRegisterSingleton<IMediaPicker, MediaPicker>();
+
             return new App();
         }
         

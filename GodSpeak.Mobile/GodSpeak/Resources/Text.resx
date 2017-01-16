@@ -92,4 +92,13 @@
 	<data name="ForgotPasswordSuccessfully" xml:space="preserve">
     	<value>Instructions to help you reset your password were sent to you. Please check your email.</value>
   	</data>
+	<data name="PictureSourceQuestion" xml:space="preserve">
+    	<value>Where you want to choose your picture?</value>
+  	</data>
+	<data name="PictureSourceFromGallery" xml:space="preserve">
+    	<value>From Gallery</value>
+  	</data>
+	<data name="PictureSourceFromCamera" xml:space="preserve">
+    	<value>From Camera</value>
+  	</data>
 </root>
