@@ -101,4 +101,28 @@
 	<data name="PictureSourceFromCamera" xml:space="preserve">
     	<value>From Camera</value>
   	</data>
+	<data name="PurchaseButtonText" xml:space="preserve">
+    	<value>Purchase</value>
+  	</data>
+	<data name="InAppPurchaseTitle" xml:space="preserve">
+    	<value>In-App Purchase</value>
+  	</data>
+	<data name="InAppPurchaseText" xml:space="preserve">
+    	<value>Please confirm you wish to purchase a credit for {0:C}</value>
+  	</data>
+	<data name="Yes" xml:space="preserve">
+    	<value>Yes</value>
+  	</data>
+	<data name="No" xml:space="preserve">
+    	<value>No</value>
+  	</data>
+	<data name="PurchaseSuccessTitle" xml:space="preserve">
+    	<value>Congratulations</value>
+  	</data>
+	<data name="PurchaseSuccessText" xml:space="preserve">
+    	<value>Your purchase was made successfully.</value>
+  	</data>
+	<data name="PurchasePageTitle" xml:space="preserve">
+    	<value>Purchase Credits</value>
+  	</data>
 </root>

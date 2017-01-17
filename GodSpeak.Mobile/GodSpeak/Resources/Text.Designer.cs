@@ -214,5 +214,53 @@ namespace GodSpeak.Resources {
                 return ResourceManager.GetString("PictureSourceFromCamera", resourceCulture);
             }
         }
+        
+        internal static string PurchaseButtonText {
+            get {
+                return ResourceManager.GetString("PurchaseButtonText", resourceCulture);
+            }
+        }
+        
+        internal static string InAppPurchaseTitle {
+            get {
+                return ResourceManager.GetString("InAppPurchaseTitle", resourceCulture);
+            }
+        }
+        
+        internal static string InAppPurchaseText {
+            get {
+                return ResourceManager.GetString("InAppPurchaseText", resourceCulture);
+            }
+        }
+        
+        internal static string Yes {
+            get {
+                return ResourceManager.GetString("Yes", resourceCulture);
+            }
+        }
+        
+        internal static string No {
+            get {
+                return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        internal static string PurchaseSuccessTitle {
+            get {
+                return ResourceManager.GetString("PurchaseSuccessTitle", resourceCulture);
+            }
+        }
+        
+        internal static string PurchaseSuccessText {
+            get {
+                return ResourceManager.GetString("PurchaseSuccessText", resourceCulture);
+            }
+        }
+        
+        internal static string PurchasePageTitle {
+            get {
+                return ResourceManager.GetString("PurchasePageTitle", resourceCulture);
+            }
+        }
     }
 }

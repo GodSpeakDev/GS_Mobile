@@ -73,6 +73,9 @@
     <EmbeddedResource Include="CustomComponents\Header.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\PurchaseCreditPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -189,6 +192,16 @@
     <Compile Include="MediaPicker\MediaStorageOptions.cs" />
     <Compile Include="Helpers\TaskUtils.cs" />
     <Compile Include="Helpers\StreamUtils.cs" />
+    <Compile Include="ViewModels\PurchaseCreditViewModel.cs" />
+    <Compile Include="Api\Request\GetInviteBundlesRequest.cs" />
+    <Compile Include="Api\Response\GetInviteBundlesResponse.cs" />
+    <Compile Include="Api\Dtos\InviteBundle.cs" />
+    <Compile Include="Pages\PurchaseCreditPage.xaml.cs">
+      <DependentUpon>PurchaseCreditPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\InviteBundleConverter.cs" />
+    <Compile Include="Api\Request\PurchaseInviteRequest.cs" />
+    <Compile Include="Api\Response\PurchaseInviteResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

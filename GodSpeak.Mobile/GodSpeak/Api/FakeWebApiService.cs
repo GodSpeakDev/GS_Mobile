@@ -170,6 +170,54 @@ namespace GodSpeak
 			return null;
 		}
 
+		public async Task<BaseResponse<GetInviteBundlesResponse>> GetInviteBundles(GetInviteBundlesRequest request)
+		{
+			await Task.Delay(delay);
+			return new BaseResponse<GetInviteBundlesResponse>()
+			{
+				StatusCode = System.Net.HttpStatusCode.OK,
+				Content = new GetInviteBundlesResponse()
+				{
+					Payload = new List<InviteBundle>()
+					{
+						new InviteBundle() 
+						{
+							InviteBundleId=Guid.NewGuid(),
+							Cost = 1.99m,
+							NumOfInvites=1,
+							ItunesId="1",
+							PlaystoreId="1"
+						},
+						new InviteBundle()
+						{
+							InviteBundleId=Guid.NewGuid(),
+							Cost = 3.99m,
+							NumOfInvites=5,
+							ItunesId="2",
+							PlaystoreId="2"
+						},
+						new InviteBundle()
+						{
+							InviteBundleId=Guid.NewGuid(),
+							Cost = 6.99m,
+							NumOfInvites=10,
+							ItunesId="3",
+							PlaystoreId="3"
+						},
+					}
+				}
+			};
+		}
+
+		public async Task<BaseResponse<PurchaseInviteResponse>> PurchaseInvite(PurchaseInviteRequest request)
+		{
+			await Task.Delay(delay);
+			return new BaseResponse<PurchaseInviteResponse>()
+			{
+				StatusCode = System.Net.HttpStatusCode.OK,
+			};
+		}
+
 		private User GetTestPayload()
 		{
 			return new User()

@@ -63,7 +63,7 @@ namespace GodSpeak
 
 		public void DoPurchaseCreditCommand()
 		{
-
+			this.ShowViewModel<PurchaseCreditViewModel>();
 		}
 	}
 }
