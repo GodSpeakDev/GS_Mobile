@@ -11,6 +11,8 @@ namespace GodSpeak
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
 
+			CreatableTypes().Containing("DialogService").AsInterfaces().RegisterAsDynamic();
+
             RegisterAppStart<WelcomeViewModel>();
         }
     }
