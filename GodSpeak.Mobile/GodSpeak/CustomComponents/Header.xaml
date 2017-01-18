@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+		xmlns="http://xamarin.com/schemas/2014/forms" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+		HeightRequest="60"
+		x:Class="GodSpeak.Header">
+	<ContentView.Content>
+		<Grid
+			HorizontalOptions="FillAndExpand"
+			VerticalOptions="Start"
+			>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="auto" />
+				<ColumnDefinition Width="1*" />
+				<ColumnDefinition Width="auto" />
+			</Grid.ColumnDefinitions>
+			<Image
+				Grid.Column="0"
+				Source="ic_arrow_back_18pt"
+				>
+				<Image.GestureRecognizers>
+			        <TapGestureRecognizer Command="{Binding CloseCommand}" />
+			    </Image.GestureRecognizers>
+			</Image>
+		</Grid>
+	</ContentView.Content>
+</ContentView>

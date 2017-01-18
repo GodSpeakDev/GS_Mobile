@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+		xmlns="http://xamarin.com/schemas/2014/forms" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+		xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
+		xmlns:res="clr-namespace:GodSpeak.Resources;assembly=GodSpeak"
+		x:Class="GodSpeak.RequestInviteCodeView">
+	<ContentView.Content>
+		<Grid 
+			HorizontalOptions="FillAndExpand"
+			VerticalOptions="FillAndExpand">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="auto" />
+				<RowDefinition Height="auto" />
+				<RowDefinition Height="auto" />
+				<RowDefinition Height="auto" />
+				<RowDefinition Height="auto" />
+			</Grid.RowDefinitions>
+			<Label 
+				Grid.Row="0" 
+				Margin="0,5"
+				FontSize="20"
+				Text="Get A Code" 
+				HorizontalOptions="Center" 
+				VerticalOptions="Center" 
+			/>
+			<Label 
+				Grid.Row="1" 
+				Margin="30,0"
+				HorizontalOptions="Center" 
+				VerticalOptions="Center" 					
+				Text="{x:Static res:Text.RequestInviteCodeText}"
+			/>
+			<Entry
+				Grid.Row="2" 					
+				Margin="30,0"
+				HorizontalOptions="FillAndExpand"
+				Placeholder="{x:Static res:Text.EmailPlaceholder}" 
+				Text="{Binding Email}"
+			/>
+			<views:ActionButton 
+				Grid.Row="3"
+				Margin="30,0"
+				Text="Request Invite Code"	
+				Command="{Binding RequestInviteCodeCommand}"
+			/>
+			<views:ActionButton 
+				Grid.Row="4"
+				Margin="30,0"
+				Text="Purchase Credit"	
+				Command="{Binding PurchaseCreditCommand}"
+			/>
+		</Grid>
+	</ContentView.Content>
+</ContentView>
