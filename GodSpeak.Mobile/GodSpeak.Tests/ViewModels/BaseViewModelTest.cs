@@ -45,6 +45,19 @@ namespace GodSpeak.Tests.ViewModels
         {
             MockDispatcher.Requests.Any (req => req.ViewModelType == typeof (T)).ShouldBeFalse ();
         }
+
+        public static void PropShouldDispatchChange (MvxNotifyPropertyChanged vm, string propName,
+                                                      Action actionToPerform)
+        {
+            var dispatched = false;
+            vm.PropertyChanged += (sender, args) => {
+                if (args.PropertyName == propName) {
+                    dispatched = true;
+                }
+            };
+            actionToPerform ();
+            dispatched.ShouldBeTrue (string.Format ("Setting {0} should've caused change event to be dispatched", propName));
+        }
     }
 
     public class MockDispatcher
@@ -72,4 +85,6 @@ namespace GodSpeak.Tests.ViewModels
             return true;
         }
     }
+
+
 }

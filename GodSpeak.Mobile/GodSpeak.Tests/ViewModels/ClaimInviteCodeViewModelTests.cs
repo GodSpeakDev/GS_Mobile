@@ -26,6 +26,16 @@ namespace GodSpeak.Tests.ViewModels
 
             ViewModelUT = new ClaimInviteCodeViewModel (FakeWelcomeVM, FakeDialogService, FakeWebApiService);
         }
+
+
+        [Test]
+        public void bindable_props_SHOULD_dispatch_change_events ()
+        {
+            PropShouldDispatchChange (ViewModelUT, "InviteCode", () => ViewModelUT.InviteCode = DataFixture.Create<string> ());
+        }
+
+
+
         /// <summary>
         /// ClaimInviteCodeCommand Tests
         /// </summary>
