@@ -56,6 +56,12 @@ namespace GodSpeak
 			_webApi = webApi;
 		}
 
+		public void Init()
+		{
+			Email = "godspeak@gmail.com";
+			Password = "123456";
+		}
+
 		private async void DoLoginCommand()
 		{
 			if (string.IsNullOrEmpty(Email))

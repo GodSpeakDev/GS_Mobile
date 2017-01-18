@@ -204,6 +204,7 @@
     <Compile Include="Api\Response\PurchaseInviteResponse.cs" />
     <Compile Include="Services\IShareService.cs" />
     <Compile Include="CustomComponents\Pager.cs" />
+    <Compile Include="MvvmCross\NavigationBundles.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

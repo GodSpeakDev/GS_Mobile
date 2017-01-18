@@ -21,6 +21,11 @@ namespace GodSpeak
 			}
 		}
 
+		private MenuItem MessageSettingsMenuItem = new MenuItem { Title = "Message Settings", ViewModelType = typeof(InvitesViewModel)};
+		private MenuItem SendInviteMenuItem = new MenuItem { Title = "Send Invite", ViewModelType = typeof(InvitesViewModel)};
+		private MenuItem PurchaseInviteMenuItem = new MenuItem { Title = "Purchase Invite", ViewModelType = typeof(PurchaseCreditViewModel) };
+		private MenuItem LogoutMenuItem = new MenuItem { Title = "Logout", ViewModelType = typeof(WelcomeViewModel)};
+
 		MvxCommand<MenuItem> _onSelectedChangedCommand;
 		ICommand OnSelectedChangedCommand
 		{
@@ -33,11 +38,14 @@ namespace GodSpeak
 
 					var vmType = item.ViewModelType;
 
-					// We demand to clear the Navigation stack as we are changing the section
-					var presentationBundle = new MvxBundle(new Dictionary<string, string> { { "NavigationMode", "ClearStack" } });
-
-					// Show the ViewModel in the Detail NavigationPage
-					ShowViewModel(vmType, presentationBundle: presentationBundle);
+					if (item == LogoutMenuItem)
+					{	
+						ShowViewModel(vmType, presentationBundle: NavigationBundles.RestoreNavigationBundle);      
+					}
+					else
+					{						
+						ShowViewModel(vmType, presentationBundle: NavigationBundles.ClearStackBundle);
+					}
 				}));
 			}
 		}
@@ -48,10 +56,10 @@ namespace GodSpeak
 		public HomeViewModel()
 		{
 			Menu = new[] {
-				new MenuItem { Title = "Message Settings", ViewModelType = typeof(InvitesViewModel) },
-				new MenuItem { Title = "Send Invite", ViewModelType = typeof(InvitesViewModel) },
-				new MenuItem { Title = "Purchase Invite", ViewModelType = typeof(InvitesViewModel) },
-				new MenuItem { Title = "Logout", ViewModelType = typeof(InvitesViewModel) }
+				MessageSettingsMenuItem,
+				SendInviteMenuItem,
+				PurchaseInviteMenuItem,
+				LogoutMenuItem
 			};
 		}
 

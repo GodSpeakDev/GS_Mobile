@@ -93,6 +93,13 @@ namespace GodSpeak
 			if (page == null)
 				return false;
 
+			if (request.PresentationValues != null && request.PresentationValues.ContainsKey("NavigationMode") && request.PresentationValues["NavigationMode"] == "RestoreNavigation")
+			{
+				_mvxFormsApp.MainPage = new NavigationPage(page);
+				var navPage = MvxFormsApp.MainPage as NavigationPage;
+				CustomPlatformInitialization(navPage);
+			}
+
 			var viewModel = MvxPresenterHelpers.LoadViewModel(request);
 
 			SetupForBinding(page, viewModel, request);
@@ -102,6 +109,34 @@ namespace GodSpeak
 				_mvxFormsApp.MainPage = new NavigationPage(page);
 				var navPage = MvxFormsApp.MainPage as NavigationPage;
 				CustomPlatformInitialization(navPage);
+			}
+			else if (_mvxFormsApp.MainPage is MasterDetailPage)
+			{
+				var mainPage = _mvxFormsApp.MainPage as MasterDetailPage;
+
+				// Functionality for clearing the navigation stack before pushing to new Page (for example in a menu with multiple options)
+				if (request.PresentationValues != null)
+				{
+					if (request.PresentationValues.ContainsKey("NavigationMode") && request.PresentationValues["NavigationMode"] == "ClearStack")
+					{
+						mainPage.Detail.Navigation.PopToRootAsync();
+						if (Device.Idiom == TargetIdiom.Phone)
+							mainPage.IsPresented = false;
+					}
+				}
+
+				try
+				{
+					var nav = mainPage.Detail as NavigationPage;
+
+					// calling this sync blocks UI and never navigates hence code continues regardless here
+					nav.PushAsync(page);
+				}
+				catch (Exception e)
+				{
+					Mvx.Error("Exception pushing {0}: {1}\n{2}", page.GetType(), e.Message, e.StackTrace);
+					return false;
+				}
 			}
 			else
 			{
