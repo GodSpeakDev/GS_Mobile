@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<views:CustomContentPage   
+		xmlns="http://xamarin.com/schemas/2014/forms" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+		xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
+		xmlns:res="clr-namespace:GodSpeak.Resources;assembly=GodSpeak"
+		Title="{x:Static res:Text.InvitePageTitle}"
+		x:Class="GodSpeak.InvitesPage">
+	<views:CustomContentPage.Resources>
+		<ResourceDictionary>
+			<views:InverseBooleanConverter x:Key="inverseBooleanConverter" />		
+		</ResourceDictionary>
+	</views:CustomContentPage.Resources>
+	<views:CustomContentPage.Content>
+		<Grid
+			HorizontalOptions="FillAndExpand"
+			VerticalOptions="FillAndExpand"				
+		>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="auto" />
+				<RowDefinition Height="1*" />
+				<RowDefinition Height="auto" />
+			</Grid.RowDefinitions>		
+			<Label 
+				Grid.Row="0"
+				Grid.Column="0"
+				HorizontalOptions="FillAndExpand"
+				HorizontalTextAlignment="Center"
+				Text="{Binding InviteSummary}" 
+			/>
+			<ListView 
+				Grid.Row="1"
+				Grid.Column="0"
+				HorizontalOptions="FillAndExpand"
+				VerticalOptions="FillAndExpand"
+				ItemsSource="{Binding Invites}"
+				SeparatorVisibility="None"		
+				HasUnevenRows="true">
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<ViewCell>
+							<StackLayout
+								Margin="10, 0"
+								HorizontalOptions="FillAndExpand"
+								VerticalOptions="FillAndExpand"
+								Orientation="Horizontal"
+							>
+								<Label 
+									HorizontalOptions="StartAndExpand"
+									VerticalOptions="CenterAndExpand"
+									Text="{Binding Code}"
+									IsVisible="{Binding Redeemed, Converter={StaticResource inverseBooleanConverter}}"
+								/>
+								<Label
+									VerticalOptions="CenterAndExpand"
+									Text="{Binding ReedemedDescription}"
+									IsVisible="{Binding Redeemed}"
+								/>
+								<Button 									
+									Text="{x:Static res:Text.ShareButtonText}"
+									IsVisible="{Binding Redeemed, Converter={StaticResource inverseBooleanConverter}}"
+									VerticalOptions="Center"
+									HorizontalOptions="End"
+								/>
+							</StackLayout>
+						</ViewCell>
+					</DataTemplate>
+				</ListView.ItemTemplate>				
+			</ListView>
+			<Button 
+				Grid.Row="2"
+				Grid.Column="0"
+				Text="{x:Static res:Text.PurchaseMoreInvitesButtonText}" 
+				Command="{Binding PurchaseMoreInviteCommand}"
+			/>
+		</Grid>
+	</views:CustomContentPage.Content>
+</views:CustomContentPage>

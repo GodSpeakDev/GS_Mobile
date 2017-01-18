@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<views:CustomContentPage  
+		xmlns="http://xamarin.com/schemas/2014/forms" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+		xmlns:res="clr-namespace:GodSpeak.Resources;assembly=GodSpeak"
+		xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
+		x:Class="GodSpeak.RegisterPage">
+	<views:CustomContentPage.Resources>
+		<ResourceDictionary>
+			<views:ImageObjectToImageSourceConverter x:Key="imageConverter" />		
+		</ResourceDictionary>
+	</views:CustomContentPage.Resources>
+	<views:CustomContentPage.Content>
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="1*" />
+				<RowDefinition Height="auto" />
+			</Grid.RowDefinitions>
+			<ScrollView Grid.Row="0"
+				HorizontalOptions="FillAndExpand"
+				VerticalOptions="FillAndExpand"
+			>
+				<Grid 
+					Margin="10, 0"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="auto" />
+						<RowDefinition Height="auto" />
+						<RowDefinition Height="auto" />
+						<RowDefinition Height="auto" />
+						<RowDefinition Height="auto" />
+						<RowDefinition Height="auto" />
+						<RowDefinition Height="auto" />
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="80" />
+						<ColumnDefinition Width="1*" />
+					</Grid.ColumnDefinitions>
+
+					<Image
+						Grid.Row="0"
+						Grid.Column="0"
+						Grid.RowSpan="2"
+						Source="{Binding Image, Converter={StaticResource imageConverter}}">
+						<Image.GestureRecognizers>
+			        		<TapGestureRecognizer Command="{Binding ChoosePictureCommand}" />
+			    		</Image.GestureRecognizers>
+					</Image>
+					<Entry
+						Grid.Row="0"
+						Grid.Column="1"
+						Placeholder="{x:Static res:Text.FirstNamePlaceholder}" 							
+						Text="{Binding FirstName}" 
+					/>
+					<Entry
+						Grid.Row="1"
+						Grid.Column="1"
+						Placeholder="{x:Static res:Text.LastNamePlaceholder}" 							
+						Text="{Binding LastName}" 
+					/>
+
+					<Entry
+						Grid.Row="2"
+						Grid.Column="0"
+						Grid.ColumnSpan="2"
+						Placeholder="{x:Static res:Text.CityPlaceholder}"
+						Text="{Binding City}" 
+					/>
+
+					<Entry
+						Grid.Row="3"
+						Grid.Column="0"
+						Grid.ColumnSpan="2"
+						Placeholder="{x:Static res:Text.StatePlaceholder}"
+						Text="{Binding State}" 
+					/>
+
+					<Label
+						Grid.Row="4"
+						Grid.Column="0"
+						Grid.ColumnSpan="2"
+						Text="Security" 
+					/>
+
+					<Entry
+						Grid.Row="5"
+						Grid.Column="0"
+						Grid.ColumnSpan="2"
+						Keyboard="Email"
+						Placeholder="{x:Static res:Text.EmailPlaceholder}"	
+						Text="{Binding Email}" 
+					/>
+
+					<Entry
+						Grid.Row="6"
+						Grid.Column="0"
+						Grid.ColumnSpan="2"
+						IsPassword="true"
+						Placeholder="{x:Static res:Text.PasswordPlaceholder}"	
+						Text="{Binding Password}" 
+					/>			
+				</Grid>			
+			</ScrollView>
+			<views:ActionButton
+				Grid.Row="1"
+				Margin="10, 0"
+				Text="Be Inspired"
+				Command="{Binding SaveCommand}"
+			/>
+		</Grid>
+	</views:CustomContentPage.Content>
+</views:CustomContentPage>

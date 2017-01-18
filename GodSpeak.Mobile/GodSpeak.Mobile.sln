@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GodSpeak.iOS", "iOS\GodSpea
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GodSpeak.Droid", "Droid\GodSpeak.Droid.csproj", "{F9916261-0FE0-4FFD-9012-B1784A405121}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GodSpeak.Tests", "GodSpeak.Tests\GodSpeak.Tests.csproj", "{92DC0209-64AF-4487-936F-4CD17143E4FB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,5 +55,17 @@ Global
 		{F9916261-0FE0-4FFD-9012-B1784A405121}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{F9916261-0FE0-4FFD-9012-B1784A405121}.Debug|iPhone.ActiveCfg = Debug|Any CPU
 		{F9916261-0FE0-4FFD-9012-B1784A405121}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{92DC0209-64AF-4487-936F-4CD17143E4FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92DC0209-64AF-4487-936F-4CD17143E4FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92DC0209-64AF-4487-936F-4CD17143E4FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92DC0209-64AF-4487-936F-4CD17143E4FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92DC0209-64AF-4487-936F-4CD17143E4FB}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{92DC0209-64AF-4487-936F-4CD17143E4FB}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{92DC0209-64AF-4487-936F-4CD17143E4FB}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{92DC0209-64AF-4487-936F-4CD17143E4FB}.Release|iPhone.Build.0 = Release|Any CPU
+		{92DC0209-64AF-4487-936F-4CD17143E4FB}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{92DC0209-64AF-4487-936F-4CD17143E4FB}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{92DC0209-64AF-4487-936F-4CD17143E4FB}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{92DC0209-64AF-4487-936F-4CD17143E4FB}.Debug|iPhone.Build.0 = Debug|Any CPU
 	EndGlobalSection
 EndGlobal

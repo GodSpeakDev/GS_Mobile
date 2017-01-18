@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+		xmlns="http://xamarin.com/schemas/2014/forms" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+		xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
+		xmlns:res="clr-namespace:GodSpeak.Resources;assembly=GodSpeak"
+		x:Class="GodSpeak.ClaimInviteCodeView">
+	<ContentView.Content>
+		<Grid 
+			HorizontalOptions="FillAndExpand"
+			VerticalOptions="FillAndExpand">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="auto" />
+				<RowDefinition Height="auto" />
+				<RowDefinition Height="auto" />
+				<RowDefinition Height="auto" />
+				<RowDefinition Height="auto" />
+				<RowDefinition Height="auto" />
+			</Grid.RowDefinitions>
+			<Label 
+				Grid.Row="0" 
+				Margin="0,5"
+				FontSize="20"
+				Text="Get Started" 
+				HorizontalOptions="Center" 
+				VerticalOptions="Center" 
+			/>
+			<ScrollView 
+				Grid.Row="1"
+					HorizontalOptions="FillAndExpand" 
+					VerticalOptions="FillAndExpand">
+				<Label 					
+					Margin="30,0"
+					HorizontalOptions="Center" 
+					VerticalOptions="Center" 					
+					Text="{x:Static res:Text.ClaimInviteCodeText}"
+				/>
+			</ScrollView>
+			<Entry
+				Grid.Row="2" 					
+				Margin="30,0"
+				HorizontalOptions="FillAndExpand"
+				Placeholder="{x:Static res:Text.InviteCodePlaceholder}"
+				Text="{Binding InviteCode}"
+			/>
+			<views:ActionButton 
+				Grid.Row="3"
+				Margin="30,0"
+				Text="Claim Invite Code"	
+				Command="{Binding ClaimInviteCodeCommand}"
+			/>
+			<views:Link
+				Grid.Row="4"
+				Text="I don't have a invite code">
+				<Label.GestureRecognizers>
+			        <TapGestureRecognizer Command="{Binding DontHaveCodeCommand}" />
+			    </Label.GestureRecognizers>
+			</views:Link>
+			<views:Link	 
+				Grid.Row="5"					
+				Text="I'm already registered">
+				<views:Link.GestureRecognizers>
+			        <TapGestureRecognizer Command="{Binding AlreadyRegisteredCommand}" />
+			    </views:Link.GestureRecognizers>
+			</views:Link>
+		</Grid>
+	</ContentView.Content>
+</ContentView>
