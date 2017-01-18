@@ -3,7 +3,7 @@ namespace GodSpeak
 {
 	public class Invite
 	{
-		public long Id
+		public Guid InviteId
 		{
 			get;
 			set;
@@ -15,16 +15,30 @@ namespace GodSpeak
 			set;
 		}
 
-		public string Email
+		public string InviterEmail
 		{
 			get;
 			set;
 		}
 
-		public bool IsAlreadyUsed
+		public string RedeemerEmail
 		{
 			get;
 			set;
 		}
+
+		public bool Redeemed
+		{
+			get;
+			set;
+		}
+
+		public string ReedemedDescription
+		{
+			get 
+			{
+				return string.Format($"{Code} - {RedeemerEmail}");
+			}
+		} 
 	}
 }

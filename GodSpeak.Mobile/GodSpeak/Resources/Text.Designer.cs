@@ -221,6 +221,18 @@ namespace GodSpeak.Resources {
             }
         }
         
+        public static string PurchaseMoreInvitesButtonText {
+            get {
+                return ResourceManager.GetString("PurchaseMoreInvitesButtonText", resourceCulture);
+            }
+        }
+        
+        public static string ShareButtonText {
+            get {
+                return ResourceManager.GetString("ShareButtonText", resourceCulture);
+            }
+        }
+        
         public static string InAppPurchaseTitle {
             get {
                 return ResourceManager.GetString("InAppPurchaseTitle", resourceCulture);
@@ -266,6 +278,12 @@ namespace GodSpeak.Resources {
         public static string ShareTitle {
             get {
                 return ResourceManager.GetString("ShareTitle", resourceCulture);
+            }
+        }
+        
+        public static string InvitePageTitle {
+            get {
+                return ResourceManager.GetString("InvitePageTitle", resourceCulture);
             }
         }
     }

@@ -7,10 +7,10 @@ namespace GodSpeak
 	{
 		public GetInvitesResponse()
 		{
-			Invites = new List<Invite>();
+			Payload = new List<Invite>();
 		}
 
-		public List<Invite> Invites
+		public List<Invite> Payload
 		{
 			get;
 			set;

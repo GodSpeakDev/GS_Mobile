@@ -83,7 +83,46 @@ namespace GodSpeak
 
 		public async Task<BaseResponse<GetInvitesResponse>> GetInvites(GetInvitesRequest request)
 		{
-			return null;	
+			await Task.Delay(delay);
+			return new BaseResponse<GetInvitesResponse>()
+			{
+				StatusCode = System.Net.HttpStatusCode.OK,
+				Content = new GetInvitesResponse()
+				{
+					Payload = new List<Invite>() 
+					{
+						new Invite() 
+						{
+							InviteId = Guid.NewGuid(),
+							Code = "1reJy567",
+						},
+						new Invite()
+						{
+							InviteId = Guid.NewGuid(),
+							Code = "JUik34a5",
+						},
+						new Invite()
+						{
+							InviteId = Guid.NewGuid(),
+							Code = "MnIiuo89",
+							RedeemerEmail="jon.smith@gmail.com",
+							Redeemed=true
+						},
+						new Invite()
+						{
+							InviteId = Guid.NewGuid(),
+							Code = "OiUUytad",
+						},
+						new Invite()
+						{
+							InviteId = Guid.NewGuid(),
+							Code = "12FjUIO",
+							RedeemerEmail="dave.ortinau@gmail.com",
+							Redeemed=true
+						},
+					}
+				}
+			};
 		}
 
 		public async Task<BaseResponse<GetMessagesResponse>> GetMessages(GetMessagesRequest request)

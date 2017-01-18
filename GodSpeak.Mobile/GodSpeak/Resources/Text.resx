@@ -104,6 +104,12 @@
 	<data name="PurchaseButtonText" xml:space="preserve">
     	<value>Purchase</value>
   	</data>
+	<data name="PurchaseMoreInvitesButtonText" xml:space="preserve">
+    	<value>Purchase More Invites</value>
+  	</data>
+	<data name="ShareButtonText" xml:space="preserve">
+    	<value>Share</value>
+  	</data>
 	<data name="InAppPurchaseTitle" xml:space="preserve">
     	<value>In-App Purchase</value>
   	</data>
@@ -127,5 +133,8 @@
   	</data>
 	<data name="ShareTitle" xml:space="preserve">
     	<value>How you want to share?</value>
+  	</data>
+	<data name="InvitePageTitle" xml:space="preserve">
+    	<value>Invite</value>
   	</data>
 </root>
