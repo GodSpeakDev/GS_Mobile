@@ -23,6 +23,7 @@ namespace GodSpeak.Tests.ViewModels
         public void InitMvxSupport ()
         {
             base.Setup ();//MUST CALL THIS TO SETUP MVX TEST SUPPORT
+            MockDispatcher.Requests.Clear ();
         }
 
         protected override void AdditionalSetup ()
