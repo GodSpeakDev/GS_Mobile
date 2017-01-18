@@ -37,6 +37,11 @@ namespace GodSpeak.Tests.ViewModels
         {
             MockDispatcher.Requests.Any (req => req.ViewModelType == typeof (T)).ShouldBeTrue ();
         }
+
+        protected void ShouldNotShowVM<T> () where T : MvxViewModel
+        {
+            MockDispatcher.Requests.Any (req => req.ViewModelType == typeof (T)).ShouldBeFalse ();
+        }
     }
 
     public class MockDispatcher

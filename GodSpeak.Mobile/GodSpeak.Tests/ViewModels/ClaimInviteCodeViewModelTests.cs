@@ -60,7 +60,7 @@ namespace GodSpeak.Tests.ViewModels
         }
 
         [Test]
-        public void if_submitted_invite_code_and_WebApiService_ValidateCode_returns_success_ShowViewModel_RegisterViewModel_should_be_invoked ()
+        public void if_WebApiService_ValidateCode_returns_success_ShowViewModel_RegisterViewModel_should_be_invoked ()
         {
 
             //Arrangee
@@ -74,6 +74,20 @@ namespace GodSpeak.Tests.ViewModels
             //Assert
             ShouldShowVM<RegisterViewModel> ();
 
+        }
+
+        [Test]
+        public void if_WebApiService_ValidateCode_returns_bad_request_ShowViewModel_SHOULD_NOT_BE_invoked ()
+        {
+            var expectedCode = "1234adf";
+            A.CallTo (() => FakeWebApiService.ValidateCode (A<ValidateCodeRequest>.That.Matches (req => req.Code == expectedCode))).Returns (Task.FromResult (new BaseResponse<ValidateCodeResponse> () { StatusCode = System.Net.HttpStatusCode.BadRequest }));
+            ViewModelUT.InviteCode = expectedCode;
+
+            //Act
+            ViewModelUT.ClaimInviteCodeCommand.Execute ();
+
+            //Assert
+            ShouldNotShowVM<RegisterViewModel> ();
         }
     }
 }
