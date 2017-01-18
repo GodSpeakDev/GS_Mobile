@@ -203,6 +203,7 @@
     <Compile Include="Api\Request\PurchaseInviteRequest.cs" />
     <Compile Include="Api\Response\PurchaseInviteResponse.cs" />
     <Compile Include="Services\IShareService.cs" />
+    <Compile Include="CustomComponents\Pager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

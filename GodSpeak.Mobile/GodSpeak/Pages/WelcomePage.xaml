@@ -5,17 +5,35 @@
 		xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
 		x:Class="GodSpeak.WelcomePage">
 	<views:CustomContentPage.Content>
-		<views:CustomCarouselView 
+		<Grid
+			HorizontalOptions="FillAndExpand"
+			VerticalOptions="FillAndExpand"
+		>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="1*" />
+				<RowDefinition Height="auto" />
+			</Grid.RowDefinitions>
+			<views:CustomCarouselView 
+				Grid.Row="0"
+				Grid.Column="0"
 				HorizontalOptions="FillAndExpand"
 				VerticalOptions="FillAndExpand"
 				Position="{Binding SelectedPosition}"
 				ItemTemplate="{StaticResource pageSelector}"
 				ItemsSource="{Binding Pages}">    		
-			<views:CustomCarouselView.Resources>
-        		<ResourceDictionary>
-            		<views:WelcomePageSelector x:Key="pageSelector" />
-        		</ResourceDictionary>
-    		</views:CustomCarouselView.Resources>
-  		</views:CustomCarouselView>
+				<views:CustomCarouselView.Resources>
+        			<ResourceDictionary>
+            			<views:WelcomePageSelector x:Key="pageSelector" />
+        			</ResourceDictionary>
+    			</views:CustomCarouselView.Resources>
+  			</views:CustomCarouselView>
+			<views:Pager
+				Grid.Row="1"
+				Grid.Column="0"
+				NumberOfDots="3"
+				SelectedDotIndex="{Binding SelectedPosition}"
+			/>
+		</Grid>
+
 	</views:CustomContentPage.Content>
 </views:CustomContentPage>
