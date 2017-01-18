@@ -16,6 +16,7 @@
 			VerticalOptions="FillAndExpand"
 			IsGroupingEnabled="true"
 			ItemsSource="{Binding Messages}"
+			SelectedItem="{Binding SelectedItem}"
 			SeparatorVisibility="None"		
 			HasUnevenRows="true"
 			>

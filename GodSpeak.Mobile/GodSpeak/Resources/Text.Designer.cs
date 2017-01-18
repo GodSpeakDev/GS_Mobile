@@ -16,7 +16,7 @@ namespace GodSpeak.Resources {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Text {
+    public class Text {
         
         private static System.Resources.ResourceManager resourceMan;
         
@@ -27,7 +27,7 @@ namespace GodSpeak.Resources {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static System.Resources.ResourceManager ResourceManager {
+        public static System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.Equals(null, resourceMan)) {
                     System.Resources.ResourceManager temp = new System.Resources.ResourceManager("GodSpeak.Resources.Text", typeof(Text).GetTypeInfo().Assembly);
@@ -38,7 +38,7 @@ namespace GodSpeak.Resources {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static System.Globalization.CultureInfo Culture {
+        public static System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -47,219 +47,225 @@ namespace GodSpeak.Resources {
             }
         }
         
-        internal static string GetStartedText {
+        public static string GetStartedText {
             get {
                 return ResourceManager.GetString("GetStartedText", resourceCulture);
             }
         }
         
-        internal static string ClaimInviteCodeText {
+        public static string ClaimInviteCodeText {
             get {
                 return ResourceManager.GetString("ClaimInviteCodeText", resourceCulture);
             }
         }
         
-        internal static string RequestInviteCodeText {
+        public static string RequestInviteCodeText {
             get {
                 return ResourceManager.GetString("RequestInviteCodeText", resourceCulture);
             }
         }
         
-        internal static string OkPopup {
+        public static string OkPopup {
             get {
                 return ResourceManager.GetString("OkPopup", resourceCulture);
             }
         }
         
-        internal static string ErrorPopupTitle {
+        public static string ErrorPopupTitle {
             get {
                 return ResourceManager.GetString("ErrorPopupTitle", resourceCulture);
             }
         }
         
-        internal static string SuccessPopupTitle {
+        public static string SuccessPopupTitle {
             get {
                 return ResourceManager.GetString("SuccessPopupTitle", resourceCulture);
             }
         }
         
-        internal static string ErrorPopupText {
+        public static string ErrorPopupText {
             get {
                 return ResourceManager.GetString("ErrorPopupText", resourceCulture);
             }
         }
         
-        internal static string GetACode {
+        public static string GetACode {
             get {
                 return ResourceManager.GetString("GetACode", resourceCulture);
             }
         }
         
-        internal static string TryAgain {
+        public static string TryAgain {
             get {
                 return ResourceManager.GetString("TryAgain", resourceCulture);
             }
         }
         
-        internal static string InviteCodeRequiredMessage {
+        public static string InviteCodeRequiredMessage {
             get {
                 return ResourceManager.GetString("InviteCodeRequiredMessage", resourceCulture);
             }
         }
         
-        internal static string InviteCodePlaceholder {
+        public static string InviteCodePlaceholder {
             get {
                 return ResourceManager.GetString("InviteCodePlaceholder", resourceCulture);
             }
         }
         
-        internal static string EmailPlaceholder {
+        public static string EmailPlaceholder {
             get {
                 return ResourceManager.GetString("EmailPlaceholder", resourceCulture);
             }
         }
         
-        internal static string PasswordPlaceholder {
+        public static string PasswordPlaceholder {
             get {
                 return ResourceManager.GetString("PasswordPlaceholder", resourceCulture);
             }
         }
         
-        internal static string FirstNamePlaceholder {
+        public static string FirstNamePlaceholder {
             get {
                 return ResourceManager.GetString("FirstNamePlaceholder", resourceCulture);
             }
         }
         
-        internal static string LastNamePlaceholder {
+        public static string LastNamePlaceholder {
             get {
                 return ResourceManager.GetString("LastNamePlaceholder", resourceCulture);
             }
         }
         
-        internal static string CityPlaceholder {
+        public static string CityPlaceholder {
             get {
                 return ResourceManager.GetString("CityPlaceholder", resourceCulture);
             }
         }
         
-        internal static string StatePlaceholder {
+        public static string StatePlaceholder {
             get {
                 return ResourceManager.GetString("StatePlaceholder", resourceCulture);
             }
         }
         
-        internal static string EmailRequiredMessage {
+        public static string EmailRequiredMessage {
             get {
                 return ResourceManager.GetString("EmailRequiredMessage", resourceCulture);
             }
         }
         
-        internal static string PasswordRequiredMessage {
+        public static string PasswordRequiredMessage {
             get {
                 return ResourceManager.GetString("PasswordRequiredMessage", resourceCulture);
             }
         }
         
-        internal static string FirstNameRequiredMessage {
+        public static string FirstNameRequiredMessage {
             get {
                 return ResourceManager.GetString("FirstNameRequiredMessage", resourceCulture);
             }
         }
         
-        internal static string LastNameRequiredMessage {
+        public static string LastNameRequiredMessage {
             get {
                 return ResourceManager.GetString("LastNameRequiredMessage", resourceCulture);
             }
         }
         
-        internal static string CityRequiredMessage {
+        public static string CityRequiredMessage {
             get {
                 return ResourceManager.GetString("CityRequiredMessage", resourceCulture);
             }
         }
         
-        internal static string StateRequiredMessage {
+        public static string StateRequiredMessage {
             get {
                 return ResourceManager.GetString("StateRequiredMessage", resourceCulture);
             }
         }
         
-        internal static string RequestInviteSuccessfully {
+        public static string RequestInviteSuccessfully {
             get {
                 return ResourceManager.GetString("RequestInviteSuccessfully", resourceCulture);
             }
         }
         
-        internal static string ForgotPasswordSuccessfully {
+        public static string ForgotPasswordSuccessfully {
             get {
                 return ResourceManager.GetString("ForgotPasswordSuccessfully", resourceCulture);
             }
         }
         
-        internal static string PictureSourceQuestion {
+        public static string PictureSourceQuestion {
             get {
                 return ResourceManager.GetString("PictureSourceQuestion", resourceCulture);
             }
         }
         
-        internal static string PictureSourceFromGallery {
+        public static string PictureSourceFromGallery {
             get {
                 return ResourceManager.GetString("PictureSourceFromGallery", resourceCulture);
             }
         }
         
-        internal static string PictureSourceFromCamera {
+        public static string PictureSourceFromCamera {
             get {
                 return ResourceManager.GetString("PictureSourceFromCamera", resourceCulture);
             }
         }
         
-        internal static string PurchaseButtonText {
+        public static string PurchaseButtonText {
             get {
                 return ResourceManager.GetString("PurchaseButtonText", resourceCulture);
             }
         }
         
-        internal static string InAppPurchaseTitle {
+        public static string InAppPurchaseTitle {
             get {
                 return ResourceManager.GetString("InAppPurchaseTitle", resourceCulture);
             }
         }
         
-        internal static string InAppPurchaseText {
+        public static string InAppPurchaseText {
             get {
                 return ResourceManager.GetString("InAppPurchaseText", resourceCulture);
             }
         }
         
-        internal static string Yes {
+        public static string Yes {
             get {
                 return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
         
-        internal static string No {
+        public static string No {
             get {
                 return ResourceManager.GetString("No", resourceCulture);
             }
         }
         
-        internal static string PurchaseSuccessTitle {
+        public static string PurchaseSuccessTitle {
             get {
                 return ResourceManager.GetString("PurchaseSuccessTitle", resourceCulture);
             }
         }
         
-        internal static string PurchaseSuccessText {
+        public static string PurchaseSuccessText {
             get {
                 return ResourceManager.GetString("PurchaseSuccessText", resourceCulture);
             }
         }
         
-        internal static string PurchasePageTitle {
+        public static string PurchasePageTitle {
             get {
                 return ResourceManager.GetString("PurchasePageTitle", resourceCulture);
+            }
+        }
+        
+        public static string ShareTitle {
+            get {
+                return ResourceManager.GetString("ShareTitle", resourceCulture);
             }
         }
     }

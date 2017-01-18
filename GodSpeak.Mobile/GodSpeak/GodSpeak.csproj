@@ -55,7 +55,7 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Text.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Text.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\RegisterPage.xaml">
@@ -202,6 +202,7 @@
     <Compile Include="Converters\InviteBundleConverter.cs" />
     <Compile Include="Api\Request\PurchaseInviteRequest.cs" />
     <Compile Include="Api\Response\PurchaseInviteResponse.cs" />
+    <Compile Include="Services\IShareService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

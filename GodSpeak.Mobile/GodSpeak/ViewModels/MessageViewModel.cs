@@ -10,6 +10,7 @@ namespace GodSpeak
 	public class MessageViewModel : CustomViewModel
 	{
 		private IWebApiService _apiService;
+		private IShareService _shareService;
 
 		private ObservableCollection<GroupedCollection<Message, DateTime>> _messages;
 		public ObservableCollection<GroupedCollection<Message, DateTime>> Messages
@@ -18,9 +19,33 @@ namespace GodSpeak
 			set { SetProperty(ref _messages, value);}
 		}
 
-		public MessageViewModel(IDialogService dialogService, IWebApiService apiService) : base(dialogService)
+		private Message _selectedItem;
+		public Message SelectedItem
+		{
+			get { return _selectedItem;}
+			set { 
+				SetProperty(ref _selectedItem, value);
+				if (SelectedItem != null)
+				{
+					TapMessageCommand.Execute(SelectedItem);
+				}
+			}
+		}
+
+		private MvxCommand<Message> _tapMessageCommand;
+		public MvxCommand<Message> TapMessageCommand
+		{
+			get
+			{
+				return _tapMessageCommand ?? (_tapMessageCommand = new MvxCommand<Message>(DoTapMessageCommand));
+			}
+		}
+
+		public MessageViewModel(IDialogService dialogService, IWebApiService apiService, IShareService shareService) : base(dialogService)
 		{
 			_apiService = apiService;
+			_shareService = shareService;
+
 			Messages = new ObservableCollection<GroupedCollection<Message, DateTime>>();
 		}
 
@@ -39,6 +64,12 @@ namespace GodSpeak
 			{
 				await HandleResponse(messages);
 			}							
+		}
+
+		private void DoTapMessageCommand(Message message)
+		{
+			_shareService.Share(message.Text);
+			SelectedItem = null;
 		}
 	}
 }

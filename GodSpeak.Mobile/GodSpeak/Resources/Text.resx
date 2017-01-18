@@ -125,4 +125,7 @@
 	<data name="PurchasePageTitle" xml:space="preserve">
     	<value>Purchase Credits</value>
   	</data>
+	<data name="ShareTitle" xml:space="preserve">
+    	<value>How you want to share?</value>
+  	</data>
 </root>
