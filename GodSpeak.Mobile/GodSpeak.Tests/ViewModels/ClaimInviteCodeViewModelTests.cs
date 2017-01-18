@@ -4,6 +4,7 @@ using NUnit.Framework;
 using Should;
 using System.Threading.Tasks;
 using MvvmCross.Test.Core;
+using Ploeh.AutoFixture;
 
 namespace GodSpeak.Tests.ViewModels
 {
@@ -64,7 +65,7 @@ namespace GodSpeak.Tests.ViewModels
         {
 
             //Arrangee
-            var expectedCode = "1234adf";
+            var expectedCode = DataFixture.Create<string> ();
             A.CallTo (() => FakeWebApiService.ValidateCode (A<ValidateCodeRequest>.That.Matches (req => req.Code == expectedCode))).Returns (Task.FromResult (new BaseResponse<ValidateCodeResponse> () { StatusCode = System.Net.HttpStatusCode.OK }));
             ViewModelUT.InviteCode = expectedCode;
 
@@ -79,7 +80,7 @@ namespace GodSpeak.Tests.ViewModels
         [Test]
         public void if_WebApiService_ValidateCode_returns_bad_request_ShowViewModel_SHOULD_NOT_BE_invoked ()
         {
-            var expectedCode = "1234adf";
+            var expectedCode = DataFixture.Create<string> ();
             A.CallTo (() => FakeWebApiService.ValidateCode (A<ValidateCodeRequest>.That.Matches (req => req.Code == expectedCode))).Returns (Task.FromResult (new BaseResponse<ValidateCodeResponse> () { StatusCode = System.Net.HttpStatusCode.BadRequest }));
             ViewModelUT.InviteCode = expectedCode;
 

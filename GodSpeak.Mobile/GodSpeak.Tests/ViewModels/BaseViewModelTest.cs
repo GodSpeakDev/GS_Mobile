@@ -9,12 +9,15 @@ using Should;
 using System.Linq;
 using MvvmCross.Platform;
 using NUnit.Framework;
+using Ploeh.AutoFixture;
 
 namespace GodSpeak.Tests.ViewModels
 {
     public class BaseViewModelTest : MvxIoCSupportingTest
     {
         protected MockDispatcher MockDispatcher;
+
+        protected Fixture DataFixture = new Fixture ();
 
         [SetUp]
         public void InitMvxSupport ()
