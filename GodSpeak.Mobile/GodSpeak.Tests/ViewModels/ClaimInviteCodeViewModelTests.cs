@@ -10,7 +10,8 @@ namespace GodSpeak.Tests.ViewModels
 {
     public class ClaimInviteCodeViewModelTests : BaseViewModelTest
     {
-
+        private const string GetACode = "Get a Code";
+        private const string TryAgain = "Try Again";
         ClaimInviteCodeViewModel ViewModelUT;
 
         readonly WelcomeViewModel FakeWelcomeVM = A.Fake<WelcomeViewModel> ();
@@ -85,11 +86,11 @@ namespace GodSpeak.Tests.ViewModels
         [Test]
         public void if_WebApiService_ValidateCode_returns_bad_request_DialogService_ShowConfirmation_SHOULD_BE_invoked ()
         {
-            var response = new BaseResponse<ValidateCodeResponse> () { StatusCode = System.Net.HttpStatusCode.BadRequest, ErrorTitle = DataFixture.Create<string> (), ErrorMessage = DataFixture.Create<string> () };
-            WebApiValidateCodeReturns (response);
+            var badResponse = new BaseResponse<ValidateCodeResponse> () { StatusCode = System.Net.HttpStatusCode.BadRequest, ErrorTitle = DataFixture.Create<string> (), ErrorMessage = DataFixture.Create<string> () };
+            WebApiValidateCodeReturns (badResponse);
 
             //Assert
-            A.CallTo (() => FakeDialogService.ShowConfirmation (response.ErrorTitle, response.ErrorMessage, "Get a Code", "Try Again"));
+            A.CallTo (() => FakeDialogService.ShowConfirmation (badResponse.ErrorTitle, badResponse.ErrorMessage, GetACode, TryAgain));
         }
 
 
@@ -97,10 +98,10 @@ namespace GodSpeak.Tests.ViewModels
         public void if_ShowConfirmation_returns_True_WelcomeVM_SelectPage_SHOULD_BE_invoked ()
         {
 
-            var response = new BaseResponse<ValidateCodeResponse> () { StatusCode = System.Net.HttpStatusCode.BadRequest, ErrorTitle = DataFixture.Create<string> (), ErrorMessage = DataFixture.Create<string> () };
-            A.CallTo (() => FakeDialogService.ShowConfirmation (response.ErrorTitle, response.ErrorMessage, "Get a Code", "Try Again")).Returns (Task.FromResult (true));
+            var badResponse = new BaseResponse<ValidateCodeResponse> () { StatusCode = System.Net.HttpStatusCode.BadRequest, ErrorTitle = DataFixture.Create<string> (), ErrorMessage = DataFixture.Create<string> () };
+            A.CallTo (() => FakeDialogService.ShowConfirmation (badResponse.ErrorTitle, badResponse.ErrorMessage, GetACode, TryAgain)).Returns (Task.FromResult (true));
 
-            WebApiValidateCodeReturns (response);
+            WebApiValidateCodeReturns (badResponse);
 
             A.CallTo (() => FakeWelcomeVM.SelectPage<RequestInviteCodeViewModel> ()).MustHaveHappened ();
         }
@@ -110,10 +111,10 @@ namespace GodSpeak.Tests.ViewModels
         public void if_ShowConfirmation_returns_False_WelcomeVM_SelectPage_SHOULD_NOT_BE_invoked ()
         {
 
-            var response = new BaseResponse<ValidateCodeResponse> () { StatusCode = System.Net.HttpStatusCode.BadRequest, ErrorTitle = DataFixture.Create<string> (), ErrorMessage = DataFixture.Create<string> () };
-            A.CallTo (() => FakeDialogService.ShowConfirmation (response.ErrorTitle, response.ErrorMessage, "Get a Code", "Try Again")).Returns (Task.FromResult (false));
+            var badResponse = new BaseResponse<ValidateCodeResponse> () { StatusCode = System.Net.HttpStatusCode.BadRequest, ErrorTitle = DataFixture.Create<string> (), ErrorMessage = DataFixture.Create<string> () };
+            A.CallTo (() => FakeDialogService.ShowConfirmation (badResponse.ErrorTitle, badResponse.ErrorMessage, GetACode, TryAgain)).Returns (Task.FromResult (false));
 
-            WebApiValidateCodeReturns (response);
+            WebApiValidateCodeReturns (badResponse);
 
             A.CallTo (() => FakeWelcomeVM.SelectPage<RequestInviteCodeViewModel> ()).MustNotHaveHappened ();
         }
