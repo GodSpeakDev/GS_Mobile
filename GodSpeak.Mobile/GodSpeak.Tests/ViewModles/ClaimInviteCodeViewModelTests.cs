@@ -27,11 +27,17 @@ namespace GodSpeak.Tests.ViewModles
         [Test]
         public void if_invite_code_null_or_empty_DialogService_ShowAlert_called ()
         {
+            const string expectedErrorTitle = "Error";
+            const string expectedErrorMessage = "Sorry, you can't claim a empty invite code.";
+
             ViewModelUT.InviteCode = string.Empty;
             ViewModelUT.ClaimInviteCodeCommand.Execute ();
 
+            A.CallTo (() => FakeDialogService.ShowAlert (expectedErrorTitle, expectedErrorMessage)).MustHaveHappened ();
 
-            A.CallTo (() => FakeDialogService.ShowAlert ("Error", "Please, you can't claim a empty invite code.")).MustHaveHappened ();
+            ViewModelUT.InviteCode = null;
+            ViewModelUT.ClaimInviteCodeCommand.Execute ();
+            A.CallTo (() => FakeDialogService.ShowAlert (expectedErrorTitle, expectedErrorMessage)).MustHaveHappened ();
         }
     }
 }
