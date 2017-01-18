@@ -13,17 +13,16 @@ namespace GodSpeak.Tests.ViewModels
 
         ClaimInviteCodeViewModel ViewModelUT;
 
-        WelcomeViewModel FakeWelcomeVM = A.Fake<WelcomeViewModel> ();
+        readonly WelcomeViewModel FakeWelcomeVM = A.Fake<WelcomeViewModel> ();
 
-        IDialogService FakeDialogService = A.Fake<IDialogService> ();
-
-        IWebApiService FakeWebApiService = A.Fake<IWebApiService> ();
+        readonly IDialogService FakeDialogService = A.Fake<IDialogService> ();
+        readonly IWebApiService FakeWebApiService = A.Fake<IWebApiService> ();
 
         [SetUp]
         public void Init ()
         {
 
-            FakeDialogService = A.Fake<IDialogService> ();
+
             ViewModelUT = new ClaimInviteCodeViewModel (FakeWelcomeVM, FakeDialogService, FakeWebApiService);
         }
         /// <summary>
@@ -65,10 +64,7 @@ namespace GodSpeak.Tests.ViewModels
         {
 
             //Arrangee
-            var expectedCode = DataFixture.Create<string> ();
-            A.CallTo (() => FakeWebApiService.ValidateCode (A<ValidateCodeRequest>.That.Matches (req => req.Code == expectedCode))).Returns (Task.FromResult (new BaseResponse<ValidateCodeResponse> () { StatusCode = System.Net.HttpStatusCode.OK }));
-            ViewModelUT.InviteCode = expectedCode;
-
+            WebApiValidateCodeReturns (new BaseResponse<ValidateCodeResponse> () { StatusCode = System.Net.HttpStatusCode.OK });
             //Act
             ViewModelUT.ClaimInviteCodeCommand.Execute ();
 
@@ -80,15 +76,61 @@ namespace GodSpeak.Tests.ViewModels
         [Test]
         public void if_WebApiService_ValidateCode_returns_bad_request_ShowViewModel_SHOULD_NOT_BE_invoked ()
         {
+            WebApiValidateCodeReturns (new BaseResponse<ValidateCodeResponse> () { StatusCode = System.Net.HttpStatusCode.BadRequest });
+
+            //Assert
+            ShouldNotShowVM<RegisterViewModel> ();
+        }
+
+        [Test]
+        public void if_WebApiService_ValidateCode_returns_bad_request_DialogService_ShowConfirmation_SHOULD_BE_invoked ()
+        {
+            var response = new BaseResponse<ValidateCodeResponse> () { StatusCode = System.Net.HttpStatusCode.BadRequest, ErrorTitle = DataFixture.Create<string> (), ErrorMessage = DataFixture.Create<string> () };
+            WebApiValidateCodeReturns (response);
+
+            //Assert
+            A.CallTo (() => FakeDialogService.ShowConfirmation (response.ErrorTitle, response.ErrorMessage, "Get a Code", "Try Again"));
+        }
+
+
+        [Test]
+        public void if_ShowConfirmation_returns_True_WelcomeVM_SelectPage_SHOULD_BE_invoked ()
+        {
+
+            var response = new BaseResponse<ValidateCodeResponse> () { StatusCode = System.Net.HttpStatusCode.BadRequest, ErrorTitle = DataFixture.Create<string> (), ErrorMessage = DataFixture.Create<string> () };
+            A.CallTo (() => FakeDialogService.ShowConfirmation (response.ErrorTitle, response.ErrorMessage, "Get a Code", "Try Again")).Returns (Task.FromResult (true));
+
+            WebApiValidateCodeReturns (response);
+
+            A.CallTo (() => FakeWelcomeVM.SelectPage<RequestInviteCodeViewModel> ()).MustHaveHappened ();
+        }
+
+
+        [Test]
+        public void if_ShowConfirmation_returns_False_WelcomeVM_SelectPage_SHOULD_NOT_BE_invoked ()
+        {
+
+            var response = new BaseResponse<ValidateCodeResponse> () { StatusCode = System.Net.HttpStatusCode.BadRequest, ErrorTitle = DataFixture.Create<string> (), ErrorMessage = DataFixture.Create<string> () };
+            A.CallTo (() => FakeDialogService.ShowConfirmation (response.ErrorTitle, response.ErrorMessage, "Get a Code", "Try Again")).Returns (Task.FromResult (false));
+
+            WebApiValidateCodeReturns (response);
+
+            A.CallTo (() => FakeWelcomeVM.SelectPage<RequestInviteCodeViewModel> ()).MustNotHaveHappened ();
+        }
+
+        /// <summary>
+        /// Helper Method for setting up Fake Web Api
+        /// </summary>
+        /// <param name="response">Response.</param>
+        void WebApiValidateCodeReturns (BaseResponse<ValidateCodeResponse> response)
+        {
             var expectedCode = DataFixture.Create<string> ();
-            A.CallTo (() => FakeWebApiService.ValidateCode (A<ValidateCodeRequest>.That.Matches (req => req.Code == expectedCode))).Returns (Task.FromResult (new BaseResponse<ValidateCodeResponse> () { StatusCode = System.Net.HttpStatusCode.BadRequest }));
+
+            A.CallTo (() => FakeWebApiService.ValidateCode (A<ValidateCodeRequest>.That.Matches (req => req.Code == expectedCode))).Returns (Task.FromResult (response));
             ViewModelUT.InviteCode = expectedCode;
 
             //Act
             ViewModelUT.ClaimInviteCodeCommand.Execute ();
-
-            //Assert
-            ShouldNotShowVM<RegisterViewModel> ();
         }
     }
 }
