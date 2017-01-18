@@ -14,15 +14,18 @@ namespace GodSpeak.Tests.ViewModels
         private const string TryAgain = "Try Again";
         ClaimInviteCodeViewModel ViewModelUT;
 
-        readonly WelcomeViewModel FakeWelcomeVM = A.Fake<WelcomeViewModel> ();
+        WelcomeViewModel FakeWelcomeVM;
 
-        readonly IDialogService FakeDialogService = A.Fake<IDialogService> ();
-        readonly IWebApiService FakeWebApiService = A.Fake<IWebApiService> ();
+        IDialogService FakeDialogService;
+        IWebApiService FakeWebApiService;
 
         [SetUp]
         public void Init ()
         {
 
+            FakeWelcomeVM = A.Fake<WelcomeViewModel> ();
+            FakeDialogService = A.Fake<IDialogService> ();
+            FakeWebApiService = A.Fake<IWebApiService> ();
 
             ViewModelUT = new ClaimInviteCodeViewModel (FakeWelcomeVM, FakeDialogService, FakeWebApiService);
         }
@@ -127,6 +130,14 @@ namespace GodSpeak.Tests.ViewModels
             WebApiValidateCodeReturns (badResponse);
 
             A.CallTo (() => FakeWelcomeVM.SelectPage<RequestInviteCodeViewModel> ()).MustNotHaveHappened ();
+        }
+
+        [Test]
+        public void DontHaveCodeCommand_SHOULD_invoke_SelectPage_on_WelcomeVM ()
+        {
+            ViewModelUT.DontHaveCodeCommand.Execute ();
+
+            A.CallTo (() => FakeWelcomeVM.SelectPage<RequestInviteCodeViewModel> ()).MustHaveHappened ();
         }
 
         /// <summary>
