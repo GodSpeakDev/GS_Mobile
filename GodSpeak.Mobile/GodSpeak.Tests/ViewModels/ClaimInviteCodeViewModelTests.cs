@@ -140,6 +140,14 @@ namespace GodSpeak.Tests.ViewModels
             A.CallTo (() => FakeWelcomeVM.SelectPage<RequestInviteCodeViewModel> ()).MustHaveHappened ();
         }
 
+        [Test]
+        public void AlreadyRegisteredCommand_SHOULD_ShowViewModel_LoginViewModel ()
+        {
+            ViewModelUT.AlreadyRegisteredCommand.Execute ();
+
+            ShouldShowVM<LoginViewModel> ();
+        }
+
         /// <summary>
         /// Helper Method for setting up Fake Web Api
         /// </summary>

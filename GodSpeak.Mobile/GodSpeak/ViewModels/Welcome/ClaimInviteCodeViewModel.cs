@@ -1,6 +1,7 @@
 ﻿using System;
 using MvvmCross.Core.ViewModels;
 using GodSpeak.Resources;
+using System.Threading.Tasks;
 
 namespace GodSpeak
 {
@@ -42,7 +43,7 @@ namespace GodSpeak
             _webApi = webApi;
         }
 
-        public async void DoClaimInviteCodeCommand ()
+        protected async void DoClaimInviteCodeCommand ()
         {
             if (string.IsNullOrEmpty (InviteCode)) {
                 await this.DialogService.ShowAlert (Text.ErrorPopupTitle, Text.InviteCodeRequiredMessage);
@@ -53,23 +54,35 @@ namespace GodSpeak
             if (response.IsSuccess) {
                 ShowViewModel<RegisterViewModel> ();
             } else {
-                if (response.StatusCode == System.Net.HttpStatusCode.BadRequest) {
-                    var shouldGetACode = await this.DialogService.ShowConfirmation (response.ErrorTitle, response.ErrorMessage, Text.GetACode, Text.TryAgain);
-                    if (shouldGetACode) {
-                        _parentViewModel.SelectPage<RequestInviteCodeViewModel> ();
-                    }
-                } else {
-                    await HandleResponse (response);
-                }
+                await HandleBadResponse (response);
             }
         }
 
-        public void DoDontHaveCodeCommand ()
+        protected async Task HandleBadResponse (BaseResponse<ValidateCodeResponse> response)
+        {
+            if (response.StatusCode == System.Net.HttpStatusCode.BadRequest) {
+                await PromptUserToRequestCode (response);
+            } else {
+                await HandleResponse (response);
+            }
+        }
+
+        async Task PromptUserToRequestCode (BaseResponse<ValidateCodeResponse> response)
+        {
+            var shouldGetACode = await this.DialogService.ShowConfirmation (response.ErrorTitle, response.ErrorMessage, Text.GetACode, Text.TryAgain);
+            if (shouldGetACode) {
+                _parentViewModel.SelectPage<RequestInviteCodeViewModel> ();
+            }
+        }
+
+        protected void DoDontHaveCodeCommand ()
         {
             _parentViewModel.SelectPage<RequestInviteCodeViewModel> ();
         }
 
-        public void DoAlreadyRegisteredCommand ()
+
+
+        protected void DoAlreadyRegisteredCommand ()
         {
             ShowViewModel<LoginViewModel> ();
         }
