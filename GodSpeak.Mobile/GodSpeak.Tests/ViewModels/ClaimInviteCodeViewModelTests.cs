@@ -169,6 +169,8 @@ namespace GodSpeak.Tests.ViewModels
 
             //Assert
             ShouldShowVM<LoginViewModel> ();
+
+            true.ShouldBeFalse ();
         }
 
         /// <summary>
