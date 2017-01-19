@@ -16,7 +16,6 @@
 			HorizontalOptions="FillAndExpand"
 			VerticalOptions="FillAndExpand"
 			ItemsSource="{Binding Bundles}"
-			SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
 			SeparatorVisibility="None"		
 			HasUnevenRows="true"
 		>
@@ -37,7 +36,7 @@
 								Grid.Column="0"
 								HorizontalOptions="FillAndExpand"
 								VerticalOptions="Center"
-								Text="{Binding ., Converter={StaticResource bundleConverter}}"
+								Text="{Binding Model, Converter={StaticResource bundleConverter}}"
 							/>
 							<Button
 								Margin="10, 5"
@@ -45,6 +44,8 @@
 								Grid.Column="1"
 								HorizontalOptions="End"
 								VerticalOptions="Center"
+								Command="{Binding Command}"
+								CommandParameter="{Binding .}"
 								Text="{x:Static res:Text.PurchaseButtonText}" 
 							/>							
 						</Grid>

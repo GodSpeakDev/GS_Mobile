@@ -48,19 +48,21 @@
 								<Label 
 									HorizontalOptions="StartAndExpand"
 									VerticalOptions="CenterAndExpand"
-									Text="{Binding Code}"
-									IsVisible="{Binding Redeemed, Converter={StaticResource inverseBooleanConverter}}"
+									Text="{Binding Model.Code}"
+									IsVisible="{Binding Model.Redeemed, Converter={StaticResource inverseBooleanConverter}}"
 								/>
 								<Label
 									VerticalOptions="CenterAndExpand"
-									Text="{Binding ReedemedDescription}"
-									IsVisible="{Binding Redeemed}"
+									Text="{Binding Model.ReedemedDescription}"
+									IsVisible="{Binding Model.Redeemed}"
 								/>
 								<Button 									
 									Text="{x:Static res:Text.ShareButtonText}"
-									IsVisible="{Binding Redeemed, Converter={StaticResource inverseBooleanConverter}}"
+									IsVisible="{Binding Model.Redeemed, Converter={StaticResource inverseBooleanConverter}}"
 									VerticalOptions="Center"
 									HorizontalOptions="End"
+									Command="{Binding Command}"
+									CommandParameter="{Binding .}"
 								/>
 							</StackLayout>
 						</ViewCell>

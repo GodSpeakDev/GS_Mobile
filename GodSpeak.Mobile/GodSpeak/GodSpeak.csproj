@@ -206,6 +206,7 @@
     <Compile Include="CustomComponents\Pager.cs" />
     <Compile Include="MvvmCross\NavigationBundles.cs" />
     <Compile Include="Converters\InverseBooleanConverter.cs" />
+    <Compile Include="Models\SelectModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using MvvmCross.Binding;
 using MvvmCross.Core.ViewModels;
 using GodSpeak.Resources;
+using System.Linq;
 
 namespace GodSpeak
 {
@@ -11,30 +12,19 @@ namespace GodSpeak
 	{
 		private IWebApiService _webApi;
 
-		private ObservableCollection<InviteBundle> _bundles;
-		public ObservableCollection<InviteBundle> Bundles
+		private ObservableCollection<SelectModel<InviteBundle>> _bundles;
+		public ObservableCollection<SelectModel<InviteBundle>> Bundles
 		{
 			get { return _bundles; }
 			set { SetProperty(ref _bundles, value); }
 		}
 
-		private InviteBundle _selectedItem;
-		public InviteBundle SelectedItem
-		{
-			get { return _selectedItem;}
-			set 
-			{ 
-				SetProperty(ref _selectedItem, value);
-				TapPurchaseCommand.Execute(_selectedItem);
-			}
-		}
-
-		private MvxCommand<InviteBundle> tapPurchaseCommand;
-		public MvxCommand<InviteBundle> TapPurchaseCommand
+		private MvxCommand<SelectModel<InviteBundle>> tapPurchaseCommand;
+		public MvxCommand<SelectModel<InviteBundle>> TapPurchaseCommand
 		{
 			get
 			{
-				return tapPurchaseCommand ?? (tapPurchaseCommand = new MvxCommand<InviteBundle>(DoTapPurchaseCommand));
+				return tapPurchaseCommand ?? (tapPurchaseCommand = new MvxCommand<SelectModel<InviteBundle>>(DoTapPurchaseCommand));
 			}
 		}
 
@@ -49,7 +39,11 @@ namespace GodSpeak
 
 			if (response.IsSuccess)
 			{
-				Bundles = new ObservableCollection<InviteBundle>(response.Content.Payload);
+				Bundles = new ObservableCollection<SelectModel<InviteBundle>>(response.Content.Payload.Select(x => new SelectModel<InviteBundle>()
+				{
+					Model = x,
+					Command = TapPurchaseCommand
+				}));
 			}
 			else
 			{
@@ -57,8 +51,10 @@ namespace GodSpeak
 			}
 		}
 
-		private async void DoTapPurchaseCommand(InviteBundle bundle)
+		private async void DoTapPurchaseCommand(SelectModel<InviteBundle> selectModel)
 		{
+			var bundle = selectModel.Model;
+
 			var result = await this.DialogService.ShowConfirmation(
 				Text.InAppPurchaseTitle,
 				string.Format(Text.InAppPurchaseText, bundle.Cost),
