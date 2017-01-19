@@ -10,8 +10,6 @@
 	<string>com.venado.mobile.godspeak</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
-	<key>CFBundleVersion</key>
-	<string>1.0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
@@ -46,5 +44,7 @@
 	<string>Pictures</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Pictures</string>
+	<key>CFBundleVersion</key>
+	<string>3</string>
 </dict>
 </plist>
