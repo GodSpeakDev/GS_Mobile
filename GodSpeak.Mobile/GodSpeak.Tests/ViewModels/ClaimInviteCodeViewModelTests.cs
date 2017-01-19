@@ -10,8 +10,9 @@ namespace GodSpeak.Tests.ViewModels
 {
     public class ClaimInviteCodeViewModelTests : BaseViewModelTest
     {
-        private const string GetACode = "Get a Code";
-        private const string TryAgain = "Try Again";
+        const string GetACode = "Get a Code";
+        const string TryAgain = "Try Again";
+
         ClaimInviteCodeViewModel ViewModelUT;
 
         WelcomeViewModel FakeWelcomeVM;
@@ -78,7 +79,7 @@ namespace GodSpeak.Tests.ViewModels
         {
 
             //Arrangee
-            WebApiValidateCodeReturns (new BaseResponse<ValidateCodeResponse> () { StatusCode = System.Net.HttpStatusCode.OK });
+            WebApiValidateWillReturn (new BaseResponse<ValidateCodeResponse> () { StatusCode = System.Net.HttpStatusCode.OK });
             //Act
             ViewModelUT.ClaimInviteCodeCommand.Execute ();
 
@@ -90,7 +91,11 @@ namespace GodSpeak.Tests.ViewModels
         [Test]
         public void if_WebApiService_ValidateCode_returns_bad_request_ShowViewModel_SHOULD_NOT_BE_invoked ()
         {
-            WebApiValidateCodeReturns (new BaseResponse<ValidateCodeResponse> () { StatusCode = System.Net.HttpStatusCode.BadRequest });
+            //Arrange
+            WebApiValidateWillReturn (new BaseResponse<ValidateCodeResponse> () { StatusCode = System.Net.HttpStatusCode.BadRequest });
+
+            //Act
+            ViewModelUT.ClaimInviteCodeCommand.Execute ();
 
             //Assert
             ShouldNotShowVM<RegisterViewModel> ();
@@ -99,8 +104,12 @@ namespace GodSpeak.Tests.ViewModels
         [Test]
         public void if_WebApiService_ValidateCode_returns_bad_request_DialogService_ShowConfirmation_SHOULD_BE_invoked ()
         {
+            //Arrange
             var badResponse = new BaseResponse<ValidateCodeResponse> () { StatusCode = System.Net.HttpStatusCode.BadRequest, ErrorTitle = DataFixture.Create<string> (), ErrorMessage = DataFixture.Create<string> () };
-            WebApiValidateCodeReturns (badResponse);
+            WebApiValidateWillReturn (badResponse);
+
+            //Act
+            ViewModelUT.ClaimInviteCodeCommand.Execute ();
 
             //Assert
             A.CallTo (() => FakeDialogService.ShowConfirmation (badResponse.ErrorTitle, badResponse.ErrorMessage, GetACode, TryAgain));
@@ -110,12 +119,17 @@ namespace GodSpeak.Tests.ViewModels
         [Test]
         public void if_ShowConfirmation_returns_True_WelcomeVM_SelectPage_SHOULD_BE_invoked ()
         {
-
+            //Arrange
             var badResponse = new BaseResponse<ValidateCodeResponse> () { StatusCode = System.Net.HttpStatusCode.BadRequest, ErrorTitle = DataFixture.Create<string> (), ErrorMessage = DataFixture.Create<string> () };
             A.CallTo (() => FakeDialogService.ShowConfirmation (badResponse.ErrorTitle, badResponse.ErrorMessage, GetACode, TryAgain)).Returns (Task.FromResult (true));
 
-            WebApiValidateCodeReturns (badResponse);
+            WebApiValidateWillReturn (badResponse);
 
+            //Act
+            ViewModelUT.ClaimInviteCodeCommand.Execute ();
+
+
+            //Assert
             A.CallTo (() => FakeWelcomeVM.SelectPage<RequestInviteCodeViewModel> ()).MustHaveHappened ();
         }
 
@@ -123,28 +137,37 @@ namespace GodSpeak.Tests.ViewModels
         [Test]
         public void if_ShowConfirmation_returns_False_WelcomeVM_SelectPage_SHOULD_NOT_BE_invoked ()
         {
-
+            //Arrange
             var badResponse = new BaseResponse<ValidateCodeResponse> () { StatusCode = System.Net.HttpStatusCode.BadRequest, ErrorTitle = DataFixture.Create<string> (), ErrorMessage = DataFixture.Create<string> () };
             A.CallTo (() => FakeDialogService.ShowConfirmation (badResponse.ErrorTitle, badResponse.ErrorMessage, GetACode, TryAgain)).Returns (Task.FromResult (false));
 
-            WebApiValidateCodeReturns (badResponse);
+            WebApiValidateWillReturn (badResponse);
 
+            //Act
+            ViewModelUT.ClaimInviteCodeCommand.Execute ();
+
+
+            //Assert
             A.CallTo (() => FakeWelcomeVM.SelectPage<RequestInviteCodeViewModel> ()).MustNotHaveHappened ();
         }
 
         [Test]
         public void DontHaveCodeCommand_SHOULD_invoke_SelectPage_on_WelcomeVM ()
         {
+            //Act
             ViewModelUT.DontHaveCodeCommand.Execute ();
 
+            //Assert
             A.CallTo (() => FakeWelcomeVM.SelectPage<RequestInviteCodeViewModel> ()).MustHaveHappened ();
         }
 
         [Test]
         public void AlreadyRegisteredCommand_SHOULD_ShowViewModel_LoginViewModel ()
         {
+            //Act
             ViewModelUT.AlreadyRegisteredCommand.Execute ();
 
+            //Assert
             ShouldShowVM<LoginViewModel> ();
         }
 
@@ -152,15 +175,14 @@ namespace GodSpeak.Tests.ViewModels
         /// Helper Method for setting up Fake Web Api
         /// </summary>
         /// <param name="response">Response.</param>
-        void WebApiValidateCodeReturns (BaseResponse<ValidateCodeResponse> response)
+        void WebApiValidateWillReturn (BaseResponse<ValidateCodeResponse> response)
         {
             var expectedCode = DataFixture.Create<string> ();
 
             A.CallTo (() => FakeWebApiService.ValidateCode (A<ValidateCodeRequest>.That.Matches (req => req.Code == expectedCode))).Returns (Task.FromResult (response));
             ViewModelUT.InviteCode = expectedCode;
 
-            //Act
-            ViewModelUT.ClaimInviteCodeCommand.Execute ();
+
         }
     }
 }
