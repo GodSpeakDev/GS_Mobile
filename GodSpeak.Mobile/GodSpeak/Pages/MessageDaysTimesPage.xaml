@@ -6,6 +6,9 @@
 		xmlns:res="clr-namespace:GodSpeak.Resources;assembly=GodSpeak"
 		Title="{x:Static res:Text.MessageDaysTimesPageTitle}"
 		x:Class="GodSpeak.MessageDaysTimesPage">
+	<ContentPage.ToolbarItems>
+		<ToolbarItem Text="Save" Command="{Binding SaveCommand}" />
+	</ContentPage.ToolbarItems>
 	<ContentPage.Content>
 		
 	</ContentPage.Content>

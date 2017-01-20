@@ -38,5 +38,11 @@ namespace GodSpeak
 			get;
 			set;
 		}
+
+		public int Weekday
+		{
+			get;
+			set;
+		}
 	}
 }

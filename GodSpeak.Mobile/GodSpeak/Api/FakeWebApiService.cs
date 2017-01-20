@@ -226,7 +226,16 @@ namespace GodSpeak
 
 		public async Task<BaseResponse<SetMessagesConfigResponse>> SetMessagesConfigUser(SetMessagesConfigRequest request)
 		{
-			return null;
+			await Task.Delay(delay);
+			_dailySettings = request.Settings;
+			return new BaseResponse<SetMessagesConfigResponse>()
+			{
+				StatusCode = System.Net.HttpStatusCode.OK,
+				Content = new SetMessagesConfigResponse() 
+				{
+					Payload = _dailySettings
+				}
+			};
 		}
 
 		public async Task<BaseResponse<GetInviteBundlesResponse>> GetInviteBundles(GetInviteBundlesRequest request)
@@ -277,6 +286,19 @@ namespace GodSpeak
 			};
 		}
 
+		public async Task<BaseResponse<GetMessageConfigResponse>> GetMessageConfig(GetMessageConfigRequest request)
+		{
+			await Task.Delay(delay);
+			return new BaseResponse<GetMessageConfigResponse>()
+			{
+				StatusCode = System.Net.HttpStatusCode.OK,
+				Content = new GetMessageConfigResponse()
+				{
+					Payload = _dailySettings
+				}
+			};
+		}
+
 		private User GetTestPayload()
 		{
 			return new User()
@@ -324,6 +346,66 @@ namespace GodSpeak
 				Enabled = false,
 				Title = "Proverbs"
 			}
+		};
+
+		private static List<DayOfWeekSettings> _dailySettings = new List<DayOfWeekSettings>()
+		{
+			new DayOfWeekSettings()
+			{
+				DayOfWeekSettingsId = Guid.NewGuid(),
+				Weekday = 0,
+				Enabled = true,
+				StartDateTime = DateTime.Now.Date.AddHours(10),
+				EndDateTime = DateTime.Now.Date.AddHours(20)
+			},
+			new DayOfWeekSettings()
+			{
+				DayOfWeekSettingsId = Guid.NewGuid(),
+				Weekday = 1,
+				Enabled = false,
+				StartDateTime = DateTime.Now.Date.AddHours(10),
+				EndDateTime = DateTime.Now.Date.AddHours(20)
+			},
+			new DayOfWeekSettings()
+			{
+				DayOfWeekSettingsId = Guid.NewGuid(),
+				Weekday = 2,
+				Enabled = false,
+				StartDateTime = DateTime.Now.Date.AddHours(10),
+				EndDateTime = DateTime.Now.Date.AddHours(20)
+			},
+			new DayOfWeekSettings()
+			{
+				DayOfWeekSettingsId = Guid.NewGuid(),
+				Weekday = 3,
+				Enabled = true,
+				StartDateTime = DateTime.Now.Date.AddHours(10),
+				EndDateTime = DateTime.Now.Date.AddHours(10)
+			},
+			new DayOfWeekSettings()
+			{
+				DayOfWeekSettingsId = Guid.NewGuid(),
+				Weekday = 4,
+				Enabled = true,
+				StartDateTime = DateTime.Now.Date.AddHours(12),
+				EndDateTime = DateTime.Now.Date.AddHours(17)
+			},
+			new DayOfWeekSettings()
+			{
+				DayOfWeekSettingsId = Guid.NewGuid(),
+				Weekday = 5,
+				Enabled = false,
+				StartDateTime = DateTime.Now.Date.AddHours(12),
+				EndDateTime = DateTime.Now.Date.AddHours(17)
+			},
+			new DayOfWeekSettings()
+			{
+				DayOfWeekSettingsId = Guid.NewGuid(),
+				Weekday = 6,
+				Enabled = false,
+				StartDateTime = DateTime.Now.Date.AddHours(10),
+				EndDateTime = DateTime.Now.Date.AddHours(20)
+			},
 		};
 	}
 }

@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 namespace GodSpeak
 {
-	public class SetMessagesConfigResponse
+	public class GetMessageConfigResponse
 	{
-		public SetMessagesConfigResponse()
+		public GetMessageConfigResponse()
 		{
 			Payload = new List<DayOfWeekSettings>();
 		}
@@ -15,6 +15,6 @@ namespace GodSpeak
 		{
 			get;
 			set;
-		}		
+		}
 	}
 }

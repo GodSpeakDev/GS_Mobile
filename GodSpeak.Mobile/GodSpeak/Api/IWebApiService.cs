@@ -10,6 +10,7 @@ namespace GodSpeak
 		Task<BaseResponse<LoginResponse>> Login(LoginRequest request);
 		Task<BaseResponse<LogoutResponse>> Logout(LogoutRequest request);
 		Task<BaseResponse<GetCategoriesResponse>> GetCategories(GetCategoriesRequest request);
+		Task<BaseResponse<GetMessageConfigResponse>> GetMessageConfig(GetMessageConfigRequest request);
 		Task<BaseResponse<GetImpactResponse>> GetImpact(GetImpactRequest request);
 		Task<BaseResponse<GetInvitesResponse>> GetInvites(GetInvitesRequest request);
 		Task<BaseResponse<GetInviteBundlesResponse>> GetInviteBundles(GetInviteBundlesRequest request);

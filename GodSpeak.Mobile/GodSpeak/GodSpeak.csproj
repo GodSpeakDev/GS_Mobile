@@ -230,6 +230,8 @@
       <DependentUpon>MessageDaysTimesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\CheckModel.cs" />
+    <Compile Include="Api\Request\GetMessageConfigRequest.cs" />
+    <Compile Include="Api\Response\GetMessageConfigResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

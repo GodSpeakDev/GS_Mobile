@@ -43,7 +43,7 @@ namespace GodSpeak
 					(
 						response.Content.Payload.Select(x => new CheckModel<MessageCategory>() 
 						{
-							IsChecked = false,
+							IsChecked = x.Enabled,
 							Model = x
 						}));
 			}
