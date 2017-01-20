@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<views:CustomContentPage 
+		xmlns="http://xamarin.com/schemas/2014/forms" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+		xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
+		xmlns:res="clr-namespace:GodSpeak.Resources;assembly=GodSpeak"
+		Title="{x:Static res:Text.MessageCategoriesPageTitle}"
+		x:Class="GodSpeak.MessageCategoriesPage">
+	<ContentPage.ToolbarItems>
+		<ToolbarItem Text="Save" Command="{Binding SaveCommand}" />
+	</ContentPage.ToolbarItems>
+	<ContentPage.Content>
+		<ListView 
+			ItemsSource="{Binding Categories}">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+				<SwitchCell Text="{Binding Model.Title}" On="{Binding IsChecked}" />                
+            </DataTemplate>
+        </ListView.ItemTemplate>        
+    </ListView>
+	</ContentPage.Content>
+</views:CustomContentPage>

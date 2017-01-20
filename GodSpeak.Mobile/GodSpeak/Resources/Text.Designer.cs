@@ -286,5 +286,23 @@ namespace GodSpeak.Resources {
                 return ResourceManager.GetString("InvitePageTitle", resourceCulture);
             }
         }
+        
+        public static string MessageCategoriesPageTitle {
+            get {
+                return ResourceManager.GetString("MessageCategoriesPageTitle", resourceCulture);
+            }
+        }
+        
+        public static string MessageDaysTimesPageTitle {
+            get {
+                return ResourceManager.GetString("MessageDaysTimesPageTitle", resourceCulture);
+            }
+        }
+        
+        public static string SavedCategoriesSuccessful {
+            get {
+                return ResourceManager.GetString("SavedCategoriesSuccessful", resourceCulture);
+            }
+        }
     }
 }

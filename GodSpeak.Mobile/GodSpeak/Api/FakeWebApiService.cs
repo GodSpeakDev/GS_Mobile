@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace GodSpeak
 {
@@ -73,7 +74,15 @@ namespace GodSpeak
 
 		public async Task<BaseResponse<GetCategoriesResponse>> GetCategories(GetCategoriesRequest request)
 		{
-			return null;
+			await Task.Delay(delay);
+			return new BaseResponse<GetCategoriesResponse>()
+			{
+				StatusCode = System.Net.HttpStatusCode.OK,
+				Content = new GetCategoriesResponse() 
+				{
+					Payload = _categories
+				}
+			};
 		}
 
 		public async Task<BaseResponse<GetImpactResponse>> GetImpact(GetImpactRequest request)
@@ -201,7 +210,18 @@ namespace GodSpeak
 
 		public async Task<BaseResponse<SaveCategoriesResponse>> SaveCategories(SaveCategoriesRequest request)
 		{
-			return null;
+			await Task.Delay(delay);
+
+			foreach (var category in _categories)
+			{
+				category.Enabled = (request.Payload.FirstOrDefault(x => x.Id == category.Id)?.Enabled).GetValueOrDefault();
+			}
+
+			return new BaseResponse<SaveCategoriesResponse>()
+			{
+				StatusCode = System.Net.HttpStatusCode.OK,
+				Content = new SaveCategoriesResponse()
+			};
 		}
 
 		public async Task<BaseResponse<SetMessagesConfigResponse>> SetMessagesConfigUser(SetMessagesConfigRequest request)
@@ -270,15 +290,40 @@ namespace GodSpeak
 				LastName = "GodSpeak",
 				PhotoUrl = "http://images.clipartpanda.com/happy-man-images-A-Happy-Man.jpg",
 				Token = Guid.NewGuid().ToString(),
-				SelectedCategories = new List<MessageCategory>()
-				{
-
-				},
+				SelectedCategories = _categories,
 				DayOfWeekSettings = new List<DayOfWeekSettings>()
 				{
-
+					
 				}
 			};
 		}
+
+		private static List<MessageCategory> _categories = new List<MessageCategory>() 
+		{
+			new MessageCategory() 
+			{
+				Id= Guid.NewGuid(),
+				Enabled = false,
+				Title = "Inspiration"
+			},
+			new MessageCategory()
+			{
+				Id= Guid.NewGuid(),
+				Enabled = false,
+				Title = "New Testament"
+			},
+			new MessageCategory()
+			{
+				Id= Guid.NewGuid(),
+				Enabled = false,
+				Title = "Old Testament"
+			},
+			new MessageCategory()
+			{
+				Id= Guid.NewGuid(),
+				Enabled = false,
+				Title = "Proverbs"
+			}
+		};
 	}
 }

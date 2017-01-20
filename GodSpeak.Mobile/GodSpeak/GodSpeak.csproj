@@ -76,6 +76,15 @@
     <EmbeddedResource Include="Pages\PurchaseCreditPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\MessageSettingsMenuPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\MessageCategoriesPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\MessageDaysTimesPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -207,6 +216,20 @@
     <Compile Include="MvvmCross\NavigationBundles.cs" />
     <Compile Include="Converters\InverseBooleanConverter.cs" />
     <Compile Include="Models\SelectModel.cs" />
+    <Compile Include="ViewModels\MessageSettingsMenuViewModel.cs" />
+    <Compile Include="Models\MenuItem.cs" />
+    <Compile Include="ViewModels\MessageCategoriesViewModel.cs" />
+    <Compile Include="ViewModels\MessageDaysTimesViewModel.cs" />
+    <Compile Include="Pages\MessageSettingsMenuPage.xaml.cs">
+      <DependentUpon>MessageSettingsMenuPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MessageCategoriesPage.xaml.cs">
+      <DependentUpon>MessageCategoriesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MessageDaysTimesPage.xaml.cs">
+      <DependentUpon>MessageDaysTimesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CheckModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

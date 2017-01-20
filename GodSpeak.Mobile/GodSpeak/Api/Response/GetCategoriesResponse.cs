@@ -7,10 +7,10 @@ namespace GodSpeak
 	{
 		public GetCategoriesResponse()
 		{
-			Categories = new List<MessageCategory>();
+			Payload = new List<MessageCategory>();
 		}
 
-		public List<MessageCategory> Categories
+		public List<MessageCategory> Payload
 		{
 			get;
 			set;

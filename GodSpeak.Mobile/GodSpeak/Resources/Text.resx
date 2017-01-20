@@ -221,4 +221,19 @@
 		xml:space="preserve">
     	<value>Invite</value>
   	</data>
+	<data
+		name="MessageCategoriesPageTitle"
+		xml:space="preserve">
+    	<value>Categories</value>
+  	</data>
+	<data
+		name="MessageDaysTimesPageTitle"
+		xml:space="preserve">
+    	<value>Days and Times</value>
+  	</data>
+	<data
+		name="SavedCategoriesSuccessful"
+		xml:space="preserve">
+    	<value>Your categories was saved successfully.</value>
+  	</data>
 </root>
