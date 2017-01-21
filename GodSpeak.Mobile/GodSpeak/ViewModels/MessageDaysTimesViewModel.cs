@@ -13,6 +13,20 @@ namespace GodSpeak
 	{
 		private IWebApiService _webApi;
 
+		private int _messagesPerDayIndex;
+		public int MessagesPerDayIndex
+		{
+			get { return _messagesPerDayIndex;}
+			set 
+			{
+				if (SetProperty(ref _messagesPerDayIndex, value))
+				{
+					SetMessagesPerDaySettings();
+				}
+			}
+		}
+
+
 		private MvxCommand _saveCommand;
 		public MvxCommand SaveCommand
 		{
@@ -39,8 +53,9 @@ namespace GodSpeak
 			var response = await _webApi.GetMessageConfig(new GetMessageConfigRequest());
 
 			if (response.IsSuccess)
-			{
+			{				
 				Settings = new ObservableCollection<DayOfWeekSettings>(response.Content.Payload);
+				MessagesPerDayIndex = Settings[0].NumberOfMessages;
 			}
 			else
 			{
@@ -65,6 +80,14 @@ namespace GodSpeak
 			else
 			{
 				await HandleResponse(response);
+			}
+		}
+
+		private void SetMessagesPerDaySettings()
+		{
+			foreach (var day in Settings)
+			{
+				day.NumberOfMessages = MessagesPerDayIndex;
 			}
 		}
 	}

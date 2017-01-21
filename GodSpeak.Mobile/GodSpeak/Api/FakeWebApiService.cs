@@ -356,7 +356,8 @@ namespace GodSpeak
 				Weekday = 0,
 				Enabled = true,
 				StartDateTime = DateTime.Now.Date.AddHours(10),
-				EndDateTime = DateTime.Now.Date.AddHours(20)
+				EndDateTime = DateTime.Now.Date.AddHours(20),
+				NumberOfMessages = 3
 			},
 			new DayOfWeekSettings()
 			{
@@ -364,7 +365,8 @@ namespace GodSpeak
 				Weekday = 1,
 				Enabled = false,
 				StartDateTime = DateTime.Now.Date.AddHours(10),
-				EndDateTime = DateTime.Now.Date.AddHours(20)
+				EndDateTime = DateTime.Now.Date.AddHours(20),
+				NumberOfMessages = 3
 			},
 			new DayOfWeekSettings()
 			{
@@ -372,7 +374,8 @@ namespace GodSpeak
 				Weekday = 2,
 				Enabled = false,
 				StartDateTime = DateTime.Now.Date.AddHours(10),
-				EndDateTime = DateTime.Now.Date.AddHours(20)
+				EndDateTime = DateTime.Now.Date.AddHours(20),
+				NumberOfMessages = 3
 			},
 			new DayOfWeekSettings()
 			{
@@ -380,7 +383,8 @@ namespace GodSpeak
 				Weekday = 3,
 				Enabled = true,
 				StartDateTime = DateTime.Now.Date.AddHours(10),
-				EndDateTime = DateTime.Now.Date.AddHours(10)
+				EndDateTime = DateTime.Now.Date.AddHours(10),
+				NumberOfMessages = 3
 			},
 			new DayOfWeekSettings()
 			{
@@ -388,7 +392,8 @@ namespace GodSpeak
 				Weekday = 4,
 				Enabled = true,
 				StartDateTime = DateTime.Now.Date.AddHours(12),
-				EndDateTime = DateTime.Now.Date.AddHours(17)
+				EndDateTime = DateTime.Now.Date.AddHours(17),
+				NumberOfMessages = 3
 			},
 			new DayOfWeekSettings()
 			{
@@ -396,7 +401,8 @@ namespace GodSpeak
 				Weekday = 5,
 				Enabled = false,
 				StartDateTime = DateTime.Now.Date.AddHours(12),
-				EndDateTime = DateTime.Now.Date.AddHours(17)
+				EndDateTime = DateTime.Now.Date.AddHours(17),
+				NumberOfMessages = 3
 			},
 			new DayOfWeekSettings()
 			{
@@ -404,7 +410,8 @@ namespace GodSpeak
 				Weekday = 6,
 				Enabled = false,
 				StartDateTime = DateTime.Now.Date.AddHours(10),
-				EndDateTime = DateTime.Now.Date.AddHours(20)
+				EndDateTime = DateTime.Now.Date.AddHours(20),
+				NumberOfMessages = 3
 			},
 		};
 	}
