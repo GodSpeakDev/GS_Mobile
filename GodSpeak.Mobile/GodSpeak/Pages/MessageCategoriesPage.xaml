@@ -14,7 +14,7 @@
 			ItemsSource="{Binding Categories}">
         <ListView.ItemTemplate>
             <DataTemplate>
-				<SwitchCell Text="{Binding Model.Title}" On="{Binding IsChecked}" />                
+				<SwitchCell Text="{Binding Title}" On="{Binding Enabled}" />                
             </DataTemplate>
         </ListView.ItemTemplate>        
     </ListView>

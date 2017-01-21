@@ -22,8 +22,8 @@ namespace GodSpeak
 			}
 		}
 
-		private ObservableCollection<CheckModel<MessageCategory>> _categories;
-		public ObservableCollection<CheckModel<MessageCategory>> Categories
+		private ObservableCollection<MessageCategory> _categories;
+		public ObservableCollection<MessageCategory> Categories
 		{
 			get { return _categories;}
 			set { SetProperty(ref _categories, value);}
@@ -39,13 +39,7 @@ namespace GodSpeak
 			var response = await _webApi.GetCategories(new GetCategoriesRequest());
 			if (response.IsSuccess)
 			{
-				Categories = new ObservableCollection<CheckModel<MessageCategory>>
-					(
-						response.Content.Payload.Select(x => new CheckModel<MessageCategory>() 
-						{
-							IsChecked = x.Enabled,
-							Model = x
-						}));
+				Categories = new ObservableCollection<MessageCategory>(response.Content.Payload);
 			}
 			else
 			{
@@ -57,20 +51,14 @@ namespace GodSpeak
 		{
 			var request = new SaveCategoriesRequest()
 			{
-				Payload = Categories.Where(x => x.IsChecked).Select(x => x.Model).ToList()
+				Payload = Categories.Where(x => x.Enabled).ToList()
 			};
 
 			var response = await _webApi.SaveCategories(request);
 
 			if (response.IsSuccess)
 			{
-				Categories = new ObservableCollection<CheckModel<MessageCategory>>
-					(
-						response.Content.Payload.Select(x => new CheckModel<MessageCategory>()
-						{
-							IsChecked = false,
-							Model = x
-						}));
+				Categories = new ObservableCollection<MessageCategory>(response.Content.Payload);
 				await DialogService.ShowAlert(Text.SuccessPopupTitle, Text.SavedCategoriesSuccessful);
 			}
 			else

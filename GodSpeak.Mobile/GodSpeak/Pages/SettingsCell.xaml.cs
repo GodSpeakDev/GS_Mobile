@@ -17,7 +17,7 @@ namespace GodSpeak
 			var sw = (Switch)sender;
 			var grid = (Grid) sw.Parent;
 
-			var checkModel = (CheckModel<DayOfWeekSettings>)sw.BindingContext;
+			var checkModel = (DayOfWeekSettings)sw.BindingContext;
 			//grid.HeightRequest = checkModel.IsChecked ? 200 : 10;
 			grid.ForceLayout();
 			this.ForceUpdateSize();

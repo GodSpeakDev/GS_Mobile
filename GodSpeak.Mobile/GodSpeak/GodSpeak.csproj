@@ -232,7 +232,6 @@
     <Compile Include="Pages\MessageDaysTimesPage.xaml.cs">
       <DependentUpon>MessageDaysTimesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\CheckModel.cs" />
     <Compile Include="Api\Request\GetMessageConfigRequest.cs" />
     <Compile Include="Api\Response\GetMessageConfigResponse.cs" />
     <Compile Include="Converters\WeekdayConverter.cs" />

@@ -331,7 +331,7 @@ namespace GodSpeak
 			new MessageCategory()
 			{
 				Id= Guid.NewGuid(),
-				Enabled = false,
+				Enabled = true,
 				Title = "New Testament"
 			},
 			new MessageCategory()
@@ -343,7 +343,7 @@ namespace GodSpeak
 			new MessageCategory()
 			{
 				Id= Guid.NewGuid(),
-				Enabled = false,
+				Enabled = true,
 				Title = "Proverbs"
 			}
 		};

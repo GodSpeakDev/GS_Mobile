@@ -22,8 +22,8 @@ namespace GodSpeak
 			}
 		}
 
-		private ObservableCollection<CheckModel<DayOfWeekSettings>> _settings;
-		public ObservableCollection<CheckModel<DayOfWeekSettings>> Settings
+		private ObservableCollection<DayOfWeekSettings> _settings;
+		public ObservableCollection<DayOfWeekSettings> Settings
 		{
 			get { return _settings; }
 			set { SetProperty(ref _settings, value); }
@@ -40,14 +40,7 @@ namespace GodSpeak
 
 			if (response.IsSuccess)
 			{
-				Settings = new ObservableCollection<CheckModel<DayOfWeekSettings>>
-					(
-						response.Content.Payload.Select(x => new CheckModel<DayOfWeekSettings>() 
-						{
-							IsChecked = x.Enabled,
-							Model = x
-						})
-					);
+				Settings = new ObservableCollection<DayOfWeekSettings>(response.Content.Payload);
 			}
 			else
 			{
@@ -59,21 +52,14 @@ namespace GodSpeak
 		{
 			var request = new SetMessagesConfigRequest()
 			{
-				Settings = Settings.Select(x => x.Model).ToList()
+				Settings = Settings.ToList()
 			};
 
 			var response = await _webApi.SetMessagesConfigUser(request);
 
 			if (response.IsSuccess)
 			{
-				Settings = new ObservableCollection<CheckModel<DayOfWeekSettings>>
-					(
-						response.Content.Payload.Select(x => new CheckModel<DayOfWeekSettings>()
-						{
-							IsChecked = x.Enabled,
-							Model = x
-						})
-					);
+				Settings = new ObservableCollection<DayOfWeekSettings>(response.Content.Payload);
 				await DialogService.ShowAlert(Text.SuccessPopupTitle, Text.SavedSettingsSuccessful);
 			}
 			else

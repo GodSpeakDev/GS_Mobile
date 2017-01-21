@@ -29,12 +29,12 @@
 				Grid.Column="0"
 				HorizontalOptions="Start"
 				VerticalOptions="Center"
-				Text="{Binding Model.Weekday, Converter={StaticResource weekdayConverter}}" />
+				Text="{Binding Weekday, Converter={StaticResource weekdayConverter}}" />
 			<Switch 
 				Grid.Row="0"
 				Grid.Column="1"
 				HorizontalOptions="End"
-				IsToggled="{Binding IsChecked}"
+				IsToggled="{Binding Enabled}"
 				Toggled="Handle_Toggled"
 			/>
 			<Label
@@ -43,7 +43,7 @@
 				HorizontalOptions="Start"
 				VerticalOptions="Center"
 				Text="Start"
-				IsVisible="{Binding IsChecked}"
+				IsVisible="{Binding Enabled}"
 			/>
 			<TimePicker				
 				Grid.Row="1"
@@ -52,7 +52,7 @@
 				HorizontalOptions="Start"
 				Format="hh:mm tt"
 				Time="{Binding StartDateTime}"
-				IsVisible="{Binding IsChecked}"
+				IsVisible="{Binding Enabled}"
 			/>
 			<Label
 				Grid.Row="2"
@@ -60,7 +60,7 @@
 				HorizontalOptions="Start"
 				VerticalOptions="Center"
 				Text="End"
-				IsVisible="{Binding IsChecked}"
+				IsVisible="{Binding Enabled}"
 			/>
 			<TimePicker				
 				Grid.Row="2"
@@ -69,7 +69,7 @@
 				HorizontalOptions="Start"			
 				Format="hh:mm tt"
 				Time="{Binding EndDateTime}"
-				IsVisible="{Binding IsChecked}"
+				IsVisible="{Binding Enabled}"
 			/>			
 		</Grid>
 	</ViewCell.View>

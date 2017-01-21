@@ -16,8 +16,11 @@ namespace GodSpeak
 			get { return _menuItem; }
 			set
 			{
-				if (SetProperty(ref _menuItem, value))
+				if (SetProperty(ref _menuItem, value) && SelectedMenu != null)
+				{
 					OnSelectedChangedCommand.Execute(value);
+					SelectedMenu = null;
+				}
 			}
 		}
 
