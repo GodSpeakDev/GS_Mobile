@@ -26,6 +26,7 @@ namespace GodSpeak.iOS
 		protected override IMvxIosViewPresenter CreatePresenter()
 		{
 			Forms.Init();
+			Xamarin.FormsMaps.Init();
 
 			var xamarinFormsApp = new MvxFormsApp();
 

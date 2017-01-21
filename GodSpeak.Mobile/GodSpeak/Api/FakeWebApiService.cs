@@ -87,7 +87,55 @@ namespace GodSpeak
 
 		public async Task<BaseResponse<GetImpactResponse>> GetImpact(GetImpactRequest request)
 		{
-			return null;	
+			await Task.Delay(delay);
+			return new BaseResponse<GetImpactResponse>()
+			{
+				StatusCode = System.Net.HttpStatusCode.OK,
+				Content = new GetImpactResponse()
+				{
+					Payload = new List<ImpactDay>()
+					{
+						new ImpactDay()
+						{
+							ImpactDayId = Guid.NewGuid(),
+							Date=DateTime.Now,
+							InvitesClaimed = 2,
+							ScripturesDelivered = 2,
+							MapPoints = new List<MapPoint>()
+							{
+								new MapPoint()
+								{
+									MapPointId = Guid.NewGuid(),
+									Latitude = 38.646046f,
+									Longitude = -90.324496f,
+									Title = "Label 1"
+								},
+								new MapPoint()
+								{
+									MapPointId = Guid.NewGuid(),
+									Latitude = 38.642046f,
+									Longitude = -90.364496f,
+									Title = "Label 2"
+								},
+								new MapPoint()
+								{
+									MapPointId = Guid.NewGuid(),
+									Latitude = 38.648046f,
+									Longitude = -90.314496f,
+									Title = "Label 3"
+								},
+								new MapPoint()
+								{
+									MapPointId = Guid.NewGuid(),
+									Latitude = 38.647046f,
+									Longitude = -90.334496f,
+									Title = "Label 3"
+								},
+							}
+						},
+					}
+				}
+			};
 		}
 
 		public async Task<BaseResponse<GetInvitesResponse>> GetInvites(GetInvitesRequest request)

@@ -26,6 +26,7 @@ namespace GodSpeak.Droid
         protected override void OnCreate(Bundle bundle)
 		{
 			Xamarin.Forms.Forms.Init(this, bundle);
+			Xamarin.FormsMaps.Init(this, bundle);
 
 			ServicePointManager
 				.ServerCertificateValidationCallback +=

@@ -41,6 +41,15 @@ namespace GodSpeak
 			}
 		}
 
+		private MvxCommand _goToImpactCommand;
+		public MvxCommand GoToImpactCommand
+		{
+			get
+			{
+				return _goToImpactCommand ?? (_goToImpactCommand = new MvxCommand(DoGoToImpactCommand));
+			}
+		}
+
 		public MessageViewModel(IDialogService dialogService, IWebApiService apiService, IShareService shareService) : base(dialogService)
 		{
 			_apiService = apiService;
@@ -70,6 +79,11 @@ namespace GodSpeak
 		{
 			_shareService.Share(message.Text);
 			SelectedItem = null;
+		}
+
+		private void DoGoToImpactCommand()
+		{
+			this.ShowViewModel<ImpactViewModel>();
 		}
 	}
 }

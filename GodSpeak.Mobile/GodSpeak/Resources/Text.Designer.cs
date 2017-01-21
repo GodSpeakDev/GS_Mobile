@@ -299,6 +299,12 @@ namespace GodSpeak.Resources {
             }
         }
         
+        public static string ImpactPageTitle {
+            get {
+                return ResourceManager.GetString("ImpactPageTitle", resourceCulture);
+            }
+        }
+        
         public static string SavedCategoriesSuccessful {
             get {
                 return ResourceManager.GetString("SavedCategoriesSuccessful", resourceCulture);

@@ -88,6 +88,9 @@
     <EmbeddedResource Include="Pages\SettingsCell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ImpactPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -102,8 +105,6 @@
     <Compile Include="Api\Response\LoginResponse.cs" />
     <Compile Include="Api\Response\RegisterUserResponse.cs" />
     <Compile Include="Api\Dtos\MessageCategory.cs" />
-    <Compile Include="Api\Dtos\DeliveredScripture.cs" />
-    <Compile Include="Api\Dtos\GiftedApp.cs" />
     <Compile Include="Api\Dtos\DayOfWeekSettings.cs" />
     <Compile Include="Api\Request\LoginRequest.cs" />
     <Compile Include="Api\Request\RegisterUserRequest.cs" />
@@ -238,6 +239,12 @@
     <Compile Include="Pages\SettingsCell.xaml.cs">
       <DependentUpon>SettingsCell.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ImpactPage.xaml.cs">
+      <DependentUpon>ImpactPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\ImpactViewModel.cs" />
+    <Compile Include="Api\Dtos\ImpactDay.cs" />
+    <Compile Include="Api\Dtos\MapPoint.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />
@@ -285,6 +292,9 @@
     </Reference>
     <Reference Include="ExifLib">
       <HintPath>..\packages\ExifLib.PCL.1.0.1\lib\portable-net45+sl50+win+WindowsPhoneApp81+wp80+Xamarin.iOS10+MonoAndroid10+MonoTouch10\ExifLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Maps">
+      <HintPath>..\packages\Xamarin.Forms.Maps.2.3.3.180\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10\Xamarin.Forms.Maps.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

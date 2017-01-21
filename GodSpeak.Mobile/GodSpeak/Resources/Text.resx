@@ -232,6 +232,11 @@
     	<value>Days and Times</value>
   	</data>
 	<data
+		name="ImpactPageTitle"
+		xml:space="preserve">
+    	<value>Your Impact</value>
+  	</data>
+	<data
 		name="SavedCategoriesSuccessful"
 		xml:space="preserve">
     	<value>Your categories was saved successfully.</value>
