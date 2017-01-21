@@ -85,6 +85,9 @@
     <EmbeddedResource Include="Pages\MessageDaysTimesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\SettingsCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -232,6 +235,10 @@
     <Compile Include="Models\CheckModel.cs" />
     <Compile Include="Api\Request\GetMessageConfigRequest.cs" />
     <Compile Include="Api\Response\GetMessageConfigResponse.cs" />
+    <Compile Include="Converters\WeekdayConverter.cs" />
+    <Compile Include="Pages\SettingsCell.xaml.cs">
+      <DependentUpon>SettingsCell.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

@@ -304,5 +304,11 @@ namespace GodSpeak.Resources {
                 return ResourceManager.GetString("SavedCategoriesSuccessful", resourceCulture);
             }
         }
+        
+        public static string SavedSettingsSuccessful {
+            get {
+                return ResourceManager.GetString("SavedSettingsSuccessful", resourceCulture);
+            }
+        }
     }
 }

@@ -236,4 +236,9 @@
 		xml:space="preserve">
     	<value>Your categories was saved successfully.</value>
   	</data>
+	<data
+		name="SavedSettingsSuccessful"
+		xml:space="preserve">
+    	<value>Your settings was saved successfully.</value>
+  	</data>
 </root>

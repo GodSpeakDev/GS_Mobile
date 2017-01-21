@@ -5,11 +5,19 @@
 		xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
 		xmlns:res="clr-namespace:GodSpeak.Resources;assembly=GodSpeak"
 		Title="{x:Static res:Text.MessageDaysTimesPageTitle}"
-		x:Class="GodSpeak.MessageDaysTimesPage">
+		x:Class="GodSpeak.MessageDaysTimesPage">	
 	<ContentPage.ToolbarItems>
 		<ToolbarItem Text="Save" Command="{Binding SaveCommand}" />
 	</ContentPage.ToolbarItems>
 	<ContentPage.Content>
-		
+		<ListView 
+			ItemsSource="{Binding Settings}"
+			HasUnevenRows="true">
+	        <ListView.ItemTemplate>
+	            <DataTemplate>
+					<views:SettingsCell />
+	            </DataTemplate>
+	        </ListView.ItemTemplate>        
+    	</ListView>
 	</ContentPage.Content>
 </views:CustomContentPage>

@@ -74,7 +74,7 @@ namespace GodSpeak
 							Model = x
 						})
 					);
-				await DialogService.ShowAlert(Text.SuccessPopupTitle, Text.SavedCategoriesSuccessful);
+				await DialogService.ShowAlert(Text.SuccessPopupTitle, Text.SavedSettingsSuccessful);
 			}
 			else
 			{
