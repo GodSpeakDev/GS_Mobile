@@ -245,6 +245,8 @@
     <Compile Include="ViewModels\ImpactViewModel.cs" />
     <Compile Include="Api\Dtos\ImpactDay.cs" />
     <Compile Include="Api\Dtos\MapPoint.cs" />
+    <Compile Include="Converters\DeliveredScriptureConverter.cs" />
+    <Compile Include="Converters\InvitedClaimedConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

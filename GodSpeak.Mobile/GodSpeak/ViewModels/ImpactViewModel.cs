@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Collections.ObjectModel;
+using MvvmCross.Core.ViewModels;
+using System.Threading.Tasks;
 
 namespace GodSpeak
 {
@@ -9,6 +11,13 @@ namespace GodSpeak
 	{
 		private IWebApiService _webApi;
 		private List<ImpactDay> _allImpactDays;
+
+		private bool _isPlaying;
+		public bool IsPlaying
+		{
+			get { return _isPlaying;}
+			set { SetProperty(ref _isPlaying, value);}
+		}
 
 		private ObservableCollection<ImpactDay> _shownImpactDays; 
 		public ObservableCollection<ImpactDay> ShownImpactDays
@@ -39,6 +48,24 @@ namespace GodSpeak
 		{
 			get { return _maximumDayValue; }
 			set { SetProperty(ref _maximumDayValue, value); }
+		}
+
+		private MvxCommand _playCommand;
+		public MvxCommand PlayCommand
+		{
+			get
+			{
+				return _playCommand ?? (_playCommand = new MvxCommand(DoPlayCommand));
+			}
+		}
+
+		private MvxCommand _stopCommand;
+		public MvxCommand StopCommand
+		{
+			get
+			{
+				return _stopCommand ?? (_stopCommand = new MvxCommand(DoStopCommand));
+			}
 		}
 
 		public ImpactViewModel(IDialogService dialogService, IWebApiService webApi) : base(dialogService)
@@ -79,11 +106,43 @@ namespace GodSpeak
 				ShownImpactDays.Remove(impactDay);
 			}
 
-			var daysToBeAdded = _allImpactDays.Where(x => x.Date.Date >= cutDate.Date && !ShownImpactDays.Contains(x)).ToList();
+			var daysToBeAdded = _allImpactDays.Where(x => x.Date.Date <= cutDate.Date && !ShownImpactDays.Contains(x)).ToList();
 			foreach (var impactDay in daysToBeAdded)
 			{
 				ShownImpactDays.Add(impactDay);
 			}
+
+			RaisePropertyChanged(nameof(ShownImpactDays));
+		}
+
+		private void DoStopCommand()
+		{
+			IsPlaying = false;
+		}
+
+		private async void DoPlayCommand()
+		{
+			IsPlaying = true;
+
+			if (DayValue == MaximumDayValue)
+			{
+				DayValue = MinimumDayValue;
+			}
+
+			for (int i = DayValue; i < MaximumDayValue; i++)
+			{
+				await Task.Delay(200);
+
+				if (!IsPlaying)
+				{
+					break;
+				}
+
+				i += 1;
+				DayValue = i;
+			}
+
+			IsPlaying = false;
 		}
 	}
 }

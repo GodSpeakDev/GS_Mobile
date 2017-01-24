@@ -7,35 +7,93 @@
 		xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
 		Title="{x:Static res:Text.ImpactPageTitle}"
 		x:Class="GodSpeak.ImpactPage">
+	<ContentPage.Resources>
+		<ResourceDictionary>
+			<views:InverseBooleanConverter x:Key="invBoolConverter" />	
+			<views:DeliveredScriptureConverter x:Key="deliveredScriptureConverter" />	
+			<views:InvitedClaimedConverter x:Key="invitedClaimedConverter" />	
+		</ResourceDictionary>
+	</ContentPage.Resources>
 	<ContentPage.Content>
-		<Grid
-				VerticalOptions="FillAndExpand"
-				HorizontalOptions="FillAndExpand"
-			>
+		<Grid				
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand"
+			Padding="0, 0, 0, 10"
+		>
 			<Grid.RowDefinitions>
+				<RowDefinition Height="*" />
+				<RowDefinition Height="auto" />
 				<RowDefinition Height="auto" />
 				<RowDefinition Height="auto" />
 			</Grid.RowDefinitions>
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="*" />
 			</Grid.ColumnDefinitions>
 			<maps:Map 
 					Grid.Row="0"
 					Grid.Column="0"
+					Grid.ColumnSpan="2"
 					HorizontalOptions="FillAndExpand" 
-					HeightRequest="400"
+					VerticalOptions="FillAndExpand"
             		x:Name="MyMap"
             		IsShowingUser="true"
 					HasZoomEnabled="true"
             		MapType="Street"					
         	/>
-			<Slider 
+			<StackLayout
 				Grid.Row="1"
 				Grid.Column="0"
+				Grid.ColumnSpan="2"
+				Orientation="Horizontal"
+				HorizontalOptions="Center"	
+			>
+				<Slider 					
+					HorizontalOptions="CenterAndExpand"
+					Minimum="{Binding MinimumDayValue}"
+					Maximum="{Binding MaximumDayValue}"
+					Value="{Binding DayValue}"
+				/>
+				<Button
+					Text="Play"
+					Command="{Binding PlayCommand}"
+					IsVisible="{Binding IsPlaying, Converter={StaticResource invBoolConverter}}"
+				/>
+				<Button
+					Text="Stop"
+					Command="{Binding StopCommand}"
+					IsVisible="{Binding IsPlaying}"
+				/>
+			</StackLayout>
+			<Label
+				Grid.Row="2"
+				Grid.Column="0"
 				HorizontalOptions="CenterAndExpand"
-				Minimum="{Binding MinimumDayValue}"
-				Maximum="{Binding MaximumDayValue}"
-				Value="{Binding DayValue}"
+				HorizontalTextAlignment="Center"
+				Text="{Binding ShownImpactDays, Converter={StaticResource deliveredScriptureConverter}}"
+			/>
+			<Label
+				Grid.Row="3"
+				Grid.Column="0"
+				HorizontalOptions="CenterAndExpand"
+				HorizontalTextAlignment="Center"
+				Text="Scriptures Delivered"
+				FontSize="8"
+			/>
+			<Label
+				Grid.Row="2"
+				Grid.Column="1"
+				HorizontalOptions="CenterAndExpand"
+				HorizontalTextAlignment="Center"
+				Text="{Binding ShownImpactDays, Converter={StaticResource invitedClaimedConverter}}"
+			/>
+			<Label
+				Grid.Row="3"
+				Grid.Column="1"
+				HorizontalOptions="CenterAndExpand"
+				HorizontalTextAlignment="Center"
+				Text="Apps Gifted"
+				FontSize="8"
 			/>
 		</Grid>
 	</ContentPage.Content>

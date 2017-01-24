@@ -93,47 +93,7 @@ namespace GodSpeak
 				StatusCode = System.Net.HttpStatusCode.OK,
 				Content = new GetImpactResponse()
 				{
-					Payload = new List<ImpactDay>()
-					{
-						new ImpactDay()
-						{
-							ImpactDayId = Guid.NewGuid(),
-							Date=DateTime.Now,
-							InvitesClaimed = 2,
-							ScripturesDelivered = 2,
-							MapPoints = new List<MapPoint>()
-							{
-								new MapPoint()
-								{
-									MapPointId = Guid.NewGuid(),
-									Latitude = 38.646046f,
-									Longitude = -90.324496f,
-									Title = "Label 1"
-								},
-								new MapPoint()
-								{
-									MapPointId = Guid.NewGuid(),
-									Latitude = 38.642046f,
-									Longitude = -90.364496f,
-									Title = "Label 2"
-								},
-								new MapPoint()
-								{
-									MapPointId = Guid.NewGuid(),
-									Latitude = 38.648046f,
-									Longitude = -90.314496f,
-									Title = "Label 3"
-								},
-								new MapPoint()
-								{
-									MapPointId = Guid.NewGuid(),
-									Latitude = 38.647046f,
-									Longitude = -90.334496f,
-									Title = "Label 3"
-								},
-							}
-						},
-					}
+					Payload = GetImpactedDays()
 				}
 			};
 		}
@@ -366,6 +326,45 @@ namespace GodSpeak
 					
 				}
 			};
+		}
+
+		private List<ImpactDay> GetImpactedDays()
+		{
+			var random = new Random();
+
+			var impactedDays = new List<ImpactDay>();
+
+			for (int i = 0; i < 30; i++)
+			{
+				Task.Delay(100);
+				var impactDay = new ImpactDay()
+				{
+					Date = DateTime.Now.AddDays(-i),
+					InvitesClaimed = 1,
+					ScripturesDelivered = 1,
+					MapPoints = new List<MapPoint>()
+					{
+						new MapPoint()
+						{
+							Title = DateTime.Now.AddDays(-i).ToString(),
+							Latitude = (float) (38.4 + (random.Next(0, 3000) / 10000.0)),
+							Longitude = (float) (-90.1 + (random.Next(0, 3000) / 10000.0)),
+							MapPointId = Guid.NewGuid()
+						},
+						new MapPoint()
+						{
+							Title = DateTime.Now.AddDays(-i).ToString(),
+							Latitude =  (float) (38.4 + (random.Next(0, 3000) / 10000.0)),
+							Longitude = (float) (-90.1 + (random.Next(0, 3000) / 10000.0)),
+							MapPointId = Guid.NewGuid()
+						},
+					}
+				};
+
+				impactedDays.Add(impactDay);
+			}
+
+			return impactedDays;
 		}
 
 		private static List<MessageCategory> _categories = new List<MessageCategory>() 
