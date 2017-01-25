@@ -37,6 +37,7 @@ namespace GodSpeak.iOS
         {
 			Mvx.LazyConstructAndRegisterSingleton<IMediaPicker, MediaPicker>();
 			Mvx.LazyConstructAndRegisterSingleton<IShareService, ShareService>();
+			Mvx.LazyConstructAndRegisterSingleton<IReminderService, ReminderService>();
 
             return new App();
         }

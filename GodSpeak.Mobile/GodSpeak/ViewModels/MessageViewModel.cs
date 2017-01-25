@@ -11,6 +11,7 @@ namespace GodSpeak
 	{
 		private IWebApiService _apiService;
 		private IShareService _shareService;
+		private IReminderService _reminderService;
 
 		private ObservableCollection<GroupedCollection<Message, DateTime>> _messages;
 		public ObservableCollection<GroupedCollection<Message, DateTime>> Messages
@@ -50,10 +51,15 @@ namespace GodSpeak
 			}
 		}
 
-		public MessageViewModel(IDialogService dialogService, IWebApiService apiService, IShareService shareService) : base(dialogService)
+		public MessageViewModel(
+			IDialogService dialogService, 
+			IWebApiService apiService, 
+			IShareService shareService,
+			IReminderService reminderService) : base(dialogService)
 		{
 			_apiService = apiService;
 			_shareService = shareService;
+			_reminderService = reminderService;
 
 			Messages = new ObservableCollection<GroupedCollection<Message, DateTime>>();
 		}
@@ -66,8 +72,16 @@ namespace GodSpeak
 			{
 				Messages = new ObservableCollection<GroupedCollection<Message, DateTime>>
 				(messages.Content.Messages
-				 .GroupBy(x => x.Date)
-				 .Select(x => new GroupedCollection<Message, DateTime>(x.Key, x))); 
+				 .Where(x => x.DateTimeToDisplay <= DateTime.Now)
+				 .GroupBy(x => x.DateTimeToDisplay)
+				 .Select(x => new GroupedCollection<Message, DateTime>(x.Key, x)));
+
+				_reminderService.ClearReminders();
+				var futureMessages = messages.Content.Messages.Where(x => x.DateTimeToDisplay > DateTime.Now);
+				foreach (var message in futureMessages)
+				{
+					_reminderService.SetMessageReminder(message);
+				}
 			}
 			else
 			{

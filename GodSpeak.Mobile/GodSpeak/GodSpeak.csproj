@@ -247,6 +247,7 @@
     <Compile Include="Api\Dtos\MapPoint.cs" />
     <Compile Include="Converters\DeliveredScriptureConverter.cs" />
     <Compile Include="Converters\InvitedClaimedConverter.cs" />
+    <Compile Include="Services\IReminderService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

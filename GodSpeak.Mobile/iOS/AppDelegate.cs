@@ -3,6 +3,7 @@ using MvvmCross.iOS.Platform;
 using MvvmCross.Platform;
 using Foundation;
 using UIKit;
+using System;
 
 namespace GodSpeak.iOS
 {
@@ -27,7 +28,28 @@ namespace GodSpeak.iOS
 
 			Window.MakeKeyAndVisible();
 
+			//if ([UIDevice currentDevice].systemVersion.floatValue >= 8.0)
+			//{
+			//	UIUserNotificationSettings* settings = [UIUserNotificationSettings settingsForTypes: UIUserNotificationTypeBadge | UIUserNotificationTypeAlert | UIUserNotificationTypeSound categories: nil];
+			// 			[application registerUserNotificationSettings:settings]; 
+			//		}
+
+			var version = new Version(UIDevice.CurrentDevice.SystemVersion);
+			if (version.Major > 8)
+			{
+				var settings = UIUserNotificationSettings.GetSettingsForTypes(UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound, null);
+				app.RegisterUserNotificationSettings(settings);	
+			}
+
 			return true;
+		}
+
+		public override void ReceivedLocalNotification(UIApplication application, UILocalNotification notification)
+		{
+			var alert = new UIAlertView("Reminder", notification.AlertBody, null, "Ok");
+
+			alert.Show();
+			UIApplication.SharedApplication.ApplicationIconBadgeNumber = 0;
 		}
 	}
 }

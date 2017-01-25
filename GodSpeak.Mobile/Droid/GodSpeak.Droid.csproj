@@ -149,6 +149,7 @@
     <Compile Include="MediaPicker\MediaPicker.cs" />
     <Compile Include="MediaPicker\MediaPickerActivity.cs" />
     <Compile Include="Services\ShareService.cs" />
+    <Compile Include="Services\ReminderService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
