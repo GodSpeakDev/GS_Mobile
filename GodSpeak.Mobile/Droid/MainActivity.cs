@@ -23,6 +23,8 @@ namespace GodSpeak.Droid
     [Activity(Theme = "@style/AppTheme", Label = "MvxFormsApplicationActivity", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.ScreenSize)]
     public class MainActivity : FormsAppCompatActivity
     {
+		public static bool IsForeground { get; set; }
+
         protected override void OnCreate(Bundle bundle)
 		{
 			Xamarin.Forms.Forms.Init(this, bundle);
@@ -49,6 +51,30 @@ namespace GodSpeak.Droid
 			//{
 			//	MoveTaskToBack(true);
 			//};
+		}
+
+		protected override void OnStart()
+		{
+			base.OnStart();
+			IsForeground = true;
+		}
+
+		protected override void OnResume()
+		{			
+			base.OnResume();
+			IsForeground = true;
+		}
+
+		protected override void OnStop()
+		{
+			base.OnStop();
+			IsForeground = false;
+		}
+
+		protected override void OnPause()
+		{
+			base.OnPause();
+			IsForeground = false;
 		}
     }
 }

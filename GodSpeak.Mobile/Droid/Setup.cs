@@ -20,6 +20,7 @@ namespace GodSpeak.Droid
         {
 			Mvx.LazyConstructAndRegisterSingleton<IMediaPicker, MediaPicker>();
 			Mvx.LazyConstructAndRegisterSingleton<IShareService, ShareService>();
+			Mvx.LazyConstructAndRegisterSingleton<IReminderService, ReminderService>();
 
             return new App();
         }
