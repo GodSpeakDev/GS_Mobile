@@ -125,6 +125,12 @@ namespace GodSpeak.Resources {
             }
         }
         
+        public static string PasswordConfirmPlaceholder {
+            get {
+                return ResourceManager.GetString("PasswordConfirmPlaceholder", resourceCulture);
+            }
+        }
+        
         public static string FirstNamePlaceholder {
             get {
                 return ResourceManager.GetString("FirstNamePlaceholder", resourceCulture);
@@ -137,15 +143,9 @@ namespace GodSpeak.Resources {
             }
         }
         
-        public static string CityPlaceholder {
+        public static string ZipCodePlaceholder {
             get {
-                return ResourceManager.GetString("CityPlaceholder", resourceCulture);
-            }
-        }
-        
-        public static string StatePlaceholder {
-            get {
-                return ResourceManager.GetString("StatePlaceholder", resourceCulture);
+                return ResourceManager.GetString("ZipCodePlaceholder", resourceCulture);
             }
         }
         
@@ -314,6 +314,24 @@ namespace GodSpeak.Resources {
         public static string SavedSettingsSuccessful {
             get {
                 return ResourceManager.GetString("SavedSettingsSuccessful", resourceCulture);
+            }
+        }
+        
+        public static string RegisterPageTitle {
+            get {
+                return ResourceManager.GetString("RegisterPageTitle", resourceCulture);
+            }
+        }
+        
+        public static string RegisterPageLoginInfo {
+            get {
+                return ResourceManager.GetString("RegisterPageLoginInfo", resourceCulture);
+            }
+        }
+        
+        public static string RegisterPagePasswordInfo {
+            get {
+                return ResourceManager.GetString("RegisterPagePasswordInfo", resourceCulture);
             }
         }
     }

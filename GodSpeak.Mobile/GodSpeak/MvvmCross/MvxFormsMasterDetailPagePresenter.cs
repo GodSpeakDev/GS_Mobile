@@ -106,7 +106,7 @@ namespace GodSpeak
 
 			if (_mvxFormsApp.MainPage == null)
 			{
-				_mvxFormsApp.MainPage = new NavigationPage(page);
+				_mvxFormsApp.MainPage = new CustomNavigationPage(page);
 				var navPage = MvxFormsApp.MainPage as NavigationPage;
 				CustomPlatformInitialization(navPage);
 			}

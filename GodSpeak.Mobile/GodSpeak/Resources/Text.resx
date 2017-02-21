@@ -79,33 +79,33 @@
 	<data
 		name="EmailPlaceholder"
 		xml:space="preserve">
-    	<value>Type your email</value>
+    	<value>Email Address</value>
   	</data>
 	<data
 		name="PasswordPlaceholder"
 		xml:space="preserve">
-    	<value>Type your password</value>
+    	<value>Password</value>
+  	</data>
+	<data
+		name="PasswordConfirmPlaceholder"
+		xml:space="preserve">
+    	<value>Password Confirm</value>
   	</data>
 	<data
 		name="FirstNamePlaceholder"
 		xml:space="preserve">
-    	<value>Type your first name</value>
+    	<value>First Name</value>
   	</data>
 	<data
 		name="LastNamePlaceholder"
 		xml:space="preserve">
-    	<value>Type your last name</value>
+    	<value>Last Name</value>
   	</data>
 	<data
-		name="CityPlaceholder"
+		name="ZipCodePlaceholder"
 		xml:space="preserve">
-    	<value>Type your city</value>
-  	</data>
-	<data
-		name="StatePlaceholder"
-		xml:space="preserve">
-    	<value>Type your state</value>
-  	</data>
+    	<value>Zip/Postal Code</value>
+  	</data>	
 	<data
 		name="EmailRequiredMessage"
 		xml:space="preserve">
@@ -245,5 +245,20 @@
 		name="SavedSettingsSuccessful"
 		xml:space="preserve">
     	<value>Your settings was saved successfully.</value>
+  	</data>
+	<data
+		name="RegisterPageTitle"
+		xml:space="preserve">
+    	<value>Tell Us About You</value>
+  	</data>
+	<data
+		name="RegisterPageLoginInfo"
+		xml:space="preserve">
+    	<value>Login Info</value>
+  	</data>
+	<data
+		name="RegisterPagePasswordInfo"
+		xml:space="preserve">
+    	<value>Password must contain: upper, lower, number</value>
   	</data>
 </root>

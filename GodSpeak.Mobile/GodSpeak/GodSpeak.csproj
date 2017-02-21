@@ -248,6 +248,9 @@
     <Compile Include="Converters\DeliveredScriptureConverter.cs" />
     <Compile Include="Converters\InvitedClaimedConverter.cs" />
     <Compile Include="Services\IReminderService.cs" />
+    <Compile Include="Helpers\ColorHelper.cs" />
+    <Compile Include="Pages\CustomNavigationPage.cs" />
+    <Compile Include="CustomComponents\CustomEntry.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />
