@@ -168,64 +168,66 @@ namespace GodSpeak
 
 		private async void DoSaveCommand()
 		{
-			if (string.IsNullOrEmpty(FirstName))
-			{
-				await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.FirstNameRequiredMessage);
-				return;
-			}
+			await DialogService.ShowAlert("Ooops", "Sorry, please enter a valid email address");
 
-			if (string.IsNullOrEmpty(LastName))
-			{
-				await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.LastNameRequiredMessage);
-				return;
-			}
+			//if (string.IsNullOrEmpty(FirstName))
+			//{
+			//	await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.FirstNameRequiredMessage);
+			//	return;
+			//}
 
-			if (string.IsNullOrEmpty(City))
-			{
-				await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.CityRequiredMessage);
-				return;
-			}
+			//if (string.IsNullOrEmpty(LastName))
+			//{
+			//	await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.LastNameRequiredMessage);
+			//	return;
+			//}
 
-			if (string.IsNullOrEmpty(State))
-			{
-				await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.StateRequiredMessage);
-				return;
-			}
+			//if (string.IsNullOrEmpty(City))
+			//{
+			//	await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.CityRequiredMessage);
+			//	return;
+			//}
 
-			if (string.IsNullOrEmpty(Email))
-			{
-				await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.EmailRequiredMessage);
-				return;
-			}
+			//if (string.IsNullOrEmpty(State))
+			//{
+			//	await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.StateRequiredMessage);
+			//	return;
+			//}
 
-			if (string.IsNullOrEmpty(Password))
-			{
-				await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.PasswordRequiredMessage);
-				return;
-			}
+			//if (string.IsNullOrEmpty(Email))
+			//{
+			//	await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.EmailRequiredMessage);
+			//	return;
+			//}
 
-			var request = new RegisterUserRequest()
-			{
-				FirstName = FirstName,
-				LastName = LastName,
-				City = City,
-				State = State,
-				Email = Email,
-				Password = Password,
-				ProfilePhoto = Image as byte[]
-			};
+			//if (string.IsNullOrEmpty(Password))
+			//{
+			//	await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.PasswordRequiredMessage);
+			//	return;
+			//}
 
-			var response = await _webApi.RegisterUser(request);
+			//var request = new RegisterUserRequest()
+			//{
+			//	FirstName = FirstName,
+			//	LastName = LastName,
+			//	City = City,
+			//	State = State,
+			//	Email = Email,
+			//	Password = Password,
+			//	ProfilePhoto = Image as byte[]
+			//};
 
-			if (response.IsSuccess)
-			{
-				await _sessionService.SaveUser(response.Content.Payload);
-				this.ShowViewModel<HomeViewModel>();
-			}
-			else
-			{
-				await HandleResponse(response);
-			}
+			//var response = await _webApi.RegisterUser(request);
+
+			//if (response.IsSuccess)
+			//{
+			//	await _sessionService.SaveUser(response.Content.Payload);
+			//	this.ShowViewModel<HomeViewModel>();
+			//}
+			//else
+			//{
+			//	await HandleResponse(response);
+			//}
 		}
 
 		private async void DoChoosePictureCommand()

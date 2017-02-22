@@ -34,6 +34,28 @@ namespace GodSpeak.iOS
 			}
 		}
 
+		public override void LayoutSubviews()
+		{
+			base.LayoutSubviews();
+
+			var uiimage = new UIImage("arrow_down.png");
+			var image = new UIImageView()
+			{
+
+			};
+			image.Image = uiimage;
+
+			var width = uiimage.Size.Width * 0.8;
+			var height = uiimage.Size.Height * 0.8;
+
+			var x = this.Frame.Width - width - 10;
+			var y = (this.Frame.Height - height) / 2;
+
+			image.Frame = new CoreGraphics.CGRect(x, y, width, height);
+
+			this.AddSubview(image);
+		}
+
 		private void SetTextAligment()
 		{
 			this.Control.TextAlignment = UITextAlignment.Center;
