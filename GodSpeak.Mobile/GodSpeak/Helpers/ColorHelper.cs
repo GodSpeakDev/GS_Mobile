@@ -17,5 +17,7 @@ namespace GodSpeak
 		public static Color OutlinePlaceHolder = Color.FromRgb(151, 151, 151);
 
 		public static Color TextInputFocusedText = Color.FromRgb(85, 84, 84);
+
+		public static Color TextInputDisabledText = Color.FromRgb(217, 218, 219);
 	}
 }

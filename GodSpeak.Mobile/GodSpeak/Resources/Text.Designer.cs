@@ -334,5 +334,11 @@ namespace GodSpeak.Resources {
                 return ResourceManager.GetString("RegisterPagePasswordInfo", resourceCulture);
             }
         }
+        
+        public static string TermsCondititionText {
+            get {
+                return ResourceManager.GetString("TermsCondititionText", resourceCulture);
+            }
+        }
     }
 }

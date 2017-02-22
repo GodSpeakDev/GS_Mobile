@@ -251,6 +251,9 @@
     <Compile Include="Helpers\ColorHelper.cs" />
     <Compile Include="Pages\CustomNavigationPage.cs" />
     <Compile Include="CustomComponents\CustomEntry.cs" />
+    <Compile Include="CustomComponents\ImageContainer.cs" />
+    <Compile Include="Converters\ImagePaddingConverter.cs" />
+    <Compile Include="CustomComponents\CustomPicker.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

@@ -261,4 +261,9 @@
 		xml:space="preserve">
     	<value>Password must contain: upper, lower, number</value>
   	</data>
+	<data
+		name="TermsCondititionText"
+		xml:space="preserve">
+    	<value>By creating an account, I accept the Terms and Conditions</value>
+  	</data>
 </root>

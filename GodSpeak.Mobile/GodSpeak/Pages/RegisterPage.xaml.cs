@@ -11,5 +11,23 @@ namespace GodSpeak
 		{
 			InitializeComponent();
 		}
+
+		protected override void OnBindingContextChanged()
+		{
+			base.OnBindingContextChanged();
+
+			var registerViewModel = this.BindingContext as RegisterViewModel;
+
+			if (registerViewModel != null)
+			{
+				Countries.Items.Clear();
+				foreach (var item in registerViewModel.Countries)
+				{
+					Countries.Items.Add(item);
+				}
+
+				Countries.SelectedIndex = 0;
+			}
+		}
 	}
 }

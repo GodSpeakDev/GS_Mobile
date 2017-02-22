@@ -64,9 +64,17 @@ namespace GodSpeak
 
 		private void SetOutlineColor()
 		{
-			if (IsFocused)
+			if (!string.IsNullOrEmpty(Text) && HasError)
+			{
+				OutlineColor = ColorHelper.Warning;
+			}
+			else if (IsFocused)
 			{
 				OutlineColor = ColorHelper.Secondary;
+			}
+			else if (!IsEnabled)
+			{
+				OutlineColor = ColorHelper.OutlinePlaceHolder;
 			}
 			else
 			{
@@ -76,21 +84,41 @@ namespace GodSpeak
 
 		private void SetTextColor()
 		{
-			if (IsFocused)
+			if (!string.IsNullOrEmpty(Text) && HasError)
+			{
+				TextColor = ColorHelper.Secondary;
+			}
+			else if (IsFocused)
 			{
 				TextColor = ColorHelper.TextInputFocusedText;
 			}
-			else
+			else if (!IsEnabled)
+			{
+				TextColor = ColorHelper.TextInputDisabledText;
+			}
+			else if (!string.IsNullOrEmpty(Text))
 			{
 				TextColor = ColorHelper.Secondary;
+			}
+			else
+			{
+				TextColor = ColorHelper.TextInputPlaceHolder;
 			}
 		}
 
 		private void SetBackgroundColor()
 		{
-			if (IsFocused)
-			{				
+			if (!string.IsNullOrEmpty(Text) && HasError)
+			{
+				BackgroundColor = ColorHelper.Warning;
+			}
+			else if (IsFocused)
+			{
 				BackgroundColor = ColorHelper.Secondary;
+			}
+			else if (!IsEnabled)
+			{
+				BackgroundColor = ColorHelper.OutlinePlaceHolder;
 			}
 			else
 			{				
@@ -101,6 +129,12 @@ namespace GodSpeak
 		private void SetFont()
 		{
 			FontAttributes = IsFocused ? FontAttributes.Bold : FontAttributes.None;
+		}
+
+		protected override void OnPropertyChanged(string propertyName = null)
+		{
+			base.OnPropertyChanged(propertyName);
+			SetUI();
 		}
 	}
 }
