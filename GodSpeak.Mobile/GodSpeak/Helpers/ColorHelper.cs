@@ -23,6 +23,6 @@ namespace GodSpeak
 		public static Color BlueGradientEnd = Color.FromRgb(3, 111, 170);
 
 		public static Color IosDarkGrayGradient = Color.FromRgb(56, 57, 52);
-		public static Color IosLightGrayGradient = Color.FromRgb(112, 114, 116);
+		public static Color IosLightGrayGradient = Color.FromRgb(102, 104, 106);
 	}
 }
