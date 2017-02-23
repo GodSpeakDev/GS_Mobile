@@ -10,6 +10,7 @@ namespace GodSpeak
 		{
 			InitializeComponent();
 			FontSize = 18;
+			FontAttributes = FontAttributes.Bold;
 			SetUI();
 		}
 

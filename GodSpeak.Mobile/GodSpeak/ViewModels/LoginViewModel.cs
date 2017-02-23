@@ -64,29 +64,30 @@ namespace GodSpeak
 
 		private async void DoLoginCommand()
 		{
-			if (string.IsNullOrEmpty(Email))
-			{
-				await this.DialogService.ShowAlert(Text.ErrorPopupTitle, Text.EmailRequiredMessage);
-				return;
-			}
+			var result = await this.DialogService.ShowMenu("Oops", "Sorry, it looks like the email and/or password you submitted are incorrect.", "Try Again", "I Forgot My Password");
+			//if (string.IsNullOrEmpty(Email))
+			//{
+			//	await this.DialogService.ShowAlert(Text.ErrorPopupTitle, Text.EmailRequiredMessage);
+			//	return;
+			//}
 
-			if (string.IsNullOrEmpty(Password))
-			{
-				await this.DialogService.ShowAlert(Text.ErrorPopupTitle, Text.PasswordRequiredMessage);
-				return;
-			}
+			//if (string.IsNullOrEmpty(Password))
+			//{
+			//	await this.DialogService.ShowAlert(Text.ErrorPopupTitle, Text.PasswordRequiredMessage);
+			//	return;
+			//}
 
-			var response = await _webApi.Login(new LoginRequest() {Email=Email, Password=Password});
+			//var response = await _webApi.Login(new LoginRequest() {Email=Email, Password=Password});
 
-			if (response.IsSuccess)
-			{
-				await _sessionService.SaveUser(response.Content.Payload);
-				this.ShowViewModel<HomeViewModel>();
-			}
-			else
-			{
-				await HandleResponse(response);	
-			}
+			//if (response.IsSuccess)
+			//{
+			//	await _sessionService.SaveUser(response.Content.Payload);
+			//	this.ShowViewModel<HomeViewModel>();
+			//}
+			//else
+			//{
+			//	await HandleResponse(response);	
+			//}
 		}
 
 		private void DoRegisterCommand()

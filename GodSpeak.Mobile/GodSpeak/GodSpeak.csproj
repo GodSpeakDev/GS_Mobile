@@ -255,6 +255,8 @@
     <Compile Include="Converters\ImagePaddingConverter.cs" />
     <Compile Include="CustomComponents\CustomPicker.cs" />
     <Compile Include="CustomComponents\AlertView.cs" />
+    <Compile Include="CustomComponents\PopupView.cs" />
+    <Compile Include="CustomComponents\ActionSheetPopup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

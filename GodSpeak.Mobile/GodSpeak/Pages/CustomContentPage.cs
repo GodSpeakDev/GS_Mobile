@@ -26,13 +26,13 @@ namespace GodSpeak
 				{
 					dialogService.DoShowAlert = ShowAlert;
 					dialogService.DoShowConfirmation = DisplayAlert;
-					dialogService.DoShowMenu = DisplayActionSheet;
+					dialogService.DoShowMenu = ShowMenu;
 				}
 			}
 		}
 
 		private async Task ShowAlert(string title, string message, string cancel)
-		{
+		{			
 			await Task.Delay(1);
 			var alertView = new AlertView();
 			alertView.Title = title;
@@ -41,8 +41,20 @@ namespace GodSpeak
 			var layout = this.Content as AbsoluteLayout;
 
 			layout.Children.Add(alertView, new Rectangle(0, 0, 1, 1), AbsoluteLayoutFlags.All);
-
 			alertView.Show();
+		}
+
+		private async Task<string> ShowMenu(string title, string message, string[] buttons)
+		{
+			await Task.Delay(1);
+			var popupMenu = new ActionSheetPopup();
+			popupMenu.Title = title;
+			popupMenu.Message = message;
+			popupMenu.Buttons = buttons;
+
+			var layout = this.Content as AbsoluteLayout;
+			layout.Children.Add(popupMenu, new Rectangle(0, 0, 1, 1), AbsoluteLayoutFlags.All);
+			return await popupMenu.Show();
 		}
 	}
 }
