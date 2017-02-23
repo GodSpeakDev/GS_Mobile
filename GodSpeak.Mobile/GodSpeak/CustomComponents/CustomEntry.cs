@@ -122,7 +122,7 @@ namespace GodSpeak
 			}
 			else
 			{				
-				BackgroundColor = ColorHelper.DarkGray;
+				BackgroundColor = Color.Transparent;
 			}
 		}
 

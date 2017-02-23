@@ -19,5 +19,10 @@ namespace GodSpeak
 		public static Color TextInputFocusedText = Color.FromRgb(85, 84, 84);
 
 		public static Color TextInputDisabledText = Color.FromRgb(217, 218, 219);
+
+		public static Color BlueGradientEnd = Color.FromRgb(3, 111, 170);
+
+		public static Color IosDarkGrayGradient = Color.FromRgb(56, 57, 52);
+		public static Color IosLightGrayGradient = Color.FromRgb(112, 114, 116);
 	}
 }

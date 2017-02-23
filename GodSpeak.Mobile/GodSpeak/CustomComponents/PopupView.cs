@@ -36,7 +36,11 @@ namespace GodSpeak
 
 			if (width != -1 && height != -1 && _content == null)
 			{
-				_content = CreateContent();
+				_content = new GradientBoxView() 
+				{
+					Content = CreateContent(),
+					Colors = new Color[] {ColorHelper.Primary, ColorHelper.BlueGradientEnd}
+				};
 				_layout.Children.Add(_content, new Rectangle(0, this.Height, this.Width, AbsoluteLayout.AutoSize), AbsoluteLayoutFlags.None);
 			}
 		}

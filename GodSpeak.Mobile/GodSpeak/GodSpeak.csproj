@@ -257,6 +257,8 @@
     <Compile Include="CustomComponents\AlertView.cs" />
     <Compile Include="CustomComponents\PopupView.cs" />
     <Compile Include="CustomComponents\ActionSheetPopup.cs" />
+    <Compile Include="CustomComponents\GradientBoxView.cs" />
+    <Compile Include="CustomComponents\GrayGradientBackgroundView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />
