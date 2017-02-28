@@ -178,6 +178,10 @@
     <AndroidResource Include="Resources\drawable-xhdpi\app_icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\app_icon.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\app_icon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\launch_screen.jpg" />
+    <AndroidResource Include="Resources\drawable-xhdpi\launch_screen.jpg" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\launch_screen.jpg" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\launch_screen.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="MvvmCross\" />
