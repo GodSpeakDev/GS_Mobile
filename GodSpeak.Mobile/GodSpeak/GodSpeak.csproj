@@ -76,7 +76,7 @@
     <EmbeddedResource Include="Pages\PurchaseCreditPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\MessageSettingsMenuPage.xaml">
+    <EmbeddedResource Include="Pages\MessageSettingsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\MessageCategoriesPage.xaml">
@@ -220,12 +220,12 @@
     <Compile Include="MvvmCross\NavigationBundles.cs" />
     <Compile Include="Converters\InverseBooleanConverter.cs" />
     <Compile Include="Models\SelectModel.cs" />
-    <Compile Include="ViewModels\MessageSettingsMenuViewModel.cs" />
+    <Compile Include="ViewModels\MessageSettingsViewModel.cs" />
     <Compile Include="Models\MenuItem.cs" />
     <Compile Include="ViewModels\MessageCategoriesViewModel.cs" />
     <Compile Include="ViewModels\MessageDaysTimesViewModel.cs" />
-    <Compile Include="Pages\MessageSettingsMenuPage.xaml.cs">
-      <DependentUpon>MessageSettingsMenuPage.xaml</DependentUpon>
+    <Compile Include="Pages\MessageSettingsPage.cs">
+      <DependentUpon>MessageSettingsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\MessageCategoriesPage.xaml.cs">
       <DependentUpon>MessageCategoriesPage.xaml</DependentUpon>
@@ -259,6 +259,7 @@
     <Compile Include="CustomComponents\ActionSheetPopup.cs" />
     <Compile Include="CustomComponents\GradientBoxView.cs" />
     <Compile Include="CustomComponents\GrayGradientBackgroundView.cs" />
+    <Compile Include="CustomComponents\CustomTimePicker.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

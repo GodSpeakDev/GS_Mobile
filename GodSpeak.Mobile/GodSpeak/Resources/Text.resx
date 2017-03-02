@@ -266,4 +266,9 @@
 		xml:space="preserve">
     	<value>By creating an account, I accept the Terms and Conditions</value>
   	</data>
+	<data
+		name="MessageSettingsPageTitle"
+		xml:space="preserve">
+    	<value>Message Settings</value>
+  	</data>	
 </root>

@@ -191,6 +191,7 @@
     <Compile Include="Renderers\CustomPickerRenderer.cs" />
     <Compile Include="Renderers\CustomContentPageRenderer.cs" />
     <Compile Include="Renderers\GradientBoxViewRenderer.cs" />
+    <Compile Include="Renderers\CustomTimePickerRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\profile_placeholder.png" />

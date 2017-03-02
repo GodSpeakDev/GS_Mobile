@@ -21,7 +21,7 @@ namespace GodSpeak
 			}
 		}
 
-		private MenuItem MessageSettingsMenuItem = new MenuItem { Title = "Message Settings", ViewModelType = typeof(MessageSettingsMenuViewModel)};
+		private MenuItem MessageSettingsMenuItem = new MenuItem { Title = "Message Settings", ViewModelType = typeof(MessageSettingsViewModel)};
 		private MenuItem SendInviteMenuItem = new MenuItem { Title = "Send Invite", ViewModelType = typeof(InvitesViewModel)};
 		private MenuItem PurchaseInviteMenuItem = new MenuItem { Title = "Purchase Invite", ViewModelType = typeof(PurchaseCreditViewModel) };
 		private MenuItem LogoutMenuItem = new MenuItem { Title = "Logout", ViewModelType = typeof(WelcomeViewModel)};

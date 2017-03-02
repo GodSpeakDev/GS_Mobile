@@ -5,9 +5,9 @@ using Xamarin.Forms;
 
 namespace GodSpeak
 {
-	public partial class MessageSettingsMenuPage : CustomContentPage
+	public partial class MessageSettingsPage : CustomContentPage
 	{
-		public MessageSettingsMenuPage()
+		public MessageSettingsPage()
 		{
 			InitializeComponent();
 		}
