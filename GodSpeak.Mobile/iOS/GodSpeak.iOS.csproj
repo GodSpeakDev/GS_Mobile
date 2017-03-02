@@ -154,6 +154,16 @@
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\58.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\80.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\120.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\180.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\76.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\152.png" />
+    <ImageAsset Include="Assets.xcassets\Launch.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Launch.imageset\LaunchScreen%401x.png" />
+    <ImageAsset Include="Assets.xcassets\Launch.imageset\LaunchScreen%402x.png" />
+    <ImageAsset Include="Assets.xcassets\Launch.imageset\LaunchScreen%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -162,6 +172,8 @@
     <Folder Include="Services\" />
     <Folder Include="Extensions\" />
     <Folder Include="Renderers\" />
+    <Folder Include="Assets.xcassets\GSAppIcon.imageset\" />
+    <Folder Include="Assets.xcassets\Launch.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
