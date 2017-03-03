@@ -281,4 +281,66 @@
 		xml:space="preserve">
     	<value>- Isaiah 55:11 NASB</value>
   	</data>
+	<data
+		name="GetStartedSubmitInviteCode"
+		xml:space="preserve">
+    	<value>Submit Gift Code</value>
+  	</data>
+	<data
+		name="Register"
+		xml:space="preserve">
+    	<value>Register</value>
+  	</data>
+	<data
+		name="SuccessGiftCodeTitle"
+		xml:space="preserve">
+    	<value>YOU DID IT!</value>
+  	</data>
+	<data
+		name="SuccessGiftCodeText"
+		xml:space="preserve">
+    	<value>You made the first step in inviting God to speak into your crazy, busy day. The Word of God works and never fails! Now, purchase multiple GodSpeak gifts to send to your friends, family and God-given circle of influence!</value>
+  	</data>
+	<data
+		name="AnonymousTitle"
+		xml:space="preserve">
+    	<value>Anonymous Gifts?</value>
+  	</data>
+	<data
+		name="AnonymousText"
+		xml:space="preserve">
+    	<value>Please enter your email address to see if anyone has purchased and paid GodSpeak forward to a complete stranger.
+
+If so, we’ll send you their gift!</value>
+  	</data>
+	<data
+		name="AnonymousSubmit"
+		xml:space="preserve">
+    	<value>Submit</value>
+  	</data>
+	<data
+		name="AnonymousNevermind"
+		xml:space="preserve">
+    	<value>Nevermind</value>
+  	</data>
+	<data
+		name="AnonymousInputPlaceholder"
+		xml:space="preserve">
+    	<value>Email Address</value>
+  	</data>
+	<data
+		name="AnonymousSuccessTitle"
+		xml:space="preserve">
+    	<value>Praise God!</value>
+  	</data>
+	<data
+		name="AnonymousSuccessText"
+		xml:space="preserve">
+    	<value>An anonymous GodSpeak user has given you a free gift! We emailed your Gift Code to {0}</value>
+  	</data>
+	<data
+		name="AnonymousSuccessButtonTitle"
+		xml:space="preserve">
+    	<value>Awesome</value>
+  	</data>
 </root>

@@ -358,5 +358,77 @@ namespace GodSpeak.Resources {
                 return ResourceManager.GetString("GetStartedAuthor", resourceCulture);
             }
         }
+        
+        public static string GetStartedSubmitInviteCode {
+            get {
+                return ResourceManager.GetString("GetStartedSubmitInviteCode", resourceCulture);
+            }
+        }
+        
+        public static string Register {
+            get {
+                return ResourceManager.GetString("Register", resourceCulture);
+            }
+        }
+        
+        public static string SuccessGiftCodeTitle {
+            get {
+                return ResourceManager.GetString("SuccessGiftCodeTitle", resourceCulture);
+            }
+        }
+        
+        public static string SuccessGiftCodeText {
+            get {
+                return ResourceManager.GetString("SuccessGiftCodeText", resourceCulture);
+            }
+        }
+        
+        public static string AnonymousTitle {
+            get {
+                return ResourceManager.GetString("AnonymousTitle", resourceCulture);
+            }
+        }
+        
+        public static string AnonymousText {
+            get {
+                return ResourceManager.GetString("AnonymousText", resourceCulture);
+            }
+        }
+        
+        public static string AnonymousSubmit {
+            get {
+                return ResourceManager.GetString("AnonymousSubmit", resourceCulture);
+            }
+        }
+        
+        public static string AnonymousNevermind {
+            get {
+                return ResourceManager.GetString("AnonymousNevermind", resourceCulture);
+            }
+        }
+        
+        public static string AnonymousInputPlaceholder {
+            get {
+                return ResourceManager.GetString("AnonymousInputPlaceholder", resourceCulture);
+            }
+        }
+        
+        public static string AnonymousSuccessTitle {
+            get {
+                return ResourceManager.GetString("AnonymousSuccessTitle", resourceCulture);
+            }
+        }
+        
+        public static string AnonymousSuccessText {
+            get {
+                return ResourceManager.GetString("AnonymousSuccessText", resourceCulture);
+            }
+        }
+        
+        public static string AnonymousSuccessButtonTitle {
+            get {
+                return ResourceManager.GetString("AnonymousSuccessButtonTitle", resourceCulture);
+            }
+        }
     }
 }

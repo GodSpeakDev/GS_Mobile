@@ -19,23 +19,24 @@ namespace GodSpeak
 			var viewModel = this.BindingContext as GetStartedViewModel;
 			if (viewModel != null)
 			{
-				viewModel.ToggleViewVisibility = ToggleViewVisibility;
+				viewModel.ShowInviteCodeBox = () => TriggerAnimation(GetStartedView, ClaimInviteCodeView);
+				viewModel.ShowGiftCodeSuccessBox = () => TriggerAnimation(ClaimInviteCodeView, GiftCodeSuccessView);
 			}
 		}
 
-		private void ToggleViewVisibility()
+		private void TriggerAnimation(View viewToHide, View viewToShow)
 		{			
-			ClaimInviteCodeView.Opacity = 0;
-			ClaimInviteCodeView.IsVisible = true;
+			viewToShow.Opacity = 0;
+			viewToShow.IsVisible = true;
 
 			var fadeOutAnimation = new Animation((x) =>
 			{
-				GetStartedView.Opacity = 1 - (x * 1);
+				viewToHide.Opacity = 1 - (x * 1);
 			});
 
 			var fadeInAnimation = new Animation((x) =>
 			{
-				ClaimInviteCodeView.Opacity = x;
+				viewToShow.Opacity = x;
 			});
 
 			var panoAnimation = PanoLayout.GoForwardAnimation();
@@ -45,7 +46,7 @@ namespace GodSpeak
 			animation.Add(0.2, 1, fadeInAnimation);
 			animation.Add(0, 0.8, panoAnimation);
 
-			animation.Commit(this, "Toggling", length: 600, finished: (arg1, arg2) => { GetStartedView.IsVisible = false;});
+			animation.Commit(this, "Toggling", length: 600, finished: (arg1, arg2) => { viewToHide.IsVisible = false;});
 		}
 	}
 }

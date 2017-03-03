@@ -261,6 +261,9 @@
     <Compile Include="CustomComponents\GrayGradientBackgroundView.cs" />
     <Compile Include="CustomComponents\CustomTimePicker.cs" />
     <Compile Include="CustomComponents\PanoLayout.cs" />
+    <Compile Include="CustomComponents\InputPopup.cs" />
+    <Compile Include="Models\InputOptions.cs" />
+    <Compile Include="Models\InputResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

@@ -36,30 +36,39 @@ namespace GodSpeak.iOS
 
 		private void SetTextAligment()
 		{
-			this.Control.TextAlignment = UITextAlignment.Center;
+			if (this.Control != null)
+			{
+				this.Control.TextAlignment = UITextAlignment.Center;
+			}
 		}
 
 		private void SetBorderFrame()
 		{
-			this.Control.Layer.BorderWidth = 1;
-			this.Control.Layer.MasksToBounds = true;
-			this.Control.Layer.CornerRadius = 5.0f;
+			if (this.Control != null)
+			{
+				this.Control.Layer.BorderWidth = 1;
+				this.Control.Layer.MasksToBounds = true;
+				this.Control.Layer.CornerRadius = 5.0f;
+			}
 		}
 
 		private void SetBorderColor()
 		{
 			var customEntry = this.Element as CustomEntry;
-			this.Control.Layer.BorderColor = customEntry.OutlineColor.ToCGColor();
-
-			this.Control.EditingDidEnd += (sender, e) => 
+			if (this.Control != null && customEntry != null)
 			{
-				CustomEntry.IsFocused = false;
-			};
+				this.Control.Layer.BorderColor = customEntry.OutlineColor.ToCGColor();
 
-			this.Control.EditingDidBegin += (sender, e) => 
-			{
-				CustomEntry.IsFocused = true;
-			};
+				this.Control.EditingDidEnd += (sender, e) =>
+				{
+					CustomEntry.IsFocused = false;
+				};
+
+				this.Control.EditingDidBegin += (sender, e) =>
+				{
+					CustomEntry.IsFocused = true;
+				};
+			}
 		}
 	}
 }

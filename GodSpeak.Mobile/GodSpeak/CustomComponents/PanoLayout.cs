@@ -17,10 +17,11 @@ namespace GodSpeak
 			var animation = new Animation();
 
 			foreach (var child in this.Children)
-			{				
+			{
+				var currentTranslationX = child.TranslationX;	
 				var childAnimation = new Animation((obj) => 
 				{
-					child.TranslationX = -this.Width * obj;
+					child.TranslationX = currentTranslationX - this.Width * obj;
 				});
 				animation.Add(0, 1, childAnimation);
 			}

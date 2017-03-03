@@ -27,6 +27,7 @@ namespace GodSpeak
 					dialogService.DoShowAlert = ShowAlert;
 					dialogService.DoShowConfirmation = DisplayAlert;
 					dialogService.DoShowMenu = ShowMenu;
+					dialogService.DoShowInputPopup = ShowInputPopup;
 				}
 			}
 		}
@@ -37,6 +38,7 @@ namespace GodSpeak
 			var alertView = new AlertView();
 			alertView.Title = title;
 			alertView.Message = message;
+			alertView.ButtonText = cancel;
 
 			var layout = this.Content as AbsoluteLayout;
 
@@ -51,6 +53,20 @@ namespace GodSpeak
 			popupMenu.Title = title;
 			popupMenu.Message = message;
 			popupMenu.Buttons = buttons;
+
+			var layout = this.Content as AbsoluteLayout;
+			layout.Children.Add(popupMenu, new Rectangle(0, 0, 1, 1), AbsoluteLayoutFlags.All);
+			return await popupMenu.Show();
+		}
+
+		private async Task<InputResult> ShowInputPopup(string title, string message, InputOptions inputOptions, string[] buttons)
+		{
+			await Task.Delay(1);
+			var popupMenu = new InputPopup();
+			popupMenu.Title = title;
+			popupMenu.Message = message;
+			popupMenu.Buttons = buttons;
+			popupMenu.InputOptions = inputOptions;
 
 			var layout = this.Content as AbsoluteLayout;
 			layout.Children.Add(popupMenu, new Rectangle(0, 0, 1, 1), AbsoluteLayoutFlags.All);

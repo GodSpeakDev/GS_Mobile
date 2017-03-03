@@ -7,6 +7,7 @@ namespace GodSpeak
 	{
 		private Label _titleLabel;
 		private Label _messageLabel;
+		private Button _okButton;
 
 		private string _title;
 		public string Title
@@ -32,6 +33,20 @@ namespace GodSpeak
 				if (_messageLabel != null)
 				{
 					_messageLabel.Text = value;
+				}
+			}
+		}
+
+		private string _buttonText;
+		public string ButtonText
+		{
+			get { return _buttonText; }
+			set
+			{
+				_buttonText = value;
+				if (_okButton != null)
+				{
+					_okButton.Text = value;
 				}
 			}
 		}
@@ -69,23 +84,23 @@ namespace GodSpeak
 				FontSize = 15
 			};
 
-			var okButton = new Button()
+			_okButton = new Button()
 			{
 				FontSize = 18,
 				BackgroundColor = ColorHelper.Secondary,
 				TextColor = ColorHelper.Primary,
 				Margin = new Thickness(10, 30, 10, 5),
-				Text = GodSpeak.Resources.Text.OkPopup,
+				Text = _buttonText,
 				FontAttributes = FontAttributes.Bold,
 			};
-			okButton.Clicked += (sender, e) => 
+			_okButton.Clicked += (sender, e) => 
 			{ 
 				Hide(); 
 			};
 
 			grid.Children.Add(_titleLabel, 0, 0);
 			grid.Children.Add(_messageLabel, 0, 1);
-			grid.Children.Add(okButton, 0, 2);
+			grid.Children.Add(_okButton, 0, 2);
 
 			return grid;
 		}
