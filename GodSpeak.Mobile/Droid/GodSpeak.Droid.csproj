@@ -182,6 +182,16 @@
     <AndroidResource Include="Resources\drawable-xhdpi\launch_screen.jpg" />
     <AndroidResource Include="Resources\drawable-xxhdpi\launch_screen.jpg" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\launch_screen.jpg" />
+    <AndroidResource Include="Resources\drawable-hdpi\login_form_background.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\people_background.jpg" />
+    <AndroidResource Include="Resources\drawable-xhdpi\login_form_background.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\people_background.jpg" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\login_form_background.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\people_background.jpg" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\login_form_background.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\people_background.jpg" />
+    <AndroidResource Include="Resources\drawable\login_form_background.png" />
+    <AndroidResource Include="Resources\drawable\people_background.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="MvvmCross\" />
