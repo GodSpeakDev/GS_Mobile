@@ -13,7 +13,7 @@ namespace GodSpeak
 
 			CreatableTypes().Containing("DialogService").AsInterfaces().RegisterAsDynamic();
 
-            RegisterAppStart<WelcomeViewModel>();
+            RegisterAppStart<GetStartedViewModel>();
         }
     }
 }

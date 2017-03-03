@@ -1,42 +1,124 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView 
+<?xml version="1.0" encoding="UTF-8"?>
+<views:CustomContentPage 
 		xmlns="http://xamarin.com/schemas/2014/forms" 
 		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 		xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
 		xmlns:res="clr-namespace:GodSpeak.Resources;assembly=GodSpeak"
-		x:Class="GodSpeak.GetStartedView">
-	<ContentView.Content>
+		x:Class="GodSpeak.GetStartedPage">
+	<views:CustomContentPage.Content>
 		<Grid 
 			HorizontalOptions="FillAndExpand"
 			VerticalOptions="FillAndExpand">
 			<Grid.RowDefinitions>
-				<RowDefinition Height="auto" />
-				<RowDefinition Height="1*" />
+				<RowDefinition Height="*" />
 				<RowDefinition Height="auto" />
 			</Grid.RowDefinitions>
-			<Label 
-				Grid.Row="0" 
-				Margin="0,5"
-				FontSize="20"
-				Text="Welcome to GodSpeak" 
-				HorizontalOptions="Center" 
-				VerticalOptions="Center" 
-			/>
-			<ScrollView 
+			<views:PanoLayout
+				x:Name="PanoLayout"
+				Grid.Row="0"
+				Grid.RowSpan="2"
+				HorizontalOptions="FillAndExpand"
+				VerticalOptions="FillAndExpand">
+				<Image
+					Source="pano_background.jpg"
+					VerticalOptions="FillAndExpand"
+					WidthRequest="1000"
+					Aspect="Fill" />
+			</views:PanoLayout>
+			<views:GrayGradientBackgroundView 
+				IsVisible="true"
+				x:Name="GetStartedView"
 				Grid.Row="1"
-					HorizontalOptions="FillAndExpand" 
-					VerticalOptions="FillAndExpand">
-				<Label 
-					Margin="30,0"
-					Text="{x:Static res:Text.GetStartedText}"/>
-			</ScrollView>
-			<views:ActionButton 
-				Grid.Row="2"
-				Text="Get Started" 
-				HorizontalOptions="Center" 
-				VerticalOptions="Center" 
-				Command="{Binding TapGetStartedCommand}" 
-			/>		
+				HorizontalOptions="FillAndExpand" 
+				VerticalOptions="End">
+				<Grid
+					Margin="10,20,10,10">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="auto" />
+						<RowDefinition Height="auto" />
+						<RowDefinition Height="auto" />
+					</Grid.RowDefinitions>
+					<Label 
+						Grid.Row="0"
+						Text="{x:Static res:Text.GetStartedCitation}"
+						TextColor="{x:Static views:ColorHelper.Secondary}"
+						HorizontalTextAlignment="Center"
+						FontSize="13"
+					/>
+					<Label 
+						Grid.Row="1"
+						HorizontalTextAlignment="End"
+						Margin="0,5,0,10"
+						Text="{x:Static res:Text.GetStartedAuthor}"
+						TextColor="{x:Static views:ColorHelper.Secondary}"
+						FontAttributes="Bold"
+						FontSize="14"
+					/>
+					<views:ActionButton 
+						Grid.Row="2"
+						Text="Get Started" 
+						HorizontalOptions="FillAndExpand" 
+						VerticalOptions="End" 
+						Command="{Binding TapGetStartedCommand}" 
+					/>	
+				</Grid>		
+			</views:GrayGradientBackgroundView>		
+			<views:GrayGradientBackgroundView 
+				IsVisible="false"
+				x:Name="ClaimInviteCodeView"
+				Grid.Row="1"
+				HorizontalOptions="FillAndExpand" 
+				VerticalOptions="End">
+				<Grid
+					Margin="10,20,10,10">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="auto" />
+						<RowDefinition Height="auto" />
+						<RowDefinition Height="auto" />
+						<RowDefinition Height="auto" />
+						<RowDefinition Height="auto" />
+					</Grid.RowDefinitions>
+					<Label 										
+						Grid.Row="0"
+						HorizontalOptions="Center" 
+						TextColor="{x:Static views:ColorHelper.Secondary}"
+						HorizontalTextAlignment="Start"
+						FontSize="13"
+						Text="{x:Static res:Text.ClaimInviteCodeText}"
+					/>			
+					<views:CustomEntry
+						Grid.Row="1" 					
+						Margin="10,0"
+						HorizontalOptions="FillAndExpand"						
+						Placeholder="{x:Static res:Text.InviteCodePlaceholder}"
+						Text="{Binding InviteCode}"
+					/>
+					<views:ActionButton 
+						Grid.Row="2"
+						Margin="10,5"
+						Text="Claim Invite Code"	
+						Command="{Binding ClaimInviteCodeCommand}"
+					/>
+					<views:Link
+						Grid.Row="3"
+						Margin="0,5"
+						TextColor="{x:Static views:ColorHelper.Secondary}"
+						Text="I don't have a invite code">
+						<Label.GestureRecognizers>
+					        <TapGestureRecognizer Command="{Binding DontHaveCodeCommand}" />
+					    </Label.GestureRecognizers>
+					</views:Link>
+					<views:Link	 
+						Grid.Row="4"
+						Margin="0,5"
+						TextColor="{x:Static views:ColorHelper.Secondary}"
+						Text="I'm already registered">
+						<views:Link.GestureRecognizers>
+					        <TapGestureRecognizer Command="{Binding AlreadyRegisteredCommand}" />
+					    </views:Link.GestureRecognizers>
+					</views:Link>
+				</Grid>
+			</views:GrayGradientBackgroundView>
 		</Grid>
-	</ContentView.Content>
-</ContentView>
+	</views:CustomContentPage.Content>
+</views:CustomContentPage>

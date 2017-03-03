@@ -340,5 +340,23 @@ namespace GodSpeak.Resources {
                 return ResourceManager.GetString("TermsCondititionText", resourceCulture);
             }
         }
+        
+        public static string MessageSettingsPageTitle {
+            get {
+                return ResourceManager.GetString("MessageSettingsPageTitle", resourceCulture);
+            }
+        }
+        
+        public static string GetStartedCitation {
+            get {
+                return ResourceManager.GetString("GetStartedCitation", resourceCulture);
+            }
+        }
+        
+        public static string GetStartedAuthor {
+            get {
+                return ResourceManager.GetString("GetStartedAuthor", resourceCulture);
+            }
+        }
     }
 }

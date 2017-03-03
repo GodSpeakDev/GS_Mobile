@@ -95,7 +95,7 @@ namespace GodSpeak
 
 			if (request.PresentationValues != null && request.PresentationValues.ContainsKey("NavigationMode") && request.PresentationValues["NavigationMode"] == "RestoreNavigation")
 			{
-				_mvxFormsApp.MainPage = new NavigationPage(page);
+				_mvxFormsApp.MainPage = new CustomNavigationPage(page);
 				var navPage = MvxFormsApp.MainPage as NavigationPage;
 				CustomPlatformInitialization(navPage);
 			}
@@ -156,7 +156,7 @@ namespace GodSpeak
 					else
 						rootContentPage = new ContentPage();
 
-					var navPage = new NavigationPage(rootContentPage);
+					var navPage = new CustomNavigationPage(rootContentPage);
 
 					//Hook to Popped event to launch RootContentPageActivated if proceeds
 					navPage.Popped += (sender, e) =>

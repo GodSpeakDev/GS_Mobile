@@ -1,11 +1,21 @@
 ﻿using System;
 using MvvmCross.Core.ViewModels;
+using System.Threading.Tasks;
 
 namespace GodSpeak
 {
 	public class GetStartedViewModel : CustomViewModel
 	{
-		private WelcomeViewModel _parentViewModel;
+		public Action ToggleViewVisibility
+		{
+			get;
+			set;
+		}
+
+		public GetStartedViewModel(IDialogService dialogService) : base(dialogService)
+		{
+			
+		}
 
 		private MvxCommand tapGetStartedCommand;
 		public MvxCommand TapGetStartedCommand
@@ -16,14 +26,12 @@ namespace GodSpeak
 			}
 		}
 
-		public GetStartedViewModel(WelcomeViewModel parentViewModel, IDialogService dialogService) : base(dialogService)
-		{
-			_parentViewModel = parentViewModel;
-		}
-
 		private void DoTapGetStartedCommand()
 		{
-			_parentViewModel.SelectPage<ClaimInviteCodeViewModel>();
+			if (ToggleViewVisibility != null)
+			{
+				ToggleViewVisibility();
+			}
 		}
 	}
 }

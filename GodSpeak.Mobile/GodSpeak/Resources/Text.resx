@@ -27,7 +27,7 @@
 	<data
 		name="ClaimInviteCodeText"
 		xml:space="preserve">
-    	<value>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce at quam pulvinar, rutrum metus vitae, luctus odio. 
+    	<value>God Speak is a gift, freely given and paid forward, and not self-purchased. If you have received God Speak, it's because someone you know was paiyng their gift forward and they thought about you.
 		</value>
   	</data>
 	<data
@@ -74,7 +74,7 @@
 	<data
 		name="InviteCodePlaceholder"
 		xml:space="preserve">
-    	<value>Your invite code eg.: FJ8TYR3</value>
+    	<value>ex: YfRwTG</value>
   	</data>
 	<data
 		name="EmailPlaceholder"
@@ -265,5 +265,20 @@
 		name="TermsCondititionText"
 		xml:space="preserve">
     	<value>By creating an account, I accept the Terms and Conditions</value>
+  	</data>
+	<data
+		name="MessageSettingsPageTitle"
+		xml:space="preserve">
+    	<value>Message Settings</value>
+  	</data>
+	<data
+		name="GetStartedCitation"
+		xml:space="preserve">
+    	<value>"So will my word be which goes forth from my mouth; it will not return to me empty, without accomplishing what I desire, and without succeeding in the matter for which I sent it".</value>
+  	</data>
+	<data
+		name="GetStartedAuthor"
+		xml:space="preserve">
+    	<value>- Isaiah 55:11 NASB</value>
   	</data>
 </root>

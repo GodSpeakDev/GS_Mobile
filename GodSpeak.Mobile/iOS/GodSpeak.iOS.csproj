@@ -164,10 +164,6 @@
     <ImageAsset Include="Assets.xcassets\Launch.imageset\LaunchScreen%401x.png" />
     <ImageAsset Include="Assets.xcassets\Launch.imageset\LaunchScreen%402x.png" />
     <ImageAsset Include="Assets.xcassets\Launch.imageset\LaunchScreen%403x.png" />
-    <ImageAsset Include="Assets.xcassets\PeopleBackground.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\PeopleBackground.imageset\launchGraphic.png" />
-    <ImageAsset Include="Assets.xcassets\PeopleBackground.imageset\launchGraphic%402x.png" />
-    <ImageAsset Include="Assets.xcassets\PeopleBackground.imageset\launchGraphic%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -178,7 +174,6 @@
     <Folder Include="Renderers\" />
     <Folder Include="Assets.xcassets\GSAppIcon.imageset\" />
     <Folder Include="Assets.xcassets\Launch.imageset\" />
-    <Folder Include="Assets.xcassets\PeopleBackground.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -208,6 +203,7 @@
     <Compile Include="Renderers\CustomPickerRenderer.cs" />
     <Compile Include="Renderers\CustomContentPageRenderer.cs" />
     <Compile Include="Renderers\GradientBoxViewRenderer.cs" />
+    <Compile Include="Renderers\CustomTimePickerRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\profile_placeholder.png" />
@@ -219,12 +215,9 @@
     <BundleResource Include="Resources\arrow_right.png" />
     <BundleResource Include="Resources\arrow_right%402x.png" />
     <BundleResource Include="Resources\arrow_right%403x.png" />
-    <BundleResource Include="Resources\people_background%402x.jpg" />
-    <BundleResource Include="Resources\people_background.jpg" />
-    <BundleResource Include="Resources\people_background%403x.jpg" />
-    <BundleResource Include="Resources\login_form_background.png" />
-    <BundleResource Include="Resources\login_form_background%402x.png" />
-    <BundleResource Include="Resources\login_form_background%403x.png" />
+    <BundleResource Include="Resources\pano_background.jpg" />
+    <BundleResource Include="Resources\pano_background%402x.jpg" />
+    <BundleResource Include="Resources\pano_background%403x.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.3.180\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.3.180\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />

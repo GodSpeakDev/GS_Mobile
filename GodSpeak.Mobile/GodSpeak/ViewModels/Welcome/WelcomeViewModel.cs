@@ -29,7 +29,7 @@ namespace GodSpeak
         public void Init ()
         {
             var pages = new List<CustomViewModel> ();
-            pages.Add (new GetStartedViewModel (this, DialogService));
+            //pages.Add (new GetStartedViewModel (this, DialogService));
             pages.Add (new ClaimInviteCodeViewModel (this, DialogService, _webApi));
             pages.Add (new RequestInviteCodeViewModel (this, DialogService, _webApi));
 
