@@ -160,7 +160,7 @@
     <Compile Include="ViewModels\Welcome\ClaimInviteCodeViewModel.cs" />
     <Compile Include="ViewModels\Welcome\RequestInviteCodeViewModel.cs" />
     <Compile Include="Pages\WelcomePageSelector.cs" />
-    <Compile Include="Pages\GetStartedView.xaml.cs">
+    <Compile Include="Pages\GetStartedPage.xaml.cs">
       <DependentUpon>GetStartedView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\RequestInviteCodeView.xaml.cs">
@@ -260,6 +260,7 @@
     <Compile Include="CustomComponents\GradientBoxView.cs" />
     <Compile Include="CustomComponents\GrayGradientBackgroundView.cs" />
     <Compile Include="CustomComponents\CustomTimePicker.cs" />
+    <Compile Include="CustomComponents\PanoLayout.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

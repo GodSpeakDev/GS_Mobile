@@ -9,6 +9,7 @@ namespace GodSpeak
 		public Link()
 		{
 			InitializeComponent();
+			FontSize = 13;
 		}
 	}
 }
