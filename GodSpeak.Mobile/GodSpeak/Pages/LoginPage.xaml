@@ -4,54 +4,66 @@
 		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 		xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
 		xmlns:res="clr-namespace:GodSpeak.Resources;assembly=GodSpeak"
+		BackgroundImage="people_background.jpg"
 		x:Class="GodSpeak.LoginPage">
 	<ContentPage.Content>
 		<AbsoluteLayout>
+			
 			<Grid 
 				AbsoluteLayout.LayoutFlags="All"
 				AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
 				HorizontalOptions="FillAndExpand"
 				VerticalOptions="FillAndExpand">
 				<Grid.RowDefinitions>
-					<RowDefinition Height="auto" />
-					<RowDefinition Height="auto" />
-					<RowDefinition Height="auto" />
-					<RowDefinition Height="auto" />
-					<RowDefinition Height="auto" />
-					<RowDefinition Height="auto" />
+					<RowDefinition Height="*" />
+					<RowDefinition Height="364" />
 				</Grid.RowDefinitions>
-				
-				<Entry 
-					Grid.Row="0"
-					Margin="30, 0"
-					Keyboard="Email"
-					Placeholder="{x:Static res:Text.EmailPlaceholder}" 
-					Text="{Binding Email}" />
-				<Entry 
-					Grid.Row="1"
-					Margin="30, 0"
-					IsPassword="true"
-					Placeholder="{x:Static res:Text.PasswordPlaceholder}" 
-					Text="{Binding Password}" />
-				<Button 
-					Grid.Row="2"
-					Text="Login" 
-					HorizontalOptions="CenterAndExpand" 
-					VerticalOptions="Center" 
-					Command="{Binding LoginCommand}" />
-				<views:ActionButton 
-					Grid.Row="3"
-					Text="Register" 
-					HorizontalOptions="CenterAndExpand" 
-					VerticalOptions="Center" 
-					Command="{Binding RegisterCommand}" />
-				<views:Link
-					Grid.Row="4"	
-					Text="Forgot Password?">
-					<Label.GestureRecognizers>
-				        <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" />
-				    </Label.GestureRecognizers>
-				</views:Link>
+
+				<AbsoluteLayout 
+					
+					Grid.Row="1">
+					<Image Source="login_form_background.png"
+						Aspect="AspectFill"
+						AbsoluteLayout.LayoutBounds="0,0,1,1"
+						AbsoluteLayout.LayoutFlags="All"></Image>
+					<StackLayout 
+						Orientation="Vertical"
+						HorizontalOptions="CenterAndExpand"
+						Padding="0,100,0,0"
+						WidthRequest="300"
+						AbsoluteLayout.LayoutBounds="0,0,1,1"
+						AbsoluteLayout.LayoutFlags="All"
+					>
+					<Entry 
+						Margin="30, 0"
+						Keyboard="Email"
+						Placeholder="{x:Static res:Text.EmailPlaceholder}" 
+						Text="{Binding Email}" />
+					<Entry 
+						Margin="30, 0"
+						IsPassword="true"
+						Placeholder="{x:Static res:Text.PasswordPlaceholder}" 
+						Text="{Binding Password}" />
+					<Button 
+						Text="Login" 
+						HorizontalOptions="StartAndExpand" 
+						VerticalOptions="Center" 
+						Command="{Binding LoginCommand}" />
+					<views:ActionButton 
+						Text="Register" 
+						HorizontalOptions="CenterAndExpand" 
+						VerticalOptions="Center" 
+						Command="{Binding RegisterCommand}" />
+					<views:Link
+						Text="Forgot Password?">
+						<Label.GestureRecognizers>
+					        <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" />
+					    </Label.GestureRecognizers>
+					</views:Link>
+				</StackLayout>
+				</AbsoluteLayout>
+
+
 			</Grid>
 		</AbsoluteLayout>
 	</ContentPage.Content>
