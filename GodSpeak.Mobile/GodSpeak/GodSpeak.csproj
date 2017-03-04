@@ -264,6 +264,8 @@
     <Compile Include="CustomComponents\InputPopup.cs" />
     <Compile Include="Models\InputOptions.cs" />
     <Compile Include="Models\InputResult.cs" />
+    <Compile Include="CustomComponents\RegisterEntry.cs" />
+    <Compile Include="CustomComponents\PopupEntry.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

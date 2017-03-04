@@ -70,14 +70,14 @@
 								</Image>
 							</views:ImageContainer>
 
-							<views:CustomEntry
+							<views:RegisterEntry
 								Grid.Row="0"
 								Grid.Column="1"
 								Placeholder="{x:Static res:Text.FirstNamePlaceholder}" 							
 								Text="{Binding FirstName}" 
 								VerticalOptions="Center"
 							/>
-							<views:CustomEntry
+							<views:RegisterEntry
 								Grid.Row="1"
 								Grid.Column="1"
 								Placeholder="{x:Static res:Text.LastNamePlaceholder}" 							
@@ -93,7 +93,7 @@
 								SelectedIndex="{Binding SelectedCountryIndex}"
 							/>
 
-							<views:CustomEntry
+							<views:RegisterEntry
 								Grid.Row="3"
 								Grid.Column="0"
 								Grid.ColumnSpan="2"
@@ -112,7 +112,7 @@
 								HorizontalTextAlignment="Center"
 							/>
 
-							<views:CustomEntry
+							<views:RegisterEntry
 								Grid.Row="5"
 								Grid.Column="0"
 								Grid.ColumnSpan="2"
@@ -132,7 +132,7 @@
 								HorizontalTextAlignment="Start"
 							/>
 
-							<views:CustomEntry
+							<views:RegisterEntry
 								Grid.Row="7"
 								Grid.Column="0"
 								Grid.ColumnSpan="2"
@@ -142,7 +142,7 @@
 								HasError="{Binding IsPasswordValid, Converter={StaticResource inverseBooleanConverter}}"
 							/>
 							
-							<views:CustomEntry
+							<views:RegisterEntry
 								Grid.Row="8"
 								Grid.Column="0"
 								Grid.ColumnSpan="2"

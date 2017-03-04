@@ -96,7 +96,7 @@ namespace GodSpeak
 				FontSize = 15
 			};
 
-			_input = new CustomEntry() 
+			_input = new PopupEntry() 
 			{
 				Margin = new Thickness(10, 5, 10, 5),
 				Placeholder = _inputOptions?.Placeholder
