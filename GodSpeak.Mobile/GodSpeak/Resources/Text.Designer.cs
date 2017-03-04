@@ -430,5 +430,23 @@ namespace GodSpeak.Resources {
                 return ResourceManager.GetString("AnonymousSuccessButtonTitle", resourceCulture);
             }
         }
+        
+        public static string SuccessfulRegisterPopupTitle {
+            get {
+                return ResourceManager.GetString("SuccessfulRegisterPopupTitle", resourceCulture);
+            }
+        }
+        
+        public static string SuccessfulRegisterPopupText {
+            get {
+                return ResourceManager.GetString("SuccessfulRegisterPopupText", resourceCulture);
+            }
+        }
+        
+        public static string SuccessfulRegisterButtonText {
+            get {
+                return ResourceManager.GetString("SuccessfulRegisterButtonText", resourceCulture);
+            }
+        }
     }
 }

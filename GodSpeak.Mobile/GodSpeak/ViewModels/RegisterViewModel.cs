@@ -168,7 +168,10 @@ namespace GodSpeak
 
 		private async void DoSaveCommand()
 		{
-			await DialogService.ShowAlert("Ooops", "Sorry, please enter a valid email address");
+			await DialogService.ShowAlert(Text.SuccessfulRegisterPopupTitle, Text.SuccessGiftCodeText, Text.SuccessfulRegisterButtonText);
+			this.ShowViewModel<LoginViewModel>();
+
+			//await DialogService.ShowAlert("Ooops", "Sorry, please enter a valid email address");
 
 			//if (string.IsNullOrEmpty(FirstName))
 			//{

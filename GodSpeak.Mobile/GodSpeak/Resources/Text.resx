@@ -343,4 +343,19 @@ If so, we’ll send you their gift!</value>
 		xml:space="preserve">
     	<value>Awesome</value>
   	</data>
+	<data
+		name="SuccessfulRegisterPopupTitle"
+		xml:space="preserve">
+    	<value>You Successfully Registered</value>
+  	</data>
+	<data
+		name="SuccessfulRegisterPopupText"
+		xml:space="preserve">
+    	<value>We are now going to take you to the messages screen.</value>
+  	</data>
+	<data
+		name="SuccessfulRegisterButtonText"
+		xml:space="preserve">
+    	<value>Great!</value>
+  	</data>
 </root>

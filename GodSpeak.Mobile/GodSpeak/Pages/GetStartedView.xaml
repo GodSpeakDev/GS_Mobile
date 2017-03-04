@@ -125,7 +125,7 @@
 							TextColor="{x:Static views:ColorHelper.Secondary}"
 							Text="I'm already registered">
 							<views:Link.GestureRecognizers>
-						        <TapGestureRecognizer Command="{Binding RegisterCommand}" />
+						        <TapGestureRecognizer Command="{Binding AlreadyRegisteredCommand}" />
 						    </views:Link.GestureRecognizers>
 						</views:Link>
 					</Grid>

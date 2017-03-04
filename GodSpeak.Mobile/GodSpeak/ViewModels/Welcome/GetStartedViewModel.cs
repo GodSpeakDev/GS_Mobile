@@ -75,6 +75,14 @@ namespace GodSpeak
 			}
 		}
 
+		private MvxCommand _alreadyRegisteredCommand;
+		public MvxCommand AlreadyRegisteredCommand
+		{
+			get
+			{
+				return _alreadyRegisteredCommand ?? (_alreadyRegisteredCommand = new MvxCommand(DoAlreadyRegisteredCommand));
+			}
+		}
 
 		private MvxCommand _registerCommand;
 		public MvxCommand RegisterCommand
@@ -114,6 +122,11 @@ namespace GodSpeak
 			{
 				await this.DialogService.ShowAlert(Text.AnonymousSuccessTitle, string.Format(Text.AnonymousSuccessText, result.InputText), Text.AnonymousSuccessButtonTitle);
 			}
+		}
+
+		private void DoAlreadyRegisteredCommand()
+		{
+			this.ShowViewModel<LoginViewModel>();
 		}
 	}
 }
