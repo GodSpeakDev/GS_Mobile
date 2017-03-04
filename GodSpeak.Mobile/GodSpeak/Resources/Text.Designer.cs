@@ -448,5 +448,59 @@ namespace GodSpeak.Resources {
                 return ResourceManager.GetString("SuccessfulRegisterButtonText", resourceCulture);
             }
         }
+        
+        public static string LoginButton {
+            get {
+                return ResourceManager.GetString("LoginButton", resourceCulture);
+            }
+        }
+        
+        public static string BadRequestTitle {
+            get {
+                return ResourceManager.GetString("BadRequestTitle", resourceCulture);
+            }
+        }
+        
+        public static string LoginInvalidEmailPassword {
+            get {
+                return ResourceManager.GetString("LoginInvalidEmailPassword", resourceCulture);
+            }
+        }
+        
+        public static string ForgotMyPasswordButtonTitle {
+            get {
+                return ResourceManager.GetString("ForgotMyPasswordButtonTitle", resourceCulture);
+            }
+        }
+        
+        public static string ForgotMyPasswordLinkText {
+            get {
+                return ResourceManager.GetString("ForgotMyPasswordLinkText", resourceCulture);
+            }
+        }
+        
+        public static string RecoverPasswordTitle {
+            get {
+                return ResourceManager.GetString("RecoverPasswordTitle", resourceCulture);
+            }
+        }
+        
+        public static string RecoverPasswordText {
+            get {
+                return ResourceManager.GetString("RecoverPasswordText", resourceCulture);
+            }
+        }
+        
+        public static string SendInstructions {
+            get {
+                return ResourceManager.GetString("SendInstructions", resourceCulture);
+            }
+        }
+        
+        public static string RecoverPasswordSuccessText {
+            get {
+                return ResourceManager.GetString("RecoverPasswordSuccessText", resourceCulture);
+            }
+        }
     }
 }

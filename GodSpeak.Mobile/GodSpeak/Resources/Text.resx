@@ -358,4 +358,49 @@ If so, we’ll send you their gift!</value>
 		xml:space="preserve">
     	<value>Great!</value>
   	</data>
+	<data
+		name="LoginButton"
+		xml:space="preserve">
+    	<value>Login</value>
+  	</data>
+	<data
+		name="BadRequestTitle"
+		xml:space="preserve">
+    	<value>Oops</value>
+  	</data>
+	<data
+		name="LoginInvalidEmailPassword"
+		xml:space="preserve">
+    	<value>Sorry, it looks like the email and/or password you submitted are incorrect.</value>
+  	</data>
+	<data
+		name="ForgotMyPasswordButtonTitle"
+		xml:space="preserve">
+    	<value>I Forgot My Password</value>
+  	</data>
+	<data
+		name="ForgotMyPasswordLinkText"
+		xml:space="preserve">
+    	<value>I forgot my password</value>
+  	</data>
+	<data
+		name="RecoverPasswordTitle"
+		xml:space="preserve">
+    	<value>Recover Password</value>
+  	</data>	
+	<data
+		name="RecoverPasswordText"
+		xml:space="preserve">
+    	<value>Please enter the email address for your GodSpeak account. Reset instrucitons will be in the email.</value>
+  	</data>	
+	<data
+		name="SendInstructions"
+		xml:space="preserve">
+    	<value>Send Instructions</value>
+  	</data>	
+	<data
+		name="RecoverPasswordSuccessText"
+		xml:space="preserve">
+    	<value>We emailed instructions to reset your password to {0}</value>
+  	</data>	
 </root>
