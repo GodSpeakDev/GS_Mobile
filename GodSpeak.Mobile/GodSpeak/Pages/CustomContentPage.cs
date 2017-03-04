@@ -43,7 +43,7 @@ namespace GodSpeak
 			var layout = this.Content as AbsoluteLayout;
 
 			layout.Children.Add(alertView, new Rectangle(0, 0, 1, 1), AbsoluteLayoutFlags.All);
-			alertView.Show();
+			await alertView.Show();
 		}
 
 		private async Task<string> ShowMenu(string title, string message, string[] buttons)

@@ -9,13 +9,14 @@ namespace GodSpeak
 		private Label _titleLabel;
 		private Label _messageLabel;
 		private Button _okButton;
+		private TaskCompletionSource<bool> _result;
 
 		private string _title;
 		public string Title
 		{
 			get { return _title;}
 			set 
-			{
+			{				
 				_title = value;
 				if (_titleLabel != null)
 				{
@@ -94,9 +95,11 @@ namespace GodSpeak
 				Text = _buttonText,
 				FontAttributes = FontAttributes.Bold,
 			};
+
 			_okButton.Clicked += (sender, e) => 
-			{ 
+			{ 				
 				Hide(); 
+				_result.TrySetResult(true);
 			};
 
 			grid.Children.Add(_titleLabel, 0, 0);
@@ -104,6 +107,13 @@ namespace GodSpeak
 			grid.Children.Add(_okButton, 0, 2);
 
 			return grid;
+		}
+
+		public new Task Show()
+		{
+			base.Show();
+			_result = new TaskCompletionSource<bool>();
+			return _result.Task;
 		}
 	}
 }
