@@ -502,5 +502,11 @@ namespace GodSpeak.Resources {
                 return ResourceManager.GetString("RecoverPasswordSuccessText", resourceCulture);
             }
         }
+        
+        public static string NumberOfMessagesText {
+            get {
+                return ResourceManager.GetString("NumberOfMessagesText", resourceCulture);
+            }
+        }
     }
 }

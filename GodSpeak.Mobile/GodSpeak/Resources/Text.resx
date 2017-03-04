@@ -403,4 +403,9 @@ If so, we’ll send you their gift!</value>
 		xml:space="preserve">
     	<value>We emailed instructions to reset your password to {0}</value>
   	</data>	
+	<data
+		name="NumberOfMessagesText"
+		xml:space="preserve">
+    	<value>{0} messages between times:</value>
+  	</data>		
 </root>

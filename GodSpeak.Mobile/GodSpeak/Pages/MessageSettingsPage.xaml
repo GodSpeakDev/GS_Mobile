@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <views:CustomContentPage  
 		xmlns="http://xamarin.com/schemas/2014/forms" 
 		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
@@ -6,11 +6,17 @@
 		xmlns:res="clr-namespace:GodSpeak.Resources;assembly=GodSpeak"
 		Title="{x:Static res:Text.MessageSettingsPageTitle}"
 		x:Class="GodSpeak.MessageSettingsPage">
+	<ContentPage.Resources>
+		<ResourceDictionary>
+			<views:EnableTextColorConverter x:Key="enableTextColorConverter" />	
+		</ResourceDictionary>
+	</ContentPage.Resources>
 	<ContentPage.Content>
 		<views:GrayGradientBackgroundView>
 			<ListView 	
+					IsGroupingEnabled="true"
 					BackgroundColor="Transparent"
-					ItemsSource="{Binding Menu}" 
+					ItemsSource="{Binding Groups}" 
 					SelectedItem="{Binding SelectedMenu, Mode=TwoWay}">
 				<ListView.Header>
 					<Grid
@@ -23,35 +29,103 @@
 							Grid.Row="0"
 							Orientation="Horizontal">
 							<Label 
-								Text="Allow"																
+								Text="Allow"
+								FontSize="13"
+								VerticalOptions="Center"
+								TextColor="{x:Static views:ColorHelper.Secondary}"
 							/>
+							<views:PlusMinusButtonView
+								Orientation="Horizontal"
+								HeightRequest="30"
+								Spacing="0"
+								BackgroundColor="Red"
+							>
+								<Button
+									HeightRequest="25"
+									WidthRequest="35"
+									Text="-"
+									TextColor="{x:Static views:ColorHelper.Secondary}"
+									BorderColor="Transparent"
+									BackgroundColor="Transparent"
+									Command="{Binding MinusButtonCommand}"
+									/>
+								<BoxView
+									WidthRequest="1"
+									Color="{x:Static views:ColorHelper.Secondary}"
+								/>
+								<Button 
+									HeightRequest="25"
+									WidthRequest="35"
+									Text="+"
+									TextColor="{x:Static views:ColorHelper.Secondary}"
+									BorderColor="Transparent"
+									BackgroundColor="Transparent"
+									Command="{Binding PlusButtonCommand}"
+									/>
+							</views:PlusMinusButtonView>
 							<Label 
-								Text="3 messages between times:" 
+								Text="{Binding NumberOfMessagesText}"
+								FontSize="13"
+								VerticalOptions="Center"
+								TextColor="{x:Static views:ColorHelper.Secondary}"
 							/>
 						</StackLayout>
 						<StackLayout
+							Margin="0,10, 0, 0"
 							Grid.Row="1"
 							Spacing="20"
 							Orientation="Horizontal">						
 							<views:CustomTimePicker 
 								HorizontalOptions="StartAndExpand"
 								WidthRequest="140"
+								Time="{Binding StartTime}"
 							/>
 							<views:CustomTimePicker
 								WidthRequest="140"
 								HorizontalOptions="EndAndExpand"
+								Time="{Binding EndTime}"
 							/>
 						</StackLayout>
 					</Grid>
 				</ListView.Header>
 				<ListView.GroupHeaderTemplate>
-					<DataTemplate>
-						<Label Text="{Binding .}" />
+					<DataTemplate>												
+						<views:TransparentViewCell>							
+							<ContentView BackgroundColor="Transparent">
+								<Label 
+									VerticalOptions="Center"
+									Margin="10,0"
+									Text="{Binding SectionTitle}" 
+									FontSize="13"
+									TextColor="{x:Static views:ColorHelper.Secondary}"
+								/>	
+							</ContentView>							
+						</views:TransparentViewCell>
 					</DataTemplate>
 				</ListView.GroupHeaderTemplate>
 		        <ListView.ItemTemplate>
 		            <DataTemplate>
-		                <TextCell Text="{Binding Title}"></TextCell>
+						<views:TransparentViewCell>
+							<StackLayout
+								Orientation="Horizontal"
+								HorizontalOptions="FillAndExpand">
+								<Label
+									HorizontalOptions="StartAndExpand"									
+									Margin="10,0"
+									Text="{Binding Title}" 
+									FontSize="13"
+									TextColor="{Binding IsEnabled, Converter={StaticResource enableTextColorConverter}}"
+									FontAttributes="Bold"
+									VerticalOptions="Center"
+								/>	
+								<views:CustomSwitch 
+									Margin="10,0"
+									HorizontalOptions="End"
+									VerticalOptions="Center"
+									IsToggled="{Binding IsEnabled}"
+								/>
+							</StackLayout>
+						</views:TransparentViewCell>
 		            </DataTemplate>
 		        </ListView.ItemTemplate>        
 	    	</ListView>

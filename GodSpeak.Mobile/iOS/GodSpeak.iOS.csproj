@@ -204,6 +204,9 @@
     <Compile Include="Renderers\CustomContentPageRenderer.cs" />
     <Compile Include="Renderers\GradientBoxViewRenderer.cs" />
     <Compile Include="Renderers\CustomTimePickerRenderer.cs" />
+    <Compile Include="Renderers\TransparentViewCellRenderer.cs" />
+    <Compile Include="Renderers\CustomSwitchRenderer.cs" />
+    <Compile Include="Renderers\PlusMinusButtonViewRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\profile_placeholder.png" />
