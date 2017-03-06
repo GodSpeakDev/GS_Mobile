@@ -1,14 +1,108 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="GodSpeak.HomePage"             
-             Title="MasterDetail" Icon="" Padding="0, 40, 0, 0">
-
-    <ListView ItemsSource="{Binding Menu}" SelectedItem="{Binding SelectedMenu, Mode=TwoWay}">
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <TextCell Text="{Binding Title}"></TextCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>        
-    </ListView>
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
+	xmlns:res="clr-namespace:GodSpeak.Resources;assembly=GodSpeak"
+	x:Class="GodSpeak.HomePage"             
+	Title="MasterDetail" 
+	Icon="" 
+	Padding="0, 0, 0, 0">
+    <Grid
+		RowSpacing="0"
+		>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="auto" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="auto" />
+		</Grid.RowDefinitions>
+		<ContentView
+			Grid.Row="0"
+			Padding="10,30,10,10"
+			BackgroundColor="{x:Static views:ColorHelper.Primary}"
+			>
+			<StackLayout>
+				<Label 								
+					Text="{x:Static res:Text.MenuCitationText}"
+					TextColor="{x:Static views:ColorHelper.Secondary}"
+					HorizontalTextAlignment="Center"
+					FontSize="13"
+				/>
+				<Label 								
+					HorizontalTextAlignment="End"
+					Margin="0,5,0,0"
+					Text="{x:Static res:Text.MenuCitationAuthor}"
+					TextColor="{x:Static views:ColorHelper.Secondary}"
+					FontAttributes="Bold"
+					FontSize="14"
+				/>
+			</StackLayout>
+		</ContentView>
+		<AbsoluteLayout					
+			Grid.Row="1"
+			BackgroundColor="Red"
+			>
+			<Image
+				Source="menu_image.jpg"
+				Aspect="Fill"
+			/>
+		</AbsoluteLayout>
+		<StackLayout
+			Grid.Row="2"
+			Padding="0,5"
+			BackgroundColor="{x:Static views:ColorHelper.DrawerMenuBackground}"
+		>
+			<StackLayout
+				Orientation="Horizontal"
+				Padding="15, 10"
+				Spacing="10"
+				x:Name="SettingsItem"
+				BackgroundColor="{x:Static views:ColorHelper.DrawerMenuBackground}"
+				>				
+				<Image WidthRequest="20" HeightRequest="20" Source="SettingsIcon.png" />
+				<Label 
+					Text="Message Settings" 
+					TextColor="{x:Static views:ColorHelper.Secondary}"
+					FontAttributes="Bold"
+				/>
+			</StackLayout>
+			<BoxView 
+				Margin="15,0,0,0"
+				Color="{x:Static views:ColorHelper.Secondary}"
+				HeightRequest="0.5"				
+			/>
+			<StackLayout
+				Orientation="Horizontal"
+				Padding="15, 10"
+				Spacing="10"
+				x:Name="ProfileItem"
+				BackgroundColor="{x:Static views:ColorHelper.DrawerMenuBackground}"
+				>				
+				<Image WidthRequest="20" HeightRequest="20" Source="profileIcon.png" />
+				<Label 
+					Text="My Profile" 
+					TextColor="{x:Static views:ColorHelper.Secondary}"
+					FontAttributes="Bold"
+				/>
+			</StackLayout>
+			<BoxView 
+				Margin="15,0,0,0"
+				Color="{x:Static views:ColorHelper.Secondary}"
+				HeightRequest="0.5"
+			/>
+			<StackLayout
+				Orientation="Horizontal"
+				Padding="15, 10"
+				Spacing="10"
+				x:Name="LogoutItem"
+				BackgroundColor="{x:Static views:ColorHelper.DrawerMenuBackground}"
+				>				
+				<Image WidthRequest="20" HeightRequest="20" Source="logoutIcon.png" />
+				<Label 
+					Text="Logout" 
+					TextColor="{x:Static views:ColorHelper.Secondary}"
+					FontAttributes="Bold"
+				/>
+			</StackLayout>
+		</StackLayout>
+	</Grid>		
 </ContentPage>

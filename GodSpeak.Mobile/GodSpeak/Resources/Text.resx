@@ -407,5 +407,30 @@ If so, we’ll send you their gift!</value>
 		name="NumberOfMessagesText"
 		xml:space="preserve">
     	<value>{0} messages between times:</value>
-  	</data>		
+  	</data>	
+	<data
+		name="MenuCitationText"
+		xml:space="preserve">
+    	<value>“So will my word be which goes forth from my mouth; it will not return to me empty, without accomplishing what I desire, and without succeeding in the matter for which I sent it”.</value>
+  	</data>	
+	<data
+		name="MenuCitationAuthor"
+		xml:space="preserve">
+    	<value>- Isaiah 55:11 NASB</value>
+  	</data>	
+	<data
+		name="MenuMessageSettings"
+		xml:space="preserve">
+    	<value>Message Settings</value>
+  	</data>	
+	<data
+		name="MyProfileSettings"
+		xml:space="preserve">
+    	<value>My Profile</value>
+  	</data>	
+	<data
+		name="LogoutSettings"
+		xml:space="preserve">
+    	<value>Logout</value>
+  	</data>	
 </root>

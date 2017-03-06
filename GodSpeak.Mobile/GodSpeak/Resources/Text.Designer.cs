@@ -508,5 +508,35 @@ namespace GodSpeak.Resources {
                 return ResourceManager.GetString("NumberOfMessagesText", resourceCulture);
             }
         }
+        
+        public static string MenuCitationText {
+            get {
+                return ResourceManager.GetString("MenuCitationText", resourceCulture);
+            }
+        }
+        
+        public static string MenuCitationAuthor {
+            get {
+                return ResourceManager.GetString("MenuCitationAuthor", resourceCulture);
+            }
+        }
+        
+        public static string MenuMessageSettings {
+            get {
+                return ResourceManager.GetString("MenuMessageSettings", resourceCulture);
+            }
+        }
+        
+        public static string MyProfileSettings {
+            get {
+                return ResourceManager.GetString("MyProfileSettings", resourceCulture);
+            }
+        }
+        
+        public static string LogoutSettings {
+            get {
+                return ResourceManager.GetString("LogoutSettings", resourceCulture);
+            }
+        }
     }
 }
