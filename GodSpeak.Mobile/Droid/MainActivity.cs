@@ -20,61 +20,63 @@ using System.Net;
 
 namespace GodSpeak.Droid
 {
-    [Activity(Theme = "@style/AppTheme", Label = "MvxFormsApplicationActivity", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.ScreenSize)]
+    [Activity (Theme = "@style/AppTheme", Label = "MvxFormsApplicationActivity", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.ScreenSize)]
     public class MainActivity : FormsAppCompatActivity
     {
-		public static bool IsForeground { get; set; }
+        public static bool IsForeground { get; set; }
 
-        protected override void OnCreate(Bundle bundle)
-		{
-			Xamarin.Forms.Forms.Init(this, bundle);
-			Xamarin.FormsMaps.Init(this, bundle);
+        protected override void OnCreate (Bundle bundle)
+        {
+            Xamarin.Forms.Forms.Init (this, bundle);
+            Xamarin.FormsMaps.Init (this, bundle);
 
-			ServicePointManager
-				.ServerCertificateValidationCallback +=
-					(sender, cert, chain, sslPolicyErrors) =>
-					{
-						return true;
-					};
+            ServicePointManager
+                .ServerCertificateValidationCallback +=
+                    (sender, cert, chain, sslPolicyErrors) => {
+                        return true;
+                    };
 
-			base.OnCreate(bundle);
+            base.OnCreate (bundle);
 
-			var mvxFormsApp = new MvxFormsApp();
-			LoadApplication(mvxFormsApp);
+            var mvxFormsApp = new MvxFormsApp ();
+            LoadApplication (mvxFormsApp);
 
-			var presenter = Mvx.Resolve<IMvxViewPresenter>() as MvxFormsDroidMasterDetailPagePresenter;
-			presenter.MvxFormsApp = mvxFormsApp;
+            var presenter = Mvx.Resolve<IMvxViewPresenter> () as MvxFormsDroidMasterDetailPagePresenter;
+            presenter.MvxFormsApp = mvxFormsApp;
 
-			Mvx.Resolve<IMvxAppStart>().Start();
+            Mvx.Resolve<IMvxAppStart> ().Start ();
 
-			//App.HardwareBackPressed = () =>
-			//{
-			//	MoveTaskToBack(true);
-			//};
-		}
 
-		protected override void OnStart()
-		{
-			base.OnStart();
-			IsForeground = true;
-		}
+            App.ScreenWidth = (int)(Resources.DisplayMetrics.WidthPixels / Resources.DisplayMetrics.Density);
+            App.ScreenHeight = (int)(Resources.DisplayMetrics.HeightPixels / Resources.DisplayMetrics.Density);
+            //App.HardwareBackPressed = () =>
+            //{
+            //	MoveTaskToBack(true);
+            //};
+        }
 
-		protected override void OnResume()
-		{			
-			base.OnResume();
-			IsForeground = true;
-		}
+        protected override void OnStart ()
+        {
+            base.OnStart ();
+            IsForeground = true;
+        }
 
-		protected override void OnStop()
-		{
-			base.OnStop();
-			IsForeground = false;
-		}
+        protected override void OnResume ()
+        {
+            base.OnResume ();
+            IsForeground = true;
+        }
 
-		protected override void OnPause()
-		{
-			base.OnPause();
-			IsForeground = false;
-		}
+        protected override void OnStop ()
+        {
+            base.OnStop ();
+            IsForeground = false;
+        }
+
+        protected override void OnPause ()
+        {
+            base.OnPause ();
+            IsForeground = false;
+        }
     }
 }

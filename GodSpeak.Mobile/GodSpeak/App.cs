@@ -4,16 +4,20 @@ namespace GodSpeak
 {
     public class App : MvvmCross.Core.ViewModels.MvxApplication
     {
-        public override void Initialize()
+
+        public static int ScreenHeight = 640;
+        public static int ScreenWidth = 320;
+
+        public override void Initialize ()
         {
-            CreatableTypes()
-                .EndingWith("Service")
-                .AsInterfaces()
-                .RegisterAsLazySingleton();
+            CreatableTypes ()
+                .EndingWith ("Service")
+                .AsInterfaces ()
+                .RegisterAsLazySingleton ();
 
-			CreatableTypes().Containing("DialogService").AsInterfaces().RegisterAsDynamic();
+            CreatableTypes ().Containing ("DialogService").AsInterfaces ().RegisterAsDynamic ();
 
-            RegisterAppStart<GetStartedViewModel>();
+            RegisterAppStart<GetStartedViewModel> ();
         }
     }
 }
