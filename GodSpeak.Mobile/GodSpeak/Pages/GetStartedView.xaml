@@ -20,11 +20,13 @@
 				HorizontalOptions="FillAndExpand"
 				VerticalOptions="FillAndExpand">
 				<Image
+					x:Name="PanoBackground"
 					Source="pano_background.jpg"
 					VerticalOptions="FillAndExpand"
 					WidthRequest="1000"
-					HeightRequest="600"
-					Aspect="Fill" />
+					HeightRequest="10"
+
+					 />
 			</views:PanoLayout>
 			<Grid 	
 				AbsoluteLayout.LayoutFlags="All"
