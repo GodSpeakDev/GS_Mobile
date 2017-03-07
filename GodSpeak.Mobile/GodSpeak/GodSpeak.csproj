@@ -91,6 +91,9 @@
     <EmbeddedResource Include="Pages\ImpactPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\MyProfilePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -271,6 +274,10 @@
     <Compile Include="Extensions\DateExtensions.cs" />
     <Compile Include="CustomComponents\PlusMinusButtonView.cs" />
     <Compile Include="Converters\EnableTextColorConverter.cs" />
+    <Compile Include="ViewModels\MyProfileViewModel.cs" />
+    <Compile Include="Pages\MyProfilePage.xaml.cs">
+      <DependentUpon>MyProfilePage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

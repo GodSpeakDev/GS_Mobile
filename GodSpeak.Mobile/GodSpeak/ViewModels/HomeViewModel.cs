@@ -41,7 +41,7 @@ namespace GodSpeak
 			{
 				return _myProfileCommand ?? (_myProfileCommand = new MvxCommand(() =>
 				{
-					
+					this.ShowViewModel<MyProfileViewModel>(presentationBundle: NavigationBundles.ClearStackBundle);
 				}));
 			}
 		}

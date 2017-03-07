@@ -538,5 +538,35 @@ namespace GodSpeak.Resources {
                 return ResourceManager.GetString("LogoutSettings", resourceCulture);
             }
         }
+        
+        public static string MyProfilePageTitle {
+            get {
+                return ResourceManager.GetString("MyProfilePageTitle", resourceCulture);
+            }
+        }
+        
+        public static string MyProfileUpdateInfo {
+            get {
+                return ResourceManager.GetString("MyProfileUpdateInfo", resourceCulture);
+            }
+        }
+        
+        public static string MyProfileChangePassword {
+            get {
+                return ResourceManager.GetString("MyProfileChangePassword", resourceCulture);
+            }
+        }
+        
+        public static string MyProfileSuccessTitle {
+            get {
+                return ResourceManager.GetString("MyProfileSuccessTitle", resourceCulture);
+            }
+        }
+        
+        public static string MyProfileSuccessText {
+            get {
+                return ResourceManager.GetString("MyProfileSuccessText", resourceCulture);
+            }
+        }
     }
 }

@@ -433,4 +433,29 @@ If so, we’ll send you their gift!</value>
 		xml:space="preserve">
     	<value>Logout</value>
   	</data>	
+	<data
+		name="MyProfilePageTitle"
+		xml:space="preserve">
+    	<value>Profile</value>
+  	</data>	
+	<data
+		name="MyProfileUpdateInfo"
+		xml:space="preserve">
+    	<value>Update Info</value>
+  	</data>	
+	<data
+		name="MyProfileChangePassword"
+		xml:space="preserve">
+    	<value>Change Password</value>
+  	</data>	
+  	<data
+		name="MyProfileSuccessTitle"
+		xml:space="preserve">
+    	<value>Wow!</value>
+  	</data>	
+	<data
+		name="MyProfileSuccessText"
+		xml:space="preserve">
+    	<value>Your info was updated successfully.</value>
+  	</data>	
 </root>

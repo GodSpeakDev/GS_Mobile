@@ -18,5 +18,10 @@ namespace GodSpeak
 			await Task.Delay(1);
 			_user = null;
 		}
+
+		public User GetUser()
+		{
+			return _user;
+		}
 	}
 }

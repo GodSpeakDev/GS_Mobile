@@ -320,8 +320,8 @@ namespace GodSpeak
 			{
 				Id = Guid.NewGuid(),
 				Email = "godspeak@gmail.com",
-				City = "St. Louis",
-				State = "MO",
+				ZipCode="63017",
+				Country="USA",
 				Credits = 15.0m,
 				FirstName = "GodSpeak",
 				LastName = "GodSpeak",
