@@ -21,13 +21,7 @@ namespace GodSpeak
 			set;
 		}
 
-		public string Image
-		{
-			get;
-			set;
-		}
-
-		public string SubTitle
+		public string Author
 		{
 			get;
 			set;

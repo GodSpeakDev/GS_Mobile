@@ -9,65 +9,45 @@ using System.Windows.Input;
 namespace GodSpeak
 {
     public class HomeViewModel : MvxMasterDetailViewModel<MessageViewModel>
-    {
-		MenuItem _menuItem;
-		public MenuItem SelectedMenu
-		{
-			get { return _menuItem; }
-			set
-			{
-				if (SetProperty(ref _menuItem, value))
-					OnSelectedChangedCommand.Execute(value);
-			}
-		}
-
-		private MenuItem MessageSettingsMenuItem = new MenuItem { Title = "Message Settings", ViewModelType = typeof(MessageSettingsViewModel)};
-		private MenuItem SendInviteMenuItem = new MenuItem { Title = "Send Invite", ViewModelType = typeof(InvitesViewModel)};
-		private MenuItem PurchaseInviteMenuItem = new MenuItem { Title = "Purchase Invite", ViewModelType = typeof(PurchaseCreditViewModel) };
-		private MenuItem LogoutMenuItem = new MenuItem { Title = "Logout", ViewModelType = typeof(WelcomeViewModel)};
-
-		MvxCommand<MenuItem> _onSelectedChangedCommand;
-		ICommand OnSelectedChangedCommand
+    {		
+		private MvxCommand _logoutCommand;
+		public ICommand LogoutCommand
 		{
 			get
 			{
-				return _onSelectedChangedCommand ?? (_onSelectedChangedCommand = new MvxCommand<MenuItem>((item) =>
+				return _logoutCommand ?? (_logoutCommand = new MvxCommand(() =>
 				{
-					if (item == null)
-						return;
-
-					var vmType = item.ViewModelType;
-
-					if (item == LogoutMenuItem)
-					{	
-						ShowViewModel(vmType, presentationBundle: NavigationBundles.RestoreNavigationBundle);      
-					}
-					else
-					{						
-						ShowViewModel(vmType, presentationBundle: NavigationBundles.ClearStackBundle);
-					}
+					this.ShowViewModel<GetStartedViewModel>(presentationBundle: NavigationBundles.RestoreNavigationBundle);
 				}));
 			}
 		}
 
-		IEnumerable<MenuItem> _menu;
-		public IEnumerable<MenuItem> Menu { get { return _menu; } set { SetProperty(ref _menu, value); } }
-
-		public HomeViewModel()
+		private MvxCommand _messageSettingsCommand;
+		public ICommand MessageSettingsCommand
 		{
-			Menu = new[] {
-				MessageSettingsMenuItem,
-				SendInviteMenuItem,
-				PurchaseInviteMenuItem,
-				LogoutMenuItem
-			};
+			get
+			{
+				return _messageSettingsCommand ?? (_messageSettingsCommand = new MvxCommand(() =>
+				{
+					this.ShowViewModel<MessageSettingsViewModel>(presentationBundle: NavigationBundles.ClearStackBundle);
+				}));
+			}
 		}
 
-		public override void RootContentPageActivated()
+		private MvxCommand _myProfileCommand;
+		public ICommand MyProfileCommand
 		{
-			// When user go backs to root page in NavigationPage (using UI back or changing option in Menu)
-			// we unset the SelectedItem of our list
-			SelectedMenu = null;
+			get
+			{
+				return _myProfileCommand ?? (_myProfileCommand = new MvxCommand(() =>
+				{
+					this.ShowViewModel<MyProfileViewModel>(presentationBundle: NavigationBundles.ClearStackBundle);
+				}));
+			}
+		}
+
+		public HomeViewModel()
+		{			
 		}
     }
 }

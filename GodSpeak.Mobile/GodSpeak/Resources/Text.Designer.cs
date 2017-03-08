@@ -508,5 +508,77 @@ namespace GodSpeak.Resources {
                 return ResourceManager.GetString("NumberOfMessagesText", resourceCulture);
             }
         }
+        
+        public static string MenuCitationText {
+            get {
+                return ResourceManager.GetString("MenuCitationText", resourceCulture);
+            }
+        }
+        
+        public static string MenuCitationAuthor {
+            get {
+                return ResourceManager.GetString("MenuCitationAuthor", resourceCulture);
+            }
+        }
+        
+        public static string MenuMessageSettings {
+            get {
+                return ResourceManager.GetString("MenuMessageSettings", resourceCulture);
+            }
+        }
+        
+        public static string MyProfileSettings {
+            get {
+                return ResourceManager.GetString("MyProfileSettings", resourceCulture);
+            }
+        }
+        
+        public static string LogoutSettings {
+            get {
+                return ResourceManager.GetString("LogoutSettings", resourceCulture);
+            }
+        }
+        
+        public static string MyProfilePageTitle {
+            get {
+                return ResourceManager.GetString("MyProfilePageTitle", resourceCulture);
+            }
+        }
+        
+        public static string MyProfileUpdateInfo {
+            get {
+                return ResourceManager.GetString("MyProfileUpdateInfo", resourceCulture);
+            }
+        }
+        
+        public static string MyProfileChangePassword {
+            get {
+                return ResourceManager.GetString("MyProfileChangePassword", resourceCulture);
+            }
+        }
+        
+        public static string MyProfileSuccessTitle {
+            get {
+                return ResourceManager.GetString("MyProfileSuccessTitle", resourceCulture);
+            }
+        }
+        
+        public static string MyProfileSuccessText {
+            get {
+                return ResourceManager.GetString("MyProfileSuccessText", resourceCulture);
+            }
+        }
+        
+        public static string Today {
+            get {
+                return ResourceManager.GetString("Today", resourceCulture);
+            }
+        }
+        
+        public static string Yesterday {
+            get {
+                return ResourceManager.GetString("Yesterday", resourceCulture);
+            }
+        }
     }
 }

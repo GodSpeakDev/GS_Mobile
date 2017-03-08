@@ -1,8 +1,9 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage 
 		xmlns="http://xamarin.com/schemas/2014/forms" 
 		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 		xmlns:pages="clr-namespace:GodSpeak;assembly=GodSpeak"
+		xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
 		Title="Messages"
 		x:Class="GodSpeak.MessagePage">	
 	<ContentPage.ToolbarItems>
@@ -13,49 +14,91 @@
 			<pages:DayConverter x:Key="dayConverter" />		
 		</ResourceDictionary>
 	</ContentPage.Resources>
-	<ContentPage.Content>		
-		<ListView
-			HorizontalOptions="FillAndExpand"
+	<ContentPage.Content>	
+		<AbsoluteLayout
 			VerticalOptions="FillAndExpand"
-			IsGroupingEnabled="true"
-			ItemsSource="{Binding Messages}"
-			SelectedItem="{Binding SelectedItem}"
-			SeparatorVisibility="None"		
-			HasUnevenRows="true"
-			>
-			<ListView.ItemTemplate>
-				<DataTemplate>
-					<ViewCell>
-						<Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-							<Grid.RowDefinitions>
-								<RowDefinition Height="auto" />
-							</Grid.RowDefinitions>
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="60" />
-								<ColumnDefinition Width="1*" />
-							</Grid.ColumnDefinitions>
-							<Image 
-								Grid.Row="0" 
-								Grid.Column="0" 
-								VerticalOptions="Center"
-								Source="{Binding Image}" 
-							/>
-							<Label 
-								Grid.Row="0" 
-								Grid.Column="1" 
-								Text="{Binding Text}" 
-							/>
-						</Grid>
-					</ViewCell>
-				</DataTemplate>
-			</ListView.ItemTemplate>
-			<ListView.GroupHeaderTemplate>
-				<DataTemplate>
-					<ViewCell>
-	            		<Label HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" Text="{Binding Key, Converter={StaticResource dayConverter}}" />
-					</ViewCell>
-	            </DataTemplate>
-			</ListView.GroupHeaderTemplate>
-		</ListView>
+			HorizontalOptions="FillAndExpand">	
+			<views:GrayGradientBackgroundView
+				AbsoluteLayout.LayoutBounds="0,0,1,1" 
+				AbsoluteLayout.LayoutFlags="All">
+				<ListView					
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand"
+					IsGroupingEnabled="true"
+					ItemsSource="{Binding Messages}"
+					SelectedItem="{Binding SelectedItem}"
+					BackgroundColor="Transparent"
+					SeparatorVisibility="None"		
+					HasUnevenRows="true"
+					>
+					<ListView.ItemTemplate>
+						<DataTemplate>
+							<ViewCell>
+								<Grid
+									Margin="10,0"
+									HorizontalOptions="FillAndExpand"
+									RowSpacing="2">
+									<Grid.RowDefinitions>
+										<RowDefinition Height="auto" />
+										<RowDefinition Height="auto" />
+									</Grid.RowDefinitions>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="*" />
+										<ColumnDefinition Width="*" />
+									</Grid.ColumnDefinitions>
+									<Image 
+										Grid.Row="0"
+										Grid.Column="0"
+										Grid.RowSpan="2"
+										Grid.ColumnSpan="2"
+										Source="speechBalloonBackground.png" 
+									/>
+									<views:MessageBalloon
+										Grid.Row="0"
+										Grid.Column="0"
+										Grid.ColumnSpan="2"
+										Padding="20,10"
+										HorizontalOptions="FillAndExpand"
+										VerticalOptions="FillAndExpand"
+									>
+										<Label 																				
+											Text="{Binding Text}"
+											HorizontalOptions="FillAndExpand"
+											TextColor="{x:Static views:ColorHelper.Secondary}"
+											FontAttributes="Bold"
+											FontSize="14"
+										/>											
+									</views:MessageBalloon>
+									<Label 	
+										Margin="5,0"
+										Grid.Row="1"
+										Grid.Column="1"
+										Text="{Binding Author}"
+										HorizontalOptions="End"
+										VerticalOptions="End"
+										TextColor="{x:Static views:ColorHelper.Secondary}"
+										FontSize="13"
+									/>
+								</Grid>
+							</ViewCell>
+						</DataTemplate>
+					</ListView.ItemTemplate>
+					<ListView.GroupHeaderTemplate>
+						<DataTemplate>
+							<ViewCell Height="20">
+			            		<Label									
+									Margin="15,0"
+									HorizontalOptions="FillAndExpand" 
+									HorizontalTextAlignment="Start" 
+									VerticalOptions="Center"
+									TextColor="{x:Static views:ColorHelper.Secondary}"
+									FontSize="13"
+									Text="{Binding Key, Converter={StaticResource dayConverter}}" />
+							</ViewCell>
+			            </DataTemplate>
+					</ListView.GroupHeaderTemplate>
+				</ListView>
+			</views:GrayGradientBackgroundView>
+		</AbsoluteLayout>
 	</ContentPage.Content>
 </ContentPage>

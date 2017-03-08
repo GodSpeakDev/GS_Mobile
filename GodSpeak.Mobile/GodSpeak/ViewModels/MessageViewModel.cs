@@ -73,15 +73,8 @@ namespace GodSpeak
 				Messages = new ObservableCollection<GroupedCollection<Message, DateTime>>
 				(messages.Content.Messages
 				 .Where(x => x.DateTimeToDisplay <= DateTime.Now)
-				 .GroupBy(x => x.DateTimeToDisplay)
+				 .GroupBy(x => x.DateTimeToDisplay.Date)
 				 .Select(x => new GroupedCollection<Message, DateTime>(x.Key, x)));
-
-				_reminderService.ClearReminders();
-				var futureMessages = messages.Content.Messages.Where(x => x.DateTimeToDisplay > DateTime.Now);
-				foreach (var message in futureMessages)
-				{
-					_reminderService.SetMessageReminder(message);
-				}
 			}
 			else
 			{

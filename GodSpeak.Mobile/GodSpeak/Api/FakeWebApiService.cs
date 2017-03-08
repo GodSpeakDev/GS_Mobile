@@ -152,44 +152,44 @@ namespace GodSpeak
 					new Message()
 					{
 						DateTimeToDisplay = DateTime.Now.AddSeconds(30),
-						Text = "If you abide in Me, and My words abide in you, ask whatever you wish, and it will be done for you. - John 15:7 NASB",
+						Text = "If you abide in Me, and My words abide in you, ask whatever you wish, and it will be done for you.",
 						MessageId = Guid.NewGuid(),
-						Image = ""
+						Author="John 15:7 NASB"
 					},
 					new Message() 
 					{
 						DateTimeToDisplay = DateTime.Now,
-						Text = "If you abide in Me, and My words abide in you, ask whatever you wish, and it will be done for you. - John 15:7 NASB",
+						Text = "If you abide in Me, and My words abide in you, ask whatever you wish, and it will be done for you.",
 						MessageId = Guid.NewGuid(),
-						Image = ""
+						Author="John 15:7 NASB"
 					},
 					new Message()
 					{
 						DateTimeToDisplay = DateTime.Now,
-						Text = "Be anxious for nothing, but in everything by prayer and supplication with thanksgiving let your requests be made known to God. - Philippians 4:6 NASB",
+						Text = "Be anxious for nothing, but in everything by prayer and supplication with thanksgiving let your requests be made known to God.",
 						MessageId = Guid.NewGuid(),
-						Image = ""
+						Author="Philippians 4:6 NASB"
 					},
 					new Message()
 					{
 						DateTimeToDisplay = DateTime.Now.AddDays(-1),
-						Text = "Therefore I say to you, all things for which you pray and ask, believe that you have received them, and they will be granted you. - Mark 11:24 NASB",
+						Text = "Therefore I say to you, all things for which you pray and ask, believe that you have received them, and they will be granted you.",
 						MessageId = Guid.NewGuid(),
-						Image = ""
+						Author="Mark 11:24 NASB"
 					},
 					new Message()
 					{
 						DateTimeToDisplay = DateTime.Now.AddDays(-1),
-						Text = "And when you are praying, do not use meaningless repetition as the Gentiles do, for they suppose that they will be heard for their many words. - Matthew 6:7 NASB",
+						Text = "And when you are praying, do not use meaningless repetition as the Gentiles do, for they suppose that they will be heard for their many words.",
 						MessageId = Guid.NewGuid(),
-						Image = ""
+						Author="Mark 11:24 NASB"
 					},
 					new Message()
 					{
 						DateTimeToDisplay = DateTime.Now.AddDays(-7),
-						Text = "So I say to you, ask, and it will be given to you; seek, and you will find; knock, and it will be opened to you. - Luke 11:9 NASB",
+						Text = "So I say to you, ask, and it will be given to you; seek, and you will find; knock, and it will be opened to you.",
 						MessageId = Guid.NewGuid(),
-						Image = ""
+						Author="Mark 11:24 NASB"
 					},
 				}
             };
@@ -320,8 +320,8 @@ namespace GodSpeak
 			{
 				Id = Guid.NewGuid(),
 				Email = "godspeak@gmail.com",
-				City = "St. Louis",
-				State = "MO",
+				ZipCode="63017",
+				Country="USA",
 				Credits = 15.0m,
 				FirstName = "GodSpeak",
 				LastName = "GodSpeak",
