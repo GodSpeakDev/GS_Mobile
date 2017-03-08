@@ -46,8 +46,17 @@ namespace GodSpeak
 		public MvxCommand GoToImpactCommand
 		{
 			get
-			{
+			{				
 				return _goToImpactCommand ?? (_goToImpactCommand = new MvxCommand(DoGoToImpactCommand));
+			}
+		}
+
+		private MvxCommand _openDrawerMenuCommand;
+		public MvxCommand OpenDrawerMenuCommand
+		{
+			get
+			{
+				return _openDrawerMenuCommand ?? (_openDrawerMenuCommand = new MvxCommand(DoOpenDrawerMenuCommand));
 			}
 		}
 
@@ -91,6 +100,11 @@ namespace GodSpeak
 		private void DoGoToImpactCommand()
 		{
 			this.ShowViewModel<ImpactViewModel>();
+		}
+
+		private void DoOpenDrawerMenuCommand()
+		{
+			this.ChangePresentation(new OpenMenuPresentationHint());
 		}
 	}
 }
