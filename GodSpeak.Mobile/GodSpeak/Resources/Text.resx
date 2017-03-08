@@ -458,4 +458,14 @@ If so, we’ll send you their gift!</value>
 		xml:space="preserve">
     	<value>Your info was updated successfully.</value>
   	</data>	
+	<data
+		name="Today"
+		xml:space="preserve">
+    	<value>Today</value>
+  	</data>	
+	<data
+		name="Yesterday"
+		xml:space="preserve">
+    	<value>Yesterday</value>
+  	</data>	
 </root>

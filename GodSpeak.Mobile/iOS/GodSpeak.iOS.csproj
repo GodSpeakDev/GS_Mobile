@@ -207,6 +207,7 @@
     <Compile Include="Renderers\TransparentViewCellRenderer.cs" />
     <Compile Include="Renderers\CustomSwitchRenderer.cs" />
     <Compile Include="Renderers\PlusMinusButtonViewRenderer.cs" />
+    <Compile Include="Renderers\MessageBalloonRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\profile_placeholder.png" />
@@ -242,6 +243,9 @@
     <BundleResource Include="Resources\settingsIcon.png" />
     <BundleResource Include="Resources\settingsIcon%402x.png" />
     <BundleResource Include="Resources\settingsIcon%403x.png" />
+    <BundleResource Include="Resources\speechBalloonBackground.png" />
+    <BundleResource Include="Resources\speechBalloonBackground%402x.png" />
+    <BundleResource Include="Resources\speechBalloonBackground%403x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.3.180\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.3.180\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />

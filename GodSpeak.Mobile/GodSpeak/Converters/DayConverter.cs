@@ -1,6 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using System.Globalization;
+using GodSpeak.Resources;
 
 namespace GodSpeak
 {
@@ -10,6 +11,14 @@ namespace GodSpeak
 		{
 			var date = (DateTime)value;
 
+			if (DateTime.Today == date.Date)
+			{
+				return Text.Today;
+			}
+			else if (DateTime.Today.AddDays(-1) == date.Date)
+			{
+				return Text.Yesterday;
+			}
 			if (DateTime.Now.AddDays(-7).Date < date.Date)
 			{
 				return date.ToString("dddd");

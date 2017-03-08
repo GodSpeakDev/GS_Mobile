@@ -568,5 +568,17 @@ namespace GodSpeak.Resources {
                 return ResourceManager.GetString("MyProfileSuccessText", resourceCulture);
             }
         }
+        
+        public static string Today {
+            get {
+                return ResourceManager.GetString("Today", resourceCulture);
+            }
+        }
+        
+        public static string Yesterday {
+            get {
+                return ResourceManager.GetString("Yesterday", resourceCulture);
+            }
+        }
     }
 }

@@ -278,6 +278,7 @@
     <Compile Include="Pages\MyProfilePage.xaml.cs">
       <DependentUpon>MyProfilePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomComponents\MessageBalloon.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />
