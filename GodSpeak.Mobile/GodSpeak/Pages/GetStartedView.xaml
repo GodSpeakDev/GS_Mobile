@@ -54,8 +54,8 @@
 							Grid.Row="0"
 							Text="{x:Static res:Text.GetStartedCitation}"
 							TextColor="{x:Static views:ColorHelper.Secondary}"
-							HorizontalTextAlignment="Center"
-							FontSize="13"
+							HorizontalTextAlignment="Start"
+							FontSize="18"
 						/>
 						<Label 
 							Grid.Row="1"
@@ -64,11 +64,13 @@
 							Text="{x:Static res:Text.GetStartedAuthor}"
 							TextColor="{x:Static views:ColorHelper.Secondary}"
 							FontAttributes="Bold"
-							FontSize="14"
+							FontSize="18"
 						/>
 						<views:ActionButton 
 							Grid.Row="2"
 							Text="Get Started" 
+							FontAttributes="Bold"
+							FontSize="28"
 							HorizontalOptions="FillAndExpand" 
 							VerticalOptions="End" 
 							Command="{Binding TapGetStartedCommand}" 
