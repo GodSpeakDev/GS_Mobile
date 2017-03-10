@@ -468,4 +468,16 @@ If so, we’ll send you their gift!</value>
 		xml:space="preserve">
     	<value>Yesterday</value>
   	</data>	
+	<data
+		name="ScripturesDelivered"
+		xml:space="preserve">
+    	<value>Scriptures
+Delivered</value>
+  	</data>	
+	<data
+		name="GiftsClaimed"
+		xml:space="preserve">
+    	<value>Gifts
+Claimed</value>
+  	</data>	
 </root>

@@ -6,6 +6,7 @@ namespace GodSpeak
 	public static class ColorHelper
 	{
 		public static Color Primary = Color.FromRgb(0, 165, 255);
+		public static Color PrimaryNavBar = Color.FromRgba(0, 165, 255, 220);
 		public static Color DarkGray = Color.FromRgb(71, 72, 67);
 		public static Color DarkGrayNavBar = Color.FromRgba(71, 72, 67, 220);
 		public static Color LightGray = Color.FromRgb(127, 129, 131);

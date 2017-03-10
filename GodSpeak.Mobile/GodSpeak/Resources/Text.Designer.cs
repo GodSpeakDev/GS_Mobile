@@ -580,5 +580,17 @@ namespace GodSpeak.Resources {
                 return ResourceManager.GetString("Yesterday", resourceCulture);
             }
         }
+        
+        public static string ScripturesDelivered {
+            get {
+                return ResourceManager.GetString("ScripturesDelivered", resourceCulture);
+            }
+        }
+        
+        public static string GiftsClaimed {
+            get {
+                return ResourceManager.GetString("GiftsClaimed", resourceCulture);
+            }
+        }
     }
 }

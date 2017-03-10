@@ -26,6 +26,24 @@ namespace GodSpeak
 			set { SetProperty(ref _shownImpactDays, value);}
 		}
 
+		private DateTime _minDate;
+		public DateTime MinDate
+		{
+			get { return _minDate;}
+			set { 
+				SetProperty(ref _minDate, value);
+				RaisePropertyChanged(() => CurrentSliderDate);
+			}
+		}
+
+		public DateTime CurrentSliderDate
+		{
+			get 
+			{
+				return MinDate.AddDays(DayValue);
+			}
+		}
+
 		private int _dayValue;
 		public int DayValue
 		{
@@ -33,6 +51,7 @@ namespace GodSpeak
 			set { 
 				SetProperty(ref _dayValue, value);
 				SetImpactDays();
+				RaisePropertyChanged(() => CurrentSliderDate);
 			}
 		}
 
@@ -88,6 +107,7 @@ namespace GodSpeak
 				var lastDate = _allImpactDays.OrderBy(x => x.Date).Last();
 
 				MaximumDayValue = (lastDate.Date.Date - firstDate.Date).Days + 1;
+				MinDate = firstDate.Date;
 				DayValue = MaximumDayValue;
 			}
 			else
