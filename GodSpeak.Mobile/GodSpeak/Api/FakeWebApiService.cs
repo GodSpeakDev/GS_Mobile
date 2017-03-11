@@ -147,57 +147,28 @@ namespace GodSpeak
 			await Task.Delay(delay);
 			var content = new GetMessagesResponse()
             {
-				Messages = new List<Message>()
-				{
-					new Message()
-					{
-						DateTimeToDisplay = DateTime.Now.AddSeconds(30),
-						Text = "If you abide in Me, and My words abide in you, ask whatever you wish, and it will be done for you.",
-						MessageId = Guid.NewGuid(),
-						Author="John 15:7 NASB"
-					},
-					new Message() 
-					{
-						DateTimeToDisplay = DateTime.Now,
-						Text = "If you abide in Me, and My words abide in you, ask whatever you wish, and it will be done for you.",
-						MessageId = Guid.NewGuid(),
-						Author="John 15:7 NASB"
-					},
-					new Message()
-					{
-						DateTimeToDisplay = DateTime.Now,
-						Text = "Be anxious for nothing, but in everything by prayer and supplication with thanksgiving let your requests be made known to God.",
-						MessageId = Guid.NewGuid(),
-						Author="Philippians 4:6 NASB"
-					},
-					new Message()
-					{
-						DateTimeToDisplay = DateTime.Now.AddDays(-1),
-						Text = "Therefore I say to you, all things for which you pray and ask, believe that you have received them, and they will be granted you.",
-						MessageId = Guid.NewGuid(),
-						Author="Mark 11:24 NASB"
-					},
-					new Message()
-					{
-						DateTimeToDisplay = DateTime.Now.AddDays(-1),
-						Text = "And when you are praying, do not use meaningless repetition as the Gentiles do, for they suppose that they will be heard for their many words.",
-						MessageId = Guid.NewGuid(),
-						Author="Mark 11:24 NASB"
-					},
-					new Message()
-					{
-						DateTimeToDisplay = DateTime.Now.AddDays(-7),
-						Text = "So I say to you, ask, and it will be given to you; seek, and you will find; knock, and it will be opened to you.",
-						MessageId = Guid.NewGuid(),
-						Author="Mark 11:24 NASB"
-					},
-				}
+				Messages = _messages
             };
 
 			return new BaseResponse<GetMessagesResponse>() 
 			{
 			    Content = content,
 			    StatusCode = System.Net.HttpStatusCode.OK
+			};
+		}
+
+		public async Task<BaseResponse<GetMessageResponse>> GetMessage(GetMessageRequest request)
+		{
+			await Task.Delay(delay);
+			var content = new GetMessageResponse()
+			{
+				Payload = _messages.First(x => x.MessageId == request.MessageId)
+			};
+
+			return new BaseResponse<GetMessageResponse>()
+			{
+				Content = content,
+				StatusCode = System.Net.HttpStatusCode.OK
 			};
 		}
 
@@ -466,6 +437,58 @@ namespace GodSpeak
 				StartDateTime = DateTime.Now.Date.AddHours(10),
 				EndDateTime = DateTime.Now.Date.AddHours(20),
 				NumberOfMessages = 3
+			},
+		};
+
+		private static List<Message> _messages = new List<Message>() 
+		{
+			new Message()
+			{
+				DateTimeToDisplay = DateTime.Now.AddSeconds(30),
+				AfterVerse="Truly I say to you, whoever says to this mountain, 'Be taken up and cast into the sea,' and does not doubt in his heart, but believes that what he says is going to happen, it will be granted him.",
+				Text = "If you abide in Me, and My words abide in you, ask whatever you wish, and it will be done for you.",
+				BeforeVerse="Therefore I say to you, all things for which you pray and ask, believe that you have received them, and they will be granted you.",
+				MessageId = Guid.NewGuid(),
+				Author="John 15:7 NASB"
+			},
+			new Message()
+			{
+				DateTimeToDisplay = DateTime.Now,
+				AfterVerse="Truly I say to you, whoever says to this mountain, 'Be taken up and cast into the sea,' and does not doubt in his heart, but believes that what he says is going to happen, it will be granted him.",
+				Text = "If you abide in Me, and My words abide in you, ask whatever you wish, and it will be done for you.",
+				BeforeVerse="Therefore I say to you, all things for which you pray and ask, believe that you have received them, and they will be granted you.",
+				MessageId = Guid.NewGuid(),
+				Author="John 15:7 NASB"
+			},
+			new Message()
+			{
+				DateTimeToDisplay = DateTime.Now,
+				AfterVerse="Therefore I say to you, all things for which you pray and ask, believe that you have received them, and they will be granted you.",
+				Text = "Be anxious for nothing, but in everything by prayer and supplication with thanksgiving let your requests be made known to God.",
+				MessageId = Guid.NewGuid(),
+				Author="Philippians 4:6 NASB"
+			},
+			new Message()
+			{
+				DateTimeToDisplay = DateTime.Now.AddDays(-1),
+				Text = "Therefore I say to you, all things for which you pray and ask, believe that you have received them, and they will be granted you.",
+				BeforeVerse="Truly I say to you, whoever says to this mountain, 'Be taken up and cast into the sea,' and does not doubt in his heart, but believes that what he says is going to happen, it will be granted him.",
+				MessageId = Guid.NewGuid(),
+				Author="Mark 11:24 NASB"
+			},
+			new Message()
+			{
+				DateTimeToDisplay = DateTime.Now.AddDays(-1),
+				Text = "And when you are praying, do not use meaningless repetition as the Gentiles do, for they suppose that they will be heard for their many words.",
+				MessageId = Guid.NewGuid(),
+				Author="Mark 11:24 NASB"
+			},
+			new Message()
+			{
+				DateTimeToDisplay = DateTime.Now.AddDays(-7),
+				Text = "So I say to you, ask, and it will be given to you; seek, and you will find; knock, and it will be opened to you.",
+				MessageId = Guid.NewGuid(),
+				Author="Mark 11:24 NASB"
 			},
 		};
 	}

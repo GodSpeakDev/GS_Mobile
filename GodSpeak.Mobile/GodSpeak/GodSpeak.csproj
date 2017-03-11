@@ -94,6 +94,9 @@
     <EmbeddedResource Include="Pages\MyProfilePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\MessageDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -282,6 +285,13 @@
     <Compile Include="CustomComponents\StackList.cs" />
     <Compile Include="CustomComponents\HeaderOverlay.cs" />
     <Compile Include="MvvmCross\OpenMenuPresentationHint.cs" />
+    <Compile Include="ViewModels\MessageDetailViewModel.cs" />
+    <Compile Include="Pages\MessageDetailPage.xaml.cs">
+      <DependentUpon>MessageDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomComponents\MessageDetailGradientView.cs" />
+    <Compile Include="Api\Request\GetMessageRequest.cs" />
+    <Compile Include="Api\Response\GetMessageResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

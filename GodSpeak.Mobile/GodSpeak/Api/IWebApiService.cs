@@ -16,6 +16,7 @@ namespace GodSpeak
 		Task<BaseResponse<GetInviteBundlesResponse>> GetInviteBundles(GetInviteBundlesRequest request);
 		Task<BaseResponse<PurchaseInviteResponse>> PurchaseInvite(PurchaseInviteRequest request);
 		Task<BaseResponse<GetMessagesResponse>> GetMessages(GetMessagesRequest request);
+		Task<BaseResponse<GetMessageResponse>> GetMessage(GetMessageRequest request);
 		Task<BaseResponse<ForgotPasswordResponse>> ForgotPassword(ForgotPasswordRequest request);
 		Task<BaseResponse<RegisterUserResponse>> RegisterUser(RegisterUserRequest request);
 		Task<BaseResponse<SaveCategoriesResponse>> SaveCategories(SaveCategoriesRequest request);

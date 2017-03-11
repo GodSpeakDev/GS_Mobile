@@ -15,6 +15,18 @@ namespace GodSpeak
 			set;
 		}
 
+		public string BeforeVerse
+		{
+			get;
+			set;
+		}
+
+		public string AfterVerse
+		{
+			get;
+			set;
+		}
+
 		public string Text
 		{
 			get;
