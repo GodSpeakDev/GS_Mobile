@@ -6,10 +6,7 @@
 		xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
 		xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
 		Title="Messages"
-		x:Class="GodSpeak.MessagePage">	
-	<ContentPage.ToolbarItems>
-		<ToolbarItem Text="Impact" Command="{Binding GoToImpactCommand}" />
-	</ContentPage.ToolbarItems>
+		x:Class="GodSpeak.MessagePage">		
 	<ContentPage.Resources>
 		<ResourceDictionary>
 			<pages:DayConverter x:Key="dayConverter" />		
@@ -137,34 +134,28 @@
 					<ColumnDefinition Width="*" />
 					<ColumnDefinition Width="auto" />
 				</Grid.ColumnDefinitions>	
-				<Image					
+				<views:ImageButton					
 					Grid.Column="0"
 					HorizontalOptions="Center"
 					VerticalOptions="Center"
 					HeightRequest="25"
 					WidthRequest="25"
-					Source="hamburgerMenu.png">
-					<Image.GestureRecognizers>
-			        	<TapGestureRecognizer Command="{Binding OpenDrawerMenuCommand}" />
-			    	</Image.GestureRecognizers>
-				</Image>
+					Source="hamburgerMenu.png"
+					Command="{Binding OpenDrawerMenuCommand}"/>
 				<Image
 					Grid.Column="1"
 					HorizontalOptions="Center"
 					VerticalOptions="Center"
 					Source="logo.png"					
 				/>
-				<Image
+				<views:ImageButton
 					Grid.Column="2"
 					HorizontalOptions="Center"
 					VerticalOptions="Center"
 					HeightRequest="25"
 					WidthRequest="25"
-					Source="impactWithNotification.png">
-					<Image.GestureRecognizers>
-			        	<TapGestureRecognizer Command="{Binding GoToImpactCommand}" />
-			    	</Image.GestureRecognizers>
-				</Image>
+					Command="{Binding GoToImpactCommand}"
+					Source="impactWithNotification.png" />				
 			</views:HeaderOverlay>
 		</AbsoluteLayout>
 	</ContentPage.Content>

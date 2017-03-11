@@ -65,20 +65,15 @@
 						Maximum="{Binding MaximumDayValue}"
 						Value="{Binding DayValue}"
 					/>
-					<Image					
+					<views:ImageButton					
 						Source="play_icon.png"
-						IsVisible="{Binding IsPlaying, Converter={StaticResource invBoolConverter}}">
-						<Image.GestureRecognizers>
-				        	<TapGestureRecognizer Command="{Binding PlayCommand}" />
-				    	</Image.GestureRecognizers>
-					</Image>
-					<Image					
+						IsVisible="{Binding IsPlaying, Converter={StaticResource invBoolConverter}}"
+						Command="{Binding PlayCommand}" 
+					/>
+					<views:ImageButton					
 						Source="play_icon.png"
-						IsVisible="{Binding IsPlaying}">
-						<Image.GestureRecognizers>
-				        	<TapGestureRecognizer Command="{Binding StopCommand}" />
-				    	</Image.GestureRecognizers>
-					</Image>
+						IsVisible="{Binding IsPlaying}"
+						Command="{Binding StopCommand}" />
 				</StackLayout>
 			</StackLayout>
 			<views:HeaderOverlay

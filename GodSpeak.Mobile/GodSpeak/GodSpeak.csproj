@@ -292,6 +292,7 @@
     <Compile Include="CustomComponents\MessageDetailGradientView.cs" />
     <Compile Include="Api\Request\GetMessageRequest.cs" />
     <Compile Include="Api\Response\GetMessageResponse.cs" />
+    <Compile Include="CustomComponents\ImageButton.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />
