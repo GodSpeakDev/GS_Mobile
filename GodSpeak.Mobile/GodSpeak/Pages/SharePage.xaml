@@ -9,56 +9,53 @@
 		<AbsoluteLayout
 			HorizontalOptions="FillAndExpand"
 			VerticalOptions="FillAndExpand">
-			<Image
-				AbsoluteLayout.LayoutFlags="XProportional,WidthProportional"
-				AbsoluteLayout.LayoutBounds="0,0,1,250"
-				Source="share_background.png"
-				Aspect="AspectFill">
-			</Image>
-			<views:CustomCarouselView 
-				AbsoluteLayout.LayoutFlags="XProportional,WidthProportional"
-				AbsoluteLayout.LayoutBounds="0,0,1,250"
-				HorizontalOptions="FillAndExpand"
-				VerticalOptions="FillAndExpand"
-				ItemTemplate="{StaticResource pageSelector}"
-				ItemsSource="{Binding Pages}">    		
-				<views:CustomCarouselView.Resources>
-        			<ResourceDictionary>
-            			<views:SharePageSelector x:Key="pageSelector" />
-        			</ResourceDictionary>
-    			</views:CustomCarouselView.Resources>
-  			</views:CustomCarouselView>
 			<Grid
-				Padding="0,20,10,0"
-				AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"
-				AbsoluteLayout.LayoutBounds="0,0,1,60">
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="auto" />
-					<ColumnDefinition Width="*" />
-				</Grid.ColumnDefinitions>												
-				<StackLayout
+				RowSpacing="0"
+				AbsoluteLayout.LayoutFlags="All"
+				AbsoluteLayout.LayoutBounds="0,0,1,1">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="*" />
+					<RowDefinition Height="50" />
+					<RowDefinition Height="auto" />
+				</Grid.RowDefinitions>
+				<Image
 					Grid.Row="0"
-					Grid.Column="0"
+					Grid.RowSpan="2"
+					Source="share_background.png"
+					Aspect="AspectFill" />
+
+				<views:CustomCarouselView 
+					Grid.Row="0"
+					Grid.RowSpan="2"
+					HorizontalOptions="FillAndExpand"
 					VerticalOptions="FillAndExpand"
-					Padding="10,0"
-					WidthRequest="60"
-					>
-					<StackLayout.GestureRecognizers>
-			        	<TapGestureRecognizer Command="{Binding CloseCommand}" />
-			    	</StackLayout.GestureRecognizers>
-					<Label						
-						VerticalOptions="CenterAndExpand"
-						HorizontalOptions="StartAndExpand"
-						TextColor="{x:Static views:ColorHelper.Secondary}"
-						FontSize="12"
-						Text="Back">
-					</Label>
-				</StackLayout>	
-			</Grid>
-			<views:GrayGradientBackgroundView
-				AbsoluteLayout.LayoutFlags="XProportional,WidthProportional"
-					AbsoluteLayout.LayoutBounds="0,250,1,AutoSize"
-			>
+					Position="{Binding SelectedPosition}"
+					ItemTemplate="{StaticResource pageSelector}"
+					ItemsSource="{Binding Pages}">    		
+					<views:CustomCarouselView.Resources>
+	        			<ResourceDictionary>
+	            			<views:SharePageSelector x:Key="pageSelector" />
+	        			</ResourceDictionary>
+	    			</views:CustomCarouselView.Resources>
+	  			</views:CustomCarouselView>
+
+				<Image 
+					Grid.Row="1"
+					HeightRequest="50"
+					Source="messagesBackground.png"
+					Aspect="Fill"
+					HorizontalOptions="FillAndExpand"																						
+				/>
+
+				<views:Pager
+					Grid.Row="1"
+					NumberOfDots="2"
+					SelectedDotIndex="{Binding SelectedPosition}"
+				/>
+
+				<views:GrayGradientBackgroundView
+					Grid.Row="2"
+				>
 				<Grid				
 					VerticalOptions="FillAndExpand">
 					<Grid.RowDefinitions>
@@ -83,7 +80,7 @@
 						VerticalOptions="CenterAndExpand"
 						HorizontalOptions="StartAndExpand"
 						TextColor="{x:Static views:ColorHelper.Secondary}"
-						FontSize="14"
+						FontSize="12"
 						Text="{x:Static res:Text.ShareDescription}">
 					</Label>
 						<views:StackList
@@ -112,6 +109,7 @@
 										/>
 										<views:ActionButton
 											WidthRequest="80"
+											FontSize="16"
 											Text="{Binding CostDescription}"
 										/>	
 									</StackLayout>
@@ -129,6 +127,34 @@
 						</views:StackList>				
 				</Grid>
 			</views:GrayGradientBackgroundView>
+			</Grid>
+			<Grid
+				Padding="0,20,10,0"
+				AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"
+				AbsoluteLayout.LayoutBounds="0,0,1,60">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="auto" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>												
+				<StackLayout
+					Grid.Row="0"
+					Grid.Column="0"
+					VerticalOptions="FillAndExpand"
+					Padding="10,0"
+					WidthRequest="60"
+					>
+					<StackLayout.GestureRecognizers>
+			        	<TapGestureRecognizer Command="{Binding CloseCommand}" />
+			    	</StackLayout.GestureRecognizers>
+					<Label						
+						VerticalOptions="CenterAndExpand"
+						HorizontalOptions="StartAndExpand"
+						TextColor="{x:Static views:ColorHelper.Secondary}"
+						FontSize="12"
+						Text="Back">
+					</Label>
+				</StackLayout>	
+			</Grid>
 		</AbsoluteLayout>
 	</ContentPage>
 	<ContentPage Icon="gift_claimed_icon.png" Title="6 Gifts Claimed">

@@ -23,6 +23,13 @@ namespace GodSpeak
 			set { SetProperty(ref _bundles, value); }
 		}
 
+		private int _selectedPosition;
+		public int SelectedPosition
+		{
+			get { return _selectedPosition; }
+			set { SetProperty(ref _selectedPosition, value); }
+		}
+
 		public ShareViewModel(IDialogService dialogService, IWebApiService webApi) : base(dialogService)
 		{
 			_webApi = webApi;

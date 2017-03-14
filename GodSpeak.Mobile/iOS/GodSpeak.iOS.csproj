@@ -209,6 +209,7 @@
     <Compile Include="Renderers\PlusMinusButtonViewRenderer.cs" />
     <Compile Include="Renderers\MessageBalloonRenderer.cs" />
     <Compile Include="Renderers\CustomMapRenderer.cs" />
+    <Compile Include="Renderers\DotRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\profile_placeholder.png" />
