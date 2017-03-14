@@ -9,14 +9,13 @@ namespace GodSpeak
         public static int ScreenWidth = 320;
 
         public override void Initialize ()
-        {
+        {			
             CreatableTypes ()
                 .EndingWith ("Service")
                 .AsInterfaces ()
                 .RegisterAsLazySingleton ();
 
             CreatableTypes ().Containing ("DialogService").AsInterfaces ().RegisterAsDynamic ();
-
             RegisterAppStart<GetStartedViewModel> ();
         }
     }

@@ -530,4 +530,24 @@ Claimed</value>
 		xml:space="preserve">
     	<value>{0} Gifts</value>
   	</data>
+	<data
+		name="ShareWithFriendsTitle"
+		xml:space="preserve">
+    	<value>Please Select</value>
+  	</data>
+	<data
+		name="ShareWithFriendsDescription"
+		xml:space="preserve">
+    	<value>How would you like to share your gift code?</value>
+  	</data>
+	<data
+		name="Individually"
+		xml:space="preserve">
+    	<value>Individually</value>
+  	</data>
+	<data
+		name="ViaEmail"
+		xml:space="preserve">
+    	<value>ViaEmail</value>
+  	</data>	
 </root>

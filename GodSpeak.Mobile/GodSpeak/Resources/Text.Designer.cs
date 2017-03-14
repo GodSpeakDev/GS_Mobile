@@ -646,5 +646,29 @@ namespace GodSpeak.Resources {
                 return ResourceManager.GetString("InviteBundleDescription", resourceCulture);
             }
         }
+        
+        public static string ShareWithFriendsTitle {
+            get {
+                return ResourceManager.GetString("ShareWithFriendsTitle", resourceCulture);
+            }
+        }
+        
+        public static string ShareWithFriendsDescription {
+            get {
+                return ResourceManager.GetString("ShareWithFriendsDescription", resourceCulture);
+            }
+        }
+        
+        public static string Individually {
+            get {
+                return ResourceManager.GetString("Individually", resourceCulture);
+            }
+        }
+        
+        public static string ViaEmail {
+            get {
+                return ResourceManager.GetString("ViaEmail", resourceCulture);
+            }
+        }
     }
 }

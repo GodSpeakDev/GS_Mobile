@@ -35,13 +35,16 @@
 				Grid.Column="0"
 				VerticalOptions="Center"
 				FontSize="14"
-				Text="{x:Static res:Text.ShareWithFriend}" />
+				Text="{x:Static res:Text.ShareWithFriend}"
+				Command="{Binding ShareWithFriendsCommand}"
+			/>
 			<views:SecondaryButton
 				Grid.Row="1"
 				Grid.Column="1"
 				VerticalOptions="Center"
 				FontSize="14"
 				Text="{x:Static res:Text.ShareWithWorld}"
+				Command="{Binding ShareWithWorldCommand}"
 			/>
 		</Grid>
 	</ContentView.Content>

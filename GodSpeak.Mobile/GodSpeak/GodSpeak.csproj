@@ -317,6 +317,7 @@
     <Compile Include="ViewModels\Share\ShareTemplateViewModel.cs" />
     <Compile Include="ViewModels\Share\DidYouKnowTemplateViewModel.cs" />
     <Compile Include="CustomComponents\SecondaryButton.cs" />
+    <Compile Include="ViewModels\Share\UnclaimedGiftViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />
