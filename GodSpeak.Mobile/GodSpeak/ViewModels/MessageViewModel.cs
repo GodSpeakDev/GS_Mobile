@@ -50,6 +50,15 @@ namespace GodSpeak
 			}
 		}
 
+		private MvxCommand _goToShareCommand;
+		public MvxCommand GoToShareCommand
+		{
+			get
+			{
+				return _goToShareCommand ?? (_goToShareCommand = new MvxCommand(DoGoToShareCommand));
+			}
+		}
+
 		private MvxCommand _openDrawerMenuCommand;
 		public MvxCommand OpenDrawerMenuCommand
 		{
@@ -97,6 +106,11 @@ namespace GodSpeak
 		private void DoGoToImpactCommand()
 		{
 			this.ShowViewModel<ImpactViewModel>();
+		}
+
+		private void DoGoToShareCommand()
+		{
+			this.ShowViewModel<ShareViewModel>();
 		}
 
 		private void DoOpenDrawerMenuCommand()

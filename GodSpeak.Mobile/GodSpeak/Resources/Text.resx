@@ -480,4 +480,54 @@ Delivered</value>
     	<value>Gifts
 Claimed</value>
   	</data>	
+	<data
+		name="ShareTitle"
+		xml:space="preserve">
+    	<value>Want to make a bigger impact?</value>
+  	</data>	
+	<data
+		name="ShareDescription"
+		xml:space="preserve">
+    	<value>You can purchase more gifts right here, right now!</value>
+  	</data>	
+	<data
+		name="ShareWithFriend"
+		xml:space="preserve">
+    	<value>Share with Friend</value>
+  	</data>	
+	<data
+		name="ShareWithWorld"
+		xml:space="preserve">
+    	<value>Share with World</value>
+  	</data>	
+	<data
+		name="ShareGiftsLeft"
+		xml:space="preserve">
+    	<value>You have 12 gifts left</value>
+  	</data>	
+	<data
+		name="DidYouKnow"
+		xml:space="preserve">
+    	<value>Did you know?</value>
+  	</data>	
+	<data
+		name="DidYouKnowDeliveredGifts"
+		xml:space="preserve">
+    	<value>We have delivered 12,345 gifts.</value>
+  	</data>
+	<data
+		name="DidYouKnowPurchasedGifts"
+		xml:space="preserve">
+    	<value>Users have purchased 1,523 gifts.</value>
+  	</data>
+	<data
+		name="DidYouKnowDonatedGifts"
+		xml:space="preserve">
+    	<value>235 were donated to the world.</value>
+  	</data>
+	<data
+		name="InviteBundleDescription"
+		xml:space="preserve">
+    	<value>{0} Gifts</value>
+  	</data>
 </root>

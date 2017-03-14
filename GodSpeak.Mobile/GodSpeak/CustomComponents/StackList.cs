@@ -22,14 +22,7 @@ namespace GodSpeak
 
 		public StackList()
 		{
-			//stackLayout = new StackLayout () {
-			//    HorizontalOptions = LayoutOptions.FillAndExpand,
-			//    Orientation = StackOrientation.Horizontal,
-			//    Padding = 0,
-			//    Spacing = 0
-
-			//};
-			//Content = stackLayout;
+			
 		}
 
 		public event EventHandler SelectedItemChanged;
@@ -64,6 +57,15 @@ namespace GodSpeak
 		{
 			get { return (DataTemplate)GetValue(ItemTemplateProperty); }
 			set { SetValue(ItemTemplateProperty, value); }
+		}
+
+		public static readonly BindableProperty SeparatorTemplateProperty =
+			BindableProperty.Create<StackList, DataTemplate>(p => p.ItemTemplate, default(DataTemplate));
+
+		public DataTemplate SeparatorTemplate
+		{
+			get { return (DataTemplate)GetValue(SeparatorTemplateProperty); }
+			set { SetValue(SeparatorTemplateProperty, value); }
 		}
 
 		private static void ItemsSourceChanged(BindableObject bindable, IList oldValue, IList newValue)
@@ -121,8 +123,22 @@ namespace GodSpeak
 			if (ItemsSource == null)
 				return;
 
-			foreach (var item in ItemsSource)
+			for (int i = 0; i < ItemsSource.Count; i++)
+			{
+				if (i != 0 && SeparatorTemplate != null)
+				{
+					var separator = SeparatorTemplate.CreateContent() as View;
+					Children.Add(separator);
+				}
+
+				var item = ItemsSource[i];
 				Children.Add(GetItemView(item));
+			}
+
+			foreach (var item in ItemsSource)
+			{
+				
+			}
 
 			SelectedItem = null;
 		}

@@ -3,7 +3,6 @@
 		xmlns="http://xamarin.com/schemas/2014/forms" 
 		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 		xmlns:pages="clr-namespace:GodSpeak;assembly=GodSpeak"
-		xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
 		xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
 		Title="Messages"
 		x:Class="GodSpeak.MessagePage">		
@@ -35,7 +34,7 @@
 							HeightRequest="200"
 							IsClippedToBounds="true"
 						>
-							<maps:Map 	
+							<views:CustomMap 	
 								AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"
 								AbsoluteLayout.LayoutBounds="0,0,1,200"
 	            				x:Name="MyMap"
@@ -50,10 +49,11 @@
 								Aspect="Fill"
 								HorizontalOptions="FillAndExpand"																						
 							/>
-							<Image 
+							<views:ImageButton 
 								AbsoluteLayout.LayoutFlags="XProportional,YProportional"
 								AbsoluteLayout.LayoutBounds="1,1,75,75"
 								Source="invitesFAB.png"														
+								Command="{Binding GoToShareCommand}"
 							/>								
 						</AbsoluteLayout>
 					</ListView.Header>

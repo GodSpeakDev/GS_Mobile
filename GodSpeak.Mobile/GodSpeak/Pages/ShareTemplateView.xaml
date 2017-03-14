@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+	xmlns="http://xamarin.com/schemas/2014/forms" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
+	xmlns:res="clr-namespace:GodSpeak.Resources;assembly=GodSpeak"
+	x:Class="GodSpeak.ShareTemplateView">
+	<ContentView.Content>
+		<Grid
+			ColumnSpacing="10"
+			Padding="10"
+			>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*" />
+				<RowDefinition Height="auto" />
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="*" />
+			</Grid.ColumnDefinitions>
+			<Label	
+				Grid.Row="0"
+				Grid.Column="0"
+				Grid.ColumnSpan="2"
+				VerticalOptions="End"
+				HorizontalOptions="Center"
+				TextColor="{x:Static views:ColorHelper.Secondary}"
+				FontSize="24"
+				Margin="0,0,0,15"
+				FontAttributes="Bold"
+				Text="{x:Static res:Text.ShareGiftsLeft}">
+			</Label>
+			<views:ActionButton 
+				Grid.Row="1"
+				Grid.Column="0"
+				VerticalOptions="Center"
+				FontSize="14"
+				Text="{x:Static res:Text.ShareWithFriend}" />
+			<views:SecondaryButton
+				Grid.Row="1"
+				Grid.Column="1"
+				VerticalOptions="Center"
+				FontSize="14"
+				Text="{x:Static res:Text.ShareWithWorld}"
+			/>
+		</Grid>
+	</ContentView.Content>
+</ContentView>

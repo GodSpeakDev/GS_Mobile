@@ -97,6 +97,15 @@
     <EmbeddedResource Include="Pages\MessageDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\SharePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ShareTemplateView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\DidYouKnowTemplateView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -293,6 +302,21 @@
     <Compile Include="Api\Request\GetMessageRequest.cs" />
     <Compile Include="Api\Response\GetMessageResponse.cs" />
     <Compile Include="CustomComponents\ImageButton.cs" />
+    <Compile Include="CustomComponents\CustomMap.cs" />
+    <Compile Include="Pages\SharePage.xaml.cs">
+      <DependentUpon>SharePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SharePageSelector.cs" />
+    <Compile Include="Pages\ShareTemplateView.xaml.cs">
+      <DependentUpon>ShareTemplateView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\DidYouKnowTemplateView.xaml.cs">
+      <DependentUpon>DidYouKnowTemplateView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Share\ShareViewModel.cs" />
+    <Compile Include="ViewModels\Share\ShareTemplateViewModel.cs" />
+    <Compile Include="ViewModels\Share\DidYouKnowTemplateViewModel.cs" />
+    <Compile Include="CustomComponents\SecondaryButton.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />
@@ -310,6 +334,7 @@
     <Folder Include="MediaPicker\" />
     <Folder Include="Helpers\" />
     <Folder Include="Extensions\" />
+    <Folder Include="ViewModels\Share\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">

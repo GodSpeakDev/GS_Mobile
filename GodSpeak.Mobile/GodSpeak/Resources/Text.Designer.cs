@@ -592,5 +592,59 @@ namespace GodSpeak.Resources {
                 return ResourceManager.GetString("GiftsClaimed", resourceCulture);
             }
         }
+        
+        public static string ShareDescription {
+            get {
+                return ResourceManager.GetString("ShareDescription", resourceCulture);
+            }
+        }
+        
+        public static string ShareWithFriend {
+            get {
+                return ResourceManager.GetString("ShareWithFriend", resourceCulture);
+            }
+        }
+        
+        public static string ShareWithWorld {
+            get {
+                return ResourceManager.GetString("ShareWithWorld", resourceCulture);
+            }
+        }
+        
+        public static string ShareGiftsLeft {
+            get {
+                return ResourceManager.GetString("ShareGiftsLeft", resourceCulture);
+            }
+        }
+        
+        public static string DidYouKnow {
+            get {
+                return ResourceManager.GetString("DidYouKnow", resourceCulture);
+            }
+        }
+        
+        public static string DidYouKnowDeliveredGifts {
+            get {
+                return ResourceManager.GetString("DidYouKnowDeliveredGifts", resourceCulture);
+            }
+        }
+        
+        public static string DidYouKnowPurchasedGifts {
+            get {
+                return ResourceManager.GetString("DidYouKnowPurchasedGifts", resourceCulture);
+            }
+        }
+        
+        public static string DidYouKnowDonatedGifts {
+            get {
+                return ResourceManager.GetString("DidYouKnowDonatedGifts", resourceCulture);
+            }
+        }
+        
+        public static string InviteBundleDescription {
+            get {
+                return ResourceManager.GetString("InviteBundleDescription", resourceCulture);
+            }
+        }
     }
 }

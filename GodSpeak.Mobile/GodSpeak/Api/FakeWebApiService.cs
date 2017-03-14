@@ -237,26 +237,38 @@ namespace GodSpeak
 						new InviteBundle() 
 						{
 							InviteBundleId=Guid.NewGuid(),
-							Cost = 1.99m,
-							NumOfInvites=1,
+							Cost = 9.97m,
+							NumOfInvites=3,
 							ItunesId="1",
-							PlaystoreId="1"
+							PlaystoreId="1",
+							CostDescription = "$1.99"
 						},
 						new InviteBundle()
 						{
 							InviteBundleId=Guid.NewGuid(),
-							Cost = 3.99m,
-							NumOfInvites=5,
-							ItunesId="2",
-							PlaystoreId="2"
-						},
-						new InviteBundle()
-						{
-							InviteBundleId=Guid.NewGuid(),
-							Cost = 6.99m,
+							Cost = 19.90m,
 							NumOfInvites=10,
+							ItunesId="2",
+							PlaystoreId="2",
+							CostDescription = "$4.99"
+						},
+						new InviteBundle()
+						{
+							InviteBundleId=Guid.NewGuid(),
+							Cost = 24.75m,
+							NumOfInvites=25,
 							ItunesId="3",
-							PlaystoreId="3"
+							PlaystoreId="3",
+							CostDescription = "$24.75"
+						},
+						new InviteBundle()
+						{
+							InviteBundleId=Guid.NewGuid(),
+							Cost = 44.50m,
+							NumOfInvites=50,
+							ItunesId="4",
+							PlaystoreId="4",
+							CostDescription = "$44.50"
 						},
 					}
 				}
