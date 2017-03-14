@@ -39,11 +39,18 @@
 		</ContentView>
 		<AbsoluteLayout					
 			Grid.Row="1"
-			BackgroundColor="Red"
 			>
-			<Image
+			<Image				
 				Source="menu_image.jpg"
 				Aspect="Fill"
+			/>
+			<views:ActionButton
+				Margin="10"
+				AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"
+				AbsoluteLayout.LayoutBounds="0,1,1,AutoSize"
+				Text="Share Your 123 Gifts"
+				Image="bundle_icon.png"
+				Command="{Binding ShareCommand}"
 			/>
 		</AbsoluteLayout>
 		<StackLayout

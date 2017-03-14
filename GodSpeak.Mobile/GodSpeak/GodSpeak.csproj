@@ -334,6 +334,7 @@
     <Compile Include="CustomComponents\CustomImage.cs" />
     <Compile Include="Converters\PeopleGiftedTextConverter.cs" />
     <Compile Include="Converters\PeopleGiftButtonTextConverter.cs" />
+    <Compile Include="MvvmCross\CloseMenuPresentationHint.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

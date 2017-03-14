@@ -73,6 +73,19 @@ namespace GodSpeak
 					mainPage.IsPresented = true;
 				}
 			}
+			else if (hint is CloseMenuPresentationHint)
+			{
+				var mainPage = MvxFormsApp.MainPage as MasterDetailPage;
+
+				if (mainPage == null)
+				{
+					Mvx.TaggedTrace("MvxFormsPresenter:ChangePresentation()", "Oops! Don't know what to do");
+				}
+				else
+				{
+					mainPage.IsPresented = false;
+				}
+			}
 		}
 
 		public override void Show(MvxViewModelRequest request)
