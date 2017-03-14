@@ -155,6 +155,7 @@
     <Compile Include="Services\ShareService.cs" />
     <Compile Include="Services\ReminderService.cs" />
     <Compile Include="Renderers\CustomMapRenderer.cs" />
+    <Compile Include="Renderers\CustomImageRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

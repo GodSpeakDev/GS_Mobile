@@ -21,6 +21,22 @@ namespace GodSpeak
 			entry.OutlineColor = newValue;
 		}
 
+		public static readonly BindableProperty HasEmptyValueProperty =
+			BindableProperty.Create<CustomPicker, bool>(
+				p => p.HasEmptyValue, true, BindingMode.TwoWay, propertyChanged: HasEmptyValueChanged);
+
+		public bool HasEmptyValue
+		{
+			get { return (bool)this.GetValue(HasEmptyValueProperty); }
+			set { this.SetValue(HasEmptyValueProperty, value); }
+		}
+
+		private static void HasEmptyValueChanged(BindableObject bindable, bool oldvalue, bool newValue)
+		{
+			var entry = (CustomPicker)bindable;
+			entry.HasEmptyValue = newValue;
+		}
+
 		private bool _isFocused;
 		public new bool IsFocused
 		{
@@ -53,7 +69,7 @@ namespace GodSpeak
 			}
 			else
 			{				
-				OutlineColor = this.SelectedIndex == 0 ? ColorHelper.OutlinePlaceHolder : ColorHelper.Secondary;
+				OutlineColor = this.SelectedIndex == 0 && HasEmptyValue ? ColorHelper.OutlinePlaceHolder : ColorHelper.Secondary;
 			}
 		}
 
@@ -75,7 +91,7 @@ namespace GodSpeak
 			{
 				TextColor = ColorHelper.TextInputFocusedText;
 			}
-			else if (SelectedIndex > 0)
+			else if (SelectedIndex > 0 || !HasEmptyValue)
 			{
 				TextColor = ColorHelper.Secondary;
 			}

@@ -210,6 +210,7 @@
     <Compile Include="Renderers\MessageBalloonRenderer.cs" />
     <Compile Include="Renderers\CustomMapRenderer.cs" />
     <Compile Include="Renderers\DotRenderer.cs" />
+    <Compile Include="Renderers\CustomImageRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\profile_placeholder.png" />

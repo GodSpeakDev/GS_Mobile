@@ -16,6 +16,7 @@ namespace GodSpeak
 			_shareService = shareService;
 
 			UnclaimedGiftViewModel = new UnclaimedGiftViewModel(new DialogService(), webApi, shareService);
+			ClaimedGiftViewModel = new ClaimedGiftViewModel(new DialogService(), webApi, shareService);
 		}
 
 		private UnclaimedGiftViewModel _unclaimedGiftViewModel;
@@ -25,9 +26,17 @@ namespace GodSpeak
 			get { return _unclaimedGiftViewModel;}
 		}
 
+		private ClaimedGiftViewModel _claimedGiftViewModel;
+		public ClaimedGiftViewModel ClaimedGiftViewModel
+		{
+			private set { SetProperty(ref _claimedGiftViewModel, value); }
+			get { return _claimedGiftViewModel; }
+		}
+
 		public async void Init()
 		{
 			await UnclaimedGiftViewModel.Init();
+			await ClaimedGiftViewModel.Init();
 		}
 	}
 }

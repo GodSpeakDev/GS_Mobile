@@ -106,6 +106,12 @@
     <EmbeddedResource Include="Pages\DidYouKnowTemplateView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ClaimedGiftPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\UnclaimedGiftPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -318,6 +324,16 @@
     <Compile Include="ViewModels\Share\DidYouKnowTemplateViewModel.cs" />
     <Compile Include="CustomComponents\SecondaryButton.cs" />
     <Compile Include="ViewModels\Share\UnclaimedGiftViewModel.cs" />
+    <Compile Include="ViewModels\Share\ClaimedGiftViewModel.cs" />
+    <Compile Include="Pages\ClaimedGiftPage.xaml.cs">
+      <DependentUpon>ClaimedGiftPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UnclaimedGiftPage.xaml.cs">
+      <DependentUpon>UnclaimedGiftPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomComponents\CustomImage.cs" />
+    <Compile Include="Converters\PeopleGiftedTextConverter.cs" />
+    <Compile Include="Converters\PeopleGiftButtonTextConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

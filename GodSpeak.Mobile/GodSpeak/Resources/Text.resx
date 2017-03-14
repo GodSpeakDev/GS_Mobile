@@ -548,6 +548,36 @@ Claimed</value>
 	<data
 		name="ViaEmail"
 		xml:space="preserve">
-    	<value>ViaEmail</value>
-  	</data>	
+    	<value>Via Email</value>
+  	</data>
+	<data
+		name="SortByClaimDate"
+		xml:space="preserve">
+    	<value>Sort By Claim Date</value>
+  	</data>
+	<data
+		name="CongratulateThem"
+		xml:space="preserve">
+    	<value>Congratulate Them</value>
+  	</data>
+	<data
+		name="EncourageThem"
+		xml:space="preserve">
+    	<value>Encourage Them</value>
+  	</data>
+	<data
+		name="ClaimedDateDescription"
+		xml:space="preserve">
+    	<value>Claimed Gift on {0:MM/dd}</value>
+  	</data>
+	<data
+		name="HasGiftedPeopleText"
+		xml:space="preserve">
+    	<value>Has gifted {0} people</value>
+  	</data>
+	<data
+		name="HasNotGiftedPeopleText"
+		xml:space="preserve">
+    	<value>Has not gifted anyone</value>
+  	</data>
 </root>
