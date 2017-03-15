@@ -44,6 +44,11 @@
 				Source="menu_image.jpg"
 				Aspect="Fill"
 			/>
+			<Image 
+				AbsoluteLayout.LayoutFlags="XProportional"
+				AbsoluteLayout.LayoutBounds="0.8,0,35,39"
+				Source="blue_down_arrow.png" 
+			/>
 			<views:ActionButton
 				Margin="10"
 				AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"
