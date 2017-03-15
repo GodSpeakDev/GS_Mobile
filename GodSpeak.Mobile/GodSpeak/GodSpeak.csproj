@@ -343,6 +343,7 @@
     </Compile>
     <Compile Include="Extensions\ViewExtensions.cs" />
     <Compile Include="CustomComponents\CustomListView.cs" />
+    <Compile Include="CustomComponents\ImpactMap.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

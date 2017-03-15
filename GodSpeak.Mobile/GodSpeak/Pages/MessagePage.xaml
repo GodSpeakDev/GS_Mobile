@@ -35,14 +35,14 @@
 							HeightRequest="200"
 							IsClippedToBounds="true"
 						>
-							<views:CustomMap 	
+							<views:ImpactMap 	
 								AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"
 								AbsoluteLayout.LayoutBounds="0,0,1,200"
 	            				x:Name="MyMap"
 	            				IsShowingUser="true"
 								HasZoomEnabled="true"
-	            				MapType="Street">													
-							</views:CustomMap>
+	            				MapType="Street"
+								ItemsSource="{Binding ShownImpactDays}"/>																				
 							<BoxView
 								AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"
 								AbsoluteLayout.LayoutBounds="0,0,1,200">

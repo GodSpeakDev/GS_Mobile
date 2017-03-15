@@ -17,15 +17,15 @@
 		<AbsoluteLayout
 			HorizontalOptions="FillAndExpand"
 			VerticalOptions="FillAndExpand">			
-			<views:CustomMap 
+			<views:ImpactMap 
 				AbsoluteLayout.LayoutFlags="All"
 				AbsoluteLayout.LayoutBounds="0,0,1,1"
 				HorizontalOptions="FillAndExpand" 
 				VerticalOptions="FillAndExpand"
-				x:Name="MyMap"
 				IsShowingUser="true"
 				HasZoomEnabled="true"
-				MapType="Street"					
+				MapType="Street"
+				ItemsSource="{Binding ShownImpactDays}"
         	/>
 			<Image 
 				AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"

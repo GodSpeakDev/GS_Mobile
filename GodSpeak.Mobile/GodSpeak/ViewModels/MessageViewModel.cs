@@ -9,7 +9,7 @@ namespace GodSpeak
 {
 	public class MessageViewModel : CustomViewModel
 	{
-		private IWebApiService _apiService;
+		private IWebApiService _webApi;
 		private IReminderService _reminderService;
 
 		private ObservableCollection<GroupedCollection<Message, DateTime>> _messages;
@@ -17,6 +17,13 @@ namespace GodSpeak
 		{
 			get { return _messages;}
 			set { SetProperty(ref _messages, value);}
+		}
+
+		private ObservableCollection<ImpactDay> _shownImpactDays;
+		public ObservableCollection<ImpactDay> ShownImpactDays
+		{
+			get { return _shownImpactDays; }
+			set { SetProperty(ref _shownImpactDays, value); }
 		}
 
 		private Message _selectedItem;
@@ -70,10 +77,10 @@ namespace GodSpeak
 
 		public MessageViewModel(
 			IDialogService dialogService, 
-			IWebApiService apiService, 
+			IWebApiService webApi, 
 			IReminderService reminderService) : base(dialogService)
 		{
-			_apiService = apiService;
+			_webApi = webApi;
 			_reminderService = reminderService;
 
 			Messages = new ObservableCollection<GroupedCollection<Message, DateTime>>();
@@ -81,7 +88,7 @@ namespace GodSpeak
 
 		public async void Init()
 		{			
-			var messages = await _apiService.GetMessages(new GetMessagesRequest());
+			var messages = await _webApi.GetMessages(new GetMessagesRequest());
 
 			if (messages.IsSuccess)
 			{
@@ -94,7 +101,17 @@ namespace GodSpeak
 			else
 			{
 				await HandleResponse(messages);
-			}							
+			}	
+
+			var response = await _webApi.GetImpact(new GetImpactRequest());
+			if (response.IsSuccess)
+			{
+				ShownImpactDays = new ObservableCollection<ImpactDay>(response.Content.Payload);
+			}
+			else
+			{
+				await HandleResponse(response);
+			}
 		}
 
 		private void DoTapMessageCommand(Message message)
