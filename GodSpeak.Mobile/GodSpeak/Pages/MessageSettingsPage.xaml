@@ -14,12 +14,23 @@
 	<ContentPage.Content>
 		<AbsoluteLayout>
 			<views:GrayGradientBackgroundView				
-				Padding="0,80,0,0">
-				<views:CustomListView 							
-						IsGroupingEnabled="true"
-						BackgroundColor="Transparent"
-						ItemsSource="{Binding Groups}" 					
-						SelectedItem="{Binding SelectedMenu, Mode=TwoWay}">
+				AbsoluteLayout.LayoutFlags="All"
+				AbsoluteLayout.LayoutBounds="0,0,1,1"
+			/>
+			<Grid
+				AbsoluteLayout.LayoutFlags="All"
+				AbsoluteLayout.LayoutBounds="0,0,1,1">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="auto" />
+					<RowDefinition Height="*" />
+				</Grid.RowDefinitions>
+				<views:SolidHeader Grid.Row="0" Title="{x:Static res:Text.MessageSettingsPageTitle}" />
+				<views:CustomListView 
+					Grid.Row="1"
+					IsGroupingEnabled="true"
+					BackgroundColor="Transparent"
+					ItemsSource="{Binding Groups}" 					
+					SelectedItem="{Binding SelectedMenu, Mode=TwoWay}">
 					<ListView.Header>
 						<Grid
 							Padding="10">
@@ -129,8 +140,7 @@
 			            </DataTemplate>
 			        </ListView.ItemTemplate>        
 		    	</views:CustomListView>
-			</views:GrayGradientBackgroundView>
-			<views:SolidHeader Title="{x:Static res:Text.MessageSettingsPageTitle}" />
+			</Grid>
 		</AbsoluteLayout>
 	</ContentPage.Content>
 </views:CustomContentPage>
