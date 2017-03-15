@@ -39,7 +39,7 @@ namespace GodSpeak
 				_content = new GradientBoxView() 
 				{
 					Content = CreateContent(),
-					Colors = new Color[] {ColorHelper.Primary, ColorHelper.BlueGradientEnd}
+					Colors = new Color[] {ColorHelper.BlueGradientEnd, ColorHelper.Primary}
 				};
 				_layout.Children.Add(_content, new Rectangle(0, this.Height, this.Width, AbsoluteLayout.AutoSize), AbsoluteLayoutFlags.None);
 			}

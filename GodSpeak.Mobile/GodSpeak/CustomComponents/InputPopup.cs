@@ -63,7 +63,7 @@ namespace GodSpeak
 		{
 			var grid = new Grid()
 			{
-				BackgroundColor = ColorHelper.Primary,
+				BackgroundColor = Color.Transparent,
 				Padding = new Thickness(5, 20, 5, 5),
 				RowDefinitions = new RowDefinitionCollection()
 				{
