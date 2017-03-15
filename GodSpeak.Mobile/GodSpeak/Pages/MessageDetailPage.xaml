@@ -46,6 +46,7 @@
 			<views:HeaderOverlay
 				AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"
 				AbsoluteLayout.LayoutBounds="0,0,1,60"
+				Padding="0, 20, 10, 0"
 				HeightRequest="60"
 				BackgroundColor="Transparent"
 				RowSpacing="2"
@@ -80,19 +81,11 @@
 					HorizontalOptions="Center"
 					TextColor="{x:Static views:ColorHelper.Secondary}"
 				/>
-				<Image
+				<pages:BackButton
 					Grid.Column="0"
 					Grid.Row="0"
 					Grid.RowSpan="2"
-					HorizontalOptions="Center"
-					VerticalOptions="Center"
-					HeightRequest="20"
-					WidthRequest="20"
-					Source="share_icon.png">
-					<Image.GestureRecognizers>
-			        	<TapGestureRecognizer Command="{Binding CloseCommand}" />
-			    	</Image.GestureRecognizers>
-				</Image>
+				/>
 				<Image
 					Grid.Column="2"
 					Grid.Row="0"
