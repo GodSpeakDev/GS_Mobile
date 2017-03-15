@@ -154,14 +154,18 @@
 								HasError="{Binding IsConfirmPasswordValid, Converter={StaticResource inverseBooleanConverter}}"
 							/>
 
-							<StackLayout						
+							<Grid						
 								Padding="0"
 								HorizontalOptions="FillAndExpand"
-								Orientation="Horizontal"
 								Grid.Row="9"
 								Grid.Column="0"
 								Grid.ColumnSpan="2">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="*" />
+									<ColumnDefinition Width="auto" />
+								</Grid.ColumnDefinitions>
 								<Label						
+									Grid.Column="0"
 									Text="{x:Static res:Text.TermsCondititionText}"
 									FontSize="12"
 									TextColor="{x:Static views:ColorHelper.Secondary}"
@@ -169,17 +173,14 @@
 									HorizontalOptions="StartAndExpand"
 									VerticalOptions="Center"
 								/>	
-								<StackLayout
-									HorizontalOptions="FillAndExpand"
-								>
-								</StackLayout>
 								<Image
+									Grid.Column="1"
 									Source="arrow_right.png"
 									VerticalOptions="Center"
 									HorizontalOptions="End"
 									Margin="0"
 								/>
-							</StackLayout>
+							</Grid>
 						</Grid>			
 					</ScrollView>
 					<views:ActionButton

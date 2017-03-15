@@ -116,14 +116,13 @@
 							/>			
 							<views:CustomEntry
 								Grid.Row="1" 					
-								Margin="10,0"
 								HorizontalOptions="FillAndExpand"						
 								Placeholder="{x:Static res:Text.InviteCodePlaceholder}"
 								Text="{Binding GiftCodeText}"
 							/>
 							<views:ActionButton 
 								Grid.Row="2"
-								Margin="10,5"
+								Margin="0,5"
 								Text="{x:Static res:Text.GetStartedSubmitInviteCode}"	
 								IsEnabled="{Binding IsSubmitInvideCodeValid}"
 								Command="{Binding SubmitGiftCodeCommand}"
@@ -189,7 +188,7 @@
 							/>			
 							<views:ActionButton 
 								Grid.Row="2"
-								Margin="10,5"
+								Margin="0,5"
 								Text="{x:Static res:Text.Register}"	
 								Command="{Binding RegisterCommand}"
 							/>
