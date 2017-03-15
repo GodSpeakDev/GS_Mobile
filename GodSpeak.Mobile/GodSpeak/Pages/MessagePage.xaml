@@ -59,7 +59,7 @@
 							/>
 							<views:ImageButton 
 								AbsoluteLayout.LayoutFlags="XProportional,YProportional"
-								AbsoluteLayout.LayoutBounds="1,1,75,75"
+								AbsoluteLayout.LayoutBounds="1,1.05,100,100"
 								Source="invitesFAB.png"														
 								Command="{Binding GoToShareCommand}"
 							/>								
