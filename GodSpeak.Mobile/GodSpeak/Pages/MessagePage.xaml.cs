@@ -12,7 +12,7 @@ namespace GodSpeak
         {
             InitializeComponent ();
             NavigationPage.SetHasNavigationBar (this, false);
-            MessagesListView.DeselectOnTap ();
+            //MessagesListView.DeselectOnTap ();
         }
     }
 }
