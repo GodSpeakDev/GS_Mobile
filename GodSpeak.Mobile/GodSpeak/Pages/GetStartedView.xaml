@@ -16,7 +16,6 @@
 				x:Name="PanoLayout"
 				Grid.Row="0"
 				Grid.RowSpan="2"
-				BackgroundColor="Red"
 				HorizontalOptions="FillAndExpand"
 				VerticalOptions="FillAndExpand">
 				<Image

@@ -10,6 +10,7 @@ namespace GodSpeak
 		public MessageSettingsPage()
 		{
 			InitializeComponent();
+			NavigationPage.SetHasNavigationBar(this, false);
 		}
 	}
 }

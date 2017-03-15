@@ -21,7 +21,7 @@
 				AbsoluteLayout.LayoutBounds="0,0,1,1" 
 				AbsoluteLayout.LayoutFlags="All">
 				<Grid
-					Padding="0,20, 0, 0" 
+					Padding="0,80, 0, 0" 
 					>
 					<Grid.RowDefinitions>
 						<RowDefinition Height="1*" />
@@ -189,6 +189,7 @@
 					/>
 				</Grid>			
 			</views:GrayGradientBackgroundView>
+			<views:SolidHeader Title="{x:Static res:Text.RegisterPageTitle}" />
 		</AbsoluteLayout>		
 	</views:CustomContentPage.Content>
 </views:CustomContentPage>

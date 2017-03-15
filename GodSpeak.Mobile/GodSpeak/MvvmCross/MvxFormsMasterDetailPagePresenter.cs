@@ -49,7 +49,17 @@ namespace GodSpeak
 
 				if (mainPage == null)
 				{
-					Mvx.TaggedTrace("MvxFormsPresenter:ChangePresentation()", "Oops! Don't know what to do");
+					var navPage = MvxFormsApp.MainPage as NavigationPage;
+					if (navPage != null)
+					{
+						navPage.PopAsync();
+						if (navPage.Navigation.NavigationStack.Count == 1)
+							RootContentPageActivated();
+					}
+					else
+					{
+						Mvx.TaggedTrace("MvxFormsPresenter:ChangePresentation()", "Oops! Don't know what to do");
+					}
 				}
 				else
 				{

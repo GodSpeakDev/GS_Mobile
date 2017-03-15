@@ -70,9 +70,6 @@
     <EmbeddedResource Include="CustomComponents\ActionButton.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomComponents\Header.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Include="Pages\PurchaseCreditPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -110,6 +107,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\UnclaimedGiftPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomComponents\SolidHeader.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
@@ -207,9 +207,6 @@
     </Compile>
     <Compile Include="CustomComponents\ActionButton.xaml.cs">
       <DependentUpon>ActionButton.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CustomComponents\Header.xaml.cs">
-      <DependentUpon>Header.xaml</DependentUpon>
     </Compile>
     <Compile Include="Services\IDialogService.cs" />
     <Compile Include="Services\DialogService.cs" />
@@ -335,6 +332,9 @@
     <Compile Include="Converters\PeopleGiftedTextConverter.cs" />
     <Compile Include="Converters\PeopleGiftButtonTextConverter.cs" />
     <Compile Include="MvvmCross\CloseMenuPresentationHint.cs" />
+    <Compile Include="CustomComponents\SolidHeader.xaml.cs">
+      <DependentUpon>SolidHeader.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />
