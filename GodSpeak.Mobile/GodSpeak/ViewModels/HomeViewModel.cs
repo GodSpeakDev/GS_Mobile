@@ -5,11 +5,12 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using MvvmCross.Forms.Presenter.Core;
 using System.Windows.Input;
+using GodSpeak.Resources;
 
 namespace GodSpeak
 {
-    public class HomeViewModel : MvxMasterDetailViewModel<MessageViewModel>
-    {		
+	public class HomeViewModel : MvxMasterDetailViewModel<MessageViewModel>
+	{
 		private MvxCommand _shareCommand;
 		public ICommand ShareCommand
 		{
@@ -24,7 +25,7 @@ namespace GodSpeak
 		}
 
 		private MvxCommand _logoutCommand;
-		public ICommand LogoutCommand
+		public MvxCommand LogoutCommand
 		{
 			get
 			{
@@ -37,7 +38,7 @@ namespace GodSpeak
 		}
 
 		private MvxCommand _messageSettingsCommand;
-		public ICommand MessageSettingsCommand
+		public MvxCommand MessageSettingsCommand
 		{
 			get
 			{
@@ -50,7 +51,7 @@ namespace GodSpeak
 		}
 
 		private MvxCommand _myProfileCommand;
-		public ICommand MyProfileCommand
+		public MvxCommand MyProfileCommand
 		{
 			get
 			{
@@ -62,8 +63,37 @@ namespace GodSpeak
 			}
 		}
 
-		public HomeViewModel()
-		{			
+		private ObservableCollection<MenuItem> _menuItems;
+		public ObservableCollection<MenuItem> MenuItems
+		{
+			get { return _menuItems; }
+			set { SetProperty(ref _menuItems, value); }
 		}
-    }
+
+		public HomeViewModel()
+		{
+			MenuItems = new ObservableCollection<MenuItem>()
+			{
+				new MenuItem()
+				{
+					Command = MessageSettingsCommand,
+					Title = Text.MenuMessageSettings,
+					Image = "SettingsIcon.png"
+				},
+				new MenuItem()
+				{
+					Command = MyProfileCommand,
+					Title = Text.MyProfileSettings,
+					Image = "profileIcon.png"
+				},
+				new MenuItem()
+				{
+					Command = LogoutCommand,
+					Title = Text.LogoutSettings,
+					Image = "logoutIcon.png"
+				}
+			};
+		}
+	}
 }
+

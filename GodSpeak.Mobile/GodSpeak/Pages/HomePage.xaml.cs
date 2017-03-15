@@ -12,29 +12,29 @@ namespace GodSpeak
 		{
 			InitializeComponent();
 
-			SettingsItem.GestureRecognizers.Add(new TapGestureRecognizer()
-			{
-				Command = new MvxCommand(() =>
-				{
-					AnimateView(SettingsItem, (this.BindingContext as HomeViewModel).MessageSettingsCommand);
-				})
-			});
+			//SettingsItem.GestureRecognizers.Add(new TapGestureRecognizer()
+			//{
+			//	Command = new MvxCommand(() =>
+			//	{
+			//		AnimateView(SettingsItem, (this.BindingContext as HomeViewModel).MessageSettingsCommand);
+			//	})
+			//});
 
-			LogoutItem.GestureRecognizers.Add(new TapGestureRecognizer()
-			{
-				Command = new MvxCommand(() =>
-				{
-					AnimateView(LogoutItem, (this.BindingContext as HomeViewModel).LogoutCommand);
-				})
-			});
+			//LogoutItem.GestureRecognizers.Add(new TapGestureRecognizer()
+			//{
+			//	Command = new MvxCommand(() =>
+			//	{
+			//		AnimateView(LogoutItem, (this.BindingContext as HomeViewModel).LogoutCommand);
+			//	})
+			//});
 
-			ProfileItem.GestureRecognizers.Add(new TapGestureRecognizer()
-			{
-				Command = new MvxCommand(() =>
-				{
-					AnimateView(ProfileItem, (this.BindingContext as HomeViewModel).MyProfileCommand);
-				})
-			});
+			//ProfileItem.GestureRecognizers.Add(new TapGestureRecognizer()
+			//{
+			//	Command = new MvxCommand(() =>
+			//	{
+			//		AnimateView(ProfileItem, (this.BindingContext as HomeViewModel).MyProfileCommand);
+			//	})
+			//});
 		}
 
 		private void AnimateView(View view, ICommand command)
