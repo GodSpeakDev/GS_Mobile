@@ -41,8 +41,15 @@
 	            				x:Name="MyMap"
 	            				IsShowingUser="true"
 								HasZoomEnabled="true"
-	            				MapType="Street"					
-	        				/>	
+	            				MapType="Street">													
+							</views:CustomMap>
+							<BoxView
+								AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"
+								AbsoluteLayout.LayoutBounds="0,0,1,200">
+								<BoxView.GestureRecognizers>
+			        				<TapGestureRecognizer Command="{Binding GoToImpactCommand}" />
+			    				</BoxView.GestureRecognizers>		
+							</BoxView>
 							<Image 
 								AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"
 								AbsoluteLayout.LayoutBounds="0,1,1,50"
