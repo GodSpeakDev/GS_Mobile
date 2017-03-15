@@ -20,9 +20,29 @@ namespace GodSpeak
 		}
 
 		private static void OnTitleChanged(BindableObject bindable, string oldvalue, string newValue)
-		{			
+		{
 			var header = (SolidHeader)bindable;
 			header.Title = newValue;
+		}
+
+		public static readonly BindableProperty HasBackButtonProperty =
+			BindableProperty.Create<SolidHeader, bool>(
+				p => p.HasBackButton, true, BindingMode.TwoWay, propertyChanged: HasBackButtonChanged);
+
+		public bool HasBackButton
+		{
+			get { return (bool)this.GetValue(HasBackButtonProperty); }
+			set
+			{
+				this.SetValue(HasBackButtonProperty, value);
+				BackButton.IsVisible = HasBackButton;
+			}
+		}
+
+		private static void HasBackButtonChanged(BindableObject bindable, bool oldvalue, bool newValue)
+		{
+			var header = (SolidHeader)bindable;
+			header.HasBackButton = newValue;
 		}
 
 		public SolidHeader()

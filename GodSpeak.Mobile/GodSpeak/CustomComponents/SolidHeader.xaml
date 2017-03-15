@@ -25,5 +25,5 @@
 		FontSize="16"
 		FontAttributes="Bold"
 	/>
-	<views:BackButton Grid.Row="0" Grid.Column="0" />
+	<views:BackButton x:Name="BackButton" Grid.Row="0" Grid.Column="0" />
 </Grid>

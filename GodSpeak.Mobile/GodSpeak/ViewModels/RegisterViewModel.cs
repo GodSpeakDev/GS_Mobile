@@ -141,6 +141,15 @@ namespace GodSpeak
 			}
 		}
 
+		private MvxCommand _alreadyRegisteredCommand;
+		public MvxCommand AlreadyRegisteredCommand
+		{
+			get
+			{
+				return _alreadyRegisteredCommand ?? (_alreadyRegisteredCommand = new MvxCommand(DoAlreadyRegisteredCommand));
+			}
+		}
+
 		public RegisterViewModel(IDialogService dialogService, IWebApiService webApi, ISessionService sessionService, IMediaPicker mediaPicker) : base(dialogService)
 		{
 			_webApi = webApi;
@@ -250,6 +259,11 @@ namespace GodSpeak
 			}
 
 			Image = response.Source.ToByteArray();
+		}
+
+		private void DoAlreadyRegisteredCommand()
+		{
+			this.ShowViewModel<LoginViewModel>();
 		}
 	}
 }
