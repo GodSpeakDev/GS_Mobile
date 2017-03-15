@@ -112,6 +112,9 @@
     <EmbeddedResource Include="CustomComponents\SolidHeader.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="CustomComponents\BackButton.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -334,6 +337,9 @@
     <Compile Include="MvvmCross\CloseMenuPresentationHint.cs" />
     <Compile Include="CustomComponents\SolidHeader.xaml.cs">
       <DependentUpon>SolidHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomComponents\BackButton.xaml.cs">
+      <DependentUpon>BackButton.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

@@ -25,22 +25,5 @@
 		FontSize="16"
 		FontAttributes="Bold"
 	/>
-	<StackLayout
-		Grid.Row="0"
-		Grid.Column="0"
-		VerticalOptions="FillAndExpand"
-		Padding="10,0"
-		WidthRequest="60"
-		>
-		<StackLayout.GestureRecognizers>
-			<TapGestureRecognizer Command="{Binding CloseCommand}" />
-		</StackLayout.GestureRecognizers>
-		<Label						
-			VerticalOptions="CenterAndExpand"
-			HorizontalOptions="StartAndExpand"
-			TextColor="{x:Static views:ColorHelper.Secondary}"
-			FontSize="12"
-			Text="Back">
-		</Label>
-	</StackLayout>	
+	<views:BackButton Grid.Row="0" Grid.Column="0" />
 </Grid>
