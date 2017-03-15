@@ -130,16 +130,7 @@
 					</Grid>
 				</views:GrayGradientBackgroundView>
 				</Grid>
-				<Grid
-					Padding="0,20,10,0"
-					AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"
-					AbsoluteLayout.LayoutBounds="0,0,1,60">
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="auto" />
-						<ColumnDefinition Width="*" />
-					</Grid.ColumnDefinitions>												
-					<views:BackButton Grid.Row="0" Grid.Column="0" />	
-				</Grid>
+				<views:SolidHeader />
 			</AbsoluteLayout>
 		</views:CustomContentPage.Content>
 </views:CustomContentPage>
