@@ -1,10 +1,9 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <views:CustomContentPage 
 		xmlns="http://xamarin.com/schemas/2014/forms" 
 		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 		xmlns:res="clr-namespace:GodSpeak.Resources;assembly=GodSpeak"
 		xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
-		xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
 		Title="{x:Static res:Text.ImpactPageTitle}"
 		x:Class="GodSpeak.ImpactPage">
 	<ContentPage.Resources>
@@ -15,86 +14,151 @@
 		</ResourceDictionary>
 	</ContentPage.Resources>
 	<ContentPage.Content>
-		<Grid				
-			VerticalOptions="FillAndExpand"
+		<AbsoluteLayout
 			HorizontalOptions="FillAndExpand"
-			Padding="0, 0, 0, 10"
-		>
-			<Grid.RowDefinitions>
-				<RowDefinition Height="*" />
-				<RowDefinition Height="auto" />
-				<RowDefinition Height="auto" />
-				<RowDefinition Height="auto" />
-			</Grid.RowDefinitions>
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="*" />
-				<ColumnDefinition Width="*" />
-			</Grid.ColumnDefinitions>
-			<maps:Map 
+			VerticalOptions="FillAndExpand">			
+			<views:CustomMap 
+				AbsoluteLayout.LayoutFlags="All"
+				AbsoluteLayout.LayoutBounds="0,0,1,1"
+				HorizontalOptions="FillAndExpand" 
+				VerticalOptions="FillAndExpand"
+				x:Name="MyMap"
+				IsShowingUser="true"
+				HasZoomEnabled="true"
+				MapType="Street"					
+        	/>
+			<Image 
+				AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"
+				AbsoluteLayout.LayoutBounds="0,1,1,100"
+				Source="impact_background.png"
+				Aspect="Fill"
+				HorizontalOptions="FillAndExpand"																						
+			/>
+			<StackLayout
+				AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"
+				AbsoluteLayout.LayoutBounds="0,1,1,100"
+				>
+				<Frame
+					Padding="5"
+					BackgroundColor="{x:Static views:ColorHelper.Primary}"
+					HorizontalOptions="Center"
+					WidthRequest="160"
+					>
+					<Label									
+						HorizontalOptions="CenterAndExpand"
+						VerticalOptions="Center"
+						TextColor="{x:Static views:ColorHelper.Secondary}"
+						FontSize="16"
+						Text="{Binding CurrentSliderDate, StringFormat='{0:MMMM dd, yyyy}'}"
+						FontAttributes="Bold"
+					/>	
+				</Frame>
+				<StackLayout
+					Orientation="Horizontal"
+					Padding="10"
+					Spacing="10"
+					>
+					<Slider 					
+						HorizontalOptions="FillAndExpand"
+						Minimum="{Binding MinimumDayValue}"
+						Maximum="{Binding MaximumDayValue}"
+						Value="{Binding DayValue}"
+					/>
+					<views:ImageButton					
+						Source="play_icon.png"
+						IsVisible="{Binding IsPlaying, Converter={StaticResource invBoolConverter}}"
+						Command="{Binding PlayCommand}" 
+					/>
+					<views:ImageButton					
+						Source="play_icon.png"
+						IsVisible="{Binding IsPlaying}"
+						Command="{Binding StopCommand}" />
+				</StackLayout>
+			</StackLayout>
+			<views:HeaderOverlay
+				Padding="0,20,10,0"
+				AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"
+				AbsoluteLayout.LayoutBounds="0,0,1,60">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="auto" />
+					<ColumnDefinition Width="auto" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>												
+				<Label			
 					Grid.Row="0"
 					Grid.Column="0"
-					Grid.ColumnSpan="2"
+					Grid.ColumnSpan="3"
 					HorizontalOptions="FillAndExpand" 
-					VerticalOptions="FillAndExpand"
-            		x:Name="MyMap"
-            		IsShowingUser="true"
-					HasZoomEnabled="true"
-            		MapType="Street"					
-        	/>
-			<StackLayout
-				Grid.Row="1"
-				Grid.Column="0"
-				Grid.ColumnSpan="2"
-				Orientation="Horizontal"
-				HorizontalOptions="Center"	
+					HorizontalTextAlignment="Center"
+					VerticalOptions="Center"
+					TextColor="{x:Static views:ColorHelper.Secondary}"
+					FontSize="16"
+					FontAttributes="Bold"
+					Text="{x:Static res:Text.ImpactPageTitle}">
+				</Label>
+				<views:BackButton Grid.Row="0" Grid.Column="0" />
+			</views:HeaderOverlay>
+			<Grid 
+				HeightRequest="40"
+				BackgroundColor="{x:Static views:ColorHelper.PrimaryNavBar}"
+				AbsoluteLayout.LayoutFlags="XProportional,WidthProportional"
+				AbsoluteLayout.LayoutBounds="0,60,1,40"
+				Padding="10,5"
 			>
-				<Slider 					
-					HorizontalOptions="CenterAndExpand"
-					Minimum="{Binding MinimumDayValue}"
-					Maximum="{Binding MaximumDayValue}"
-					Value="{Binding DayValue}"
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="auto" />
+					<ColumnDefinition Width="auto" />
+					<ColumnDefinition Width="auto" />
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="auto" />
+					<ColumnDefinition Width="auto" />
+					<ColumnDefinition Width="auto" />
+				</Grid.ColumnDefinitions>	
+				<Image
+					Grid.Column="0"
+					Source="scripture_icon.png"
+					HeightRequest="30"					
 				/>
-				<Button
-					Text="Play"
-					Command="{Binding PlayCommand}"
-					IsVisible="{Binding IsPlaying, Converter={StaticResource invBoolConverter}}"
+				<Label 	
+					Grid.Column="1"
+					Text="{Binding ShownImpactDays, Converter={StaticResource deliveredScriptureConverter}}"
+					HorizontalOptions="Start"
+					VerticalOptions="Center"
+					TextColor="{x:Static views:ColorHelper.Secondary}"
+					FontAttributes="Bold"
+					FontSize="30"
+				/>				
+				<Label 																				
+					Grid.Column="2"
+					Text="{x:Static res:Text.ScripturesDelivered}"
+					VerticalOptions="Center"
+					HorizontalOptions="Start"					
+					TextColor="{x:Static views:ColorHelper.Secondary}"
+					FontSize="12"
 				/>
-				<Button
-					Text="Stop"
-					Command="{Binding StopCommand}"
-					IsVisible="{Binding IsPlaying}"
+				<Image
+					Grid.Column="4"
+					Source="gift_icon.png"
+					HeightRequest="30"							
 				/>
-			</StackLayout>
-			<Label
-				Grid.Row="2"
-				Grid.Column="0"
-				HorizontalOptions="CenterAndExpand"
-				HorizontalTextAlignment="Center"
-				Text="{Binding ShownImpactDays, Converter={StaticResource deliveredScriptureConverter}}"
-			/>
-			<Label
-				Grid.Row="3"
-				Grid.Column="0"
-				HorizontalOptions="CenterAndExpand"
-				HorizontalTextAlignment="Center"
-				Text="Scriptures Delivered"
-				FontSize="8"
-			/>
-			<Label
-				Grid.Row="2"
-				Grid.Column="1"
-				HorizontalOptions="CenterAndExpand"
-				HorizontalTextAlignment="Center"
-				Text="{Binding ShownImpactDays, Converter={StaticResource invitedClaimedConverter}}"
-			/>
-			<Label
-				Grid.Row="3"
-				Grid.Column="1"
-				HorizontalOptions="CenterAndExpand"
-				HorizontalTextAlignment="Center"
-				Text="Apps Gifted"
-				FontSize="8"
-			/>
-		</Grid>
+				<Label 	
+					Grid.Column="5"
+					Text="{Binding ShownImpactDays, Converter={StaticResource invitedClaimedConverter}}"
+					HorizontalOptions="Start"
+					VerticalOptions="Center"
+					TextColor="{x:Static views:ColorHelper.Secondary}"
+					FontAttributes="Bold"
+					FontSize="30"
+				/>				
+				<Label 																				
+					Grid.Column="6"
+					Text="{x:Static res:Text.GiftsClaimed}"
+					HorizontalOptions="Start"
+					VerticalOptions="Center"
+					TextColor="{x:Static views:ColorHelper.Secondary}"
+					FontSize="12"
+				/>
+			</Grid>
+		</AbsoluteLayout>
 	</ContentPage.Content>
 </views:CustomContentPage>

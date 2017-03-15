@@ -468,4 +468,116 @@ If so, we’ll send you their gift!</value>
 		xml:space="preserve">
     	<value>Yesterday</value>
   	</data>	
+	<data
+		name="ScripturesDelivered"
+		xml:space="preserve">
+    	<value>Scriptures
+Delivered</value>
+  	</data>	
+	<data
+		name="GiftsClaimed"
+		xml:space="preserve">
+    	<value>Gifts
+Claimed</value>
+  	</data>	
+	<data
+		name="ShareTitle"
+		xml:space="preserve">
+    	<value>Want to make a bigger impact?</value>
+  	</data>	
+	<data
+		name="ShareDescription"
+		xml:space="preserve">
+    	<value>You can purchase more gifts right here, right now!</value>
+  	</data>	
+	<data
+		name="ShareWithFriend"
+		xml:space="preserve">
+    	<value>Share with Friend</value>
+  	</data>	
+	<data
+		name="ShareWithWorld"
+		xml:space="preserve">
+    	<value>Share with World</value>
+  	</data>	
+	<data
+		name="ShareGiftsLeft"
+		xml:space="preserve">
+    	<value>You have 12 gifts left</value>
+  	</data>	
+	<data
+		name="DidYouKnow"
+		xml:space="preserve">
+    	<value>Did you know?</value>
+  	</data>	
+	<data
+		name="DidYouKnowDeliveredGifts"
+		xml:space="preserve">
+    	<value>We have delivered 12,345 gifts.</value>
+  	</data>
+	<data
+		name="DidYouKnowPurchasedGifts"
+		xml:space="preserve">
+    	<value>Users have purchased 1,523 gifts.</value>
+  	</data>
+	<data
+		name="DidYouKnowDonatedGifts"
+		xml:space="preserve">
+    	<value>235 were donated to the world.</value>
+  	</data>
+	<data
+		name="InviteBundleDescription"
+		xml:space="preserve">
+    	<value>{0} Gifts</value>
+  	</data>
+	<data
+		name="ShareWithFriendsTitle"
+		xml:space="preserve">
+    	<value>Please Select</value>
+  	</data>
+	<data
+		name="ShareWithFriendsDescription"
+		xml:space="preserve">
+    	<value>How would you like to share your gift code?</value>
+  	</data>
+	<data
+		name="Individually"
+		xml:space="preserve">
+    	<value>Individually</value>
+  	</data>
+	<data
+		name="ViaEmail"
+		xml:space="preserve">
+    	<value>Via Email</value>
+  	</data>
+	<data
+		name="SortByClaimDate"
+		xml:space="preserve">
+    	<value>Sort By Claim Date</value>
+  	</data>
+	<data
+		name="CongratulateThem"
+		xml:space="preserve">
+    	<value>Congratulate Them</value>
+  	</data>
+	<data
+		name="EncourageThem"
+		xml:space="preserve">
+    	<value>Encourage Them</value>
+  	</data>
+	<data
+		name="ClaimedDateDescription"
+		xml:space="preserve">
+    	<value>Claimed Gift on {0:MM/dd}</value>
+  	</data>
+	<data
+		name="HasGiftedPeopleText"
+		xml:space="preserve">
+    	<value>Has gifted {0} people</value>
+  	</data>
+	<data
+		name="HasNotGiftedPeopleText"
+		xml:space="preserve">
+    	<value>Has not gifted anyone</value>
+  	</data>
 </root>

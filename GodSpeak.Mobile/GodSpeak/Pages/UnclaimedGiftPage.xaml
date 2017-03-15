@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<views:CustomContentPage 
+	xmlns="http://xamarin.com/schemas/2014/forms" 
+	xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
+	xmlns:res="clr-namespace:GodSpeak.Resources;assembly=GodSpeak"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+	Icon="gift_unclaimed_icon.png" 
+	Title="12 Gifts Unclaimed"
+	x:Class="GodSpeak.UnclaimedGiftPage">
+	<views:CustomContentPage.Content>
+			<AbsoluteLayout
+				HorizontalOptions="FillAndExpand"
+				VerticalOptions="FillAndExpand">
+				<Grid
+					RowSpacing="0"
+					AbsoluteLayout.LayoutFlags="All"
+					AbsoluteLayout.LayoutBounds="0,0,1,1">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="*" />
+						<RowDefinition Height="50" />
+						<RowDefinition Height="auto" />
+					</Grid.RowDefinitions>
+					<Image
+						Grid.Row="0"
+						Grid.RowSpan="2"
+						Source="share_background.png"
+						Aspect="AspectFill" />
+
+					<views:CustomCarouselView 
+						Grid.Row="0"
+						Grid.RowSpan="2"
+						HorizontalOptions="FillAndExpand"
+						VerticalOptions="FillAndExpand"
+						Position="{Binding SelectedPosition}"
+						ItemTemplate="{StaticResource pageSelector}"
+						ItemsSource="{Binding Pages}">    		
+						<views:CustomCarouselView.Resources>
+		        			<ResourceDictionary>
+		            			<views:SharePageSelector x:Key="pageSelector" />
+		        			</ResourceDictionary>
+		    			</views:CustomCarouselView.Resources>
+		  			</views:CustomCarouselView>
+
+					<Image 
+						Grid.Row="1"
+						HeightRequest="50"
+						Source="messagesBackground.png"
+						Aspect="Fill"
+						HorizontalOptions="FillAndExpand"																						
+					/>
+
+					<views:Pager
+						Grid.Row="1"
+						NumberOfDots="2"
+						SelectedDotIndex="{Binding SelectedPosition}"
+					/>
+
+					<views:GrayGradientBackgroundView
+						Grid.Row="2"
+					>
+					<Grid				
+						VerticalOptions="FillAndExpand">
+						<Grid.RowDefinitions>
+							<RowDefinition Height="*" />
+							<RowDefinition Height="auto" />	
+							<RowDefinition Height="auto" />	
+							<RowDefinition Height="auto" />	
+						</Grid.RowDefinitions>								
+						<Label			
+							Grid.Row="1"
+							VerticalOptions="CenterAndExpand"
+							HorizontalOptions="StartAndExpand"
+							TextColor="{x:Static views:ColorHelper.Secondary}"
+							FontAttributes="Bold"
+							Margin="15,0,0,0"
+							FontSize="16"
+							Text="{x:Static res:Text.ShareTitle}">
+						</Label>
+						<Label
+							Grid.Row="2"
+							Margin="15,0,0,0"
+							VerticalOptions="CenterAndExpand"
+							HorizontalOptions="StartAndExpand"
+							TextColor="{x:Static views:ColorHelper.Secondary}"
+							FontSize="12"
+							Text="{x:Static res:Text.ShareDescription}">
+						</Label>
+							<views:StackList
+								Grid.Row="3"
+								Spacing="0"
+								ItemsSource="{Binding Bundles}"
+								Padding="15,0,0,0">
+								<views:StackList.ItemTemplate>
+									<DataTemplate>
+										<StackLayout								
+											Orientation="Horizontal"
+											Padding="0, 5, 15, 5"
+											Spacing="10"
+											x:Name="SettingsItem"
+											BackgroundColor="Transparent"
+										>				
+											<Image WidthRequest="30" HeightRequest="30" Source="bundle_icon.png" />
+											<Label 
+												Margin="10,0,0,0"
+												Text="{Binding Description}" 
+												TextColor="{x:Static views:ColorHelper.Secondary}"
+												HorizontalOptions="FillAndExpand"
+												VerticalOptions="Center"
+												FontSize="18"
+												FontAttributes="Bold"
+											/>
+											<views:ActionButton
+												WidthRequest="80"
+												FontSize="16"
+												Text="{Binding CostDescription}"
+											/>	
+										</StackLayout>
+									</DataTemplate>
+								</views:StackList.ItemTemplate>	
+								<views:StackList.SeparatorTemplate>
+									<DataTemplate>
+										<BoxView 
+											Margin="0,0,0,0"
+											Color="{x:Static views:ColorHelper.Secondary}"
+											HeightRequest="0.5"				
+										/>
+									</DataTemplate>
+								</views:StackList.SeparatorTemplate>
+							</views:StackList>				
+					</Grid>
+				</views:GrayGradientBackgroundView>
+				</Grid>
+				<views:SolidHeader />
+			</AbsoluteLayout>
+		</views:CustomContentPage.Content>
+</views:CustomContentPage>

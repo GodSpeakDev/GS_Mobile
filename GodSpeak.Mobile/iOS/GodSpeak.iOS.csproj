@@ -208,6 +208,9 @@
     <Compile Include="Renderers\CustomSwitchRenderer.cs" />
     <Compile Include="Renderers\PlusMinusButtonViewRenderer.cs" />
     <Compile Include="Renderers\MessageBalloonRenderer.cs" />
+    <Compile Include="Renderers\CustomMapRenderer.cs" />
+    <Compile Include="Renderers\DotRenderer.cs" />
+    <Compile Include="Renderers\CustomImageRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\profile_placeholder.png" />
@@ -261,6 +264,39 @@
     <BundleResource Include="Resources\impactWithNotification.png" />
     <BundleResource Include="Resources\impactWithNotification%402x.png" />
     <BundleResource Include="Resources\impactWithNotification%403x.png" />
+    <BundleResource Include="Resources\scripture_icon.png" />
+    <BundleResource Include="Resources\scripture_icon%402x.png" />
+    <BundleResource Include="Resources\scripture_icon%403x.png" />
+    <BundleResource Include="Resources\gift_icon.png" />
+    <BundleResource Include="Resources\gift_icon%402x.png" />
+    <BundleResource Include="Resources\gift_icon%403x.png" />
+    <BundleResource Include="Resources\impact_background.png" />
+    <BundleResource Include="Resources\impact_background%402x.png" />
+    <BundleResource Include="Resources\impact_background%403x.png" />
+    <BundleResource Include="Resources\play_icon.png" />
+    <BundleResource Include="Resources\play_icon%402x.png" />
+    <BundleResource Include="Resources\play_icon%403x.png" />
+    <BundleResource Include="Resources\share_icon.png" />
+    <BundleResource Include="Resources\share_icon%402x.png" />
+    <BundleResource Include="Resources\share_icon%403x.png" />
+    <BundleResource Include="Resources\gray_speach_arrow.png" />
+    <BundleResource Include="Resources\gray_speach_arrow%402x.png" />
+    <BundleResource Include="Resources\gray_speach_arrow%403x.png" />
+    <BundleResource Include="Resources\share_background.png" />
+    <BundleResource Include="Resources\share_background%402x.png" />
+    <BundleResource Include="Resources\share_background%403x.png" />
+    <BundleResource Include="Resources\gift_claimed_icon.png" />
+    <BundleResource Include="Resources\gift_claimed_icon%402x.png" />
+    <BundleResource Include="Resources\gift_claimed_icon%403x.png" />
+    <BundleResource Include="Resources\gift_unclaimed_icon.png" />
+    <BundleResource Include="Resources\gift_unclaimed_icon%402x.png" />
+    <BundleResource Include="Resources\gift_unclaimed_icon%403x.png" />
+    <BundleResource Include="Resources\bundle_icon.png" />
+    <BundleResource Include="Resources\bundle_icon%402x.png" />
+    <BundleResource Include="Resources\bundle_icon%403x.png" />
+    <BundleResource Include="Resources\arrow_left.png" />
+    <BundleResource Include="Resources\arrow_left%402x.png" />
+    <BundleResource Include="Resources\arrow_left%403x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.3.180\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.3.180\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />

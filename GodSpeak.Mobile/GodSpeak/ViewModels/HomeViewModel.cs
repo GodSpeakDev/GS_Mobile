@@ -10,6 +10,19 @@ namespace GodSpeak
 {
     public class HomeViewModel : MvxMasterDetailViewModel<MessageViewModel>
     {		
+		private MvxCommand _shareCommand;
+		public ICommand ShareCommand
+		{
+			get
+			{
+				return _shareCommand ?? (_shareCommand = new MvxCommand(() =>
+				{
+					this.ChangePresentation(new CloseMenuPresentationHint());
+					this.ShowViewModel<ShareViewModel>();
+				}));
+			}
+		}
+
 		private MvxCommand _logoutCommand;
 		public ICommand LogoutCommand
 		{
@@ -17,7 +30,8 @@ namespace GodSpeak
 			{
 				return _logoutCommand ?? (_logoutCommand = new MvxCommand(() =>
 				{
-					this.ShowViewModel<GetStartedViewModel>(presentationBundle: NavigationBundles.RestoreNavigationBundle);
+					this.ChangePresentation(new CloseMenuPresentationHint());
+					this.ShowViewModel<GetStartedViewModel>();
 				}));
 			}
 		}
@@ -29,7 +43,8 @@ namespace GodSpeak
 			{
 				return _messageSettingsCommand ?? (_messageSettingsCommand = new MvxCommand(() =>
 				{
-					this.ShowViewModel<MessageSettingsViewModel>(presentationBundle: NavigationBundles.ClearStackBundle);
+					this.ChangePresentation(new CloseMenuPresentationHint());
+					this.ShowViewModel<MessageSettingsViewModel>();
 				}));
 			}
 		}
@@ -41,7 +56,8 @@ namespace GodSpeak
 			{
 				return _myProfileCommand ?? (_myProfileCommand = new MvxCommand(() =>
 				{
-					this.ShowViewModel<MyProfileViewModel>(presentationBundle: NavigationBundles.ClearStackBundle);
+					this.ChangePresentation(new CloseMenuPresentationHint());
+					this.ShowViewModel<MyProfileViewModel>();
 				}));
 			}
 		}

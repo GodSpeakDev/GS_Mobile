@@ -10,7 +10,6 @@ namespace GodSpeak
 	public class MessageViewModel : CustomViewModel
 	{
 		private IWebApiService _apiService;
-		private IShareService _shareService;
 		private IReminderService _reminderService;
 
 		private ObservableCollection<GroupedCollection<Message, DateTime>> _messages;
@@ -51,6 +50,15 @@ namespace GodSpeak
 			}
 		}
 
+		private MvxCommand _goToShareCommand;
+		public MvxCommand GoToShareCommand
+		{
+			get
+			{
+				return _goToShareCommand ?? (_goToShareCommand = new MvxCommand(DoGoToShareCommand));
+			}
+		}
+
 		private MvxCommand _openDrawerMenuCommand;
 		public MvxCommand OpenDrawerMenuCommand
 		{
@@ -63,11 +71,9 @@ namespace GodSpeak
 		public MessageViewModel(
 			IDialogService dialogService, 
 			IWebApiService apiService, 
-			IShareService shareService,
 			IReminderService reminderService) : base(dialogService)
 		{
 			_apiService = apiService;
-			_shareService = shareService;
 			_reminderService = reminderService;
 
 			Messages = new ObservableCollection<GroupedCollection<Message, DateTime>>();
@@ -93,13 +99,18 @@ namespace GodSpeak
 
 		private void DoTapMessageCommand(Message message)
 		{
-			_shareService.Share(message.Text);
 			SelectedItem = null;
+			this.ShowViewModel<MessageDetailViewModel>(new {messageId=message.MessageId.ToString()});
 		}
 
 		private void DoGoToImpactCommand()
 		{
 			this.ShowViewModel<ImpactViewModel>();
+		}
+
+		private void DoGoToShareCommand()
+		{
+			this.ShowViewModel<ShareViewModel>();
 		}
 
 		private void DoOpenDrawerMenuCommand()

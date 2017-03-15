@@ -10,6 +10,7 @@ namespace GodSpeak
 		public RegisterPage()
 		{
 			InitializeComponent();
+			NavigationPage.SetHasNavigationBar(this, false);
 		}
 
 		protected override void OnBindingContextChanged()

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<views:CustomContentPage 
+	xmlns="http://xamarin.com/schemas/2014/forms" 
+	xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
+	xmlns:res="clr-namespace:GodSpeak.Resources;assembly=GodSpeak"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+	Icon="gift_claimed_icon.png" 
+	Title="6 Gifts Claimed"
+	x:Class="GodSpeak.ClaimedGiftPage">
+	<views:CustomContentPage.Resources>
+		<ResourceDictionary>
+			<views:PeopleGiftButtonTextConverter x:Key="buttonConverter" />		
+			<views:PeopleGiftedTextConverter x:Key="textConverter" />		
+		</ResourceDictionary>
+	</views:CustomContentPage.Resources>
+	<views:CustomContentPage.Content>
+		<AbsoluteLayout
+			HorizontalOptions="FillAndExpand"
+			VerticalOptions="FillAndExpand">
+			<views:GrayGradientBackgroundView
+				AbsoluteLayout.LayoutFlags="All"
+				AbsoluteLayout.LayoutBounds="0,0,1,1"
+			/>
+			<views:SolidHeader />
+			<StackLayout
+				AbsoluteLayout.LayoutFlags="XProportional,WidthProportional"
+				AbsoluteLayout.LayoutBounds="0,60,1,AutoSize"
+				VerticalOptions="FillAndExpand"
+				Spacing="20"
+				Padding="0,10,0,0">
+				<views:CustomPicker 
+					Margin="10,0"
+					x:Name="SortOptions"
+					HasEmptyValue="false"
+					SelectedIndex="{Binding SelectedSortIndex}"
+				/>	
+				<ScrollView 
+					VerticalOptions="FillAndExpand">
+					<views:StackList
+						ItemsSource="{Binding Users}">
+						<views:StackList.ItemTemplate>
+							<DataTemplate>
+								<Grid 
+									Margin="10, 0, 0, 0"
+									RowSpacing="2"
+									ColumnSpacing="10"
+									>
+									<Grid.RowDefinitions>
+										<RowDefinition Height="auto" />
+										<RowDefinition Height="auto" />
+										<RowDefinition Height="auto" />
+										<RowDefinition Height="auto" />
+										<RowDefinition Height="auto" />
+									</Grid.RowDefinitions>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="auto" />
+										<ColumnDefinition Width="*" />
+									</Grid.ColumnDefinitions>
+									<views:CustomImage
+										Grid.Row="0"
+										Grid.RowSpan="3"
+										Grid.Column="0"
+										Source="{Binding Image}"
+										WidthRequest="50"
+										HeightRequest="50"
+										BorderRadius="25"
+										BorderSize="2"
+										BorderColor="{x:Static views:ColorHelper.Secondary}"
+									/>
+									<Label 			
+										Grid.Row="0"
+										Grid.Column="1"
+										Text="{Binding Name}"
+										HorizontalOptions="FillAndExpand"
+										TextColor="{x:Static views:ColorHelper.Secondary}"
+										FontAttributes="Bold"
+										FontSize="15"
+									/>
+									<Label 																				
+										Grid.Row="1"
+										Grid.Column="1"
+										Text="{Binding ClaimedDateDescription}"
+										HorizontalOptions="FillAndExpand"
+										TextColor="{x:Static views:ColorHelper.Secondary}"
+										FontSize="13"
+									/>
+									<Label 																				
+										Grid.Row="2"
+										Grid.Column="1"
+										Text="{Binding PeopleGifted, Converter={StaticResource textConverter}}"
+										HorizontalOptions="FillAndExpand"
+										TextColor="{x:Static views:ColorHelper.Secondary}"
+										FontSize="13"
+									/>
+									<views:SecondaryButton
+										Grid.Row="3"
+										Grid.Column="0"
+										Grid.ColumnSpan="2"
+										Margin="0,10,10,0"
+										HorizontalOptions="FillAndExpand"
+										Text="{Binding PeopleGifted, Converter={StaticResource buttonConverter}}"												
+									/>
+									<BoxView 
+										Grid.Row="4"
+										Grid.Column="0"
+										Grid.ColumnSpan="2"
+										Margin="0,10,0,10"
+										Color="{x:Static views:ColorHelper.Secondary}"
+										HeightRequest="0.5"				
+									/>
+								</Grid>
+							</DataTemplate>
+						</views:StackList.ItemTemplate>	
+					</views:StackList>
+				</ScrollView>
+			</StackLayout>
+		</AbsoluteLayout>
+	</views:CustomContentPage.Content>	
+</views:CustomContentPage>

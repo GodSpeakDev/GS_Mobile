@@ -580,5 +580,131 @@ namespace GodSpeak.Resources {
                 return ResourceManager.GetString("Yesterday", resourceCulture);
             }
         }
+        
+        public static string ScripturesDelivered {
+            get {
+                return ResourceManager.GetString("ScripturesDelivered", resourceCulture);
+            }
+        }
+        
+        public static string GiftsClaimed {
+            get {
+                return ResourceManager.GetString("GiftsClaimed", resourceCulture);
+            }
+        }
+        
+        public static string ShareDescription {
+            get {
+                return ResourceManager.GetString("ShareDescription", resourceCulture);
+            }
+        }
+        
+        public static string ShareWithFriend {
+            get {
+                return ResourceManager.GetString("ShareWithFriend", resourceCulture);
+            }
+        }
+        
+        public static string ShareWithWorld {
+            get {
+                return ResourceManager.GetString("ShareWithWorld", resourceCulture);
+            }
+        }
+        
+        public static string ShareGiftsLeft {
+            get {
+                return ResourceManager.GetString("ShareGiftsLeft", resourceCulture);
+            }
+        }
+        
+        public static string DidYouKnow {
+            get {
+                return ResourceManager.GetString("DidYouKnow", resourceCulture);
+            }
+        }
+        
+        public static string DidYouKnowDeliveredGifts {
+            get {
+                return ResourceManager.GetString("DidYouKnowDeliveredGifts", resourceCulture);
+            }
+        }
+        
+        public static string DidYouKnowPurchasedGifts {
+            get {
+                return ResourceManager.GetString("DidYouKnowPurchasedGifts", resourceCulture);
+            }
+        }
+        
+        public static string DidYouKnowDonatedGifts {
+            get {
+                return ResourceManager.GetString("DidYouKnowDonatedGifts", resourceCulture);
+            }
+        }
+        
+        public static string InviteBundleDescription {
+            get {
+                return ResourceManager.GetString("InviteBundleDescription", resourceCulture);
+            }
+        }
+        
+        public static string ShareWithFriendsTitle {
+            get {
+                return ResourceManager.GetString("ShareWithFriendsTitle", resourceCulture);
+            }
+        }
+        
+        public static string ShareWithFriendsDescription {
+            get {
+                return ResourceManager.GetString("ShareWithFriendsDescription", resourceCulture);
+            }
+        }
+        
+        public static string Individually {
+            get {
+                return ResourceManager.GetString("Individually", resourceCulture);
+            }
+        }
+        
+        public static string ViaEmail {
+            get {
+                return ResourceManager.GetString("ViaEmail", resourceCulture);
+            }
+        }
+        
+        public static string SortByClaimDate {
+            get {
+                return ResourceManager.GetString("SortByClaimDate", resourceCulture);
+            }
+        }
+        
+        public static string CongratulateThem {
+            get {
+                return ResourceManager.GetString("CongratulateThem", resourceCulture);
+            }
+        }
+        
+        public static string EncourageThem {
+            get {
+                return ResourceManager.GetString("EncourageThem", resourceCulture);
+            }
+        }
+        
+        public static string ClaimedDateDescription {
+            get {
+                return ResourceManager.GetString("ClaimedDateDescription", resourceCulture);
+            }
+        }
+        
+        public static string HasGiftedPeopleText {
+            get {
+                return ResourceManager.GetString("HasGiftedPeopleText", resourceCulture);
+            }
+        }
+        
+        public static string HasNotGiftedPeopleText {
+            get {
+                return ResourceManager.GetString("HasNotGiftedPeopleText", resourceCulture);
+            }
+        }
     }
 }

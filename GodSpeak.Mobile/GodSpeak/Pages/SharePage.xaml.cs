@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+
 using Xamarin.Forms;
 
 namespace GodSpeak
 {
-	public partial class Header : ContentView
+	public partial class SharePage : TabbedPage
 	{
-		public Header()
+		public SharePage()
 		{
 			InitializeComponent();
+			NavigationPage.SetHasNavigationBar(this, false);
 		}
 	}
 }

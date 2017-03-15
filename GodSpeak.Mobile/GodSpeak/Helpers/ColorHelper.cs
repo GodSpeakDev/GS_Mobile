@@ -6,6 +6,7 @@ namespace GodSpeak
 	public static class ColorHelper
 	{
 		public static Color Primary = Color.FromRgb(0, 165, 255);
+		public static Color PrimaryNavBar = Color.FromRgba(0, 165, 255, 220);
 		public static Color DarkGray = Color.FromRgb(71, 72, 67);
 		public static Color DarkGrayNavBar = Color.FromRgba(71, 72, 67, 220);
 		public static Color LightGray = Color.FromRgb(127, 129, 131);
@@ -25,6 +26,11 @@ namespace GodSpeak
 
 		public static Color IosDarkGrayGradient = Color.FromRgb(56, 57, 52);
 		public static Color IosLightGrayGradient = Color.FromRgb(102, 104, 106);
+
+		public static Color IosDarkBlueGradient = Color.FromRgb(0, 79, 122);
+		public static Color IosLightBlueGradient = Color.FromRgb(0, 165, 255);
+
+		public static Color MessageDetailsTextOutOfFocus = Color.FromRgba(255, 255, 255, 72);
 
 		public static Color DrawerMenuBackground = Color.FromRgb(74, 74, 74);
 	}

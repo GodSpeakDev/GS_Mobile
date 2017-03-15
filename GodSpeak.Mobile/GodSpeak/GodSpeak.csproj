@@ -70,9 +70,6 @@
     <EmbeddedResource Include="CustomComponents\ActionButton.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomComponents\Header.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Include="Pages\PurchaseCreditPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -92,6 +89,30 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\MyProfilePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\MessageDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\SharePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ShareTemplateView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\DidYouKnowTemplateView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ClaimedGiftPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\UnclaimedGiftPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomComponents\SolidHeader.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomComponents\BackButton.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
@@ -190,9 +211,6 @@
     <Compile Include="CustomComponents\ActionButton.xaml.cs">
       <DependentUpon>ActionButton.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CustomComponents\Header.xaml.cs">
-      <DependentUpon>Header.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Services\IDialogService.cs" />
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Api\Request\RequestInviteRequest.cs" />
@@ -282,6 +300,47 @@
     <Compile Include="CustomComponents\StackList.cs" />
     <Compile Include="CustomComponents\HeaderOverlay.cs" />
     <Compile Include="MvvmCross\OpenMenuPresentationHint.cs" />
+    <Compile Include="ViewModels\MessageDetailViewModel.cs" />
+    <Compile Include="Pages\MessageDetailPage.xaml.cs">
+      <DependentUpon>MessageDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomComponents\MessageDetailGradientView.cs" />
+    <Compile Include="Api\Request\GetMessageRequest.cs" />
+    <Compile Include="Api\Response\GetMessageResponse.cs" />
+    <Compile Include="CustomComponents\ImageButton.cs" />
+    <Compile Include="CustomComponents\CustomMap.cs" />
+    <Compile Include="Pages\SharePage.xaml.cs">
+      <DependentUpon>SharePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SharePageSelector.cs" />
+    <Compile Include="Pages\ShareTemplateView.xaml.cs">
+      <DependentUpon>ShareTemplateView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\DidYouKnowTemplateView.xaml.cs">
+      <DependentUpon>DidYouKnowTemplateView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Share\ShareViewModel.cs" />
+    <Compile Include="ViewModels\Share\ShareTemplateViewModel.cs" />
+    <Compile Include="ViewModels\Share\DidYouKnowTemplateViewModel.cs" />
+    <Compile Include="CustomComponents\SecondaryButton.cs" />
+    <Compile Include="ViewModels\Share\UnclaimedGiftViewModel.cs" />
+    <Compile Include="ViewModels\Share\ClaimedGiftViewModel.cs" />
+    <Compile Include="Pages\ClaimedGiftPage.xaml.cs">
+      <DependentUpon>ClaimedGiftPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UnclaimedGiftPage.xaml.cs">
+      <DependentUpon>UnclaimedGiftPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomComponents\CustomImage.cs" />
+    <Compile Include="Converters\PeopleGiftedTextConverter.cs" />
+    <Compile Include="Converters\PeopleGiftButtonTextConverter.cs" />
+    <Compile Include="MvvmCross\CloseMenuPresentationHint.cs" />
+    <Compile Include="CustomComponents\SolidHeader.xaml.cs">
+      <DependentUpon>SolidHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomComponents\BackButton.xaml.cs">
+      <DependentUpon>BackButton.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />
@@ -299,6 +358,7 @@
     <Folder Include="MediaPicker\" />
     <Folder Include="Helpers\" />
     <Folder Include="Extensions\" />
+    <Folder Include="ViewModels\Share\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">

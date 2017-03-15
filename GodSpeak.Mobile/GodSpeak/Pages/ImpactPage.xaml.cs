@@ -14,6 +14,7 @@ namespace GodSpeak
 		public ImpactPage()
 		{
 			_pins = new Dictionary<Guid, Pin>();
+			NavigationPage.SetHasNavigationBar(this, false);
 			InitializeComponent();
 		}
 
