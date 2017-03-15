@@ -342,6 +342,7 @@
       <DependentUpon>BackButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="Extensions\ViewExtensions.cs" />
+    <Compile Include="CustomComponents\CustomListView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />
