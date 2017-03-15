@@ -7,6 +7,7 @@ namespace GodSpeak
 	{
 		public static Color Primary = Color.FromRgb(0, 165, 255);
 		public static Color DarkGray = Color.FromRgb(71, 72, 67);
+		public static Color DarkGrayNavBar = Color.FromRgba(71, 72, 67, 220);
 		public static Color LightGray = Color.FromRgb(127, 129, 131);
 		public static Color DisabledGray = Color.FromRgb(78, 79, 80);
 		public static Color Secondary = Color.FromRgb(255, 255, 255);

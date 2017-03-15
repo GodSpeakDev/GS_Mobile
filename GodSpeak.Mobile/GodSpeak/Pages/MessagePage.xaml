@@ -3,6 +3,7 @@
 		xmlns="http://xamarin.com/schemas/2014/forms" 
 		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 		xmlns:pages="clr-namespace:GodSpeak;assembly=GodSpeak"
+		xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
 		xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
 		Title="Messages"
 		x:Class="GodSpeak.MessagePage">	
@@ -17,7 +18,7 @@
 	<ContentPage.Content>	
 		<AbsoluteLayout
 			VerticalOptions="FillAndExpand"
-			HorizontalOptions="FillAndExpand">	
+			HorizontalOptions="FillAndExpand">
 			<views:GrayGradientBackgroundView
 				AbsoluteLayout.LayoutBounds="0,0,1,1" 
 				AbsoluteLayout.LayoutFlags="All">
@@ -31,6 +32,34 @@
 					SeparatorVisibility="None"		
 					HasUnevenRows="true"
 					>
+					<ListView.Header>
+						<AbsoluteLayout 
+							HorizontalOptions="FillAndExpand"
+							HeightRequest="200"
+							IsClippedToBounds="true"
+						>
+							<maps:Map 	
+								AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"
+								AbsoluteLayout.LayoutBounds="0,0,1,200"
+	            				x:Name="MyMap"
+	            				IsShowingUser="true"
+								HasZoomEnabled="true"
+	            				MapType="Street"					
+	        				/>	
+							<Image 
+								AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"
+								AbsoluteLayout.LayoutBounds="0,1,1,50"
+								Source="messagesBackground.png"
+								Aspect="Fill"
+								HorizontalOptions="FillAndExpand"																						
+							/>
+							<Image 
+								AbsoluteLayout.LayoutFlags="XProportional,YProportional"
+								AbsoluteLayout.LayoutBounds="1,1,75,75"
+								Source="invitesFAB.png"														
+							/>								
+						</AbsoluteLayout>
+					</ListView.Header>
 					<ListView.ItemTemplate>
 						<DataTemplate>
 							<ViewCell>
@@ -99,6 +128,44 @@
 					</ListView.GroupHeaderTemplate>
 				</ListView>
 			</views:GrayGradientBackgroundView>
+			<views:HeaderOverlay
+				AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"
+				AbsoluteLayout.LayoutBounds="0,0,1,60"
+				>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="auto" />
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="auto" />
+				</Grid.ColumnDefinitions>	
+				<Image					
+					Grid.Column="0"
+					HorizontalOptions="Center"
+					VerticalOptions="Center"
+					HeightRequest="25"
+					WidthRequest="25"
+					Source="hamburgerMenu.png">
+					<Image.GestureRecognizers>
+			        	<TapGestureRecognizer Command="{Binding OpenDrawerMenuCommand}" />
+			    	</Image.GestureRecognizers>
+				</Image>
+				<Image
+					Grid.Column="1"
+					HorizontalOptions="Center"
+					VerticalOptions="Center"
+					Source="logo.png"					
+				/>
+				<Image
+					Grid.Column="2"
+					HorizontalOptions="Center"
+					VerticalOptions="Center"
+					HeightRequest="25"
+					WidthRequest="25"
+					Source="impactWithNotification.png">
+					<Image.GestureRecognizers>
+			        	<TapGestureRecognizer Command="{Binding GoToImpactCommand}" />
+			    	</Image.GestureRecognizers>
+				</Image>
+			</views:HeaderOverlay>
 		</AbsoluteLayout>
 	</ContentPage.Content>
 </ContentPage>

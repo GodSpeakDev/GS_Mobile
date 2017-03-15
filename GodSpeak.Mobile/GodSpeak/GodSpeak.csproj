@@ -279,6 +279,9 @@
       <DependentUpon>MyProfilePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="CustomComponents\MessageBalloon.cs" />
+    <Compile Include="CustomComponents\StackList.cs" />
+    <Compile Include="CustomComponents\HeaderOverlay.cs" />
+    <Compile Include="MvvmCross\OpenMenuPresentationHint.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />
