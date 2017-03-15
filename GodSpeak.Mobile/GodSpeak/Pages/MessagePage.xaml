@@ -32,12 +32,12 @@
 					<ListView.Header>
 						<AbsoluteLayout 
 							HorizontalOptions="FillAndExpand"
-							HeightRequest="200"
+							HeightRequest="280"
 							IsClippedToBounds="true"
 						>
 							<views:ImpactMap 	
 								AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"
-								AbsoluteLayout.LayoutBounds="0,0,1,200"
+								AbsoluteLayout.LayoutBounds="0,0,1,280"
 	            				x:Name="MyMap"
 	            				IsShowingUser="true"
 								HasZoomEnabled="true"
@@ -45,7 +45,7 @@
 								ItemsSource="{Binding ShownImpactDays}"/>																				
 							<BoxView
 								AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"
-								AbsoluteLayout.LayoutBounds="0,0,1,200">
+								AbsoluteLayout.LayoutBounds="0,0,1,280">
 								<BoxView.GestureRecognizers>
 			        				<TapGestureRecognizer Command="{Binding GoToImpactCommand}" />
 			    				</BoxView.GestureRecognizers>		
