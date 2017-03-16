@@ -8,12 +8,20 @@ namespace GodSpeak
 {
 	public class GradientBoxView : ContentView
 	{
-		public static readonly BindableProperty ColorsProperty = BindableProperty.Create("Colors", typeof(Color[]), typeof(GradientBoxView), null);
+		public static readonly BindableProperty ColorsProperty =
+			BindableProperty.Create<GradientBoxView, Color[]>(
+				p => p.Colors, null, BindingMode.TwoWay, propertyChanged: OnColorsChanged);
 
 		public Color[] Colors
 		{
 			get { return (Color[])GetValue(ColorsProperty); }
 			set { SetValue(ColorsProperty, value); }
+		}
+
+		private static void OnColorsChanged(BindableObject bindable, Color[] oldvalue, Color[] newValue)
+		{
+			var view = (GradientBoxView)bindable;
+			view.Colors = newValue as Color[];
 		}
 
 		public Task<bool> ColorsTo(Color[] newColors, uint length = 250, Easing easing = null, uint rate = 16)

@@ -345,6 +345,8 @@
     <Compile Include="CustomComponents\CustomListView.cs" />
     <Compile Include="CustomComponents\ImpactMap.cs" />
     <Compile Include="CustomComponents\TappableView.cs" />
+    <Compile Include="Converters\SelectedVerseToFontAttributesConverter.cs" />
+    <Compile Include="Converters\SelectedVerseToTextColorConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />
