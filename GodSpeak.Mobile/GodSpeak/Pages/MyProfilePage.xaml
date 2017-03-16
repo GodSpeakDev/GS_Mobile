@@ -5,14 +5,7 @@
 		xmlns:res="clr-namespace:GodSpeak.Resources;assembly=GodSpeak"
 		xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
 		Title="{x:Static res:Text.MyProfilePageTitle}"
-		x:Class="GodSpeak.MyProfilePage">
-	<views:CustomContentPage.Resources>
-		<ResourceDictionary>
-			<views:ImageObjectToImageSourceConverter x:Key="imageConverter" />		
-			<views:ImagePaddingConverter x:Key="imagePaddingConverter" />	
-			<views:InverseBooleanConverter x:Key="inverseBooleanConverter" />	
-		</ResourceDictionary>
-	</views:CustomContentPage.Resources>
+		x:Class="GodSpeak.MyProfilePage">	
 	<views:CustomContentPage.Content>
 		<AbsoluteLayout
 			VerticalOptions="FillAndExpand"
@@ -56,13 +49,13 @@
 								Grid.Row="0"
 								Grid.Column="0"
 								Grid.RowSpan="2"
-								Padding="{Binding Image, Converter={StaticResource imagePaddingConverter}}"
+								Padding="{Binding Image, Converter={StaticResource ImagePaddingConverter}}"
 								BackgroundColor="Transparent"
 								>
 								<Image		
 									HorizontalOptions="Center"
 									VerticalOptions="Center"
-									Source="{Binding Image, Converter={StaticResource imageConverter}}">
+									Source="{Binding Image, Converter={StaticResource ImageObjectToImageSourceConverter}}">
 									<Image.GestureRecognizers>
 						        		<TapGestureRecognizer Command="{Binding ChoosePictureCommand}" />
 						    		</Image.GestureRecognizers>
@@ -130,7 +123,7 @@
 								IsPassword="true"
 								Placeholder="{x:Static res:Text.PasswordPlaceholder}"	
 								Text="{Binding Password}" 
-								HasError="{Binding IsPasswordValid, Converter={StaticResource inverseBooleanConverter}}"
+								HasError="{Binding IsPasswordValid, Converter={StaticResource InverseBooleanConverter}}"
 							/>
 							
 							<views:RegisterEntry
@@ -140,7 +133,7 @@
 								IsPassword="true"
 								Placeholder="{x:Static res:Text.PasswordConfirmPlaceholder}"	
 								Text="{Binding ConfirmPassword}" 
-								HasError="{Binding IsConfirmPasswordValid, Converter={StaticResource inverseBooleanConverter}}"
+								HasError="{Binding IsConfirmPasswordValid, Converter={StaticResource InverseBooleanConverter}}"
 							/>
 						</Grid>			
 					</ScrollView>

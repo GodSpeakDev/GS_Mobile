@@ -115,6 +115,12 @@
     <EmbeddedResource Include="CustomComponents\BackButton.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="App.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsApp.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -347,6 +353,9 @@
     <Compile Include="CustomComponents\TappableView.cs" />
     <Compile Include="Converters\SelectedVerseToFontAttributesConverter.cs" />
     <Compile Include="Converters\SelectedVerseToTextColorConverter.cs" />
+    <Compile Include="FormsApp.xaml.cs">
+      <DependentUpon>FormsApp.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mvx:MvxApplication
+	xmlns="http://xamarin.com/schemas/2014/forms" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+	xmlns:godspeak="clr-namespace:GodSpeak;assembly=GodSpeak"
+	xmlns:mvx="clr-namespace:MvvmCross.Core.ViewModels;assembly=MvvmCross.Core.ViewModels"
+	xmlns:core="clr-namespace:MvvmCross.Forms.Presenter.Core;assembly=MvvmCross.Forms.Presenter.Core"
+	x:Class="GodSpeak.App">
+		
+</mvx:MvxApplication>

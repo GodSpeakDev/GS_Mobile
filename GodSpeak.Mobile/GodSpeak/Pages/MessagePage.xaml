@@ -5,12 +5,7 @@
 		xmlns:pages="clr-namespace:GodSpeak;assembly=GodSpeak"
 		xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
 		Title="Messages"
-		x:Class="GodSpeak.MessagePage">		
-	<ContentPage.Resources>
-		<ResourceDictionary>
-			<pages:DayConverter x:Key="dayConverter" />		
-		</ResourceDictionary>
-	</ContentPage.Resources>
+		x:Class="GodSpeak.MessagePage">			
 	<ContentPage.Content>	
 		<AbsoluteLayout
 			VerticalOptions="FillAndExpand"
@@ -127,7 +122,7 @@
 									VerticalOptions="Center"
 									TextColor="{x:Static views:ColorHelper.Secondary}"
 									FontSize="13"
-									Text="{Binding Key, Converter={StaticResource dayConverter}}" />
+									Text="{Binding Key, Converter={StaticResource DayConverter}}" />
 							</ViewCell>
 			            </DataTemplate>
 					</ListView.GroupHeaderTemplate>

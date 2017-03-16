@@ -7,8 +7,7 @@
 		BackgroundImage="people_background.jpg"
 		x:Class="GodSpeak.LoginPage">
 	<ContentPage.Content>
-		<AbsoluteLayout>
-			
+		<AbsoluteLayout>			
 			<Grid 
 				AbsoluteLayout.LayoutFlags="All"
 				AbsoluteLayout.LayoutBounds="0, 0, 1, 1"

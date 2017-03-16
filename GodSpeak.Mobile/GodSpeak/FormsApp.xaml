@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<core:MvxFormsApp
+	xmlns="http://xamarin.com/schemas/2014/forms" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+	xmlns:godspeak="clr-namespace:GodSpeak;assembly=GodSpeak"
+	xmlns:mvx="clr-namespace:MvvmCross.Core.ViewModels;assembly=MvvmCross.Core.ViewModels"
+	xmlns:core="clr-namespace:MvvmCross.Forms.Presenter.Core;assembly=MvvmCross.Forms.Presenter.Core"
+	x:Class="GodSpeak.FormsApp">
+	<Application.Resources>
+		<ResourceDictionary>
+			<!-- Converters -->
+			<godspeak:DayConverter x:Key="DayConverter" />
+			<godspeak:DeliveredScriptureConverter x:Key="DeliveredScriptureConverter" />
+			<godspeak:EnableTextColorConverter x:Key="EnableTextColorConverter" />
+			<godspeak:ImageObjectToImageSourceConverter x:Key="ImageObjectToImageSourceConverter" />
+			<godspeak:ImagePaddingConverter x:Key="ImagePaddingConverter" />
+			<godspeak:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+			<godspeak:InviteBundleConverter x:Key="InviteBundleConverter" />
+			<godspeak:InvitedClaimedConverter x:Key="InvitedClaimedConverter" />
+			<godspeak:PeopleGiftButtonTextConverter x:Key="PeopleGiftButtonTextConverter" />
+			<godspeak:PeopleGiftedTextConverter x:Key="PeopleGiftedTextConverter" />
+			<godspeak:SelectedVerseToFontAttributesConverter x:Key="SelectedVerseToFontAttributesConverter" />
+			<godspeak:SelectedVerseToTextColorConverter x:Key="SelectedVerseToTextColorConverter" />
+			<godspeak:WeekdayConverter x:Key="WeekdayConverter" />
+		</ResourceDictionary>
+	</Application.Resources>			
+</core:MvxFormsApp>

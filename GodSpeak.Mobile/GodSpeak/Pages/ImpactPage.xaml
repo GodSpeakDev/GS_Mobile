@@ -5,14 +5,7 @@
 		xmlns:res="clr-namespace:GodSpeak.Resources;assembly=GodSpeak"
 		xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
 		Title="{x:Static res:Text.ImpactPageTitle}"
-		x:Class="GodSpeak.ImpactPage">
-	<ContentPage.Resources>
-		<ResourceDictionary>
-			<views:InverseBooleanConverter x:Key="invBoolConverter" />	
-			<views:DeliveredScriptureConverter x:Key="deliveredScriptureConverter" />	
-			<views:InvitedClaimedConverter x:Key="invitedClaimedConverter" />	
-		</ResourceDictionary>
-	</ContentPage.Resources>
+		x:Class="GodSpeak.ImpactPage">	
 	<ContentPage.Content>
 		<AbsoluteLayout
 			HorizontalOptions="FillAndExpand"
@@ -66,7 +59,7 @@
 					/>
 					<views:ImageButton					
 						Source="play_icon.png"
-						IsVisible="{Binding IsPlaying, Converter={StaticResource invBoolConverter}}"
+						IsVisible="{Binding IsPlaying, Converter={StaticResource InverseBooleanConverter}}"
 						Command="{Binding PlayCommand}" 
 					/>
 					<views:ImageButton					
@@ -121,7 +114,7 @@
 				/>
 				<Label 	
 					Grid.Column="1"
-					Text="{Binding ShownImpactDays, Converter={StaticResource deliveredScriptureConverter}}"
+					Text="{Binding ShownImpactDays, Converter={StaticResource DeliveredScriptureConverter}}"
 					HorizontalOptions="Start"
 					VerticalOptions="Center"
 					TextColor="{x:Static views:ColorHelper.Secondary}"
@@ -144,7 +137,7 @@
 				/>
 				<Label 	
 					Grid.Column="5"
-					Text="{Binding ShownImpactDays, Converter={StaticResource invitedClaimedConverter}}"
+					Text="{Binding ShownImpactDays, Converter={StaticResource InvitedClaimedConverter}}"
 					HorizontalOptions="Start"
 					VerticalOptions="Center"
 					VerticalTextAlignment="Center"

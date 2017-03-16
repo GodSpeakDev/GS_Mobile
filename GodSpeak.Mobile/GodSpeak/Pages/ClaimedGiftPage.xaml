@@ -7,12 +7,6 @@
 	Icon="gift_claimed_icon.png" 
 	Title="6 Gifts Claimed"
 	x:Class="GodSpeak.ClaimedGiftPage">
-	<views:CustomContentPage.Resources>
-		<ResourceDictionary>
-			<views:PeopleGiftButtonTextConverter x:Key="buttonConverter" />		
-			<views:PeopleGiftedTextConverter x:Key="textConverter" />		
-		</ResourceDictionary>
-	</views:CustomContentPage.Resources>
 	<views:CustomContentPage.Content>
 		<AbsoluteLayout
 			HorizontalOptions="FillAndExpand"
@@ -87,7 +81,7 @@
 									<Label 																				
 										Grid.Row="2"
 										Grid.Column="1"
-										Text="{Binding PeopleGifted, Converter={StaticResource textConverter}}"
+										Text="{Binding PeopleGifted, Converter={StaticResource PeopleGiftedTextConverter}}"
 										HorizontalOptions="FillAndExpand"
 										TextColor="{x:Static views:ColorHelper.Secondary}"
 										FontSize="13"
@@ -98,7 +92,7 @@
 										Grid.ColumnSpan="2"
 										Margin="0,10,10,0"
 										HorizontalOptions="FillAndExpand"
-										Text="{Binding PeopleGifted, Converter={StaticResource buttonConverter}}"												
+										Text="{Binding PeopleGifted, Converter={StaticResource PeopleGiftButtonTextConverter}}"												
 									/>
 									<BoxView 
 										Grid.Row="4"

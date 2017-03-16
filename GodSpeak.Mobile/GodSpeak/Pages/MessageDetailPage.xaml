@@ -5,13 +5,6 @@
 	xmlns:pages="clr-namespace:GodSpeak;assembly=GodSpeak"
 	xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
 	x:Class="GodSpeak.MessageDetailPage">
-	<ContentPage.Resources>
-		<ResourceDictionary>
-			<pages:DayConverter x:Key="dayConverter" />	
-			<pages:SelectedVerseToFontAttributesConverter x:Key="fontAttributesConverter" />
-			<pages:SelectedVerseToTextColorConverter x:Key="textColorConverter" />
-		</ResourceDictionary>
-	</ContentPage.Resources>
 	<ContentPage.Content>
 		<AbsoluteLayout>
 			<views:GradientBoxView
@@ -30,8 +23,8 @@
 						<Label 									
 							Text="{Binding Message.BeforeVerse}"
 							FontSize="17"
-							FontAttributes="{Binding BeforeVerseSelected, Converter={StaticResource fontAttributesConverter}}"
-							TextColor="{Binding BeforeVerseSelected, Converter={StaticResource textColorConverter}}">
+							FontAttributes="{Binding BeforeVerseSelected, Converter={StaticResource SelectedVerseToFontAttributesConverter}}"
+							TextColor="{Binding BeforeVerseSelected, Converter={StaticResource SelectedVerseToTextColorConverter}}">
 							<Label.GestureRecognizers>
 			        			<TapGestureRecognizer Command="{Binding SelectBeforeVerseCommand}" />
 			    			</Label.GestureRecognizers>
@@ -39,8 +32,8 @@
 						<Label 							
 							Text="{Binding Message.Text}"
 							FontSize="17"
-							FontAttributes="{Binding CurrentVerseSelected, Converter={StaticResource fontAttributesConverter}}"
-							TextColor="{Binding CurrentVerseSelected, Converter={StaticResource textColorConverter}}">
+							FontAttributes="{Binding CurrentVerseSelected, Converter={StaticResource SelectedVerseToFontAttributesConverter}}"
+							TextColor="{Binding CurrentVerseSelected, Converter={StaticResource SelectedVerseToTextColorConverter}}">
 							<Label.GestureRecognizers>
 			        			<TapGestureRecognizer Command="{Binding SelectCurrentVerseCommand}" />
 			    			</Label.GestureRecognizers>
@@ -48,8 +41,8 @@
 						<Label 							
 							Text="{Binding Message.AfterVerse}"
 							FontSize="17"
-							FontAttributes="{Binding AfterVerseSelected, Converter={StaticResource fontAttributesConverter}}"
-							TextColor="{Binding AfterVerseSelected, Converter={StaticResource textColorConverter}}">
+							FontAttributes="{Binding AfterVerseSelected, Converter={StaticResource SelectedVerseToFontAttributesConverter}}"
+							TextColor="{Binding AfterVerseSelected, Converter={StaticResource SelectedVerseToTextColorConverter}}">
 							<Label.GestureRecognizers>
 			        			<TapGestureRecognizer Command="{Binding SelectAfterVerseCommand}" />
 			    			</Label.GestureRecognizers>
@@ -78,7 +71,7 @@
 					Grid.Row="0"
 					Grid.Column="0"
 					Grid.ColumnSpan="3"
-					Text="{Binding Message.DateTimeToDisplay, Converter={StaticResource dayConverter}}"
+					Text="{Binding Message.DateTimeToDisplay, Converter={StaticResource DayConverter}}"
 					FontSize="11"
 					VerticalOptions="End"
 					HorizontalOptions="Center"

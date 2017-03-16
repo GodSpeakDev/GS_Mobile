@@ -28,7 +28,7 @@ namespace GodSpeak.iOS
 			Forms.Init();
 			Xamarin.FormsMaps.Init();
 
-			var xamarinFormsApp = new MvxFormsApp();
+			var xamarinFormsApp = new FormsApp();
 
 			return new MvxFormsIosPagePresenterCustom(Window, xamarinFormsApp);
 		}

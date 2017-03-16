@@ -5,12 +5,7 @@
 		xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
 		xmlns:res="clr-namespace:GodSpeak.Resources;assembly=GodSpeak"
 		Title="{x:Static res:Text.MessageSettingsPageTitle}"
-		x:Class="GodSpeak.MessageSettingsPage">
-	<ContentPage.Resources>
-		<ResourceDictionary>
-			<views:EnableTextColorConverter x:Key="enableTextColorConverter" />	
-		</ResourceDictionary>
-	</ContentPage.Resources>
+		x:Class="GodSpeak.MessageSettingsPage">	
 	<ContentPage.Content>
 		<AbsoluteLayout>
 			<views:GrayGradientBackgroundView				
@@ -125,7 +120,7 @@
 										Margin="10,0"
 										Text="{Binding Title}" 
 										FontSize="13"
-										TextColor="{Binding IsEnabled, Converter={StaticResource enableTextColorConverter}}"
+										TextColor="{Binding IsEnabled, Converter={StaticResource EnableTextColorConverter}}"
 										FontAttributes="Bold"
 										VerticalOptions="Center"
 									/>	
