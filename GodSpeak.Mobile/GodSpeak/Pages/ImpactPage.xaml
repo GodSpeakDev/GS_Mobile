@@ -68,29 +68,7 @@
 						Command="{Binding StopCommand}" />
 				</StackLayout>
 			</StackLayout>
-			<views:HeaderOverlay
-				Padding="0,20,10,0"
-				AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"
-				AbsoluteLayout.LayoutBounds="0,0,1,60">
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="auto" />
-					<ColumnDefinition Width="auto" />
-					<ColumnDefinition Width="*" />
-				</Grid.ColumnDefinitions>												
-				<Label			
-					Grid.Row="0"
-					Grid.Column="0"
-					Grid.ColumnSpan="3"
-					HorizontalOptions="FillAndExpand" 
-					HorizontalTextAlignment="Center"
-					VerticalOptions="Center"
-					TextColor="{x:Static views:ColorHelper.Secondary}"
-					FontSize="16"
-					FontAttributes="Bold"
-					Text="{x:Static res:Text.ImpactPageTitle}">
-				</Label>
-				<views:BackButton Grid.Row="0" Grid.Column="0" />
-			</views:HeaderOverlay>
+			<views:SolidHeader Title="{x:Static res:Text.ImpactPageTitle}" BackgroundColor="{StaticResource headerOverlay}" />
 			<Grid 
 				HeightRequest="60"
 				BackgroundColor="{x:Static views:ColorHelper.PrimaryNavBar}"

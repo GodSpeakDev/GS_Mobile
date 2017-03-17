@@ -6,14 +6,15 @@
 	xmlns:res="clr-namespace:GodSpeak.Resources;assembly=GodSpeak"
 	x:Class="GodSpeak.SolidHeader"
 	Padding="0,20,10,0"
+	HeightRequest="40"
 	AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"
-	AbsoluteLayout.LayoutBounds="0,0,1,60">
+	AbsoluteLayout.LayoutBounds="0,0,1,AutoSize">
 	<Grid.ColumnDefinitions>
 		<ColumnDefinition Width="auto" />
 		<ColumnDefinition Width="auto" />
 		<ColumnDefinition Width="*" />
 	</Grid.ColumnDefinitions>												
-	<Label		
+	<views:CustomLabel			
 		x:Name="Label"	
 		Grid.Row="0"
 		Grid.Column="0"
@@ -21,9 +22,7 @@
 		HorizontalOptions="FillAndExpand" 
 		HorizontalTextAlignment="Center"
 		VerticalOptions="Center"
-		TextColor="{x:Static views:ColorHelper.Secondary}"
-		FontSize="16"
-		FontAttributes="Bold"
+		Style="{StaticResource NavigationBarTitle}"
 	/>
 	<views:BackButton x:Name="BackButton" Grid.Row="0" Grid.Column="0" />
 </Grid>

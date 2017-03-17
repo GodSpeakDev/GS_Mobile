@@ -8,20 +8,19 @@
 	VerticalOptions="FillAndExpand"
 	Orientation="Horizontal"
 	Padding="10,0"
-	Spacing="2"
+	Spacing="5"
 	WidthRequest="60">
 	<Image
 		Source="arrow_left.png"
-		WidthRequest="15"
-		HeightRequest="15"
+		WidthRequest="12"
+		HeightRequest="21"
 		Aspect="AspectFit"
 		VerticalOptions="Center"
 	/>
-	<Label						
+	<views:CustomLabel						
 		VerticalOptions="CenterAndExpand"
 		HorizontalOptions="StartAndExpand"
-		TextColor="{x:Static views:ColorHelper.Secondary}"
-		FontSize="12"
+		Style="{StaticResource NavigationBarButtonTitle}"
 		Text="Back">
-	</Label>	
+	</views:CustomLabel>	
 </StackLayout>

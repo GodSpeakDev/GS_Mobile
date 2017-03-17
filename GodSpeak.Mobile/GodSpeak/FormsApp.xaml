@@ -31,64 +31,45 @@
 			<Color x:Key="transparent">#00000000</Color>
 			<Color x:Key="disabledText">#716c6c</Color>
 			<Color x:Key="disabledBackground">#4e4f50</Color>
+			<Color x:Key="headerOverlay">#dc474843</Color>			 
 
 			<!-- Label Styles -->
-			<Style
-				x:Key="AlertSheetTitle"
-				TargetType="Label">
-				<Setter
-					Property="TextColor"
-					Value="{StaticResource secondaryColor}" />				
-				<Setter
-					Property="FontAttributes"
-					Value="Bold" />
-				<Setter
-					Property="FontSize"
-					Value="24" />
+			<Style x:Key="AlertSheetTitle" TargetType="Label">
+				<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />				
+				<Setter Property="FontAttributes" Value="Bold" />
+				<Setter Property="FontSize" Value="24" />
+			</Style>
+			
+			<Style x:Key="AlertSheetBody" TargetType="Label">
+				<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />				
+				<Setter Property="FontAttributes" Value="Bold" />
+				<Setter Property="FontSize" Value="15" />
+			</Style>
+			
+			<Style x:Key="NavigationBarButtonTitle" TargetType="godspeak:CustomLabel">
+				<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />				
+				<Setter Property="FontWeight" Value="Regular" />
+				<Setter Property="FontSize" Value="17" />								
 			</Style>
 
-			<Style
-				x:Key="AlertSheetBody"
-				TargetType="Label">
-				<Setter
-					Property="TextColor"
-					Value="{StaticResource secondaryColor}" />				
-				<Setter
-					Property="FontAttributes"
-					Value="Bold" />
-				<Setter
-					Property="FontSize"
-					Value="15" />
+			<Style x:Key="NavigationBarTitle" TargetType="godspeak:CustomLabel">
+				<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />				
+				<Setter Property="FontWeight" Value="Bold" />
+				<Setter Property="FontSize" Value="22" />								
 			</Style>
 
 			<!-- Button Styles -->	
-			<Style 
-				x:Key="CustomButton" 
-				TargetType="Button">
-				<Setter
-					Property="FontAttributes"
-					Value="Bold" />
-				<Setter
-					Property="FontSize"
-					Value="18" />				
+			<Style  x:Key="CustomButton" TargetType="Button">
+				<Setter Property="FontAttributes" Value="Bold" />
+				<Setter Property="FontSize" Value="18" />				
 			</Style>
 			
-			<Style
-				x:Key="ButtonWhite"
-				TargetType="Button"
-				BasedOn="{StaticResource CustomButton}">
-				<Setter
-					Property="TextColor"
-					Value="{StaticResource primaryColor}" />								
-				<Setter
-					Property="BackgroundColor"
-					Value="{StaticResource secondaryColor}" />				
+			<Style x:Key="ButtonWhite" TargetType="Button" BasedOn="{StaticResource CustomButton}">
+				<Setter Property="TextColor" Value="{StaticResource primaryColor}" />								
+				<Setter Property="BackgroundColor" Value="{StaticResource secondaryColor}" />				
 			</Style>
 
-			<Style
-				x:Key="ButtonBlue"
-				TargetType="Button"
-				BasedOn="{StaticResource CustomButton}">
+			<Style x:Key="ButtonBlue" TargetType="Button" BasedOn="{StaticResource CustomButton}">
 				<Style.Triggers>
 					<Trigger TargetType="Button" Property="IsEnabled" Value="True">
 						<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />								
@@ -100,18 +81,11 @@
 					</Trigger>
 				</Style.Triggers>
 			</Style>
-			<Style
-				x:Key="ButtonTransparent"
-				TargetType="Button"
-				BasedOn="{StaticResource CustomButton}">
-				<Setter
-					Property="TextColor"
-					Value="{StaticResource secondaryColor}" />								
-				<Setter
-					Property="BackgroundColor"
-					Value="{StaticResource transparent}" />				
+			<Style x:Key="ButtonTransparent" TargetType="Button" BasedOn="{StaticResource CustomButton}">
+				<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />								
+				<Setter Property="BackgroundColor" Value="{StaticResource transparent}" />				
 			</Style>
-
+			
 			<Style
 				x:Key="BorderButtonWhite"
 				TargetType="Button"
@@ -137,18 +111,10 @@
 			</Style>
 
 			<!-- Entry Styles -->			
-			<Style
-				x:Key="PopupEntry"
-				TargetType="Entry">
-				<Setter
-					Property="TextColor"
-					Value="{StaticResource textInputFocusedText}" />				
-				<Setter
-					Property="BackgroundColor"
-					Value="{StaticResource secondaryColor}" />				
-				<Setter
-					Property="PlaceholderColor"
-					Value="{StaticResource textInputFocusPlaceholder}" />				
+			<Style x:Key="PopupEntry" TargetType="Entry">
+				<Setter Property="TextColor" Value="{StaticResource textInputFocusedText}" />				
+				<Setter Property="BackgroundColor" Value="{StaticResource secondaryColor}" />				
+				<Setter Property="PlaceholderColor" Value="{StaticResource textInputFocusPlaceholder}" />				
 			</Style>
 
 		</ResourceDictionary>
