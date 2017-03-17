@@ -79,41 +79,33 @@ namespace GodSpeak
 
 			_titleLabel = new Label()
 			{
-				TextColor = ColorHelper.Secondary,
+				Style = (Style)Application.Current.Resources["AlertSheetTitle"],
 				HorizontalTextAlignment = TextAlignment.Center,
-				FontAttributes = FontAttributes.Bold,
 				Text = _title,
-				FontSize = 24
 			};
 
 			_messageLabel = new Label()
 			{
 				Margin = new Thickness(20, 10, 20, 25),
-				TextColor = ColorHelper.Secondary,
+				Style = (Style)Application.Current.Resources["AlertSheetBody"],
 				HorizontalTextAlignment = TextAlignment.Center,
-				FontAttributes = FontAttributes.Bold,
 				Text = _message,
-				FontSize = 15
 			};
 
-			_input = new PopupEntry() 
+			_input = new CustomEntry() 
 			{
 				Margin = new Thickness(10, 5, 10, 5),
+				Style = (Style)Application.Current.Resources["PopupEntry"],
 				Placeholder = _inputOptions?.Placeholder
 			};
 
 			for (int i = 0; i < Buttons.Length; i++)
 			{
 				var button = new Button()
-				{
-					FontSize = 18,
-					BackgroundColor = i == 0 ? ColorHelper.Secondary : Color.Transparent,
-					TextColor = i == 0 ? ColorHelper.Primary : ColorHelper.Secondary,
-					BorderWidth = 1,
-					BorderColor = ColorHelper.Secondary,
+				{					
+					Style = (Style)Application.Current.Resources[i == 0 ? "BorderButtonWhite" : "BorderButtonTransparent"],
 					Margin = new Thickness(10, 5, 10, 5),
 					Text = Buttons[i],
-					FontAttributes = FontAttributes.Bold,
 				};
 				button.Clicked += (sender, e) =>
 				{

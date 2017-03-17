@@ -137,9 +137,10 @@
 							/>
 						</Grid>			
 					</ScrollView>
-					<views:ActionButton
+					<Button
 						Grid.Row="1"
 						Margin="10, 10"
+						Style="{StaticResource ButtonBlue}"
 						Text="{x:Static res:Text.MyProfileUpdateInfo}"
 						Command="{Binding SaveCommand}"
 					/>

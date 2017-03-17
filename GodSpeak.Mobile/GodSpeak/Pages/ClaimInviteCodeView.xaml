@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentView 
 		xmlns="http://xamarin.com/schemas/2014/forms" 
 		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
@@ -43,10 +43,11 @@
 				Placeholder="{x:Static res:Text.InviteCodePlaceholder}"
 				Text="{Binding InviteCode}"
 			/>
-			<views:ActionButton 
+			<Button 
 				Grid.Row="3"
 				Margin="30,0"
 				Text="Claim Invite Code"	
+				Style="{StaticResource ButtonBlue}"
 				Command="{Binding ClaimInviteCodeCommand}"
 			/>
 			<views:Link

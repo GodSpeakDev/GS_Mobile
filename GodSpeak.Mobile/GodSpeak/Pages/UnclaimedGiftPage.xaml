@@ -109,9 +109,9 @@
 												FontSize="18"
 												FontAttributes="Bold"
 											/>
-											<views:ActionButton
+											<Button
 												WidthRequest="80"
-												FontSize="16"
+												Style="{StaticResource ButtonBlue}"
 												Text="{Binding CostDescription}"
 											/>	
 										</StackLayout>

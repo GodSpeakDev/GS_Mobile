@@ -8,11 +8,8 @@ namespace GodSpeak
     {
         public ActionButton ()
         {
-            InitializeComponent ();
-            FontSize = 28;
-            FontAttributes = FontAttributes.Bold;
-            HeightRequest = 60;
-            SetUI ();
+            InitializeComponent ();            
+            //SetUI ();
         }
 
         public void SetUI ()
@@ -40,7 +37,7 @@ namespace GodSpeak
         {
             base.OnPropertyChanged (propertyName);
             if (propertyName == IsEnabledProperty.PropertyName) {
-                SetUI ();
+                //SetUI ();
             }
         }
     }

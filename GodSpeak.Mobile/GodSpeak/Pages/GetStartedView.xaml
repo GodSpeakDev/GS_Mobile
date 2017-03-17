@@ -73,11 +73,12 @@
 								FontAttributes="Bold"
 								FontSize="14"
 							/>
-							<views:ActionButton 
+							<Button
 								Grid.Row="2"
 								Text="Get Started" 
 								HorizontalOptions="FillAndExpand" 
 								VerticalOptions="End" 
+								Style="{StaticResource ButtonBlue}"
 								Command="{Binding TapGetStartedCommand}" 
 							/>	
 						</Grid>		
@@ -120,10 +121,11 @@
 								Placeholder="{x:Static res:Text.InviteCodePlaceholder}"
 								Text="{Binding GiftCodeText}"
 							/>
-							<views:ActionButton 
+							<Button
 								Grid.Row="2"
 								Margin="0,5"
 								Text="{x:Static res:Text.GetStartedSubmitInviteCode}"	
+								Style="{StaticResource ButtonBlue}"
 								IsEnabled="{Binding IsSubmitInvideCodeValid}"
 								Command="{Binding SubmitGiftCodeCommand}"
 							/>
@@ -186,9 +188,10 @@
 								FontSize="13"
 								Text="{x:Static res:Text.SuccessGiftCodeText}"
 							/>			
-							<views:ActionButton 
+							<Button
 								Grid.Row="2"
 								Margin="0,5"
+								Style="{StaticResource ButtonBlue}"
 								Text="{x:Static res:Text.Register}"	
 								Command="{Binding RegisterCommand}"
 							/>

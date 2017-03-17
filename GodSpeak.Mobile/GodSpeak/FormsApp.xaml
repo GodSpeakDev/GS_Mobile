@@ -22,6 +22,135 @@
 			<godspeak:SelectedVerseToFontAttributesConverter x:Key="SelectedVerseToFontAttributesConverter" />
 			<godspeak:SelectedVerseToTextColorConverter x:Key="SelectedVerseToTextColorConverter" />
 			<godspeak:WeekdayConverter x:Key="WeekdayConverter" />
+
+			<!-- Global Colors -->
+			<Color x:Key="primaryColor">#00a5ff</Color>
+			<Color x:Key="secondaryColor">#ffffff</Color>
+			<Color x:Key="textInputFocusPlaceholder">#d9dadb</Color>
+			<Color x:Key="textInputFocusedText">#555454</Color>
+			<Color x:Key="transparent">#00000000</Color>
+			<Color x:Key="disabledText">#716c6c</Color>
+			<Color x:Key="disabledBackground">#4e4f50</Color>
+
+			<!-- Label Styles -->
+			<Style
+				x:Key="AlertSheetTitle"
+				TargetType="Label">
+				<Setter
+					Property="TextColor"
+					Value="{StaticResource secondaryColor}" />				
+				<Setter
+					Property="FontAttributes"
+					Value="Bold" />
+				<Setter
+					Property="FontSize"
+					Value="24" />
+			</Style>
+
+			<Style
+				x:Key="AlertSheetBody"
+				TargetType="Label">
+				<Setter
+					Property="TextColor"
+					Value="{StaticResource secondaryColor}" />				
+				<Setter
+					Property="FontAttributes"
+					Value="Bold" />
+				<Setter
+					Property="FontSize"
+					Value="15" />
+			</Style>
+
+			<!-- Button Styles -->	
+			<Style 
+				x:Key="CustomButton" 
+				TargetType="Button">
+				<Setter
+					Property="FontAttributes"
+					Value="Bold" />
+				<Setter
+					Property="FontSize"
+					Value="18" />				
+			</Style>
+			
+			<Style
+				x:Key="ButtonWhite"
+				TargetType="Button"
+				BasedOn="{StaticResource CustomButton}">
+				<Setter
+					Property="TextColor"
+					Value="{StaticResource primaryColor}" />								
+				<Setter
+					Property="BackgroundColor"
+					Value="{StaticResource secondaryColor}" />				
+			</Style>
+
+			<Style
+				x:Key="ButtonBlue"
+				TargetType="Button"
+				BasedOn="{StaticResource CustomButton}">
+				<Style.Triggers>
+					<Trigger TargetType="Button" Property="IsEnabled" Value="True">
+						<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />								
+						<Setter Property="BackgroundColor" Value="{StaticResource primaryColor}" />				
+					</Trigger>
+					<Trigger TargetType="Button" Property="IsEnabled" Value="False">
+						<Setter Property="TextColor" Value="{StaticResource disabledText}" />								
+						<Setter Property="BackgroundColor" Value="{StaticResource disabledBackground}" />				
+					</Trigger>
+				</Style.Triggers>
+			</Style>
+			<Style
+				x:Key="ButtonTransparent"
+				TargetType="Button"
+				BasedOn="{StaticResource CustomButton}">
+				<Setter
+					Property="TextColor"
+					Value="{StaticResource secondaryColor}" />								
+				<Setter
+					Property="BackgroundColor"
+					Value="{StaticResource transparent}" />				
+			</Style>
+
+			<Style
+				x:Key="BorderButtonWhite"
+				TargetType="Button"
+				BasedOn="{StaticResource ButtonWhite}">
+				<Setter
+					Property="BorderWidth"
+					Value="1" />				
+				<Setter
+					Property="BorderColor"
+					Value="{StaticResource secondaryColor}" />
+			</Style>
+
+			<Style
+				x:Key="BorderButtonTransparent"
+				TargetType="Button"
+				BasedOn="{StaticResource ButtonTransparent}">
+				<Setter
+					Property="BorderWidth"
+					Value="1" />				
+				<Setter
+					Property="BorderColor"
+					Value="{StaticResource secondaryColor}" />
+			</Style>
+
+			<!-- Entry Styles -->			
+			<Style
+				x:Key="PopupEntry"
+				TargetType="Entry">
+				<Setter
+					Property="TextColor"
+					Value="{StaticResource textInputFocusedText}" />				
+				<Setter
+					Property="BackgroundColor"
+					Value="{StaticResource secondaryColor}" />				
+				<Setter
+					Property="PlaceholderColor"
+					Value="{StaticResource textInputFocusPlaceholder}" />				
+			</Style>
+
 		</ResourceDictionary>
 	</Application.Resources>			
 </core:MvxFormsApp>

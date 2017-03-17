@@ -44,9 +44,10 @@
 						IsPassword="true"
 						Placeholder="{x:Static res:Text.PasswordPlaceholder}" 
 						Text="{Binding Password}" />
-					<views:ActionButton 
+					<Button 
 						Margin="10,0"
 						HorizontalOptions="FillAndExpand"
+						Style="{StaticResource ButtonBlue}"
 						Text="{x:Static res:Text.LoginButton}" 
 						Command="{Binding LoginCommand}" />					
 					<views:Link

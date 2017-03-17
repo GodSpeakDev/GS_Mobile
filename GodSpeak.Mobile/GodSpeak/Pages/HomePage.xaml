@@ -49,10 +49,11 @@
 				AbsoluteLayout.LayoutBounds="0.8,0,35,39"
 				Source="blue_down_arrow.png" 
 			/>
-			<views:ActionButton
+			<Button
 				Margin="10"
 				AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"
 				AbsoluteLayout.LayoutBounds="0,1,1,AutoSize"
+				Style="{StaticResource ButtonBlue}"
 				Text="Share Your 123 Gifts"
 				Image="bundle_icon.png"
 				Command="{Binding ShareCommand}"

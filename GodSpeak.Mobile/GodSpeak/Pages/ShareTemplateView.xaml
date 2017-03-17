@@ -30,11 +30,11 @@
 				FontAttributes="Bold"
 				Text="{x:Static res:Text.ShareGiftsLeft}">
 			</Label>
-			<views:ActionButton 
+			<Button 
 				Grid.Row="1"
 				Grid.Column="0"
 				VerticalOptions="Center"
-				FontSize="14"
+				Style="{StaticResource ButtonBlue}"
 				Text="{x:Static res:Text.ShareWithFriend}"
 				Command="{Binding ShareWithFriendsCommand}"
 			/>
