@@ -46,6 +46,9 @@ namespace GodSpeak.iOS
 				case CustomLabel.FontWeights.Regular:
 					this.Control.Font = UIFont.SystemFontOfSize((nfloat)CustomLabel.FontSize, UIFontWeight.Regular);
 					break;
+				case CustomLabel.FontWeights.Medium:
+					this.Control.Font = UIFont.SystemFontOfSize((nfloat)CustomLabel.FontSize, UIFontWeight.Medium);
+					break;
 				case CustomLabel.FontWeights.Semibold:
 					this.Control.Font = UIFont.SystemFontOfSize((nfloat)CustomLabel.FontSize, UIFontWeight.Semibold);
 					break;

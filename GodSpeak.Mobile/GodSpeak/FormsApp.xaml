@@ -58,6 +58,32 @@
 				<Setter Property="FontSize" Value="22" />								
 			</Style>
 
+			<Style x:Key="OnBoardingBodyText" TargetType="godspeak:CustomLabel">
+				<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />				
+				<Setter Property="FontWeight" Value="Medium" />
+				<Setter Property="FontSize" Value="18" />								
+			</Style>
+
+			<Style x:Key="OnBoardingSubtitleText" TargetType="godspeak:CustomLabel">
+				<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />				
+				<Setter Property="FontWeight" Value="Heavy" />
+				<Setter Property="FontSize" Value="18" />	
+				<Setter Property="FontSize" Value="18" />	
+			</Style>
+			
+			<Style x:Key="YouDidItTitle" TargetType="godspeak:CustomLabel">
+				<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />				
+				<Setter Property="FontWeight" Value="Semibold" />
+				<Setter Property="FontSize" Value="37" />								
+			</Style>
+
+			<Style x:Key="ButtonLinkText" TargetType="godspeak:CustomLabel">
+				<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />				
+				<Setter Property="FontWeight" Value="Regular" />
+				<Setter Property="FontSize" Value="20" />
+				<Setter Property="HorizontalTextAlignment" Value="Center" />
+			</Style>
+
 			<!-- Button Styles -->	
 			<Style  x:Key="CustomButton" TargetType="Button">
 				<Setter Property="FontAttributes" Value="Bold" />

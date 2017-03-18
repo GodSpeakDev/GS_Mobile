@@ -57,21 +57,18 @@
 								<RowDefinition Height="auto" />
 								<RowDefinition Height="auto" />
 							</Grid.RowDefinitions>
-							<Label 
+							<views:CustomLabel 
 								Grid.Row="0"
 								Text="{x:Static res:Text.GetStartedCitation}"
-								TextColor="{x:Static views:ColorHelper.Secondary}"
 								HorizontalTextAlignment="Center"
-								FontSize="13"
+								Style="{StaticResource OnBoardingBodyText}"
 							/>
-							<Label 
+							<views:CustomLabel  
 								Grid.Row="1"
 								HorizontalTextAlignment="End"
 								Margin="0,5,0,10"
 								Text="{x:Static res:Text.GetStartedAuthor}"
-								TextColor="{x:Static views:ColorHelper.Secondary}"
-								FontAttributes="Bold"
-								FontSize="14"
+								Style="{StaticResource OnBoardingSubtitleText}"
 							/>
 							<Button
 								Grid.Row="2"
@@ -107,12 +104,11 @@
 								<RowDefinition Height="auto" />
 								<RowDefinition Height="auto" />
 							</Grid.RowDefinitions>
-							<Label 										
+							<views:CustomLabel 										
 								Grid.Row="0"
-								HorizontalOptions="Center" 
-								TextColor="{x:Static views:ColorHelper.Secondary}"
+								HorizontalOptions="Start" 
 								HorizontalTextAlignment="Start"
-								FontSize="13"
+								Style="{StaticResource OnBoardingBodyText}"
 								Text="{x:Static res:Text.ClaimInviteCodeText}"
 							/>			
 							<views:CustomEntry
@@ -129,24 +125,24 @@
 								IsEnabled="{Binding IsSubmitInvideCodeValid}"
 								Command="{Binding SubmitGiftCodeCommand}"
 							/>
-							<views:Link
+							<views:CustomLabel 
 								Grid.Row="3"
+								Style="{StaticResource ButtonLinkText}"
 								Margin="0,5"
-								TextColor="{x:Static views:ColorHelper.Secondary}"
-								Text="I don't have a invite code">
+								Text="{x:Static res:Text.IDontHaveCodeLink}">
 								<Label.GestureRecognizers>
 							        <TapGestureRecognizer Command="{Binding DontHaveCodeCommand}" />
 							    </Label.GestureRecognizers>
-							</views:Link>
-							<views:Link	 
+							</views:CustomLabel >
+							<views:CustomLabel 
 								Grid.Row="4"
-								Margin="0,5"
-								TextColor="{x:Static views:ColorHelper.Secondary}"
-								Text="I'm already registered">
-								<views:Link.GestureRecognizers>
+								Style="{StaticResource ButtonLinkText}"
+								Margin="0,5"								
+								Text="{x:Static res:Text.ImRegisteredLink}">
+								<Label.GestureRecognizers>
 							        <TapGestureRecognizer Command="{Binding AlreadyRegisteredCommand}" />
-							    </views:Link.GestureRecognizers>
-							</views:Link>
+							    </Label.GestureRecognizers>
+							</views:CustomLabel >
 						</Grid>
 					</views:GrayGradientBackgroundView>
 				</StackLayout>
@@ -171,21 +167,18 @@
 								<RowDefinition Height="auto" />
 								<RowDefinition Height="auto" />
 							</Grid.RowDefinitions>
-							<Label 										
+							<views:CustomLabel 										
 								Grid.Row="0"
 								HorizontalOptions="Center" 
-								TextColor="{x:Static views:ColorHelper.Secondary}"
 								HorizontalTextAlignment="Start"
-								FontSize="17"
-								FontAttributes="Bold"
+								Style="{StaticResource YouDidItTitle}"
 								Text="{x:Static res:Text.SuccessGiftCodeTitle}"
 							/>		
-							<Label 										
+							<views:CustomLabel 										
 								Grid.Row="1"
 								HorizontalOptions="Center" 
-								TextColor="{x:Static views:ColorHelper.Secondary}"
 								HorizontalTextAlignment="Start"
-								FontSize="13"
+								Style="{StaticResource OnBoardingBodyText}"
 								Text="{x:Static res:Text.SuccessGiftCodeText}"
 							/>			
 							<Button

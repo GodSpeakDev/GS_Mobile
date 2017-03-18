@@ -580,4 +580,14 @@ Claimed</value>
 		xml:space="preserve">
     	<value>Has not gifted anyone</value>
   	</data>
+	<data
+		name="IDontHaveCodeLink"
+		xml:space="preserve">
+    	<value>I don't have a invite code</value>
+  	</data>
+	<data
+		name="ImRegisteredLink"
+		xml:space="preserve">
+    	<value>I'm already registered</value>
+  	</data>
 </root>

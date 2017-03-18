@@ -8,6 +8,7 @@ namespace GodSpeak
 		public enum FontWeights
 		{
 			Regular,
+			Medium,
 			Bold,
 			Semibold,
 			Light,

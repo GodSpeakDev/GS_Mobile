@@ -706,5 +706,17 @@ namespace GodSpeak.Resources {
                 return ResourceManager.GetString("HasNotGiftedPeopleText", resourceCulture);
             }
         }
+        
+        public static string IDontHaveCodeLink {
+            get {
+                return ResourceManager.GetString("IDontHaveCodeLink", resourceCulture);
+            }
+        }
+        
+        public static string ImRegisteredLink {
+            get {
+                return ResourceManager.GetString("ImRegisteredLink", resourceCulture);
+            }
+        }
     }
 }
