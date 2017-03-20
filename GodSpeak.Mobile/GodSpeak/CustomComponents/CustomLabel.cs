@@ -3,29 +3,19 @@ using Xamarin.Forms;
 
 namespace GodSpeak
 {
-	public class CustomLabel : Label
-	{
-		public enum FontWeights
-		{
-			Regular,
-			Medium,
-			Bold,
-			Semibold,
-			Light,
-			Heavy
-		}
-
+	public class CustomLabel : Label, ICustomFont
+	{		
 		public static readonly BindableProperty FontWeightProperty =
-			BindableProperty.Create<CustomLabel, FontWeights>(
-				p => p.FontWeight, FontWeights.Regular, BindingMode.TwoWay, propertyChanged: OnFontWeightChanged);
+			BindableProperty.Create<CustomLabel, GodSpeak.FontWeight>(
+				p => p.FontWeight, GodSpeak.FontWeight.Regular, BindingMode.TwoWay, propertyChanged: OnFontWeightChanged);
 
-		public FontWeights FontWeight
+		public GodSpeak.FontWeight FontWeight
 		{
-			get { return (FontWeights)this.GetValue(FontWeightProperty); }
+			get { return (GodSpeak.FontWeight)this.GetValue(FontWeightProperty); }
 			set { this.SetValue(FontWeightProperty, value); }
 		}
 
-		private static void OnFontWeightChanged(BindableObject bindable, FontWeights oldvalue, FontWeights newValue)
+		private static void OnFontWeightChanged(BindableObject bindable, GodSpeak.FontWeight oldvalue, GodSpeak.FontWeight newValue)
 		{
 			var entry = (CustomLabel)bindable;
 			entry.FontWeight = newValue;

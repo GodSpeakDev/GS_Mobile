@@ -3,8 +3,18 @@ using Xamarin.Forms;
 
 namespace GodSpeak
 {
-	public class CustomEntry : Entry
+	public class CustomEntry : Entry, ICustomFont
 	{
+		public static readonly BindableProperty FontWeightProperty =
+			BindableProperty.Create<CustomLabel, GodSpeak.FontWeight>(
+				p => p.FontWeight, GodSpeak.FontWeight.Regular, BindingMode.TwoWay, propertyChanged: OnFontWeightChanged);
+
+		public GodSpeak.FontWeight FontWeight
+		{
+			get { return (GodSpeak.FontWeight)this.GetValue(FontWeightProperty); }
+			set { this.SetValue(FontWeightProperty, value); }
+		}
+
 		public static readonly BindableProperty OutlineColorProperty =
 			BindableProperty.Create<CustomEntry, Color>(
 				p => p.OutlineColor, Color.White, BindingMode.TwoWay, propertyChanged: OnOutlineColorChanged);
@@ -34,6 +44,12 @@ namespace GodSpeak
 		{
 			var entry = (CustomEntry)bindable;
 			entry.HasError = newValue;
+		}
+
+		private static void OnFontWeightChanged(BindableObject bindable, GodSpeak.FontWeight oldvalue, GodSpeak.FontWeight newValue)
+		{
+			var entry = (CustomEntry)bindable;
+			entry.FontWeight = newValue;
 		}
 
 		private bool _isFocused;

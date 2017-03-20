@@ -212,6 +212,7 @@
     <Compile Include="Renderers\DotRenderer.cs" />
     <Compile Include="Renderers\CustomImageRenderer.cs" />
     <Compile Include="Renderers\CustomLabelRenderer.cs" />
+    <Compile Include="Extensions\CustomFontExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\profile_placeholder.png" />

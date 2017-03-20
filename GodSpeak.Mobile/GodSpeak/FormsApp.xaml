@@ -23,6 +23,9 @@
 			<godspeak:SelectedVerseToTextColorConverter x:Key="SelectedVerseToTextColorConverter" />
 			<godspeak:WeekdayConverter x:Key="WeekdayConverter" />
 
+			<!-- Global Values -->
+			<x:Double x:Key="EntryHeight">42</x:Double>
+			
 			<!-- Global Colors -->
 			<Color x:Key="primaryColor">#00a5ff</Color>
 			<Color x:Key="secondaryColor">#ffffff</Color>
@@ -112,37 +115,31 @@
 				<Setter Property="BackgroundColor" Value="{StaticResource transparent}" />				
 			</Style>
 			
-			<Style
-				x:Key="BorderButtonWhite"
-				TargetType="Button"
-				BasedOn="{StaticResource ButtonWhite}">
-				<Setter
-					Property="BorderWidth"
-					Value="1" />				
-				<Setter
-					Property="BorderColor"
-					Value="{StaticResource secondaryColor}" />
+			<Style x:Key="BorderButtonWhite" TargetType="Button" BasedOn="{StaticResource ButtonWhite}">
+				<Setter Property="BorderWidth" Value="1" />				
+				<Setter Property="BorderColor" Value="{StaticResource secondaryColor}" />
 			</Style>
 
-			<Style
-				x:Key="BorderButtonTransparent"
-				TargetType="Button"
-				BasedOn="{StaticResource ButtonTransparent}">
-				<Setter
-					Property="BorderWidth"
-					Value="1" />				
-				<Setter
-					Property="BorderColor"
-					Value="{StaticResource secondaryColor}" />
+			<Style x:Key="BorderButtonTransparent" TargetType="Button" BasedOn="{StaticResource ButtonTransparent}">
+				<Setter Property="BorderWidth" Value="1" />				
+				<Setter Property="BorderColor" Value="{StaticResource secondaryColor}" />
 			</Style>
 
-			<!-- Entry Styles -->			
-			<Style x:Key="PopupEntry" TargetType="Entry">
+			<!-- Entry Styles -->	
+
+			
+			<Style x:Key="PopupEntry" TargetType="godspeak:CustomEntry">
 				<Setter Property="TextColor" Value="{StaticResource textInputFocusedText}" />				
 				<Setter Property="BackgroundColor" Value="{StaticResource secondaryColor}" />				
 				<Setter Property="PlaceholderColor" Value="{StaticResource textInputFocusPlaceholder}" />				
+				<Setter Property="FontWeight" Value="Bold" />
+				<Setter Property="FontSize" Value="24" />
 			</Style>
 
+			<Style x:Key="OnboardingEntry" TargetType="godspeak:CustomEntry">						
+				<Setter Property="FontWeight" Value="Bold" />
+				<Setter Property="FontSize" Value="24" />	
+			</Style>
 		</ResourceDictionary>
 	</Application.Resources>			
 </core:MvxFormsApp>

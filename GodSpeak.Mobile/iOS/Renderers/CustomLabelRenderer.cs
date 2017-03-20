@@ -38,27 +38,10 @@ namespace GodSpeak.iOS
 
 		private void SetFontWeight()
 		{
-			switch (this.CustomLabel.FontWeight)
-			{
-				case CustomLabel.FontWeights.Light:
-					this.Control.Font = UIFont.SystemFontOfSize((nfloat)CustomLabel.FontSize, UIFontWeight.Light);
-					break;
-				case CustomLabel.FontWeights.Regular:
-					this.Control.Font = UIFont.SystemFontOfSize((nfloat)CustomLabel.FontSize, UIFontWeight.Regular);
-					break;
-				case CustomLabel.FontWeights.Medium:
-					this.Control.Font = UIFont.SystemFontOfSize((nfloat)CustomLabel.FontSize, UIFontWeight.Medium);
-					break;
-				case CustomLabel.FontWeights.Semibold:
-					this.Control.Font = UIFont.SystemFontOfSize((nfloat)CustomLabel.FontSize, UIFontWeight.Semibold);
-					break;
-				case CustomLabel.FontWeights.Bold:
-					this.Control.Font = UIFont.SystemFontOfSize((nfloat)CustomLabel.FontSize, UIFontWeight.Bold);
-					break;
-				case CustomLabel.FontWeights.Heavy:
-					this.Control.Font = UIFont.SystemFontOfSize((nfloat)CustomLabel.FontSize, UIFontWeight.Heavy);
-					break;
-			}
+			if (this.Control == null)
+				return;
+
+			this.Control.Font = this.CustomLabel.GetUIFont();
 		}
 
 		public override void LayoutSubviews()

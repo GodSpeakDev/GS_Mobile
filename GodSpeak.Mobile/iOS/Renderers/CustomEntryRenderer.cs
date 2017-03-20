@@ -22,6 +22,7 @@ namespace GodSpeak.iOS
 			SetBorderFrame();
 			SetBorderColor();
 			SetTextAligment();
+			SetFontWeight();
 		}
 
 		protected override void OnElementPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -31,7 +32,11 @@ namespace GodSpeak.iOS
 			if (e.PropertyName == CustomEntry.OutlineColorProperty.PropertyName)
 			{
 				SetBorderColor();
-			}				
+			}
+			else if (e.PropertyName == CustomLabel.FontWeightProperty.PropertyName)
+			{
+				SetFontWeight();
+			}
 		}
 
 		private void SetTextAligment()
@@ -69,6 +74,14 @@ namespace GodSpeak.iOS
 					CustomEntry.IsFocused = true;
 				};
 			}
+		}
+
+		private void SetFontWeight()
+		{
+			if (this.Control == null || this.CustomEntry == null)
+				return;
+
+			this.Control.Font = this.CustomEntry.GetUIFont();
 		}
 	}
 }

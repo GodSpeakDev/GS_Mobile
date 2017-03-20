@@ -357,6 +357,8 @@
       <DependentUpon>FormsApp.xaml</DependentUpon>
     </Compile>
     <Compile Include="CustomComponents\CustomLabel.cs" />
+    <Compile Include="Enumerations\FontWeight.cs" />
+    <Compile Include="CustomComponents\ICustomFont.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />
@@ -375,6 +377,7 @@
     <Folder Include="Helpers\" />
     <Folder Include="Extensions\" />
     <Folder Include="ViewModels\Share\" />
+    <Folder Include="Enumerations\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">
