@@ -26,6 +26,7 @@
 					Margin="10,0"
 					x:Name="SortOptions"
 					HasEmptyValue="false"
+					Style="{StaticResource FilledPicker}"
 					SelectedIndex="{Binding SelectedSortIndex}"
 				/>	
 				<ScrollView 
@@ -55,42 +56,41 @@
 										Grid.RowSpan="3"
 										Grid.Column="0"
 										Source="{Binding Image}"
-										WidthRequest="50"
-										HeightRequest="50"
-										BorderRadius="25"
+										WidthRequest="70"
+										HeightRequest="70"
+										HorizontalOptions="Center"
+										VerticalOptions="Center"
+										BorderRadius="35"
 										BorderSize="2"
 										BorderColor="{x:Static views:ColorHelper.Secondary}"
 									/>
-									<Label 			
+									<views:CustomLabel 			
 										Grid.Row="0"
 										Grid.Column="1"
 										Text="{Binding Name}"
 										HorizontalOptions="FillAndExpand"
-										TextColor="{x:Static views:ColorHelper.Secondary}"
-										FontAttributes="Bold"
-										FontSize="15"
+										Style="{StaticResource UnclaimedPageTitle}"
 									/>
-									<Label 																				
+									<views:CustomLabel 																				
 										Grid.Row="1"
 										Grid.Column="1"
 										Text="{Binding ClaimedDateDescription}"
 										HorizontalOptions="FillAndExpand"
-										TextColor="{x:Static views:ColorHelper.Secondary}"
-										FontSize="13"
+										Style="{StaticResource TextContent}"
 									/>
-									<Label 																				
+									<views:CustomLabel 																				
 										Grid.Row="2"
 										Grid.Column="1"
 										Text="{Binding PeopleGifted, Converter={StaticResource PeopleGiftedTextConverter}}"
 										HorizontalOptions="FillAndExpand"
-										TextColor="{x:Static views:ColorHelper.Secondary}"
-										FontSize="13"
+										Style="{StaticResource TextContent}"
 									/>
-									<views:SecondaryButton
+									<Button
 										Grid.Row="3"
 										Grid.Column="0"
 										Grid.ColumnSpan="2"
 										Margin="0,10,10,0"
+										Style="{StaticResource ButtonWhite}"
 										HorizontalOptions="FillAndExpand"
 										Text="{Binding PeopleGifted, Converter={StaticResource PeopleGiftButtonTextConverter}}"												
 									/>

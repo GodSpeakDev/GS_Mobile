@@ -168,6 +168,24 @@
 				<Setter Property="FontSize" Value="14" />
 			</Style>
 
+			<Style x:Key="TextShoppingCartItemTitle" TargetType="godspeak:CustomLabel">
+				<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />				
+				<Setter Property="FontWeight" Value="Bold" />
+				<Setter Property="FontSize" Value="22" />
+			</Style>
+
+			<Style x:Key="UnclaimedPageTitle" TargetType="godspeak:CustomLabel">
+				<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />				
+				<Setter Property="FontWeight" Value="Semibold" />
+				<Setter Property="FontSize" Value="19" />
+			</Style>
+
+			<Style x:Key="TextWhiteWithShadow" TargetType="godspeak:CustomLabel">
+				<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />				
+				<Setter Property="FontWeight" Value="Semibold" />
+				<Setter Property="FontSize" Value="23" />
+			</Style>
+
 			<!-- Button Styles -->	
 			<Style  x:Key="CustomButton" TargetType="Button">
 				<Setter Property="FontAttributes" Value="Bold" />
@@ -206,6 +224,14 @@
 				<Setter Property="BorderColor" Value="{StaticResource secondaryColor}" />
 			</Style>
 
+			<Style x:Key="ShareButtonWhite" TargetType="Button" BasedOn="{StaticResource ButtonWhite}">
+				<Setter Property="FontSize" Value="16" />		
+			</Style>
+
+			<Style x:Key="ShareButtonBlue" TargetType="Button" BasedOn="{StaticResource ButtonBlue}">
+				<Setter Property="FontSize" Value="16" />		
+			</Style>
+
 			<!-- Entry Styles -->	
 			<Style x:Key="PopupEntry" TargetType="godspeak:CustomEntry">
 				<Setter Property="TextColor" Value="{StaticResource textInputFocusedText}" />				
@@ -232,6 +258,11 @@
 			<!-- Picker Styles -->	
 			<Style x:Key="UtilityPicker" TargetType="godspeak:CustomPicker">				
 				<Setter Property="FontSize" Value="19" />
+			</Style>
+
+			<Style x:Key="FilledPicker" TargetType="godspeak:CustomPicker">				
+				<Setter Property="FontSize" Value="19" />
+				<Setter Property="FontWeight" Value="Semibold" />
 			</Style>
 			
 		</ResourceDictionary>

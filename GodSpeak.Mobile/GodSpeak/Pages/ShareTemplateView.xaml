@@ -18,31 +18,28 @@
 				<ColumnDefinition Width="*" />
 				<ColumnDefinition Width="*" />
 			</Grid.ColumnDefinitions>
-			<Label	
+			<views:CustomLabel	
 				Grid.Row="0"
 				Grid.Column="0"
 				Grid.ColumnSpan="2"
+				Margin="0,0,0,15"
 				VerticalOptions="End"
 				HorizontalOptions="Center"
-				TextColor="{x:Static views:ColorHelper.Secondary}"
-				FontSize="24"
-				Margin="0,0,0,15"
-				FontAttributes="Bold"
-				Text="{x:Static res:Text.ShareGiftsLeft}">
-			</Label>
+				Style="{StaticResource TextWhiteWithShadow}"
+				Text="{x:Static res:Text.ShareGiftsLeft}" />			
 			<Button 
 				Grid.Row="1"
 				Grid.Column="0"
 				VerticalOptions="Center"
-				Style="{StaticResource ButtonBlue}"
+				Style="{StaticResource ShareButtonBlue}"
 				Text="{x:Static res:Text.ShareWithFriend}"
 				Command="{Binding ShareWithFriendsCommand}"
 			/>
-			<views:SecondaryButton
+			<Button
 				Grid.Row="1"
 				Grid.Column="1"
 				VerticalOptions="Center"
-				FontSize="14"
+				Style="{StaticResource ShareButtonWhite}"
 				Text="{x:Static res:Text.ShareWithWorld}"
 				Command="{Binding ShareWithWorldCommand}"
 			/>
