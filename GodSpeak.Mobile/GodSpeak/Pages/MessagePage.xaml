@@ -73,7 +73,7 @@
 									</Grid.RowDefinitions>
 									<Grid.ColumnDefinitions>
 										<ColumnDefinition Width="*" />
-										<ColumnDefinition Width="*" />
+										<ColumnDefinition Width="auto" />
 									</Grid.ColumnDefinitions>
 									<Image 
 										Grid.Row="0"
@@ -86,27 +86,24 @@
 										Grid.Row="0"
 										Grid.Column="0"
 										Grid.ColumnSpan="2"
-										Padding="20,10"
+										Padding="20,10, 20, 0"
 										HorizontalOptions="FillAndExpand"
-										VerticalOptions="FillAndExpand"
-									>
-										<Label 																				
+										VerticalOptions="StartAndExpand">
+										<views:CustomLabel 																				
 											Text="{Binding Text}"
 											HorizontalOptions="FillAndExpand"
-											TextColor="{x:Static views:ColorHelper.Secondary}"
-											FontAttributes="Bold"
-											FontSize="14"
+											VerticalOptions="Start"
+											Style="{StaticResource TextMessageBody}"
 										/>											
 									</views:MessageBalloon>
-									<Label 	
+									<views:CustomLabel 	
 										Margin="5,0"
 										Grid.Row="1"
 										Grid.Column="1"
 										Text="{Binding Author}"
 										HorizontalOptions="End"
 										VerticalOptions="End"
-										TextColor="{x:Static views:ColorHelper.Secondary}"
-										FontSize="13"
+										Style="{StaticResource TextContent}"
 									/>
 								</Grid>
 							</ViewCell>
@@ -115,13 +112,12 @@
 					<ListView.GroupHeaderTemplate>
 						<DataTemplate>
 							<ViewCell Height="20">
-			            		<Label									
+			            		<views:CustomLabel									
 									Margin="15,0"
 									HorizontalOptions="FillAndExpand" 
 									HorizontalTextAlignment="Start" 
 									VerticalOptions="Center"
-									TextColor="{x:Static views:ColorHelper.Secondary}"
-									FontSize="13"
+									Style="{StaticResource TextContent}"
 									Text="{Binding Key, Converter={StaticResource DayConverter}}" />
 							</ViewCell>
 			            </DataTemplate>

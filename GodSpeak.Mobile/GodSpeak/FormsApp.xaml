@@ -22,6 +22,7 @@
 			<godspeak:SelectedVerseToFontAttributesConverter x:Key="SelectedVerseToFontAttributesConverter" />
 			<godspeak:SelectedVerseToTextColorConverter x:Key="SelectedVerseToTextColorConverter" />
 			<godspeak:WeekdayConverter x:Key="WeekdayConverter" />
+			<godspeak:MessageDetailStyleConverter x:Key="MessageDetailStyleConverter" />
 
 			<!-- Global Values -->
 			<x:Double x:Key="ElementHeight">42</x:Double>
@@ -34,7 +35,8 @@
 			<Color x:Key="transparent">#00000000</Color>
 			<Color x:Key="disabledText">#716c6c</Color>
 			<Color x:Key="disabledBackground">#4e4f50</Color>
-			<Color x:Key="headerOverlay">#dc474843</Color>			 
+			<Color x:Key="headerOverlay">#dc474843</Color>		
+			<Color x:Key="secondaryColorWithAlpha">#48ffffff</Color>		
 
 			<!-- Label Styles -->
 			<Style x:Key="AlertSheetTitle" TargetType="Label">
@@ -116,6 +118,36 @@
 				<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />				
 				<Setter Property="FontWeight" Value="Bold" />
 				<Setter Property="FontSize" Value="18" />
+			</Style>
+			
+			<Style x:Key="TextMessageBody" TargetType="godspeak:CustomLabel">
+				<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />				
+				<Setter Property="FontWeight" Value="Medium" />
+				<Setter Property="FontSize" Value="18" />
+			</Style>
+
+			<Style x:Key="MessageDetailsTextOutOfFocus" TargetType="godspeak:CustomLabel">
+				<Setter Property="TextColor" Value="{StaticResource secondaryColorWithAlpha}" />				
+				<Setter Property="FontWeight" Value="Light" />
+				<Setter Property="FontSize" Value="20" />
+			</Style>
+
+			<Style x:Key="MessageDetailsTextInFocus" TargetType="godspeak:CustomLabel">
+				<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />				
+				<Setter Property="FontWeight" Value="Semibold" />
+				<Setter Property="FontSize" Value="20" />
+			</Style>
+
+			<Style x:Key="MessageDetailsDay" TargetType="godspeak:CustomLabel">
+				<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />				
+				<Setter Property="FontWeight" Value="Light" />
+				<Setter Property="FontSize" Value="13" />
+			</Style>
+
+			<Style x:Key="MessageDetailsAuthor" TargetType="godspeak:CustomLabel">
+				<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />				
+				<Setter Property="FontWeight" Value="Semibold" />
+				<Setter Property="FontSize" Value="17" />
 			</Style>
 
 			<!-- Button Styles -->	

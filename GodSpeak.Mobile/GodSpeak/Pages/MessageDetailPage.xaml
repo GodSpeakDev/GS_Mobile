@@ -13,40 +13,33 @@
 				AbsoluteLayout.LayoutBounds="0,0,1,1"
 				>
 				<ScrollView
-					Margin="0,80,0,0"
-					>
+					Margin="0,80,0,0">
 					<StackLayout
 						Spacing="15"
 						Padding="15,0"
 						HorizontalOptions="FillAndExpand"
 						VerticalOptions="FillAndExpand">
-						<Label 									
+						<views:CustomLabel 									
 							Text="{Binding Message.BeforeVerse}"
-							FontSize="17"
-							FontAttributes="{Binding BeforeVerseSelected, Converter={StaticResource SelectedVerseToFontAttributesConverter}}"
-							TextColor="{Binding BeforeVerseSelected, Converter={StaticResource SelectedVerseToTextColorConverter}}">
+							Style="{Binding BeforeVerseSelected, Converter={StaticResource MessageDetailStyleConverter}}">
 							<Label.GestureRecognizers>
 			        			<TapGestureRecognizer Command="{Binding SelectBeforeVerseCommand}" />
 			    			</Label.GestureRecognizers>
-						</Label>
-						<Label 							
+						</views:CustomLabel>
+						<views:CustomLabel 							
 							Text="{Binding Message.Text}"
-							FontSize="17"
-							FontAttributes="{Binding CurrentVerseSelected, Converter={StaticResource SelectedVerseToFontAttributesConverter}}"
-							TextColor="{Binding CurrentVerseSelected, Converter={StaticResource SelectedVerseToTextColorConverter}}">
+							Style="{Binding CurrentVerseSelected, Converter={StaticResource MessageDetailStyleConverter}}">
 							<Label.GestureRecognizers>
 			        			<TapGestureRecognizer Command="{Binding SelectCurrentVerseCommand}" />
 			    			</Label.GestureRecognizers>
-						</Label>
-						<Label 							
+						</views:CustomLabel>
+						<views:CustomLabel 							
 							Text="{Binding Message.AfterVerse}"
-							FontSize="17"
-							FontAttributes="{Binding AfterVerseSelected, Converter={StaticResource SelectedVerseToFontAttributesConverter}}"
-							TextColor="{Binding AfterVerseSelected, Converter={StaticResource SelectedVerseToTextColorConverter}}">
+							Style="{Binding AfterVerseSelected, Converter={StaticResource MessageDetailStyleConverter}}">
 							<Label.GestureRecognizers>
 			        			<TapGestureRecognizer Command="{Binding SelectAfterVerseCommand}" />
 			    			</Label.GestureRecognizers>
-						</Label>
+						</views:CustomLabel>
 					</StackLayout>
 				</ScrollView>
 			</views:GradientBoxView>
@@ -67,26 +60,23 @@
 					<ColumnDefinition Width="*" />
 					<ColumnDefinition Width="auto" />
 				</Grid.ColumnDefinitions>
-				<Label 
+				<views:CustomLabel 
 					Grid.Row="0"
 					Grid.Column="0"
 					Grid.ColumnSpan="3"
 					Text="{Binding Message.DateTimeToDisplay, Converter={StaticResource DayConverter}}"
-					FontSize="11"
 					VerticalOptions="End"
 					HorizontalOptions="Center"
-					TextColor="{x:Static views:ColorHelper.Secondary}"
+					Style="{StaticResource MessageDetailsDay}"
 				/>
-				<Label 
+				<views:CustomLabel 
 					Grid.Row="1"
 					Grid.Column="0"
 					Grid.ColumnSpan="3"
 					Text="{Binding Message.Author}"
-					FontSize="14"
-					FontAttributes="Bold"
 					VerticalOptions="Start"
 					HorizontalOptions="Center"
-					TextColor="{x:Static views:ColorHelper.Secondary}"
+					Style="{StaticResource MessageDetailsAuthor}"
 				/>
 				<pages:BackButton
 					Grid.Column="0"

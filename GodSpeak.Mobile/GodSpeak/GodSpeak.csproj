@@ -358,6 +358,7 @@
     <Compile Include="CustomComponents\CustomLabel.cs" />
     <Compile Include="Enumerations\FontWeight.cs" />
     <Compile Include="CustomComponents\ICustomFont.cs" />
+    <Compile Include="Converters\MessageDetailStyleConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />
