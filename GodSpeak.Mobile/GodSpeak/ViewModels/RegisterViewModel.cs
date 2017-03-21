@@ -171,7 +171,6 @@ namespace GodSpeak
 		private async void DoSaveCommand()
 		{
 			await DialogService.ShowAlert(Text.SuccessfulRegisterPopupTitle, Text.SuccessGiftCodeText, Text.SuccessfulRegisterButtonText);
-			this.ShowViewModel<HomeViewModel>();
 
 			//await DialogService.ShowAlert("Ooops", "Sorry, please enter a valid email address");
 
@@ -211,28 +210,26 @@ namespace GodSpeak
 			//	return;
 			//}
 
-			//var request = new RegisterUserRequest()
-			//{
-			//	FirstName = FirstName,
-			//	LastName = LastName,
-			//	City = City,
-			//	State = State,
-			//	Email = Email,
-			//	Password = Password,
-			//	ProfilePhoto = Image as byte[]
-			//};
+			var request = new RegisterUserRequest()
+			{
+				FirstName = FirstName,
+				LastName = LastName,
+				Email = Email,
+				Password = Password,
+				ProfilePhoto = Image as byte[]
+			};
 
-			//var response = await _webApi.RegisterUser(request);
+			var response = await _webApi.RegisterUser(request);
 
-			//if (response.IsSuccess)
-			//{
-			//	await _sessionService.SaveUser(response.Content.Payload);
-			//	this.ShowViewModel<HomeViewModel>();
-			//}
-			//else
-			//{
-			//	await HandleResponse(response);
-			//}
+			if (response.IsSuccess)
+			{
+				await _sessionService.SaveUser(response.Content.Payload);
+				this.ShowViewModel<HomeViewModel>();
+			}
+			else
+			{
+				await HandleResponse(response);
+			}
 		}
 
 		private async void DoChoosePictureCommand()
