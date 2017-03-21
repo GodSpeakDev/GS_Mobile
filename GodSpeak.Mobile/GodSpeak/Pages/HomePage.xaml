@@ -72,11 +72,10 @@
 								Spacing="10"
 								BackgroundColor="{x:Static views:ColorHelper.DrawerMenuBackground}">
 								<Image WidthRequest="30" HeightRequest="30" Source="{Binding Image}" />
-								<Label 
+								<views:CustomLabel 
 									VerticalOptions="Center"
 									Text="{Binding Title}" 
-									TextColor="{x:Static views:ColorHelper.Secondary}"
-									FontAttributes="Bold"
+									Style="{StaticResource SettingMenuLabel}"
 								/>
 							</StackLayout>
 						</views:TappableView>	
