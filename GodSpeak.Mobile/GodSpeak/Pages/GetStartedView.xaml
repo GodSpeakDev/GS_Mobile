@@ -115,7 +115,7 @@
 								Grid.Row="1" 																		
 								Placeholder="{x:Static res:Text.InviteCodePlaceholder}"
 								Style="{StaticResource OnboardingEntry}"
-								HeightRequest="{StaticResource EntryHeight}"
+								HeightRequest="{StaticResource ElementHeight}"
 								Text="{Binding GiftCodeText}"
 							/>
 							<Button

@@ -22,6 +22,7 @@ namespace GodSpeak.iOS
 			SetBorderColor();
 			SetBorderFrame();
 			SetTextAligment();
+			SetFontWeight();
 		}
 
 		protected override void OnElementPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -31,6 +32,10 @@ namespace GodSpeak.iOS
 			if (e.PropertyName == CustomPicker.OutlineColorProperty.PropertyName)
 			{
 				SetBorderColor();
+			}
+			else if (e.PropertyName == CustomPicker.FontSizeProperty.PropertyName)
+			{
+				SetFontWeight();
 			}
 		}
 
@@ -81,6 +86,14 @@ namespace GodSpeak.iOS
 			this.Control.Layer.BorderWidth = 1;
 			this.Control.Layer.MasksToBounds = true;
 			this.Control.Layer.CornerRadius = 5.0f;
+		}
+
+		private void SetFontWeight()
+		{
+			if (this.Control == null || this.CustomPicker == null)
+				return;
+
+			this.Control.Font = this.CustomPicker.GetUIFont();
 		}
 	}
 }

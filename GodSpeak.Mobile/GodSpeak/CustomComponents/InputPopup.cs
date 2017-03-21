@@ -97,7 +97,7 @@ namespace GodSpeak
 				Margin = new Thickness(10, 5, 10, 5),
 				Style = (Style)Application.Current.Resources["PopupEntry"],
 				Placeholder = _inputOptions?.Placeholder,
-				HeightRequest = (double) Application.Current.Resources["EntryHeight"]
+				HeightRequest = (double) Application.Current.Resources["ElementHeight"]
 			};
 
 			for (int i = 0; i < Buttons.Length; i++)

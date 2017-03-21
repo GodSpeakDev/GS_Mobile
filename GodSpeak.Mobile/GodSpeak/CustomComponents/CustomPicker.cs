@@ -3,7 +3,7 @@ using Xamarin.Forms;
 
 namespace GodSpeak
 {
-	public class CustomPicker : Picker
+	public class CustomPicker : Picker, ICustomFont
 	{
 		public static readonly BindableProperty OutlineColorProperty =
 			BindableProperty.Create<CustomPicker, Color>(
@@ -35,6 +35,38 @@ namespace GodSpeak
 		{
 			var entry = (CustomPicker)bindable;
 			entry.HasEmptyValue = newValue;
+		}
+
+		public static readonly BindableProperty FontSizeProperty =
+			BindableProperty.Create<CustomPicker, double>(
+				p => p.FontSize, 14, BindingMode.TwoWay, propertyChanged: FontSizeChanged);
+
+		public double FontSize
+		{
+			get { return (double)this.GetValue(FontSizeProperty); }
+			set { this.SetValue(FontSizeProperty, value); }
+		}
+
+		private static void FontSizeChanged(BindableObject bindable, double oldvalue, double newValue)
+		{
+			var entry = (CustomPicker)bindable;
+			entry.FontSize = newValue;
+		}
+
+		public static readonly BindableProperty FontWeightProperty =
+			BindableProperty.Create<CustomPicker, GodSpeak.FontWeight>(
+				p => p.FontWeight, GodSpeak.FontWeight.Regular, BindingMode.TwoWay, propertyChanged: OnFontWeightChanged);
+
+		public GodSpeak.FontWeight FontWeight
+		{
+			get { return (GodSpeak.FontWeight)this.GetValue(FontWeightProperty); }
+			set { this.SetValue(FontWeightProperty, value); }
+		}
+
+		private static void OnFontWeightChanged(BindableObject bindable, GodSpeak.FontWeight oldvalue, GodSpeak.FontWeight newValue)
+		{
+			var entry = (CustomPicker)bindable;
+			entry.FontWeight = newValue;
 		}
 
 		private bool _isFocused;

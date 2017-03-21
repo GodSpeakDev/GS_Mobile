@@ -24,8 +24,8 @@
 			<godspeak:WeekdayConverter x:Key="WeekdayConverter" />
 
 			<!-- Global Values -->
-			<x:Double x:Key="EntryHeight">42</x:Double>
-			
+			<x:Double x:Key="ElementHeight">42</x:Double>
+						
 			<!-- Global Colors -->
 			<Color x:Key="primaryColor">#00a5ff</Color>
 			<Color x:Key="secondaryColor">#ffffff</Color>
@@ -87,6 +87,19 @@
 				<Setter Property="HorizontalTextAlignment" Value="Center" />
 			</Style>
 
+			<Style x:Key="UtilitySectionTitle" TargetType="godspeak:CustomLabel">
+				<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />				
+				<Setter Property="FontWeight" Value="Semibold" />
+				<Setter Property="FontSize" Value="19" />
+				<Setter Property="HorizontalTextAlignment" Value="Center" />
+			</Style>
+
+			<Style x:Key="TextContent" TargetType="godspeak:CustomLabel">
+				<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />				
+				<Setter Property="FontWeight" Value="Regular" />
+				<Setter Property="FontSize" Value="15" />
+			</Style>
+
 			<!-- Button Styles -->	
 			<Style  x:Key="CustomButton" TargetType="Button">
 				<Setter Property="FontAttributes" Value="Bold" />
@@ -126,8 +139,6 @@
 			</Style>
 
 			<!-- Entry Styles -->	
-
-			
 			<Style x:Key="PopupEntry" TargetType="godspeak:CustomEntry">
 				<Setter Property="TextColor" Value="{StaticResource textInputFocusedText}" />				
 				<Setter Property="BackgroundColor" Value="{StaticResource secondaryColor}" />				
@@ -140,6 +151,16 @@
 				<Setter Property="FontWeight" Value="Bold" />
 				<Setter Property="FontSize" Value="24" />	
 			</Style>
+
+			<Style TargetType="godspeak:RegisterEntry">				
+				<Setter Property="FontSize" Value="19" />
+			</Style>
+
+			<!-- Picker Styles -->	
+			<Style x:Key="UtilityPicker" TargetType="godspeak:CustomPicker">				
+				<Setter Property="FontSize" Value="19" />
+			</Style>
+			
 		</ResourceDictionary>
 	</Application.Resources>			
 </core:MvxFormsApp>
