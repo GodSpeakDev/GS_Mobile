@@ -718,5 +718,11 @@ namespace GodSpeak.Resources {
                 return ResourceManager.GetString("ImRegisteredLink", resourceCulture);
             }
         }
+        
+        public static string PrivacyPolicyTerms {
+            get {
+                return ResourceManager.GetString("PrivacyPolicyTerms", resourceCulture);
+            }
+        }
     }
 }

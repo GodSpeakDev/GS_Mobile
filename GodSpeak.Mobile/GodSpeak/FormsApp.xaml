@@ -164,6 +164,11 @@
 				<Setter Property="FontSize" Value="24" />	
 			</Style>
 
+			<Style x:Key="LoginEntry"  TargetType="godspeak:CustomEntry" BasedOn="{StaticResource PopupEntry}">				
+				<Setter Property="FontSize" Value="19" />
+				<Setter Property="FontWeight" Value="Semibold" />
+			</Style>
+			
 			<Style TargetType="godspeak:RegisterEntry">				
 				<Setter Property="FontSize" Value="19" />
 			</Style>

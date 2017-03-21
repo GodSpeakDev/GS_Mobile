@@ -590,4 +590,10 @@ Claimed</value>
 		xml:space="preserve">
     	<value>I'm already registered</value>
   	</data>
+	<data
+		name="PrivacyPolicyTerms"
+		xml:space="preserve">
+    	<value>Privacy Policy and Terms of Use</value>
+  	</data>
+	
 </root>

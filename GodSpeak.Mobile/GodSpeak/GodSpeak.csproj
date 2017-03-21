@@ -292,7 +292,6 @@
     <Compile Include="Models\InputOptions.cs" />
     <Compile Include="Models\InputResult.cs" />
     <Compile Include="CustomComponents\RegisterEntry.cs" />
-    <Compile Include="CustomComponents\PopupEntry.cs" />
     <Compile Include="CustomComponents\TransparentViewCell.cs" />
     <Compile Include="CustomComponents\CustomSwitch.cs" />
     <Compile Include="Extensions\DateExtensions.cs" />

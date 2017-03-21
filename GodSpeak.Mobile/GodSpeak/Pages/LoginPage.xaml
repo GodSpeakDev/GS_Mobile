@@ -23,7 +23,7 @@
 					Grid.Row="1">
 					<Image Source="login_form_background.png"
 						Aspect="Fill"
-						HeightRequest="260"
+						HeightRequest="300"
 						AbsoluteLayout.LayoutBounds="0,0,1,1"
 						AbsoluteLayout.LayoutFlags="All"></Image>
 					<StackLayout 
@@ -31,17 +31,22 @@
 						HorizontalOptions="FillAndExpand"
 						VerticalOptions="End"
 						Padding="0,0,0,10"
+						Spacing="15"
 						AbsoluteLayout.LayoutBounds="0,0,1,1"
 						AbsoluteLayout.LayoutFlags="All"
 					>
-					<views:PopupEntry 
+					<views:CustomEntry 
 						Margin="10,0"
 						Keyboard="Email"
+						Style="{StaticResource LoginEntry}"
+						HeightRequest="{StaticResource ElementHeight}"	
 						Placeholder="{x:Static res:Text.EmailPlaceholder}" 
 						Text="{Binding Email}" />
-					<views:PopupEntry 
+					<views:CustomEntry 
 						Margin="10,0"
 						IsPassword="true"
+						Style="{StaticResource LoginEntry}"
+						HeightRequest="{StaticResource ElementHeight}"
 						Placeholder="{x:Static res:Text.PasswordPlaceholder}" 
 						Text="{Binding Password}" />
 					<Button 
@@ -50,22 +55,22 @@
 						Style="{StaticResource ButtonBlue}"
 						Text="{x:Static res:Text.LoginButton}" 
 						Command="{Binding LoginCommand}" />					
-					<views:Link
-						Margin="0,5"
-						TextColor="{x:Static views:ColorHelper.Secondary}"
-						Text="I forgot my password">
+					<views:CustomLabel 
+						Margin="0,0"
+						Style="{StaticResource ButtonLinkText}"
+						Text="{x:Static res:Text.ForgotMyPasswordLinkText}">
 						<Label.GestureRecognizers>
 					        <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" />
 					    </Label.GestureRecognizers>
-					</views:Link>
-					<views:Link
-						Margin="0,5"
-						TextColor="{x:Static views:ColorHelper.Secondary}"
-						Text="Privacy Policy and Terms of Use">
+					</views:CustomLabel >
+					<views:CustomLabel 
+						Margin="0,0"
+						Style="{StaticResource ButtonLinkText}"
+						Text="{x:Static res:Text.PrivacyPolicyTerms}">
 						<Label.GestureRecognizers>
 					        <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" />
 					    </Label.GestureRecognizers>
-					</views:Link>
+					</views:CustomLabel>
 				</StackLayout>
 				</AbsoluteLayout>
 			</Grid>
