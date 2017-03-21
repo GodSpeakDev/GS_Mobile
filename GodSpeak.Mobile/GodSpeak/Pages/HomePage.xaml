@@ -21,19 +21,15 @@
 			BackgroundColor="{x:Static views:ColorHelper.Primary}"
 			>
 			<StackLayout>
-				<Label 								
+				<views:CustomLabel 								
 					Text="{x:Static res:Text.MenuCitationText}"
-					TextColor="{x:Static views:ColorHelper.Secondary}"
-					HorizontalTextAlignment="Center"
-					FontSize="13"
+					Style="{StaticResource QuotaText}"
 				/>
-				<Label 								
+				<views:CustomLabel 	 								
 					HorizontalTextAlignment="End"
 					Margin="0,5,0,0"
 					Text="{x:Static res:Text.MenuCitationAuthor}"
-					TextColor="{x:Static views:ColorHelper.Secondary}"
-					FontAttributes="Bold"
-					FontSize="14"
+					Style="{StaticResource QuotaAuthor}"
 				/>
 			</StackLayout>
 		</ContentView>
