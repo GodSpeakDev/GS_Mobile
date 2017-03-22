@@ -38,7 +38,7 @@
 			<Color x:Key="disabledBackground">#4e4f50</Color>
 			<Color x:Key="headerOverlay">#dc474843</Color>		
 			<Color x:Key="secondaryColorWithAlpha">#48ffffff</Color>	
-			<Color x:Key="outlinePlaceholderColor">#969696</Color>	
+			<Color x:Key="outlinePlaceholderColor">#979797</Color>	
 			<Color x:Key="warningColor">#FF9000</Color>	
 			<Color x:Key="textInputDisabled">#d9dadb</Color>	
 

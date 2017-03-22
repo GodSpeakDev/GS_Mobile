@@ -39,6 +39,7 @@ namespace GodSpeak
 			else if (string.IsNullOrEmpty(Text))
 			{
 				ElementState = ElementState.NotFocusedEmpty;
+				OutlineColor = ColorHelper.OutlinePlaceHolder;
 			}
 			else
 			{
