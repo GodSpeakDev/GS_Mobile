@@ -11,7 +11,7 @@
 	Spacing="5"
 	WidthRequest="60">
 	<Image
-		Source="arrow_left.png"
+		Source="back_button.png"
 		WidthRequest="12"
 		HeightRequest="21"
 		Aspect="AspectFit"

@@ -64,9 +64,17 @@ namespace GodSpeak.iOS
 		{
 			try
 			{
-				var image = UIImage.FromBundle("gift_icon.png");
+				var image = UIImage.FromBundle("oval.png");
 
-				return image;
+				var size = new CoreGraphics.CGSize(20, 20);
+
+				UIGraphics.BeginImageContext(size);
+				image.Draw(new CoreGraphics.CGRect(0, 0, size.Width, size.Height));
+
+				var resizedImage = UIGraphics.GetImageFromCurrentImageContext();
+				UIGraphics.EndImageContext();
+
+				return resizedImage;
 			}
 			catch (Exception ex)
 			{

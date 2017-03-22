@@ -35,7 +35,7 @@
 					Padding="5"
 					BackgroundColor="{x:Static views:ColorHelper.Primary}"
 					HorizontalOptions="Center"
-					WidthRequest="160"
+					WidthRequest="240"
 					>
 					<views:CustomLabel									
 						HorizontalOptions="CenterAndExpand"
@@ -57,11 +57,15 @@
 					/>
 					<views:ImageButton					
 						Source="play_icon.png"
+						WidthRequest="30"
+						HeightRequest="30"
 						IsVisible="{Binding IsPlaying, Converter={StaticResource InverseBooleanConverter}}"
 						Command="{Binding PlayCommand}" 
 					/>
 					<views:ImageButton					
-						Source="play_icon.png"
+						Source="stop_icon.png"
+						WidthRequest="30"
+						HeightRequest="30"
 						IsVisible="{Binding IsPlaying}"
 						Command="{Binding StopCommand}" />
 				</StackLayout>
