@@ -33,6 +33,8 @@ namespace GodSpeak.iOS
 			{
 				SetBorderColor();
 			}
+
+			SetFontWeight();
 		}
 
 		public override void LayoutSubviews()

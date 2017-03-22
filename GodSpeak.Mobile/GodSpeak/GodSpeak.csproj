@@ -360,6 +360,7 @@
     <Compile Include="CustomComponents\ICustomFont.cs" />
     <Compile Include="Converters\MessageDetailStyleConverter.cs" />
     <Compile Include="Converters\SwitchStyleConverter.cs" />
+    <Compile Include="Enumerations\ElementState.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

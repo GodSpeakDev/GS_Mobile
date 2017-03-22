@@ -276,12 +276,25 @@
 			<Style x:Key="FilledPicker" TargetType="godspeak:CustomPicker">				
 				<Setter Property="FontSize" Value="19" />
 				<Setter Property="FontWeight" Value="Semibold" />
-			</Style>		
+			</Style>	
 
-			<!-- -->
+			
+
+			<!-- Time Picker -->
 			<Style x:Key="FilledTimePicker" TargetType="godspeak:CustomTimePicker">				
 				<Setter Property="FontSize" Value="19" />
 				<Setter Property="FontWeight" Value="Semibold" />
+				<Setter Property="OutlineColor" Value="{StaticResource secondaryColor}" />
+				<Style.Triggers>
+					<Trigger TargetType="godspeak:CustomTimePicker" Property="ElementState" Value="Focused">						
+						<Setter Property="BackgroundColor" Value="{StaticResource secondaryColor}" />				
+						<Setter Property="TextColor" Value="{StaticResource textInputFocusedText}" />				
+					</Trigger>
+					<Trigger TargetType="godspeak:CustomTimePicker" Property="ElementState" Value="NotFocused">													
+						<Setter Property="BackgroundColor" Value="{StaticResource transparent}" />
+						<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />				
+					</Trigger>
+				</Style.Triggers>
 			</Style>		
 		</ResourceDictionary>
 	</Application.Resources>			

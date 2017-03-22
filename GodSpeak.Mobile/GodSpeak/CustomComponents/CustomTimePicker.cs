@@ -5,8 +5,24 @@ namespace GodSpeak
 {
 	public class CustomTimePicker : TimePicker, ICustomFont
 	{
+		public static readonly BindableProperty ElementStateProperty =
+			BindableProperty.Create<CustomTimePicker, ElementState>(
+				p => p.ElementState, ElementState.NotFocused, BindingMode.TwoWay, propertyChanged: OnElementStateChanged);
+
+		public ElementState ElementState
+		{
+			get { return (ElementState)this.GetValue(ElementStateProperty); }
+			set { this.SetValue(ElementStateProperty, value); }
+		}
+
+		private static void OnElementStateChanged(BindableObject bindable, ElementState oldvalue, ElementState newValue)
+		{
+			var entry = (CustomTimePicker)bindable;
+			entry.ElementState = newValue;
+		}
+
 		public static readonly BindableProperty OutlineColorProperty =
-			BindableProperty.Create<CustomPicker, Color>(
+			BindableProperty.Create<CustomTimePicker, Color>(
 				p => p.OutlineColor, Color.White, BindingMode.TwoWay, propertyChanged: OnOutlineColorChanged);
 
 		public Color OutlineColor
@@ -17,7 +33,7 @@ namespace GodSpeak
 
 		private static void OnOutlineColorChanged(BindableObject bindable, Color oldvalue, Color newValue)
 		{
-			var entry = (CustomPicker)bindable;
+			var entry = (CustomTimePicker)bindable;
 			entry.OutlineColor = newValue;
 		}
 
@@ -66,50 +82,19 @@ namespace GodSpeak
 
 		public CustomTimePicker()
 		{
-			HeightRequest = 35;
+			HeightRequest = 42;
 			SetUI();
 		}
 
 		private void SetUI()
 		{
-			SetOutlineColor();
-			SetBackgroundColor();
-			SetTextColor();
-		}
-
-		private void SetOutlineColor()
-		{
 			if (IsFocused)
 			{
-				OutlineColor = ColorHelper.Secondary;
+				ElementState = ElementState.Focused;
 			}
 			else
 			{
-				OutlineColor = ColorHelper.Secondary;
-			}
-		}
-
-		private void SetBackgroundColor()
-		{
-			if (IsFocused)
-			{
-				BackgroundColor = ColorHelper.Secondary;
-			}
-			else
-			{
-				BackgroundColor = Color.Transparent;
-			}
-		}
-
-		private void SetTextColor()
-		{
-			if (IsFocused)
-			{
-				TextColor = ColorHelper.TextInputFocusedText;
-			}
-			else
-			{
-				TextColor = ColorHelper.Secondary;
+				ElementState = ElementState.NotFocused;
 			}
 		}
 
