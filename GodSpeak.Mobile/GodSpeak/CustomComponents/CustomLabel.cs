@@ -12,11 +12,15 @@ namespace GodSpeak
 		public GodSpeak.FontWeight FontWeight
 		{
 			get { return (GodSpeak.FontWeight)this.GetValue(FontWeightProperty); }
-			set { this.SetValue(FontWeightProperty, value); }
+			set
+			{
+				this.SetValue(FontWeightProperty, value);
+				OnPropertyChanged();
+			}
 		}
 
 		private static void OnFontWeightChanged(BindableObject bindable, GodSpeak.FontWeight oldvalue, GodSpeak.FontWeight newValue)
-		{
+		{			
 			var entry = (CustomLabel)bindable;
 			entry.FontWeight = newValue;
 		}

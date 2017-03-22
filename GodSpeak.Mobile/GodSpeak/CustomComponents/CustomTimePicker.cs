@@ -3,7 +3,7 @@ using Xamarin.Forms;
 
 namespace GodSpeak
 {
-	public class CustomTimePicker : TimePicker
+	public class CustomTimePicker : TimePicker, ICustomFont
 	{
 		public static readonly BindableProperty OutlineColorProperty =
 			BindableProperty.Create<CustomPicker, Color>(
@@ -19,6 +19,38 @@ namespace GodSpeak
 		{
 			var entry = (CustomPicker)bindable;
 			entry.OutlineColor = newValue;
+		}
+
+		public static readonly BindableProperty FontSizeProperty =
+			BindableProperty.Create<CustomTimePicker, double>(
+				p => p.FontSize, 14, BindingMode.TwoWay, propertyChanged: FontSizeChanged);
+
+		public double FontSize
+		{
+			get { return (double)this.GetValue(FontSizeProperty); }
+			set { this.SetValue(FontSizeProperty, value); }
+		}
+
+		private static void FontSizeChanged(BindableObject bindable, double oldvalue, double newValue)
+		{
+			var entry = (CustomTimePicker)bindable;
+			entry.FontSize = newValue;
+		}
+
+		public static readonly BindableProperty FontWeightProperty =
+			BindableProperty.Create<CustomTimePicker, GodSpeak.FontWeight>(
+				p => p.FontWeight, GodSpeak.FontWeight.Regular, BindingMode.TwoWay, propertyChanged: OnFontWeightChanged);
+
+		public GodSpeak.FontWeight FontWeight
+		{
+			get { return (GodSpeak.FontWeight)this.GetValue(FontWeightProperty); }
+			set { this.SetValue(FontWeightProperty, value); }
+		}
+
+		private static void OnFontWeightChanged(BindableObject bindable, GodSpeak.FontWeight oldvalue, GodSpeak.FontWeight newValue)
+		{
+			var entry = (CustomTimePicker)bindable;
+			entry.FontWeight = newValue;
 		}
 
 		private bool _isFocused;

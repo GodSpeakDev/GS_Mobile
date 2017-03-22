@@ -36,11 +36,12 @@
 							<StackLayout
 								Grid.Row="0"
 								Orientation="Horizontal">
-								<Label 
+								<views:CustomLabel  
 									Text="Allow"
-									FontSize="13"
+									LineBreakMode="NoWrap"
+									HorizontalOptions="StartAndExpand"
 									VerticalOptions="Center"
-									TextColor="{x:Static views:ColorHelper.Secondary}"
+									Style="{StaticResource TextContent}"
 								/>
 								<views:PlusMinusButtonView
 									Orientation="Horizontal"
@@ -69,11 +70,11 @@
 										Command="{Binding PlusButtonCommand}"
 										/>
 								</views:PlusMinusButtonView>
-								<Label 
+								<views:CustomLabel 
 									Text="{Binding NumberOfMessagesText}"
-									FontSize="13"
 									VerticalOptions="Center"
-									TextColor="{x:Static views:ColorHelper.Secondary}"
+									LineBreakMode="WordWrap"
+									Style="{StaticResource TextContent}"
 								/>
 							</StackLayout>
 							<StackLayout
@@ -85,11 +86,15 @@
 									HorizontalOptions="StartAndExpand"
 									WidthRequest="140"
 									Time="{Binding StartTime}"
+									HeightRequest="{StaticResource ElementHeight}"
+									Style="{StaticResource FilledTimePicker}"
 								/>
 								<views:CustomTimePicker
 									WidthRequest="140"
 									HorizontalOptions="EndAndExpand"
 									Time="{Binding EndTime}"
+									HeightRequest="{StaticResource ElementHeight}"
+									Style="{StaticResource FilledTimePicker}"
 								/>
 							</StackLayout>
 						</Grid>
@@ -98,12 +103,11 @@
 						<DataTemplate>												
 							<views:TransparentViewCell>							
 								<ContentView BackgroundColor="Transparent">
-									<Label 
+									<views:CustomLabel 
 										VerticalOptions="Center"
 										Margin="10,0"
 										Text="{Binding SectionTitle}" 
-										FontSize="13"
-										TextColor="{x:Static views:ColorHelper.Secondary}"
+										Style="{StaticResource TextContent}"
 									/>	
 								</ContentView>							
 							</views:TransparentViewCell>
@@ -115,13 +119,11 @@
 								<StackLayout
 									Orientation="Horizontal"
 									HorizontalOptions="FillAndExpand">
-									<Label
+									<views:CustomLabel
 										HorizontalOptions="StartAndExpand"									
 										Margin="10,0"
 										Text="{Binding Title}" 
-										FontSize="13"
-										TextColor="{Binding IsEnabled, Converter={StaticResource EnableTextColorConverter}}"
-										FontAttributes="Bold"
+										Style="{Binding IsEnabled, Converter={StaticResource SwitchStyleConverter}}"
 										VerticalOptions="Center"
 									/>	
 									<views:CustomSwitch 

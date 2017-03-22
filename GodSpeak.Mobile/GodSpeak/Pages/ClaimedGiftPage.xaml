@@ -28,6 +28,7 @@
 					HasEmptyValue="false"
 					Style="{StaticResource FilledPicker}"
 					SelectedIndex="{Binding SelectedSortIndex}"
+					HeightRequest="{StaticResource ElementHeight}"
 				/>	
 				<ScrollView 
 					VerticalOptions="FillAndExpand">

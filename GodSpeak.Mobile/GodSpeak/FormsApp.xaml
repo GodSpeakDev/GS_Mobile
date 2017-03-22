@@ -23,7 +23,8 @@
 			<godspeak:SelectedVerseToTextColorConverter x:Key="SelectedVerseToTextColorConverter" />
 			<godspeak:WeekdayConverter x:Key="WeekdayConverter" />
 			<godspeak:MessageDetailStyleConverter x:Key="MessageDetailStyleConverter" />
-
+			<godspeak:SwitchStyleConverter x:Key="SwitchStyleConverter" />
+			
 			<!-- Global Values -->
 			<x:Double x:Key="ElementHeight">42</x:Double>
 						
@@ -60,7 +61,7 @@
 			<Style x:Key="NavigationBarTitle" TargetType="godspeak:CustomLabel">
 				<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />				
 				<Setter Property="FontWeight" Value="Bold" />
-				<Setter Property="FontSize" Value="22" />								
+				<Setter Property="FontSize" Value="20" />								
 			</Style>
 
 			<Style x:Key="OnBoardingBodyText" TargetType="godspeak:CustomLabel">
@@ -186,6 +187,18 @@
 				<Setter Property="FontSize" Value="23" />
 			</Style>
 
+			<Style x:Key="SwitchLabelEnabled" TargetType="godspeak:CustomLabel">
+				<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />				
+				<Setter Property="FontWeight" Value="Bold" />
+				<Setter Property="FontSize" Value="14" />
+			</Style>
+
+			<Style x:Key="SwitchLabelDisabled" TargetType="godspeak:CustomLabel">
+				<Setter Property="TextColor" Value="{StaticResource textInputFocusPlaceholder}" />				
+				<Setter Property="FontWeight" Value="Regular" />
+				<Setter Property="FontSize" Value="14" />
+			</Style>
+
 			<!-- Button Styles -->	
 			<Style  x:Key="CustomButton" TargetType="Button">
 				<Setter Property="FontAttributes" Value="Bold" />
@@ -263,8 +276,13 @@
 			<Style x:Key="FilledPicker" TargetType="godspeak:CustomPicker">				
 				<Setter Property="FontSize" Value="19" />
 				<Setter Property="FontWeight" Value="Semibold" />
-			</Style>
-			
+			</Style>		
+
+			<!-- -->
+			<Style x:Key="FilledTimePicker" TargetType="godspeak:CustomTimePicker">				
+				<Setter Property="FontSize" Value="19" />
+				<Setter Property="FontWeight" Value="Semibold" />
+			</Style>		
 		</ResourceDictionary>
 	</Application.Resources>			
 </core:MvxFormsApp>
