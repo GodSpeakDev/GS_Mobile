@@ -5,6 +5,22 @@ namespace GodSpeak
 {
 	public class CustomPicker : Picker, ICustomFont
 	{
+		public static readonly BindableProperty ElementStateProperty =
+			BindableProperty.Create<CustomPicker, ElementState>(
+				p => p.ElementState, ElementState.NotFocused, BindingMode.TwoWay, propertyChanged: OnElementStateChanged);
+
+		public ElementState ElementState
+		{
+			get { return (ElementState)this.GetValue(ElementStateProperty); }
+			set { this.SetValue(ElementStateProperty, value); }
+		}
+
+		private static void OnElementStateChanged(BindableObject bindable, ElementState oldvalue, ElementState newValue)
+		{
+			var entry = (CustomPicker)bindable;
+			entry.ElementState = newValue;
+		}
+
 		public static readonly BindableProperty OutlineColorProperty =
 			BindableProperty.Create<CustomPicker, Color>(
 				p => p.OutlineColor, Color.White, BindingMode.TwoWay, propertyChanged: OnOutlineColorChanged);
@@ -88,48 +104,17 @@ namespace GodSpeak
 
 		private void SetUI()
 		{
-			SetOutlineColor();
-			SetBackgroundColor();
-			SetTextColor();
-		}
-
-		private void SetOutlineColor()
-		{
 			if (IsFocused)
 			{
-				OutlineColor = ColorHelper.Secondary;
+				ElementState = ElementState.Focused;
 			}
-			else
-			{				
-				OutlineColor = this.SelectedIndex == 0 && HasEmptyValue ? ColorHelper.OutlinePlaceHolder : ColorHelper.Secondary;
-			}
-		}
-
-		private void SetBackgroundColor()
-		{
-			if (IsFocused)
+			else if (this.SelectedIndex == 0 && HasEmptyValue)
 			{
-				BackgroundColor = ColorHelper.Secondary;
+				ElementState = ElementState.NotFocusedEmpty;
 			}
 			else
 			{
-				BackgroundColor = Color.Transparent;
-			}
-		}
-
-		private void SetTextColor()
-		{			
-			if (IsFocused)
-			{
-				TextColor = ColorHelper.TextInputFocusedText;
-			}
-			else if (SelectedIndex > 0 || !HasEmptyValue)
-			{
-				TextColor = ColorHelper.Secondary;
-			}
-			else
-			{
-				TextColor = ColorHelper.TextInputPlaceHolder;
+				ElementState = ElementState.NotFocusedFilled;
 			}
 		}
 

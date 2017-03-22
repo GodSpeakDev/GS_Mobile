@@ -37,7 +37,10 @@
 			<Color x:Key="disabledText">#716c6c</Color>
 			<Color x:Key="disabledBackground">#4e4f50</Color>
 			<Color x:Key="headerOverlay">#dc474843</Color>		
-			<Color x:Key="secondaryColorWithAlpha">#48ffffff</Color>		
+			<Color x:Key="secondaryColorWithAlpha">#48ffffff</Color>	
+			<Color x:Key="outlinePlaceholderColor">#969696</Color>	
+			<Color x:Key="warningColor">#FF9000</Color>	
+			<Color x:Key="textInputDisabled">#d9dadb</Color>	
 
 			<!-- Label Styles -->
 			<Style x:Key="AlertSheetTitle" TargetType="Label">
@@ -266,19 +269,69 @@
 			
 			<Style TargetType="godspeak:RegisterEntry">				
 				<Setter Property="FontSize" Value="19" />
+				<Style.Triggers>
+					<Trigger TargetType="godspeak:RegisterEntry" Property="ElementState" Value="Error">													
+						<Setter Property="BackgroundColor" Value="{StaticResource warningColor}" />
+						<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />	
+						<Setter Property="OutlineColor" Value="{StaticResource warningColor}" />
+						<Setter Property="FontWeight" Value="Regular" />
+					</Trigger>
+					<Trigger TargetType="godspeak:RegisterEntry" Property="ElementState" Value="Focused">						
+							<Setter Property="BackgroundColor" Value="{StaticResource secondaryColor}" />				
+							<Setter Property="TextColor" Value="{StaticResource textInputFocusedText}" />
+							<Setter Property="OutlineColor" Value="{StaticResource secondaryColor}" />
+							<Setter Property="FontWeight" Value="Semibold" />
+					</Trigger>
+					<Trigger TargetType="godspeak:RegisterEntry" Property="ElementState" Value="NotFocusedFilled">													
+						<Setter Property="BackgroundColor" Value="{StaticResource transparent}" />
+						<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />		
+						<Setter Property="OutlineColor" Value="{StaticResource secondaryColor}" />
+						<Setter Property="FontWeight" Value="Semibold" />
+					</Trigger>
+					<Trigger TargetType="godspeak:RegisterEntry" Property="ElementState" Value="NotFocusedEmpty">													
+						<Setter Property="BackgroundColor" Value="{StaticResource transparent}" />
+						<Setter Property="TextColor" Value="{StaticResource textInputFocusPlaceholder}" />	
+						<Setter Property="OutlineColor" Value="{StaticResource outlinePlaceholderColor}" />
+						<Setter Property="FontWeight" Value="Regular" />
+					</Trigger>
+					<Trigger TargetType="godspeak:RegisterEntry" Property="ElementState" Value="Disabled">													
+						<Setter Property="BackgroundColor" Value="{StaticResource outlinePlaceholderColor}" />
+						<Setter Property="TextColor" Value="{StaticResource textInputDisabled}" />	
+						<Setter Property="OutlineColor" Value="{StaticResource outlinePlaceholderColor}" />
+						<Setter Property="FontWeight" Value="Regular" />
+					</Trigger>
+				</Style.Triggers>
 			</Style>
 
 			<!-- Picker Styles -->	
 			<Style x:Key="UtilityPicker" TargetType="godspeak:CustomPicker">				
 				<Setter Property="FontSize" Value="19" />
+				<Style.Triggers>
+					<Trigger TargetType="godspeak:CustomPicker" Property="ElementState" Value="Focused">						
+						<Setter Property="BackgroundColor" Value="{StaticResource secondaryColor}" />				
+						<Setter Property="TextColor" Value="{StaticResource textInputFocusedText}" />
+						<Setter Property="OutlineColor" Value="{StaticResource secondaryColor}" />
+						<Setter Property="FontWeight" Value="Semibold" />
+					</Trigger>
+					<Trigger TargetType="godspeak:CustomPicker" Property="ElementState" Value="NotFocusedFilled">													
+						<Setter Property="BackgroundColor" Value="{StaticResource transparent}" />
+						<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />		
+						<Setter Property="OutlineColor" Value="{StaticResource secondaryColor}" />
+						<Setter Property="FontWeight" Value="Semibold" />
+					</Trigger>
+					<Trigger TargetType="godspeak:CustomPicker" Property="ElementState" Value="NotFocusedEmpty">													
+						<Setter Property="BackgroundColor" Value="{StaticResource transparent}" />
+						<Setter Property="TextColor" Value="{StaticResource textInputFocusPlaceholder}" />	
+						<Setter Property="OutlineColor" Value="{StaticResource outlinePlaceholderColor}" />
+						<Setter Property="FontWeight" Value="Regular" />
+					</Trigger>
+				</Style.Triggers>
 			</Style>
 
 			<Style x:Key="FilledPicker" TargetType="godspeak:CustomPicker">				
 				<Setter Property="FontSize" Value="19" />
 				<Setter Property="FontWeight" Value="Semibold" />
-			</Style>	
-
-			
+			</Style>				
 
 			<!-- Time Picker -->
 			<Style x:Key="FilledTimePicker" TargetType="godspeak:CustomTimePicker">				

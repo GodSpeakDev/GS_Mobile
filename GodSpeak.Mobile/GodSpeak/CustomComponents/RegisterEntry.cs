@@ -24,79 +24,26 @@ namespace GodSpeak
 
 		private void SetUI()
 		{
-			SetOutlineColor();
-			SetBackgroundColor();
-			SetTextColor();
-			SetFont();
-		}
-
-		private void SetOutlineColor()
-		{
 			if (!string.IsNullOrEmpty(Text) && HasError)
 			{
-				OutlineColor = ColorHelper.Warning;
+				ElementState = ElementState.Error;
 			}
 			else if (IsFocused)
 			{
-				OutlineColor = ColorHelper.Secondary;
+				ElementState = ElementState.Focused;
 			}
 			else if (!IsEnabled)
 			{
-				OutlineColor = ColorHelper.OutlinePlaceHolder;
+				ElementState = ElementState.Disabled;
+			}
+			else if (string.IsNullOrEmpty(Text))
+			{
+				ElementState = ElementState.NotFocusedEmpty;
 			}
 			else
 			{
-				OutlineColor = string.IsNullOrEmpty(Text) ? ColorHelper.OutlinePlaceHolder : ColorHelper.Secondary;
+				ElementState = ElementState.NotFocusedFilled;
 			}
-		}
-
-		private void SetTextColor()
-		{
-			if (!string.IsNullOrEmpty(Text) && HasError)
-			{
-				TextColor = ColorHelper.Secondary;
-			}
-			else if (IsFocused)
-			{
-				TextColor = ColorHelper.TextInputFocusedText;
-			}
-			else if (!IsEnabled)
-			{
-				TextColor = ColorHelper.TextInputDisabledText;
-			}
-			else if (!string.IsNullOrEmpty(Text))
-			{
-				TextColor = ColorHelper.Secondary;
-			}
-			else
-			{
-				TextColor = ColorHelper.TextInputPlaceHolder;
-			}
-		}
-
-		private void SetBackgroundColor()
-		{
-			if (!string.IsNullOrEmpty(Text) && HasError)
-			{
-				BackgroundColor = ColorHelper.Warning;
-			}
-			else if (IsFocused)
-			{
-				BackgroundColor = ColorHelper.Secondary;
-			}
-			else if (!IsEnabled)
-			{
-				BackgroundColor = ColorHelper.OutlinePlaceHolder;
-			}
-			else
-			{
-				BackgroundColor = Color.Transparent;
-			}
-		}
-
-		private void SetFont()
-		{
-			FontAttributes = IsFocused ? FontAttributes.Bold : FontAttributes.None;
 		}
 
 		protected override void OnPropertyChanged(string propertyName = null)

@@ -29,14 +29,8 @@ namespace GodSpeak.iOS
 		{
 			base.OnElementPropertyChanged(sender, e);
 
-			if (e.PropertyName == CustomEntry.OutlineColorProperty.PropertyName)
-			{
-				SetBorderColor();
-			}
-			else if (e.PropertyName == CustomLabel.FontWeightProperty.PropertyName)
-			{
-				SetFontWeight();
-			}
+			SetBorderColor();
+			SetFontWeight();
 		}
 
 		private void SetTextAligment()

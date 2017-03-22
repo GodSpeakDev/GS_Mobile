@@ -5,7 +5,9 @@ namespace GodSpeak
 	{
 		Focused,
 		NotFocused,
-		NofFocusedFilled,
-		NotFocusedEmpty
+		NotFocusedFilled,
+		NotFocusedEmpty,
+		Error,
+		Disabled,
 	}
 }

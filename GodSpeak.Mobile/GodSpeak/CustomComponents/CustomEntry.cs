@@ -5,6 +5,22 @@ namespace GodSpeak
 {
 	public class CustomEntry : Entry, ICustomFont
 	{
+		public static readonly BindableProperty ElementStateProperty =
+			BindableProperty.Create<CustomEntry, ElementState>(
+				p => p.ElementState, ElementState.NotFocused, BindingMode.TwoWay, propertyChanged: OnElementStateChanged);
+
+		public ElementState ElementState
+		{
+			get { return (ElementState)this.GetValue(ElementStateProperty); }
+			set { this.SetValue(ElementStateProperty, value); }
+		}
+
+		private static void OnElementStateChanged(BindableObject bindable, ElementState oldvalue, ElementState newValue)
+		{
+			var entry = (CustomEntry)bindable;
+			entry.ElementState = newValue;
+		}
+
 		public static readonly BindableProperty FontWeightProperty =
 			BindableProperty.Create<CustomLabel, GodSpeak.FontWeight>(
 				p => p.FontWeight, GodSpeak.FontWeight.Regular, BindingMode.TwoWay, propertyChanged: OnFontWeightChanged);
@@ -64,7 +80,7 @@ namespace GodSpeak
 
 		public CustomEntry()
 		{
-			HeightRequest = 35;
+			HeightRequest = 42;
 		}
 	}
 }

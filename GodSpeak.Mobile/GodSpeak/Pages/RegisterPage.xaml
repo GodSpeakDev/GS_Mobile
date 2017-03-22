@@ -95,7 +95,6 @@
 								Grid.Row="3"
 								Grid.Column="0"
 								Grid.ColumnSpan="2"
-								Keyboard="Email"
 								HeightRequest="{StaticResource ElementHeight}"
 								Placeholder="{x:Static res:Text.ZipCodePlaceholder}"	
 								Text="{Binding ZipCode}" 
