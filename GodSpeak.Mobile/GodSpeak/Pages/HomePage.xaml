@@ -9,13 +9,15 @@
 	Padding="0, 0, 0, 0">
     <Grid
 		RowSpacing="0"
-		>
+		BackgroundColor="{x:Static views:ColorHelper.DrawerMenuBackground}">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="auto" />
-			<RowDefinition Height="*" />
 			<RowDefinition Height="auto" />
+			<RowDefinition Height="auto" />
+			<RowDefinition Height="*" />
 		</Grid.RowDefinitions>
 		<ContentView
+			x:Name="CitationContent"
 			Grid.Row="0"
 			Padding="10,30,10,10"
 			BackgroundColor="{x:Static views:ColorHelper.Primary}"
@@ -33,9 +35,10 @@
 				/>
 			</StackLayout>
 		</ContentView>
-		<AbsoluteLayout					
+		<AbsoluteLayout
+			x:Name="ImageContent"
 			Grid.Row="1"
-			>
+			VerticalOptions="Start">
 			<Image				
 				Source="menu_image.jpg"
 				Aspect="Fill"
@@ -56,10 +59,11 @@
 			/>
 		</AbsoluteLayout>
 		<StackLayout
+			x:Name="MenuContent"
 			Grid.Row="2"
 			Padding="0,5"
-			BackgroundColor="{x:Static views:ColorHelper.DrawerMenuBackground}"
-		>
+			VerticalOptions="FillAndExpand"
+			BackgroundColor="{x:Static views:ColorHelper.DrawerMenuBackground}">
 			<views:StackList
 				ItemsSource="{Binding MenuItems}"
 				>

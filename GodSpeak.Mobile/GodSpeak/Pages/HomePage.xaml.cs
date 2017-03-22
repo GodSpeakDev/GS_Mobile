@@ -11,51 +11,20 @@ namespace GodSpeak
 		public HomePage()
 		{
 			InitializeComponent();
-
-			//SettingsItem.GestureRecognizers.Add(new TapGestureRecognizer()
-			//{
-			//	Command = new MvxCommand(() =>
-			//	{
-			//		AnimateView(SettingsItem, (this.BindingContext as HomeViewModel).MessageSettingsCommand);
-			//	})
-			//});
-
-			//LogoutItem.GestureRecognizers.Add(new TapGestureRecognizer()
-			//{
-			//	Command = new MvxCommand(() =>
-			//	{
-			//		AnimateView(LogoutItem, (this.BindingContext as HomeViewModel).LogoutCommand);
-			//	})
-			//});
-
-			//ProfileItem.GestureRecognizers.Add(new TapGestureRecognizer()
-			//{
-			//	Command = new MvxCommand(() =>
-			//	{
-			//		AnimateView(ProfileItem, (this.BindingContext as HomeViewModel).MyProfileCommand);
-			//	})
-			//});
 		}
 
-		private void AnimateView(View view, ICommand command)
+		protected override void OnSizeAllocated(double width, double height)
 		{
-			var reduceOpacityAnimation = new Animation((x) => 
-			{
-				view.Opacity = 1 - x * .5;
-			});
+			base.OnSizeAllocated(width, height);
+		}
 
-			var increaseOpacityAnimation = new Animation((x) =>
-			{
-				view.Opacity = 1 - 0.5 + x * .5;
-			}, finished: () =>
-			{
-				command.Execute(null);
-			});
+		protected override void OnAppearing()
+		{
+			base.OnAppearing();
 
-			var animation = new Animation();
-			animation.Add(0, 0.5, reduceOpacityAnimation);
-			animation.Add(0.5, 1, increaseOpacityAnimation);
-			animation.Commit(view, "Tap");
+			var imageContentSize = this.Height - CitationContent.Height - MenuContent.Height;
+			imageContentSize = Math.Min(250, imageContentSize);
+			ImageContent.HeightRequest = imageContentSize;
 		}
 	}
 }
