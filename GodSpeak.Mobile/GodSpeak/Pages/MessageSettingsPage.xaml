@@ -39,7 +39,7 @@
 								<views:CustomLabel  
 									Text="Allow"
 									LineBreakMode="NoWrap"
-									HorizontalOptions="StartAndExpand"
+									HorizontalOptions="Start"
 									VerticalOptions="Center"
 									Style="{StaticResource TextContent}"
 								/>
@@ -73,6 +73,7 @@
 								<views:CustomLabel 
 									Text="{Binding NumberOfMessagesText}"
 									VerticalOptions="Center"
+									HorizontalOptions="Start"
 									LineBreakMode="WordWrap"
 									Style="{StaticResource TextContent}"
 								/>
