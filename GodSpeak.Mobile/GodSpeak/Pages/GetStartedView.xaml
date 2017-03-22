@@ -60,7 +60,7 @@
 							<views:CustomLabel 
 								Grid.Row="0"
 								Text="{x:Static res:Text.GetStartedCitation}"
-								HorizontalTextAlignment="Center"
+								HorizontalTextAlignment="Start"
 								Style="{StaticResource OnBoardingBodyText}"
 							/>
 							<views:CustomLabel  
