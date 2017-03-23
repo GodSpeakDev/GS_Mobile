@@ -23,7 +23,7 @@ namespace GodSpeak
 			base.OnAppearing();
 
 			var imageContentSize = this.Height - CitationContent.Height - MenuContent.Height;
-			imageContentSize = Math.Min(250, imageContentSize);
+			imageContentSize = Math.Min(300, imageContentSize);
 			ImageContent.HeightRequest = imageContentSize;
 		}
 	}

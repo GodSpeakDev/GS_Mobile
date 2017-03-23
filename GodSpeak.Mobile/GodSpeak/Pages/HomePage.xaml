@@ -35,17 +35,20 @@
 				/>
 			</StackLayout>
 		</ContentView>
-		<AbsoluteLayout
+		<AbsoluteLayout			
 			x:Name="ImageContent"
 			Grid.Row="1"
-			VerticalOptions="Start">
-			<Image				
+			VerticalOptions="Start"
+			BackgroundColor="{x:Static views:ColorHelper.DrawerMenuBackground}">
+			<Image	
+				AbsoluteLayout.LayoutFlags="All"
+				AbsoluteLayout.LayoutBounds="0,0,1,1"
 				Source="menu_image.jpg"
-				Aspect="Fill"
+				Aspect="AspectFill"
 			/>
 			<Image 
-				AbsoluteLayout.LayoutFlags="XProportional"
-				AbsoluteLayout.LayoutBounds="0.8,0,35,39"
+				AbsoluteLayout.LayoutFlags="XProportional,HeightProportional"
+				AbsoluteLayout.LayoutBounds="0.8,0,AutoSize,0.1"
 				Source="blue_down_arrow.png" 
 			/>
 			<Button
