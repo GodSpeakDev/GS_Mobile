@@ -32,7 +32,7 @@ namespace GodSpeak
 				return _logoutCommand ?? (_logoutCommand = new MvxCommand(() =>
 				{
 					this.ChangePresentation(new CloseMenuPresentationHint());
-					this.ShowViewModel<GetStartedViewModel>();
+					this.ShowViewModel<LoginViewModel>();
 				}));
 			}
 		}
