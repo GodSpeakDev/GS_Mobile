@@ -110,6 +110,13 @@ namespace GodSpeak
 			}
 		}
 
+		private string _currentPassword;
+		public string CurrentPassword
+		{
+			get { return _currentPassword;}
+			set { SetProperty(ref _currentPassword, value);}
+		}
+
 		private MvxCommand _saveCommand;
 		public MvxCommand SaveCommand
 		{

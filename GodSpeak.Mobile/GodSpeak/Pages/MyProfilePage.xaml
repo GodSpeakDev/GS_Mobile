@@ -39,6 +39,7 @@
 								<RowDefinition Height="auto" />
 								<RowDefinition Height="auto" />
 								<RowDefinition Height="auto" />
+								<RowDefinition Height="auto" />
 							</Grid.RowDefinitions>
 							<Grid.ColumnDefinitions>
 								<ColumnDefinition Width="80" />
@@ -124,13 +125,23 @@
 								Grid.ColumnSpan="2"
 								HeightRequest="{StaticResource ElementHeight}"
 								IsPassword="true"
+								Placeholder="{x:Static res:Text.CurrentPasswordPlaceholder}"									
+								Text="{Binding CurrentPassword}" 
+							/>
+							
+							<views:RegisterEntry
+								Grid.Row="7"
+								Grid.Column="0"
+								Grid.ColumnSpan="2"
+								HeightRequest="{StaticResource ElementHeight}"
+								IsPassword="true"
 								Placeholder="{x:Static res:Text.PasswordPlaceholder}"									
 								Text="{Binding Password}" 
 								HasError="{Binding IsPasswordValid, Converter={StaticResource InverseBooleanConverter}}"
 							/>
 							
 							<views:RegisterEntry
-								Grid.Row="7"
+								Grid.Row="8"
 								Grid.Column="0"
 								Grid.ColumnSpan="2"
 								HeightRequest="{StaticResource ElementHeight}"

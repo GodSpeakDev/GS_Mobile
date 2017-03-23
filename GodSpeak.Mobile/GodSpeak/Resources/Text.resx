@@ -82,9 +82,14 @@
     	<value>Email Address</value>
   	</data>
 	<data
+		name="CurrentPasswordPlaceholder"
+		xml:space="preserve">
+    	<value>Current Password</value>
+  	</data>
+	<data
 		name="PasswordPlaceholder"
 		xml:space="preserve">
-    	<value>Password</value>
+    	<value>New Password</value>
   	</data>
 	<data
 		name="PasswordConfirmPlaceholder"
