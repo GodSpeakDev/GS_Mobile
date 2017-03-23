@@ -33,7 +33,19 @@ namespace GodSpeak
 			set;
 		}
 
+		public string BeforeAuthor
+		{
+			get;
+			set;
+		}
+
 		public string Author
+		{
+			get;
+			set;
+		}
+
+		public string AfterAuthor
 		{
 			get;
 			set;

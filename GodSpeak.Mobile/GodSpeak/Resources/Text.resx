@@ -87,9 +87,14 @@
     	<value>Current Password</value>
   	</data>
 	<data
-		name="PasswordPlaceholder"
+		name="NewPasswordPlaceholder"
 		xml:space="preserve">
     	<value>New Password</value>
+  	</data>
+	<data
+		name="PasswordPlaceholder"
+		xml:space="preserve">
+    	<value>Password</value>
   	</data>
 	<data
 		name="PasswordConfirmPlaceholder"

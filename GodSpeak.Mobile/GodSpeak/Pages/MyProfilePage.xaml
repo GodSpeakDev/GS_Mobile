@@ -135,7 +135,7 @@
 								Grid.ColumnSpan="2"
 								HeightRequest="{StaticResource ElementHeight}"
 								IsPassword="true"
-								Placeholder="{x:Static res:Text.PasswordPlaceholder}"									
+								Placeholder="{x:Static res:Text.NewPasswordPlaceholder}"									
 								Text="{Binding Password}" 
 								HasError="{Binding IsPasswordValid, Converter={StaticResource InverseBooleanConverter}}"
 							/>

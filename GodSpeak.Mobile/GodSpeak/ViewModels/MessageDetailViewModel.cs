@@ -23,6 +23,13 @@ namespace GodSpeak
 			}
 		}
 
+		private string _author;
+		public string Author
+		{
+			get { return _author;}
+			set { SetProperty(ref _author, value);}
+		}
+
 		private Color[] _gradientColors;
 		public Color[] GradientColors
 		{
@@ -42,6 +49,7 @@ namespace GodSpeak
 					AfterVerseSelected = false;
 					GradientColors = new Color[] 
 					{ColorHelper.IosDarkBlueGradient, ColorHelper.IosLightBlueGradient};
+					Author = Message?.BeforeAuthor;
 				}
 			}
 		}
@@ -68,6 +76,7 @@ namespace GodSpeak
 					AfterVerseSelected = false;
 					GradientColors = new Color[]
 					{ColorHelper.IosLightBlueGradient, ColorHelper.IosDarkBlueGradient, ColorHelper.IosLightBlueGradient};
+					Author = Message?.Author;
 				}
 			}
 		}
@@ -94,6 +103,7 @@ namespace GodSpeak
 					CurrentVerseSelected = false;
 					GradientColors = new Color[]
 					{ColorHelper.IosLightBlueGradient, ColorHelper.IosDarkBlueGradient};
+					Author = Message?.AfterAuthor;
 				}
 			}
 		}
@@ -126,8 +136,8 @@ namespace GodSpeak
 		}
 
 		public async void Init(string messageId)
-		{
-			CurrentVerseSelected = true;
+		{		
+			CurrentVerseSelected = true;	
 
 			var messageResponse = await _webApiService.GetMessage(new GetMessageRequest() 
 			{
@@ -137,6 +147,7 @@ namespace GodSpeak
 			if (messageResponse.IsSuccess)
 			{
 				Message = messageResponse.Content.Payload;
+				Author = Message.Author;
 			}
 			else
 			{

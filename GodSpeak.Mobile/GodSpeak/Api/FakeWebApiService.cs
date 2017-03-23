@@ -457,11 +457,13 @@ namespace GodSpeak
 			new Message()
 			{
 				DateTimeToDisplay = DateTime.Now.AddSeconds(30),
-				AfterVerse="Truly I say to you, whoever says to this mountain, 'Be taken up and cast into the sea,' and does not doubt in his heart, but believes that what he says is going to happen, it will be granted him.",
-				Text = "If you abide in Me, and My words abide in you, ask whatever you wish, and it will be done for you.",
 				BeforeVerse="Therefore I say to you, all things for which you pray and ask, believe that you have received them, and they will be granted you.",
+				Text = "If you abide in Me, and My words abide in you, ask whatever you wish, and it will be done for you.",
+				AfterVerse="Truly I say to you, whoever says to this mountain, 'Be taken up and cast into the sea,' and does not doubt in his heart, but believes that what he says is going to happen, it will be granted him.",
 				MessageId = Guid.NewGuid(),
-				Author="John 15:7 NASB"
+				BeforeAuthor = "John 15:6 NASB",
+				Author="John 15:7 NASB",
+				AfterAuthor="John 15:8 NASB",					
 			},
 			new Message()
 			{
@@ -470,7 +472,9 @@ namespace GodSpeak
 				Text = "If you abide in Me, and My words abide in you, ask whatever you wish, and it will be done for you.",
 				BeforeVerse="Therefore I say to you, all things for which you pray and ask, believe that you have received them, and they will be granted you.",
 				MessageId = Guid.NewGuid(),
-				Author="John 15:7 NASB"
+				BeforeAuthor = "John 15:6 NASB",
+				Author="John 15:7 NASB",
+				AfterAuthor="John 15:8 NASB",
 			},
 			new Message()
 			{
@@ -478,7 +482,8 @@ namespace GodSpeak
 				AfterVerse="Therefore I say to you, all things for which you pray and ask, believe that you have received them, and they will be granted you.",
 				Text = "Be anxious for nothing, but in everything by prayer and supplication with thanksgiving let your requests be made known to God.",
 				MessageId = Guid.NewGuid(),
-				Author="Philippians 4:6 NASB"
+				Author="Philippians 4:6 NASB",
+				AfterAuthor="Philippians 4:7 NASB",
 			},
 			new Message()
 			{
@@ -486,7 +491,8 @@ namespace GodSpeak
 				Text = "Therefore I say to you, all things for which you pray and ask, believe that you have received them, and they will be granted you.",
 				BeforeVerse="Truly I say to you, whoever says to this mountain, 'Be taken up and cast into the sea,' and does not doubt in his heart, but believes that what he says is going to happen, it will be granted him.",
 				MessageId = Guid.NewGuid(),
-				Author="Mark 11:24 NASB"
+				Author="Mark 11:24 NASB",
+				BeforeAuthor="Mark 11:23 NASB",
 			},
 			new Message()
 			{

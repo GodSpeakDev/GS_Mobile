@@ -73,7 +73,7 @@
 					Grid.Row="1"
 					Grid.Column="0"
 					Grid.ColumnSpan="3"
-					Text="{Binding Message.Author}"
+					Text="{Binding Author}"
 					VerticalOptions="Start"
 					HorizontalOptions="Center"
 					Style="{StaticResource MessageDetailsAuthor}"
