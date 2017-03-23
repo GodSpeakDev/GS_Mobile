@@ -19,7 +19,7 @@ namespace GodSpeak
 		public Application MvxFormsApp
 		{
 			get { return _mvxFormsApp; }
-			set
+			set	
 			{
 				if (value == null)
 				{
