@@ -27,6 +27,8 @@ namespace GodSpeak.iOS
 
             Window.MakeKeyAndVisible ();
 
+			CustomKeyboardOverlapRenderer.Init();
+
             //if ([UIDevice currentDevice].systemVersion.floatValue >= 8.0)
             //{
             //	UIUserNotificationSettings* settings = [UIUserNotificationSettings settingsForTypes: UIUserNotificationTypeBadge | UIUserNotificationTypeAlert | UIUserNotificationTypeSound categories: nil];
