@@ -51,13 +51,12 @@
 				AbsoluteLayout.LayoutBounds="0.8,0,AutoSize,0.1"
 				Source="blue_down_arrow.png" 
 			/>
-			<Button
-				Margin="10"
+			<views:ButtonWithImage
+				Image="bundle_icon.png"
+				Text="Share Your 123 Gifts"
 				AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"
 				AbsoluteLayout.LayoutBounds="0,1,1,AutoSize"
-				Style="{StaticResource ButtonBlue}"
-				Text="Share Your 123 Gifts"
-				Image="bundle_icon.png"
+				Margin="10"
 				Command="{Binding ShareCommand}"
 			/>
 		</AbsoluteLayout>
@@ -75,7 +74,7 @@
 						<views:TappableView Command="{Binding Command}">
 							<StackLayout
 								Orientation="Horizontal"
-								Padding="15, 10"
+								Padding="20, 10, 15, 10"
 								Spacing="10"
 								BackgroundColor="{x:Static views:ColorHelper.DrawerMenuBackground}">
 								<Image WidthRequest="30" HeightRequest="30" Source="{Binding Image}" />

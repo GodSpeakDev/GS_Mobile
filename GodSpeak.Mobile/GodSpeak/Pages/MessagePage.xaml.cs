@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
 using Xamarin.Forms;
-using GodSpeak.Extensions;
 
 namespace GodSpeak
 {

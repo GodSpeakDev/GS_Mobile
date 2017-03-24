@@ -121,6 +121,9 @@
     <EmbeddedResource Include="FormsApp.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="CustomComponents\ButtonWithImage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -361,6 +364,9 @@
     <Compile Include="Converters\MessageDetailStyleConverter.cs" />
     <Compile Include="Converters\SwitchStyleConverter.cs" />
     <Compile Include="Enumerations\ElementState.cs" />
+    <Compile Include="CustomComponents\ButtonWithImage.xaml.cs">
+      <DependentUpon>ButtonWithImage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

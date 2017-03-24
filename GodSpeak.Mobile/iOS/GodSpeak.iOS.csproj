@@ -215,6 +215,7 @@
     <Compile Include="Extensions\CustomFontExtensions.cs" />
     <Compile Include="Renderers\KeyboardOverlapRenderer.cs" />
     <Compile Include="Extensions\ViewExtensions.cs" />
+    <Compile Include="Renderers\ButtonWithImageRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\profile_placeholder.png" />
