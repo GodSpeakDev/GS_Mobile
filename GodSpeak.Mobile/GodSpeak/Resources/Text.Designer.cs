@@ -736,5 +736,41 @@ namespace GodSpeak.Resources {
                 return ResourceManager.GetString("PrivacyPolicyTerms", resourceCulture);
             }
         }
+        
+        public static string SelectWhoToSendMailPageTitle {
+            get {
+                return ResourceManager.GetString("SelectWhoToSendMailPageTitle", resourceCulture);
+            }
+        }
+        
+        public static string ComposeEmail {
+            get {
+                return ResourceManager.GetString("ComposeEmail", resourceCulture);
+            }
+        }
+        
+        public static string EmailSearchPlaceholder {
+            get {
+                return ResourceManager.GetString("EmailSearchPlaceholder", resourceCulture);
+            }
+        }
+        
+        public static string ContactAccessDenied {
+            get {
+                return ResourceManager.GetString("ContactAccessDenied", resourceCulture);
+            }
+        }
+        
+        public static string ShareEmailSubject {
+            get {
+                return ResourceManager.GetString("ShareEmailSubject", resourceCulture);
+            }
+        }
+        
+        public static string ShareEmailBody {
+            get {
+                return ResourceManager.GetString("ShareEmailBody", resourceCulture);
+            }
+        }
     }
 }

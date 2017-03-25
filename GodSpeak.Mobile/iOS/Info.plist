@@ -7,7 +7,7 @@
 	<key>CFBundleName</key>
 	<string>GodSpeak</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.venado.mobile.godspeak</string>
+	<string>com.pauloortins.godspeak</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>LSRequiresIPhoneOS</key>
@@ -56,5 +56,7 @@
 	<false/>
 	<key>UIStatusBarHidden</key>
 	<false/>
+	<key>NSContactsUsageDescription</key>
+	<string>We&apos;d like access to your contacts so we can save you time importing clients into our system.</string>
 </dict>
 </plist>

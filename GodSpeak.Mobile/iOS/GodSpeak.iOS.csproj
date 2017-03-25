@@ -216,6 +216,8 @@
     <Compile Include="Renderers\KeyboardOverlapRenderer.cs" />
     <Compile Include="Extensions\ViewExtensions.cs" />
     <Compile Include="Renderers\ButtonWithImageRenderer.cs" />
+    <Compile Include="Services\ContactsService.cs" />
+    <Compile Include="Services\MailService.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\profile_placeholder.png" />
@@ -314,6 +316,12 @@
     <BundleResource Include="Resources\back_button.png" />
     <BundleResource Include="Resources\back_button%402x.png" />
     <BundleResource Include="Resources\back_button%403x.png" />
+    <BundleResource Include="Resources\search_icon.png" />
+    <BundleResource Include="Resources\search_icon%402x.png" />
+    <BundleResource Include="Resources\search_icon%403x.png" />
+    <BundleResource Include="Resources\curveBackground.png" />
+    <BundleResource Include="Resources\curveBackground%402x.png" />
+    <BundleResource Include="Resources\curveBackground%403x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.3.180\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.3.180\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />

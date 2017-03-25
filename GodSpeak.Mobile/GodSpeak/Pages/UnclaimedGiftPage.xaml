@@ -43,7 +43,7 @@
 					<Image 
 						Grid.Row="1"
 						HeightRequest="50"
-						Source="messagesBackground.png"
+						Source="curveBackground.png"
 						Aspect="Fill"
 						HorizontalOptions="FillAndExpand"																						
 					/>

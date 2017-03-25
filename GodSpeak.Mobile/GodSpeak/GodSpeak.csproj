@@ -124,6 +124,9 @@
     <EmbeddedResource Include="CustomComponents\ButtonWithImage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\SelectWhoToSendMailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -367,6 +370,17 @@
     <Compile Include="CustomComponents\ButtonWithImage.xaml.cs">
       <DependentUpon>ButtonWithImage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\SelectWhoToSendMailViewModel.cs" />
+    <Compile Include="Pages\SelectWhoToSendMailPage.xaml.cs">
+      <DependentUpon>SelectWhoToSendMailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Services\IContactService.cs" />
+    <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\PhoneNumber.cs" />
+    <Compile Include="Models\EmailAddress.cs" />
+    <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\SelectableItem.cs" />
+    <Compile Include="Services\IMailService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

@@ -48,7 +48,7 @@ namespace GodSpeak
 			}
 			else if (action == Text.ViaEmail)
 			{
-				await this.DialogService.ShowAlert("In Development", "In Development");
+				this.ShowViewModel<SelectWhoToSendMailViewModel>();
 			}
 		}
 

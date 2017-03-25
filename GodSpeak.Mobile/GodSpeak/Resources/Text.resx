@@ -605,4 +605,36 @@ Claimed</value>
 		xml:space="preserve">
     	<value>Privacy Policy and Terms of Use</value>
   	</data>	
+	<data
+		name="SelectWhoToSendMailPageTitle"
+		xml:space="preserve">
+    	<value>Select Who to Email</value>
+  	</data>		
+	<data
+		name="ComposeEmail"
+		xml:space="preserve">
+    	<value>Compose Email</value>
+  	</data>		
+	<data
+		name="EmailSearchPlaceholder"
+		xml:space="preserve">
+    	<value>Filter By Name</value>
+  	</data>		
+	<data
+		name="ContactAccessDenied"
+		xml:space="preserve">
+    	<value>Sorry, you have denied GodSpeak access to your contacts. Now, to access your contacts you need to update your device settings.</value>
+  	</data>
+	<data
+		name="ShareEmailSubject"
+		xml:space="preserve">
+    	<value>You Received a GodSpeak gift!</value>
+  	</data>
+	<data
+		name="ShareEmailBody"
+		xml:space="preserve">
+    	<value>Hey there, I wanted to pay-it-forward with this gift.   You can get it by going to this URL:   http://textthattransforms.com/gift/YGifOkl
+Enjoy! 
+- {0}</value>
+  	</data>
 </root>
