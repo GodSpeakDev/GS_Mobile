@@ -8,6 +8,7 @@
 		x:Class="GodSpeak.RegisterPage">	
 	<views:CustomContentPage.Content>
 		<AbsoluteLayout
+			x:Name="Absolute"
 			VerticalOptions="FillAndExpand"
 			HorizontalOptions="FillAndExpand">
 			<views:GrayGradientBackgroundView
@@ -67,21 +68,29 @@
 							<views:RegisterEntry
 								Grid.Row="0"
 								Grid.Column="1"
+								x:Name="FirstNameEntry"
 								Placeholder="{x:Static res:Text.FirstNamePlaceholder}" 							
 								Text="{Binding FirstName}" 
 								HeightRequest="{StaticResource ElementHeight}"
-								VerticalOptions="Center"
-							/>
+								VerticalOptions="Center">
+								<Entry.Effects>
+									<views:ReturnKeyEffect ReturnText="Next" />
+								</Entry.Effects>								
+							</views:RegisterEntry>
 							<views:RegisterEntry
 								Grid.Row="1"
 								Grid.Column="1"
+								x:Name="LastNameEntry"
 								Placeholder="{x:Static res:Text.LastNamePlaceholder}" 	
 								HeightRequest="{StaticResource ElementHeight}"
 								Text="{Binding LastName}" 
-								VerticalOptions="Center"
-							/>
+								VerticalOptions="Center">
+								<Entry.Effects>
+									<views:ReturnKeyEffect ReturnText="Next" />
+								</Entry.Effects>		
+							</views:RegisterEntry>
 
-							<views:CustomPicker
+							<views:CustomPicker								
 								x:Name="Countries"
 								Grid.Row="2"
 								Grid.Column="0"
@@ -92,14 +101,18 @@
 							/>
 
 							<views:RegisterEntry
+								x:Name="ZipCodeEntry"
 								Grid.Row="3"
 								Grid.Column="0"
 								Grid.ColumnSpan="2"
 								HeightRequest="{StaticResource ElementHeight}"
 								Placeholder="{x:Static res:Text.ZipCodePlaceholder}"	
 								Text="{Binding ZipCode}" 
-								IsEnabled="{Binding HasSelectedCountry}"
-							/>
+								IsEnabled="{Binding HasSelectedCountry}">
+								<Entry.Effects>
+									<views:ReturnKeyEffect ReturnText="Next" />
+								</Entry.Effects>	
+							</views:RegisterEntry>
 
 							<views:CustomLabel 
 								Grid.Row="4"
@@ -110,6 +123,7 @@
 							/>
 
 							<views:RegisterEntry
+								x:Name="EmailEntry"
 								Grid.Row="5"
 								Grid.Column="0"
 								Grid.ColumnSpan="2"
@@ -118,7 +132,11 @@
 								Placeholder="{x:Static res:Text.EmailPlaceholder}"	
 								Text="{Binding Email}" 
 								HasError="{Binding IsEmailValid, Converter={StaticResource InverseBooleanConverter}}"
-							/>
+							>
+								<Entry.Effects>
+									<views:ReturnKeyEffect ReturnText="Next" />
+								</Entry.Effects>	
+							</views:RegisterEntry>
 
 							<views:CustomLabel 
 								Grid.Row="6"
@@ -130,6 +148,7 @@
 							/>
 
 							<views:RegisterEntry
+								x:Name="PasswordEntry"
 								Grid.Row="7"
 								Grid.Column="0"
 								Grid.ColumnSpan="2"
@@ -138,9 +157,14 @@
 								Placeholder="{x:Static res:Text.PasswordPlaceholder}"	
 								Text="{Binding Password}" 
 								HasError="{Binding IsPasswordValid, Converter={StaticResource InverseBooleanConverter}}"
-							/>
+							>
+								<Entry.Effects>
+									<views:ReturnKeyEffect ReturnText="Next" />
+								</Entry.Effects>	
+							</views:RegisterEntry>
 							
 							<views:RegisterEntry
+								x:Name="PasswordConfirmEntry"
 								Grid.Row="8"
 								Grid.Column="0"
 								Grid.ColumnSpan="2"
@@ -149,7 +173,11 @@
 								Placeholder="{x:Static res:Text.PasswordConfirmPlaceholder}"	
 								Text="{Binding ConfirmPassword}" 
 								HasError="{Binding IsConfirmPasswordValid, Converter={StaticResource InverseBooleanConverter}}"
-							/>
+							>
+								<Entry.Effects>
+									<views:ReturnKeyEffect ReturnText="Done" />
+								</Entry.Effects>	
+							</views:RegisterEntry>
 
 							<Grid						
 								Padding="0"

@@ -11,6 +11,16 @@ namespace GodSpeak
         {
             InitializeComponent ();
             NavigationPage.SetHasNavigationBar (this, false);
+
+			EmailEntry.Completed += (sender, e) => 
+			{
+				PasswordEntry.Focus();
+			};
+
+			PasswordEntry.Completed += (sender, e) => 
+			{
+				(this.BindingContext as LoginViewModel).LoginCommand.Execute();
+			};
         }
     }
 }

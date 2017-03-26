@@ -11,8 +11,15 @@ namespace GodSpeak
 			get { return (CustomViewModel)BindingContext; }
 		}
 
+		public bool PreventKeyboardOverlap
+		{
+			get;
+			set;
+		}
+
 		public CustomContentPage()
-		{			
+		{
+			PreventKeyboardOverlap = false;
 		}
 
 		protected override void OnBindingContextChanged()

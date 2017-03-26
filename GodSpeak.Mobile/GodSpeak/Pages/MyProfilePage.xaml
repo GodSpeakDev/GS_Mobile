@@ -64,21 +64,29 @@
 							</views:ImageContainer>
 
 							<views:RegisterEntry
+								x:Name="FirstNameEntry"
 								Grid.Row="0"
 								Grid.Column="1"
 								HeightRequest="{StaticResource ElementHeight}"
 								Placeholder="{x:Static res:Text.FirstNamePlaceholder}" 							
 								Text="{Binding FirstName}" 
-								VerticalOptions="Center"
-							/>
+								VerticalOptions="Center">
+								<Entry.Effects>
+									<views:ReturnKeyEffect ReturnText="Next" />
+								</Entry.Effects>								
+							</views:RegisterEntry>
 							<views:RegisterEntry
+								x:Name="LastNameEntry"
 								Grid.Row="1"
 								Grid.Column="1"
 								HeightRequest="{StaticResource ElementHeight}"
 								Placeholder="{x:Static res:Text.LastNamePlaceholder}" 							
 								Text="{Binding LastName}" 
-								VerticalOptions="Center"
-							/>
+								VerticalOptions="Center">
+								<Entry.Effects>
+									<views:ReturnKeyEffect ReturnText="Next" />
+								</Entry.Effects>								
+							</views:RegisterEntry>
 
 							<views:CustomPicker
 								x:Name="Countries"
@@ -91,6 +99,7 @@
 							/>
 
 							<views:RegisterEntry
+								x:Name="ZipCodeEntry"
 								Grid.Row="3"
 								Grid.Column="0"
 								Grid.ColumnSpan="2"
@@ -98,8 +107,11 @@
 								Placeholder="{x:Static res:Text.ZipCodePlaceholder}"
 								HeightRequest="{StaticResource ElementHeight}"
 								Text="{Binding ZipCode}"
-								IsEnabled="{Binding HasSelectedCountry}"
-							/>
+								IsEnabled="{Binding HasSelectedCountry}">
+								<Entry.Effects>
+									<views:ReturnKeyEffect ReturnText="Next" />
+								</Entry.Effects>								
+							</views:RegisterEntry>
 
 							<views:CustomLabel
 								Grid.Row="4"
@@ -120,16 +132,21 @@
 							/>
 
 							<views:RegisterEntry
+								x:Name="CurrentPasswordEntry"
 								Grid.Row="6"
 								Grid.Column="0"
 								Grid.ColumnSpan="2"
 								HeightRequest="{StaticResource ElementHeight}"
 								IsPassword="true"
 								Placeholder="{x:Static res:Text.CurrentPasswordPlaceholder}"									
-								Text="{Binding CurrentPassword}" 
-							/>
+								Text="{Binding CurrentPassword}" >
+								<Entry.Effects>
+									<views:ReturnKeyEffect ReturnText="Next" />
+								</Entry.Effects>								
+							</views:RegisterEntry>
 							
 							<views:RegisterEntry
+								x:Name="NewPasswordEntry"
 								Grid.Row="7"
 								Grid.Column="0"
 								Grid.ColumnSpan="2"
@@ -137,10 +154,14 @@
 								IsPassword="true"
 								Placeholder="{x:Static res:Text.NewPasswordPlaceholder}"									
 								Text="{Binding Password}" 
-								HasError="{Binding IsPasswordValid, Converter={StaticResource InverseBooleanConverter}}"
-							/>
+								HasError="{Binding IsPasswordValid, Converter={StaticResource InverseBooleanConverter}}">
+								<Entry.Effects>
+									<views:ReturnKeyEffect ReturnText="Next" />
+								</Entry.Effects>								
+							</views:RegisterEntry>
 							
 							<views:RegisterEntry
+								x:Name="PasswordConfirmEntry"
 								Grid.Row="8"
 								Grid.Column="0"
 								Grid.ColumnSpan="2"
@@ -148,8 +169,11 @@
 								IsPassword="true"
 								Placeholder="{x:Static res:Text.PasswordConfirmPlaceholder}"	
 								Text="{Binding ConfirmPassword}" 
-								HasError="{Binding IsConfirmPasswordValid, Converter={StaticResource InverseBooleanConverter}}"
-							/>
+								HasError="{Binding IsConfirmPasswordValid, Converter={StaticResource InverseBooleanConverter}}">
+								<Entry.Effects>
+									<views:ReturnKeyEffect ReturnText="Done" />
+								</Entry.Effects>								
+							</views:RegisterEntry>
 						</Grid>			
 					</ScrollView>
 					<Button

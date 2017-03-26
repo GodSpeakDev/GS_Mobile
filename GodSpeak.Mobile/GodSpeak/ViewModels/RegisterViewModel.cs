@@ -6,6 +6,7 @@ using MvvmCross.Core;
 using MvvmCross.Forms;
 using MvvmCross.Platform;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace GodSpeak
 {
@@ -170,8 +171,6 @@ namespace GodSpeak
 
 		private async void DoSaveCommand()
 		{
-			await DialogService.ShowAlert(Text.SuccessfulRegisterPopupTitle, Text.SuccessGiftCodeText, Text.SuccessfulRegisterButtonText);
-
 			//await DialogService.ShowAlert("Ooops", "Sorry, please enter a valid email address");
 
 			//if (string.IsNullOrEmpty(FirstName))
@@ -223,6 +222,7 @@ namespace GodSpeak
 
 			if (response.IsSuccess)
 			{
+				await DialogService.ShowAlert(Text.SuccessfulRegisterPopupTitle, Text.SuccessGiftCodeText, Text.SuccessfulRegisterButtonText);
 				await _sessionService.SaveUser(response.Content.Payload);
 				this.ShowViewModel<HomeViewModel>();
 			}
@@ -258,8 +258,8 @@ namespace GodSpeak
 			Image = response.Source.ToByteArray();
 		}
 
-		private void DoAlreadyRegisteredCommand()
-		{
+		private async void DoAlreadyRegisteredCommand()
+		{			
 			this.ShowViewModel<LoginViewModel>();
 		}
 	}

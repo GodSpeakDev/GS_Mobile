@@ -13,6 +13,11 @@ namespace GodSpeak
         {
             InitializeComponent ();
             NavigationPage.SetHasNavigationBar (this, false);
+
+			InviteCodeEntry.Completed += (sender, e) => 
+			{
+				(this.BindingContext as GetStartedViewModel).SubmitGiftCodeCommand.Execute();
+			};
         }
 
         protected override void OnBindingContextChanged ()

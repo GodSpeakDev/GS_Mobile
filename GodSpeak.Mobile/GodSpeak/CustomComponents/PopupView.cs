@@ -5,27 +5,28 @@ namespace GodSpeak
 {
 	public abstract class PopupView : ContentView
 	{		
-		private View _content;
-		private BoxView _overlay;
-		private AbsoluteLayout _layout;
+		protected View PopupContent;
+		protected BoxView Overlay;
+		protected AbsoluteLayout Layout;
 
 		public PopupView()
 		{
-			_layout = new AbsoluteLayout()
+			Layout = new AbsoluteLayout()
 			{
 				HorizontalOptions = LayoutOptions.FillAndExpand,
 				VerticalOptions = LayoutOptions.FillAndExpand
 			};
-			_overlay = new BoxView()
+
+			Overlay = new BoxView()
 			{
 				BackgroundColor = Color.Black,
 				Color = Color.Black,
 				Opacity = 0
 			};
 
-			_layout.Children.Add(_overlay, new Rectangle(0, 0, 1, 1), AbsoluteLayoutFlags.All);
+			Layout.Children.Add(Overlay, new Rectangle(0, 0, 1, 1), AbsoluteLayoutFlags.All);
 
-			Content = _layout;
+			Content = Layout;
 		}
 
 		protected abstract View CreateContent();
@@ -34,14 +35,14 @@ namespace GodSpeak
 		{
 			base.OnSizeAllocated(width, height);
 
-			if (width != -1 && height != -1 && _content == null)
+			if (width != -1 && height != -1 && PopupContent == null)
 			{
-				_content = new GradientBoxView() 
+				PopupContent = new GradientBoxView() 
 				{
 					Content = CreateContent(),
 					Colors = new Color[] {ColorHelper.BlueGradientEnd, ColorHelper.Primary}
 				};
-				_layout.Children.Add(_content, new Rectangle(0, this.Height, this.Width, AbsoluteLayout.AutoSize), AbsoluteLayoutFlags.None);
+				Layout.Children.Add(PopupContent, new Rectangle(0, this.Height, this.Width, AbsoluteLayout.AutoSize), AbsoluteLayoutFlags.None);
 			}
 		}
 
@@ -49,8 +50,8 @@ namespace GodSpeak
 		{
 			this.Animate("Showing", new Animation((x) =>
 			{
-				_content.TranslationY = -x * _content.Height;
-				_overlay.Opacity = x * 0.55;
+				PopupContent.TranslationY = -x * PopupContent.Height;
+				Overlay.Opacity = x * 0.55;
 			}));
 		}
 
@@ -58,8 +59,8 @@ namespace GodSpeak
 		{
 			this.Animate("Hiding", new Animation((x) =>
 			{
-				_content.TranslationY = -_content.Height + x * _content.Height;
-				_overlay.Opacity = 0.55 - (0.55 * x);
+				PopupContent.TranslationY = -PopupContent.Height + x * PopupContent.Height;
+				Overlay.Opacity = 0.55 - (0.55 * x);
 			}), finished: (rate, finished) =>
 			{
 				var parentAbsolute = this.Parent as AbsoluteLayout;

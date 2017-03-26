@@ -38,17 +38,27 @@
 					<views:CustomEntry 
 						Margin="10,0"
 						Keyboard="Email"
+						x:Name="EmailEntry"
 						Style="{StaticResource LoginEntry}"
 						HeightRequest="{StaticResource ElementHeight}"	
 						Placeholder="{x:Static res:Text.EmailPlaceholder}" 
-						Text="{Binding Email}" />
+						Text="{Binding Email}">
+						<Entry.Effects>
+							<views:ReturnKeyEffect ReturnText="Next" />
+						</Entry.Effects>
+					</views:CustomEntry>
 					<views:CustomEntry 
 						Margin="10,0"
 						IsPassword="true"
+						x:Name="PasswordEntry"
 						Style="{StaticResource LoginEntry}"
 						HeightRequest="{StaticResource ElementHeight}"
 						Placeholder="{x:Static res:Text.PasswordPlaceholder}" 
-						Text="{Binding Password}" />
+						Text="{Binding Password}">
+						<Entry.Effects>
+							<views:ReturnKeyEffect ReturnText="Done" />
+						</Entry.Effects>
+					</views:CustomEntry>
 					<Button 
 						Margin="10,0"
 						HorizontalOptions="FillAndExpand"

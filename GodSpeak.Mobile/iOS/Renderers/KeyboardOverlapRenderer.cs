@@ -29,13 +29,13 @@ namespace GodSpeak.iOS
 		{
 			base.ViewWillAppear(animated);
 
-			var page = Element as ContentPage;
+			var page = Element as CustomContentPage;
 
 			if (page != null)
 			{
 				var contentScrollView = page.Content as ScrollView;
 
-				if (contentScrollView != null)
+				if (contentScrollView != null || page.PreventKeyboardOverlap)
 					return;
 
 				RegisterForKeyboardNotifications();
@@ -108,27 +108,25 @@ namespace GodSpeak.iOS
 			var keyboardFrame = UIKeyboard.FrameEndFromNotification(notification);
 
 			if (_pageWasShiftedUp)
-			{
-				ShiftPageDown(keyboardFrame.Height, _activeViewBottom);
+			{				
+				ShiftPageDown(keyboardFrame.Height, _activeViewBottom);			
 			}
 		}
 
 		private void ShiftPageUp(nfloat keyboardHeight, double activeViewBottom)
-		{
+		{			
 			var pageFrame = Element.Bounds;
-
 			var newY = pageFrame.Y + CalculateShiftByAmount(pageFrame.Height, keyboardHeight, activeViewBottom);
-
+			
 			Element.LayoutTo(new Rectangle(pageFrame.X, newY,
 				pageFrame.Width, pageFrame.Height));
-
+			
 			_pageWasShiftedUp = true;
 		}
 
-		private void ShiftPageDown(nfloat keyboardHeight, double activeViewBottom)
-		{
+		private void ShiftPageDown(nfloat keyboardHeight, double activeViewBottom, bool invokeOnMainThread = false)
+		{			
 			var pageFrame = Element.Bounds;
-
 			var newY = pageFrame.Y - CalculateShiftByAmount(pageFrame.Height, keyboardHeight, activeViewBottom);
 
 			Element.LayoutTo(new Rectangle(pageFrame.X, newY,

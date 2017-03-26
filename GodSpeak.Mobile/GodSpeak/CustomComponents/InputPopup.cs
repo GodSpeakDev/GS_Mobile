@@ -9,6 +9,7 @@ namespace GodSpeak
 		private Label _titleLabel;
 		private Label _messageLabel;
 		private CustomEntry _input;
+		private Grid _grid;
 		private TaskCompletionSource<InputResult> _result;
 
 		private string _title;
@@ -61,7 +62,7 @@ namespace GodSpeak
 
 		protected override View CreateContent()
 		{
-			var grid = new Grid()
+			_grid = new Grid()
 			{
 				BackgroundColor = Color.Transparent,
 				Padding = new Thickness(5, 20, 5, 5),
@@ -74,7 +75,7 @@ namespace GodSpeak
 
 			for (int i = 0; i < Buttons.Length; i++)
 			{
-				grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(1, GridUnitType.Auto) });
+				_grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(1, GridUnitType.Auto) });
 			}
 
 			_titleLabel = new Label()
@@ -99,6 +100,10 @@ namespace GodSpeak
 				Placeholder = _inputOptions?.Placeholder,
 				HeightRequest = (double) Application.Current.Resources["ElementHeight"]
 			};
+			_input.Completed += (sender, e) => 
+			{
+				Finish();
+			};
 
 			for (int i = 0; i < Buttons.Length; i++)
 			{
@@ -114,19 +119,39 @@ namespace GodSpeak
 					var senderText = (sender as Button).Text;
 					_result.TrySetResult(new InputResult() {SelectedButton=senderText, InputText=_input.Text});
 				};
-				grid.Children.Add(button, 0, 3 + i);
+				_grid.Children.Add(button, 0, 3 + i);
 			}
 
-			grid.Children.Add(_titleLabel, 0, 0);
-			grid.Children.Add(_messageLabel, 0, 1);
-			grid.Children.Add(_input, 0, 2);
+			_grid.Children.Add(_titleLabel, 0, 0);
+			_grid.Children.Add(_messageLabel, 0, 1);
+			_grid.Children.Add(_input, 0, 2);
 
-			return grid;
+			return _grid;
+		}
+
+		private void Finish()
+		{
+			this.Animate("Hiding", new Animation((x) =>
+			{
+				PopupContent.TranslationY = -PopupContent.Height + x * PopupContent.Height;
+				Overlay.Opacity = 0.55 - (0.55 * x);
+			}), finished: (rate, finished) =>
+			{
+				var parentAbsolute = this.Parent as AbsoluteLayout;
+				parentAbsolute.Children.Remove(this);
+				var senderText = (_grid.Children[0] as Button).Text;
+				_result.TrySetResult(new InputResult() { SelectedButton = senderText, InputText = _input.Text });
+			});
 		}
 
 		public new Task<InputResult> Show()
 		{
-			base.Show();
+			this.Animate("Showing", new Animation((x) =>
+			{
+				PopupContent.TranslationY = -x * PopupContent.Height;
+				Overlay.Opacity = x * 0.55;
+			}), finished: (arg1, arg2) => { _input.Focus();});
+
 			_result = new TaskCompletionSource<InputResult>();
 			return _result.Task;
 		}

@@ -381,6 +381,7 @@
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\SelectableItem.cs" />
     <Compile Include="Services\IMailService.cs" />
+    <Compile Include="Effects\ReturnKeyEffect.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />
@@ -400,6 +401,7 @@
     <Folder Include="Extensions\" />
     <Folder Include="ViewModels\Share\" />
     <Folder Include="Enumerations\" />
+    <Folder Include="Effects\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">

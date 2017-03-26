@@ -112,7 +112,8 @@
 								Text="{x:Static res:Text.ClaimInviteCodeText}"
 							/>			
 							<views:CustomEntry
-								Grid.Row="1" 																		
+								Grid.Row="1" 	
+								x:Name="InviteCodeEntry"
 								Placeholder="{x:Static res:Text.InviteCodePlaceholder}"
 								Style="{StaticResource OnboardingEntry}"
 								HeightRequest="{StaticResource ElementHeight}"
