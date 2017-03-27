@@ -384,6 +384,7 @@
     <Compile Include="Effects\ReturnKeyEffect.cs" />
     <Compile Include="Services\IFeedbackService.cs" />
     <Compile Include="Api\AzureWebApiService.cs" />
+    <Compile Include="Services\IProgressHudService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

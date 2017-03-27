@@ -17,15 +17,16 @@ namespace GodSpeak.Droid
     public class Setup : MvxAndroidSetup
     {
         public Setup (Context applicationContext) : base (applicationContext)
-        {            
+        {
         }
 
         protected override IMvxApplication CreateApp ()
         {
-			Mvx.LazyConstructAndRegisterSingleton<IFeedbackService, FeedbackService>();
+            Mvx.LazyConstructAndRegisterSingleton<IFeedbackService, FeedbackService> ();
             Mvx.LazyConstructAndRegisterSingleton<IMediaPicker, MediaPicker> ();
             Mvx.LazyConstructAndRegisterSingleton<IShareService, ShareService> ();
             Mvx.LazyConstructAndRegisterSingleton<IReminderService, ReminderService> ();
+            Mvx.LazyConstructAndRegisterSingleton<IProgressHudService, ProgressHudService> ();
 
             return new App ();
         }
@@ -43,15 +44,15 @@ namespace GodSpeak.Droid
             return presenter;
         }
 
-		private class MvxFormsDroidPagePresenterCustom : MvxFormsDroidMasterDetailPagePresenter
-		{
-			public MvxFormsDroidPagePresenterCustom()
-			{
-			}
+        private class MvxFormsDroidPagePresenterCustom : MvxFormsDroidMasterDetailPagePresenter
+        {
+            public MvxFormsDroidPagePresenterCustom ()
+            {
+            }
 
-			public MvxFormsDroidPagePresenterCustom(MvxFormsApp mvxFormsApp) : base(mvxFormsApp)
-		    {
-			}
-		}
+            public MvxFormsDroidPagePresenterCustom (MvxFormsApp mvxFormsApp) : base (mvxFormsApp)
+            {
+            }
+        }
     }
 }
