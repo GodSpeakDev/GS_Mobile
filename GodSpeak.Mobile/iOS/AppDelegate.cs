@@ -4,6 +4,7 @@ using MvvmCross.Platform;
 using Foundation;
 using UIKit;
 using System;
+using HockeyApp.iOS;
 
 namespace GodSpeak.iOS
 {
@@ -17,6 +18,12 @@ namespace GodSpeak.iOS
 
         public override bool FinishedLaunching (UIApplication app, NSDictionary options)
         {
+
+            var manager = BITHockeyManager.SharedHockeyManager;
+            manager.Configure ("f63257a3cdd24189a417326e041a318f");
+            manager.StartManager ();
+            manager.Authenticator.AuthenticateInstallation ();
+
             Window = new UIWindow (UIScreen.MainScreen.Bounds);
 
             var setup = new Setup (this, Window);
@@ -27,7 +34,7 @@ namespace GodSpeak.iOS
 
             Window.MakeKeyAndVisible ();
 
-			CustomKeyboardOverlapRenderer.Init();
+            CustomKeyboardOverlapRenderer.Init ();
 
             //if ([UIDevice currentDevice].systemVersion.floatValue >= 8.0)
             //{

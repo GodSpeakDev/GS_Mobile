@@ -17,6 +17,7 @@ using Android.Widget;
 using Android.OS;
 
 using System.Net;
+using HockeyApp.Android;
 
 namespace GodSpeak.Droid
 {
@@ -27,6 +28,8 @@ namespace GodSpeak.Droid
 
         protected override void OnCreate (Bundle bundle)
         {
+            CrashManager.Register (this, "da7c75f8b96b4b3abc8569120d7e1b3a");
+
             Xamarin.Forms.Forms.Init (this, bundle);
             Xamarin.FormsMaps.Init (this, bundle);
 
