@@ -383,6 +383,7 @@
     <Compile Include="Services\IMailService.cs" />
     <Compile Include="Effects\ReturnKeyEffect.cs" />
     <Compile Include="Services\IFeedbackService.cs" />
+    <Compile Include="Api\AzureWebApiService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />
