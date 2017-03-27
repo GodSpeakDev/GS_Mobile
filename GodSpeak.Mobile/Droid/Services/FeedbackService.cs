@@ -8,16 +8,9 @@ namespace GodSpeak.Droid.Services
 {
     public class FeedbackService : IFeedbackService
     {
-        readonly Context context;
-
-        public FeedbackService (Context context)
-        {
-            this.context = context;
-        }
-
         public void OpenFeedbackDialog ()
         {
-            FeedbackManager.ShowFeedbackActivity (context);
+            FeedbackManager.ShowFeedbackActivity (Xamarin.Forms.Forms.Context);
         }
     }
 }

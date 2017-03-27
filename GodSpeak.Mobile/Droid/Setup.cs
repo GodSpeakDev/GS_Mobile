@@ -17,12 +17,12 @@ namespace GodSpeak.Droid
     public class Setup : MvxAndroidSetup
     {
         public Setup (Context applicationContext) : base (applicationContext)
-        {
-            Mvx.RegisterSingleton<IFeedbackService> (new FeedbackService (applicationContext));
+        {            
         }
 
         protected override IMvxApplication CreateApp ()
         {
+			Mvx.LazyConstructAndRegisterSingleton<IFeedbackService, FeedbackService>();
             Mvx.LazyConstructAndRegisterSingleton<IMediaPicker, MediaPicker> ();
             Mvx.LazyConstructAndRegisterSingleton<IShareService, ShareService> ();
             Mvx.LazyConstructAndRegisterSingleton<IReminderService, ReminderService> ();
