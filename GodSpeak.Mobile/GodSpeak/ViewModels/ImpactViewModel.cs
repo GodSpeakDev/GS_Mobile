@@ -101,7 +101,7 @@ namespace GodSpeak
 			var response = await _webApi.GetImpact(new GetImpactRequest());
 			if (response.IsSuccess)
 			{
-				_allImpactDays = response.Content.Payload;
+				_allImpactDays = response.Payload.Payload;
 
 				var firstDate = _allImpactDays.OrderBy(x => x.Date).First();
 				var lastDate = _allImpactDays.OrderBy(x => x.Date).Last();

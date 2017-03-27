@@ -39,7 +39,7 @@ namespace GodSpeak
 
 			if (response.IsSuccess)
 			{
-				Bundles = new ObservableCollection<SelectModel<InviteBundle>>(response.Content.Payload.Select(x => new SelectModel<InviteBundle>()
+				Bundles = new ObservableCollection<SelectModel<InviteBundle>>(response.Payload.Payload.Select(x => new SelectModel<InviteBundle>()
 				{
 					Model = x,
 					Command = TapPurchaseCommand

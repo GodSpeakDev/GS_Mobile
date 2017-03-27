@@ -93,7 +93,7 @@ namespace GodSpeak
 			if (messages.IsSuccess)
 			{
 				Messages = new ObservableCollection<GroupedCollection<Message, DateTime>>
-				(messages.Content.Messages
+				(messages.Payload.Messages
 				 .Where(x => x.DateTimeToDisplay <= DateTime.Now)
 				 .GroupBy(x => x.DateTimeToDisplay.Date)
 				 .Select(x => new GroupedCollection<Message, DateTime>(x.Key, x)));
@@ -106,7 +106,7 @@ namespace GodSpeak
 			var response = await _webApi.GetImpact(new GetImpactRequest());
 			if (response.IsSuccess)
 			{
-				ShownImpactDays = new ObservableCollection<ImpactDay>(response.Content.Payload);
+				ShownImpactDays = new ObservableCollection<ImpactDay>(response.Payload.Payload);
 			}
 			else
 			{

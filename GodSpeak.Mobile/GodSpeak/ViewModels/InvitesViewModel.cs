@@ -61,7 +61,7 @@ namespace GodSpeak
 			if (response.IsSuccess)
 			{
 				Invites = new ObservableCollection<SelectModel<Invite>>(
-					response.Content.Payload.OrderBy(x => x.Redeemed).Select(x => new SelectModel<Invite>() 
+					response.Payload.Payload.OrderBy(x => x.Redeemed).Select(x => new SelectModel<Invite>() 
 				{
 					Model = x,
 					Command = ShareCommand

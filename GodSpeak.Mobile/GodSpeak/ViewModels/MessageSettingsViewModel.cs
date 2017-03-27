@@ -96,7 +96,7 @@ namespace GodSpeak
 			if (categoriesResult.IsSuccess)
 			{
 				var categoryCollection = Groups[1];
-				foreach (var item in categoriesResult.Content.Payload)
+				foreach (var item in categoriesResult.Payload.Payload)
 				{
 					categoryCollection.Add(new SettingsItem()
 					{
@@ -117,7 +117,7 @@ namespace GodSpeak
 			if (messageConfigResult.IsSuccess)
 			{
 				var daysCollection = Groups[0];
-				foreach (var item in messageConfigResult.Content.Payload.OrderBy(x => x.Weekday))
+				foreach (var item in messageConfigResult.Payload.Payload.OrderBy(x => x.Weekday))
 				{
 					daysCollection.Add(new SettingsItem()
 					{
@@ -126,7 +126,7 @@ namespace GodSpeak
 					});
 				}
 
-				var day = messageConfigResult.Content.Payload[0];
+				var day = messageConfigResult.Payload.Payload[0];
 				NumberOfMessages = day.NumberOfMessages;
 				StartTime = day.StartDateTime.ToTimeSpan();
 				EndTime = day.EndDateTime.ToTimeSpan();

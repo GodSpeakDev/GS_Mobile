@@ -82,7 +82,7 @@ namespace GodSpeak
 
 			if (response.IsSuccess)
 			{
-				await _sessionService.SaveUser(response.Content.Payload);
+				await _sessionService.SaveUser(response.Payload.Payload);
 				this.ShowViewModel<HomeViewModel>();
 			}
 			else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)

@@ -48,7 +48,7 @@ namespace GodSpeak
 			var bundlesResponse = await _webApi.GetInviteBundles(new GetInviteBundlesRequest());
 			if (bundlesResponse.IsSuccess)
 			{
-				Bundles = new ObservableCollection<InviteBundle>(bundlesResponse.Content.Payload);
+				Bundles = new ObservableCollection<InviteBundle>(bundlesResponse.Payload.Payload);
 			}
 		}
 	}

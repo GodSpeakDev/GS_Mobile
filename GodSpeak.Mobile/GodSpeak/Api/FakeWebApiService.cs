@@ -9,48 +9,48 @@ namespace GodSpeak
 	{
 		private int delay = 1000;
 
-		public async Task<BaseResponse<ValidateCodeResponse>> ValidateCode(ValidateCodeRequest request)
+		public async Task<ApiResponse<ValidateCodeResponse>> ValidateCode(ValidateCodeRequest request)
 		{
 			await Task.Delay(1000);
 
 			if (request.Code == "123456")
 			{
-				return new BaseResponse<ValidateCodeResponse>()
+				return new ApiResponse<ValidateCodeResponse>()
 				{
 					StatusCode = System.Net.HttpStatusCode.OK,
 				};
 			}
 			else
 			{
-				return new BaseResponse<ValidateCodeResponse>()
+				return new ApiResponse<ValidateCodeResponse>()
 				{
 					StatusCode = System.Net.HttpStatusCode.BadRequest,
-					ErrorMessage = "Sorry, that code is not valid.",
-					ErrorTitle = "Error Code"
+					Message = "Sorry, that code is not valid.",
+					Title = "Error Code"
 				};	
 			}
 		}
 
-		public async Task<BaseResponse<RequestInviteResponse>> RequestInvite(RequestInviteRequest request)
+		public async Task<ApiResponse<RequestInviteResponse>> RequestInvite(RequestInviteRequest request)
 		{
 			await Task.Delay(1000);
 
-			return new BaseResponse<RequestInviteResponse>()
+			return new ApiResponse<RequestInviteResponse>()
 			{
 				StatusCode = System.Net.HttpStatusCode.OK,
 			};
 		}
 
-		public async Task<BaseResponse<LoginResponse>> Login(LoginRequest request)
+		public async Task<ApiResponse<LoginResponse>> Login(LoginRequest request)
 		{
 			await Task.Delay(1000);
 
 			if (request.Email == "godspeak@gmail.com" && request.Password == "123456")
 			{
-				return new BaseResponse<LoginResponse>()
+				return new ApiResponse<LoginResponse>()
 				{
 					StatusCode = System.Net.HttpStatusCode.OK,
-					Content = new LoginResponse() 
+					Payload = new LoginResponse() 
 					{
 						Payload = GetTestPayload()
 					}
@@ -58,53 +58,53 @@ namespace GodSpeak
 			}
 			else
 			{
-				return new BaseResponse<LoginResponse>() 
+				return new ApiResponse<LoginResponse>() 
 				{
 					StatusCode = System.Net.HttpStatusCode.BadRequest,
-					ErrorTitle = "Invalid Credentials",
-					ErrorMessage = "Your login or password doesn't match."
+					Title = "Invalid Credentials",
+					Message = "Your login or password doesn't match."
 				};
 			}
 		}
 
-		public async Task<BaseResponse<LogoutResponse>> Logout(LogoutRequest request)
+		public async Task<ApiResponse<LogoutResponse>> Logout(LogoutRequest request)
 		{
 			return null;
 		}
 
-		public async Task<BaseResponse<GetCategoriesResponse>> GetCategories(GetCategoriesRequest request)
+		public async Task<ApiResponse<GetCategoriesResponse>> GetCategories(GetCategoriesRequest request)
 		{
 			await Task.Delay(delay);
-			return new BaseResponse<GetCategoriesResponse>()
+			return new ApiResponse<GetCategoriesResponse>()
 			{
 				StatusCode = System.Net.HttpStatusCode.OK,
-				Content = new GetCategoriesResponse() 
+				Payload = new GetCategoriesResponse() 
 				{
 					Payload = _categories
 				}
 			};
 		}
 
-		public async Task<BaseResponse<GetImpactResponse>> GetImpact(GetImpactRequest request)
+		public async Task<ApiResponse<GetImpactResponse>> GetImpact(GetImpactRequest request)
 		{
 			await Task.Delay(delay);
-			return new BaseResponse<GetImpactResponse>()
+			return new ApiResponse<GetImpactResponse>()
 			{
 				StatusCode = System.Net.HttpStatusCode.OK,
-				Content = new GetImpactResponse()
+				Payload = new GetImpactResponse()
 				{
 					Payload = GetImpactedDays()
 				}
 			};
 		}
 
-		public async Task<BaseResponse<GetInvitesResponse>> GetInvites(GetInvitesRequest request)
+		public async Task<ApiResponse<GetInvitesResponse>> GetInvites(GetInvitesRequest request)
 		{
 			await Task.Delay(delay);
-			return new BaseResponse<GetInvitesResponse>()
+			return new ApiResponse<GetInvitesResponse>()
 			{
 				StatusCode = System.Net.HttpStatusCode.OK,
-				Content = new GetInvitesResponse()
+				Payload = new GetInvitesResponse()
 				{
 					Payload = new List<Invite>() 
 					{
@@ -142,7 +142,7 @@ namespace GodSpeak
 			};
 		}
 
-		public async Task<BaseResponse<GetMessagesResponse>> GetMessages(GetMessagesRequest request)
+		public async Task<ApiResponse<GetMessagesResponse>> GetMessages(GetMessagesRequest request)
 		{
 			await Task.Delay(delay);
 			var content = new GetMessagesResponse()
@@ -150,14 +150,14 @@ namespace GodSpeak
 				Messages = _messages
             };
 
-			return new BaseResponse<GetMessagesResponse>() 
+			return new ApiResponse<GetMessagesResponse>() 
 			{
-			    Content = content,
+			    Payload = content,
 			    StatusCode = System.Net.HttpStatusCode.OK
 			};
 		}
 
-		public async Task<BaseResponse<GetMessageResponse>> GetMessage(GetMessageRequest request)
+		public async Task<ApiResponse<GetMessageResponse>> GetMessage(GetMessageRequest request)
 		{
 			await Task.Delay(delay);
 			var content = new GetMessageResponse()
@@ -165,36 +165,36 @@ namespace GodSpeak
 				Payload = _messages.First(x => x.MessageId == request.MessageId)
 			};
 
-			return new BaseResponse<GetMessageResponse>()
+			return new ApiResponse<GetMessageResponse>()
 			{
-				Content = content,
+				Payload = content,
 				StatusCode = System.Net.HttpStatusCode.OK
 			};
 		}
 
-		public async Task<BaseResponse<ForgotPasswordResponse>> ForgotPassword(ForgotPasswordRequest request)
+		public async Task<ApiResponse<ForgotPasswordResponse>> ForgotPassword(ForgotPasswordRequest request)
 		{
 			await Task.Delay(delay);
-			return new BaseResponse<ForgotPasswordResponse>()
+			return new ApiResponse<ForgotPasswordResponse>()
 			{
 				StatusCode = System.Net.HttpStatusCode.OK
 			};
 		}
 
-		public async Task<BaseResponse<RegisterUserResponse>> RegisterUser(RegisterUserRequest request)
+		public async Task<ApiResponse<RegisterUserResponse>> RegisterUser(RegisterUserRequest request)
 		{
 			await Task.Delay(delay);
-			return new BaseResponse<RegisterUserResponse>()
+			return new ApiResponse<RegisterUserResponse>()
 			{
 				StatusCode = System.Net.HttpStatusCode.OK,
-				Content = new RegisterUserResponse()
+				Payload = new RegisterUserResponse()
 				{
 					Payload = GetTestPayload()
 				}
 			};
 		}
 
-		public async Task<BaseResponse<SaveCategoriesResponse>> SaveCategories(SaveCategoriesRequest request)
+		public async Task<ApiResponse<SaveCategoriesResponse>> SaveCategories(SaveCategoriesRequest request)
 		{
 			await Task.Delay(delay);
 
@@ -203,34 +203,34 @@ namespace GodSpeak
 				category.Enabled = (request.Payload.FirstOrDefault(x => x.Id == category.Id)?.Enabled).GetValueOrDefault();
 			}
 
-			return new BaseResponse<SaveCategoriesResponse>()
+			return new ApiResponse<SaveCategoriesResponse>()
 			{
 				StatusCode = System.Net.HttpStatusCode.OK,
-				Content = new SaveCategoriesResponse()
+				Payload = new SaveCategoriesResponse()
 			};
 		}
 
-		public async Task<BaseResponse<SetMessagesConfigResponse>> SetMessagesConfigUser(SetMessagesConfigRequest request)
+		public async Task<ApiResponse<SetMessagesConfigResponse>> SetMessagesConfigUser(SetMessagesConfigRequest request)
 		{
 			await Task.Delay(delay);
 			_dailySettings = request.Settings;
-			return new BaseResponse<SetMessagesConfigResponse>()
+			return new ApiResponse<SetMessagesConfigResponse>()
 			{
 				StatusCode = System.Net.HttpStatusCode.OK,
-				Content = new SetMessagesConfigResponse() 
+				Payload = new SetMessagesConfigResponse() 
 				{
 					Payload = _dailySettings
 				}
 			};
 		}
 
-		public async Task<BaseResponse<GetInviteBundlesResponse>> GetInviteBundles(GetInviteBundlesRequest request)
+		public async Task<ApiResponse<GetInviteBundlesResponse>> GetInviteBundles(GetInviteBundlesRequest request)
 		{
 			await Task.Delay(delay);
-			return new BaseResponse<GetInviteBundlesResponse>()
+			return new ApiResponse<GetInviteBundlesResponse>()
 			{
 				StatusCode = System.Net.HttpStatusCode.OK,
-				Content = new GetInviteBundlesResponse()
+				Payload = new GetInviteBundlesResponse()
 				{
 					Payload = new List<InviteBundle>()
 					{
@@ -275,22 +275,22 @@ namespace GodSpeak
 			};
 		}
 
-		public async Task<BaseResponse<PurchaseInviteResponse>> PurchaseInvite(PurchaseInviteRequest request)
+		public async Task<ApiResponse<PurchaseInviteResponse>> PurchaseInvite(PurchaseInviteRequest request)
 		{
 			await Task.Delay(delay);
-			return new BaseResponse<PurchaseInviteResponse>()
+			return new ApiResponse<PurchaseInviteResponse>()
 			{
 				StatusCode = System.Net.HttpStatusCode.OK,
 			};
 		}
 
-		public async Task<BaseResponse<GetMessageConfigResponse>> GetMessageConfig(GetMessageConfigRequest request)
+		public async Task<ApiResponse<GetMessageConfigResponse>> GetMessageConfig(GetMessageConfigRequest request)
 		{
 			await Task.Delay(delay);
-			return new BaseResponse<GetMessageConfigResponse>()
+			return new ApiResponse<GetMessageConfigResponse>()
 			{
 				StatusCode = System.Net.HttpStatusCode.OK,
-				Content = new GetMessageConfigResponse()
+				Payload = new GetMessageConfigResponse()
 				{
 					Payload = _dailySettings
 				}

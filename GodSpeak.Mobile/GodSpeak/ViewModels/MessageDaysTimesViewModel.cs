@@ -54,7 +54,7 @@ namespace GodSpeak
 
 			if (response.IsSuccess)
 			{				
-				Settings = new ObservableCollection<DayOfWeekSettings>(response.Content.Payload);
+				Settings = new ObservableCollection<DayOfWeekSettings>(response.Payload.Payload);
 				MessagesPerDayIndex = Settings[0].NumberOfMessages;
 			}
 			else
@@ -74,7 +74,7 @@ namespace GodSpeak
 
 			if (response.IsSuccess)
 			{
-				Settings = new ObservableCollection<DayOfWeekSettings>(response.Content.Payload);
+				Settings = new ObservableCollection<DayOfWeekSettings>(response.Payload.Payload);
 				await DialogService.ShowAlert(Text.SuccessPopupTitle, Text.SavedSettingsSuccessful);
 			}
 			else
