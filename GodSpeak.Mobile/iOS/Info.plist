@@ -57,6 +57,6 @@
 	<key>NSContactsUsageDescription</key>
 	<string>We&apos;d like access to your contacts so we can save you time importing clients into our system.</string>
 	<key>CFBundleVersion</key>
-	<string>4</string>
+	<string>5</string>
 </dict>
 </plist>
