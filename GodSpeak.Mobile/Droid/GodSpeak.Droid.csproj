@@ -162,6 +162,7 @@
     <Compile Include="Services\ReminderService.cs" />
     <Compile Include="Renderers\CustomMapRenderer.cs" />
     <Compile Include="Renderers\CustomImageRenderer.cs" />
+    <Compile Include="Services\FeedbackService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

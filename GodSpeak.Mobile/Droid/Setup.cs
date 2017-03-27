@@ -7,40 +7,43 @@ using MvvmCross.Forms.Presenter.Droid;
 using MvvmCross.Platform;
 using MvvmCross.Core.Views;
 using GodSpeak;
+using GodSpeak.Services;
+using GodSpeak.Droid.Services;
 
 namespace GodSpeak.Droid
 {
     public class Setup : MvxAndroidSetup
     {
-        public Setup(Context applicationContext) : base(applicationContext)
+        public Setup (Context applicationContext) : base (applicationContext)
         {
+            Mvx.RegisterSingleton<IFeedbackService> (new FeedbackService (applicationContext));
         }
 
-        protected override IMvxApplication CreateApp()
+        protected override IMvxApplication CreateApp ()
         {
-			Mvx.LazyConstructAndRegisterSingleton<IMediaPicker, MediaPicker>();
-			Mvx.LazyConstructAndRegisterSingleton<IShareService, ShareService>();
-			Mvx.LazyConstructAndRegisterSingleton<IReminderService, ReminderService>();
+            Mvx.LazyConstructAndRegisterSingleton<IMediaPicker, MediaPicker> ();
+            Mvx.LazyConstructAndRegisterSingleton<IShareService, ShareService> ();
+            Mvx.LazyConstructAndRegisterSingleton<IReminderService, ReminderService> ();
 
-            return new App();
+            return new App ();
         }
 
-        protected override IMvxTrace CreateDebugTrace()
+        protected override IMvxTrace CreateDebugTrace ()
         {
-            return new DebugTrace();
+            return new DebugTrace ();
         }
 
-		protected override IMvxAndroidViewPresenter CreateViewPresenter()
-		{
-			var presenter = new MvxFormsDroidPagePresenterCustom();
-			Mvx.RegisterSingleton<IMvxViewPresenter>(presenter);
+        protected override IMvxAndroidViewPresenter CreateViewPresenter ()
+        {
+            var presenter = new MvxFormsDroidPagePresenterCustom ();
+            Mvx.RegisterSingleton<IMvxViewPresenter> (presenter);
 
-			return presenter;
-		}
+            return presenter;
+        }
 
-		private class MvxFormsDroidPagePresenterCustom : MvxFormsDroidMasterDetailPagePresenter
-		{
-			
-		}
+        private class MvxFormsDroidPagePresenterCustom : MvxFormsDroidMasterDetailPagePresenter
+        {
+
+        }
     }
 }

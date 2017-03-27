@@ -226,6 +226,7 @@
     <Compile Include="Services\ContactsService.cs" />
     <Compile Include="Services\MailService.cs" />
     <Compile Include="Effects\ReturnKeyEffect.cs" />
+    <Compile Include="Services\FeedbackService.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\profile_placeholder.png" />
