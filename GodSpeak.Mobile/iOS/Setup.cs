@@ -9,6 +9,7 @@ using Xamarin.Forms;
 using MvvmCross.Forms.Presenter.Core;
 using MvvmCross.Forms.Presenter.iOS;
 using GodSpeak.Services;
+using GodSpeak.iOS.Services;
 
 namespace GodSpeak.iOS
 {
@@ -41,7 +42,7 @@ namespace GodSpeak.iOS
             Mvx.LazyConstructAndRegisterSingleton<IReminderService, ReminderService> ();
             Mvx.LazyConstructAndRegisterSingleton<IContactService, ContactsService> ();
             Mvx.LazyConstructAndRegisterSingleton<IMailService, MailService> ();
-            Mvx.LazyConstructAndRegisterSingleton<IFeedbackService, IFeedbackService> ();
+            Mvx.LazyConstructAndRegisterSingleton<IFeedbackService, FeedbackService> ();
 
 
             return new App ();
