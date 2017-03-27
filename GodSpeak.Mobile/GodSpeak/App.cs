@@ -1,4 +1,7 @@
 using MvvmCross.Platform.IoC;
+using MvvmCross;
+using MvvmCross.Platform;
+using GodSpeak.Api;
 
 namespace GodSpeak
 {
@@ -7,16 +10,18 @@ namespace GodSpeak
         public static int ScreenHeight = 640;
         public static int ScreenWidth = 320;
 
-		public override void Initialize()
-		{
-			InitializeComponent();
-			CreatableTypes()
-				.EndingWith("Service")
-				.AsInterfaces()
-				.RegisterAsLazySingleton();
+        public override void Initialize ()
+        {
+            InitializeComponent ();
+            CreatableTypes ()
+                .EndingWith ("Service")
+                .AsInterfaces ()
+                .RegisterAsLazySingleton ();
 
-			CreatableTypes().Containing("DialogService").AsInterfaces().RegisterAsDynamic();
-			RegisterAppStart<GetStartedViewModel>();
-		}
+            CreatableTypes ().Containing ("DialogService").AsInterfaces ().RegisterAsDynamic ();
+
+            RegisterAppStart<GetStartedViewModel> ();
+
+        }
     }
 }

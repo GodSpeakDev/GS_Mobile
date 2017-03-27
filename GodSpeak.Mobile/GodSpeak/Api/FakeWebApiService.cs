@@ -5,509 +5,471 @@ using System.Linq;
 
 namespace GodSpeak
 {
-	public class FakeWebApiService : IWebApiService
-	{
-		private int delay = 1000;
+    public class FakeWebApiService : IWebApiService
+    {
+        private int delay = 1000;
 
-		public async Task<ApiResponse<ValidateCodeResponse>> ValidateCode(ValidateCodeRequest request)
-		{
-			await Task.Delay(1000);
+        public async Task<ApiResponse<ValidateCodeResponse>> ValidateCode (ValidateCodeRequest request)
+        {
+            await Task.Delay (1000);
 
-			if (request.Code == "123456")
-			{
-				return new ApiResponse<ValidateCodeResponse>()
-				{
-					StatusCode = System.Net.HttpStatusCode.OK,
-				};
-			}
-			else
-			{
-				return new ApiResponse<ValidateCodeResponse>()
-				{
-					StatusCode = System.Net.HttpStatusCode.BadRequest,
-					Message = "Sorry, that code is not valid.",
-					Title = "Error Code"
-				};	
-			}
-		}
+            if (request.Code == "123456") {
+                return new ApiResponse<ValidateCodeResponse> () {
+                    StatusCode = System.Net.HttpStatusCode.OK,
+                };
+            } else {
+                return new ApiResponse<ValidateCodeResponse> () {
+                    StatusCode = System.Net.HttpStatusCode.BadRequest,
+                    Message = "Sorry, that code is not valid.",
+                    Title = "Error Code"
+                };
+            }
+        }
 
-		public async Task<ApiResponse<RequestInviteResponse>> RequestInvite(RequestInviteRequest request)
-		{
-			await Task.Delay(1000);
+        public async Task<ApiResponse<RequestInviteResponse>> RequestInvite (RequestInviteRequest request)
+        {
+            await Task.Delay (1000);
 
-			return new ApiResponse<RequestInviteResponse>()
-			{
-				StatusCode = System.Net.HttpStatusCode.OK,
-			};
-		}
+            return new ApiResponse<RequestInviteResponse> () {
+                StatusCode = System.Net.HttpStatusCode.OK,
+            };
+        }
 
-		public async Task<ApiResponse<LoginResponse>> Login(LoginRequest request)
-		{
-			await Task.Delay(1000);
+        public async Task<ApiResponse<LoginResponse>> Login (LoginRequest request)
+        {
+            await Task.Delay (1000);
 
-			if (request.Email == "godspeak@gmail.com" && request.Password == "123456")
-			{
-				return new ApiResponse<LoginResponse>()
-				{
-					StatusCode = System.Net.HttpStatusCode.OK,
-					Payload = new LoginResponse() 
-					{
-						Payload = GetTestPayload()
-					}
-				};
-			}
-			else
-			{
-				return new ApiResponse<LoginResponse>() 
-				{
-					StatusCode = System.Net.HttpStatusCode.BadRequest,
-					Title = "Invalid Credentials",
-					Message = "Your login or password doesn't match."
-				};
-			}
-		}
+            if (request.Email == "godspeak@gmail.com" && request.Password == "123456") {
+                return new ApiResponse<LoginResponse> () {
+                    StatusCode = System.Net.HttpStatusCode.OK,
+                    Payload = new LoginResponse () {
+                        Payload = GetTestPayload ()
+                    }
+                };
+            } else {
+                return new ApiResponse<LoginResponse> () {
+                    StatusCode = System.Net.HttpStatusCode.BadRequest,
+                    Title = "Invalid Credentials",
+                    Message = "Your login or password doesn't match."
+                };
+            }
+        }
 
-		public async Task<ApiResponse<LogoutResponse>> Logout(LogoutRequest request)
-		{
-			return null;
-		}
+        public async Task<ApiResponse<LogoutResponse>> Logout (LogoutRequest request)
+        {
+            return null;
+        }
 
-		public async Task<ApiResponse<GetCategoriesResponse>> GetCategories(GetCategoriesRequest request)
-		{
-			await Task.Delay(delay);
-			return new ApiResponse<GetCategoriesResponse>()
-			{
-				StatusCode = System.Net.HttpStatusCode.OK,
-				Payload = new GetCategoriesResponse() 
-				{
-					Payload = _categories
-				}
-			};
-		}
+        public async Task<ApiResponse<GetCategoriesResponse>> GetCategories (GetCategoriesRequest request)
+        {
+            await Task.Delay (delay);
+            return new ApiResponse<GetCategoriesResponse> () {
+                StatusCode = System.Net.HttpStatusCode.OK,
+                Payload = new GetCategoriesResponse () {
+                    Payload = _categories
+                }
+            };
+        }
 
-		public async Task<ApiResponse<GetImpactResponse>> GetImpact(GetImpactRequest request)
-		{
-			await Task.Delay(delay);
-			return new ApiResponse<GetImpactResponse>()
-			{
-				StatusCode = System.Net.HttpStatusCode.OK,
-				Payload = new GetImpactResponse()
-				{
-					Payload = GetImpactedDays()
-				}
-			};
-		}
+        public async Task<ApiResponse<GetImpactResponse>> GetImpact (GetImpactRequest request)
+        {
+            await Task.Delay (delay);
+            return new ApiResponse<GetImpactResponse> () {
+                StatusCode = System.Net.HttpStatusCode.OK,
+                Payload = new GetImpactResponse () {
+                    Payload = GetImpactedDays ()
+                }
+            };
+        }
 
-		public async Task<ApiResponse<GetInvitesResponse>> GetInvites(GetInvitesRequest request)
-		{
-			await Task.Delay(delay);
-			return new ApiResponse<GetInvitesResponse>()
-			{
-				StatusCode = System.Net.HttpStatusCode.OK,
-				Payload = new GetInvitesResponse()
-				{
-					Payload = new List<Invite>() 
-					{
-						new Invite() 
-						{
-							InviteId = Guid.NewGuid(),
-							Code = "1reJy567",
-						},
-						new Invite()
-						{
-							InviteId = Guid.NewGuid(),
-							Code = "JUik34a5",
-						},
-						new Invite()
-						{
-							InviteId = Guid.NewGuid(),
-							Code = "MnIiuo89",
-							RedeemerEmail="jon.smith@gmail.com",
-							Redeemed=true
-						},
-						new Invite()
-						{
-							InviteId = Guid.NewGuid(),
-							Code = "OiUUytad",
-						},
-						new Invite()
-						{
-							InviteId = Guid.NewGuid(),
-							Code = "12FjUIO",
-							RedeemerEmail="dave.ortinau@gmail.com",
-							Redeemed=true
-						},
-					}
-				}
-			};
-		}
+        public async Task<ApiResponse<GetInvitesResponse>> GetInvites (GetInvitesRequest request)
+        {
+            await Task.Delay (delay);
+            return new ApiResponse<GetInvitesResponse> () {
+                StatusCode = System.Net.HttpStatusCode.OK,
+                Payload = new GetInvitesResponse () {
+                    Payload = new List<Invite> ()
+                    {
+                        new Invite()
+                        {
+                            InviteId = Guid.NewGuid(),
+                            Code = "1reJy567",
+                        },
+                        new Invite()
+                        {
+                            InviteId = Guid.NewGuid(),
+                            Code = "JUik34a5",
+                        },
+                        new Invite()
+                        {
+                            InviteId = Guid.NewGuid(),
+                            Code = "MnIiuo89",
+                            RedeemerEmail="jon.smith@gmail.com",
+                            Redeemed=true
+                        },
+                        new Invite()
+                        {
+                            InviteId = Guid.NewGuid(),
+                            Code = "OiUUytad",
+                        },
+                        new Invite()
+                        {
+                            InviteId = Guid.NewGuid(),
+                            Code = "12FjUIO",
+                            RedeemerEmail="dave.ortinau@gmail.com",
+                            Redeemed=true
+                        },
+                    }
+                }
+            };
+        }
 
-		public async Task<ApiResponse<GetMessagesResponse>> GetMessages(GetMessagesRequest request)
-		{
-			await Task.Delay(delay);
-			var content = new GetMessagesResponse()
-            {
-				Messages = _messages
+        public async Task<ApiResponse<GetMessagesResponse>> GetMessages (GetMessagesRequest request)
+        {
+            await Task.Delay (delay);
+            var content = new GetMessagesResponse () {
+                Messages = _messages
             };
 
-			return new ApiResponse<GetMessagesResponse>() 
-			{
-			    Payload = content,
-			    StatusCode = System.Net.HttpStatusCode.OK
-			};
-		}
+            return new ApiResponse<GetMessagesResponse> () {
+                Payload = content,
+                StatusCode = System.Net.HttpStatusCode.OK
+            };
+        }
 
-		public async Task<ApiResponse<GetMessageResponse>> GetMessage(GetMessageRequest request)
-		{
-			await Task.Delay(delay);
-			var content = new GetMessageResponse()
-			{
-				Payload = _messages.First(x => x.MessageId == request.MessageId)
-			};
+        public async Task<ApiResponse<GetMessageResponse>> GetMessage (GetMessageRequest request)
+        {
+            await Task.Delay (delay);
+            var content = new GetMessageResponse () {
+                Payload = _messages.First (x => x.MessageId == request.MessageId)
+            };
 
-			return new ApiResponse<GetMessageResponse>()
-			{
-				Payload = content,
-				StatusCode = System.Net.HttpStatusCode.OK
-			};
-		}
+            return new ApiResponse<GetMessageResponse> () {
+                Payload = content,
+                StatusCode = System.Net.HttpStatusCode.OK
+            };
+        }
 
-		public async Task<ApiResponse<ForgotPasswordResponse>> ForgotPassword(ForgotPasswordRequest request)
-		{
-			await Task.Delay(delay);
-			return new ApiResponse<ForgotPasswordResponse>()
-			{
-				StatusCode = System.Net.HttpStatusCode.OK
-			};
-		}
+        public async Task<ApiResponse<ForgotPasswordResponse>> ForgotPassword (ForgotPasswordRequest request)
+        {
+            await Task.Delay (delay);
+            return new ApiResponse<ForgotPasswordResponse> () {
+                StatusCode = System.Net.HttpStatusCode.OK
+            };
+        }
 
-		public async Task<ApiResponse<RegisterUserResponse>> RegisterUser(RegisterUserRequest request)
-		{
-			await Task.Delay(delay);
-			return new ApiResponse<RegisterUserResponse>()
-			{
-				StatusCode = System.Net.HttpStatusCode.OK,
-				Payload = new RegisterUserResponse()
-				{
-					Payload = GetTestPayload()
-				}
-			};
-		}
+        public async Task<ApiResponse<RegisterUserResponse>> RegisterUser (RegisterUserRequest request)
+        {
+            await Task.Delay (delay);
+            return new ApiResponse<RegisterUserResponse> () {
+                StatusCode = System.Net.HttpStatusCode.OK,
+                Payload = new RegisterUserResponse () {
+                    Payload = GetTestPayload ()
+                }
+            };
+        }
 
-		public async Task<ApiResponse<SaveCategoriesResponse>> SaveCategories(SaveCategoriesRequest request)
-		{
-			await Task.Delay(delay);
+        public async Task<ApiResponse<SaveCategoriesResponse>> SaveCategories (SaveCategoriesRequest request)
+        {
+            await Task.Delay (delay);
 
-			foreach (var category in _categories)
-			{
-				category.Enabled = (request.Payload.FirstOrDefault(x => x.Id == category.Id)?.Enabled).GetValueOrDefault();
-			}
+            foreach (var category in _categories) {
+                category.Enabled = (request.Payload.FirstOrDefault (x => x.Id == category.Id)?.Enabled).GetValueOrDefault ();
+            }
 
-			return new ApiResponse<SaveCategoriesResponse>()
-			{
-				StatusCode = System.Net.HttpStatusCode.OK,
-				Payload = new SaveCategoriesResponse()
-			};
-		}
+            return new ApiResponse<SaveCategoriesResponse> () {
+                StatusCode = System.Net.HttpStatusCode.OK,
+                Payload = new SaveCategoriesResponse ()
+            };
+        }
 
-		public async Task<ApiResponse<SetMessagesConfigResponse>> SetMessagesConfigUser(SetMessagesConfigRequest request)
-		{
-			await Task.Delay(delay);
-			_dailySettings = request.Settings;
-			return new ApiResponse<SetMessagesConfigResponse>()
-			{
-				StatusCode = System.Net.HttpStatusCode.OK,
-				Payload = new SetMessagesConfigResponse() 
-				{
-					Payload = _dailySettings
-				}
-			};
-		}
+        public async Task<ApiResponse<SetMessagesConfigResponse>> SetMessagesConfigUser (SetMessagesConfigRequest request)
+        {
+            await Task.Delay (delay);
+            _dailySettings = request.Settings;
+            return new ApiResponse<SetMessagesConfigResponse> () {
+                StatusCode = System.Net.HttpStatusCode.OK,
+                Payload = new SetMessagesConfigResponse () {
+                    Payload = _dailySettings
+                }
+            };
+        }
 
-		public async Task<ApiResponse<GetInviteBundlesResponse>> GetInviteBundles(GetInviteBundlesRequest request)
-		{
-			await Task.Delay(delay);
-			return new ApiResponse<GetInviteBundlesResponse>()
-			{
-				StatusCode = System.Net.HttpStatusCode.OK,
-				Payload = new GetInviteBundlesResponse()
-				{
-					Payload = new List<InviteBundle>()
-					{
-						new InviteBundle() 
-						{
-							InviteBundleId=Guid.NewGuid(),
-							Cost = 9.97m,
-							NumOfInvites=3,
-							ItunesId="1",
-							PlaystoreId="1",
-							CostDescription = "$1.99"
-						},
-						new InviteBundle()
-						{
-							InviteBundleId=Guid.NewGuid(),
-							Cost = 19.90m,
-							NumOfInvites=10,
-							ItunesId="2",
-							PlaystoreId="2",
-							CostDescription = "$4.99"
-						},
-						new InviteBundle()
-						{
-							InviteBundleId=Guid.NewGuid(),
-							Cost = 24.75m,
-							NumOfInvites=25,
-							ItunesId="3",
-							PlaystoreId="3",
-							CostDescription = "$24.75"
-						},
-						new InviteBundle()
-						{
-							InviteBundleId=Guid.NewGuid(),
-							Cost = 44.50m,
-							NumOfInvites=50,
-							ItunesId="4",
-							PlaystoreId="4",
-							CostDescription = "$44.50"
-						},
-					}
-				}
-			};
-		}
+        public async Task<ApiResponse<GetInviteBundlesResponse>> GetInviteBundles (GetInviteBundlesRequest request)
+        {
+            await Task.Delay (delay);
+            return new ApiResponse<GetInviteBundlesResponse> () {
+                StatusCode = System.Net.HttpStatusCode.OK,
+                Payload = new GetInviteBundlesResponse () {
+                    Payload = new List<InviteBundle> ()
+                    {
+                        new InviteBundle()
+                        {
+                            InviteBundleId=Guid.NewGuid(),
+                            Cost = 9.97m,
+                            NumOfInvites=3,
+                            ItunesId="1",
+                            PlaystoreId="1",
+                            CostDescription = "$1.99"
+                        },
+                        new InviteBundle()
+                        {
+                            InviteBundleId=Guid.NewGuid(),
+                            Cost = 19.90m,
+                            NumOfInvites=10,
+                            ItunesId="2",
+                            PlaystoreId="2",
+                            CostDescription = "$4.99"
+                        },
+                        new InviteBundle()
+                        {
+                            InviteBundleId=Guid.NewGuid(),
+                            Cost = 24.75m,
+                            NumOfInvites=25,
+                            ItunesId="3",
+                            PlaystoreId="3",
+                            CostDescription = "$24.75"
+                        },
+                        new InviteBundle()
+                        {
+                            InviteBundleId=Guid.NewGuid(),
+                            Cost = 44.50m,
+                            NumOfInvites=50,
+                            ItunesId="4",
+                            PlaystoreId="4",
+                            CostDescription = "$44.50"
+                        },
+                    }
+                }
+            };
+        }
 
-		public async Task<ApiResponse<PurchaseInviteResponse>> PurchaseInvite(PurchaseInviteRequest request)
-		{
-			await Task.Delay(delay);
-			return new ApiResponse<PurchaseInviteResponse>()
-			{
-				StatusCode = System.Net.HttpStatusCode.OK,
-			};
-		}
+        public async Task<ApiResponse<PurchaseInviteResponse>> PurchaseInvite (PurchaseInviteRequest request)
+        {
+            await Task.Delay (delay);
+            return new ApiResponse<PurchaseInviteResponse> () {
+                StatusCode = System.Net.HttpStatusCode.OK,
+            };
+        }
 
-		public async Task<ApiResponse<GetMessageConfigResponse>> GetMessageConfig(GetMessageConfigRequest request)
-		{
-			await Task.Delay(delay);
-			return new ApiResponse<GetMessageConfigResponse>()
-			{
-				StatusCode = System.Net.HttpStatusCode.OK,
-				Payload = new GetMessageConfigResponse()
-				{
-					Payload = _dailySettings
-				}
-			};
-		}
+        public async Task<ApiResponse<GetMessageConfigResponse>> GetMessageConfig (GetMessageConfigRequest request)
+        {
+            await Task.Delay (delay);
+            return new ApiResponse<GetMessageConfigResponse> () {
+                StatusCode = System.Net.HttpStatusCode.OK,
+                Payload = new GetMessageConfigResponse () {
+                    Payload = _dailySettings
+                }
+            };
+        }
 
-		private User GetTestPayload()
-		{
-			return new User()
-			{
-				Id = Guid.NewGuid(),
-				Email = "godspeak@gmail.com",
-				ZipCode="63017",
-				Country="USA",
-				Credits = 15.0m,
-				FirstName = "GodSpeak",
-				LastName = "GodSpeak",
-				PhotoUrl = "http://images.clipartpanda.com/happy-man-images-A-Happy-Man.jpg",
-				Token = Guid.NewGuid().ToString(),
-				SelectedCategories = _categories,
-				DayOfWeekSettings = new List<DayOfWeekSettings>()
-				{
-					
-				}
-			};
-		}
+        private User GetTestPayload ()
+        {
+            return new User () {
+                Id = Guid.NewGuid (),
+                Email = "godspeak@gmail.com",
+                ZipCode = "63017",
+                Country = "USA",
+                Credits = 15.0m,
+                FirstName = "GodSpeak",
+                LastName = "GodSpeak",
+                PhotoUrl = "http://images.clipartpanda.com/happy-man-images-A-Happy-Man.jpg",
+                Token = Guid.NewGuid ().ToString (),
+                SelectedCategories = _categories,
+                DayOfWeekSettings = new List<DayOfWeekSettings> () {
 
-		private List<ImpactDay> GetImpactedDays()
-		{
-			var random = new Random();
+                }
+            };
+        }
 
-			var impactedDays = new List<ImpactDay>();
+        private List<ImpactDay> GetImpactedDays ()
+        {
+            var random = new Random ();
 
-			for (int i = 0; i < 30; i++)
-			{
-				Task.Delay(100);
-				var impactDay = new ImpactDay()
-				{
-					Date = DateTime.Now.AddDays(-i),
-					InvitesClaimed = 1,
-					ScripturesDelivered = 1,
-					MapPoints = new List<MapPoint>()
-					{
-						new MapPoint()
-						{
-							Title = DateTime.Now.AddDays(-i).ToString(),
-							Latitude = (float) (38.4 + (random.Next(0, 3000) / 10000.0)),
-							Longitude = (float) (-90.1 + (random.Next(0, 3000) / 10000.0)),
-							MapPointId = Guid.NewGuid()
-						},
-						new MapPoint()
-						{
-							Title = DateTime.Now.AddDays(-i).ToString(),
-							Latitude =  (float) (38.4 + (random.Next(0, 3000) / 10000.0)),
-							Longitude = (float) (-90.1 + (random.Next(0, 3000) / 10000.0)),
-							MapPointId = Guid.NewGuid()
-						},
-					}
-				};
+            var impactedDays = new List<ImpactDay> ();
 
-				impactedDays.Add(impactDay);
-			}
+            for (int i = 0; i < 30; i++) {
+                Task.Delay (100);
+                var impactDay = new ImpactDay () {
+                    Date = DateTime.Now.AddDays (-i),
+                    InvitesClaimed = 1,
+                    ScripturesDelivered = 1,
+                    MapPoints = new List<MapPoint> ()
+                    {
+                        new MapPoint()
+                        {
+                            Title = DateTime.Now.AddDays(-i).ToString(),
+                            Latitude = (float) (38.4 + (random.Next(0, 3000) / 10000.0)),
+                            Longitude = (float) (-90.1 + (random.Next(0, 3000) / 10000.0)),
+                            MapPointId = Guid.NewGuid()
+                        },
+                        new MapPoint()
+                        {
+                            Title = DateTime.Now.AddDays(-i).ToString(),
+                            Latitude =  (float) (38.4 + (random.Next(0, 3000) / 10000.0)),
+                            Longitude = (float) (-90.1 + (random.Next(0, 3000) / 10000.0)),
+                            MapPointId = Guid.NewGuid()
+                        },
+                    }
+                };
 
-			return impactedDays;
-		}
+                impactedDays.Add (impactDay);
+            }
 
-		private static List<MessageCategory> _categories = new List<MessageCategory>() 
-		{
-			new MessageCategory() 
-			{
-				Id= Guid.NewGuid(),
-				Enabled = false,
-				Title = "Inspiration"
-			},
-			new MessageCategory()
-			{
-				Id= Guid.NewGuid(),
-				Enabled = true,
-				Title = "New Testament"
-			},
-			new MessageCategory()
-			{
-				Id= Guid.NewGuid(),
-				Enabled = false,
-				Title = "Old Testament"
-			},
-			new MessageCategory()
-			{
-				Id= Guid.NewGuid(),
-				Enabled = true,
-				Title = "Proverbs"
-			}
-		};
+            return impactedDays;
+        }
 
-		private static List<DayOfWeekSettings> _dailySettings = new List<DayOfWeekSettings>()
-		{
-			new DayOfWeekSettings()
-			{
-				DayOfWeekSettingsId = Guid.NewGuid(),
-				Weekday = 0,
-				Enabled = true,
-				StartDateTime = DateTime.Now.Date.AddHours(10),
-				EndDateTime = DateTime.Now.Date.AddHours(20),
-				NumberOfMessages = 3
-			},
-			new DayOfWeekSettings()
-			{
-				DayOfWeekSettingsId = Guid.NewGuid(),
-				Weekday = 1,
-				Enabled = false,
-				StartDateTime = DateTime.Now.Date.AddHours(10),
-				EndDateTime = DateTime.Now.Date.AddHours(20),
-				NumberOfMessages = 3
-			},
-			new DayOfWeekSettings()
-			{
-				DayOfWeekSettingsId = Guid.NewGuid(),
-				Weekday = 2,
-				Enabled = false,
-				StartDateTime = DateTime.Now.Date.AddHours(10),
-				EndDateTime = DateTime.Now.Date.AddHours(20),
-				NumberOfMessages = 3
-			},
-			new DayOfWeekSettings()
-			{
-				DayOfWeekSettingsId = Guid.NewGuid(),
-				Weekday = 3,
-				Enabled = true,
-				StartDateTime = DateTime.Now.Date.AddHours(10),
-				EndDateTime = DateTime.Now.Date.AddHours(10),
-				NumberOfMessages = 3
-			},
-			new DayOfWeekSettings()
-			{
-				DayOfWeekSettingsId = Guid.NewGuid(),
-				Weekday = 4,
-				Enabled = true,
-				StartDateTime = DateTime.Now.Date.AddHours(12),
-				EndDateTime = DateTime.Now.Date.AddHours(17),
-				NumberOfMessages = 3
-			},
-			new DayOfWeekSettings()
-			{
-				DayOfWeekSettingsId = Guid.NewGuid(),
-				Weekday = 5,
-				Enabled = false,
-				StartDateTime = DateTime.Now.Date.AddHours(12),
-				EndDateTime = DateTime.Now.Date.AddHours(17),
-				NumberOfMessages = 3
-			},
-			new DayOfWeekSettings()
-			{
-				DayOfWeekSettingsId = Guid.NewGuid(),
-				Weekday = 6,
-				Enabled = false,
-				StartDateTime = DateTime.Now.Date.AddHours(10),
-				EndDateTime = DateTime.Now.Date.AddHours(20),
-				NumberOfMessages = 3
-			},
-		};
+        private static List<MessageCategory> _categories = new List<MessageCategory> ()
+        {
+            new MessageCategory()
+            {
+                Id= Guid.NewGuid(),
+                Enabled = false,
+                Title = "Inspiration"
+            },
+            new MessageCategory()
+            {
+                Id= Guid.NewGuid(),
+                Enabled = true,
+                Title = "New Testament"
+            },
+            new MessageCategory()
+            {
+                Id= Guid.NewGuid(),
+                Enabled = false,
+                Title = "Old Testament"
+            },
+            new MessageCategory()
+            {
+                Id= Guid.NewGuid(),
+                Enabled = true,
+                Title = "Proverbs"
+            }
+        };
 
-		private static List<Message> _messages = new List<Message>() 
-		{
-			new Message()
-			{
-				DateTimeToDisplay = DateTime.Now.AddSeconds(30),
-				BeforeVerse="Therefore I say to you, all things for which you pray and ask, believe that you have received them, and they will be granted you.",
-				Text = "If you abide in Me, and My words abide in you, ask whatever you wish, and it will be done for you.",
-				AfterVerse="Truly I say to you, whoever says to this mountain, 'Be taken up and cast into the sea,' and does not doubt in his heart, but believes that what he says is going to happen, it will be granted him.",
-				MessageId = Guid.NewGuid(),
-				BeforeAuthor = "John 15:6 NASB",
-				Author="John 15:7 NASB",
-				AfterAuthor="John 15:8 NASB",					
-			},
-			new Message()
-			{
-				DateTimeToDisplay = DateTime.Now,
-				AfterVerse="Truly I say to you, whoever says to this mountain, 'Be taken up and cast into the sea,' and does not doubt in his heart, but believes that what he says is going to happen, it will be granted him.",
-				Text = "If you abide in Me, and My words abide in you, ask whatever you wish, and it will be done for you.",
-				BeforeVerse="Therefore I say to you, all things for which you pray and ask, believe that you have received them, and they will be granted you.",
-				MessageId = Guid.NewGuid(),
-				BeforeAuthor = "John 15:6 NASB",
-				Author="John 15:7 NASB",
-				AfterAuthor="John 15:8 NASB",
-			},
-			new Message()
-			{
-				DateTimeToDisplay = DateTime.Now,
-				AfterVerse="Therefore I say to you, all things for which you pray and ask, believe that you have received them, and they will be granted you.",
-				Text = "Be anxious for nothing, but in everything by prayer and supplication with thanksgiving let your requests be made known to God.",
-				MessageId = Guid.NewGuid(),
-				Author="Philippians 4:6 NASB",
-				AfterAuthor="Philippians 4:7 NASB",
-			},
-			new Message()
-			{
-				DateTimeToDisplay = DateTime.Now.AddDays(-1),
-				Text = "Therefore I say to you, all things for which you pray and ask, believe that you have received them, and they will be granted you.",
-				BeforeVerse="Truly I say to you, whoever says to this mountain, 'Be taken up and cast into the sea,' and does not doubt in his heart, but believes that what he says is going to happen, it will be granted him.",
-				MessageId = Guid.NewGuid(),
-				Author="Mark 11:24 NASB",
-				BeforeAuthor="Mark 11:23 NASB",
-			},
-			new Message()
-			{
-				DateTimeToDisplay = DateTime.Now.AddDays(-1),
-				Text = "And when you are praying, do not use meaningless repetition as the Gentiles do, for they suppose that they will be heard for their many words.",
-				MessageId = Guid.NewGuid(),
-				Author="Mark 11:24 NASB"
-			},
-			new Message()
-			{
-				DateTimeToDisplay = DateTime.Now.AddDays(-7),
-				Text = "So I say to you, ask, and it will be given to you; seek, and you will find; knock, and it will be opened to you.",
-				MessageId = Guid.NewGuid(),
-				Author="Mark 11:24 NASB"
-			},
-		};
-	}
+        private static List<DayOfWeekSettings> _dailySettings = new List<DayOfWeekSettings> ()
+        {
+            new DayOfWeekSettings()
+            {
+                DayOfWeekSettingsId = Guid.NewGuid(),
+                Weekday = 0,
+                Enabled = true,
+                StartDateTime = DateTime.Now.Date.AddHours(10),
+                EndDateTime = DateTime.Now.Date.AddHours(20),
+                NumberOfMessages = 3
+            },
+            new DayOfWeekSettings()
+            {
+                DayOfWeekSettingsId = Guid.NewGuid(),
+                Weekday = 1,
+                Enabled = false,
+                StartDateTime = DateTime.Now.Date.AddHours(10),
+                EndDateTime = DateTime.Now.Date.AddHours(20),
+                NumberOfMessages = 3
+            },
+            new DayOfWeekSettings()
+            {
+                DayOfWeekSettingsId = Guid.NewGuid(),
+                Weekday = 2,
+                Enabled = false,
+                StartDateTime = DateTime.Now.Date.AddHours(10),
+                EndDateTime = DateTime.Now.Date.AddHours(20),
+                NumberOfMessages = 3
+            },
+            new DayOfWeekSettings()
+            {
+                DayOfWeekSettingsId = Guid.NewGuid(),
+                Weekday = 3,
+                Enabled = true,
+                StartDateTime = DateTime.Now.Date.AddHours(10),
+                EndDateTime = DateTime.Now.Date.AddHours(10),
+                NumberOfMessages = 3
+            },
+            new DayOfWeekSettings()
+            {
+                DayOfWeekSettingsId = Guid.NewGuid(),
+                Weekday = 4,
+                Enabled = true,
+                StartDateTime = DateTime.Now.Date.AddHours(12),
+                EndDateTime = DateTime.Now.Date.AddHours(17),
+                NumberOfMessages = 3
+            },
+            new DayOfWeekSettings()
+            {
+                DayOfWeekSettingsId = Guid.NewGuid(),
+                Weekday = 5,
+                Enabled = false,
+                StartDateTime = DateTime.Now.Date.AddHours(12),
+                EndDateTime = DateTime.Now.Date.AddHours(17),
+                NumberOfMessages = 3
+            },
+            new DayOfWeekSettings()
+            {
+                DayOfWeekSettingsId = Guid.NewGuid(),
+                Weekday = 6,
+                Enabled = false,
+                StartDateTime = DateTime.Now.Date.AddHours(10),
+                EndDateTime = DateTime.Now.Date.AddHours(20),
+                NumberOfMessages = 3
+            },
+        };
+
+        private static List<Message> _messages = new List<Message> ()
+        {
+            new Message()
+            {
+                DateTimeToDisplay = DateTime.Now.AddSeconds(30),
+                BeforeVerse="Therefore I say to you, all things for which you pray and ask, believe that you have received them, and they will be granted you.",
+                Text = "If you abide in Me, and My words abide in you, ask whatever you wish, and it will be done for you.",
+                AfterVerse="Truly I say to you, whoever says to this mountain, 'Be taken up and cast into the sea,' and does not doubt in his heart, but believes that what he says is going to happen, it will be granted him.",
+                MessageId = Guid.NewGuid(),
+                BeforeAuthor = "John 15:6 NASB",
+                Author="John 15:7 NASB",
+                AfterAuthor="John 15:8 NASB",
+            },
+            new Message()
+            {
+                DateTimeToDisplay = DateTime.Now,
+                AfterVerse="Truly I say to you, whoever says to this mountain, 'Be taken up and cast into the sea,' and does not doubt in his heart, but believes that what he says is going to happen, it will be granted him.",
+                Text = "If you abide in Me, and My words abide in you, ask whatever you wish, and it will be done for you.",
+                BeforeVerse="Therefore I say to you, all things for which you pray and ask, believe that you have received them, and they will be granted you.",
+                MessageId = Guid.NewGuid(),
+                BeforeAuthor = "John 15:6 NASB",
+                Author="John 15:7 NASB",
+                AfterAuthor="John 15:8 NASB",
+            },
+            new Message()
+            {
+                DateTimeToDisplay = DateTime.Now,
+                AfterVerse="Therefore I say to you, all things for which you pray and ask, believe that you have received them, and they will be granted you.",
+                Text = "Be anxious for nothing, but in everything by prayer and supplication with thanksgiving let your requests be made known to God.",
+                MessageId = Guid.NewGuid(),
+                Author="Philippians 4:6 NASB",
+                AfterAuthor="Philippians 4:7 NASB",
+            },
+            new Message()
+            {
+                DateTimeToDisplay = DateTime.Now.AddDays(-1),
+                Text = "Therefore I say to you, all things for which you pray and ask, believe that you have received them, and they will be granted you.",
+                BeforeVerse="Truly I say to you, whoever says to this mountain, 'Be taken up and cast into the sea,' and does not doubt in his heart, but believes that what he says is going to happen, it will be granted him.",
+                MessageId = Guid.NewGuid(),
+                Author="Mark 11:24 NASB",
+                BeforeAuthor="Mark 11:23 NASB",
+            },
+            new Message()
+            {
+                DateTimeToDisplay = DateTime.Now.AddDays(-1),
+                Text = "And when you are praying, do not use meaningless repetition as the Gentiles do, for they suppose that they will be heard for their many words.",
+                MessageId = Guid.NewGuid(),
+                Author="Mark 11:24 NASB"
+            },
+            new Message()
+            {
+                DateTimeToDisplay = DateTime.Now.AddDays(-7),
+                Text = "So I say to you, ask, and it will be given to you; seek, and you will find; knock, and it will be opened to you.",
+                MessageId = Guid.NewGuid(),
+                Author="Mark 11:24 NASB"
+            },
+        };
+    }
 }

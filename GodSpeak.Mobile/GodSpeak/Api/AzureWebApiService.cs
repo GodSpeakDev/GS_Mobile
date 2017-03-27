@@ -7,7 +7,7 @@ using System.Text;
 
 namespace GodSpeak.Api
 {
-    public class AzureWebApiService : IWebApiService
+    public class AzureWebApiService : FakeWebApiService, IWebApiService
     {
         private const string LoginMethodUri = "user/login";
         protected HttpClient client = new HttpClient ();
@@ -20,47 +20,8 @@ namespace GodSpeak.Api
 
         }
 
-        public Task<ApiResponse<ForgotPasswordResponse>> ForgotPassword (ForgotPasswordRequest request)
-        {
-            throw new NotImplementedException ();
-        }
 
-        public Task<ApiResponse<GetCategoriesResponse>> GetCategories (GetCategoriesRequest request)
-        {
-            throw new NotImplementedException ();
-        }
-
-        public Task<ApiResponse<GetImpactResponse>> GetImpact (GetImpactRequest request)
-        {
-            throw new NotImplementedException ();
-        }
-
-        public Task<ApiResponse<GetInviteBundlesResponse>> GetInviteBundles (GetInviteBundlesRequest request)
-        {
-            throw new NotImplementedException ();
-        }
-
-        public Task<ApiResponse<GetInvitesResponse>> GetInvites (GetInvitesRequest request)
-        {
-            throw new NotImplementedException ();
-        }
-
-        public Task<ApiResponse<GetMessageResponse>> GetMessage (GetMessageRequest request)
-        {
-            throw new NotImplementedException ();
-        }
-
-        public Task<ApiResponse<GetMessageConfigResponse>> GetMessageConfig (GetMessageConfigRequest request)
-        {
-            throw new NotImplementedException ();
-        }
-
-        public Task<ApiResponse<GetMessagesResponse>> GetMessages (GetMessagesRequest request)
-        {
-            throw new NotImplementedException ();
-        }
-
-        public async Task<ApiResponse<LoginResponse>> Login (LoginRequest request)
+        public new async Task<ApiResponse<LoginResponse>> Login (LoginRequest request)
         {
 
             return await DoPost<LoginResponse> (LoginMethodUri, request);
@@ -90,39 +51,6 @@ namespace GodSpeak.Api
 
         }
 
-        public Task<ApiResponse<LogoutResponse>> Logout (LogoutRequest request)
-        {
-            throw new NotImplementedException ();
-        }
 
-        public Task<ApiResponse<PurchaseInviteResponse>> PurchaseInvite (PurchaseInviteRequest request)
-        {
-            throw new NotImplementedException ();
-        }
-
-        public Task<ApiResponse<RegisterUserResponse>> RegisterUser (RegisterUserRequest request)
-        {
-            throw new NotImplementedException ();
-        }
-
-        public Task<ApiResponse<RequestInviteResponse>> RequestInvite (RequestInviteRequest request)
-        {
-            throw new NotImplementedException ();
-        }
-
-        public Task<ApiResponse<SaveCategoriesResponse>> SaveCategories (SaveCategoriesRequest request)
-        {
-            throw new NotImplementedException ();
-        }
-
-        public Task<ApiResponse<SetMessagesConfigResponse>> SetMessagesConfigUser (SetMessagesConfigRequest request)
-        {
-            throw new NotImplementedException ();
-        }
-
-        public Task<ApiResponse<ValidateCodeResponse>> ValidateCode (ValidateCodeRequest request)
-        {
-            throw new NotImplementedException ();
-        }
     }
 }
