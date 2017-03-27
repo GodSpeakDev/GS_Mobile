@@ -1,12 +1,11 @@
 ﻿using System;
 using Xamarin.Forms;
-using Xamarin.Forms.Platform.iOS;
-using UIKit;
+using Xamarin.Forms.Platform.Android;
 using GodSpeak;
-using GodSpeak.iOS;
+using GodSpeak.Droid;
 
 [assembly: ExportRendererAttribute(typeof(CustomLabel), typeof(CustomLabelRenderer))]
-namespace GodSpeak.iOS
+namespace GodSpeak.Droid
 {
 	public class CustomLabelRenderer : LabelRenderer
 	{
@@ -36,12 +35,7 @@ namespace GodSpeak.iOS
 			if (this.Control == null)
 				return;
 
-			this.Control.Font = this.CustomLabel.GetUIFont();
-		}
-
-		public override void LayoutSubviews()
-		{
-			base.LayoutSubviews();
+			this.Control.SetTypeface(null, this.CustomLabel.GetFont());
 		}
 	}
 }

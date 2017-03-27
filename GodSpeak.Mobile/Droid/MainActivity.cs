@@ -41,7 +41,7 @@ namespace GodSpeak.Droid
 
             base.OnCreate (bundle);
 
-            var mvxFormsApp = new MvxFormsApp ();
+            var mvxFormsApp = new FormsApp ();
             LoadApplication (mvxFormsApp);
 
             var presenter = Mvx.Resolve<IMvxViewPresenter> () as MvxFormsDroidMasterDetailPagePresenter;
