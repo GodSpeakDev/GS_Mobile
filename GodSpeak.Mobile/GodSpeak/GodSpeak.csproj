@@ -382,6 +382,7 @@
     <Compile Include="Models\SelectableItem.cs" />
     <Compile Include="Services\IMailService.cs" />
     <Compile Include="Effects\ReturnKeyEffect.cs" />
+    <Compile Include="Services\IFeedbackService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />
@@ -436,6 +437,9 @@
     </Reference>
     <Reference Include="Xamarin.Forms.Maps">
       <HintPath>..\packages\Xamarin.Forms.Maps.2.3.3.180\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10\Xamarin.Forms.Maps.dll</HintPath>
+    </Reference>
+    <Reference Include="HockeySDK">
+      <HintPath>..\packages\HockeySDK.Xamarin.4.1.2\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\HockeySDK.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

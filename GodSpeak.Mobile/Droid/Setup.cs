@@ -9,36 +9,39 @@ using MvvmCross.Core.Views;
 using GodSpeak;
 using Xamarin.Forms;
 using MvvmCross.Forms.Presenter.Core;
+using GodSpeak.Services;
+using GodSpeak.Droid.Services;
 
 namespace GodSpeak.Droid
 {
     public class Setup : MvxAndroidSetup
     {
-        public Setup(Context applicationContext) : base(applicationContext)
+        public Setup (Context applicationContext) : base (applicationContext)
         {
+            Mvx.RegisterSingleton<IFeedbackService> (new FeedbackService (applicationContext));
         }
 
-        protected override IMvxApplication CreateApp()
+        protected override IMvxApplication CreateApp ()
         {
-			Mvx.LazyConstructAndRegisterSingleton<IMediaPicker, MediaPicker>();
-			Mvx.LazyConstructAndRegisterSingleton<IShareService, ShareService>();
-			Mvx.LazyConstructAndRegisterSingleton<IReminderService, ReminderService>();
+            Mvx.LazyConstructAndRegisterSingleton<IMediaPicker, MediaPicker> ();
+            Mvx.LazyConstructAndRegisterSingleton<IShareService, ShareService> ();
+            Mvx.LazyConstructAndRegisterSingleton<IReminderService, ReminderService> ();
 
-            return new App();
+            return new App ();
         }
 
-        protected override IMvxTrace CreateDebugTrace()
+        protected override IMvxTrace CreateDebugTrace ()
         {
-            return new DebugTrace();
+            return new DebugTrace ();
         }
 
-		protected override IMvxAndroidViewPresenter CreateViewPresenter()
-		{
-			var presenter = new MvxFormsDroidPagePresenterCustom();
-			Mvx.RegisterSingleton<IMvxViewPresenter>(presenter);
+        protected override IMvxAndroidViewPresenter CreateViewPresenter ()
+        {
+            var presenter = new MvxFormsDroidPagePresenterCustom ();
+            Mvx.RegisterSingleton<IMvxViewPresenter> (presenter);
 
-			return presenter;
-		}
+            return presenter;
+        }
 
 		private class MvxFormsDroidPagePresenterCustom : MvxFormsDroidMasterDetailPagePresenter
 		{
@@ -46,9 +49,8 @@ namespace GodSpeak.Droid
 			{
 			}
 
-			public MvxFormsDroidPagePresenterCustom(MvxFormsApp mvxFormsApp)
-			: base(mvxFormsApp)
-		{
+			public MvxFormsDroidPagePresenterCustom(MvxFormsApp mvxFormsApp) : base(mvxFormsApp)
+		    {
 			}
 		}
     }

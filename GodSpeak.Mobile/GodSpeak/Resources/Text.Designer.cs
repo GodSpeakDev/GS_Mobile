@@ -551,6 +551,12 @@ namespace GodSpeak.Resources {
             }
         }
         
+        public static string SubmitBugFeedback {
+            get {
+                return ResourceManager.GetString("SubmitBugFeedback", resourceCulture);
+            }
+        }
+        
         public static string MyProfilePageTitle {
             get {
                 return ResourceManager.GetString("MyProfilePageTitle", resourceCulture);

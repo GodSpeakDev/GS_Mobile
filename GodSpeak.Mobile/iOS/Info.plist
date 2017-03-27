@@ -7,7 +7,7 @@
 	<key>CFBundleName</key>
 	<string>GodSpeak</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.pauloortins.godspeak</string>
+	<string>com.venado.mobile.godspeak</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>LSRequiresIPhoneOS</key>
@@ -41,11 +41,9 @@
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Pictures</string>
+	<string>We would like access to your camera so you can take a profile pic.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Pictures</string>
-	<key>CFBundleVersion</key>
-	<string>3</string>
+	<string>We would like access to your photos for your profile pic and bug reports.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Can we use your location</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
@@ -57,6 +55,8 @@
 	<key>UIStatusBarHidden</key>
 	<false/>
 	<key>NSContactsUsageDescription</key>
-	<string>We&apos;d like access to your contacts so we can save you time importing clients into our system.</string>
+	<string>We&apos;d like access to your contacts so we can save you time sharing GodSpeak with friends.</string>
+	<key>CFBundleVersion</key>
+	<string>6</string>
 </dict>
 </plist>

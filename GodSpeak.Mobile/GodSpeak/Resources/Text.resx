@@ -115,7 +115,7 @@
 		name="ZipCodePlaceholder"
 		xml:space="preserve">
     	<value>Zip/Postal Code</value>
-  	</data>	
+  	</data>
 	<data
 		name="EmailRequiredMessage"
 		xml:space="preserve">
@@ -397,129 +397,134 @@ If so, we’ll send you their gift!</value>
 		name="RecoverPasswordTitle"
 		xml:space="preserve">
     	<value>Recover Password</value>
-  	</data>	
+  	</data>
 	<data
 		name="RecoverPasswordText"
 		xml:space="preserve">
     	<value>Please enter the email address for your GodSpeak account. Reset instrucitons will be in the email.</value>
-  	</data>	
+  	</data>
 	<data
 		name="SendInstructions"
 		xml:space="preserve">
     	<value>Send Instructions</value>
-  	</data>	
+  	</data>
 	<data
 		name="RecoverPasswordSuccessText"
 		xml:space="preserve">
     	<value>We emailed instructions to reset your password to {0}</value>
-  	</data>	
+  	</data>
 	<data
 		name="NumberOfMessagesText"
 		xml:space="preserve">
     	<value>{0} messages between times:</value>
-  	</data>	
+  	</data>
 	<data
 		name="MenuCitationText"
 		xml:space="preserve">
     	<value>“So will my word be which goes forth from my mouth; it will not return to me empty, without accomplishing what I desire, and without succeeding in the matter for which I sent it”.</value>
-  	</data>	
+  	</data>
 	<data
 		name="MenuCitationAuthor"
 		xml:space="preserve">
     	<value>- Isaiah 55:11 NASB</value>
-  	</data>	
+  	</data>
 	<data
 		name="MenuMessageSettings"
 		xml:space="preserve">
     	<value>Message Settings</value>
-  	</data>	
+  	</data>
 	<data
 		name="MyProfileSettings"
 		xml:space="preserve">
     	<value>My Profile</value>
-  	</data>	
+  	</data>
 	<data
 		name="LogoutSettings"
 		xml:space="preserve">
     	<value>Logout</value>
-  	</data>	
+  	</data>
+	<data
+		name="SubmitBugFeedback"
+		xml:space="preserve">
+    	<value>Submit Bug/Feedback</value>
+  	</data>
 	<data
 		name="MyProfilePageTitle"
 		xml:space="preserve">
     	<value>Profile</value>
-  	</data>	
+  	</data>
 	<data
 		name="MyProfileUpdateInfo"
 		xml:space="preserve">
     	<value>Update Info</value>
-  	</data>	
+  	</data>
 	<data
 		name="MyProfileChangePassword"
 		xml:space="preserve">
     	<value>Change Password</value>
-  	</data>	
-  	<data
+  	</data>
+	<data
 		name="MyProfileSuccessTitle"
 		xml:space="preserve">
     	<value>Wow!</value>
-  	</data>	
+  	</data>
 	<data
 		name="MyProfileSuccessText"
 		xml:space="preserve">
     	<value>Your info was updated successfully.</value>
-  	</data>	
+  	</data>
 	<data
 		name="Today"
 		xml:space="preserve">
     	<value>Today</value>
-  	</data>	
+  	</data>
 	<data
 		name="Yesterday"
 		xml:space="preserve">
     	<value>Yesterday</value>
-  	</data>	
+  	</data>
 	<data
 		name="ScripturesDelivered"
 		xml:space="preserve">
     	<value>Scriptures
 Delivered</value>
-  	</data>	
+  	</data>
 	<data
 		name="GiftsClaimed"
 		xml:space="preserve">
     	<value>Gifts
 Claimed</value>
-  	</data>	
+  	</data>
 	<data
 		name="ShareTitle"
 		xml:space="preserve">
     	<value>Want to make a bigger impact?</value>
-  	</data>	
+  	</data>
 	<data
 		name="ShareDescription"
 		xml:space="preserve">
     	<value>You can purchase more gifts right here, right now!</value>
-  	</data>	
+  	</data>
 	<data
 		name="ShareWithFriend"
 		xml:space="preserve">
     	<value>Share with Friend</value>
-  	</data>	
+  	</data>
 	<data
 		name="ShareWithWorld"
 		xml:space="preserve">
     	<value>Share with World</value>
-  	</data>	
+  	</data>
 	<data
 		name="ShareGiftsLeft"
 		xml:space="preserve">
     	<value>You have 12 gifts left</value>
-  	</data>	
+  	</data>
 	<data
 		name="DidYouKnow"
 		xml:space="preserve">
     	<value>Did you know?</value>
-  	</data>	
+  	</data>
 	<data
 		name="DidYouKnowDeliveredGifts"
 		xml:space="preserve">
@@ -604,22 +609,22 @@ Claimed</value>
 		name="PrivacyPolicyTerms"
 		xml:space="preserve">
     	<value>Privacy Policy and Terms of Use</value>
-  	</data>	
+  	</data>
 	<data
 		name="SelectWhoToSendMailPageTitle"
 		xml:space="preserve">
     	<value>Select Who to Email</value>
-  	</data>		
+  	</data>
 	<data
 		name="ComposeEmail"
 		xml:space="preserve">
     	<value>Compose Email</value>
-  	</data>		
+  	</data>
 	<data
 		name="EmailSearchPlaceholder"
 		xml:space="preserve">
     	<value>Filter By Name</value>
-  	</data>		
+  	</data>
 	<data
 		name="ContactAccessDenied"
 		xml:space="preserve">

@@ -8,54 +8,57 @@ using GodSpeak;
 using Xamarin.Forms;
 using MvvmCross.Forms.Presenter.Core;
 using MvvmCross.Forms.Presenter.iOS;
+using GodSpeak.Services;
+using GodSpeak.iOS.Services;
 
 namespace GodSpeak.iOS
 {
     public class Setup : MvxIosSetup
     {
-        public Setup(MvxApplicationDelegate applicationDelegate, UIWindow window)
-            : base(applicationDelegate, window)
-        {
-        }
-        
-        public Setup(MvxApplicationDelegate applicationDelegate, IMvxIosViewPresenter presenter)
-            : base(applicationDelegate, presenter)
+        public Setup (MvxApplicationDelegate applicationDelegate, UIWindow window)
+            : base (applicationDelegate, window)
         {
         }
 
-		protected override IMvxIosViewPresenter CreatePresenter()
-		{
-			Forms.Init();
-			Xamarin.FormsMaps.Init();
-
-			var xamarinFormsApp = new FormsApp();
-
-			return new MvxFormsIosPagePresenterCustom(Window, xamarinFormsApp);
-		}
-
-        protected override IMvxApplication CreateApp()
+        public Setup (MvxApplicationDelegate applicationDelegate, IMvxIosViewPresenter presenter)
+            : base (applicationDelegate, presenter)
         {
-			Mvx.LazyConstructAndRegisterSingleton<IMediaPicker, MediaPicker>();
-			Mvx.LazyConstructAndRegisterSingleton<IShareService, ShareService>();
-			Mvx.LazyConstructAndRegisterSingleton<IReminderService, ReminderService>();
-			Mvx.LazyConstructAndRegisterSingleton<IContactService, ContactsService>();
-			Mvx.LazyConstructAndRegisterSingleton<IMailService, MailService>();
-
-
-            return new App();
-        }
-        
-        protected override IMvxTrace CreateDebugTrace()
-        {
-            return new DebugTrace();
         }
 
-		private class MvxFormsIosPagePresenterCustom : MvxFormsIosMasterDetailPagePresenter
-		{
-			public MvxFormsIosPagePresenterCustom(UIWindow window, Xamarin.Forms.Application application)
-				: base(window, application)
-			{
-			}
-		}
+        protected override IMvxIosViewPresenter CreatePresenter ()
+        {
+            Forms.Init ();
+            Xamarin.FormsMaps.Init ();
+
+            var xamarinFormsApp = new FormsApp ();
+
+            return new MvxFormsIosPagePresenterCustom (Window, xamarinFormsApp);
+        }
+
+        protected override IMvxApplication CreateApp ()
+        {
+            Mvx.LazyConstructAndRegisterSingleton<IMediaPicker, MediaPicker> ();
+            Mvx.LazyConstructAndRegisterSingleton<IShareService, ShareService> ();
+            Mvx.LazyConstructAndRegisterSingleton<IReminderService, ReminderService> ();
+            Mvx.LazyConstructAndRegisterSingleton<IContactService, ContactsService> ();
+            Mvx.LazyConstructAndRegisterSingleton<IMailService, MailService> ();
+            Mvx.LazyConstructAndRegisterSingleton<IFeedbackService, FeedbackService> ();
+
+
+            return new App ();
+        }
+
+        protected override IMvxTrace CreateDebugTrace ()
+        {
+            return new DebugTrace ();
+        }
+
+        private class MvxFormsIosPagePresenterCustom : MvxFormsIosMasterDetailPagePresenter
+        {
+            public MvxFormsIosPagePresenterCustom (UIWindow window, Xamarin.Forms.Application application)
+                : base (window, application)
+            {
+            }
+        }
     }
 }
