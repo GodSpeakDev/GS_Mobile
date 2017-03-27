@@ -38,16 +38,18 @@
 				Placeholder="{x:Static res:Text.EmailPlaceholder}" 
 				Text="{Binding Email}"
 			/>
-			<views:ActionButton 
+			<Button 
 				Grid.Row="3"
 				Margin="30,0"
 				Text="Request Invite Code"	
+				Style="{StaticResource ButtonBlue}"
 				Command="{Binding RequestInviteCodeCommand}"
 			/>
-			<views:ActionButton 
+			<Button 
 				Grid.Row="4"
 				Margin="30,0"
 				Text="Purchase Credit"	
+				Style="{StaticResource ButtonBlue}"
 				Command="{Binding PurchaseCreditCommand}"
 			/>
 		</Grid>

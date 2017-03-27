@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<core:MvxFormsApp
+	xmlns="http://xamarin.com/schemas/2014/forms" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+	xmlns:godspeak="clr-namespace:GodSpeak;assembly=GodSpeak"
+	xmlns:mvx="clr-namespace:MvvmCross.Core.ViewModels;assembly=MvvmCross.Core.ViewModels"
+	xmlns:core="clr-namespace:MvvmCross.Forms.Presenter.Core;assembly=MvvmCross.Forms.Presenter.Core"
+	x:Class="GodSpeak.FormsApp">
+	<Application.Resources>
+		<ResourceDictionary>
+			<!-- Converters -->
+			<godspeak:DayConverter x:Key="DayConverter" />
+			<godspeak:DeliveredScriptureConverter x:Key="DeliveredScriptureConverter" />
+			<godspeak:EnableTextColorConverter x:Key="EnableTextColorConverter" />
+			<godspeak:ImageObjectToImageSourceConverter x:Key="ImageObjectToImageSourceConverter" />
+			<godspeak:ImagePaddingConverter x:Key="ImagePaddingConverter" />
+			<godspeak:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+			<godspeak:InviteBundleConverter x:Key="InviteBundleConverter" />
+			<godspeak:InvitedClaimedConverter x:Key="InvitedClaimedConverter" />
+			<godspeak:PeopleGiftButtonTextConverter x:Key="PeopleGiftButtonTextConverter" />
+			<godspeak:PeopleGiftedTextConverter x:Key="PeopleGiftedTextConverter" />
+			<godspeak:SelectedVerseToFontAttributesConverter x:Key="SelectedVerseToFontAttributesConverter" />
+			<godspeak:SelectedVerseToTextColorConverter x:Key="SelectedVerseToTextColorConverter" />
+			<godspeak:WeekdayConverter x:Key="WeekdayConverter" />
+			<godspeak:MessageDetailStyleConverter x:Key="MessageDetailStyleConverter" />
+			<godspeak:SwitchStyleConverter x:Key="SwitchStyleConverter" />
+			
+			<!-- Global Values -->
+			<x:Double x:Key="ElementHeight">42</x:Double>
+						
+			<!-- Global Colors -->
+			<Color x:Key="primaryColor">#00a5ff</Color>
+			<Color x:Key="secondaryColor">#ffffff</Color>
+			<Color x:Key="textInputFocusPlaceholder">#d9dadb</Color>
+			<Color x:Key="textInputFocusedText">#555454</Color>
+			<Color x:Key="transparent">#00000000</Color>
+			<Color x:Key="disabledText">#716c6c</Color>
+			<Color x:Key="disabledBackground">#4e4f50</Color>
+			<Color x:Key="headerOverlay">#dc474843</Color>		
+			<Color x:Key="secondaryColorWithAlpha">#48ffffff</Color>	
+			<Color x:Key="outlinePlaceholderColor">#979797</Color>	
+			<Color x:Key="warningColor">#FF9000</Color>	
+			<Color x:Key="textInputDisabled">#d9dadb</Color>	
+
+			<!-- Label Styles -->
+			<Style x:Key="AlertSheetTitle" TargetType="Label">
+				<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />				
+				<Setter Property="FontAttributes" Value="Bold" />
+				<Setter Property="FontSize" Value="24" />
+			</Style>
+			
+			<Style x:Key="AlertSheetBody" TargetType="Label">
+				<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />				
+				<Setter Property="FontAttributes" Value="Bold" />
+				<Setter Property="FontSize" Value="15" />
+			</Style>
+			
+			<Style x:Key="NavigationBarButtonTitle" TargetType="godspeak:CustomLabel">
+				<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />				
+				<Setter Property="FontWeight" Value="Regular" />
+				<Setter Property="FontSize" Value="17" />								
+			</Style>
+
+			<Style x:Key="NavigationBarTitle" TargetType="godspeak:CustomLabel">
+				<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />				
+				<Setter Property="FontWeight" Value="Bold" />
+				<Setter Property="FontSize" Value="20" />								
+			</Style>
+
+			<Style x:Key="OnBoardingBodyText" TargetType="godspeak:CustomLabel">
+				<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />				
+				<Setter Property="FontWeight" Value="Medium" />
+				<Setter Property="FontSize" Value="18" />								
+			</Style>
+
+			<Style x:Key="OnBoardingSubtitleText" TargetType="godspeak:CustomLabel">
+				<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />				
+				<Setter Property="FontWeight" Value="Heavy" />
+				<Setter Property="FontSize" Value="18" />	
+				<Setter Property="FontSize" Value="18" />	
+			</Style>
+			
+			<Style x:Key="YouDidItTitle" TargetType="godspeak:CustomLabel">
+				<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />				
+				<Setter Property="FontWeight" Value="Semibold" />
+				<Setter Property="FontSize" Value="37" />								
+			</Style>
+
+			<Style x:Key="ButtonLinkText" TargetType="godspeak:CustomLabel">
+				<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />				
+				<Setter Property="FontWeight" Value="Regular" />
+				<Setter Property="FontSize" Value="20" />
+				<Setter Property="HorizontalTextAlignment" Value="Center" />
+			</Style>
+
+			<Style x:Key="UtilitySectionTitle" TargetType="godspeak:CustomLabel">
+				<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />				
+				<Setter Property="FontWeight" Value="Semibold" />
+				<Setter Property="FontSize" Value="19" />
+				<Setter Property="HorizontalTextAlignment" Value="Center" />
+			</Style>
+
+			<Style x:Key="TextContent" TargetType="godspeak:CustomLabel">
+				<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />				
+				<Setter Property="FontWeight" Value="Regular" />
+				<Setter Property="FontSize" Value="15" />
+			</Style>
+
+			<Style x:Key="QuotaText" TargetType="godspeak:CustomLabel">
+				<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />				
+				<Setter Property="FontWeight" Value="Medium" />
+				<Setter Property="FontSize" Value="15" />
+			</Style>
+
+			<Style x:Key="QuotaAuthor" TargetType="godspeak:CustomLabel">
+				<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />				
+				<Setter Property="FontWeight" Value="Heavy" />
+				<Setter Property="FontSize" Value="15" />
+			</Style>
+
+			<Style x:Key="SettingMenuLabel" TargetType="godspeak:CustomLabel">
+				<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />				
+				<Setter Property="FontWeight" Value="Bold" />
+				<Setter Property="FontSize" Value="18" />
+			</Style>
+			
+			<Style x:Key="TextMessageBody" TargetType="godspeak:CustomLabel">
+				<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />				
+				<Setter Property="FontWeight" Value="Medium" />
+				<Setter Property="FontSize" Value="18" />
+			</Style>
+
+			<Style x:Key="MessageDetailsTextOutOfFocus" TargetType="godspeak:CustomLabel">
+				<Setter Property="TextColor" Value="{StaticResource secondaryColorWithAlpha}" />				
+				<Setter Property="FontWeight" Value="Light" />
+				<Setter Property="FontSize" Value="20" />
+			</Style>
+
+			<Style x:Key="MessageDetailsTextInFocus" TargetType="godspeak:CustomLabel">
+				<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />				
+				<Setter Property="FontWeight" Value="Semibold" />
+				<Setter Property="FontSize" Value="20" />
+			</Style>
+
+			<Style x:Key="MessageDetailsDay" TargetType="godspeak:CustomLabel">
+				<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />				
+				<Setter Property="FontWeight" Value="Light" />
+				<Setter Property="FontSize" Value="13" />
+			</Style>
+
+			<Style x:Key="MessageDetailsAuthor" TargetType="godspeak:CustomLabel">
+				<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />				
+				<Setter Property="FontWeight" Value="Semibold" />
+				<Setter Property="FontSize" Value="17" />
+			</Style>
+
+			<Style x:Key="ImpactDate" TargetType="godspeak:CustomLabel">
+				<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />				
+				<Setter Property="FontWeight" Value="Semibold" />
+				<Setter Property="FontSize" Value="20" />
+			</Style>
+
+			<Style x:Key="ImpactValue" TargetType="godspeak:CustomLabel">
+				<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />				
+				<Setter Property="FontWeight" Value="Heavy" />
+				<Setter Property="FontSize" Value="39" />
+			</Style>
+
+			<Style x:Key="ImpactDescription" TargetType="godspeak:CustomLabel">
+				<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />				
+				<Setter Property="FontWeight" Value="Light" />
+				<Setter Property="FontSize" Value="14" />
+			</Style>
+
+			<Style x:Key="TextShoppingCartItemTitle" TargetType="godspeak:CustomLabel">
+				<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />				
+				<Setter Property="FontWeight" Value="Bold" />
+				<Setter Property="FontSize" Value="22" />
+			</Style>
+
+			<Style x:Key="UnclaimedPageTitle" TargetType="godspeak:CustomLabel">
+				<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />				
+				<Setter Property="FontWeight" Value="Semibold" />
+				<Setter Property="FontSize" Value="19" />
+			</Style>
+
+			<Style x:Key="TextWhiteWithShadow" TargetType="godspeak:CustomLabel">
+				<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />				
+				<Setter Property="FontWeight" Value="Semibold" />
+				<Setter Property="FontSize" Value="23" />
+			</Style>
+
+			<Style x:Key="SwitchLabelEnabled" TargetType="godspeak:CustomLabel">
+				<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />				
+				<Setter Property="FontWeight" Value="Bold" />
+				<Setter Property="FontSize" Value="14" />
+			</Style>
+
+			<Style x:Key="SwitchLabelDisabled" TargetType="godspeak:CustomLabel">
+				<Setter Property="TextColor" Value="{StaticResource textInputFocusPlaceholder}" />				
+				<Setter Property="FontWeight" Value="Regular" />
+				<Setter Property="FontSize" Value="14" />
+			</Style>
+
+			<!-- Button Styles -->	
+			<Style  x:Key="CustomButton" TargetType="Button">
+				<Setter Property="FontAttributes" Value="Bold" />
+				<Setter Property="FontSize" Value="18" />				
+			</Style>
+			
+			<Style x:Key="ButtonWhite" TargetType="Button" BasedOn="{StaticResource CustomButton}">
+				<Setter Property="TextColor" Value="{StaticResource primaryColor}" />								
+				<Setter Property="BackgroundColor" Value="{StaticResource secondaryColor}" />				
+			</Style>
+
+			<Style x:Key="ButtonBlue" TargetType="Button" BasedOn="{StaticResource CustomButton}">
+				<Style.Triggers>
+					<Trigger TargetType="Button" Property="IsEnabled" Value="True">
+						<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />								
+						<Setter Property="BackgroundColor" Value="{StaticResource primaryColor}" />				
+					</Trigger>
+					<Trigger TargetType="Button" Property="IsEnabled" Value="False">
+						<Setter Property="TextColor" Value="{StaticResource disabledText}" />								
+						<Setter Property="BackgroundColor" Value="{StaticResource disabledBackground}" />				
+					</Trigger>
+				</Style.Triggers>
+			</Style>
+			<Style x:Key="ButtonTransparent" TargetType="Button" BasedOn="{StaticResource CustomButton}">
+				<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />								
+				<Setter Property="BackgroundColor" Value="{StaticResource transparent}" />				
+			</Style>
+			
+			<Style x:Key="BorderButtonWhite" TargetType="Button" BasedOn="{StaticResource ButtonWhite}">
+				<Setter Property="BorderWidth" Value="1" />				
+				<Setter Property="BorderColor" Value="{StaticResource secondaryColor}" />
+			</Style>
+
+			<Style x:Key="BorderButtonTransparent" TargetType="Button" BasedOn="{StaticResource ButtonTransparent}">
+				<Setter Property="BorderWidth" Value="1" />				
+				<Setter Property="BorderColor" Value="{StaticResource secondaryColor}" />
+			</Style>
+
+			<Style x:Key="ShareButtonWhite" TargetType="Button" BasedOn="{StaticResource ButtonWhite}">
+				<Setter Property="FontSize" Value="16" />		
+			</Style>
+
+			<Style x:Key="ShareButtonBlue" TargetType="Button" BasedOn="{StaticResource ButtonBlue}">
+				<Setter Property="FontSize" Value="16" />		
+			</Style>
+
+			<!-- Entry Styles -->	
+			<Style x:Key="PopupEntry" TargetType="godspeak:CustomEntry">
+				<Setter Property="TextColor" Value="{StaticResource textInputFocusedText}" />				
+				<Setter Property="BackgroundColor" Value="{StaticResource secondaryColor}" />				
+				<Setter Property="PlaceholderColor" Value="{StaticResource textInputFocusPlaceholder}" />				
+				<Setter Property="FontWeight" Value="Bold" />
+				<Setter Property="FontSize" Value="24" />
+			</Style>
+
+			<Style x:Key="OnboardingEntry" TargetType="godspeak:CustomEntry">						
+				<Setter Property="FontWeight" Value="Bold" />
+				<Setter Property="FontSize" Value="24" />	
+			</Style>
+
+			<Style x:Key="LoginEntry"  TargetType="godspeak:CustomEntry" BasedOn="{StaticResource PopupEntry}">				
+				<Setter Property="FontSize" Value="19" />
+				<Setter Property="FontWeight" Value="Semibold" />
+			</Style>
+			
+			<Style TargetType="godspeak:RegisterEntry">				
+				<Setter Property="FontSize" Value="19" />
+				<Style.Triggers>
+					<Trigger TargetType="godspeak:RegisterEntry" Property="ElementState" Value="Error">													
+						<Setter Property="BackgroundColor" Value="{StaticResource warningColor}" />
+						<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />	
+						<Setter Property="OutlineColor" Value="{StaticResource warningColor}" />
+						<Setter Property="FontWeight" Value="Regular" />
+					</Trigger>
+					<Trigger TargetType="godspeak:RegisterEntry" Property="ElementState" Value="Focused">						
+							<Setter Property="BackgroundColor" Value="{StaticResource secondaryColor}" />				
+							<Setter Property="TextColor" Value="{StaticResource textInputFocusedText}" />
+							<Setter Property="OutlineColor" Value="{StaticResource secondaryColor}" />
+							<Setter Property="FontWeight" Value="Semibold" />
+					</Trigger>
+					<Trigger TargetType="godspeak:RegisterEntry" Property="ElementState" Value="NotFocusedFilled">													
+						<Setter Property="BackgroundColor" Value="{StaticResource transparent}" />
+						<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />		
+						<Setter Property="OutlineColor" Value="{StaticResource secondaryColor}" />
+						<Setter Property="FontWeight" Value="Semibold" />
+					</Trigger>
+					<Trigger TargetType="godspeak:RegisterEntry" Property="ElementState" Value="NotFocusedEmpty">													
+						<Setter Property="BackgroundColor" Value="{StaticResource transparent}" />
+						<Setter Property="TextColor" Value="{StaticResource textInputFocusPlaceholder}" />	
+						<Setter Property="OutlineColor" Value="{StaticResource outlinePlaceholderColor}" />
+						<Setter Property="FontWeight" Value="Regular" />
+					</Trigger>
+					<Trigger TargetType="godspeak:RegisterEntry" Property="ElementState" Value="Disabled">													
+						<Setter Property="BackgroundColor" Value="{StaticResource outlinePlaceholderColor}" />
+						<Setter Property="TextColor" Value="{StaticResource textInputDisabled}" />	
+						<Setter Property="OutlineColor" Value="{StaticResource outlinePlaceholderColor}" />
+						<Setter Property="FontWeight" Value="Regular" />
+					</Trigger>
+				</Style.Triggers>
+			</Style>
+
+			<!-- Picker Styles -->	
+			<Style x:Key="UtilityPicker" TargetType="godspeak:CustomPicker">				
+				<Setter Property="FontSize" Value="19" />
+				<Style.Triggers>
+					<Trigger TargetType="godspeak:CustomPicker" Property="ElementState" Value="Focused">						
+						<Setter Property="BackgroundColor" Value="{StaticResource secondaryColor}" />				
+						<Setter Property="TextColor" Value="{StaticResource textInputFocusedText}" />
+						<Setter Property="OutlineColor" Value="{StaticResource secondaryColor}" />
+						<Setter Property="FontWeight" Value="Semibold" />
+					</Trigger>
+					<Trigger TargetType="godspeak:CustomPicker" Property="ElementState" Value="NotFocusedFilled">													
+						<Setter Property="BackgroundColor" Value="{StaticResource transparent}" />
+						<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />		
+						<Setter Property="OutlineColor" Value="{StaticResource secondaryColor}" />
+						<Setter Property="FontWeight" Value="Semibold" />
+					</Trigger>
+					<Trigger TargetType="godspeak:CustomPicker" Property="ElementState" Value="NotFocusedEmpty">													
+						<Setter Property="BackgroundColor" Value="{StaticResource transparent}" />
+						<Setter Property="TextColor" Value="{StaticResource textInputFocusPlaceholder}" />	
+						<Setter Property="OutlineColor" Value="{StaticResource outlinePlaceholderColor}" />
+						<Setter Property="FontWeight" Value="Regular" />
+					</Trigger>
+				</Style.Triggers>
+			</Style>
+
+			<Style x:Key="FilledPicker" TargetType="godspeak:CustomPicker">				
+				<Setter Property="FontSize" Value="19" />
+				<Setter Property="FontWeight" Value="Semibold" />
+			</Style>				
+
+			<!-- Time Picker -->
+			<Style x:Key="FilledTimePicker" TargetType="godspeak:CustomTimePicker">				
+				<Setter Property="FontSize" Value="19" />
+				<Setter Property="FontWeight" Value="Semibold" />
+				<Setter Property="OutlineColor" Value="{StaticResource secondaryColor}" />
+				<Style.Triggers>
+					<Trigger TargetType="godspeak:CustomTimePicker" Property="ElementState" Value="Focused">						
+						<Setter Property="BackgroundColor" Value="{StaticResource secondaryColor}" />				
+						<Setter Property="TextColor" Value="{StaticResource textInputFocusedText}" />				
+					</Trigger>
+					<Trigger TargetType="godspeak:CustomTimePicker" Property="ElementState" Value="NotFocused">													
+						<Setter Property="BackgroundColor" Value="{StaticResource transparent}" />
+						<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />				
+					</Trigger>
+				</Style.Triggers>
+			</Style>		
+		</ResourceDictionary>
+	</Application.Resources>			
+</core:MvxFormsApp>

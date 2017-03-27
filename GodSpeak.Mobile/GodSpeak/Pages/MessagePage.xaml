@@ -1,58 +1,161 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage 
 		xmlns="http://xamarin.com/schemas/2014/forms" 
 		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 		xmlns:pages="clr-namespace:GodSpeak;assembly=GodSpeak"
+		xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
 		Title="Messages"
-		x:Class="GodSpeak.MessagePage">	
-	<ContentPage.Resources>
-		<ResourceDictionary>
-			<pages:DayConverter x:Key="dayConverter" />		
-		</ResourceDictionary>
-	</ContentPage.Resources>
-	<ContentPage.Content>		
-		<ListView
-			HorizontalOptions="FillAndExpand"
+		x:Class="GodSpeak.MessagePage">			
+	<ContentPage.Content>	
+		<AbsoluteLayout
 			VerticalOptions="FillAndExpand"
-			IsGroupingEnabled="true"
-			ItemsSource="{Binding Messages}"
-			SelectedItem="{Binding SelectedItem}"
-			SeparatorVisibility="None"		
-			HasUnevenRows="true"
-			>
-			<ListView.ItemTemplate>
-				<DataTemplate>
-					<ViewCell>
-						<Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-							<Grid.RowDefinitions>
-								<RowDefinition Height="auto" />
-							</Grid.RowDefinitions>
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="60" />
-								<ColumnDefinition Width="1*" />
-							</Grid.ColumnDefinitions>
+			HorizontalOptions="FillAndExpand">
+			<views:GrayGradientBackgroundView
+				AbsoluteLayout.LayoutBounds="0,0,1,1" 
+				AbsoluteLayout.LayoutFlags="All">
+				<views:CustomListView			
+					x:Name="MessagesListView"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand"
+					IsGroupingEnabled="true"
+					ItemsSource="{Binding Messages}"
+					SelectedItem="{Binding SelectedItem}"
+					BackgroundColor="Transparent"
+					SeparatorVisibility="None"		
+					HasUnevenRows="true"
+					>
+					<ListView.Header>
+						<AbsoluteLayout 
+							HorizontalOptions="FillAndExpand"
+							HeightRequest="280"
+							IsClippedToBounds="true"
+						>
+							<views:ImpactMap 	
+								AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"
+								AbsoluteLayout.LayoutBounds="0,0,1,280"
+	            				x:Name="MyMap"
+	            				IsShowingUser="true"
+								HasZoomEnabled="true"
+	            				MapType="Street"
+								ItemsSource="{Binding ShownImpactDays}"/>																				
+							<BoxView
+								AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"
+								AbsoluteLayout.LayoutBounds="0,0,1,280">
+								<BoxView.GestureRecognizers>
+			        				<TapGestureRecognizer Command="{Binding GoToImpactCommand}" />
+			    				</BoxView.GestureRecognizers>		
+							</BoxView>
 							<Image 
-								Grid.Row="0" 
-								Grid.Column="0" 
-								VerticalOptions="Center"
-								Source="{Binding Image}" 
+								AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"
+								AbsoluteLayout.LayoutBounds="0,1,1,50"
+								Source="messagesBackground.png"
+								Aspect="Fill"
+								HorizontalOptions="FillAndExpand"																						
 							/>
-							<Label 
-								Grid.Row="0" 
-								Grid.Column="1" 
-								Text="{Binding Text}" 
-							/>
-						</Grid>
-					</ViewCell>
-				</DataTemplate>
-			</ListView.ItemTemplate>
-			<ListView.GroupHeaderTemplate>
-				<DataTemplate>
-					<ViewCell>
-	            		<Label HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" Text="{Binding Key, Converter={StaticResource dayConverter}}" />
-					</ViewCell>
-	            </DataTemplate>
-			</ListView.GroupHeaderTemplate>
-		</ListView>
+							<views:ImageButton 
+								AbsoluteLayout.LayoutFlags="XProportional,YProportional"
+								AbsoluteLayout.LayoutBounds="1,1.05,100,100"
+								Source="invitesFAB.png"														
+								Command="{Binding GoToShareCommand}"
+							/>								
+						</AbsoluteLayout>
+					</ListView.Header>
+					<ListView.ItemTemplate>
+						<DataTemplate>
+							<ViewCell>
+								<Grid
+									Margin="10,0"
+									HorizontalOptions="FillAndExpand"
+									RowSpacing="2">
+									<Grid.RowDefinitions>
+										<RowDefinition Height="auto" />
+										<RowDefinition Height="auto" />
+									</Grid.RowDefinitions>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="*" />
+										<ColumnDefinition Width="auto" />
+									</Grid.ColumnDefinitions>
+									<Image 
+										Grid.Row="0"
+										Grid.Column="0"
+										Grid.RowSpan="2"
+										Grid.ColumnSpan="2"
+										Source="speechBalloonBackground.png" 
+									/>
+									<views:MessageBalloon
+										Grid.Row="0"
+										Grid.Column="0"
+										Grid.ColumnSpan="2"
+										Padding="20,10, 20, 0"
+										HorizontalOptions="FillAndExpand"
+										VerticalOptions="StartAndExpand">
+										<views:CustomLabel 																				
+											Text="{Binding Text}"
+											HorizontalOptions="FillAndExpand"
+											VerticalOptions="Start"
+											Style="{StaticResource TextMessageBody}"
+										/>											
+									</views:MessageBalloon>
+									<views:CustomLabel 	
+										Margin="5,0"
+										Grid.Row="1"
+										Grid.Column="1"
+										Text="{Binding Author}"
+										HorizontalOptions="End"
+										VerticalOptions="End"
+										Style="{StaticResource TextContent}"
+									/>
+								</Grid>
+							</ViewCell>
+						</DataTemplate>
+					</ListView.ItemTemplate>
+					<ListView.GroupHeaderTemplate>
+						<DataTemplate>
+							<ViewCell Height="20">
+			            		<views:CustomLabel									
+									Margin="15,0"
+									HorizontalOptions="FillAndExpand" 
+									HorizontalTextAlignment="Start" 
+									VerticalOptions="Center"
+									Style="{StaticResource TextContent}"
+									Text="{Binding Key, Converter={StaticResource DayConverter}}" />
+							</ViewCell>
+			            </DataTemplate>
+					</ListView.GroupHeaderTemplate>
+				</views:CustomListView>
+			</views:GrayGradientBackgroundView>
+			<views:HeaderOverlay
+				AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"
+				AbsoluteLayout.LayoutBounds="0,0,1,60"
+				>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="auto" />
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="auto" />
+				</Grid.ColumnDefinitions>	
+				<views:ImageButton					
+					Grid.Column="0"
+					HorizontalOptions="Center"
+					VerticalOptions="Center"
+					HeightRequest="25"
+					WidthRequest="25"
+					Source="hamburgerMenu.png"
+					Command="{Binding OpenDrawerMenuCommand}"/>
+				<Image
+					Grid.Column="1"
+					HorizontalOptions="Center"
+					VerticalOptions="Center"
+					Source="logo.png"					
+				/>
+				<views:ImageButton
+					Grid.Column="2"
+					HorizontalOptions="Center"
+					VerticalOptions="Center"
+					HeightRequest="25"
+					WidthRequest="25"
+					Command="{Binding GoToImpactCommand}"
+					Source="impactWithNotification.png" />				
+			</views:HeaderOverlay>
+		</AbsoluteLayout>
 	</ContentPage.Content>
 </ContentPage>

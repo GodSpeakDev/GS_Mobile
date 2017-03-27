@@ -1,16 +1,11 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <views:CustomContentPage   
 		xmlns="http://xamarin.com/schemas/2014/forms" 
 		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 		xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
 		xmlns:res="clr-namespace:GodSpeak.Resources;assembly=GodSpeak"
 		Title="{x:Static res:Text.InvitePageTitle}"
-		x:Class="GodSpeak.InvitesPage">
-	<views:CustomContentPage.Resources>
-		<ResourceDictionary>
-			<views:InverseBooleanConverter x:Key="inverseBooleanConverter" />		
-		</ResourceDictionary>
-	</views:CustomContentPage.Resources>
+		x:Class="GodSpeak.InvitesPage">	
 	<views:CustomContentPage.Content>
 		<Grid
 			HorizontalOptions="FillAndExpand"
@@ -48,19 +43,21 @@
 								<Label 
 									HorizontalOptions="StartAndExpand"
 									VerticalOptions="CenterAndExpand"
-									Text="{Binding Code}"
-									IsVisible="{Binding Redeemed, Converter={StaticResource inverseBooleanConverter}}"
+									Text="{Binding Model.Code}"
+									IsVisible="{Binding Model.Redeemed, Converter={StaticResource InverseBooleanConverter}}"
 								/>
 								<Label
 									VerticalOptions="CenterAndExpand"
-									Text="{Binding ReedemedDescription}"
-									IsVisible="{Binding Redeemed}"
+									Text="{Binding Model.ReedemedDescription}"
+									IsVisible="{Binding Model.Redeemed}"
 								/>
 								<Button 									
 									Text="{x:Static res:Text.ShareButtonText}"
-									IsVisible="{Binding Redeemed, Converter={StaticResource inverseBooleanConverter}}"
+									IsVisible="{Binding Model.Redeemed, Converter={StaticResource InverseBooleanConverter}}"
 									VerticalOptions="Center"
 									HorizontalOptions="End"
+									Command="{Binding Command}"
+									CommandParameter="{Binding .}"
 								/>
 							</StackLayout>
 						</ViewCell>

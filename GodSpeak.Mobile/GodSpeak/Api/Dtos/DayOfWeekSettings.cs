@@ -1,7 +1,9 @@
 ﻿using System;
+using MvvmCross.Core.ViewModels;
+               
 namespace GodSpeak
 {
-	public class DayOfWeekSettings
+	public class DayOfWeekSettings : MvxViewModel
 	{
 		public Guid DayOfWeekSettingsId
 		{
@@ -9,10 +11,11 @@ namespace GodSpeak
 			set;
 		}
 
+		private bool _enabled;
 		public bool Enabled
 		{
-			get;
-			set;
+			get { return _enabled;}
+			set { SetProperty(ref _enabled, value);}
 		}
 
 		public int NumberOfMessages
@@ -34,6 +37,12 @@ namespace GodSpeak
 		}
 
 		public DateTime EndDateTime
+		{
+			get;
+			set;
+		}
+
+		public int Weekday
 		{
 			get;
 			set;

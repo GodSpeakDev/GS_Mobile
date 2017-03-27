@@ -7,7 +7,7 @@ namespace GodSpeak
 	{
 		public SaveCategoriesRequest()
 		{
-			
+			Payload = new List<MessageCategory>();
 		}
 
 		public string Token
@@ -16,7 +16,7 @@ namespace GodSpeak
 			set;
 		}
 
-		public List<int> SelectedIds
+		public List<MessageCategory> Payload
 		{
 			get;
 			set;

@@ -19,7 +19,7 @@ namespace GodSpeak
 		public Application MvxFormsApp
 		{
 			get { return _mvxFormsApp; }
-			set
+			set	
 			{
 				if (value == null)
 				{
@@ -49,7 +49,17 @@ namespace GodSpeak
 
 				if (mainPage == null)
 				{
-					Mvx.TaggedTrace("MvxFormsPresenter:ChangePresentation()", "Oops! Don't know what to do");
+					var navPage = MvxFormsApp.MainPage as NavigationPage;
+					if (navPage != null)
+					{
+						navPage.PopAsync();
+						if (navPage.Navigation.NavigationStack.Count == 1)
+							RootContentPageActivated();
+					}
+					else
+					{
+						Mvx.TaggedTrace("MvxFormsPresenter:ChangePresentation()", "Oops! Don't know what to do");
+					}
 				}
 				else
 				{
@@ -58,6 +68,32 @@ namespace GodSpeak
 					navPage.PopAsync();
 					if (navPage.Navigation.NavigationStack.Count == 1)
 						RootContentPageActivated();
+				}
+			}
+			else if (hint is OpenMenuPresentationHint)
+			{
+				var mainPage = MvxFormsApp.MainPage as MasterDetailPage;
+
+				if (mainPage == null)
+				{
+					Mvx.TaggedTrace("MvxFormsPresenter:ChangePresentation()", "Oops! Don't know what to do");
+				}
+				else
+				{
+					mainPage.IsPresented = true;
+				}
+			}
+			else if (hint is CloseMenuPresentationHint)
+			{
+				var mainPage = MvxFormsApp.MainPage as MasterDetailPage;
+
+				if (mainPage == null)
+				{
+					Mvx.TaggedTrace("MvxFormsPresenter:ChangePresentation()", "Oops! Don't know what to do");
+				}
+				else
+				{
+					mainPage.IsPresented = false;
 				}
 			}
 		}
@@ -95,7 +131,7 @@ namespace GodSpeak
 
 			if (request.PresentationValues != null && request.PresentationValues.ContainsKey("NavigationMode") && request.PresentationValues["NavigationMode"] == "RestoreNavigation")
 			{
-				_mvxFormsApp.MainPage = new NavigationPage(page);
+				_mvxFormsApp.MainPage = new CustomNavigationPage(page);
 				var navPage = MvxFormsApp.MainPage as NavigationPage;
 				CustomPlatformInitialization(navPage);
 			}
@@ -106,7 +142,7 @@ namespace GodSpeak
 
 			if (_mvxFormsApp.MainPage == null)
 			{
-				_mvxFormsApp.MainPage = new NavigationPage(page);
+				_mvxFormsApp.MainPage = new CustomNavigationPage(page);
 				var navPage = MvxFormsApp.MainPage as NavigationPage;
 				CustomPlatformInitialization(navPage);
 			}
@@ -156,7 +192,7 @@ namespace GodSpeak
 					else
 						rootContentPage = new ContentPage();
 
-					var navPage = new NavigationPage(rootContentPage);
+					var navPage = new CustomNavigationPage(rootContentPage);
 
 					//Hook to Popped event to launch RootContentPageActivated if proceeds
 					navPage.Popped += (sender, e) =>

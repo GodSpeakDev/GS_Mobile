@@ -11,7 +11,7 @@ namespace GodSpeak
 
 		public WelcomePageSelector()
 		{
-			_getStartedTemplate = new DataTemplate(typeof(GetStartedView));
+			_getStartedTemplate = new DataTemplate(typeof(GetStartedPage));
 			_claimInviteCodeTemplate = new DataTemplate(typeof(ClaimInviteCodeView));
 			_requestInviteCodeTemplate = new DataTemplate(typeof(RequestInviteCodeView));
 		}

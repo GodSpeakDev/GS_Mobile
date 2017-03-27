@@ -1,42 +1,199 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView 
+<?xml version="1.0" encoding="UTF-8"?>
+<views:CustomContentPage 
 		xmlns="http://xamarin.com/schemas/2014/forms" 
 		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 		xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
 		xmlns:res="clr-namespace:GodSpeak.Resources;assembly=GodSpeak"
-		x:Class="GodSpeak.GetStartedView">
-	<ContentView.Content>
-		<Grid 
+		x:Class="GodSpeak.GetStartedPage">
+	<views:CustomContentPage.Content>
+		<AbsoluteLayout
 			HorizontalOptions="FillAndExpand"
-			VerticalOptions="FillAndExpand">
-			<Grid.RowDefinitions>
-				<RowDefinition Height="auto" />
-				<RowDefinition Height="1*" />
-				<RowDefinition Height="auto" />
-			</Grid.RowDefinitions>
-			<Label 
-				Grid.Row="0" 
-				Margin="0,5"
-				FontSize="20"
-				Text="Welcome to GodSpeak" 
-				HorizontalOptions="Center" 
-				VerticalOptions="Center" 
-			/>
-			<ScrollView 
-				Grid.Row="1"
+			VerticalOptions="FillAndExpand"
+		>
+			<views:PanoLayout
+				AbsoluteLayout.LayoutFlags="All"
+				AbsoluteLayout.LayoutBounds="0,0,1,1"
+				x:Name="PanoLayout"
+				Grid.Row="0"
+				Grid.RowSpan="2"
+				HorizontalOptions="FillAndExpand"
+				VerticalOptions="FillAndExpand">
+				<Image
+					x:Name="PanoBackground"
+					Source="pano_background.jpg"
+					VerticalOptions="FillAndExpand"
+					WidthRequest="1000"
+					HeightRequest="10"
+
+					 />
+			</views:PanoLayout>
+			<Grid 	
+				AbsoluteLayout.LayoutFlags="All"
+				AbsoluteLayout.LayoutBounds="0,0,1,1"
+				RowSpacing="0"
+				HorizontalOptions="FillAndExpand"
+				VerticalOptions="FillAndExpand">
+				<Grid.RowDefinitions>				
+					<RowDefinition Height="*" />
+					<RowDefinition Height="auto" />
+				</Grid.RowDefinitions>
+				<StackLayout
+					Grid.Row="1"
+					x:Name="GetStartedView"
 					HorizontalOptions="FillAndExpand" 
-					VerticalOptions="FillAndExpand">
-				<Label 
-					Margin="30,0"
-					Text="{x:Static res:Text.GetStartedText}"/>
-			</ScrollView>
-			<views:ActionButton 
-				Grid.Row="2"
-				Text="Get Started" 
-				HorizontalOptions="Center" 
-				VerticalOptions="Center" 
-				Command="{Binding TapGetStartedCommand}" 
-			/>		
-		</Grid>
-	</ContentView.Content>
-</ContentView>
+					Spacing="0"
+					VerticalOptions="End"
+					IsVisible="true">				
+					<Image 						
+						HorizontalOptions="Center"
+						VerticalOptions="End"
+						Source="gray_speach_arrow.png" 
+					/>
+					<views:GrayGradientBackgroundView>
+						<Grid
+							Margin="10,20,10,10">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="auto" />
+								<RowDefinition Height="auto" />
+								<RowDefinition Height="auto" />
+							</Grid.RowDefinitions>
+							<views:CustomLabel 
+								Grid.Row="0"
+								Text="{x:Static res:Text.GetStartedCitation}"
+								HorizontalTextAlignment="Start"
+								Style="{StaticResource OnBoardingBodyText}"
+							/>
+							<views:CustomLabel  
+								Grid.Row="1"
+								HorizontalTextAlignment="End"
+								Margin="0,5,0,10"
+								Text="{x:Static res:Text.GetStartedAuthor}"
+								Style="{StaticResource OnBoardingSubtitleText}"
+							/>
+							<Button
+								Grid.Row="2"
+								Text="Get Started" 
+								HorizontalOptions="FillAndExpand" 
+								VerticalOptions="End" 
+								Style="{StaticResource ButtonBlue}"
+								Command="{Binding TapGetStartedCommand}" 
+							/>	
+						</Grid>		
+					</views:GrayGradientBackgroundView>	
+				</StackLayout>	
+				<StackLayout
+					Grid.Row="1"
+					x:Name="ClaimInviteCodeView"
+					HorizontalOptions="FillAndExpand" 
+					Spacing="0"
+					VerticalOptions="End"
+					IsVisible="false"
+					>
+					<Image 						
+						HorizontalOptions="Center"
+						VerticalOptions="End"
+						Source="gray_speach_arrow.png" 
+					/>
+					<views:GrayGradientBackgroundView>
+						<Grid
+							Margin="10,20,10,10">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="auto" />
+								<RowDefinition Height="auto" />
+								<RowDefinition Height="auto" />
+								<RowDefinition Height="auto" />
+								<RowDefinition Height="auto" />
+							</Grid.RowDefinitions>
+							<views:CustomLabel 										
+								Grid.Row="0"
+								HorizontalOptions="Start" 
+								HorizontalTextAlignment="Start"
+								Style="{StaticResource OnBoardingBodyText}"
+								Text="{x:Static res:Text.ClaimInviteCodeText}"
+							/>			
+							<views:CustomEntry
+								Grid.Row="1" 	
+								x:Name="InviteCodeEntry"
+								Placeholder="{x:Static res:Text.InviteCodePlaceholder}"
+								Style="{StaticResource OnboardingEntry}"
+								HeightRequest="{StaticResource ElementHeight}"
+								Text="{Binding GiftCodeText}"
+							/>
+							<Button
+								Grid.Row="2"
+								Margin="0,5"
+								Text="{x:Static res:Text.GetStartedSubmitInviteCode}"	
+								Style="{StaticResource ButtonBlue}"
+								IsEnabled="{Binding IsSubmitInvideCodeValid}"
+								Command="{Binding SubmitGiftCodeCommand}"
+							/>
+							<views:CustomLabel 
+								Grid.Row="3"
+								Style="{StaticResource ButtonLinkText}"
+								Margin="0,5"
+								Text="{x:Static res:Text.IDontHaveCodeLink}">
+								<Label.GestureRecognizers>
+							        <TapGestureRecognizer Command="{Binding DontHaveCodeCommand}" />
+							    </Label.GestureRecognizers>
+							</views:CustomLabel >
+							<views:CustomLabel 
+								Grid.Row="4"
+								Style="{StaticResource ButtonLinkText}"
+								Margin="0,5"								
+								Text="{x:Static res:Text.ImRegisteredLink}">
+								<Label.GestureRecognizers>
+							        <TapGestureRecognizer Command="{Binding AlreadyRegisteredCommand}" />
+							    </Label.GestureRecognizers>
+							</views:CustomLabel >
+						</Grid>
+					</views:GrayGradientBackgroundView>
+				</StackLayout>
+				<StackLayout
+					Grid.Row="1"
+					x:Name="GiftCodeSuccessView"
+					HorizontalOptions="FillAndExpand" 
+					Spacing="0"
+					VerticalOptions="End"
+					IsVisible="false"
+					>
+					<Image 						
+						HorizontalOptions="Center"
+						VerticalOptions="End"
+						Source="gray_speach_arrow.png" 
+					/>
+					<views:GrayGradientBackgroundView>
+						<Grid
+							Margin="10,10,10,10">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="auto" />
+								<RowDefinition Height="auto" />
+								<RowDefinition Height="auto" />
+							</Grid.RowDefinitions>
+							<views:CustomLabel 										
+								Grid.Row="0"
+								HorizontalOptions="Center" 
+								HorizontalTextAlignment="Start"
+								Style="{StaticResource YouDidItTitle}"
+								Text="{x:Static res:Text.SuccessGiftCodeTitle}"
+							/>		
+							<views:CustomLabel 										
+								Grid.Row="1"
+								HorizontalOptions="Center" 
+								HorizontalTextAlignment="Start"
+								Style="{StaticResource OnBoardingBodyText}"
+								Text="{x:Static res:Text.SuccessGiftCodeText}"
+							/>			
+							<Button
+								Grid.Row="2"
+								Margin="0,5"
+								Style="{StaticResource ButtonBlue}"
+								Text="{x:Static res:Text.Register}"	
+								Command="{Binding RegisterCommand}"
+							/>
+						</Grid>
+					</views:GrayGradientBackgroundView>
+				</StackLayout>
+			</Grid>
+		</AbsoluteLayout>
+	</views:CustomContentPage.Content>
+</views:CustomContentPage>

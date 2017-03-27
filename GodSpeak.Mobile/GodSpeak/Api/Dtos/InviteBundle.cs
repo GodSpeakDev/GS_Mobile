@@ -1,4 +1,6 @@
 ﻿using System;
+using GodSpeak.Resources;
+
 namespace GodSpeak
 {
 	public class InviteBundle
@@ -33,9 +35,18 @@ namespace GodSpeak
 			set;
 		}
 
-		public override string ToString()
+		public string CostDescription
 		{
-			return string.Format("{0} {1} for {2:C}", NumOfInvites, NumOfInvites > 1 ? "Credits" : "Credit", Cost);
+			get;
+			set;
+		}
+
+		public string Description
+		{
+			get 
+			{
+				return string.Format(Text.InviteBundleDescription, NumOfInvites);	
+			}
 		}
 	}
 }

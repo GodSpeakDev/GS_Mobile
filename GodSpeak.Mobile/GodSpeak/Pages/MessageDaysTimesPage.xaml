@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<views:CustomContentPage 
+		xmlns="http://xamarin.com/schemas/2014/forms" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+		xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
+		xmlns:res="clr-namespace:GodSpeak.Resources;assembly=GodSpeak"
+		Title="{x:Static res:Text.MessageDaysTimesPageTitle}"
+		x:Class="GodSpeak.MessageDaysTimesPage">	
+	<ContentPage.ToolbarItems>
+		<ToolbarItem Text="Save" Command="{Binding SaveCommand}" />
+	</ContentPage.ToolbarItems>
+	<ContentPage.Content>
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="auto" />
+				<RowDefinition Height="*" />
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="*" />
+			</Grid.ColumnDefinitions>
+			<Label				
+				Grid.Row="0"
+				Grid.Column="0"
+				Margin="10, 5, 0, 10"
+				Text="Messages Per Day" 
+				HorizontalOptions="Start"
+				VerticalOptions="Center"
+			/>
+			<Picker
+				Grid.Row="0"
+				Grid.Column="1"
+				Margin="0, 5, 10, 10"
+				WidthRequest="60"
+				SelectedIndex="{Binding MessagesPerDayIndex}"
+				HorizontalOptions="End">			
+				<Picker.Items>
+					<x:String>0</x:String>
+					<x:String>1</x:String> 
+            		<x:String>2</x:String>
+					<x:String>3</x:String> 
+            		<x:String>4</x:String>
+					<x:String>5</x:String> 
+            		<x:String>6</x:String>
+					<x:String>7</x:String> 
+            		<x:String>8</x:String>
+					<x:String>9</x:String>
+					<x:String>10</x:String>
+				</Picker.Items>
+			</Picker>
+			<ListView 
+				Grid.Row="1"
+				Grid.Column="0"
+				Grid.ColumnSpan="2"
+				ItemsSource="{Binding Settings}"
+				HasUnevenRows="true">
+		        <ListView.ItemTemplate>
+		            <DataTemplate>
+						<views:SettingsCell />
+		            </DataTemplate>
+		        </ListView.ItemTemplate>        
+    		</ListView>
+		</Grid>
+	</ContentPage.Content>
+</views:CustomContentPage>

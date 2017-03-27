@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<views:CustomContentPage 
+		xmlns="http://xamarin.com/schemas/2014/forms" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+		xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
+		xmlns:res="clr-namespace:GodSpeak.Resources;assembly=GodSpeak"
+		x:Class="GodSpeak.SelectWhoToSendMailPage">
+	<views:CustomContentPage.Content>
+		<AbsoluteLayout
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand">
+			<views:GrayGradientBackgroundView
+				AbsoluteLayout.LayoutBounds="0,0,1,1" 
+				AbsoluteLayout.LayoutFlags="All">
+				<Grid
+					Padding="0,70, 0, 0" 
+					>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="auto" />
+						<RowDefinition Height="1*" />
+						<RowDefinition Height="auto" />
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*" />
+						<ColumnDefinition Width="auto" />
+					</Grid.ColumnDefinitions>
+					<views:RegisterEntry
+						Margin="10,0,0,0"
+						Grid.Row="0"
+						Grid.Column="0"
+						Placeholder="{x:Static res:Text.EmailSearchPlaceholder}" 							
+						Text="{Binding SearchText}" 
+						HeightRequest="{StaticResource ElementHeight}"
+						VerticalOptions="Center"
+					/>
+					<Image
+						Margin="5,0,20,0"
+						Grid.Row="0"
+						Grid.Column="1"
+						Source="search_icon.png"
+						WidthRequest="20"
+						HeightRequest="20"
+					/>
+					<views:CustomListView
+						Margin="0,10,0,0"
+						Grid.Row="1"
+						Grid.Column="0"
+						Grid.ColumnSpan="2"
+						BackgroundColor="Transparent"
+						ItemsSource="{Binding Contacts}">
+						<ListView.ItemTemplate>
+				            <DataTemplate>
+								<views:TransparentViewCell>
+									<Grid																
+										HorizontalOptions="FillAndExpand">
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition Width="*" />
+											<ColumnDefinition Width="auto" />
+										</Grid.ColumnDefinitions>
+										<views:CustomLabel
+											Grid.Column="0"
+											HorizontalOptions="StartAndExpand"									
+											Margin="10,0"
+											Text="{Binding Item.Description}" 
+											Style="{Binding IsEnabled, Converter={StaticResource SwitchStyleConverter}}"
+											VerticalOptions="Center"
+										/>	
+										<views:CustomSwitch 
+											Grid.Column="1"
+											Margin="10,0"
+											HorizontalOptions="EndAndExpand"
+											VerticalOptions="Center"
+											IsToggled="{Binding IsEnabled}"
+										/>
+									</Grid>
+								</views:TransparentViewCell>
+				            </DataTemplate>
+			        	</ListView.ItemTemplate>
+					</views:CustomListView>
+					<Button
+						Grid.Row="2"
+						Grid.Column="0"
+						Grid.ColumnSpan="2"
+						Margin="10, 10"
+						Style="{StaticResource ButtonBlue}"
+						Text="{x:Static res:Text.ComposeEmail}"
+						Command="{Binding ComposeEmailCommand}"
+						IsEnabled="{Binding HasEmailSelected}"
+					/>
+				</Grid>			
+			</views:GrayGradientBackgroundView>			
+			<views:SolidHeader Title="{x:Static res:Text.SelectWhoToSendMailPageTitle}" />
+		</AbsoluteLayout>
+	</views:CustomContentPage.Content>
+</views:CustomContentPage>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<views:CustomContentPage 
+		xmlns="http://xamarin.com/schemas/2014/forms" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+		xmlns:res="clr-namespace:GodSpeak.Resources;assembly=GodSpeak"
+		xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
+		Title="{x:Static res:Text.ImpactPageTitle}"
+		x:Class="GodSpeak.ImpactPage">	
+	<ContentPage.Content>
+		<AbsoluteLayout
+			HorizontalOptions="FillAndExpand"
+			VerticalOptions="FillAndExpand">			
+			<views:ImpactMap 
+				AbsoluteLayout.LayoutFlags="All"
+				AbsoluteLayout.LayoutBounds="0,0,1,1"
+				HorizontalOptions="FillAndExpand" 
+				VerticalOptions="FillAndExpand"
+				IsShowingUser="true"
+				HasZoomEnabled="true"
+				MapType="Street"
+				ItemsSource="{Binding ShownImpactDays}"
+        	/>
+			<Image 
+				AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"
+				AbsoluteLayout.LayoutBounds="0,1,1,100"
+				Source="impact_background.png"
+				Aspect="Fill"
+				HorizontalOptions="FillAndExpand"																						
+			/>
+			<StackLayout
+				AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"
+				AbsoluteLayout.LayoutBounds="0,1,1,100"
+				>
+				<Frame
+					Padding="5"
+					BackgroundColor="{x:Static views:ColorHelper.Primary}"
+					HorizontalOptions="Center"
+					WidthRequest="240"
+					>
+					<views:CustomLabel									
+						HorizontalOptions="CenterAndExpand"
+						VerticalOptions="Center"					
+						Text="{Binding CurrentSliderDate, StringFormat='{0:MMMM dd, yyyy}'}"
+						Style="{StaticResource ImpactDate}"
+					/>	
+				</Frame>
+				<StackLayout
+					Orientation="Horizontal"
+					Padding="10"
+					Spacing="10"
+					>
+					<Slider 					
+						HorizontalOptions="FillAndExpand"
+						Minimum="{Binding MinimumDayValue}"
+						Maximum="{Binding MaximumDayValue}"
+						Value="{Binding DayValue}"
+					/>
+					<views:ImageButton					
+						Source="play_icon.png"
+						WidthRequest="30"
+						HeightRequest="30"
+						IsVisible="{Binding IsPlaying, Converter={StaticResource InverseBooleanConverter}}"
+						Command="{Binding PlayCommand}" 
+					/>
+					<views:ImageButton					
+						Source="stop_icon.png"
+						WidthRequest="30"
+						HeightRequest="30"
+						IsVisible="{Binding IsPlaying}"
+						Command="{Binding StopCommand}" />
+				</StackLayout>
+			</StackLayout>
+			<views:SolidHeader Title="{x:Static res:Text.ImpactPageTitle}" BackgroundColor="{StaticResource headerOverlay}" />
+			<Grid 
+				HeightRequest="60"
+				BackgroundColor="{x:Static views:ColorHelper.PrimaryNavBar}"
+				AbsoluteLayout.LayoutFlags="XProportional,WidthProportional"
+				AbsoluteLayout.LayoutBounds="0,60,1,60"
+				Padding="10,5"
+			>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="auto" />
+					<ColumnDefinition Width="auto" />
+					<ColumnDefinition Width="auto" />
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="auto" />
+					<ColumnDefinition Width="auto" />
+					<ColumnDefinition Width="auto" />
+				</Grid.ColumnDefinitions>	
+				<Image
+					Grid.Column="0"
+					Source="scripture_icon.png"
+					HeightRequest="40"					
+				/>
+				<views:CustomLabel 	
+					Grid.Column="1"
+					Text="{Binding ShownImpactDays, Converter={StaticResource DeliveredScriptureConverter}}"
+					HorizontalOptions="Start"
+					VerticalOptions="Center"
+					Style="{StaticResource ImpactValue}"
+				/>				
+				<views:CustomLabel 																				
+					Grid.Column="2"
+					Text="{x:Static res:Text.ScripturesDelivered}"
+					VerticalOptions="Center"
+					VerticalTextAlignment="Center"
+					HorizontalOptions="Start"					
+					Style="{StaticResource ImpactDescription}"
+				/>
+				<Image
+					Grid.Column="4"
+					Source="gift_icon.png"
+					HeightRequest="40"							
+				/>
+				<views:CustomLabel 	
+					Grid.Column="5"
+					Text="{Binding ShownImpactDays, Converter={StaticResource InvitedClaimedConverter}}"
+					HorizontalOptions="Start"
+					VerticalOptions="Center"
+					VerticalTextAlignment="Center"
+					Style="{StaticResource ImpactValue}"
+				/>				
+				<views:CustomLabel																	
+					Grid.Column="6"
+					Text="{x:Static res:Text.GiftsClaimed}"
+					HorizontalOptions="Start"
+					VerticalOptions="Center"
+					Style="{StaticResource ImpactDescription}"
+				/>
+			</Grid>
+		</AbsoluteLayout>
+	</ContentPage.Content>
+</views:CustomContentPage>

@@ -1,7 +1,9 @@
 ﻿using System;
+using MvvmCross.Core.ViewModels;
+
 namespace GodSpeak
 {
-	public class MessageCategory
+	public class MessageCategory : MvxViewModel
 	{
 		public Guid Id 
 		{
@@ -9,10 +11,11 @@ namespace GodSpeak
 			set;
 		}
 
+		private bool _enabled;
 		public bool Enabled
 		{
-			get;
-			set;
+			get { return _enabled; }
+			set { SetProperty(ref _enabled, value); }
 		}	
 
 		public string Title

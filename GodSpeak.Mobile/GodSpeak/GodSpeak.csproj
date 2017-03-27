@@ -70,10 +70,61 @@
     <EmbeddedResource Include="CustomComponents\ActionButton.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomComponents\Header.xaml">
+    <EmbeddedResource Include="Pages\PurchaseCreditPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\PurchaseCreditPage.xaml">
+    <EmbeddedResource Include="Pages\MessageSettingsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\MessageCategoriesPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\MessageDaysTimesPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\SettingsCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ImpactPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\MyProfilePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\MessageDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\SharePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ShareTemplateView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\DidYouKnowTemplateView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ClaimedGiftPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\UnclaimedGiftPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomComponents\SolidHeader.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomComponents\BackButton.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsApp.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomComponents\ButtonWithImage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\SelectWhoToSendMailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
@@ -90,8 +141,6 @@
     <Compile Include="Api\Response\LoginResponse.cs" />
     <Compile Include="Api\Response\RegisterUserResponse.cs" />
     <Compile Include="Api\Dtos\MessageCategory.cs" />
-    <Compile Include="Api\Dtos\DeliveredScripture.cs" />
-    <Compile Include="Api\Dtos\GiftedApp.cs" />
     <Compile Include="Api\Dtos\DayOfWeekSettings.cs" />
     <Compile Include="Api\Request\LoginRequest.cs" />
     <Compile Include="Api\Request\RegisterUserRequest.cs" />
@@ -147,7 +196,7 @@
     <Compile Include="ViewModels\Welcome\ClaimInviteCodeViewModel.cs" />
     <Compile Include="ViewModels\Welcome\RequestInviteCodeViewModel.cs" />
     <Compile Include="Pages\WelcomePageSelector.cs" />
-    <Compile Include="Pages\GetStartedView.xaml.cs">
+    <Compile Include="Pages\GetStartedPage.xaml.cs">
       <DependentUpon>GetStartedView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\RequestInviteCodeView.xaml.cs">
@@ -173,9 +222,6 @@
     </Compile>
     <Compile Include="CustomComponents\ActionButton.xaml.cs">
       <DependentUpon>ActionButton.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CustomComponents\Header.xaml.cs">
-      <DependentUpon>Header.xaml</DependentUpon>
     </Compile>
     <Compile Include="Services\IDialogService.cs" />
     <Compile Include="Services\DialogService.cs" />
@@ -206,6 +252,136 @@
     <Compile Include="CustomComponents\Pager.cs" />
     <Compile Include="MvvmCross\NavigationBundles.cs" />
     <Compile Include="Converters\InverseBooleanConverter.cs" />
+    <Compile Include="Models\SelectModel.cs" />
+    <Compile Include="ViewModels\MessageSettingsViewModel.cs" />
+    <Compile Include="Models\MenuItem.cs" />
+    <Compile Include="ViewModels\MessageCategoriesViewModel.cs" />
+    <Compile Include="ViewModels\MessageDaysTimesViewModel.cs" />
+    <Compile Include="Pages\MessageSettingsPage.cs">
+      <DependentUpon>MessageSettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MessageCategoriesPage.xaml.cs">
+      <DependentUpon>MessageCategoriesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MessageDaysTimesPage.xaml.cs">
+      <DependentUpon>MessageDaysTimesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Api\Request\GetMessageConfigRequest.cs" />
+    <Compile Include="Api\Response\GetMessageConfigResponse.cs" />
+    <Compile Include="Converters\WeekdayConverter.cs" />
+    <Compile Include="Pages\SettingsCell.xaml.cs">
+      <DependentUpon>SettingsCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ImpactPage.xaml.cs">
+      <DependentUpon>ImpactPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\ImpactViewModel.cs" />
+    <Compile Include="Api\Dtos\ImpactDay.cs" />
+    <Compile Include="Api\Dtos\MapPoint.cs" />
+    <Compile Include="Converters\DeliveredScriptureConverter.cs" />
+    <Compile Include="Converters\InvitedClaimedConverter.cs" />
+    <Compile Include="Services\IReminderService.cs" />
+    <Compile Include="Helpers\ColorHelper.cs" />
+    <Compile Include="Pages\CustomNavigationPage.cs" />
+    <Compile Include="CustomComponents\CustomEntry.cs" />
+    <Compile Include="CustomComponents\ImageContainer.cs" />
+    <Compile Include="Converters\ImagePaddingConverter.cs" />
+    <Compile Include="CustomComponents\CustomPicker.cs" />
+    <Compile Include="CustomComponents\AlertView.cs" />
+    <Compile Include="CustomComponents\PopupView.cs" />
+    <Compile Include="CustomComponents\ActionSheetPopup.cs" />
+    <Compile Include="CustomComponents\GradientBoxView.cs" />
+    <Compile Include="CustomComponents\GrayGradientBackgroundView.cs" />
+    <Compile Include="CustomComponents\CustomTimePicker.cs" />
+    <Compile Include="CustomComponents\PanoLayout.cs" />
+    <Compile Include="CustomComponents\InputPopup.cs" />
+    <Compile Include="Models\InputOptions.cs" />
+    <Compile Include="Models\InputResult.cs" />
+    <Compile Include="CustomComponents\RegisterEntry.cs" />
+    <Compile Include="CustomComponents\TransparentViewCell.cs" />
+    <Compile Include="CustomComponents\CustomSwitch.cs" />
+    <Compile Include="Extensions\DateExtensions.cs" />
+    <Compile Include="CustomComponents\PlusMinusButtonView.cs" />
+    <Compile Include="Converters\EnableTextColorConverter.cs" />
+    <Compile Include="ViewModels\MyProfileViewModel.cs" />
+    <Compile Include="Pages\MyProfilePage.xaml.cs">
+      <DependentUpon>MyProfilePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomComponents\MessageBalloon.cs" />
+    <Compile Include="CustomComponents\StackList.cs" />
+    <Compile Include="CustomComponents\HeaderOverlay.cs" />
+    <Compile Include="MvvmCross\OpenMenuPresentationHint.cs" />
+    <Compile Include="ViewModels\MessageDetailViewModel.cs" />
+    <Compile Include="Pages\MessageDetailPage.xaml.cs">
+      <DependentUpon>MessageDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomComponents\MessageDetailGradientView.cs" />
+    <Compile Include="Api\Request\GetMessageRequest.cs" />
+    <Compile Include="Api\Response\GetMessageResponse.cs" />
+    <Compile Include="CustomComponents\ImageButton.cs" />
+    <Compile Include="CustomComponents\CustomMap.cs" />
+    <Compile Include="Pages\SharePage.xaml.cs">
+      <DependentUpon>SharePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SharePageSelector.cs" />
+    <Compile Include="Pages\ShareTemplateView.xaml.cs">
+      <DependentUpon>ShareTemplateView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\DidYouKnowTemplateView.xaml.cs">
+      <DependentUpon>DidYouKnowTemplateView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Share\ShareViewModel.cs" />
+    <Compile Include="ViewModels\Share\ShareTemplateViewModel.cs" />
+    <Compile Include="ViewModels\Share\DidYouKnowTemplateViewModel.cs" />
+    <Compile Include="CustomComponents\SecondaryButton.cs" />
+    <Compile Include="ViewModels\Share\UnclaimedGiftViewModel.cs" />
+    <Compile Include="ViewModels\Share\ClaimedGiftViewModel.cs" />
+    <Compile Include="Pages\ClaimedGiftPage.xaml.cs">
+      <DependentUpon>ClaimedGiftPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UnclaimedGiftPage.xaml.cs">
+      <DependentUpon>UnclaimedGiftPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomComponents\CustomImage.cs" />
+    <Compile Include="Converters\PeopleGiftedTextConverter.cs" />
+    <Compile Include="Converters\PeopleGiftButtonTextConverter.cs" />
+    <Compile Include="MvvmCross\CloseMenuPresentationHint.cs" />
+    <Compile Include="CustomComponents\SolidHeader.xaml.cs">
+      <DependentUpon>SolidHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomComponents\BackButton.xaml.cs">
+      <DependentUpon>BackButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\ViewExtensions.cs" />
+    <Compile Include="CustomComponents\CustomListView.cs" />
+    <Compile Include="CustomComponents\ImpactMap.cs" />
+    <Compile Include="CustomComponents\TappableView.cs" />
+    <Compile Include="Converters\SelectedVerseToFontAttributesConverter.cs" />
+    <Compile Include="Converters\SelectedVerseToTextColorConverter.cs" />
+    <Compile Include="FormsApp.xaml.cs">
+      <DependentUpon>FormsApp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomComponents\CustomLabel.cs" />
+    <Compile Include="Enumerations\FontWeight.cs" />
+    <Compile Include="CustomComponents\ICustomFont.cs" />
+    <Compile Include="Converters\MessageDetailStyleConverter.cs" />
+    <Compile Include="Converters\SwitchStyleConverter.cs" />
+    <Compile Include="Enumerations\ElementState.cs" />
+    <Compile Include="CustomComponents\ButtonWithImage.xaml.cs">
+      <DependentUpon>ButtonWithImage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\SelectWhoToSendMailViewModel.cs" />
+    <Compile Include="Pages\SelectWhoToSendMailPage.xaml.cs">
+      <DependentUpon>SelectWhoToSendMailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Services\IContactService.cs" />
+    <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\PhoneNumber.cs" />
+    <Compile Include="Models\EmailAddress.cs" />
+    <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\SelectableItem.cs" />
+    <Compile Include="Services\IMailService.cs" />
+    <Compile Include="Effects\ReturnKeyEffect.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />
@@ -222,6 +398,10 @@
     <Folder Include="Services\" />
     <Folder Include="MediaPicker\" />
     <Folder Include="Helpers\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="ViewModels\Share\" />
+    <Folder Include="Enumerations\" />
+    <Folder Include="Effects\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">
@@ -253,6 +433,9 @@
     </Reference>
     <Reference Include="ExifLib">
       <HintPath>..\packages\ExifLib.PCL.1.0.1\lib\portable-net45+sl50+win+WindowsPhoneApp81+wp80+Xamarin.iOS10+MonoAndroid10+MonoTouch10\ExifLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Maps">
+      <HintPath>..\packages\Xamarin.Forms.Maps.2.3.3.180\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10\Xamarin.Forms.Maps.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -100,8 +100,8 @@ namespace GodSpeak
 
 		public class Dot : ContentView
 		{
-			public static Color SelectedColor = new Color(0, 0, 0, 1);
-			public static Color UnselectedColor = new Color(0, 0, 0, 0.2);
+			public static Color SelectedColor = new Color(255, 255, 255, 1);
+			public static Color UnselectedColor = new Color(255, 255, 255, 0.3);
 
 			public bool IsSelected
 			{
@@ -112,8 +112,8 @@ namespace GodSpeak
 			public Dot()
 			{
 				BackgroundColor = UnselectedColor;
-				HeightRequest = 10;
-				WidthRequest = 10;
+				HeightRequest = 8;
+				WidthRequest = 8;
 			}
 		}
 	}

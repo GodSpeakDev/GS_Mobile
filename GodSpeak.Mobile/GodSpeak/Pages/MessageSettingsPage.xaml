@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<views:CustomContentPage  
+		xmlns="http://xamarin.com/schemas/2014/forms" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+		xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
+		xmlns:res="clr-namespace:GodSpeak.Resources;assembly=GodSpeak"
+		Title="{x:Static res:Text.MessageSettingsPageTitle}"
+		x:Class="GodSpeak.MessageSettingsPage">	
+	<ContentPage.Content>
+		<AbsoluteLayout>
+			<views:GrayGradientBackgroundView				
+				AbsoluteLayout.LayoutFlags="All"
+				AbsoluteLayout.LayoutBounds="0,0,1,1"
+			/>
+			<Grid
+				AbsoluteLayout.LayoutFlags="All"
+				AbsoluteLayout.LayoutBounds="0,0,1,1">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="auto" />
+					<RowDefinition Height="*" />
+				</Grid.RowDefinitions>
+				<views:SolidHeader Grid.Row="0" Title="{x:Static res:Text.MessageSettingsPageTitle}" />
+				<views:CustomListView 
+					Grid.Row="1"
+					IsGroupingEnabled="true"
+					BackgroundColor="Transparent"
+					ItemsSource="{Binding Groups}" 					
+					SelectedItem="{Binding SelectedMenu, Mode=TwoWay}">
+					<ListView.Header>
+						<Grid
+							Padding="10">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="auto" />
+								<RowDefinition Height="auto" />
+							</Grid.RowDefinitions>
+							<StackLayout
+								Grid.Row="0"
+								Orientation="Horizontal">
+								<views:CustomLabel  
+									Text="Allow"
+									LineBreakMode="NoWrap"
+									HorizontalOptions="Start"
+									VerticalOptions="Center"
+									Style="{StaticResource TextContent}"
+								/>
+								<views:PlusMinusButtonView
+									Orientation="Horizontal"
+									HeightRequest="30"
+									Spacing="0">
+									<Button
+										HeightRequest="25"
+										WidthRequest="35"
+										Text="-"
+										TextColor="{x:Static views:ColorHelper.Secondary}"
+										BorderColor="Transparent"
+										BackgroundColor="Transparent"
+										Command="{Binding MinusButtonCommand}"
+										/>
+									<BoxView
+										WidthRequest="1"
+										Color="{x:Static views:ColorHelper.Secondary}"
+									/>
+									<Button 
+										HeightRequest="25"
+										WidthRequest="35"
+										Text="+"
+										TextColor="{x:Static views:ColorHelper.Secondary}"
+										BorderColor="Transparent"
+										BackgroundColor="Transparent"
+										Command="{Binding PlusButtonCommand}"
+										/>
+								</views:PlusMinusButtonView>
+								<views:CustomLabel 
+									Text="{Binding NumberOfMessagesText}"
+									VerticalOptions="Center"
+									HorizontalOptions="Start"
+									LineBreakMode="WordWrap"
+									Style="{StaticResource TextContent}"
+								/>
+							</StackLayout>
+							<StackLayout
+								Margin="0,10, 0, 0"
+								Grid.Row="1"
+								Spacing="20"
+								Orientation="Horizontal">						
+								<views:CustomTimePicker 
+									HorizontalOptions="StartAndExpand"
+									WidthRequest="140"
+									Time="{Binding StartTime}"
+									HeightRequest="{StaticResource ElementHeight}"
+									Style="{StaticResource FilledTimePicker}"
+								/>
+								<views:CustomTimePicker
+									WidthRequest="140"
+									HorizontalOptions="EndAndExpand"
+									Time="{Binding EndTime}"
+									HeightRequest="{StaticResource ElementHeight}"
+									Style="{StaticResource FilledTimePicker}"
+								/>
+							</StackLayout>
+						</Grid>
+					</ListView.Header>
+					<ListView.GroupHeaderTemplate>
+						<DataTemplate>												
+							<views:TransparentViewCell>							
+								<ContentView BackgroundColor="Transparent">
+									<views:CustomLabel 
+										VerticalOptions="Center"
+										Margin="10,0"
+										Text="{Binding SectionTitle}" 
+										Style="{StaticResource TextContent}"
+									/>	
+								</ContentView>							
+							</views:TransparentViewCell>
+						</DataTemplate>
+					</ListView.GroupHeaderTemplate>
+			        <ListView.ItemTemplate>
+			            <DataTemplate>
+							<views:TransparentViewCell>
+								<StackLayout
+									Orientation="Horizontal"
+									HorizontalOptions="FillAndExpand">
+									<views:CustomLabel
+										HorizontalOptions="StartAndExpand"									
+										Margin="10,0"
+										Text="{Binding Title}" 
+										Style="{Binding IsEnabled, Converter={StaticResource SwitchStyleConverter}}"
+										VerticalOptions="Center"
+									/>	
+									<views:CustomSwitch 
+										Margin="10,0"
+										HorizontalOptions="End"
+										VerticalOptions="Center"
+										IsToggled="{Binding IsEnabled}"
+									/>
+								</StackLayout>
+							</views:TransparentViewCell>
+			            </DataTemplate>
+			        </ListView.ItemTemplate>        
+		    	</views:CustomListView>
+			</Grid>
+		</AbsoluteLayout>
+	</ContentPage.Content>
+</views:CustomContentPage>

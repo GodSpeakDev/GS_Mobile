@@ -4,110 +4,228 @@
 		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 		xmlns:res="clr-namespace:GodSpeak.Resources;assembly=GodSpeak"
 		xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
-		x:Class="GodSpeak.RegisterPage">
-	<views:CustomContentPage.Resources>
-		<ResourceDictionary>
-			<views:ImageObjectToImageSourceConverter x:Key="imageConverter" />		
-		</ResourceDictionary>
-	</views:CustomContentPage.Resources>
+		Title="{x:Static res:Text.RegisterPageTitle}"
+		x:Class="GodSpeak.RegisterPage">	
 	<views:CustomContentPage.Content>
-		<Grid>
-			<Grid.RowDefinitions>
-				<RowDefinition Height="1*" />
-				<RowDefinition Height="auto" />
-			</Grid.RowDefinitions>
-			<ScrollView Grid.Row="0"
-				HorizontalOptions="FillAndExpand"
-				VerticalOptions="FillAndExpand"
-			>
-				<Grid 
-					Margin="10, 0"
-					HorizontalOptions="FillAndExpand"
-					VerticalOptions="FillAndExpand">
+		<AbsoluteLayout
+			x:Name="Absolute"
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand">
+			<views:GrayGradientBackgroundView
+				AbsoluteLayout.LayoutBounds="0,0,1,1" 
+				AbsoluteLayout.LayoutFlags="All">
+				<Grid
+					Padding="0,80, 0, 0" 
+					>
 					<Grid.RowDefinitions>
-						<RowDefinition Height="auto" />
-						<RowDefinition Height="auto" />
-						<RowDefinition Height="auto" />
-						<RowDefinition Height="auto" />
-						<RowDefinition Height="auto" />
+						<RowDefinition Height="1*" />
 						<RowDefinition Height="auto" />
 						<RowDefinition Height="auto" />
 					</Grid.RowDefinitions>
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="80" />
-						<ColumnDefinition Width="1*" />
-					</Grid.ColumnDefinitions>
+					<ScrollView Grid.Row="0"
+						HorizontalOptions="FillAndExpand"
+						VerticalOptions="FillAndExpand"
+					>
+						<Grid 
+							Margin="10, 0"
+							RowSpacing="10"
+							HorizontalOptions="FillAndExpand"
+							VerticalOptions="FillAndExpand">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="auto" />
+								<RowDefinition Height="auto" />
+								<RowDefinition Height="auto" />
+								<RowDefinition Height="auto" />
+								<RowDefinition Height="auto" />
+								<RowDefinition Height="auto" />
+								<RowDefinition Height="auto" />
+								<RowDefinition Height="auto" />
+								<RowDefinition Height="auto" />
+								<RowDefinition Height="auto" />
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="80" />
+								<ColumnDefinition Width="1*" />
+							</Grid.ColumnDefinitions>
 
-					<Image
-						Grid.Row="0"
-						Grid.Column="0"
-						Grid.RowSpan="2"
-						Source="{Binding Image, Converter={StaticResource imageConverter}}">
-						<Image.GestureRecognizers>
-			        		<TapGestureRecognizer Command="{Binding ChoosePictureCommand}" />
-			    		</Image.GestureRecognizers>
-					</Image>
-					<Entry
-						Grid.Row="0"
-						Grid.Column="1"
-						Placeholder="{x:Static res:Text.FirstNamePlaceholder}" 							
-						Text="{Binding FirstName}" 
-					/>
-					<Entry
+							<views:ImageContainer
+								Grid.Row="0"
+								Grid.Column="0"
+								Grid.RowSpan="2"
+								Padding="{Binding Image, Converter={StaticResource ImagePaddingConverter}}"
+								BackgroundColor="Transparent"
+								>
+								<Image		
+									HorizontalOptions="Center"
+									VerticalOptions="Center"
+									Source="{Binding Image, Converter={StaticResource ImageObjectToImageSourceConverter}}">
+									<Image.GestureRecognizers>
+						        		<TapGestureRecognizer Command="{Binding ChoosePictureCommand}" />
+						    		</Image.GestureRecognizers>
+								</Image>
+							</views:ImageContainer>
+
+							<views:RegisterEntry
+								Grid.Row="0"
+								Grid.Column="1"
+								x:Name="FirstNameEntry"
+								Placeholder="{x:Static res:Text.FirstNamePlaceholder}" 							
+								Text="{Binding FirstName}" 
+								HeightRequest="{StaticResource ElementHeight}"
+								VerticalOptions="Center">
+								<Entry.Effects>
+									<views:ReturnKeyEffect ReturnText="Next" />
+								</Entry.Effects>								
+							</views:RegisterEntry>
+							<views:RegisterEntry
+								Grid.Row="1"
+								Grid.Column="1"
+								x:Name="LastNameEntry"
+								Placeholder="{x:Static res:Text.LastNamePlaceholder}" 	
+								HeightRequest="{StaticResource ElementHeight}"
+								Text="{Binding LastName}" 
+								VerticalOptions="Center">
+								<Entry.Effects>
+									<views:ReturnKeyEffect ReturnText="Next" />
+								</Entry.Effects>		
+							</views:RegisterEntry>
+
+							<views:CustomPicker								
+								x:Name="Countries"
+								Grid.Row="2"
+								Grid.Column="0"
+								Grid.ColumnSpan="2"
+								HeightRequest="{StaticResource ElementHeight}"
+								Style="{StaticResource UtilityPicker}"
+								SelectedIndex="{Binding SelectedCountryIndex}"
+							/>
+
+							<views:RegisterEntry
+								x:Name="ZipCodeEntry"
+								Grid.Row="3"
+								Grid.Column="0"
+								Grid.ColumnSpan="2"
+								HeightRequest="{StaticResource ElementHeight}"
+								Placeholder="{x:Static res:Text.ZipCodePlaceholder}"	
+								Text="{Binding ZipCode}" 
+								IsEnabled="{Binding HasSelectedCountry}">
+								<Entry.Effects>
+									<views:ReturnKeyEffect ReturnText="Next" />
+								</Entry.Effects>	
+							</views:RegisterEntry>
+
+							<views:CustomLabel 
+								Grid.Row="4"
+								Grid.Column="0"
+								Grid.ColumnSpan="2"
+								Text="{x:Static res:Text.RegisterPageLoginInfo}" 
+								Style="{StaticResource UtilitySectionTitle}"
+							/>
+
+							<views:RegisterEntry
+								x:Name="EmailEntry"
+								Grid.Row="5"
+								Grid.Column="0"
+								Grid.ColumnSpan="2"
+								Keyboard="Email"
+								HeightRequest="{StaticResource ElementHeight}"
+								Placeholder="{x:Static res:Text.EmailPlaceholder}"	
+								Text="{Binding Email}" 
+								HasError="{Binding IsEmailValid, Converter={StaticResource InverseBooleanConverter}}"
+							>
+								<Entry.Effects>
+									<views:ReturnKeyEffect ReturnText="Next" />
+								</Entry.Effects>	
+							</views:RegisterEntry>
+
+							<views:CustomLabel 
+								Grid.Row="6"
+								Grid.Column="0"
+								Grid.ColumnSpan="2"
+								Text="{x:Static res:Text.RegisterPagePasswordInfo}"
+								Style="{StaticResource TextContent}"
+								HorizontalTextAlignment="Start"
+							/>
+
+							<views:RegisterEntry
+								x:Name="PasswordEntry"
+								Grid.Row="7"
+								Grid.Column="0"
+								Grid.ColumnSpan="2"
+								IsPassword="true"
+								HeightRequest="{StaticResource ElementHeight}"
+								Placeholder="{x:Static res:Text.PasswordPlaceholder}"	
+								Text="{Binding Password}" 
+								HasError="{Binding IsPasswordValid, Converter={StaticResource InverseBooleanConverter}}"
+							>
+								<Entry.Effects>
+									<views:ReturnKeyEffect ReturnText="Next" />
+								</Entry.Effects>	
+							</views:RegisterEntry>
+							
+							<views:RegisterEntry
+								x:Name="PasswordConfirmEntry"
+								Grid.Row="8"
+								Grid.Column="0"
+								Grid.ColumnSpan="2"
+								HeightRequest="{StaticResource ElementHeight}"
+								IsPassword="true"
+								Placeholder="{x:Static res:Text.PasswordConfirmPlaceholder}"	
+								Text="{Binding ConfirmPassword}" 
+								HasError="{Binding IsConfirmPasswordValid, Converter={StaticResource InverseBooleanConverter}}"
+							>
+								<Entry.Effects>
+									<views:ReturnKeyEffect ReturnText="Done" />
+								</Entry.Effects>	
+							</views:RegisterEntry>
+
+							<Grid						
+								Padding="0"
+								HorizontalOptions="FillAndExpand"
+								Grid.Row="9"
+								Grid.Column="0"
+								Grid.ColumnSpan="2">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="*" />
+									<ColumnDefinition Width="auto" />
+								</Grid.ColumnDefinitions>
+								<views:CustomLabel 						
+									Grid.Column="0"
+									Text="{x:Static res:Text.TermsCondititionText}"
+									Style="{StaticResource TextContent}"
+									HorizontalTextAlignment="Start"
+									HorizontalOptions="StartAndExpand"
+									VerticalOptions="Center"
+								/>	
+								<Image
+									Grid.Column="1"
+									Source="arrow_right.png"
+									VerticalOptions="Center"
+									HorizontalOptions="End"
+									Margin="0"
+								/>
+							</Grid>
+						</Grid>			
+					</ScrollView>
+					<Button
 						Grid.Row="1"
-						Grid.Column="1"
-						Placeholder="{x:Static res:Text.LastNamePlaceholder}" 							
-						Text="{Binding LastName}" 
+						Margin="10, 10, 10, 0"
+						Text="Register"						
+						Style="{StaticResource ButtonBlue}"
+						Command="{Binding SaveCommand}"
 					/>
-
-					<Entry
+					<views:CustomLabel 
 						Grid.Row="2"
-						Grid.Column="0"
-						Grid.ColumnSpan="2"
-						Placeholder="{x:Static res:Text.CityPlaceholder}"
-						Text="{Binding City}" 
-					/>
-
-					<Entry
-						Grid.Row="3"
-						Grid.Column="0"
-						Grid.ColumnSpan="2"
-						Placeholder="{x:Static res:Text.StatePlaceholder}"
-						Text="{Binding State}" 
-					/>
-
-					<Label
-						Grid.Row="4"
-						Grid.Column="0"
-						Grid.ColumnSpan="2"
-						Text="Security" 
-					/>
-
-					<Entry
-						Grid.Row="5"
-						Grid.Column="0"
-						Grid.ColumnSpan="2"
-						Keyboard="Email"
-						Placeholder="{x:Static res:Text.EmailPlaceholder}"	
-						Text="{Binding Email}" 
-					/>
-
-					<Entry
-						Grid.Row="6"
-						Grid.Column="0"
-						Grid.ColumnSpan="2"
-						IsPassword="true"
-						Placeholder="{x:Static res:Text.PasswordPlaceholder}"	
-						Text="{Binding Password}" 
-					/>			
+						Margin="0, 10, 0, 10"
+						Style="{StaticResource ButtonLinkText}"
+						Text="{x:Static res:Text.ImRegisteredLink}">
+						<Label.GestureRecognizers>
+					        <TapGestureRecognizer Command="{Binding AlreadyRegisteredCommand}" />
+					    </Label.GestureRecognizers>
+					</views:CustomLabel>
 				</Grid>			
-			</ScrollView>
-			<views:ActionButton
-				Grid.Row="1"
-				Margin="10, 0"
-				Text="Be Inspired"
-				Command="{Binding SaveCommand}"
-			/>
-		</Grid>
+			</views:GrayGradientBackgroundView>
+			<views:SolidHeader HasBackButton="false" Title="{x:Static res:Text.RegisterPageTitle}" />
+		</AbsoluteLayout>		
 	</views:CustomContentPage.Content>
 </views:CustomContentPage>

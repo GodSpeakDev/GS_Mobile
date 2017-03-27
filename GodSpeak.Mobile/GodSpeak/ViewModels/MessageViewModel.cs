@@ -9,14 +9,21 @@ namespace GodSpeak
 {
 	public class MessageViewModel : CustomViewModel
 	{
-		private IWebApiService _apiService;
-		private IShareService _shareService;
+		private IWebApiService _webApi;
+		private IReminderService _reminderService;
 
 		private ObservableCollection<GroupedCollection<Message, DateTime>> _messages;
 		public ObservableCollection<GroupedCollection<Message, DateTime>> Messages
 		{
 			get { return _messages;}
 			set { SetProperty(ref _messages, value);}
+		}
+
+		private ObservableCollection<ImpactDay> _shownImpactDays;
+		public ObservableCollection<ImpactDay> ShownImpactDays
+		{
+			get { return _shownImpactDays; }
+			set { SetProperty(ref _shownImpactDays, value); }
 		}
 
 		private Message _selectedItem;
@@ -41,35 +48,91 @@ namespace GodSpeak
 			}
 		}
 
-		public MessageViewModel(IDialogService dialogService, IWebApiService apiService, IShareService shareService) : base(dialogService)
+		private MvxCommand _goToImpactCommand;
+		public MvxCommand GoToImpactCommand
 		{
-			_apiService = apiService;
-			_shareService = shareService;
+			get
+			{				
+				return _goToImpactCommand ?? (_goToImpactCommand = new MvxCommand(DoGoToImpactCommand));
+			}
+		}
+
+		private MvxCommand _goToShareCommand;
+		public MvxCommand GoToShareCommand
+		{
+			get
+			{
+				return _goToShareCommand ?? (_goToShareCommand = new MvxCommand(DoGoToShareCommand));
+			}
+		}
+
+		private MvxCommand _openDrawerMenuCommand;
+		public MvxCommand OpenDrawerMenuCommand
+		{
+			get
+			{
+				return _openDrawerMenuCommand ?? (_openDrawerMenuCommand = new MvxCommand(DoOpenDrawerMenuCommand));
+			}
+		}
+
+		public MessageViewModel(
+			IDialogService dialogService, 
+			IWebApiService webApi, 
+			IReminderService reminderService) : base(dialogService)
+		{
+			_webApi = webApi;
+			_reminderService = reminderService;
 
 			Messages = new ObservableCollection<GroupedCollection<Message, DateTime>>();
 		}
 
 		public async void Init()
 		{			
-			var messages = await _apiService.GetMessages(new GetMessagesRequest());
+			var messages = await _webApi.GetMessages(new GetMessagesRequest());
 
 			if (messages.IsSuccess)
 			{
 				Messages = new ObservableCollection<GroupedCollection<Message, DateTime>>
 				(messages.Content.Messages
-				 .GroupBy(x => x.Date)
-				 .Select(x => new GroupedCollection<Message, DateTime>(x.Key, x))); 
+				 .Where(x => x.DateTimeToDisplay <= DateTime.Now)
+				 .GroupBy(x => x.DateTimeToDisplay.Date)
+				 .Select(x => new GroupedCollection<Message, DateTime>(x.Key, x)));
 			}
 			else
 			{
 				await HandleResponse(messages);
-			}							
+			}	
+
+			var response = await _webApi.GetImpact(new GetImpactRequest());
+			if (response.IsSuccess)
+			{
+				ShownImpactDays = new ObservableCollection<ImpactDay>(response.Content.Payload);
+			}
+			else
+			{
+				await HandleResponse(response);
+			}
 		}
 
 		private void DoTapMessageCommand(Message message)
 		{
-			_shareService.Share(message.Text);
 			SelectedItem = null;
+			this.ShowViewModel<MessageDetailViewModel>(new {messageId=message.MessageId.ToString()});
+		}
+
+		private void DoGoToImpactCommand()
+		{
+			this.ShowViewModel<ImpactViewModel>();
+		}
+
+		private void DoGoToShareCommand()
+		{
+			this.ShowViewModel<ShareViewModel>();
+		}
+
+		private void DoOpenDrawerMenuCommand()
+		{
+			this.ChangePresentation(new OpenMenuPresentationHint());
 		}
 	}
 }

@@ -21,13 +21,25 @@ namespace GodSpeak.Tests
 		}
 
 		[Test()]
-		public void If_Date_Difference_Is_Less_Than_Seven_Days_Should_Show_Weekday_Name()
+		public void If_Date_Is_Today_Then_SHOULD_Show_Today()
 		{
-			Assert.AreEqual(DateTime.Now.ToString("dddd"), Convert(DateTime.Now));
+			Assert.AreEqual(GodSpeak.Resources.Text.Today, Convert(DateTime.Now));
 		}
 
 		[Test()]
-		public void If_Date_Difference_Is_Greater_Than_Seven_Days_Should_Show_Weekday_Name()
+		public void If_Date_Is_Yesterday_Then_SHOULD_Show_Yesterday()
+		{
+			Assert.AreEqual(GodSpeak.Resources.Text.Yesterday, Convert(DateTime.Now.AddDays(-1)));
+		}
+
+		[Test()]
+		public void If_Date_Difference_Is_Less_Than_Seven_Days_SHOULD_Show_Weekday_Name()
+		{
+			Assert.AreEqual(DateTime.Now.AddDays(-2).ToString("dddd"), Convert(DateTime.Now.AddDays(-2)));
+		}
+
+		[Test()]
+		public void If_Date_Difference_Is_Greater_Than_Seven_Days_SHOULD_Show_Date()
 		{
 			Assert.AreEqual(DateTime.Now.AddDays(-7).ToString("d"), Convert(DateTime.Now.AddDays(-7)));
 		}

@@ -63,7 +63,9 @@ namespace GodSpeak
 		}
 
 		private async void DoLoginCommand()
-		{
+		{	
+			// Testing Popup
+			//var result = await this.DialogService.ShowMenu("Oops", "Sorry, it looks like the email and/or password you submitted are incorrect.", "Try Again", "I Forgot My Password");
 			if (string.IsNullOrEmpty(Email))
 			{
 				await this.DialogService.ShowAlert(Text.ErrorPopupTitle, Text.EmailRequiredMessage);
@@ -83,6 +85,14 @@ namespace GodSpeak
 				await _sessionService.SaveUser(response.Content.Payload);
 				this.ShowViewModel<HomeViewModel>();
 			}
+			else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+			{
+				var result = await this.DialogService.ShowMenu(Text.BadRequestTitle, Text.LoginInvalidEmailPassword, Text.TryAgain, Text.ForgotMyPasswordButtonTitle);
+				if (result == Text.ForgotMyPasswordButtonTitle)
+				{
+					ForgotPasswordCommand.Execute();
+				}
+			}
 			else
 			{
 				await HandleResponse(response);	
@@ -94,9 +104,13 @@ namespace GodSpeak
 			this.ShowViewModel<RegisterViewModel>();
 		}
 
-		private void DoForgotPasswordCommand()
+		private async void DoForgotPasswordCommand()
 		{
-			this.ShowViewModel<ForgotPasswordViewModel>();
+			var input = await this.DialogService.ShowInputPopup(Text.RecoverPasswordTitle, Text.RecoverPasswordText, new InputOptions() { Placeholder = Text.EmailPlaceholder }, Text.SendInstructions, Text.AnonymousNevermind);
+			if (input.SelectedButton == Text.SendInstructions)
+			{
+				await this.DialogService.ShowAlert(Text.RecoverPasswordTitle, string.Format(Text.RecoverPasswordSuccessText, input.InputText), Text.AnonymousSuccessButtonTitle);
+			}
 		}
 	}
 }

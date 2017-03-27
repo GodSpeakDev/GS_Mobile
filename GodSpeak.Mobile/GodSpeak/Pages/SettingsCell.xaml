@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell 
+		xmlns="http://xamarin.com/schemas/2014/forms" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+		xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
+		xmlns:res="clr-namespace:GodSpeak.Resources;assembly=GodSpeak"
+		x:Class="GodSpeak.SettingsCell">	
+	<ViewCell.View>
+		<Grid Padding="10">				
+			<Grid.RowDefinitions>
+				<RowDefinition Height="auto" />
+				<RowDefinition Height="auto" />
+				<RowDefinition Height="auto" />
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="100" />
+				<ColumnDefinition Width="*" />
+			</Grid.ColumnDefinitions>
+			<Label
+				Grid.Row="0"
+				Grid.Column="0"
+				HorizontalOptions="Start"
+				VerticalOptions="Center"
+				Text="{Binding Weekday, Converter={StaticResource WeekdayConverter}}" />
+			<Switch 
+				Grid.Row="0"
+				Grid.Column="1"
+				HorizontalOptions="End"
+				IsToggled="{Binding Enabled}"
+				Toggled="Handle_Toggled"
+			/>
+			<Label
+				Grid.Row="1"
+				Grid.Column="0"
+				HorizontalOptions="Start"
+				VerticalOptions="Center"
+				Text="Start"
+				IsVisible="{Binding Enabled}"
+			/>
+			<TimePicker				
+				Grid.Row="1"
+				Grid.Column="1"
+				Margin="5, 0"
+				HorizontalOptions="Start"
+				Format="hh:mm tt"
+				Time="{Binding StartDateTime}"
+				IsVisible="{Binding Enabled}"
+			/>
+			<Label
+				Grid.Row="2"
+				Grid.Column="0"
+				HorizontalOptions="Start"
+				VerticalOptions="Center"
+				Text="End"
+				IsVisible="{Binding Enabled}"
+			/>
+			<TimePicker				
+				Grid.Row="2"
+				Grid.Column="1"
+				Margin="5, 0"
+				HorizontalOptions="Start"			
+				Format="hh:mm tt"
+				Time="{Binding EndDateTime}"
+				IsVisible="{Binding Enabled}"
+			/>			
+		</Grid>
+	</ViewCell.View>
+</ViewCell>

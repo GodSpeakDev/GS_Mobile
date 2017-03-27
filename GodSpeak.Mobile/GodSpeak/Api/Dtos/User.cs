@@ -41,13 +41,13 @@ namespace GodSpeak
 			set;
 		}
 
-		public string City
+		public string Country
 		{
 			get;
 			set;
 		}
 
-		public string State
+		public string ZipCode
 		{
 			get;
 			set;

@@ -1,22 +1,16 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <views:CustomContentPage  
 		xmlns="http://xamarin.com/schemas/2014/forms" 
 		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 		xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
 		xmlns:res="clr-namespace:GodSpeak.Resources;assembly=GodSpeak"
 		Title="{x:Static res:Text.PurchasePageTitle}"
-		x:Class="GodSpeak.PurchaseCreditPage">
-	<views:CustomContentPage.Resources>
-		<ResourceDictionary>
-			<views:InviteBundleConverter x:Key="bundleConverter" />		
-		</ResourceDictionary>
-	</views:CustomContentPage.Resources>
+		x:Class="GodSpeak.PurchaseCreditPage">	
 	<views:CustomContentPage.Content>
 		<ListView
 			HorizontalOptions="FillAndExpand"
 			VerticalOptions="FillAndExpand"
 			ItemsSource="{Binding Bundles}"
-			SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
 			SeparatorVisibility="None"		
 			HasUnevenRows="true"
 		>
@@ -37,7 +31,7 @@
 								Grid.Column="0"
 								HorizontalOptions="FillAndExpand"
 								VerticalOptions="Center"
-								Text="{Binding ., Converter={StaticResource bundleConverter}}"
+								Text="{Binding Model, Converter={StaticResource InviteBundleConverter}}"
 							/>
 							<Button
 								Margin="10, 5"
@@ -45,6 +39,8 @@
 								Grid.Column="1"
 								HorizontalOptions="End"
 								VerticalOptions="Center"
+								Command="{Binding Command}"
+								CommandParameter="{Binding .}"
 								Text="{x:Static res:Text.PurchaseButtonText}" 
 							/>							
 						</Grid>

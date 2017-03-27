@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+	xmlns="http://xamarin.com/schemas/2014/forms" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+	xmlns:pages="clr-namespace:GodSpeak;assembly=GodSpeak"
+	xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
+	x:Class="GodSpeak.MessageDetailPage">
+	<ContentPage.Content>
+		<AbsoluteLayout>
+			<views:GradientBoxView
+				Colors="{Binding GradientColors}"
+				AbsoluteLayout.LayoutFlags="All"
+				AbsoluteLayout.LayoutBounds="0,0,1,1"
+				>
+				<ScrollView
+					Margin="0,80,0,0">
+					<StackLayout
+						Spacing="15"
+						Padding="15,0"
+						HorizontalOptions="FillAndExpand"
+						VerticalOptions="FillAndExpand">
+						<views:CustomLabel 									
+							Text="{Binding Message.BeforeVerse}"
+							Style="{Binding BeforeVerseSelected, Converter={StaticResource MessageDetailStyleConverter}}">
+							<Label.GestureRecognizers>
+			        			<TapGestureRecognizer Command="{Binding SelectBeforeVerseCommand}" />
+			    			</Label.GestureRecognizers>
+						</views:CustomLabel>
+						<views:CustomLabel 							
+							Text="{Binding Message.Text}"
+							Style="{Binding CurrentVerseSelected, Converter={StaticResource MessageDetailStyleConverter}}">
+							<Label.GestureRecognizers>
+			        			<TapGestureRecognizer Command="{Binding SelectCurrentVerseCommand}" />
+			    			</Label.GestureRecognizers>
+						</views:CustomLabel>
+						<views:CustomLabel 							
+							Text="{Binding Message.AfterVerse}"
+							Style="{Binding AfterVerseSelected, Converter={StaticResource MessageDetailStyleConverter}}">
+							<Label.GestureRecognizers>
+			        			<TapGestureRecognizer Command="{Binding SelectAfterVerseCommand}" />
+			    			</Label.GestureRecognizers>
+						</views:CustomLabel>
+					</StackLayout>
+				</ScrollView>
+			</views:GradientBoxView>
+			<views:HeaderOverlay
+				AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"
+				AbsoluteLayout.LayoutBounds="0,0,1,60"
+				Padding="0, 20, 10, 0"
+				HeightRequest="60"
+				BackgroundColor="Transparent"
+				RowSpacing="2"
+				>				
+				<Grid.RowDefinitions>
+					<RowDefinition Height="auto" />
+					<RowDefinition Height="*" />
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="auto" />
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="auto" />
+				</Grid.ColumnDefinitions>
+				<views:CustomLabel 
+					Grid.Row="0"
+					Grid.Column="0"
+					Grid.ColumnSpan="3"
+					Text="{Binding Message.DateTimeToDisplay, Converter={StaticResource DayConverter}}"
+					VerticalOptions="End"
+					HorizontalOptions="Center"
+					Style="{StaticResource MessageDetailsDay}"
+				/>
+				<views:CustomLabel 
+					Grid.Row="1"
+					Grid.Column="0"
+					Grid.ColumnSpan="3"
+					Text="{Binding Author}"
+					VerticalOptions="Start"
+					HorizontalOptions="Center"
+					Style="{StaticResource MessageDetailsAuthor}"
+				/>
+				<pages:BackButton
+					Grid.Column="0"
+					Grid.Row="0"
+					Grid.RowSpan="2"
+				/>
+				<Image
+					Grid.Column="2"
+					Grid.Row="0"
+					Grid.RowSpan="2"
+					HorizontalOptions="Center"
+					VerticalOptions="Center"
+					HeightRequest="20"
+					WidthRequest="20"
+					Source="share_icon.png">
+					<Image.GestureRecognizers>
+			        	<TapGestureRecognizer Command="{Binding ShareCommand}" />
+			    	</Image.GestureRecognizers>
+				</Image>
+			</views:HeaderOverlay>
+		</AbsoluteLayout>
+	</ContentPage.Content>
+</ContentPage>

@@ -119,9 +119,27 @@ namespace GodSpeak.Resources {
             }
         }
         
+        public static string CurrentPasswordPlaceholder {
+            get {
+                return ResourceManager.GetString("CurrentPasswordPlaceholder", resourceCulture);
+            }
+        }
+        
+        public static string NewPasswordPlaceholder {
+            get {
+                return ResourceManager.GetString("NewPasswordPlaceholder", resourceCulture);
+            }
+        }
+        
         public static string PasswordPlaceholder {
             get {
                 return ResourceManager.GetString("PasswordPlaceholder", resourceCulture);
+            }
+        }
+        
+        public static string PasswordConfirmPlaceholder {
+            get {
+                return ResourceManager.GetString("PasswordConfirmPlaceholder", resourceCulture);
             }
         }
         
@@ -137,15 +155,9 @@ namespace GodSpeak.Resources {
             }
         }
         
-        public static string CityPlaceholder {
+        public static string ZipCodePlaceholder {
             get {
-                return ResourceManager.GetString("CityPlaceholder", resourceCulture);
-            }
-        }
-        
-        public static string StatePlaceholder {
-            get {
-                return ResourceManager.GetString("StatePlaceholder", resourceCulture);
+                return ResourceManager.GetString("ZipCodePlaceholder", resourceCulture);
             }
         }
         
@@ -284,6 +296,480 @@ namespace GodSpeak.Resources {
         public static string InvitePageTitle {
             get {
                 return ResourceManager.GetString("InvitePageTitle", resourceCulture);
+            }
+        }
+        
+        public static string MessageCategoriesPageTitle {
+            get {
+                return ResourceManager.GetString("MessageCategoriesPageTitle", resourceCulture);
+            }
+        }
+        
+        public static string MessageDaysTimesPageTitle {
+            get {
+                return ResourceManager.GetString("MessageDaysTimesPageTitle", resourceCulture);
+            }
+        }
+        
+        public static string ImpactPageTitle {
+            get {
+                return ResourceManager.GetString("ImpactPageTitle", resourceCulture);
+            }
+        }
+        
+        public static string SavedCategoriesSuccessful {
+            get {
+                return ResourceManager.GetString("SavedCategoriesSuccessful", resourceCulture);
+            }
+        }
+        
+        public static string SavedSettingsSuccessful {
+            get {
+                return ResourceManager.GetString("SavedSettingsSuccessful", resourceCulture);
+            }
+        }
+        
+        public static string RegisterPageTitle {
+            get {
+                return ResourceManager.GetString("RegisterPageTitle", resourceCulture);
+            }
+        }
+        
+        public static string RegisterPageLoginInfo {
+            get {
+                return ResourceManager.GetString("RegisterPageLoginInfo", resourceCulture);
+            }
+        }
+        
+        public static string RegisterPagePasswordInfo {
+            get {
+                return ResourceManager.GetString("RegisterPagePasswordInfo", resourceCulture);
+            }
+        }
+        
+        public static string TermsCondititionText {
+            get {
+                return ResourceManager.GetString("TermsCondititionText", resourceCulture);
+            }
+        }
+        
+        public static string MessageSettingsPageTitle {
+            get {
+                return ResourceManager.GetString("MessageSettingsPageTitle", resourceCulture);
+            }
+        }
+        
+        public static string GetStartedCitation {
+            get {
+                return ResourceManager.GetString("GetStartedCitation", resourceCulture);
+            }
+        }
+        
+        public static string GetStartedAuthor {
+            get {
+                return ResourceManager.GetString("GetStartedAuthor", resourceCulture);
+            }
+        }
+        
+        public static string GetStartedSubmitInviteCode {
+            get {
+                return ResourceManager.GetString("GetStartedSubmitInviteCode", resourceCulture);
+            }
+        }
+        
+        public static string Register {
+            get {
+                return ResourceManager.GetString("Register", resourceCulture);
+            }
+        }
+        
+        public static string SuccessGiftCodeTitle {
+            get {
+                return ResourceManager.GetString("SuccessGiftCodeTitle", resourceCulture);
+            }
+        }
+        
+        public static string SuccessGiftCodeText {
+            get {
+                return ResourceManager.GetString("SuccessGiftCodeText", resourceCulture);
+            }
+        }
+        
+        public static string AnonymousTitle {
+            get {
+                return ResourceManager.GetString("AnonymousTitle", resourceCulture);
+            }
+        }
+        
+        public static string AnonymousText {
+            get {
+                return ResourceManager.GetString("AnonymousText", resourceCulture);
+            }
+        }
+        
+        public static string AnonymousSubmit {
+            get {
+                return ResourceManager.GetString("AnonymousSubmit", resourceCulture);
+            }
+        }
+        
+        public static string AnonymousNevermind {
+            get {
+                return ResourceManager.GetString("AnonymousNevermind", resourceCulture);
+            }
+        }
+        
+        public static string AnonymousInputPlaceholder {
+            get {
+                return ResourceManager.GetString("AnonymousInputPlaceholder", resourceCulture);
+            }
+        }
+        
+        public static string AnonymousSuccessTitle {
+            get {
+                return ResourceManager.GetString("AnonymousSuccessTitle", resourceCulture);
+            }
+        }
+        
+        public static string AnonymousSuccessText {
+            get {
+                return ResourceManager.GetString("AnonymousSuccessText", resourceCulture);
+            }
+        }
+        
+        public static string AnonymousSuccessButtonTitle {
+            get {
+                return ResourceManager.GetString("AnonymousSuccessButtonTitle", resourceCulture);
+            }
+        }
+        
+        public static string SuccessfulRegisterPopupTitle {
+            get {
+                return ResourceManager.GetString("SuccessfulRegisterPopupTitle", resourceCulture);
+            }
+        }
+        
+        public static string SuccessfulRegisterPopupText {
+            get {
+                return ResourceManager.GetString("SuccessfulRegisterPopupText", resourceCulture);
+            }
+        }
+        
+        public static string SuccessfulRegisterButtonText {
+            get {
+                return ResourceManager.GetString("SuccessfulRegisterButtonText", resourceCulture);
+            }
+        }
+        
+        public static string LoginButton {
+            get {
+                return ResourceManager.GetString("LoginButton", resourceCulture);
+            }
+        }
+        
+        public static string BadRequestTitle {
+            get {
+                return ResourceManager.GetString("BadRequestTitle", resourceCulture);
+            }
+        }
+        
+        public static string LoginInvalidEmailPassword {
+            get {
+                return ResourceManager.GetString("LoginInvalidEmailPassword", resourceCulture);
+            }
+        }
+        
+        public static string ForgotMyPasswordButtonTitle {
+            get {
+                return ResourceManager.GetString("ForgotMyPasswordButtonTitle", resourceCulture);
+            }
+        }
+        
+        public static string ForgotMyPasswordLinkText {
+            get {
+                return ResourceManager.GetString("ForgotMyPasswordLinkText", resourceCulture);
+            }
+        }
+        
+        public static string RecoverPasswordTitle {
+            get {
+                return ResourceManager.GetString("RecoverPasswordTitle", resourceCulture);
+            }
+        }
+        
+        public static string RecoverPasswordText {
+            get {
+                return ResourceManager.GetString("RecoverPasswordText", resourceCulture);
+            }
+        }
+        
+        public static string SendInstructions {
+            get {
+                return ResourceManager.GetString("SendInstructions", resourceCulture);
+            }
+        }
+        
+        public static string RecoverPasswordSuccessText {
+            get {
+                return ResourceManager.GetString("RecoverPasswordSuccessText", resourceCulture);
+            }
+        }
+        
+        public static string NumberOfMessagesText {
+            get {
+                return ResourceManager.GetString("NumberOfMessagesText", resourceCulture);
+            }
+        }
+        
+        public static string MenuCitationText {
+            get {
+                return ResourceManager.GetString("MenuCitationText", resourceCulture);
+            }
+        }
+        
+        public static string MenuCitationAuthor {
+            get {
+                return ResourceManager.GetString("MenuCitationAuthor", resourceCulture);
+            }
+        }
+        
+        public static string MenuMessageSettings {
+            get {
+                return ResourceManager.GetString("MenuMessageSettings", resourceCulture);
+            }
+        }
+        
+        public static string MyProfileSettings {
+            get {
+                return ResourceManager.GetString("MyProfileSettings", resourceCulture);
+            }
+        }
+        
+        public static string LogoutSettings {
+            get {
+                return ResourceManager.GetString("LogoutSettings", resourceCulture);
+            }
+        }
+        
+        public static string MyProfilePageTitle {
+            get {
+                return ResourceManager.GetString("MyProfilePageTitle", resourceCulture);
+            }
+        }
+        
+        public static string MyProfileUpdateInfo {
+            get {
+                return ResourceManager.GetString("MyProfileUpdateInfo", resourceCulture);
+            }
+        }
+        
+        public static string MyProfileChangePassword {
+            get {
+                return ResourceManager.GetString("MyProfileChangePassword", resourceCulture);
+            }
+        }
+        
+        public static string MyProfileSuccessTitle {
+            get {
+                return ResourceManager.GetString("MyProfileSuccessTitle", resourceCulture);
+            }
+        }
+        
+        public static string MyProfileSuccessText {
+            get {
+                return ResourceManager.GetString("MyProfileSuccessText", resourceCulture);
+            }
+        }
+        
+        public static string Today {
+            get {
+                return ResourceManager.GetString("Today", resourceCulture);
+            }
+        }
+        
+        public static string Yesterday {
+            get {
+                return ResourceManager.GetString("Yesterday", resourceCulture);
+            }
+        }
+        
+        public static string ScripturesDelivered {
+            get {
+                return ResourceManager.GetString("ScripturesDelivered", resourceCulture);
+            }
+        }
+        
+        public static string GiftsClaimed {
+            get {
+                return ResourceManager.GetString("GiftsClaimed", resourceCulture);
+            }
+        }
+        
+        public static string ShareDescription {
+            get {
+                return ResourceManager.GetString("ShareDescription", resourceCulture);
+            }
+        }
+        
+        public static string ShareWithFriend {
+            get {
+                return ResourceManager.GetString("ShareWithFriend", resourceCulture);
+            }
+        }
+        
+        public static string ShareWithWorld {
+            get {
+                return ResourceManager.GetString("ShareWithWorld", resourceCulture);
+            }
+        }
+        
+        public static string ShareGiftsLeft {
+            get {
+                return ResourceManager.GetString("ShareGiftsLeft", resourceCulture);
+            }
+        }
+        
+        public static string DidYouKnow {
+            get {
+                return ResourceManager.GetString("DidYouKnow", resourceCulture);
+            }
+        }
+        
+        public static string DidYouKnowDeliveredGifts {
+            get {
+                return ResourceManager.GetString("DidYouKnowDeliveredGifts", resourceCulture);
+            }
+        }
+        
+        public static string DidYouKnowPurchasedGifts {
+            get {
+                return ResourceManager.GetString("DidYouKnowPurchasedGifts", resourceCulture);
+            }
+        }
+        
+        public static string DidYouKnowDonatedGifts {
+            get {
+                return ResourceManager.GetString("DidYouKnowDonatedGifts", resourceCulture);
+            }
+        }
+        
+        public static string InviteBundleDescription {
+            get {
+                return ResourceManager.GetString("InviteBundleDescription", resourceCulture);
+            }
+        }
+        
+        public static string ShareWithFriendsTitle {
+            get {
+                return ResourceManager.GetString("ShareWithFriendsTitle", resourceCulture);
+            }
+        }
+        
+        public static string ShareWithFriendsDescription {
+            get {
+                return ResourceManager.GetString("ShareWithFriendsDescription", resourceCulture);
+            }
+        }
+        
+        public static string Individually {
+            get {
+                return ResourceManager.GetString("Individually", resourceCulture);
+            }
+        }
+        
+        public static string ViaEmail {
+            get {
+                return ResourceManager.GetString("ViaEmail", resourceCulture);
+            }
+        }
+        
+        public static string SortByClaimDate {
+            get {
+                return ResourceManager.GetString("SortByClaimDate", resourceCulture);
+            }
+        }
+        
+        public static string CongratulateThem {
+            get {
+                return ResourceManager.GetString("CongratulateThem", resourceCulture);
+            }
+        }
+        
+        public static string EncourageThem {
+            get {
+                return ResourceManager.GetString("EncourageThem", resourceCulture);
+            }
+        }
+        
+        public static string ClaimedDateDescription {
+            get {
+                return ResourceManager.GetString("ClaimedDateDescription", resourceCulture);
+            }
+        }
+        
+        public static string HasGiftedPeopleText {
+            get {
+                return ResourceManager.GetString("HasGiftedPeopleText", resourceCulture);
+            }
+        }
+        
+        public static string HasNotGiftedPeopleText {
+            get {
+                return ResourceManager.GetString("HasNotGiftedPeopleText", resourceCulture);
+            }
+        }
+        
+        public static string IDontHaveCodeLink {
+            get {
+                return ResourceManager.GetString("IDontHaveCodeLink", resourceCulture);
+            }
+        }
+        
+        public static string ImRegisteredLink {
+            get {
+                return ResourceManager.GetString("ImRegisteredLink", resourceCulture);
+            }
+        }
+        
+        public static string PrivacyPolicyTerms {
+            get {
+                return ResourceManager.GetString("PrivacyPolicyTerms", resourceCulture);
+            }
+        }
+        
+        public static string SelectWhoToSendMailPageTitle {
+            get {
+                return ResourceManager.GetString("SelectWhoToSendMailPageTitle", resourceCulture);
+            }
+        }
+        
+        public static string ComposeEmail {
+            get {
+                return ResourceManager.GetString("ComposeEmail", resourceCulture);
+            }
+        }
+        
+        public static string EmailSearchPlaceholder {
+            get {
+                return ResourceManager.GetString("EmailSearchPlaceholder", resourceCulture);
+            }
+        }
+        
+        public static string ContactAccessDenied {
+            get {
+                return ResourceManager.GetString("ContactAccessDenied", resourceCulture);
+            }
+        }
+        
+        public static string ShareEmailSubject {
+            get {
+                return ResourceManager.GetString("ShareEmailSubject", resourceCulture);
+            }
+        }
+        
+        public static string ShareEmailBody {
+            get {
+                return ResourceManager.GetString("ShareEmailBody", resourceCulture);
             }
         }
     }

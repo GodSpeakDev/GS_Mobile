@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StackLayout 
+	xmlns="http://xamarin.com/schemas/2014/forms" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+	xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
+	xmlns:res="clr-namespace:GodSpeak.Resources;assembly=GodSpeak"
+	x:Class="GodSpeak.ButtonWithImage"
+	VerticalOptions="FillAndExpand"
+	Orientation="Horizontal"
+	Padding="10,10"
+	BackgroundColor="{StaticResource primaryColor}"
+	HeightRequest="45"
+	Spacing="10">
+	<Image
+		x:Name="Icon"	
+		WidthRequest="30" 
+		HeightRequest="30"
+		VerticalOptions="Center"
+		HorizontalOptions="Start"
+	/>
+	<views:CustomLabel
+		x:Name="Label"
+		VerticalOptions="CenterAndExpand"
+		HorizontalOptions="StartAndExpand"
+		TextColor="{StaticResource secondaryColor}"
+		FontSize="17"
+		FontWeight="Bold"
+	>
+	</views:CustomLabel>	
+</StackLayout>

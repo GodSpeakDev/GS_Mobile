@@ -3,13 +3,25 @@ namespace GodSpeak
 {
 	public class Message
 	{
-		public long Id
+		public Guid MessageId
 		{
 			get;
 			set;
 		}
 
-		public DateTime Date
+		public DateTime DateTimeToDisplay
+		{
+			get;
+			set;
+		}
+
+		public string BeforeVerse
+		{
+			get;
+			set;
+		}
+
+		public string AfterVerse
 		{
 			get;
 			set;
@@ -21,7 +33,19 @@ namespace GodSpeak
 			set;
 		}
 
-		public string Image
+		public string BeforeAuthor
+		{
+			get;
+			set;
+		}
+
+		public string Author
+		{
+			get;
+			set;
+		}
+
+		public string AfterAuthor
 		{
 			get;
 			set;

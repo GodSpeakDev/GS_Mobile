@@ -7,7 +7,7 @@
 	<key>CFBundleName</key>
 	<string>GodSpeak</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.venado.mobile.godspeak</string>
+	<string>com.pauloortins.godspeak</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>LSRequiresIPhoneOS</key>
@@ -45,6 +45,18 @@
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Pictures</string>
 	<key>CFBundleVersion</key>
-	<string>4</string>
+	<string>3</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Can we use your location</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>We are using your location</string>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleLightContent</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+	<key>UIStatusBarHidden</key>
+	<false/>
+	<key>NSContactsUsageDescription</key>
+	<string>We&apos;d like access to your contacts so we can save you time importing clients into our system.</string>
 </dict>
 </plist>

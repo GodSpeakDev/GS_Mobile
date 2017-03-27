@@ -20,34 +20,63 @@ using System.Net;
 
 namespace GodSpeak.Droid
 {
-    [Activity(Theme = "@style/AppTheme", Label = "MvxFormsApplicationActivity", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.ScreenSize)]
+    [Activity (Theme = "@style/AppTheme", Label = "MvxFormsApplicationActivity", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.ScreenSize)]
     public class MainActivity : FormsAppCompatActivity
     {
-        protected override void OnCreate(Bundle bundle)
-		{
-			Xamarin.Forms.Forms.Init(this, bundle);
+        public static bool IsForeground { get; set; }
 
-			ServicePointManager
-				.ServerCertificateValidationCallback +=
-					(sender, cert, chain, sslPolicyErrors) =>
-					{
-						return true;
-					};
+        protected override void OnCreate (Bundle bundle)
+        {
+            Xamarin.Forms.Forms.Init (this, bundle);
+            Xamarin.FormsMaps.Init (this, bundle);
 
-			base.OnCreate(bundle);
+            ServicePointManager
+                .ServerCertificateValidationCallback +=
+                    (sender, cert, chain, sslPolicyErrors) => {
+                        return true;
+                    };
 
-			var mvxFormsApp = new MvxFormsApp();
-			LoadApplication(mvxFormsApp);
+            base.OnCreate (bundle);
 
-			var presenter = Mvx.Resolve<IMvxViewPresenter>() as MvxFormsDroidMasterDetailPagePresenter;
-			presenter.MvxFormsApp = mvxFormsApp;
+            var mvxFormsApp = new MvxFormsApp ();
+            LoadApplication (mvxFormsApp);
 
-			Mvx.Resolve<IMvxAppStart>().Start();
+            var presenter = Mvx.Resolve<IMvxViewPresenter> () as MvxFormsDroidMasterDetailPagePresenter;
+            presenter.MvxFormsApp = mvxFormsApp;
 
-			//App.HardwareBackPressed = () =>
-			//{
-			//	MoveTaskToBack(true);
-			//};
-		}
+            Mvx.Resolve<IMvxAppStart> ().Start ();
+
+
+            App.ScreenWidth = (int)(Resources.DisplayMetrics.WidthPixels / Resources.DisplayMetrics.Density);
+            App.ScreenHeight = (int)(Resources.DisplayMetrics.HeightPixels / Resources.DisplayMetrics.Density);
+            //App.HardwareBackPressed = () =>
+            //{
+            //	MoveTaskToBack(true);
+            //};
+        }
+
+        protected override void OnStart ()
+        {
+            base.OnStart ();
+            IsForeground = true;
+        }
+
+        protected override void OnResume ()
+        {
+            base.OnResume ();
+            IsForeground = true;
+        }
+
+        protected override void OnStop ()
+        {
+            base.OnStop ();
+            IsForeground = false;
+        }
+
+        protected override void OnPause ()
+        {
+            base.OnPause ();
+            IsForeground = false;
+        }
     }
 }

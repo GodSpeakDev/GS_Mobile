@@ -9,9 +9,10 @@ namespace GodSpeak
 	public class InvitesViewModel : CustomViewModel
 	{
 		private IWebApiService _webApi;
+		private IShareService _shareService;
 
-		private ObservableCollection<Invite> _invites;
-		public ObservableCollection<Invite> Invites
+		private ObservableCollection<SelectModel<Invite>> _invites;
+		public ObservableCollection<SelectModel<Invite>> Invites
 		{
 			get { return _invites; }
 			set { 
@@ -24,7 +25,16 @@ namespace GodSpeak
 		{
 			get 
 			{
-				return string.Format("{0} {1} Sent {2} Claimed", Invites.Count, Invites.Count > 1 ? "Invites" : "Invite", Invites.Count(x => x.Redeemed));
+				return string.Format("{0} {1} Sent {2} Claimed", Invites.Count, Invites.Count > 1 ? "Invites" : "Invite", Invites.Count(x => x.Model.Redeemed));
+			}
+		}
+			
+		private MvxCommand<SelectModel<Invite>> _shareCommand;
+		public MvxCommand<SelectModel<Invite>> ShareCommand
+		{
+			get
+			{
+				return _shareCommand ?? (_shareCommand = new MvxCommand<SelectModel<Invite>>(DoShareCommand));
 			}
 		}
 
@@ -37,11 +47,12 @@ namespace GodSpeak
 			}
 		}
 
-		public InvitesViewModel(IDialogService dialogService, IWebApiService webApi) : base(dialogService)
+		public InvitesViewModel(IDialogService dialogService, IWebApiService webApi, IShareService shareService) : base(dialogService)
 		{
 			_webApi = webApi;
+			_shareService = shareService;
 
-			Invites = new ObservableCollection<Invite>();
+			Invites = new ObservableCollection<SelectModel<Invite>>();
 		}
 
 		public async void Init()
@@ -49,7 +60,12 @@ namespace GodSpeak
 			var response = await _webApi.GetInvites(new GetInvitesRequest());
 			if (response.IsSuccess)
 			{
-				Invites = new ObservableCollection<Invite>(response.Content.Payload.OrderBy(x => x.Redeemed));
+				Invites = new ObservableCollection<SelectModel<Invite>>(
+					response.Content.Payload.OrderBy(x => x.Redeemed).Select(x => new SelectModel<Invite>() 
+				{
+					Model = x,
+					Command = ShareCommand
+				}));
 			}
 			else
 			{
@@ -60,6 +76,11 @@ namespace GodSpeak
 		private void DoPurchaseMoreInviteCommand()
 		{
 			this.ShowViewModel<PurchaseCreditViewModel>();
+		}
+
+		private void DoShareCommand(SelectModel<Invite> selectModel)
+		{
+			_shareService.Share(selectModel.Model.Code);
 		}
 	}
 }

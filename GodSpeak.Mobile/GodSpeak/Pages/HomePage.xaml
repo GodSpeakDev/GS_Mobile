@@ -1,14 +1,102 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="GodSpeak.HomePage"             
-             Title="MasterDetail" Icon="" Padding="0, 40, 0, 0">
-
-    <ListView ItemsSource="{Binding Menu}" SelectedItem="{Binding SelectedMenu, Mode=TwoWay}">
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <TextCell Text="{Binding Title}"></TextCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>        
-    </ListView>
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
+	xmlns:res="clr-namespace:GodSpeak.Resources;assembly=GodSpeak"
+	x:Class="GodSpeak.HomePage"             
+	Title="MasterDetail" 
+	Icon="" 
+	Padding="0, 0, 0, 0">
+    <Grid
+		RowSpacing="0"
+		BackgroundColor="{x:Static views:ColorHelper.DrawerMenuBackground}">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="auto" />
+			<RowDefinition Height="auto" />
+			<RowDefinition Height="auto" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<ContentView
+			x:Name="CitationContent"
+			Grid.Row="0"
+			Padding="10,30,10,10"
+			BackgroundColor="{x:Static views:ColorHelper.Primary}"
+			>
+			<StackLayout>
+				<views:CustomLabel 								
+					Text="{x:Static res:Text.MenuCitationText}"
+					Style="{StaticResource QuotaText}"
+				/>
+				<views:CustomLabel 	 								
+					HorizontalTextAlignment="End"
+					Margin="0,5,0,0"
+					Text="{x:Static res:Text.MenuCitationAuthor}"
+					Style="{StaticResource QuotaAuthor}"
+				/>
+			</StackLayout>
+		</ContentView>
+		<AbsoluteLayout			
+			x:Name="ImageContent"
+			Grid.Row="1"
+			VerticalOptions="Start"
+			BackgroundColor="{x:Static views:ColorHelper.DrawerMenuBackground}">
+			<Image	
+				AbsoluteLayout.LayoutFlags="All"
+				AbsoluteLayout.LayoutBounds="0,0,1,1"
+				Source="menu_image.jpg"
+				Aspect="AspectFill"
+			/>
+			<Image 
+				AbsoluteLayout.LayoutFlags="XProportional,HeightProportional"
+				AbsoluteLayout.LayoutBounds="0.8,0,AutoSize,0.1"
+				Source="blue_down_arrow.png" 
+			/>
+			<views:ButtonWithImage
+				Image="bundle_icon.png"
+				Text="Share Your 123 Gifts"
+				AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"
+				AbsoluteLayout.LayoutBounds="0,1,1,AutoSize"
+				Margin="10"
+				Command="{Binding ShareCommand}"
+			/>
+		</AbsoluteLayout>
+		<StackLayout
+			x:Name="MenuContent"
+			Grid.Row="2"
+			Padding="0,5"
+			VerticalOptions="FillAndExpand"
+			BackgroundColor="{x:Static views:ColorHelper.DrawerMenuBackground}">
+			<views:StackList
+				ItemsSource="{Binding MenuItems}"
+				>
+				<views:StackList.ItemTemplate>
+					<DataTemplate>
+						<views:TappableView Command="{Binding Command}">
+							<StackLayout
+								Orientation="Horizontal"
+								Padding="20, 10, 15, 10"
+								Spacing="10"
+								BackgroundColor="{x:Static views:ColorHelper.DrawerMenuBackground}">
+								<Image WidthRequest="30" HeightRequest="30" Source="{Binding Image}" />
+								<views:CustomLabel 
+									VerticalOptions="Center"
+									Text="{Binding Title}" 
+									Style="{StaticResource SettingMenuLabel}"
+								/>
+							</StackLayout>
+						</views:TappableView>	
+					</DataTemplate>
+				</views:StackList.ItemTemplate>
+				<views:StackList.SeparatorTemplate>
+					<DataTemplate>
+						<BoxView 
+							Margin="15,0,0,0"
+							Color="{x:Static views:ColorHelper.Secondary}"
+							HeightRequest="0.5"				
+						/>
+					</DataTemplate>
+				</views:StackList.SeparatorTemplate>
+			</views:StackList>
+		</StackLayout>
+	</Grid>		
 </ContentPage>
