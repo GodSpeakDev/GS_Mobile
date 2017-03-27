@@ -7,6 +7,8 @@ using MvvmCross.Forms.Presenter.Droid;
 using MvvmCross.Platform;
 using MvvmCross.Core.Views;
 using GodSpeak;
+using Xamarin.Forms;
+using MvvmCross.Forms.Presenter.Core;
 
 namespace GodSpeak.Droid
 {
@@ -40,7 +42,14 @@ namespace GodSpeak.Droid
 
 		private class MvxFormsDroidPagePresenterCustom : MvxFormsDroidMasterDetailPagePresenter
 		{
-			
+			public MvxFormsDroidPagePresenterCustom()
+			{
+			}
+
+			public MvxFormsDroidPagePresenterCustom(MvxFormsApp mvxFormsApp)
+			: base(mvxFormsApp)
+		{
+			}
 		}
     }
 }

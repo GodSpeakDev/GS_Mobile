@@ -156,6 +156,12 @@
     <Compile Include="Services\ReminderService.cs" />
     <Compile Include="Renderers\CustomMapRenderer.cs" />
     <Compile Include="Renderers\CustomImageRenderer.cs" />
+    <Compile Include="Renderers\GradientBoxViewRenderer.cs" />
+    <Compile Include="Renderers\CustomEntryRenderer.cs" />
+    <Compile Include="Extensions\CustomFontExtensions.cs" />
+    <Compile Include="Renderers\CustomLabelRenderer.cs" />
+    <Compile Include="Renderers\CustomPickerRenderer.cs" />
+    <Compile Include="Renderers\CustomTimePickerRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -194,6 +200,38 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\people_background.jpg" />
     <AndroidResource Include="Resources\drawable\login_form_background.png" />
     <AndroidResource Include="Resources\drawable\people_background.jpg" />
+    <AndroidResource Include="Resources\drawable\arrow_down.png" />
+    <AndroidResource Include="Resources\drawable\arrow_left.png" />
+    <AndroidResource Include="Resources\drawable\arrow_right.png" />
+    <AndroidResource Include="Resources\drawable\back_button.png" />
+    <AndroidResource Include="Resources\drawable\blue_down_arrow.png" />
+    <AndroidResource Include="Resources\drawable\bundle_icon.png" />
+    <AndroidResource Include="Resources\drawable\curveBackground.png" />
+    <AndroidResource Include="Resources\drawable\gift_claimed_icon.png" />
+    <AndroidResource Include="Resources\drawable\gift_icon.png" />
+    <AndroidResource Include="Resources\drawable\gift_unclaimed_icon.png" />
+    <AndroidResource Include="Resources\drawable\gray_speach_arrow.png" />
+    <AndroidResource Include="Resources\drawable\hamburgerMenu.png" />
+    <AndroidResource Include="Resources\drawable\impact_background.png" />
+    <AndroidResource Include="Resources\drawable\impactWithNotification.png" />
+    <AndroidResource Include="Resources\drawable\invitesFAB.png" />
+    <AndroidResource Include="Resources\drawable\loginBackground.png" />
+    <AndroidResource Include="Resources\drawable\logo.png" />
+    <AndroidResource Include="Resources\drawable\logoutIcon.png" />
+    <AndroidResource Include="Resources\drawable\menu_image.jpg" />
+    <AndroidResource Include="Resources\drawable\messagesBackground.png" />
+    <AndroidResource Include="Resources\drawable\oval.png" />
+    <AndroidResource Include="Resources\drawable\pano_background.jpg" />
+    <AndroidResource Include="Resources\drawable\play_icon.png" />
+    <AndroidResource Include="Resources\drawable\profile_placeholder.png" />
+    <AndroidResource Include="Resources\drawable\profileIcon.png" />
+    <AndroidResource Include="Resources\drawable\scripture_icon.png" />
+    <AndroidResource Include="Resources\drawable\search_icon.png" />
+    <AndroidResource Include="Resources\drawable\settingsIcon.png" />
+    <AndroidResource Include="Resources\drawable\share_background.png" />
+    <AndroidResource Include="Resources\drawable\share_icon.png" />
+    <AndroidResource Include="Resources\drawable\speechBalloonBackground.png" />
+    <AndroidResource Include="Resources\drawable\stop_icon.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="MvvmCross\" />
@@ -201,6 +239,7 @@
     <Folder Include="Services\" />
     <Folder Include="Resources\drawable-xxxhdpi\" />
     <Folder Include="Renderers\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets')" />
