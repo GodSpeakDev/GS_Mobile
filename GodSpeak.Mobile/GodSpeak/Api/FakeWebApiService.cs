@@ -195,52 +195,50 @@ namespace GodSpeak
             };
         }
 
-        public async Task<ApiResponse<GetInviteBundlesResponse>> GetInviteBundles (GetInviteBundlesRequest request)
+        public async Task<ApiResponse<List<InviteBundle>>> GetInviteBundles (GetInviteBundlesRequest request)
         {
             await Task.Delay (delay);
-            return new ApiResponse<GetInviteBundlesResponse> () {
+            return new ApiResponse<List<InviteBundle>> () {
                 StatusCode = System.Net.HttpStatusCode.OK,
-                Payload = new GetInviteBundlesResponse () {
-                    Payload = new List<InviteBundle> ()
+                Payload = new List<InviteBundle> ()
                     {
                         new InviteBundle()
                         {
                             InviteBundleId=Guid.NewGuid(),
                             Cost = 9.97m,
-                            NumOfInvites=3,
-                            ItunesId="1",
-                            PlaystoreId="1",
+                            NumberOfInvites=3,
+                            AppStoreSku="1",
+                            PlayStoreSku="1",
                             CostDescription = "$1.99"
                         },
                         new InviteBundle()
                         {
                             InviteBundleId=Guid.NewGuid(),
                             Cost = 19.90m,
-                            NumOfInvites=10,
-                            ItunesId="2",
-                            PlaystoreId="2",
+                            NumberOfInvites=10,
+                            AppStoreSku="2",
+                            PlayStoreSku="2",
                             CostDescription = "$4.99"
                         },
                         new InviteBundle()
                         {
                             InviteBundleId=Guid.NewGuid(),
                             Cost = 24.75m,
-                            NumOfInvites=25,
-                            ItunesId="3",
-                            PlaystoreId="3",
+                            NumberOfInvites=25,
+                            AppStoreSku="3",
+                            PlayStoreSku="3",
                             CostDescription = "$24.75"
                         },
                         new InviteBundle()
                         {
                             InviteBundleId=Guid.NewGuid(),
                             Cost = 44.50m,
-                            NumOfInvites=50,
-                            ItunesId="4",
-                            PlaystoreId="4",
+                            NumberOfInvites=50,
+                            AppStoreSku="4",
+                            PlayStoreSku="4",
                             CostDescription = "$44.50"
                         },
                     }
-                }
             };
         }
 

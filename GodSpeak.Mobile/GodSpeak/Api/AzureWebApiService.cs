@@ -12,6 +12,7 @@ namespace GodSpeak.Api
     {
         const string ValidateCodeUri = "invite/validate";
         const string LoginMethodUri = "user/login";
+        const string InviteBundlesUri = "invite/bundles";
         protected HttpClient client = new HttpClient ();
         readonly IMvxTrace tracer;
 
@@ -27,6 +28,10 @@ namespace GodSpeak.Api
             return await DoGet<ValidateCodeResponse> (ValidateCodeUri, new Dictionary<string, string> { { "inviteCode", request.Code } });
         }
 
+        public new async Task<ApiResponse<List<InviteBundle>>> GetInviteBundles (GetInviteBundlesRequest request)
+        {
+            return await DoGet<List<InviteBundle>> (InviteBundlesUri);
+        }
 
         public new async Task<ApiResponse<LoginResponse>> Login (LoginRequest request)
         {
@@ -46,10 +51,20 @@ namespace GodSpeak.Api
             return await ParseResponse<T> (uri, apiResponse);
         }
 
+        protected async Task<ApiResponse<T>> DoGet<T> (string uri)
+        {
+            tracer.Trace (MvxTraceLevel.Diagnostic, "api-get", $"METHOD: {uri}");
+            var apiResponse = await client.GetAsync (uri);
+
+            return await ParseResponse<T> (uri, apiResponse);
+        }
+
         protected async Task<ApiResponse<T>> DoGet<T> (string uri, Dictionary<string, string> args)
         {
 
             var builder = new StringBuilder ("?");
+
+
             foreach (var pair in args) {
                 if (builder.Length != 1)
                     builder.Append ("&");
