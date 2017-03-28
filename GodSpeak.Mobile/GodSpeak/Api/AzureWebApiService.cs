@@ -4,12 +4,14 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using MvvmCross.Platform.Platform;
 using System.Text;
+using System.Collections.Generic;
 
 namespace GodSpeak.Api
 {
     public class AzureWebApiService : FakeWebApiService, IWebApiService
     {
-        private const string LoginMethodUri = "user/login";
+        const string ValidateCodeUri = "invite/validate";
+        const string LoginMethodUri = "user/login";
         protected HttpClient client = new HttpClient ();
         readonly IMvxTrace tracer;
 
@@ -18,6 +20,11 @@ namespace GodSpeak.Api
             this.tracer = tracer;
             client.BaseAddress = new Uri ("http://godspeak-staging.azurewebsites.net/api/");
 
+        }
+
+        public new async Task<ApiResponse<ValidateCodeResponse>> ValidateCode (ValidateCodeRequest request)
+        {
+            return await DoGet<ValidateCodeResponse> (ValidateCodeUri, new Dictionary<string, string> { { "inviteCode", request.Code } });
         }
 
 
@@ -35,10 +42,37 @@ namespace GodSpeak.Api
             tracer.Trace (MvxTraceLevel.Diagnostic, "api-post", $"METHOD: {uri}\rBODY: {jsonBody}");
 
             var apiResponse = await client.PostAsync (uri, new StringContent (jsonBody, Encoding.UTF8, "application/json"));
+
+            return await ParseResponse<T> (uri, apiResponse);
+        }
+
+        protected async Task<ApiResponse<T>> DoGet<T> (string uri, Dictionary<string, string> args)
+        {
+
+            var builder = new StringBuilder ("?");
+            foreach (var pair in args) {
+                if (builder.Length != 1)
+                    builder.Append ("&");
+                builder.Append ($"{pair.Key}={System.Net.WebUtility.UrlDecode (pair.Value)}")
+                       ;
+            };
+
+
+            var requestUri = uri + builder;
+            tracer.Trace (MvxTraceLevel.Diagnostic, "api-get", $"METHOD: {requestUri}");
+            var apiResponse = await client.GetAsync (requestUri);
+
+            return await ParseResponse<T> (uri, apiResponse);
+
+        }
+
+        protected async Task<ApiResponse<T>> ParseResponse<T> (string uri, HttpResponseMessage apiResponse)
+        {
+
             var json = await apiResponse.Content.ReadAsStringAsync ();
             var parsedResponse = JsonConvert.DeserializeObject<ApiResponse<T>> (json);
             parsedResponse.StatusCode = apiResponse.StatusCode;
-            LogResponse (LoginMethodUri, parsedResponse, json);
+            LogResponse (uri, parsedResponse, json);
             return parsedResponse;
         }
 
