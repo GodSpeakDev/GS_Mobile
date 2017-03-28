@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace GodSpeak
 {
-	public partial class SharePage : TabbedPage
+	public partial class SharePage : CustomContentPage
 	{
 		public SharePage()
 		{

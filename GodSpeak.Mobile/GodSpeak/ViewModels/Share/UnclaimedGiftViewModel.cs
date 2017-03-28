@@ -29,6 +29,12 @@ namespace GodSpeak
             set { SetProperty (ref _selectedPosition, value); }
         }
 
+        private bool _isVisible;
+        public bool IsVisible {
+            get { return _isVisible; }
+            set { SetProperty (ref _isVisible, value); }
+        }
+
         public UnclaimedGiftViewModel (IDialogService dialogService, IWebApiService webApi, IShareService shareService) : base (dialogService)
         {
             _webApi = webApi;

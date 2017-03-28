@@ -3,12 +3,29 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using GodSpeak;
 using GodSpeak.Droid;
+using Android.Graphics.Drawables;
+using Android.Graphics;
 
 [assembly: ExportRendererAttribute(typeof(CustomPicker), typeof(CustomPickerRenderer))]
 namespace GodSpeak.Droid
 {
 	public class CustomPickerRenderer : PickerRenderer
 	{
+		private GradientDrawable _drawable;
+		private GradientDrawable Drawable
+		{
+			get
+			{
+				if (_drawable == null)
+				{
+					_drawable = new GradientDrawable();
+					this.Control.SetBackground(_drawable);
+				}
+
+				return _drawable;
+			}
+		}
+
 		public CustomPicker CustomPicker
 		{
 			get { return Element as CustomPicker; }
@@ -22,43 +39,27 @@ namespace GodSpeak.Droid
 			SetBorderFrame();
 			SetTextAligment();
 			SetFontWeight();
+			SetBackgroundColor();
 		}
 
 		protected override void OnElementPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
 		{
 			base.OnElementPropertyChanged(sender, e);
 
-			if (e.PropertyName == CustomPicker.OutlineColorProperty.PropertyName)
+			SetBorderColor();
+			SetFontWeight();
+			SetTextAligment();
+			SetBackgroundColor();
+
+			if (e.PropertyName == "IsFocused")
 			{
-				SetBorderColor();
+				CustomPicker.IsFocused = this.Control.IsFocused;
 			}
-			else if (e.PropertyName == CustomPicker.FontSizeProperty.PropertyName)
+			else if (e.PropertyName == "BackgroundColor")
 			{
-				SetFontWeight();
+				SetBackgroundColor();
 			}
 		}
-
-		//public override void LayoutSubviews()
-		//{
-		//	base.LayoutSubviews();
-
-		//	var uiimage = new UIImage("arrow_down.png");
-		//	var image = new UIImageView()
-		//	{
-
-		//	};
-		//	image.Image = uiimage;
-
-		//	var width = uiimage.Size.Width * 0.8;
-		//	var height = uiimage.Size.Height * 0.8;
-
-		//	var x = this.Frame.Width - width - 10;
-		//	var y = (this.Frame.Height - height) / 2;
-
-		//	image.Frame = new CoreGraphics.CGRect(x, y, width, height);
-
-		//	this.AddSubview(image);
-		//}
 
 		private void SetTextAligment()
 		{
@@ -67,24 +68,25 @@ namespace GodSpeak.Droid
 
 		private void SetBorderColor()
 		{
-			//this.Control.Layer.BorderColor = CustomPicker.OutlineColor.ToCGColor();
+			var customEntry = this.Element as CustomPicker;
+			if (this.Control != null && customEntry != null)
+			{
+				Drawable.SetStroke(2, this.CustomPicker.OutlineColor.ToAndroid());
+			}
+		}
 
-			//this.Control.EditingDidEnd += (sender, e) =>
-			//{
-			//	CustomPicker.IsFocused = false;
-			//};
-
-			//this.Control.EditingDidBegin += (sender, e) =>
-			//{
-			//	CustomPicker.IsFocused = true;
-			//};
+		private void SetBackgroundColor()
+		{
+			this.SetBackgroundColor(Android.Graphics.Color.Transparent);
+			Drawable.SetColor(this.CustomPicker.BackgroundColor.ToAndroid());
 		}
 
 		private void SetBorderFrame()
 		{
-			//this.Control.Layer.BorderWidth = 1;
-			//this.Control.Layer.MasksToBounds = true;
-			//this.Control.Layer.CornerRadius = 5.0f;
+			if (this.Control != null)
+			{
+				Drawable.SetCornerRadius(15);
+			}
 		}
 
 		private void SetFontWeight()

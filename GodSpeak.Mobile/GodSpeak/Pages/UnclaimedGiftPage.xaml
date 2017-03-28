@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<views:CustomContentPage 
+<ContentView
 	xmlns="http://xamarin.com/schemas/2014/forms" 
 	xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
 	xmlns:res="clr-namespace:GodSpeak.Resources;assembly=GodSpeak"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-	Icon="gift_unclaimed_icon.png" 
-	Title="12 Gifts Unclaimed"
 	x:Class="GodSpeak.UnclaimedGiftPage">
-	<views:CustomContentPage.Content>
+	<ContentView.Content>
 			<AbsoluteLayout
 				HorizontalOptions="FillAndExpand"
 				VerticalOptions="FillAndExpand">
@@ -126,5 +124,5 @@
 				</Grid>
 				<views:SolidHeader />
 			</AbsoluteLayout>
-		</views:CustomContentPage.Content>
-</views:CustomContentPage>
+		</ContentView.Content>
+</ContentView>
