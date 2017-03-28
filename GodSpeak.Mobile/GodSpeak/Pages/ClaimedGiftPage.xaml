@@ -13,13 +13,12 @@
 				AbsoluteLayout.LayoutFlags="All"
 				AbsoluteLayout.LayoutBounds="0,0,1,1"
 			/>
-			<views:SolidHeader />
 			<StackLayout
 				AbsoluteLayout.LayoutFlags="XProportional,WidthProportional"
-				AbsoluteLayout.LayoutBounds="0,50,1,AutoSize"
+				AbsoluteLayout.LayoutBounds="0,0,1,AutoSize"
 				VerticalOptions="FillAndExpand"
 				Spacing="20"
-				Padding="{StaticResource PaddingTop}">
+				Padding="{StaticResource PaddingBelowHeader}">
 				<views:CustomPicker 
 					Margin="10,0"
 					x:Name="SortOptions"
@@ -30,7 +29,7 @@
 				/>	
 				<ScrollView 
 					VerticalOptions="FillAndExpand">
-					<views:StackList
+					<views:StackList						
 						ItemsSource="{Binding Users}">
 						<views:StackList.ItemTemplate>
 							<DataTemplate>
@@ -90,6 +89,7 @@
 										Grid.ColumnSpan="2"
 										Margin="0,10,10,0"
 										Style="{StaticResource ButtonWhite}"
+										Command="{Binding TappedCommand}"
 										HorizontalOptions="FillAndExpand"
 										Text="{Binding PeopleGifted, Converter={StaticResource PeopleGiftButtonTextConverter}}"												
 									/>
@@ -107,6 +107,7 @@
 					</views:StackList>
 				</ScrollView>
 			</StackLayout>
+			<views:SolidHeader />
 		</AbsoluteLayout>
 	</ContentView.Content>	
 </ContentView>

@@ -39,7 +39,7 @@ namespace GodSpeak
         {
             await Task.Delay (1000);
 
-            if (request.Email == "godspeak@gmail.com" && request.Password == "123456") {
+            if (request.Email == "Ben@rendr.io" && request.Password == "J0hn_galt") {
                 return new ApiResponse<LoginResponse> () {
                     StatusCode = System.Net.HttpStatusCode.OK,
                     Payload = new LoginResponse () {

@@ -54,8 +54,8 @@ namespace GodSpeak
 
         public void Init ()
         {
-            Email = "godspeak@gmail.com";
-            Password = "123456";
+            Email = "Ben@rendr.io";
+            Password = "J0hn_galt";
         }
 
         private async void DoLoginCommand ()
@@ -75,15 +75,21 @@ namespace GodSpeak
             hudService.Show ();
             var response = await _webApi.Login (new LoginRequest () { Email = Email, Password = Password });
             hudService.Hide ();
-            if (response.IsSuccess) {
+            if (response.IsSuccess) 
+			{
                 await _sessionService.SaveUser (response.Payload.Payload);
                 this.ShowViewModel<HomeViewModel> ();
-            } else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest) {
+            } 
+			else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest) 
+			{
                 var result = await this.DialogService.ShowMenu (Text.BadRequestTitle, Text.LoginInvalidEmailPassword, Text.TryAgain, Text.ForgotMyPasswordButtonTitle);
-                if (result == Text.ForgotMyPasswordButtonTitle) {
+                if (result == Text.ForgotMyPasswordButtonTitle) 
+				{
                     ForgotPasswordCommand.Execute ();
                 }
-            } else {
+            } 
+			else 
+			{
                 await HandleResponse (response);
             }
         }

@@ -19,8 +19,8 @@ namespace GodSpeak
 			_webApi = webApi;
 			_shareService = shareService;
 
-			UnclaimedGiftViewModel = new UnclaimedGiftViewModel(new DialogService(), webApi, shareService);
-			ClaimedGiftViewModel = new ClaimedGiftViewModel(new DialogService(), webApi, shareService);
+			UnclaimedGiftViewModel = new UnclaimedGiftViewModel(dialogService, webApi, shareService);
+			ClaimedGiftViewModel = new ClaimedGiftViewModel(dialogService, webApi, shareService);
 
 			SelectedTab = TabTypes.Unclaimed;
 
