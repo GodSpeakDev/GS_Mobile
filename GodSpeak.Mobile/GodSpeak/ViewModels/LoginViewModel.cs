@@ -78,7 +78,7 @@ namespace GodSpeak
             if (response.IsSuccess) {
                 await _sessionService.SaveUser (response.Payload);
                 this.ShowViewModel<HomeViewModel> ();
-            } else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest) {
+            } else if (response.StatusCode == System.Net.HttpStatusCode.Forbidden) {
                 var result = await this.DialogService.ShowMenu (Text.BadRequestTitle, Text.LoginInvalidEmailPassword, Text.TryAgain, Text.ForgotMyPasswordButtonTitle);
                 if (result == Text.ForgotMyPasswordButtonTitle) {
                     ForgotPasswordCommand.Execute ();
@@ -96,8 +96,13 @@ namespace GodSpeak
         private async void DoForgotPasswordCommand ()
         {
             var input = await this.DialogService.ShowInputPopup (Text.RecoverPasswordTitle, Text.RecoverPasswordText, new InputOptions () { Placeholder = Text.EmailPlaceholder }, Text.SendInstructions, Text.AnonymousNevermind);
+
             if (input.SelectedButton == Text.SendInstructions) {
-                await this.DialogService.ShowAlert (Text.RecoverPasswordTitle, string.Format (Text.RecoverPasswordSuccessText, input.InputText), Text.AnonymousSuccessButtonTitle);
+                var response = await _webApi.ForgotPassword (new ForgotPasswordRequest () { Email = input.InputText });
+                if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    await this.DialogService.ShowAlert (Text.RecoverPasswordTitle, string.Format (Text.RecoverPasswordSuccessText, input.InputText), Text.AnonymousSuccessButtonTitle);
+                //else
+                //await this.DialogService.ShowAlert (Text.RecoverPasswordTitle, string.Format (Text.RecoverPasswordSuccessText, input.InputText), Text.AnonymousSuccessButtonTitle);
             }
         }
     }

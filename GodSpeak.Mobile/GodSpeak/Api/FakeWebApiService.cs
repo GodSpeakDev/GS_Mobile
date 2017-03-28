@@ -149,10 +149,10 @@ namespace GodSpeak
             };
         }
 
-        public async Task<ApiResponse<ForgotPasswordResponse>> ForgotPassword (ForgotPasswordRequest request)
+        public async Task<ApiResponse<string>> ForgotPassword (ForgotPasswordRequest request)
         {
             await Task.Delay (delay);
-            return new ApiResponse<ForgotPasswordResponse> () {
+            return new ApiResponse<string> () {
                 StatusCode = System.Net.HttpStatusCode.OK
             };
         }

@@ -15,6 +15,7 @@ namespace GodSpeak.Api
         const string InviteBundlesUri = "invite/bundles";
         const string ProfileUri = "user";
         const string PurchaseInviteUri = "invite/purchase";
+        const string RecoverPasswordInviteUri = "user/recoverpassword/";
 
         protected HttpClient client = new HttpClient ();
         readonly IMvxTrace tracer;
@@ -26,14 +27,21 @@ namespace GodSpeak.Api
 
         }
 
+        public new async Task<ApiResponse<String>> ForgotPassword (ForgotPasswordRequest request)
+        {
+            return await DoGet<String> (RecoverPasswordInviteUri, new Dictionary<string, string> () { { "emailAddress", request.Email } });
+
+        }
+
+
         public new async Task<ApiResponse<GetCategoriesResponse>> GetCategories (GetCategoriesRequest request)
         {
             AddAuthToken (request.Token);
-            var profileResponse = await DoGet<UserResponse> (ProfileUri);
+            var profileResponse = await DoGet<User> (ProfileUri);
             var catResponse = new ApiResponse<GetCategoriesResponse> ();
             catResponse.Message = profileResponse.Message;
             catResponse.Title = profileResponse.Title;
-            catResponse.Payload = new GetCategoriesResponse () { Payload = profileResponse.Payload.Payload.MessageCategorySettings };
+            catResponse.Payload = new GetCategoriesResponse () { Payload = profileResponse.Payload.MessageCategorySettings };
             catResponse.StatusCode = profileResponse.StatusCode;
             return catResponse;
 
@@ -42,11 +50,11 @@ namespace GodSpeak.Api
         public new async Task<ApiResponse<GetMessageConfigResponse>> GetMessageConfig (GetMessageConfigRequest request)
         {
             AddAuthToken (request.Token);
-            var profileResponse = await DoGet<UserResponse> (ProfileUri);
+            var profileResponse = await DoGet<User> (ProfileUri);
             var configResponse = new ApiResponse<GetMessageConfigResponse> ();
             configResponse.Message = profileResponse.Message;
             configResponse.Title = profileResponse.Title;
-            configResponse.Payload = new GetMessageConfigResponse () { Payload = profileResponse.Payload.Payload.MessageDayOfWeekSettings };
+            configResponse.Payload = new GetMessageConfigResponse () { Payload = profileResponse.Payload.MessageDayOfWeekSettings };
             configResponse.StatusCode = profileResponse.StatusCode;
             return configResponse;
         }
@@ -86,6 +94,18 @@ namespace GodSpeak.Api
             return await ParseResponse<T> (uri, apiResponse);
         }
 
+        protected async Task<ApiResponse<T>> DoPut<T> (string uri, object request)
+        {
+            var jsonBody = JsonConvert.SerializeObject (request);
+
+
+            tracer.Trace (MvxTraceLevel.Diagnostic, "api-post", $"METHOD: {uri}\rBODY: {jsonBody}");
+
+            var apiResponse = await client.PutAsync (uri, new StringContent (jsonBody, Encoding.UTF8, "application/json"));
+
+            return await ParseResponse<T> (uri, apiResponse);
+        }
+
         protected async Task<ApiResponse<T>> DoGet<T> (string uri)
         {
             tracer.Trace (MvxTraceLevel.Diagnostic, "api-get", $"METHOD: {uri}");
@@ -93,6 +113,8 @@ namespace GodSpeak.Api
 
             return await ParseResponse<T> (uri, apiResponse);
         }
+
+
 
         protected async Task<ApiResponse<T>> DoGet<T> (string uri, Dictionary<string, string> args)
         {

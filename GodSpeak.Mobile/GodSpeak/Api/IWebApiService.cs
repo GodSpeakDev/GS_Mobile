@@ -20,7 +20,7 @@ namespace GodSpeak
         Task<ApiResponse<PurchaseInviteResponse>> PurchaseInvite (PurchaseInviteRequest request);
         Task<ApiResponse<GetMessagesResponse>> GetMessages (GetMessagesRequest request);
         Task<ApiResponse<GetMessageResponse>> GetMessage (GetMessageRequest request);
-        Task<ApiResponse<ForgotPasswordResponse>> ForgotPassword (ForgotPasswordRequest request);
+        Task<ApiResponse<string>> ForgotPassword (ForgotPasswordRequest request);
         Task<ApiResponse<RegisterUserResponse>> RegisterUser (RegisterUserRequest request);
         Task<ApiResponse<SaveCategoriesResponse>> SaveCategories (SaveCategoriesRequest request);
         Task<ApiResponse<SetMessagesConfigResponse>> SetMessagesConfigUser (SetMessagesConfigRequest request);
