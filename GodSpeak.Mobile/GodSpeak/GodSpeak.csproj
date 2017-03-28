@@ -138,7 +138,7 @@
     <Compile Include="ViewModels\CustomViewModel.cs" />
     <Compile Include="Pages\CustomContentPage.cs" />
     <Compile Include="Api\Response\ApiResponse.cs" />
-    <Compile Include="Api\Response\LoginResponse.cs" />
+    <Compile Include="Api\Response\UserResponse.cs" />
     <Compile Include="Api\Response\RegisterUserResponse.cs" />
     <Compile Include="Api\Dtos\MessageCategory.cs" />
     <Compile Include="Api\Dtos\DayOfWeekSettings.cs" />
