@@ -3,78 +3,72 @@ using System.Collections.Generic;
 
 namespace GodSpeak
 {
-	public class User
-	{
-		public User()
-		{
-			SelectedCategories = new List<MessageCategory>();
-			DayOfWeekSettings = new List<DayOfWeekSettings>();
-		}
+    public class User
+    {
+        public User ()
+        {
+            MessageCategorySettings = new List<MessageCategory> ();
+            MessageDayOfWeekSettings = new List<DayOfWeekSettings> ();
+        }
 
-		public string Token
-		{
-			get;
-			set;
-		}
+        public string Token {
+            get;
+            set;
+        }
 
-		public Guid Id
-		{
-			get;
-			set;
-		}
+        public Guid Id {
+            get;
+            set;
+        }
 
-		public decimal Credits
-		{
-			get;
-			set;
-		}
+        public int InviteBalance {
+            get;
+            set;
+        }
 
-		public string FirstName
-		{
-			get;
-			set;
-		}
+        public string InviteCode {
+            get;
+            set;
+        }
 
-		public string LastName
-		{
-			get;
-			set;
-		}
+        public string FirstName {
+            get;
+            set;
+        }
 
-		public string Country
-		{
-			get;
-			set;
-		}
+        public string LastName {
+            get;
+            set;
+        }
 
-		public string ZipCode
-		{
-			get;
-			set;
-		}
+        public string CountryCode {
+            get;
+            set;
+        }
 
-		public string Email
-		{
-			get;
-			set;
-		}
+        public string PostalCode {
+            get;
+            set;
+        }
 
-		public string PhotoUrl
-		{
-			get;
-			set;
-		}
+        public string Email {
+            get;
+            set;
+        }
 
-		public List<MessageCategory> SelectedCategories
-		{
-			get;
-			set;
-		}
+        public string PhotoUrl {
+            get;
+            set;
+        }
 
-		public List<DayOfWeekSettings> DayOfWeekSettings
-		{
-			get;
-			set;
-		}
-	}
+        public List<MessageCategory> MessageCategorySettings {
+            get;
+            set;
+        }
+
+        public List<DayOfWeekSettings> MessageDayOfWeekSettings {
+            get;
+            set;
+        }
+    }
 }

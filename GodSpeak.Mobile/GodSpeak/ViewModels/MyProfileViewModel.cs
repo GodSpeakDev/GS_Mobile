@@ -154,8 +154,8 @@ namespace GodSpeak
 			this.Image = user.PhotoUrl;
 			this.FirstName = user.FirstName;
 			this.LastName = user.LastName;
-			this.SelectedCountryIndex = new List<string>(Countries).IndexOf(user.Country);
-			this.ZipCode = user.ZipCode;
+			this.SelectedCountryIndex = new List<string>(Countries).IndexOf(user.CountryCode);
+			this.ZipCode = user.PostalCode;
 		}
 
 		private async void DoSaveCommand()

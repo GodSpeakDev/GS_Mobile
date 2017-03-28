@@ -186,61 +186,59 @@ namespace GodSpeak
         public async Task<ApiResponse<SetMessagesConfigResponse>> SetMessagesConfigUser (SetMessagesConfigRequest request)
         {
             await Task.Delay (delay);
-            _dailySettings = request.Settings;
+            //_dailySettings = request.Settings;
             return new ApiResponse<SetMessagesConfigResponse> () {
                 StatusCode = System.Net.HttpStatusCode.OK,
                 Payload = new SetMessagesConfigResponse () {
-                    Payload = _dailySettings
+                    //Payload = _dailySettings
                 }
             };
         }
 
-        public async Task<ApiResponse<GetInviteBundlesResponse>> GetInviteBundles (GetInviteBundlesRequest request)
+        public async Task<ApiResponse<List<InviteBundle>>> GetInviteBundles (GetInviteBundlesRequest request)
         {
             await Task.Delay (delay);
-            return new ApiResponse<GetInviteBundlesResponse> () {
+            return new ApiResponse<List<InviteBundle>> () {
                 StatusCode = System.Net.HttpStatusCode.OK,
-                Payload = new GetInviteBundlesResponse () {
-                    Payload = new List<InviteBundle> ()
+                Payload = new List<InviteBundle> ()
                     {
                         new InviteBundle()
                         {
                             InviteBundleId=Guid.NewGuid(),
                             Cost = 9.97m,
-                            NumOfInvites=3,
-                            ItunesId="1",
-                            PlaystoreId="1",
+                            NumberOfInvites=3,
+                            AppStoreSku="1",
+                            PlayStoreSku="1",
                             CostDescription = "$1.99"
                         },
                         new InviteBundle()
                         {
                             InviteBundleId=Guid.NewGuid(),
                             Cost = 19.90m,
-                            NumOfInvites=10,
-                            ItunesId="2",
-                            PlaystoreId="2",
+                            NumberOfInvites=10,
+                            AppStoreSku="2",
+                            PlayStoreSku="2",
                             CostDescription = "$4.99"
                         },
                         new InviteBundle()
                         {
                             InviteBundleId=Guid.NewGuid(),
                             Cost = 24.75m,
-                            NumOfInvites=25,
-                            ItunesId="3",
-                            PlaystoreId="3",
+                            NumberOfInvites=25,
+                            AppStoreSku="3",
+                            PlayStoreSku="3",
                             CostDescription = "$24.75"
                         },
                         new InviteBundle()
                         {
                             InviteBundleId=Guid.NewGuid(),
                             Cost = 44.50m,
-                            NumOfInvites=50,
-                            ItunesId="4",
-                            PlaystoreId="4",
+                            NumberOfInvites=50,
+                            AppStoreSku="4",
+                            PlayStoreSku="4",
                             CostDescription = "$44.50"
                         },
                     }
-                }
             };
         }
 
@@ -258,7 +256,7 @@ namespace GodSpeak
             return new ApiResponse<GetMessageConfigResponse> () {
                 StatusCode = System.Net.HttpStatusCode.OK,
                 Payload = new GetMessageConfigResponse () {
-                    Payload = _dailySettings
+                    //Payload = _dailySettings
                 }
             };
         }
@@ -268,15 +266,15 @@ namespace GodSpeak
             return new User () {
                 Id = Guid.NewGuid (),
                 Email = "godspeak@gmail.com",
-                ZipCode = "63017",
-                Country = "USA",
-                Credits = 15.0m,
+                PostalCode = "63017",
+                CountryCode = "USA",
+                InviteBalance = 15,
                 FirstName = "GodSpeak",
                 LastName = "GodSpeak",
                 PhotoUrl = "http://images.clipartpanda.com/happy-man-images-A-Happy-Man.jpg",
                 Token = Guid.NewGuid ().ToString (),
-                SelectedCategories = _categories,
-                DayOfWeekSettings = new List<DayOfWeekSettings> () {
+                MessageCategorySettings = _categories,
+                MessageDayOfWeekSettings = new List<DayOfWeekSettings> () {
 
                 }
             };
@@ -347,72 +345,7 @@ namespace GodSpeak
             }
         };
 
-        private static List<DayOfWeekSettings> _dailySettings = new List<DayOfWeekSettings> ()
-        {
-            new DayOfWeekSettings()
-            {
-                DayOfWeekSettingsId = Guid.NewGuid(),
-                Weekday = 0,
-                Enabled = true,
-                StartDateTime = DateTime.Now.Date.AddHours(10),
-                EndDateTime = DateTime.Now.Date.AddHours(20),
-                NumberOfMessages = 3
-            },
-            new DayOfWeekSettings()
-            {
-                DayOfWeekSettingsId = Guid.NewGuid(),
-                Weekday = 1,
-                Enabled = false,
-                StartDateTime = DateTime.Now.Date.AddHours(10),
-                EndDateTime = DateTime.Now.Date.AddHours(20),
-                NumberOfMessages = 3
-            },
-            new DayOfWeekSettings()
-            {
-                DayOfWeekSettingsId = Guid.NewGuid(),
-                Weekday = 2,
-                Enabled = false,
-                StartDateTime = DateTime.Now.Date.AddHours(10),
-                EndDateTime = DateTime.Now.Date.AddHours(20),
-                NumberOfMessages = 3
-            },
-            new DayOfWeekSettings()
-            {
-                DayOfWeekSettingsId = Guid.NewGuid(),
-                Weekday = 3,
-                Enabled = true,
-                StartDateTime = DateTime.Now.Date.AddHours(10),
-                EndDateTime = DateTime.Now.Date.AddHours(10),
-                NumberOfMessages = 3
-            },
-            new DayOfWeekSettings()
-            {
-                DayOfWeekSettingsId = Guid.NewGuid(),
-                Weekday = 4,
-                Enabled = true,
-                StartDateTime = DateTime.Now.Date.AddHours(12),
-                EndDateTime = DateTime.Now.Date.AddHours(17),
-                NumberOfMessages = 3
-            },
-            new DayOfWeekSettings()
-            {
-                DayOfWeekSettingsId = Guid.NewGuid(),
-                Weekday = 5,
-                Enabled = false,
-                StartDateTime = DateTime.Now.Date.AddHours(12),
-                EndDateTime = DateTime.Now.Date.AddHours(17),
-                NumberOfMessages = 3
-            },
-            new DayOfWeekSettings()
-            {
-                DayOfWeekSettingsId = Guid.NewGuid(),
-                Weekday = 6,
-                Enabled = false,
-                StartDateTime = DateTime.Now.Date.AddHours(10),
-                EndDateTime = DateTime.Now.Date.AddHours(20),
-                NumberOfMessages = 3
-            },
-        };
+
 
         private static List<Message> _messages = new List<Message> ()
         {
