@@ -101,8 +101,8 @@ namespace GodSpeak
                 var response = await _webApi.ForgotPassword (new ForgotPasswordRequest () { Email = input.InputText });
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     await this.DialogService.ShowAlert (Text.RecoverPasswordTitle, string.Format (Text.RecoverPasswordSuccessText, input.InputText), Text.AnonymousSuccessButtonTitle);
-                //else
-                //await this.DialogService.ShowAlert (Text.RecoverPasswordTitle, string.Format (Text.RecoverPasswordSuccessText, input.InputText), Text.AnonymousSuccessButtonTitle);
+                else if (response.StatusCode == System.Net.HttpStatusCode.InternalServerError)
+                    await this.DialogService.ShowAlert (Text.ErrorPopupTitle, Text.ErrorPopupText, Text.OkPopup);
             }
         }
     }
