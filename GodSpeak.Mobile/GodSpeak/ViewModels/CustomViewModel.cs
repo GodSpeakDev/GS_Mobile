@@ -25,7 +25,7 @@ namespace GodSpeak
 			this.Close(this);
 		}
 
-		public async Task HandleResponse<T>(BaseResponse<T> response)
+		public async Task HandleResponse<T>(ApiResponse<T> response)
 		{
 			if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
 			{
@@ -39,8 +39,8 @@ namespace GodSpeak
 			}
 			else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
 			{
-				await DialogService.ShowAlert(response.ErrorTitle ?? Text.ErrorPopupTitle, 
-				                              response.ErrorMessage ?? Text.ErrorPopupText);
+				await DialogService.ShowAlert(response.Title ?? Text.ErrorPopupTitle, 
+				                              response.Message ?? Text.ErrorPopupText);
 			}
 			else
 			{

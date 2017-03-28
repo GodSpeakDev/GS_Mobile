@@ -39,7 +39,7 @@ namespace GodSpeak
 			var response = await _webApi.GetCategories(new GetCategoriesRequest());
 			if (response.IsSuccess)
 			{
-				Categories = new ObservableCollection<MessageCategory>(response.Content.Payload);
+				Categories = new ObservableCollection<MessageCategory>(response.Payload.Payload);
 			}
 			else
 			{
@@ -58,7 +58,7 @@ namespace GodSpeak
 
 			if (response.IsSuccess)
 			{
-				Categories = new ObservableCollection<MessageCategory>(response.Content.Payload);
+				Categories = new ObservableCollection<MessageCategory>(response.Payload.Payload);
 				await DialogService.ShowAlert(Text.SuccessPopupTitle, Text.SavedCategoriesSuccessful);
 			}
 			else

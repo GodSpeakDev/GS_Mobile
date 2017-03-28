@@ -58,7 +58,7 @@ namespace GodSpeak
             }
         }
 
-        protected async Task HandleBadResponse (BaseResponse<ValidateCodeResponse> response)
+        protected async Task HandleBadResponse (ApiResponse<ValidateCodeResponse> response)
         {
             if (response.StatusCode == System.Net.HttpStatusCode.BadRequest) {
                 await PromptUserToRequestCode (response);
@@ -67,9 +67,9 @@ namespace GodSpeak
             }
         }
 
-        async Task PromptUserToRequestCode (BaseResponse<ValidateCodeResponse> response)
+        async Task PromptUserToRequestCode (ApiResponse<ValidateCodeResponse> response)
         {
-            var shouldGetACode = await this.DialogService.ShowConfirmation (response.ErrorTitle, response.ErrorMessage, Text.GetACode, Text.TryAgain);
+            var shouldGetACode = await this.DialogService.ShowConfirmation (response.Title, response.Message, Text.GetACode, Text.TryAgain);
             if (shouldGetACode) {
                 _parentViewModel.SelectPage<RequestInviteCodeViewModel> ();
             }

@@ -43,7 +43,7 @@ namespace GodSpeak.iOS
             Mvx.LazyConstructAndRegisterSingleton<IContactService, ContactsService> ();
             Mvx.LazyConstructAndRegisterSingleton<IMailService, MailService> ();
             Mvx.LazyConstructAndRegisterSingleton<IFeedbackService, FeedbackService> ();
-
+            Mvx.LazyConstructAndRegisterSingleton<IProgressHudService, ProgressHudService> ();
 
             return new App ();
         }

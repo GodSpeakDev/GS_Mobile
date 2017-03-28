@@ -79,7 +79,7 @@ namespace GodSpeak.Tests.ViewModels
         {
 
             //Arrangee
-            WebApiValidateWillReturn (new BaseResponse<ValidateCodeResponse> () { StatusCode = System.Net.HttpStatusCode.OK });
+            WebApiValidateWillReturn (new ApiResponse<ValidateCodeResponse> () { StatusCode = System.Net.HttpStatusCode.OK });
             //Act
             ViewModelUT.ClaimInviteCodeCommand.Execute ();
 
@@ -92,7 +92,7 @@ namespace GodSpeak.Tests.ViewModels
         public void if_WebApiService_ValidateCode_returns_bad_request_ShowViewModel_SHOULD_NOT_BE_invoked ()
         {
             //Arrange
-            WebApiValidateWillReturn (new BaseResponse<ValidateCodeResponse> () { StatusCode = System.Net.HttpStatusCode.BadRequest });
+            WebApiValidateWillReturn (new ApiResponse<ValidateCodeResponse> () { StatusCode = System.Net.HttpStatusCode.BadRequest });
 
             //Act
             ViewModelUT.ClaimInviteCodeCommand.Execute ();
@@ -105,14 +105,14 @@ namespace GodSpeak.Tests.ViewModels
         public void if_WebApiService_ValidateCode_returns_bad_request_DialogService_ShowConfirmation_SHOULD_BE_invoked ()
         {
             //Arrange
-            var badResponse = new BaseResponse<ValidateCodeResponse> () { StatusCode = System.Net.HttpStatusCode.BadRequest, ErrorTitle = DataFixture.Create<string> (), ErrorMessage = DataFixture.Create<string> () };
+            var badResponse = new ApiResponse<ValidateCodeResponse> () { StatusCode = System.Net.HttpStatusCode.BadRequest, Title = DataFixture.Create<string> (), Message = DataFixture.Create<string> () };
             WebApiValidateWillReturn (badResponse);
 
             //Act
             ViewModelUT.ClaimInviteCodeCommand.Execute ();
 
             //Assert
-            A.CallTo (() => FakeDialogService.ShowConfirmation (badResponse.ErrorTitle, badResponse.ErrorMessage, GetACode, TryAgain));
+            A.CallTo (() => FakeDialogService.ShowConfirmation (badResponse.Title, badResponse.Message, GetACode, TryAgain));
         }
 
 
@@ -120,8 +120,8 @@ namespace GodSpeak.Tests.ViewModels
         public void if_ShowConfirmation_returns_True_WelcomeVM_SelectPage_SHOULD_BE_invoked ()
         {
             //Arrange
-            var badResponse = new BaseResponse<ValidateCodeResponse> () { StatusCode = System.Net.HttpStatusCode.BadRequest, ErrorTitle = DataFixture.Create<string> (), ErrorMessage = DataFixture.Create<string> () };
-            A.CallTo (() => FakeDialogService.ShowConfirmation (badResponse.ErrorTitle, badResponse.ErrorMessage, GetACode, TryAgain)).Returns (Task.FromResult (true));
+            var badResponse = new ApiResponse<ValidateCodeResponse> () { StatusCode = System.Net.HttpStatusCode.BadRequest, Title = DataFixture.Create<string> (), Message = DataFixture.Create<string> () };
+            A.CallTo (() => FakeDialogService.ShowConfirmation (badResponse.Title, badResponse.Message, GetACode, TryAgain)).Returns (Task.FromResult (true));
 
             WebApiValidateWillReturn (badResponse);
 
@@ -138,8 +138,8 @@ namespace GodSpeak.Tests.ViewModels
         public void if_ShowConfirmation_returns_False_WelcomeVM_SelectPage_SHOULD_NOT_BE_invoked ()
         {
             //Arrange
-            var badResponse = new BaseResponse<ValidateCodeResponse> () { StatusCode = System.Net.HttpStatusCode.BadRequest, ErrorTitle = DataFixture.Create<string> (), ErrorMessage = DataFixture.Create<string> () };
-            A.CallTo (() => FakeDialogService.ShowConfirmation (badResponse.ErrorTitle, badResponse.ErrorMessage, GetACode, TryAgain)).Returns (Task.FromResult (false));
+            var badResponse = new ApiResponse<ValidateCodeResponse> () { StatusCode = System.Net.HttpStatusCode.BadRequest, Title = DataFixture.Create<string> (), Message = DataFixture.Create<string> () };
+            A.CallTo (() => FakeDialogService.ShowConfirmation (badResponse.Title, badResponse.Message, GetACode, TryAgain)).Returns (Task.FromResult (false));
 
             WebApiValidateWillReturn (badResponse);
 
@@ -177,7 +177,7 @@ namespace GodSpeak.Tests.ViewModels
         /// Helper Method for setting up Fake Web Api
         /// </summary>
         /// <param name="response">Response.</param>
-        void WebApiValidateWillReturn (BaseResponse<ValidateCodeResponse> response)
+        void WebApiValidateWillReturn (ApiResponse<ValidateCodeResponse> response)
         {
             var expectedCode = DataFixture.Create<string> ();
 

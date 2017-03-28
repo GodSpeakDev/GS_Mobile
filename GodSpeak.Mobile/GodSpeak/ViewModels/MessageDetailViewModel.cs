@@ -146,7 +146,7 @@ namespace GodSpeak
 
 			if (messageResponse.IsSuccess)
 			{
-				Message = messageResponse.Content.Payload;
+				Message = messageResponse.Payload.Payload;
 				Author = Message.Author;
 			}
 			else

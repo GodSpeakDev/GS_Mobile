@@ -57,6 +57,6 @@
 	<key>NSContactsUsageDescription</key>
 	<string>We&apos;d like access to your contacts so we can save you time sharing GodSpeak with friends.</string>
 	<key>CFBundleVersion</key>
-	<string>6</string>
+	<string>7</string>
 </dict>
 </plist>

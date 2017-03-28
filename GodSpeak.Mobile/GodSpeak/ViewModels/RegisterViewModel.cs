@@ -223,7 +223,7 @@ namespace GodSpeak
 			if (response.IsSuccess)
 			{
 				await DialogService.ShowAlert(Text.SuccessfulRegisterPopupTitle, Text.SuccessGiftCodeText, Text.SuccessfulRegisterButtonText);
-				await _sessionService.SaveUser(response.Content.Payload);
+				await _sessionService.SaveUser(response.Payload.Payload);
 				this.ShowViewModel<HomeViewModel>();
 			}
 			else
