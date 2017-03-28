@@ -385,6 +385,7 @@
     <Compile Include="Services\IFeedbackService.cs" />
     <Compile Include="Api\AzureWebApiService.cs" />
     <Compile Include="Services\IProgressHudService.cs" />
+    <Compile Include="Api\Dtos\Country.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
+using GodSpeak.Api.Dtos;
 
 namespace GodSpeak
 {
@@ -35,19 +36,17 @@ namespace GodSpeak
             };
         }
 
-        public async Task<ApiResponse<UserResponse>> Login (LoginRequest request)
+        public async Task<ApiResponse<User>> Login (LoginRequest request)
         {
             await Task.Delay (1000);
 
             if (request.Email == "godspeak@gmail.com" && request.Password == "123456") {
-                return new ApiResponse<UserResponse> () {
+                return new ApiResponse<User> () {
                     StatusCode = System.Net.HttpStatusCode.OK,
-                    Payload = new UserResponse () {
-                        Payload = GetTestPayload ()
-                    }
+                    Payload = GetTestPayload ()
                 };
             } else {
-                return new ApiResponse<UserResponse> () {
+                return new ApiResponse<User> () {
                     StatusCode = System.Net.HttpStatusCode.BadRequest,
                     Title = "Invalid Credentials",
                     Message = "Your login or password doesn't match."
@@ -315,6 +314,11 @@ namespace GodSpeak
             }
 
             return impactedDays;
+        }
+
+        public Task<ApiResponse<List<Country>>> GetCountries ()
+        {
+            throw new NotImplementedException ();
         }
 
         private static List<MessageCategory> _categories = new List<MessageCategory> ()

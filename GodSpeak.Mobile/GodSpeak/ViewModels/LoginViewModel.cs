@@ -76,7 +76,7 @@ namespace GodSpeak
             var response = await _webApi.Login (new LoginRequest () { Email = Email, Password = Password });
             hudService.Hide ();
             if (response.IsSuccess) {
-                await _sessionService.SaveUser (response.Payload.Payload);
+                await _sessionService.SaveUser (response.Payload);
                 this.ShowViewModel<HomeViewModel> ();
             } else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest) {
                 var result = await this.DialogService.ShowMenu (Text.BadRequestTitle, Text.LoginInvalidEmailPassword, Text.TryAgain, Text.ForgotMyPasswordButtonTitle);

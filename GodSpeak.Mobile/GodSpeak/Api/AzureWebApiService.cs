@@ -68,10 +68,10 @@ namespace GodSpeak.Api
 
         }
 
-        public new async Task<ApiResponse<UserResponse>> Login (LoginRequest request)
+        public new async Task<ApiResponse<User>> Login (LoginRequest request)
         {
 
-            return await DoPost<UserResponse> (LoginMethodUri, request);
+            return await DoPost<User> (LoginMethodUri, request);
         }
 
         protected async Task<ApiResponse<T>> DoPost<T> (string uri, object request)

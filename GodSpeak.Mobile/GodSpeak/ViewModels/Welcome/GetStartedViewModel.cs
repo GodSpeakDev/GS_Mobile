@@ -2,6 +2,7 @@
 using MvvmCross.Core.ViewModels;
 using System.Threading.Tasks;
 using GodSpeak.Resources;
+using GodSpeak.Services;
 
 namespace GodSpeak
 {
@@ -34,9 +35,11 @@ namespace GodSpeak
         }
 
         readonly IWebApiService webApiService;
+        readonly IProgressHudService hudService;
 
-        public GetStartedViewModel (IDialogService dialogService, IWebApiService webApiService) : base (dialogService)
+        public GetStartedViewModel (IDialogService dialogService, IWebApiService webApiService, IProgressHudService hudService) : base (dialogService)
         {
+            this.hudService = hudService;
             this.webApiService = webApiService;
         }
 
@@ -93,8 +96,9 @@ namespace GodSpeak
                 await this.DialogService.ShowAlert (Text.ErrorPopupTitle, Text.InviteCodeRequiredMessage);
                 return;
             }
-
+            hudService.Show ();
             var response = await webApiService.ValidateCode (new ValidateCodeRequest () { Code = this.GiftCodeText });
+            hudService.Hide ();
             if (response.IsSuccess) {
                 ShowGiftCodeSuccessBox ();
                 //ShowViewModel<RegisterViewModel> ();
