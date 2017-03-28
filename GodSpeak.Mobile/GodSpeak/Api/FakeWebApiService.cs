@@ -35,19 +35,19 @@ namespace GodSpeak
             };
         }
 
-        public async Task<ApiResponse<LoginResponse>> Login (LoginRequest request)
+        public async Task<ApiResponse<UserResponse>> Login (LoginRequest request)
         {
             await Task.Delay (1000);
 
             if (request.Email == "godspeak@gmail.com" && request.Password == "123456") {
-                return new ApiResponse<LoginResponse> () {
+                return new ApiResponse<UserResponse> () {
                     StatusCode = System.Net.HttpStatusCode.OK,
-                    Payload = new LoginResponse () {
+                    Payload = new UserResponse () {
                         Payload = GetTestPayload ()
                     }
                 };
             } else {
-                return new ApiResponse<LoginResponse> () {
+                return new ApiResponse<UserResponse> () {
                     StatusCode = System.Net.HttpStatusCode.BadRequest,
                     Title = "Invalid Credentials",
                     Message = "Your login or password doesn't match."

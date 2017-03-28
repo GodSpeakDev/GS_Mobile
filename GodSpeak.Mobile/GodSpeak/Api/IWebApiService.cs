@@ -8,7 +8,7 @@ namespace GodSpeak
     {
         Task<ApiResponse<ValidateCodeResponse>> ValidateCode (ValidateCodeRequest request);
         Task<ApiResponse<RequestInviteResponse>> RequestInvite (RequestInviteRequest request);
-        Task<ApiResponse<LoginResponse>> Login (LoginRequest request);
+        Task<ApiResponse<UserResponse>> Login (LoginRequest request);
         Task<ApiResponse<LogoutResponse>> Logout (LogoutRequest request);
         Task<ApiResponse<GetCategoriesResponse>> GetCategories (GetCategoriesRequest request);
         Task<ApiResponse<GetMessageConfigResponse>> GetMessageConfig (GetMessageConfigRequest request);

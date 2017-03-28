@@ -14,6 +14,8 @@ namespace GodSpeak.Api
         const string LoginMethodUri = "user/login";
         const string InviteBundlesUri = "invite/bundles";
         const string ProfileUri = "user";
+        const string PurchaseInviteUri = "invite/purchase";
+
         protected HttpClient client = new HttpClient ();
         readonly IMvxTrace tracer;
 
@@ -57,6 +59,13 @@ namespace GodSpeak.Api
         public new async Task<ApiResponse<List<InviteBundle>>> GetInviteBundles (GetInviteBundlesRequest request)
         {
             return await DoGet<List<InviteBundle>> (InviteBundlesUri);
+        }
+
+        public new async Task<ApiResponse<PurchaseInviteResponse>> PurchaseInvite (PurchaseInviteRequest request)
+        {
+            AddAuthToken (request.Token);
+            return await DoPost<PurchaseInviteResponse> (PurchaseInviteUri, request);
+
         }
 
         public new async Task<ApiResponse<UserResponse>> Login (LoginRequest request)
