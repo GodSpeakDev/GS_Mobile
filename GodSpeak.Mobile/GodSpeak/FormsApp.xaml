@@ -27,6 +27,13 @@
 			
 			<!-- Global Values -->
 			<x:Double x:Key="ElementHeight">42</x:Double>
+			<Thickness x:Key="PaddingTop">
+				<OnPlatform x:TypeArguments="Thickness">
+	            	<OnPlatform.iOS>0,20,0,0</OnPlatform.iOS>
+	            	<OnPlatform.Android>0,0,0,0</OnPlatform.Android>
+	            	<OnPlatform.WinPhone>0,0,0,0</OnPlatform.WinPhone>
+            	</OnPlatform>	
+			</Thickness>
 						
 			<!-- Global Colors -->
 			<Color x:Key="primaryColor">#00a5ff</Color>
@@ -41,6 +48,7 @@
 			<Color x:Key="outlinePlaceholderColor">#979797</Color>	
 			<Color x:Key="warningColor">#FF9000</Color>	
 			<Color x:Key="textInputDisabled">#d9dadb</Color>	
+			<Color x:Key="disableTab">#474843</Color>	
 
 			<!-- Label Styles -->
 			<Style x:Key="AlertSheetTitle" TargetType="Label">
@@ -200,6 +208,27 @@
 				<Setter Property="TextColor" Value="{StaticResource textInputFocusPlaceholder}" />				
 				<Setter Property="FontWeight" Value="Regular" />
 				<Setter Property="FontSize" Value="14" />
+			</Style>
+
+			<Style x:Key="TabTitle" TargetType="godspeak:CustomLabel">
+				<Setter Property="FontWeight" Value="Regular" />
+				<Setter Property="FontSize" Value="10" />
+				<Style.Triggers>
+					<DataTrigger TargetType="godspeak:CustomLabel" Binding="{Binding IsSelected}" Value="True">
+						<Setter Property="TextColor" Value="{StaticResource primaryColor}" />								
+					</DataTrigger>
+					<DataTrigger TargetType="godspeak:CustomLabel" Binding="{Binding IsSelected}" Value="False">
+						<Setter Property="TextColor" Value="{StaticResource disableTab}" />								
+					</DataTrigger>
+				</Style.Triggers>
+			</Style>
+
+			<Style x:Key="UnselectedTabTitle" TargetType="godspeak:CustomLabel" BasedOn="{StaticResource TabTitle}">
+				<Setter Property="TextColor" Value="{StaticResource disableTab}" />				
+			</Style>
+
+			<Style x:Key="SelectedTabTitle" TargetType="godspeak:CustomLabel" BasedOn="{StaticResource TabTitle}">
+				<Setter Property="TextColor" Value="{StaticResource primaryColor}" />				
 			</Style>
 
 			<!-- Button Styles -->	

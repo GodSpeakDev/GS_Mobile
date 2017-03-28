@@ -21,7 +21,8 @@
 					ItemsSource="{Binding Messages}"
 					SelectedItem="{Binding SelectedItem}"
 					BackgroundColor="Transparent"
-					SeparatorVisibility="None"		
+					SeparatorVisibility="None"
+					SeparatorColor="Transparent"
 					HasUnevenRows="true"
 					>
 					<ListView.Header>

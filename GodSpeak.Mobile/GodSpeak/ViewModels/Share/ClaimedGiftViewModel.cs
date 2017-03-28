@@ -38,6 +38,13 @@ namespace GodSpeak
 			set { SetProperty(ref _sortOptions, value); }
 		}
 
+		private bool _isVisible;
+		public bool IsVisible
+		{
+			get { return _isVisible;}
+			set { SetProperty(ref _isVisible, value);}
+		}
+
 		private ObservableCollection<UserModel> _users;
 		public ObservableCollection<UserModel> Users
 		{

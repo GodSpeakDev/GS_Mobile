@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<views:CustomContentPage 
+<ContentView 
 	xmlns="http://xamarin.com/schemas/2014/forms" 
 	xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
 	xmlns:res="clr-namespace:GodSpeak.Resources;assembly=GodSpeak"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-	Icon="gift_claimed_icon.png" 
-	Title="6 Gifts Claimed"
 	x:Class="GodSpeak.ClaimedGiftPage">
-	<views:CustomContentPage.Content>
+	<ContentView.Content>
 		<AbsoluteLayout
 			HorizontalOptions="FillAndExpand"
 			VerticalOptions="FillAndExpand">
@@ -18,10 +16,10 @@
 			<views:SolidHeader />
 			<StackLayout
 				AbsoluteLayout.LayoutFlags="XProportional,WidthProportional"
-				AbsoluteLayout.LayoutBounds="0,60,1,AutoSize"
+				AbsoluteLayout.LayoutBounds="0,50,1,AutoSize"
 				VerticalOptions="FillAndExpand"
 				Spacing="20"
-				Padding="0,10,0,0">
+				Padding="{StaticResource PaddingTop}">
 				<views:CustomPicker 
 					Margin="10,0"
 					x:Name="SortOptions"
@@ -110,5 +108,5 @@
 				</ScrollView>
 			</StackLayout>
 		</AbsoluteLayout>
-	</views:CustomContentPage.Content>	
-</views:CustomContentPage>
+	</ContentView.Content>	
+</ContentView>

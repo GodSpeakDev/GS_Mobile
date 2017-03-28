@@ -9,7 +9,7 @@ using Android.Graphics;
 [assembly: ExportRendererAttribute(typeof(CustomEntry), typeof(CustomEntryRenderer))]
 namespace GodSpeak.Droid
 {
-	public class CustomEntryRenderer : EntryRenderer, Android.Views.View.IOnFocusChangeListener
+	public class CustomEntryRenderer : EntryRenderer
 	{
 		private GradientDrawable _drawable;
 		private GradientDrawable Drawable
@@ -89,14 +89,7 @@ namespace GodSpeak.Droid
 			if (this.Control != null && customEntry != null)
 			{
 				Drawable.SetStroke(2, this.CustomEntry.OutlineColor.ToAndroid());
-
-				this.OnFocusChangeListener = this;
 			}
-		}
-
-		public void OnFocusChange(View v, bool hasFocus)
-		{
-			
 		}
 
 		private void SetFontWeight()
@@ -106,18 +99,5 @@ namespace GodSpeak.Droid
 
 			this.Control.SetTypeface(null, this.CustomEntry.GetFont());			                         
 		}
-
-		//private class CustomOnFocusChangeListener : Android.Views.View.IOnFocusChangeListener
-		//{
-		//	public IntPtr Handle
-		//	{
-		//		get { return IntPtr.Zero;}
-		//	}
-
-		//	public void OnFocusChange(View v, bool hasFocus)
-		//	{
-				
-		//	}
-		//}
 	}
 }
