@@ -127,7 +127,9 @@
 			</views:GrayGradientBackgroundView>
 			<views:HeaderOverlay
 				AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"
-				AbsoluteLayout.LayoutBounds="0,0,1,60"
+				AbsoluteLayout.LayoutBounds="0,0,1,AutoSize"
+				Padding="{StaticResource PaddingHeader}"
+				HeightRequest="{StaticResource HeightHeader}"
 				>
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="auto" />

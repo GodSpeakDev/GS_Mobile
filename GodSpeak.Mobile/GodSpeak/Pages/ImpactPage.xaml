@@ -75,7 +75,8 @@
 				HeightRequest="60"
 				BackgroundColor="{x:Static views:ColorHelper.PrimaryNavBar}"
 				AbsoluteLayout.LayoutFlags="XProportional,WidthProportional"
-				AbsoluteLayout.LayoutBounds="0,60,1,60"
+				Margin="{StaticResource PaddingHeader}"
+				AbsoluteLayout.LayoutBounds="0,60,1,AutoSize"
 				Padding="10,5"
 			>
 				<Grid.ColumnDefinitions>
