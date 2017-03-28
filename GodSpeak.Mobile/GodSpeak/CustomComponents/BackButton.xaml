@@ -7,7 +7,7 @@
 	x:Class="GodSpeak.BackButton"
 	VerticalOptions="FillAndExpand"
 	Orientation="Horizontal"
-	Padding="10,0"
+	Padding="0,0,10,0"
 	Spacing="5"
 	WidthRequest="60">
 	<Image

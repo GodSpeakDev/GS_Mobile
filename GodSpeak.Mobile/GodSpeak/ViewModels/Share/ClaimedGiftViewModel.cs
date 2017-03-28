@@ -52,6 +52,15 @@ namespace GodSpeak
 			set { SetProperty(ref _users, value);}
 		}
 
+		private MvxCommand<UserModel> _tapUserCommand;
+		public MvxCommand<UserModel> TapUserCommand
+		{
+			get
+			{
+				return _tapUserCommand ?? (_tapUserCommand = new MvxCommand<UserModel>(DoTapUserCommand));
+			}
+		}
+
 		public async Task Init()
 		{
 			Users = new ObservableCollection<UserModel>				
@@ -61,16 +70,24 @@ namespace GodSpeak
 					Name="Dave Ortinau",
 					Image="http://www.gravatar.com/avatar/a1c6e240931b44f7f4b21492232cd3fc.png?s=160",
 					ClaimedDate=new DateTime(2017,12,30),
-					PeopleGifted=3
+					PeopleGifted=3,
+					TappedCommand = TapUserCommand
 				},
 				new UserModel() 
 				{
 					Name="Dave Ortinau",
 					Image="http://www.gravatar.com/avatar/a1c6e240931b44f7f4b21492232cd3fc.png?s=160",
 					ClaimedDate=new DateTime(2017,1,3),
-					PeopleGifted=0
+					PeopleGifted=0,
+					TappedCommand = TapUserCommand
 				}
 			};				
+		}
+
+		private async void DoTapUserCommand(UserModel userModel)
+		{
+			var userModel1 = userModel;
+			await this.DialogService.ShowAlert("In Development", "In Development");
 		}
 
 		public class UserModel : MvxViewModel
@@ -111,6 +128,13 @@ namespace GodSpeak
 				get { return _peopleGifted; }
 				set { SetProperty(ref _peopleGifted, value); }
 			}
+
+			private MvxCommand<UserModel> _tappedCommand;
+			public MvxCommand<UserModel> TappedCommand
+			{
+				get { return _tappedCommand; }					
+				set { _tappedCommand = new MvxCommand<UserModel>((obj) => value.Execute(this)); }
+			} 
 		}
 	}
 }

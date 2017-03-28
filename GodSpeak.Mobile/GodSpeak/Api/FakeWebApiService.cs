@@ -40,12 +40,16 @@ namespace GodSpeak
         {
             await Task.Delay (1000);
 
-            if (request.Email == "godspeak@gmail.com" && request.Password == "123456") {
-                return new ApiResponse<User> () {
+            if (request.Email == "Ben@rendr.io" && request.Password == "J0hn_galt") 
+            {
+                return new ApiResponse<User> () 
+                {
                     StatusCode = System.Net.HttpStatusCode.OK,
                     Payload = GetTestPayload ()
                 };
-            } else {
+            } 
+            else 
+            {
                 return new ApiResponse<User> () {
                     StatusCode = System.Net.HttpStatusCode.BadRequest,
                     Title = "Invalid Credentials",

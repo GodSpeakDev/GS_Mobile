@@ -14,8 +14,7 @@
 				AbsoluteLayout.LayoutBounds="0,0,1,1" 
 				AbsoluteLayout.LayoutFlags="All">
 				<Grid
-					Padding="0,80, 0, 0" 
-					>
+					Padding="{StaticResource PaddingBelowHeader}">
 					<Grid.RowDefinitions>
 						<RowDefinition Height="1*" />
 						<RowDefinition Height="auto" />

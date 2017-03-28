@@ -5,8 +5,8 @@
 	xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
 	xmlns:res="clr-namespace:GodSpeak.Resources;assembly=GodSpeak"
 	x:Class="GodSpeak.SolidHeader"
-	Padding="{StaticResource PaddingTop}"
-	HeightRequest="40"
+	HeightRequest="{StaticResource HeightHeader}"
+	Padding="{StaticResource PaddingHeader}"
 	AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"
 	AbsoluteLayout.LayoutBounds="0,0,1,AutoSize">
 	<Grid.ColumnDefinitions>

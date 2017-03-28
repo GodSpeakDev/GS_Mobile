@@ -45,9 +45,9 @@
 			</views:GradientBoxView>
 			<views:HeaderOverlay
 				AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"
-				AbsoluteLayout.LayoutBounds="0,0,1,60"
-				Padding="0, 20, 10, 0"
-				HeightRequest="60"
+				AbsoluteLayout.LayoutBounds="0,0,1,AutoSize"
+				Padding="{StaticResource PaddingHeader}"
+				HeightRequest="{StaticResource HeightHeader}"
 				BackgroundColor="Transparent"
 				RowSpacing="2"
 				>				

@@ -5,62 +5,65 @@
 	xmlns:res="clr-namespace:GodSpeak.Resources;assembly=GodSpeak"
 	xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
 	x:Class="GodSpeak.SharePage">
-	<Grid
-		HorizontalOptions="FillAndExpand"
-		VerticalOptions="FillAndExpand"
-		RowSpacing="0"
-		ColumnSpacing="0"
-	>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="*" />
-			<RowDefinition Height="auto" />
-		</Grid.RowDefinitions>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="*" />
-		</Grid.ColumnDefinitions>
-		<views:UnclaimedGiftPage 
-			Grid.Row="0"
-			Grid.Column="0"
-			BindingContext="{Binding UnclaimedGiftViewModel}"
-			IsVisible="{Binding IsVisible}"
-		/>
-		<views:ClaimedGiftPage  
-			Grid.Row="0"
-			Grid.Column="0"
-			BindingContext="{Binding ClaimedGiftViewModel}"
-			IsVisible="{Binding IsVisible}"
-		/>
-		<views:StackList
-			Orientation="Horizontal"
-			Grid.Row="1"
-			Grid.Column="0"
-			ItemsSource="{Binding Tabs}"
+	<AbsoluteLayout>
+		<Grid
+			AbsoluteLayout.LayoutFlags="All"
+			AbsoluteLayout.LayoutBounds="0,0,1,1"
 			HorizontalOptions="FillAndExpand"
-			BackgroundColor="{StaticResource secondaryColor}"
-			ItemTappedCommand="{Binding SelectTabCommand}"
-			HeightRequest="60">
-			<views:StackList.ItemTemplate>
-				<DataTemplate>
-					<StackLayout
-						Padding="0,5"
-						HorizontalOptions="FillAndExpand"
-						VerticalOptions="FillAndExpand">
-						<Image
-							Source="{Binding CurrentImage}"
-							HeightRequest="35"
-							WidthRequest="35"
-							HorizontalOptions="Center"
-							VerticalOptions="CenterAndExpand"
-						/>
-						<views:CustomLabel
-							Style="{StaticResource TabTitle}"
-						 	Text="{Binding Title}"
-							HorizontalOptions="Center"
-							VerticalOptions="Center">
-						</views:CustomLabel>
-					</StackLayout>
-				</DataTemplate>
-			</views:StackList.ItemTemplate>
-		</views:StackList>
-	</Grid>
+			VerticalOptions="FillAndExpand"
+			RowSpacing="0"
+			ColumnSpacing="0">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*" />
+				<RowDefinition Height="auto" />
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*" />
+			</Grid.ColumnDefinitions>
+			<views:UnclaimedGiftPage 
+				Grid.Row="0"
+				Grid.Column="0"
+				BindingContext="{Binding UnclaimedGiftViewModel}"
+				IsVisible="{Binding IsVisible}"
+			/>
+			<views:ClaimedGiftPage  
+				Grid.Row="0"
+				Grid.Column="0"
+				BindingContext="{Binding ClaimedGiftViewModel}"
+				IsVisible="{Binding IsVisible}"
+			/>
+			<views:StackList
+				Orientation="Horizontal"
+				Grid.Row="1"
+				Grid.Column="0"
+				ItemsSource="{Binding Tabs}"
+				HorizontalOptions="FillAndExpand"
+				BackgroundColor="{StaticResource secondaryColor}"
+				ItemTappedCommand="{Binding SelectTabCommand}"
+				HeightRequest="60">
+				<views:StackList.ItemTemplate>
+					<DataTemplate>
+						<StackLayout
+							Padding="0,5"
+							HorizontalOptions="FillAndExpand"
+							VerticalOptions="FillAndExpand">
+							<Image
+								Source="{Binding CurrentImage}"
+								HeightRequest="35"
+								WidthRequest="35"
+								HorizontalOptions="Center"
+								VerticalOptions="CenterAndExpand"
+							/>
+							<views:CustomLabel
+								Style="{StaticResource TabTitle}"
+							 	Text="{Binding Title}"
+								HorizontalOptions="Center"
+								VerticalOptions="Center">
+							</views:CustomLabel>
+						</StackLayout>
+					</DataTemplate>
+				</views:StackList.ItemTemplate>
+			</views:StackList>
+		</Grid>
+	</AbsoluteLayout>
 </views:CustomContentPage>
