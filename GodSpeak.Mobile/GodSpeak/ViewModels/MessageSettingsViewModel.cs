@@ -10,178 +10,155 @@ using System.Threading.Tasks;
 
 namespace GodSpeak
 {
-	public class MessageSettingsViewModel : CustomViewModel
-	{
-		private IWebApiService _webApi;
+    public class MessageSettingsViewModel : CustomViewModel
+    {
+        private IWebApiService _webApi;
 
-		private ObservableCollection<SettingsGroup> _groups;
-		public ObservableCollection<SettingsGroup> Groups
-		{
-			get { return _groups;}
-			set { SetProperty(ref _groups, value);}
-		}
+        private ObservableCollection<SettingsGroup> _groups;
+        public ObservableCollection<SettingsGroup> Groups {
+            get { return _groups; }
+            set { SetProperty (ref _groups, value); }
+        }
 
-		private int _numberOfMessages;
-		public int NumberOfMessages
-		{
-			get { return _numberOfMessages;}
-			set { 
-				SetProperty(ref _numberOfMessages, value);
-				RaisePropertyChanged(nameof(NumberOfMessagesText));
-			}
-		}
+        private int _numberOfMessages;
+        public int NumberOfMessages {
+            get { return _numberOfMessages; }
+            set {
+                SetProperty (ref _numberOfMessages, value);
+                RaisePropertyChanged (nameof (NumberOfMessagesText));
+            }
+        }
 
-		private TimeSpan _startTime;
-		public TimeSpan StartTime
-		{
-			get { return _startTime;}
-			set { SetProperty(ref _startTime, value);}
-		}
+        private TimeSpan _startTime;
+        public TimeSpan StartTime {
+            get { return _startTime; }
+            set { SetProperty (ref _startTime, value); }
+        }
 
-		private TimeSpan _endTime;
-		public TimeSpan EndTime
-		{
-			get { return _endTime; }
-			set { SetProperty(ref _endTime, value); }
-		}
+        private TimeSpan _endTime;
+        public TimeSpan EndTime {
+            get { return _endTime; }
+            set { SetProperty (ref _endTime, value); }
+        }
 
-		public string NumberOfMessagesText
-		{
-			get { return string.Format(Text.NumberOfMessagesText, NumberOfMessages); }
-		}
+        public string NumberOfMessagesText {
+            get { return string.Format (Text.NumberOfMessagesText, NumberOfMessages); }
+        }
 
-		private MvxCommand _plusButtonCommand;
-		public MvxCommand PlusButtonCommand
-		{
-			get
-			{
-				return _plusButtonCommand ?? (_plusButtonCommand = new MvxCommand(DoPlusButtonCommand));
-			}
-		}
+        private MvxCommand _plusButtonCommand;
+        public MvxCommand PlusButtonCommand {
+            get {
+                return _plusButtonCommand ?? (_plusButtonCommand = new MvxCommand (DoPlusButtonCommand));
+            }
+        }
 
-		private MvxCommand _minusButtonCommand;
-		public MvxCommand MinusButtonCommand
-		{
-			get
-			{
-				return _minusButtonCommand ?? (_minusButtonCommand = new MvxCommand(DoMinusButtonCommand));
-			}
-		}
+        private MvxCommand _minusButtonCommand;
+        public MvxCommand MinusButtonCommand {
+            get {
+                return _minusButtonCommand ?? (_minusButtonCommand = new MvxCommand (DoMinusButtonCommand));
+            }
+        }
 
-		public MessageSettingsViewModel(IDialogService dialogService, IWebApiService webApi) : base(dialogService)
-		{
-			_webApi = webApi;
-			Groups = new ObservableCollection<SettingsGroup>()
-			{
-				new SettingsGroup("Allow messages on these days:")
-				{
-					
-				},
-				new SettingsGroup("Allow messages from these categories:")
-				{
-					
-				},
-			};
-		}
+        public MessageSettingsViewModel (IDialogService dialogService, IWebApiService webApi) : base (dialogService)
+        {
+            _webApi = webApi;
+            Groups = new ObservableCollection<SettingsGroup> ()
+            {
+                new SettingsGroup("Allow messages on these days:")
+                {
 
-		public async void Init()
-		{
-			await LoadDaysOfWeek();
-			await LoadCategories();
-		}
+                },
+                new SettingsGroup("Allow messages from these categories:")
+                {
 
-		private async Task LoadCategories()
-		{
-			var categoriesResult = await _webApi.GetCategories(new GetCategoriesRequest());
-			if (categoriesResult.IsSuccess)
-			{
-				var categoryCollection = Groups[1];
-				foreach (var item in categoriesResult.Payload.Payload)
-				{
-					categoryCollection.Add(new SettingsItem()
-					{
-						Title = item.Title,
-						IsEnabled = item.Enabled
-					});
-				}
-			}
-			else
-			{
-				await HandleResponse(categoriesResult);
-			}
-		}
+                },
+            };
+        }
 
-		private async Task LoadDaysOfWeek()
-		{
-			var messageConfigResult = await _webApi.GetMessageConfig(new GetMessageConfigRequest());
-			if (messageConfigResult.IsSuccess)
-			{
-				var daysCollection = Groups[0];
-				foreach (var item in messageConfigResult.Payload.Payload.OrderBy(x => x.Weekday))
-				{
-					daysCollection.Add(new SettingsItem()
-					{
-						Title = ((DayOfWeek) Enum.Parse(typeof(DayOfWeek), item.Weekday.ToString())).ToString(),
-						IsEnabled = item.Enabled
-					});
-				}
+        public async void Init ()
+        {
+            await LoadDaysOfWeek ();
+            await LoadCategories ();
+        }
 
-				var day = messageConfigResult.Payload.Payload[0];
-				NumberOfMessages = day.NumberOfMessages;
-				StartTime = day.StartDateTime.ToTimeSpan();
-				EndTime = day.EndDateTime.ToTimeSpan();
-			}
-			else
-			{
-				await HandleResponse(messageConfigResult);
-			}
-		}
+        private async Task LoadCategories ()
+        {
+            var categoriesResult = await _webApi.GetCategories (new GetCategoriesRequest ());
+            if (categoriesResult.IsSuccess) {
+                var categoryCollection = Groups [1];
+                foreach (var item in categoriesResult.Payload.Payload) {
+                    categoryCollection.Add (new SettingsItem () {
+                        Title = item.Title,
+                        IsEnabled = item.Enabled
+                    });
+                }
+            } else {
+                await HandleResponse (categoriesResult);
+            }
+        }
 
-		private void DoPlusButtonCommand()
-		{
-			NumberOfMessages += 1;
-		}
+        private async Task LoadDaysOfWeek ()
+        {
+            var messageConfigResult = await _webApi.GetMessageConfig (new GetMessageConfigRequest ());
+            if (messageConfigResult.IsSuccess) {
+                var daysCollection = Groups [0];
+                foreach (var item in messageConfigResult.Payload.Payload) {
+                    daysCollection.Add (new SettingsItem () {
+                        Title = item.Title,
+                        IsEnabled = item.Enabled
+                    });
+                }
 
-		private void DoMinusButtonCommand()
-		{
-			if (NumberOfMessages > 0)
-			{
-				NumberOfMessages -= 1;
-			}
-		}
-	}
+                var day = messageConfigResult.Payload.Payload [0];
+                NumberOfMessages = day.NumberOfMessages;
+                StartTime = day.StartTime;
+                EndTime = day.EndTime;
+            } else {
+                await HandleResponse (messageConfigResult);
+            }
+        }
 
-	public class SettingsGroup : ObservableCollection<SettingsItem>
-	{
-		private string _sectionTitle;
-		public string SectionTitle
-		{
-			get { return _sectionTitle;}
-			private set {
-				_sectionTitle = value;
-			}
-		}
+        private void DoPlusButtonCommand ()
+        {
+            NumberOfMessages += 1;
+        }
 
-		public SettingsGroup(string sectionTitle)
-		{
-			SectionTitle = sectionTitle;	
-		}
-	}
+        private void DoMinusButtonCommand ()
+        {
+            if (NumberOfMessages > 0) {
+                NumberOfMessages -= 1;
+            }
+        }
+    }
 
-	public class SettingsItem : MvxViewModel
-	{
-		private string _title;
-		public string Title
-		{
-			get { return _title;}
-			set { SetProperty(ref _title, value);}
-		}
+    public class SettingsGroup : ObservableCollection<SettingsItem>
+    {
+        private string _sectionTitle;
+        public string SectionTitle {
+            get { return _sectionTitle; }
+            private set {
+                _sectionTitle = value;
+            }
+        }
 
-		private bool _isEnabled;
-		public bool IsEnabled
-		{
-			get { return _isEnabled;}
-			set { SetProperty(ref _isEnabled, value);}
-		}
-	}
+        public SettingsGroup (string sectionTitle)
+        {
+            SectionTitle = sectionTitle;
+        }
+    }
+
+    public class SettingsItem : MvxViewModel
+    {
+        private string _title;
+        public string Title {
+            get { return _title; }
+            set { SetProperty (ref _title, value); }
+        }
+
+        private bool _isEnabled;
+        public bool IsEnabled {
+            get { return _isEnabled; }
+            set { SetProperty (ref _isEnabled, value); }
+        }
+    }
 }

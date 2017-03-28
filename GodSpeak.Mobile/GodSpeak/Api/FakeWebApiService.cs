@@ -186,11 +186,11 @@ namespace GodSpeak
         public async Task<ApiResponse<SetMessagesConfigResponse>> SetMessagesConfigUser (SetMessagesConfigRequest request)
         {
             await Task.Delay (delay);
-            _dailySettings = request.Settings;
+            //_dailySettings = request.Settings;
             return new ApiResponse<SetMessagesConfigResponse> () {
                 StatusCode = System.Net.HttpStatusCode.OK,
                 Payload = new SetMessagesConfigResponse () {
-                    Payload = _dailySettings
+                    //Payload = _dailySettings
                 }
             };
         }
@@ -258,7 +258,7 @@ namespace GodSpeak
             return new ApiResponse<GetMessageConfigResponse> () {
                 StatusCode = System.Net.HttpStatusCode.OK,
                 Payload = new GetMessageConfigResponse () {
-                    Payload = _dailySettings
+                    //Payload = _dailySettings
                 }
             };
         }
@@ -268,15 +268,15 @@ namespace GodSpeak
             return new User () {
                 Id = Guid.NewGuid (),
                 Email = "godspeak@gmail.com",
-                ZipCode = "63017",
-                Country = "USA",
-                Credits = 15.0m,
+                PostalCode = "63017",
+                CountryCode = "USA",
+                InviteBalance = 15,
                 FirstName = "GodSpeak",
                 LastName = "GodSpeak",
                 PhotoUrl = "http://images.clipartpanda.com/happy-man-images-A-Happy-Man.jpg",
                 Token = Guid.NewGuid ().ToString (),
-                SelectedCategories = _categories,
-                DayOfWeekSettings = new List<DayOfWeekSettings> () {
+                MessageCategorySettings = _categories,
+                MessageDayOfWeekSettings = new List<DayOfWeekSettings> () {
 
                 }
             };
@@ -347,72 +347,7 @@ namespace GodSpeak
             }
         };
 
-        private static List<DayOfWeekSettings> _dailySettings = new List<DayOfWeekSettings> ()
-        {
-            new DayOfWeekSettings()
-            {
-                DayOfWeekSettingsId = Guid.NewGuid(),
-                Weekday = 0,
-                Enabled = true,
-                StartDateTime = DateTime.Now.Date.AddHours(10),
-                EndDateTime = DateTime.Now.Date.AddHours(20),
-                NumberOfMessages = 3
-            },
-            new DayOfWeekSettings()
-            {
-                DayOfWeekSettingsId = Guid.NewGuid(),
-                Weekday = 1,
-                Enabled = false,
-                StartDateTime = DateTime.Now.Date.AddHours(10),
-                EndDateTime = DateTime.Now.Date.AddHours(20),
-                NumberOfMessages = 3
-            },
-            new DayOfWeekSettings()
-            {
-                DayOfWeekSettingsId = Guid.NewGuid(),
-                Weekday = 2,
-                Enabled = false,
-                StartDateTime = DateTime.Now.Date.AddHours(10),
-                EndDateTime = DateTime.Now.Date.AddHours(20),
-                NumberOfMessages = 3
-            },
-            new DayOfWeekSettings()
-            {
-                DayOfWeekSettingsId = Guid.NewGuid(),
-                Weekday = 3,
-                Enabled = true,
-                StartDateTime = DateTime.Now.Date.AddHours(10),
-                EndDateTime = DateTime.Now.Date.AddHours(10),
-                NumberOfMessages = 3
-            },
-            new DayOfWeekSettings()
-            {
-                DayOfWeekSettingsId = Guid.NewGuid(),
-                Weekday = 4,
-                Enabled = true,
-                StartDateTime = DateTime.Now.Date.AddHours(12),
-                EndDateTime = DateTime.Now.Date.AddHours(17),
-                NumberOfMessages = 3
-            },
-            new DayOfWeekSettings()
-            {
-                DayOfWeekSettingsId = Guid.NewGuid(),
-                Weekday = 5,
-                Enabled = false,
-                StartDateTime = DateTime.Now.Date.AddHours(12),
-                EndDateTime = DateTime.Now.Date.AddHours(17),
-                NumberOfMessages = 3
-            },
-            new DayOfWeekSettings()
-            {
-                DayOfWeekSettingsId = Guid.NewGuid(),
-                Weekday = 6,
-                Enabled = false,
-                StartDateTime = DateTime.Now.Date.AddHours(10),
-                EndDateTime = DateTime.Now.Date.AddHours(20),
-                NumberOfMessages = 3
-            },
-        };
+
 
         private static List<Message> _messages = new List<Message> ()
         {
