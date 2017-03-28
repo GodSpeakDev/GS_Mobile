@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace GodSpeak
 {
-	public class LoginResponse
+	public class UserResponse
 	{
 		public User Payload
 		{

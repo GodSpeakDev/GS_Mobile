@@ -13,6 +13,9 @@ namespace GodSpeak.Api
         const string ValidateCodeUri = "invite/validate";
         const string LoginMethodUri = "user/login";
         const string InviteBundlesUri = "invite/bundles";
+        const string ProfileUri = "user";
+        const string PurchaseInviteUri = "invite/purchase";
+
         protected HttpClient client = new HttpClient ();
         readonly IMvxTrace tracer;
 
@@ -21,6 +24,31 @@ namespace GodSpeak.Api
             this.tracer = tracer;
             client.BaseAddress = new Uri ("http://godspeak-staging.azurewebsites.net/api/");
 
+        }
+
+        public new async Task<ApiResponse<GetCategoriesResponse>> GetCategories (GetCategoriesRequest request)
+        {
+            AddAuthToken (request.Token);
+            var profileResponse = await DoGet<UserResponse> (ProfileUri);
+            var catResponse = new ApiResponse<GetCategoriesResponse> ();
+            catResponse.Message = profileResponse.Message;
+            catResponse.Title = profileResponse.Title;
+            catResponse.Payload = new GetCategoriesResponse () { Payload = profileResponse.Payload.Payload.MessageCategorySettings };
+            catResponse.StatusCode = profileResponse.StatusCode;
+            return catResponse;
+
+        }
+
+        public new async Task<ApiResponse<GetMessageConfigResponse>> GetMessageConfig (GetMessageConfigRequest request)
+        {
+            AddAuthToken (request.Token);
+            var profileResponse = await DoGet<UserResponse> (ProfileUri);
+            var configResponse = new ApiResponse<GetMessageConfigResponse> ();
+            configResponse.Message = profileResponse.Message;
+            configResponse.Title = profileResponse.Title;
+            configResponse.Payload = new GetMessageConfigResponse () { Payload = profileResponse.Payload.Payload.MessageDayOfWeekSettings };
+            configResponse.StatusCode = profileResponse.StatusCode;
+            return configResponse;
         }
 
         public new async Task<ApiResponse<ValidateCodeResponse>> ValidateCode (ValidateCodeRequest request)
@@ -33,10 +61,17 @@ namespace GodSpeak.Api
             return await DoGet<List<InviteBundle>> (InviteBundlesUri);
         }
 
-        public new async Task<ApiResponse<LoginResponse>> Login (LoginRequest request)
+        public new async Task<ApiResponse<PurchaseInviteResponse>> PurchaseInvite (PurchaseInviteRequest request)
+        {
+            AddAuthToken (request.Token);
+            return await DoPost<PurchaseInviteResponse> (PurchaseInviteUri, request);
+
+        }
+
+        public new async Task<ApiResponse<User>> Login (LoginRequest request)
         {
 
-            return await DoPost<LoginResponse> (LoginMethodUri, request);
+            return await DoPost<User> (LoginMethodUri, request);
         }
 
         protected async Task<ApiResponse<T>> DoPost<T> (string uri, object request)
@@ -89,6 +124,14 @@ namespace GodSpeak.Api
             parsedResponse.StatusCode = apiResponse.StatusCode;
             LogResponse (uri, parsedResponse, json);
             return parsedResponse;
+        }
+
+        void AddAuthToken (string token)
+        {
+            if (client.DefaultRequestHeaders.Contains ("token"))
+                client.DefaultRequestHeaders.Remove ("token");
+
+            client.DefaultRequestHeaders.Add ("token", token);
         }
 
         void LogResponse<T> (string method, ApiResponse<T> parsedResponse, string json)

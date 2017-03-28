@@ -138,7 +138,7 @@
     <Compile Include="ViewModels\CustomViewModel.cs" />
     <Compile Include="Pages\CustomContentPage.cs" />
     <Compile Include="Api\Response\ApiResponse.cs" />
-    <Compile Include="Api\Response\LoginResponse.cs" />
+    <Compile Include="Api\Response\UserResponse.cs" />
     <Compile Include="Api\Response\RegisterUserResponse.cs" />
     <Compile Include="Api\Dtos\MessageCategory.cs" />
     <Compile Include="Api\Dtos\DayOfWeekSettings.cs" />
@@ -385,6 +385,7 @@
     <Compile Include="Services\IFeedbackService.cs" />
     <Compile Include="Api\AzureWebApiService.cs" />
     <Compile Include="Services\IProgressHudService.cs" />
+    <Compile Include="Api\Dtos\Country.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

@@ -55,7 +55,7 @@ namespace GodSpeak
                 Text.No);
 
             if (result) {
-                var purchaseResponse = await _webApi.PurchaseInvite (new PurchaseInviteRequest () { InviteBundleId = bundle.InviteBundleId });
+                var purchaseResponse = await _webApi.PurchaseInvite (new PurchaseInviteRequest () { Guid = bundle.InviteBundleId });
                 if (purchaseResponse.IsSuccess) {
                     await this.DialogService.ShowAlert (Text.PurchaseSuccessTitle, Text.PurchaseSuccessText);
                 } else {

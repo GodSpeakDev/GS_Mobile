@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using GodSpeak.Api.Dtos;
 
 namespace GodSpeak
 {
     public interface IWebApiService
     {
+        Task<ApiResponse<List<Country>>> GetCountries ();
         Task<ApiResponse<ValidateCodeResponse>> ValidateCode (ValidateCodeRequest request);
         Task<ApiResponse<RequestInviteResponse>> RequestInvite (RequestInviteRequest request);
-        Task<ApiResponse<LoginResponse>> Login (LoginRequest request);
+        Task<ApiResponse<User>> Login (LoginRequest request);
         Task<ApiResponse<LogoutResponse>> Logout (LogoutRequest request);
         Task<ApiResponse<GetCategoriesResponse>> GetCategories (GetCategoriesRequest request);
         Task<ApiResponse<GetMessageConfigResponse>> GetMessageConfig (GetMessageConfigRequest request);
