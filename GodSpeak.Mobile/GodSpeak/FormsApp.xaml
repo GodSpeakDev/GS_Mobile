@@ -287,11 +287,13 @@
 				<Setter Property="PlaceholderColor" Value="{StaticResource textInputFocusPlaceholder}" />				
 				<Setter Property="FontWeight" Value="Bold" />
 				<Setter Property="FontSize" Value="24" />
+				<Setter Property="HasAutoComplete" Value="false" />
 			</Style>
 
 			<Style x:Key="OnboardingEntry" TargetType="godspeak:CustomEntry">						
 				<Setter Property="FontWeight" Value="Bold" />
 				<Setter Property="FontSize" Value="24" />	
+				<Setter Property="HasAutoComplete" Value="false" />
 			</Style>
 
 			<Style x:Key="LoginEntry"  TargetType="godspeak:CustomEntry" BasedOn="{StaticResource PopupEntry}">				
@@ -299,7 +301,8 @@
 				<Setter Property="FontWeight" Value="Semibold" />
 			</Style>
 			
-			<Style TargetType="godspeak:RegisterEntry">				
+			<Style TargetType="godspeak:RegisterEntry">		
+				<Setter Property="HasAutoComplete" Value="false" />
 				<Setter Property="FontSize" Value="19" />
 				<Style.Triggers>
 					<Trigger TargetType="godspeak:RegisterEntry" Property="ElementState" Value="Error">													

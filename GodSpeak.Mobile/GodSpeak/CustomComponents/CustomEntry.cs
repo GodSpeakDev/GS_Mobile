@@ -62,6 +62,22 @@ namespace GodSpeak
 			entry.HasError = newValue;
 		}
 
+		public static readonly BindableProperty HasAutoCompleteProperty =
+			BindableProperty.Create<CustomEntry, bool>(
+				p => p.HasAutoComplete, true, BindingMode.TwoWay, propertyChanged: OnHasAutoCompleteChanged);
+
+		public bool HasAutoComplete
+		{
+			get { return (bool)this.GetValue(HasAutoCompleteProperty); }
+			set { this.SetValue(HasAutoCompleteProperty, value); }
+		}
+
+		private static void OnHasAutoCompleteChanged(BindableObject bindable, bool oldvalue, bool newValue)
+		{
+			var entry = (CustomEntry)bindable;
+			entry.HasAutoComplete = newValue;
+		}
+
 		private static void OnFontWeightChanged(BindableObject bindable, GodSpeak.FontWeight oldvalue, GodSpeak.FontWeight newValue)
 		{
 			var entry = (CustomEntry)bindable;
