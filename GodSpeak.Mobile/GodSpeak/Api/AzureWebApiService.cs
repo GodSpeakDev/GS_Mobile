@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using MvvmCross.Platform.Platform;
 using System.Text;
 using System.Collections.Generic;
+using GodSpeak.Api.Dtos;
 
 namespace GodSpeak.Api
 {
@@ -14,6 +15,8 @@ namespace GodSpeak.Api
         const string LoginMethodUri = "user/login";
         const string InviteBundlesUri = "invite/bundles";
         const string ProfileUri = "user";
+        const string RegisterUri = "user";
+        const string CountriesUri = "geo/countries";
         const string PurchaseInviteUri = "invite/purchase";
         const string RecoverPasswordInviteUri = "user/recoverpassword/";
 
@@ -27,10 +30,20 @@ namespace GodSpeak.Api
 
         }
 
+        public new async Task<ApiResponse<List<Country>>> GetCountries ()
+        {
+            return await DoGet<List<Country>> (CountriesUri);
+        }
+
         public new async Task<ApiResponse<String>> ForgotPassword (ForgotPasswordRequest request)
         {
             return await DoGet<String> (RecoverPasswordInviteUri, new Dictionary<string, string> () { { "emailAddress", request.Email } });
 
+        }
+
+        public new async Task<ApiResponse<User>> RegisterUser (RegisterUserRequest request)
+        {
+            return await DoPost<User> (RegisterUri, request);
         }
 
 

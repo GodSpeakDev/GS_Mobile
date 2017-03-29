@@ -1,56 +1,49 @@
 ﻿using System;
 namespace GodSpeak
 {
-	public class RegisterUserRequest
-	{
-//		string FirstName
-//string LastName
-//string City(Would it be free? or predefined)
-//string State(Would it be free? or predefined)
-//string Email
-//string Password
-//byte[] ProfilePhoto
+    public class RegisterUserRequest
+    {
 
-		public string FirstName
-		{
-			get;
-			set;
-		}
+        public string FirstName {
+            get;
+            set;
+        }
 
-		public string LastName
-		{
-			get;
-			set;
-		}
+        public string LastName {
+            get;
+            set;
+        }
 
-		public string City
-		{
-			get;
-			set;
-		}
+        public string EmailAddress {
+            get;
+            set;
+        }
 
-		public string State
-		{
-			get;
-			set;
-		}
+        public string CountryCode {
+            get;
+            set;
+        }
 
-		public string Email
-		{
-			get;
-			set;
-		}
+        public string PostalCode {
+            get;
+            set;
+        }
 
-		public string Password
-		{
-			get;
-			set;
-		}
+        public string Password {
+            get;
+            set;
+        }
 
-		public byte[] ProfilePhoto
-		{
-			get;
-			set;
-		}
-	}
+        public string PasswordConfirm { get; set; }
+
+        public string InviteCode {
+            get;
+            set;
+        }
+
+        public byte [] ProfilePhoto {
+            get;
+            set;
+        }
+    }
 }

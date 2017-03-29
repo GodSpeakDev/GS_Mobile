@@ -40,16 +40,12 @@ namespace GodSpeak
         {
             await Task.Delay (1000);
 
-            if (request.Email == "Ben@rendr.io" && request.Password == "J0hn_galt") 
-            {
-                return new ApiResponse<User> () 
-                {
+            if (request.Email == "Ben@rendr.io" && request.Password == "J0hn_galt") {
+                return new ApiResponse<User> () {
                     StatusCode = System.Net.HttpStatusCode.OK,
                     Payload = GetTestPayload ()
                 };
-            } 
-            else 
-            {
+            } else {
                 return new ApiResponse<User> () {
                     StatusCode = System.Net.HttpStatusCode.BadRequest,
                     Title = "Invalid Credentials",
@@ -161,14 +157,13 @@ namespace GodSpeak
             };
         }
 
-        public async Task<ApiResponse<RegisterUserResponse>> RegisterUser (RegisterUserRequest request)
+        public async Task<ApiResponse<User>> RegisterUser (RegisterUserRequest request)
         {
             await Task.Delay (delay);
-            return new ApiResponse<RegisterUserResponse> () {
+            return new ApiResponse<User> () {
                 StatusCode = System.Net.HttpStatusCode.OK,
-                Payload = new RegisterUserResponse () {
-                    Payload = GetTestPayload ()
-                }
+                Payload = GetTestPayload ()
+
             };
         }
 

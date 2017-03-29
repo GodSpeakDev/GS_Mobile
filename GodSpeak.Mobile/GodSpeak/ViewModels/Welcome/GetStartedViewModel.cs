@@ -112,7 +112,7 @@ namespace GodSpeak
 
         private void DoRegisterCommand ()
         {
-            this.ShowViewModel<RegisterViewModel> ();
+            this.ShowViewModel<RegisterViewModel> (new { inviteCode = GiftCodeText });
         }
 
         private async void DoDontHaveCodeCommand ()
