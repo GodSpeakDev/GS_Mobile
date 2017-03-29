@@ -100,7 +100,7 @@
 												HorizontalOptions="FillAndExpand"
 												VerticalOptions="Center"
 											/>
-											<Button
+											<views:CustomButton 
 												WidthRequest="80"
 												Style="{StaticResource ButtonBlue}"
 												Text="{Binding CostDescription}"

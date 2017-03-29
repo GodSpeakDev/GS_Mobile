@@ -19,7 +19,7 @@ namespace GodSpeak
 				.ExcludeInterfaces(typeof(IWebApiService))
                 .RegisterAsLazySingleton ();
 
-			Mvx.LazyConstructAndRegisterSingleton<IWebApiService, AzureWebApiService>();
+			Mvx.LazyConstructAndRegisterSingleton<IWebApiService, FakeWebApiService>();
 
             CreatableTypes ().Containing ("DialogService").AsInterfaces ().RegisterAsDynamic ();
 

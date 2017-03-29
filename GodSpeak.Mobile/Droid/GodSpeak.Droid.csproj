@@ -176,6 +176,8 @@
     <Compile Include="Services\ProgressHudService.cs" />
     <Compile Include="Renderers\PlusMinusButtonViewRenderer.cs" />
     <Compile Include="Renderers\PlusButtonRenderer.cs" />
+    <Compile Include="Renderers\CustomButtonRenderer.cs" />
+    <Compile Include="Renderers\ButtonWithImageRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

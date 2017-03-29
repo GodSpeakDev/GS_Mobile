@@ -67,9 +67,6 @@
     <EmbeddedResource Include="CustomComponents\Link.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomComponents\ActionButton.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Include="Pages\PurchaseCreditPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -219,9 +216,6 @@
     </Compile>
     <Compile Include="CustomComponents\Link.xaml.cs">
       <DependentUpon>Link.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CustomComponents\ActionButton.xaml.cs">
-      <DependentUpon>ActionButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="Services\IDialogService.cs" />
     <Compile Include="Services\DialogService.cs" />
@@ -387,6 +381,7 @@
     <Compile Include="Services\IProgressHudService.cs" />
     <Compile Include="Api\Dtos\Country.cs" />
     <Compile Include="CustomComponents\PlusButton.cs" />
+    <Compile Include="CustomComponents\CustomButton.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />
