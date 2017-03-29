@@ -34,9 +34,12 @@
 	            	<OnPlatform.WinPhone>0,0,0,0</OnPlatform.WinPhone>
             	</OnPlatform>	
 			</Thickness>
+			<OnPlatform x:TypeArguments="Thickness" x:Key="PaddingHeaderOnlyTop" Android="0,0,0,0" iOS="0,20,0,0" WinPhone="0,0,0,0" />
 			<OnPlatform x:TypeArguments="Thickness" x:Key="PaddingHeader" Android="10,0,10,0" iOS="10,20,10,0" WinPhone="0,0,0,0" />
 			<OnPlatform x:TypeArguments="Thickness" x:Key="PaddingBelowHeader" Android="0,60,0,0" iOS="0,80,0,0" WinPhone="0,60,0,0" />
-			<OnPlatform x:TypeArguments="x:Double" x:Key="HeightHeader" Android="60" iOS="40" WinPhone="0,0,0,0" />
+			<OnPlatform x:TypeArguments="x:Double" x:Key="HeightHeader" Android="60" iOS="40" WinPhone="60" />
+			<OnPlatform x:TypeArguments="x:Double" x:Key="PlusButtonWidth" Android="55" iOS="35" WinPhone="0" />
+			<OnPlatform x:TypeArguments="x:Double" x:Key="PlusButtonHeight" Android="70" iOS="25" WinPhone="35" />
 						
 			<!-- Global Colors -->
 			<Color x:Key="primaryColor">#00a5ff</Color>
@@ -287,11 +290,13 @@
 				<Setter Property="PlaceholderColor" Value="{StaticResource textInputFocusPlaceholder}" />				
 				<Setter Property="FontWeight" Value="Bold" />
 				<Setter Property="FontSize" Value="24" />
+				<Setter Property="HasAutoComplete" Value="false" />
 			</Style>
 
 			<Style x:Key="OnboardingEntry" TargetType="godspeak:CustomEntry">						
 				<Setter Property="FontWeight" Value="Bold" />
 				<Setter Property="FontSize" Value="24" />	
+				<Setter Property="HasAutoComplete" Value="false" />
 			</Style>
 
 			<Style x:Key="LoginEntry"  TargetType="godspeak:CustomEntry" BasedOn="{StaticResource PopupEntry}">				
@@ -299,7 +304,8 @@
 				<Setter Property="FontWeight" Value="Semibold" />
 			</Style>
 			
-			<Style TargetType="godspeak:RegisterEntry">				
+			<Style TargetType="godspeak:RegisterEntry">		
+				<Setter Property="HasAutoComplete" Value="false" />
 				<Setter Property="FontSize" Value="19" />
 				<Style.Triggers>
 					<Trigger TargetType="godspeak:RegisterEntry" Property="ElementState" Value="Error">													

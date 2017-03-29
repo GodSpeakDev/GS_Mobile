@@ -23,6 +23,7 @@ namespace GodSpeak.iOS
 			SetBorderColor();
 			SetTextAligment();
 			SetFontWeight();
+			SetHasAutoComplete();
 		}
 
 		protected override void OnElementPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -31,6 +32,7 @@ namespace GodSpeak.iOS
 
 			SetBorderColor();
 			SetFontWeight();
+			SetHasAutoComplete();
 		}
 
 		private void SetTextAligment()
@@ -76,6 +78,14 @@ namespace GodSpeak.iOS
 				return;
 
 			this.Control.Font = this.CustomEntry.GetUIFont();
+		}
+
+		private void SetHasAutoComplete()
+		{
+			if (this.Control == null || this.CustomEntry == null)
+				return;
+
+			this.Control.AutocorrectionType = CustomEntry.HasAutoComplete ? UITextAutocorrectionType.Yes : UITextAutocorrectionType.No;
 		}
 	}
 }

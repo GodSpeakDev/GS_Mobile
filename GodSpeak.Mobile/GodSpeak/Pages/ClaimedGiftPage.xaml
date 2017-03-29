@@ -23,7 +23,7 @@
 					Margin="10,0"
 					x:Name="SortOptions"
 					HasEmptyValue="false"
-					Style="{StaticResource FilledPicker}"
+					Style="{StaticResource UtilityPicker}"
 					SelectedIndex="{Binding SelectedSortIndex}"
 					HeightRequest="{StaticResource ElementHeight}"
 				/>	

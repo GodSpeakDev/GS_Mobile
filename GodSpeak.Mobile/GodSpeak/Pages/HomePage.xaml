@@ -68,23 +68,22 @@
 			BackgroundColor="{x:Static views:ColorHelper.DrawerMenuBackground}">
 			<views:StackList
 				ItemsSource="{Binding MenuItems}"
+				ItemTappedCommand="{Binding MenuItemSelectedCommand}"
 				>
 				<views:StackList.ItemTemplate>
-					<DataTemplate>
-						<views:TappableView Command="{Binding Command}">
-							<StackLayout
-								Orientation="Horizontal"
-								Padding="20, 10, 15, 10"
-								Spacing="10"
-								BackgroundColor="{x:Static views:ColorHelper.DrawerMenuBackground}">
-								<Image WidthRequest="30" HeightRequest="30" Source="{Binding Image}" />
-								<views:CustomLabel 
-									VerticalOptions="Center"
-									Text="{Binding Title}" 
-									Style="{StaticResource SettingMenuLabel}"
-								/>
-							</StackLayout>
-						</views:TappableView>	
+					<DataTemplate>						
+						<StackLayout
+							Orientation="Horizontal"
+							Padding="20, 10, 15, 10"
+							Spacing="10"
+							BackgroundColor="{x:Static views:ColorHelper.DrawerMenuBackground}">
+							<Image WidthRequest="30" HeightRequest="30" Source="{Binding Image}" />
+							<views:CustomLabel 
+								VerticalOptions="Center"
+								Text="{Binding Title}" 
+								Style="{StaticResource SettingMenuLabel}"
+							/>
+						</StackLayout>						
 					</DataTemplate>
 				</views:StackList.ItemTemplate>
 				<views:StackList.SeparatorTemplate>

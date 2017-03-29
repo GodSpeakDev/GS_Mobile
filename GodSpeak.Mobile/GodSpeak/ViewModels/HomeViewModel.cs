@@ -71,6 +71,16 @@ namespace GodSpeak
             }
         }
 
+		private MvxCommand<MenuItem> _menuItemSelectedCommand;
+		public MvxCommand<MenuItem> MenuItemSelectedCommand
+		{
+			get
+			{
+				_menuItemSelectedCommand = _menuItemSelectedCommand ?? new MvxCommand<MenuItem>(DoMenuItemSelectedCommand);
+				return _menuItemSelectedCommand;
+			}
+		}
+
         public virtual void DoGonotset ()
         {
             feedbackService.OpenFeedbackDialog ();
@@ -110,6 +120,11 @@ namespace GodSpeak
 
             };
         }
+
+		private void DoMenuItemSelectedCommand(MenuItem menuItem)
+		{
+			menuItem.Command.Execute();
+		}			
     }
 }
 

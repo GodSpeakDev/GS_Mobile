@@ -184,11 +184,11 @@ namespace GodSpeak
         public async Task<ApiResponse<SetMessagesConfigResponse>> SetMessagesConfigUser (SetMessagesConfigRequest request)
         {
             await Task.Delay (delay);
-            //_dailySettings = request.Settings;
+            _dailySettings = request.Settings;
             return new ApiResponse<SetMessagesConfigResponse> () {
                 StatusCode = System.Net.HttpStatusCode.OK,
                 Payload = new SetMessagesConfigResponse () {
-                    //Payload = _dailySettings
+                    Payload = _dailySettings
                 }
             };
         }
@@ -254,7 +254,7 @@ namespace GodSpeak
             return new ApiResponse<GetMessageConfigResponse> () {
                 StatusCode = System.Net.HttpStatusCode.OK,
                 Payload = new GetMessageConfigResponse () {
-                    //Payload = _dailySettings
+                    Payload = _dailySettings
                 }
             };
         }
@@ -348,7 +348,72 @@ namespace GodSpeak
             }
         };
 
-
+		private static List<DayOfWeekSettings> _dailySettings = new List<DayOfWeekSettings>()
+		{
+			new DayOfWeekSettings()
+			{
+				Id = Guid.NewGuid(),
+				Title="Sunday",
+				Enabled = true,
+				StartTime = TimeSpan.FromHours(10),
+				EndTime = TimeSpan.FromHours(20),
+				NumberOfMessages = 3
+			},
+			new DayOfWeekSettings()
+			{
+				Id = Guid.NewGuid(),
+				Title="Monday",
+				Enabled = false,
+				StartTime = TimeSpan.FromHours(10),
+				EndTime = TimeSpan.FromHours(20),
+				NumberOfMessages = 3
+			},
+			new DayOfWeekSettings()
+			{
+				Id = Guid.NewGuid(),
+				Title="Tuesday",
+				Enabled = false,
+				StartTime = TimeSpan.FromHours(10),
+				EndTime = TimeSpan.FromHours(20),
+				NumberOfMessages = 3
+			},
+			new DayOfWeekSettings()
+			{
+				Id = Guid.NewGuid(),
+				Title="Wednesday",
+				Enabled = true,
+				StartTime = TimeSpan.FromHours(10),
+				EndTime = TimeSpan.FromHours(10),
+				NumberOfMessages = 3
+			},
+			new DayOfWeekSettings()
+			{
+				Id = Guid.NewGuid(),
+				Title="Thursday",
+				Enabled = true,
+				StartTime = TimeSpan.FromHours(12),
+				EndTime = TimeSpan.FromHours(17),
+				NumberOfMessages = 3
+			},
+			new DayOfWeekSettings()
+			{
+				Id = Guid.NewGuid(),
+				Title="Friday",
+				Enabled = false,
+				StartTime = TimeSpan.FromHours(12),
+				EndTime = TimeSpan.FromHours(17),
+				NumberOfMessages = 3
+			},
+			new DayOfWeekSettings()
+			{
+				Id = Guid.NewGuid(),
+				Title="Saturday",
+				Enabled = false,
+				StartTime = TimeSpan.FromHours(10),
+				EndTime = TimeSpan.FromHours(20),
+				NumberOfMessages = 3
+			},
+		};
 
         private static List<Message> _messages = new List<Message> ()
         {

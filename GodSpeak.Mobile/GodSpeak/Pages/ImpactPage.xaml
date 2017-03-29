@@ -75,7 +75,7 @@
 				HeightRequest="60"
 				BackgroundColor="{x:Static views:ColorHelper.PrimaryNavBar}"
 				AbsoluteLayout.LayoutFlags="XProportional,WidthProportional"
-				Margin="{StaticResource PaddingHeader}"
+				Margin="{StaticResource PaddingHeaderOnlyTop}"
 				AbsoluteLayout.LayoutBounds="0,60,1,AutoSize"
 				Padding="10,5"
 			>

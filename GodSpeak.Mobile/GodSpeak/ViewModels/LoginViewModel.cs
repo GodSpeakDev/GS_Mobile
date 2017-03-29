@@ -54,8 +54,8 @@ namespace GodSpeak
 
         public void Init ()
         {
-            Email = "godspeak@gmail.com";
-            Password = "123456";
+            Email = "Ben@rendr.io";
+            Password = "J0hn_galt";
         }
 
         private async void DoLoginCommand ()
