@@ -24,6 +24,7 @@ namespace GodSpeak.Droid
     [Activity (Theme = "@style/AppTheme", Label = "MvxFormsApplicationActivity", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.ScreenSize)]
     public class MainActivity : FormsAppCompatActivity
     {
+		public const int RequestReadContacts = 0;
         public static bool IsForeground { get; set; }
 
         protected override void OnCreate (Bundle bundle)
@@ -81,5 +82,16 @@ namespace GodSpeak.Droid
             base.OnPause ();
             IsForeground = false;
         }
+
+		public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+		{
+			base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+
+			if (requestCode == RequestReadContacts)
+			{
+				var contactService = Mvx.Resolve<IContactService>() as ContactsService;
+				contactService.OnRequestPermissionsResult(grantResults[0] == Permission.Granted);
+			}
+		}
     }
 }
