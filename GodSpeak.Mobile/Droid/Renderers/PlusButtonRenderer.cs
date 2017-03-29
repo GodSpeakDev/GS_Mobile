@@ -33,13 +33,19 @@ namespace GodSpeak.Droid
 		protected override void OnElementChanged(ElementChangedEventArgs<Button> e)
 		{
 			base.OnElementChanged(e);
-			Drawable.SetColor(Xamarin.Forms.Color.Transparent.ToAndroid());
+			SetBackgroundColor();
 		}
 
 		protected override void OnElementPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
 		{
 			base.OnElementPropertyChanged(sender, e);
+			SetBackgroundColor();
+		}
 
+		private void SetBackgroundColor()
+		{
+			this.SetBackgroundColor(Android.Graphics.Color.Transparent);
+			Drawable.SetColor(Xamarin.Forms.Color.Transparent.ToAndroid());
 		}
 	}
 }

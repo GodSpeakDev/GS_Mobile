@@ -84,7 +84,7 @@ namespace GodSpeak
 
 			for (int i = 0; i < Buttons.Length; i++)
 			{				
-				var button = new Button()
+				var button = new CustomButton()
 				{
 					FontSize = 18,
 					BackgroundColor = i == 0 ? ColorHelper.Secondary : Color.Transparent,

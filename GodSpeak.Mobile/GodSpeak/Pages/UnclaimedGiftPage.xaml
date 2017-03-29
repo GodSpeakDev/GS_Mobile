@@ -100,11 +100,11 @@
 												HorizontalOptions="FillAndExpand"
 												VerticalOptions="Center"
 											/>
-											<views:CustomButton 
-												WidthRequest="80"
+											<views:CustomButton 				
+												WidthRequest="{StaticResource PriceWidth}"
 												Style="{StaticResource ButtonBlue}"
-												Text="{Binding CostDescription}"
-											/>	
+												Text="{Binding CostDescription}">
+											</views:CustomButton>	
 										</StackLayout>
 									</DataTemplate>
 								</views:StackList.ItemTemplate>	

@@ -107,7 +107,7 @@ namespace GodSpeak
 
 			for (int i = 0; i < Buttons.Length; i++)
 			{
-				var button = new Button()
+				var button = new CustomButton()
 				{					
 					Style = (Style)Application.Current.Resources[i == 0 ? "BorderButtonWhite" : "BorderButtonTransparent"],
 					Margin = new Thickness(10, 5, 10, 5),

@@ -37,6 +37,7 @@ namespace GodSpeak.Droid
 
 			SetBorderFrame();
 			SetBackgroundColor();
+			SetBorderColor();
 		}
 
 		protected override void OnElementPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -44,10 +45,20 @@ namespace GodSpeak.Droid
 			base.OnElementPropertyChanged(sender, e);
 
 			SetBackgroundColor();
+			SetBorderColor();
 
 			if (e.PropertyName == "BackgroundColor")
 			{
 				SetBackgroundColor();
+			}
+		}
+
+		private void SetBorderColor()
+		{
+			var customButton = this.Element as CustomButton;
+			if (this.Control != null && customButton != null)
+			{
+				Drawable.SetStroke(2, this.CustomButton.BorderColor.ToAndroid());
 			}
 		}
 
