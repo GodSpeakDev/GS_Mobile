@@ -46,6 +46,7 @@
 			<OnPlatform x:TypeArguments="x:Double" x:Key="OnboardingEntryFontSize" Android="19" iOS="24" WinPhone="20" />
 			<OnPlatform x:TypeArguments="x:Double" x:Key="BackButtonWidth" Android="20" iOS="12" WinPhone="20" />
 			<OnPlatform x:TypeArguments="x:Double" x:Key="BackButtonHeight" Android="20" iOS="21" WinPhone="20" />
+			<OnPlatform x:TypeArguments="Rectangle" x:Key="FabButtonBounds" Android="1,1.05,100,100" iOS="1,1.05,100,100" WinPhone="1,1.05,100,100" />
 						
 			<!-- Global Colors -->
 			<Color x:Key="primaryColor">#00a5ff</Color>

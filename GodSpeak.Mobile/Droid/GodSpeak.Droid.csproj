@@ -241,10 +241,7 @@
     <AndroidResource Include="Resources\drawable\bundle_icon.png" />
     <AndroidResource Include="Resources\drawable\curveBackground.png" />
     <AndroidResource Include="Resources\drawable\gift_icon.png" />
-    <AndroidResource Include="Resources\drawable\hamburgerMenu.png" />
     <AndroidResource Include="Resources\drawable\impact_background.png" />
-    <AndroidResource Include="Resources\drawable\impactWithNotification.png" />
-    <AndroidResource Include="Resources\drawable\invitesFAB.png" />
     <AndroidResource Include="Resources\drawable\loginBackground.png" />
     <AndroidResource Include="Resources\drawable\logo.png" />
     <AndroidResource Include="Resources\drawable\logoutIcon.png" />
@@ -292,6 +289,18 @@
     <AndroidResource Include="Resources\drawable-xhdpi\group.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\search_icon.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\search_icon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\impactWithNotification.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\hamburgerMenu.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\impactWithNotification.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\hamburgerMenu.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\impactWithNotification.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\hamburgerMenu.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\impactWithNotification.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\hamburgerMenu.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\invitesFAB.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\invitesFAB.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\invitesFAB.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\invitesFAB.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="MvvmCross\" />
