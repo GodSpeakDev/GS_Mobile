@@ -309,12 +309,6 @@
     <BundleResource Include="Resources\share_background.png" />
     <BundleResource Include="Resources\share_background%402x.png" />
     <BundleResource Include="Resources\share_background%403x.png" />
-    <BundleResource Include="Resources\gift_claimed_icon.png" />
-    <BundleResource Include="Resources\gift_claimed_icon%402x.png" />
-    <BundleResource Include="Resources\gift_claimed_icon%403x.png" />
-    <BundleResource Include="Resources\gift_unclaimed_icon.png" />
-    <BundleResource Include="Resources\gift_unclaimed_icon%402x.png" />
-    <BundleResource Include="Resources\gift_unclaimed_icon%403x.png" />
     <BundleResource Include="Resources\bundle_icon.png" />
     <BundleResource Include="Resources\bundle_icon%402x.png" />
     <BundleResource Include="Resources\bundle_icon%403x.png" />
@@ -339,6 +333,18 @@
     <BundleResource Include="Resources\curveBackground.png" />
     <BundleResource Include="Resources\curveBackground%402x.png" />
     <BundleResource Include="Resources\curveBackground%403x.png" />
+    <BundleResource Include="Resources\claimed_gift_unselected_icon.png" />
+    <BundleResource Include="Resources\claimed_gift_unselected_icon%402x.png" />
+    <BundleResource Include="Resources\claimed_gift_unselected_icon%403x.png" />
+    <BundleResource Include="Resources\claimed_gift_selected_icon.png" />
+    <BundleResource Include="Resources\claimed_gift_selected_icon%402x.png" />
+    <BundleResource Include="Resources\claimed_gift_selected_icon%403x.png" />
+    <BundleResource Include="Resources\unclaimed_gift_selected_icon.png" />
+    <BundleResource Include="Resources\unclaimed_gift_selected_icon%402x.png" />
+    <BundleResource Include="Resources\unclaimed_gift_selected_icon%403x.png" />
+    <BundleResource Include="Resources\unclaimed_gift_unselected_icon.png" />
+    <BundleResource Include="Resources\unclaimed_gift_unselected_icon%402x.png" />
+    <BundleResource Include="Resources\unclaimed_gift_unselected_icon%403x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.3.180\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.3.180\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />

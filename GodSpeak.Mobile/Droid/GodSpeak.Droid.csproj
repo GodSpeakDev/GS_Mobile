@@ -241,10 +241,7 @@
     <AndroidResource Include="Resources\drawable\blue_down_arrow.png" />
     <AndroidResource Include="Resources\drawable\bundle_icon.png" />
     <AndroidResource Include="Resources\drawable\curveBackground.png" />
-    <AndroidResource Include="Resources\drawable\gift_claimed_icon.png" />
     <AndroidResource Include="Resources\drawable\gift_icon.png" />
-    <AndroidResource Include="Resources\drawable\gift_unclaimed_icon.png" />
-    <AndroidResource Include="Resources\drawable\gray_speach_arrow.png" />
     <AndroidResource Include="Resources\drawable\hamburgerMenu.png" />
     <AndroidResource Include="Resources\drawable\impact_background.png" />
     <AndroidResource Include="Resources\drawable\impactWithNotification.png" />
@@ -266,6 +263,26 @@
     <AndroidResource Include="Resources\drawable\share_icon.png" />
     <AndroidResource Include="Resources\drawable\speechBalloonBackground.png" />
     <AndroidResource Include="Resources\drawable\stop_icon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\gray_speach_arrow.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\gray_speach_arrow.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\gray_speach_arrow.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\gray_speach_arrow.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\unclaimed_gift_selected_icon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\claimed_gift_unselected_icon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\unclaimed_gift_unselected_icon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\claimed_gift_selected_icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\unclaimed_gift_selected_icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\claimed_gift_unselected_icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\unclaimed_gift_unselected_icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\claimed_gift_selected_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\unclaimed_gift_selected_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\claimed_gift_unselected_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\unclaimed_gift_unselected_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\claimed_gift_selected_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\unclaimed_gift_selected_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\claimed_gift_unselected_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\unclaimed_gift_unselected_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\claimed_gift_selected_icon.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="MvvmCross\" />
