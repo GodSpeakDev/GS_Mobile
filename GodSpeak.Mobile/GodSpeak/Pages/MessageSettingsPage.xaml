@@ -121,7 +121,8 @@
 								<StackLayout
 									Orientation="Horizontal"
 									HorizontalOptions="FillAndExpand">
-									<views:CustomLabel
+									<views:CustomLabel										
+										WidthRequest="200"
 										HorizontalOptions="StartAndExpand"									
 										Margin="10,0"
 										Text="{Binding Title}" 

@@ -22,13 +22,15 @@ using HockeyApp.Android;
 namespace GodSpeak.Droid
 {
     [Activity (Theme = "@style/AppTheme", Label = "MvxFormsApplicationActivity", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.ScreenSize)]
-    public class MainActivity : FormsAppCompatActivity
+    public class MainActivity : FormsApplicationActivity
     {
 		public const int RequestReadContacts = 0;
         public static bool IsForeground { get; set; }
 
         protected override void OnCreate (Bundle bundle)
         {
+			global::Xamarin.Forms.Forms.SetTitleBarVisibility(Xamarin.Forms.AndroidTitleBarVisibility.Never);
+
             CrashManager.Register (this, "da7c75f8b96b4b3abc8569120d7e1b3a");
 
             Xamarin.Forms.Forms.Init (this, bundle);

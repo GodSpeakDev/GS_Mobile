@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<style
-		name="Theme.Splash"
-		parent="android:Theme">
-		<item
-			name="android:windowBackground">@drawable/launch_screen</item>
-		<item
-			name="android:windowNoTitle">true</item>
+	<style name="Theme.Splash" parent="AppTheme">
+		<item name="android:windowBackground">@drawable/launch_screen</item>
+		<item name="android:windowNoTitle">true</item>
 	</style>
 </resources>

@@ -4217,11 +4217,8 @@ namespace GodSpeak.Droid
 			// aapt resource value: 0x7f0a001c
 			public const int Animation_Design_BottomSheetDialog = 2131361820;
 			
-			// aapt resource value: 0x7f0a0177
-			public const int AppTheme = 2131362167;
-			
 			// aapt resource value: 0x7f0a0176
-			public const int AppTheme_Base = 2131362166;
+			public const int AppTheme = 2131362166;
 			
 			// aapt resource value: 0x7f0a00be
 			public const int Base_AlertDialog_AppCompat = 2131361982;

@@ -59,6 +59,7 @@
 			<Color x:Key="warningColor">#FF9000</Color>	
 			<Color x:Key="textInputDisabled">#d9dadb</Color>	
 			<Color x:Key="disableTab">#474843</Color>	
+			<Color x:Key="textInputFocusEnteredText">#303132</Color>	
 
 			<!-- Label Styles -->
 			<Style x:Key="AlertSheetTitle" TargetType="Label">
@@ -300,6 +301,9 @@
 			<Style x:Key="OnboardingEntry" TargetType="godspeak:CustomEntry">						
 				<Setter Property="FontWeight" Value="Bold" />
 				<Setter Property="FontSize" Value="{StaticResource OnboardingEntryFontSize}" />	
+				<Setter Property="TextColor" Value="{StaticResource textInputFocusEnteredText}" />
+				<Setter Property="PlaceholderColor" Value="{StaticResource textInputFocusPlaceholder}" />
+				<Setter Property="BackgroundColor" Value="{StaticResource secondaryColor}" />
 				<Setter Property="HasAutoComplete" Value="false" />
 			</Style>
 
