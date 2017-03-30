@@ -256,7 +256,6 @@
     <AndroidResource Include="Resources\drawable\profile_placeholder.png" />
     <AndroidResource Include="Resources\drawable\profileIcon.png" />
     <AndroidResource Include="Resources\drawable\scripture_icon.png" />
-    <AndroidResource Include="Resources\drawable\search_icon.png" />
     <AndroidResource Include="Resources\drawable\settingsIcon.png" />
     <AndroidResource Include="Resources\drawable\share_background.png" />
     <AndroidResource Include="Resources\drawable\speechBalloonBackground.png" />
@@ -286,9 +285,13 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\back_button.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\back_button.png" />
     <AndroidResource Include="Resources\drawable-hdpi\share_icon.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\share_icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\search_icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\share_icon.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\share_icon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\search_icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\group.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\search_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\search_icon.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="MvvmCross\" />
