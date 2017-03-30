@@ -237,7 +237,6 @@
     <AndroidResource Include="Resources\drawable\arrow_down.png" />
     <AndroidResource Include="Resources\drawable\arrow_left.png" />
     <AndroidResource Include="Resources\drawable\arrow_right.png" />
-    <AndroidResource Include="Resources\drawable\back_button.png" />
     <AndroidResource Include="Resources\drawable\blue_down_arrow.png" />
     <AndroidResource Include="Resources\drawable\bundle_icon.png" />
     <AndroidResource Include="Resources\drawable\curveBackground.png" />
@@ -283,6 +282,10 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\claimed_gift_unselected_icon.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\unclaimed_gift_unselected_icon.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\claimed_gift_selected_icon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\back_button.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\back_button.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\back_button.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\back_button.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="MvvmCross\" />
