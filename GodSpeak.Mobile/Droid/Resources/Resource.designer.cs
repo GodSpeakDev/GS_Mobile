@@ -2751,7 +2751,7 @@ namespace GodSpeak.Droid
 			public const int logo = 2130837715;
 			
 			// aapt resource value: 0x7f0200d4
-			public const int logoutIcon = 2130837716;
+			public const int logout_icon = 2130837716;
 			
 			// aapt resource value: 0x7f0200d5
 			public const int menu_image = 2130837717;
@@ -2820,10 +2820,10 @@ namespace GodSpeak.Droid
 			public const int play_icon = 2130837737;
 			
 			// aapt resource value: 0x7f0200ea
-			public const int profile_placeholder = 2130837738;
+			public const int profile_icon = 2130837738;
 			
 			// aapt resource value: 0x7f0200eb
-			public const int profileIcon = 2130837739;
+			public const int profile_placeholder = 2130837739;
 			
 			// aapt resource value: 0x7f0200ec
 			public const int roundedbg = 2130837740;
@@ -2838,7 +2838,7 @@ namespace GodSpeak.Droid
 			public const int search_icon = 2130837743;
 			
 			// aapt resource value: 0x7f0200f0
-			public const int settingsIcon = 2130837744;
+			public const int settings_icon = 2130837744;
 			
 			// aapt resource value: 0x7f0200f1
 			public const int share_background = 2130837745;

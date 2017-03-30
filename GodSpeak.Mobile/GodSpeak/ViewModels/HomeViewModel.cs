@@ -97,25 +97,25 @@ namespace GodSpeak
                 {
                     Command = MessageSettingsCommand,
                     Title = Text.MenuMessageSettings,
-                    Image = "SettingsIcon.png"
+                    Image = "settings_icon.png"
                 },
                 new MenuItem()
                 {
                     Command = MyProfileCommand,
                     Title = Text.MyProfileSettings,
-                    Image = "profileIcon.png"
+                    Image = "profile_icon.png"
                 },
                 new MenuItem()
                 {
                     Command = LogoutCommand,
                     Title = Text.LogoutSettings,
-                    Image = "logoutIcon.png"
+                    Image = "logout_icon.png"
                 },
                 new MenuItem()
                 {
                     Command = FeedbackCommand,
                     Title = Text.SubmitBugFeedback,
-                    Image = "logoutIcon.png"
+                    Image = "logout_icon.png"
                 }
 
             };
