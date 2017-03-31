@@ -87,7 +87,9 @@ namespace GodSpeak
             var response = await _webApi.GetProfile (new TokenRequest () { Token = sessionService.GetUser ().Token });
 
             var user = response.Payload;
-
+            StartTime = user.MessageDayOfWeekSettings.First ().StartTime;
+            EndTime = user.MessageDayOfWeekSettings.First ().EndTime;
+            NumberOfMessages = user.MessageDayOfWeekSettings.First ().NumOfMessages;
             LoadDaysOfWeek (user);
             LoadCategories (user);
             hudService.Hide ();

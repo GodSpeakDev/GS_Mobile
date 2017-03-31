@@ -16,10 +16,7 @@ namespace GodSpeak
             set { SetProperty (ref _enabled, value); }
         }
 
-        public int NumberOfMessages {
-            get;
-            set;
-        }
+
 
         public string Title {
             get;

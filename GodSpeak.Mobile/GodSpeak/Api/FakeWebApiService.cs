@@ -352,7 +352,7 @@ namespace GodSpeak
                 Enabled = true,
                 StartTime = TimeSpan.FromHours(10),
                 EndTime = TimeSpan.FromHours(20),
-                NumberOfMessages = 3
+                NumOfMessages = 3
             },
             new DayOfWeekSettings()
             {
@@ -361,7 +361,7 @@ namespace GodSpeak
                 Enabled = false,
                 StartTime = TimeSpan.FromHours(10),
                 EndTime = TimeSpan.FromHours(20),
-                NumberOfMessages = 3
+                NumOfMessages = 3
             },
             new DayOfWeekSettings()
             {
@@ -370,7 +370,7 @@ namespace GodSpeak
                 Enabled = false,
                 StartTime = TimeSpan.FromHours(10),
                 EndTime = TimeSpan.FromHours(20),
-                NumberOfMessages = 3
+                NumOfMessages = 3
             },
             new DayOfWeekSettings()
             {
@@ -379,7 +379,7 @@ namespace GodSpeak
                 Enabled = true,
                 StartTime = TimeSpan.FromHours(10),
                 EndTime = TimeSpan.FromHours(10),
-                NumberOfMessages = 3
+                NumOfMessages = 3
             },
             new DayOfWeekSettings()
             {
@@ -388,7 +388,7 @@ namespace GodSpeak
                 Enabled = true,
                 StartTime = TimeSpan.FromHours(12),
                 EndTime = TimeSpan.FromHours(17),
-                NumberOfMessages = 3
+                NumOfMessages = 3
             },
             new DayOfWeekSettings()
             {
@@ -397,7 +397,7 @@ namespace GodSpeak
                 Enabled = false,
                 StartTime = TimeSpan.FromHours(12),
                 EndTime = TimeSpan.FromHours(17),
-                NumberOfMessages = 3
+                NumOfMessages = 3
             },
             new DayOfWeekSettings()
             {
@@ -406,7 +406,7 @@ namespace GodSpeak
                 Enabled = false,
                 StartTime = TimeSpan.FromHours(10),
                 EndTime = TimeSpan.FromHours(20),
-                NumberOfMessages = 3
+                NumOfMessages = 3
             },
         };
 
