@@ -3,25 +3,22 @@ using MvvmCross.Core.ViewModels;
 
 namespace GodSpeak
 {
-	public class MessageCategory : MvxViewModel
-	{
-		public Guid Id 
-		{
-			get;
-			set;
-		}
+    public class MessageCategory : MvxNotifyPropertyChanged
+    {
+        public Guid Id {
+            get;
+            set;
+        }
 
-		private bool _enabled;
-		public bool Enabled
-		{
-			get { return _enabled; }
-			set { SetProperty(ref _enabled, value); }
-		}	
+        private bool _enabled;
+        public bool Enabled {
+            get { return _enabled; }
+            set { SetProperty (ref _enabled, value); }
+        }
 
-		public string Title
-		{
-			get;
-			set;
-		}
-	}
+        public string Title {
+            get;
+            set;
+        }
+    }
 }

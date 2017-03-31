@@ -68,6 +68,12 @@ namespace GodSpeak.Api
             return await DoGet<User> (ProfileUri);
         }
 
+        public new async Task<ApiResponse<User>> SaveProfile (User user)
+        {
+            AddAuthToken (user.Token);
+            return await DoPut<User> (ProfileUri, user);
+        }
+
 
         public new async Task<ApiResponse<ValidateCodeResponse>> ValidateCode (ValidateCodeRequest request)
         {

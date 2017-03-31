@@ -15,6 +15,40 @@ namespace GodSpeak
     {
         private IWebApiService _webApi;
 
+
+        private MvxCommand _goSaveCommand;
+        public MvxCommand GoSaveCommand {
+            get {
+                _goSaveCommand = _goSaveCommand ?? new MvxCommand (DoGoSave);
+                return _goSaveCommand;
+            }
+        }
+
+        public async virtual void DoGoSave ()
+        {
+            hudService.Show ();
+
+            foreach (var setting in User.MessageDayOfWeekSettings) {
+                setting.StartTime = StartTime;
+                setting.EndTime = EndTime;
+                setting.NumOfMessages = NumberOfMessages;
+            }
+
+            var daySettings = Groups [0];
+            foreach (var setting in daySettings) {
+                User.MessageDayOfWeekSettings.First (s => s.Title == setting.Title).Enabled = setting.IsEnabled;
+            }
+
+            var categorySettings = Groups [1];
+            foreach (var setting in categorySettings) {
+                User.MessageCategorySettings.First (s => s.Title == setting.Title).Enabled = setting.IsEnabled;
+            }
+
+            await _webApi.SaveProfile (User);
+
+            hudService.Hide ();
+        }
+
         private ObservableCollection<SettingsGroup> _groups;
         public ObservableCollection<SettingsGroup> Groups {
             get { return _groups; }
@@ -60,6 +94,7 @@ namespace GodSpeak
             }
         }
 
+
         readonly ISessionService sessionService;
         readonly IProgressHudService hudService;
 
@@ -81,17 +116,19 @@ namespace GodSpeak
             };
         }
 
+        protected User User;
+
         public async void Init ()
         {
             hudService.Show ();
             var response = await _webApi.GetProfile (new TokenRequest () { Token = sessionService.GetUser ().Token });
 
-            var user = response.Payload;
-            StartTime = user.MessageDayOfWeekSettings.First ().StartTime;
-            EndTime = user.MessageDayOfWeekSettings.First ().EndTime;
-            NumberOfMessages = user.MessageDayOfWeekSettings.First ().NumOfMessages;
-            LoadDaysOfWeek (user);
-            LoadCategories (user);
+            User = response.Payload;
+            StartTime = User.MessageDayOfWeekSettings.First ().StartTime;
+            EndTime = User.MessageDayOfWeekSettings.First ().EndTime;
+            NumberOfMessages = User.MessageDayOfWeekSettings.First ().NumOfMessages;
+            LoadDaysOfWeek (User);
+            LoadCategories (User);
             hudService.Hide ();
         }
 

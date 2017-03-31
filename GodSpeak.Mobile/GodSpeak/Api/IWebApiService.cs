@@ -13,6 +13,7 @@ namespace GodSpeak
         Task<ApiResponse<User>> Login (LoginRequest request);
         Task<ApiResponse> Logout (LogoutRequest request);
         Task<ApiResponse<User>> GetProfile (TokenRequest request);
+        Task<ApiResponse<User>> SaveProfile (User user);
 
         Task<ApiResponse<GetImpactResponse>> GetImpact (GetImpactRequest request);
         Task<ApiResponse<GetInvitesResponse>> GetInvites (GetInvitesRequest request);
@@ -22,7 +23,6 @@ namespace GodSpeak
         Task<ApiResponse<GetMessageResponse>> GetMessage (GetMessageRequest request);
         Task<ApiResponse<string>> ForgotPassword (ForgotPasswordRequest request);
         Task<ApiResponse<User>> RegisterUser (RegisterUserRequest request);
-        Task<ApiResponse<SaveCategoriesResponse>> SaveCategories (SaveCategoriesRequest request);
-        Task<ApiResponse<SetMessagesConfigResponse>> SetMessagesConfigUser (SetMessagesConfigRequest request);
+
     }
 }

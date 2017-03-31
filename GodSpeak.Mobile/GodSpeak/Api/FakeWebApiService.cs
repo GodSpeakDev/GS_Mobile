@@ -147,19 +147,7 @@ namespace GodSpeak
             };
         }
 
-        public async Task<ApiResponse<SaveCategoriesResponse>> SaveCategories (SaveCategoriesRequest request)
-        {
-            await Task.Delay (delay);
 
-            foreach (var category in _categories) {
-                category.Enabled = (request.Payload.FirstOrDefault (x => x.Id == category.Id)?.Enabled).GetValueOrDefault ();
-            }
-
-            return new ApiResponse<SaveCategoriesResponse> () {
-                StatusCode = System.Net.HttpStatusCode.OK,
-                Payload = new SaveCategoriesResponse ()
-            };
-        }
 
         public async Task<ApiResponse<SetMessagesConfigResponse>> SetMessagesConfigUser (SetMessagesConfigRequest request)
         {
@@ -313,6 +301,15 @@ namespace GodSpeak
                 }
             };
 
+        }
+
+        public async Task<ApiResponse<User>> SaveProfile (User user)
+        {
+            await Task.Delay (delay);
+            return new ApiResponse<User> () {
+                StatusCode = System.Net.HttpStatusCode.OK,
+                Payload = user
+            };
         }
 
         private static List<MessageCategory> _categories = new List<MessageCategory> ()
