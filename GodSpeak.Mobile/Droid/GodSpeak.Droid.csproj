@@ -232,17 +232,12 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\people_background.jpg" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\login_form_background.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\people_background.jpg" />
-    <AndroidResource Include="Resources\drawable\login_form_background.png" />
     <AndroidResource Include="Resources\drawable\people_background.jpg" />
     <AndroidResource Include="Resources\drawable\arrow_down.png" />
-    <AndroidResource Include="Resources\drawable\arrow_left.png" />
     <AndroidResource Include="Resources\drawable\arrow_right.png" />
-    <AndroidResource Include="Resources\drawable\bundle_icon.png" />
     <AndroidResource Include="Resources\drawable\curveBackground.png" />
     <AndroidResource Include="Resources\drawable\gift_icon.png" />
     <AndroidResource Include="Resources\drawable\impact_background.png" />
-    <AndroidResource Include="Resources\drawable\loginBackground.png" />
-    <AndroidResource Include="Resources\drawable\logo.png" />
     <AndroidResource Include="Resources\drawable\menu_image.jpg" />
     <AndroidResource Include="Resources\drawable\messagesBackground.png" />
     <AndroidResource Include="Resources\drawable\oval.png" />
@@ -282,7 +277,7 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\share_icon.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\share_icon.png" />
     <AndroidResource Include="Resources\drawable-hdpi\search_icon.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\group.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\logo.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\search_icon.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\search_icon.png" />
     <AndroidResource Include="Resources\drawable-hdpi\impactWithNotification.png" />
@@ -310,6 +305,9 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\profile_icon.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\settings_icon.png" />
     <AndroidResource Include="Resources\drawable\blue_down_arrow.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\logo.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\logo.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\logo.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="MvvmCross\" />
