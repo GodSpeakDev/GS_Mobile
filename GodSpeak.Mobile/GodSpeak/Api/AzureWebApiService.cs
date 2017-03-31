@@ -61,31 +61,13 @@ namespace GodSpeak.Api
             return await DoPost<User> (RegisterUri, request);
         }
 
-
-        public new async Task<ApiResponse<GetCategoriesResponse>> GetCategories (GetCategoriesRequest request)
+        public new async Task<ApiResponse<User>> GetProfile (TokenRequest request)
         {
-            AddAuthToken (request.Token);
-            var profileResponse = await DoGet<User> (ProfileUri);
-            var catResponse = new ApiResponse<GetCategoriesResponse> ();
-            catResponse.Message = profileResponse.Message;
-            catResponse.Title = profileResponse.Title;
-            catResponse.Payload = new GetCategoriesResponse () { Payload = profileResponse.Payload.MessageCategorySettings };
-            catResponse.StatusCode = profileResponse.StatusCode;
-            return catResponse;
 
+            AddAuthToken (request.Token);
+            return await DoGet<User> (ProfileUri);
         }
 
-        public new async Task<ApiResponse<GetMessageConfigResponse>> GetMessageConfig (GetMessageConfigRequest request)
-        {
-            AddAuthToken (request.Token);
-            var profileResponse = await DoGet<User> (ProfileUri);
-            var configResponse = new ApiResponse<GetMessageConfigResponse> ();
-            configResponse.Message = profileResponse.Message;
-            configResponse.Title = profileResponse.Title;
-            configResponse.Payload = new GetMessageConfigResponse () { Payload = profileResponse.Payload.MessageDayOfWeekSettings };
-            configResponse.StatusCode = profileResponse.StatusCode;
-            return configResponse;
-        }
 
         public new async Task<ApiResponse<ValidateCodeResponse>> ValidateCode (ValidateCodeRequest request)
         {

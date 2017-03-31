@@ -7,6 +7,7 @@ using MvvmCross.Forms.Presenter.Core;
 using System.Windows.Input;
 using GodSpeak.Resources;
 using System.Threading.Tasks;
+using GodSpeak.Services;
 
 namespace GodSpeak
 {
@@ -59,8 +60,13 @@ namespace GodSpeak
             }
         }
 
-        public MessageSettingsViewModel (IDialogService dialogService, IWebApiService webApi) : base (dialogService)
+        readonly ISessionService sessionService;
+        readonly IProgressHudService hudService;
+
+        public MessageSettingsViewModel (IProgressHudService hudService, ISessionService sessionService, IDialogService dialogService, IWebApiService webApi) : base (dialogService)
         {
+            this.hudService = hudService;
+            this.sessionService = sessionService;
             _webApi = webApi;
             Groups = new ObservableCollection<SettingsGroup> ()
             {
@@ -77,45 +83,42 @@ namespace GodSpeak
 
         public async void Init ()
         {
-            await LoadDaysOfWeek ();
-            await LoadCategories ();
+            hudService.Show ();
+            var response = await _webApi.GetProfile (new TokenRequest () { Token = sessionService.GetUser ().Token });
+
+            var user = response.Payload;
+
+            LoadDaysOfWeek (user);
+            LoadCategories (user);
+            hudService.Hide ();
         }
 
-        private async Task LoadCategories ()
+        private void LoadCategories (User user)
         {
-            var categoriesResult = await _webApi.GetCategories (new GetCategoriesRequest ());
-            if (categoriesResult.IsSuccess) {
-                var categoryCollection = Groups [1];
-                foreach (var item in categoriesResult.Payload.Payload) {
-                    categoryCollection.Add (new SettingsItem () {
-                        Title = item.Title,
-                        IsEnabled = item.Enabled
-                    });
-                }
-            } else {
-                await HandleResponse (categoriesResult);
-            }
+
+            var categoryCollection = Groups [1];
+            foreach (var item in user.MessageCategorySettings)
+                categoryCollection.Add (new SettingsItem () {
+                    Title = item.Title,
+                    IsEnabled = item.Enabled
+                });
+
+
+
         }
 
-        private async Task LoadDaysOfWeek ()
+        private void LoadDaysOfWeek (User user)
         {
-            var messageConfigResult = await _webApi.GetMessageConfig (new GetMessageConfigRequest ());
-            if (messageConfigResult.IsSuccess) {
-                var daysCollection = Groups [0];
-                foreach (var item in messageConfigResult.Payload.Payload) {
-                    daysCollection.Add (new SettingsItem () {
-                        Title = item.Title,
-                        IsEnabled = item.Enabled
-                    });
-                }
 
-                var day = messageConfigResult.Payload.Payload [0];
-                NumberOfMessages = day.NumberOfMessages;
-                StartTime = day.StartTime;
-                EndTime = day.EndTime;
-            } else {
-                await HandleResponse (messageConfigResult);
-            }
+            var daysCollection = Groups [0];
+            foreach (var item in user.MessageDayOfWeekSettings)
+                daysCollection.Add (new SettingsItem () {
+                    Title = item.Title,
+                    IsEnabled = item.Enabled
+                });
+
+
+
         }
 
         private void DoPlusButtonCommand ()

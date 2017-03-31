@@ -59,27 +59,7 @@ namespace GodSpeak
             return null;
         }
 
-        public async Task<ApiResponse<GetCategoriesResponse>> GetCategories (GetCategoriesRequest request)
-        {
-            await Task.Delay (delay);
-            return new ApiResponse<GetCategoriesResponse> () {
-                StatusCode = System.Net.HttpStatusCode.OK,
-                Payload = new GetCategoriesResponse () {
-                    Payload = _categories
-                }
-            };
-        }
 
-        public async Task<ApiResponse<GetImpactResponse>> GetImpact (GetImpactRequest request)
-        {
-            await Task.Delay (delay);
-            return new ApiResponse<GetImpactResponse> () {
-                StatusCode = System.Net.HttpStatusCode.OK,
-                Payload = new GetImpactResponse () {
-                    Payload = GetImpactedDays ()
-                }
-            };
-        }
 
         public async Task<ApiResponse<GetInvitesResponse>> GetInvites (GetInvitesRequest request)
         {
@@ -248,16 +228,7 @@ namespace GodSpeak
             };
         }
 
-        public async Task<ApiResponse<GetMessageConfigResponse>> GetMessageConfig (GetMessageConfigRequest request)
-        {
-            await Task.Delay (delay);
-            return new ApiResponse<GetMessageConfigResponse> () {
-                StatusCode = System.Net.HttpStatusCode.OK,
-                Payload = new GetMessageConfigResponse () {
-                    Payload = _dailySettings
-                }
-            };
-        }
+
 
         private User GetTestPayload ()
         {
@@ -315,9 +286,33 @@ namespace GodSpeak
             return impactedDays;
         }
 
-        public Task<ApiResponse<List<Country>>> GetCountries ()
+        public async Task<ApiResponse<List<Country>>> GetCountries ()
         {
-            throw new NotImplementedException ();
+            await Task.Delay (delay);
+            return new ApiResponse<List<Country>> () {
+                StatusCode = System.Net.HttpStatusCode.OK,
+                Payload = new List<Country> () {
+                    new Country(){ Code = "US", Title = "United States of America"}
+                }
+            };
+        }
+
+        public async Task<ApiResponse<User>> GetProfile (TokenRequest request)
+        {
+            await Task.Delay (delay);
+            return new ApiResponse<User> () { Payload = new User () };
+        }
+
+        public async Task<ApiResponse<GetImpactResponse>> GetImpact (GetImpactRequest request)
+        {
+            await Task.Delay (delay);
+            return new ApiResponse<GetImpactResponse> () {
+                StatusCode = System.Net.HttpStatusCode.OK,
+                Payload = new GetImpactResponse () {
+                    Payload = GetImpactedDays ()
+                }
+            };
+
         }
 
         private static List<MessageCategory> _categories = new List<MessageCategory> ()

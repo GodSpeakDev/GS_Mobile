@@ -150,8 +150,6 @@
     <Compile Include="Api\Request\GetinvitesRequest.cs" />
     <Compile Include="Api\Dtos\Invite.cs" />
     <Compile Include="Api\Response\GetInvitesResponse.cs" />
-    <Compile Include="Api\Request\GetCategoriesRequest.cs" />
-    <Compile Include="Api\Response\GetCategoriesResponse.cs" />
     <Compile Include="Api\Request\SaveCategoriesRequest.cs" />
     <Compile Include="Api\Response\SaveCategoriesResponse.cs" />
     <Compile Include="Api\Request\GetImpactRequest.cs" />
@@ -248,8 +246,6 @@
     <Compile Include="Models\SelectModel.cs" />
     <Compile Include="ViewModels\MessageSettingsViewModel.cs" />
     <Compile Include="Models\MenuItem.cs" />
-    <Compile Include="ViewModels\MessageCategoriesViewModel.cs" />
-    <Compile Include="ViewModels\MessageDaysTimesViewModel.cs" />
     <Compile Include="Pages\MessageSettingsPage.cs">
       <DependentUpon>MessageSettingsPage.xaml</DependentUpon>
     </Compile>
@@ -259,8 +255,6 @@
     <Compile Include="Pages\MessageDaysTimesPage.xaml.cs">
       <DependentUpon>MessageDaysTimesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Api\Request\GetMessageConfigRequest.cs" />
-    <Compile Include="Api\Response\GetMessageConfigResponse.cs" />
     <Compile Include="Converters\WeekdayConverter.cs" />
     <Compile Include="Pages\SettingsCell.xaml.cs">
       <DependentUpon>SettingsCell.xaml</DependentUpon>
@@ -304,7 +298,6 @@
     <Compile Include="CustomComponents\StackList.cs" />
     <Compile Include="CustomComponents\HeaderOverlay.cs" />
     <Compile Include="MvvmCross\OpenMenuPresentationHint.cs" />
-    <Compile Include="ViewModels\MessageDetailViewModel.cs" />
     <Compile Include="Pages\MessageDetailPage.xaml.cs">
       <DependentUpon>MessageDetailPage.xaml</DependentUpon>
     </Compile>
@@ -382,6 +375,8 @@
     <Compile Include="CustomComponents\PlusButton.cs" />
     <Compile Include="CustomComponents\CustomButton.cs" />
     <Compile Include="Models\ItemCommand.cs" />
+    <Compile Include="Api\Request\TokenRequest.cs" />
+    <Compile Include="ViewModels\MessageDetailViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

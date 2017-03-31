@@ -12,8 +12,8 @@ namespace GodSpeak
         Task<ApiResponse<RequestInviteResponse>> RequestInvite (RequestInviteRequest request);
         Task<ApiResponse<User>> Login (LoginRequest request);
         Task<ApiResponse> Logout (LogoutRequest request);
-        Task<ApiResponse<GetCategoriesResponse>> GetCategories (GetCategoriesRequest request);
-        Task<ApiResponse<GetMessageConfigResponse>> GetMessageConfig (GetMessageConfigRequest request);
+        Task<ApiResponse<User>> GetProfile (TokenRequest request);
+
         Task<ApiResponse<GetImpactResponse>> GetImpact (GetImpactRequest request);
         Task<ApiResponse<GetInvitesResponse>> GetInvites (GetInvitesRequest request);
         Task<ApiResponse<List<InviteBundle>>> GetInviteBundles (GetInviteBundlesRequest request);
