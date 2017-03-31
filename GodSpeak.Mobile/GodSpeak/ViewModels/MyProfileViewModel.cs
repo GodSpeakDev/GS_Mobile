@@ -128,14 +128,21 @@ namespace GodSpeak
             Countries = countries.Select (c => c.Title).ToArray ();
             CountryCodes = countries.Select (c => c.Code).ToArray ();
 
-            var user = (await WebApiService.GetProfile (new TokenRequest () { Token = SessionService.GetUser ().Token })).Payload;
-            this._image = user.PhotoUrl;
-            this._firstName = user.FirstName;
-            this._lastName = user.LastName;
-            this._selectedCountryIndex = new List<string> (CountryCodes).IndexOf (user.CountryCode);
-            this._zipCode = user.PostalCode;
-            HudService.Hide ();
-            RaiseAllPropertiesChanged ();
+            var user = (await WebApiService.GetProfile (new TokenRequest () { Token = SessionService.GetUser ().Token }));
+			if (user.IsSuccess)
+			{
+				this._image = user.Payload.PhotoUrl;
+				this.FirstName = user.Payload.FirstName;
+				this._lastName = user.Payload.LastName;
+				this._selectedCountryIndex = new List<string>(CountryCodes).IndexOf(user.Payload.CountryCode);
+				this._zipCode = user.Payload.PostalCode;
+				HudService.Hide();
+				RaiseAllPropertiesChanged();
+			}
+			else
+			{
+				await HandleResponse(user);
+			}
         }
 
         private async void DoSaveCommand ()
@@ -146,9 +153,18 @@ namespace GodSpeak
             user.LastName = LastName;
             user.CountryCode = CountryCodes [SelectedCountryIndex];
             user.PostalCode = ZipCode;
-            await WebApiService.SaveProfile (user);
+
+            var response = await WebApiService.SaveProfile (user);
             HudService.Hide ();
-            this.Close (this);
+
+			if (response.IsSuccess)
+			{
+				this.Close(this);
+			}
+			else
+			{
+				await HandleResponse(response);
+			}
         }
 
         private async void DoChoosePictureCommand ()

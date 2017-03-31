@@ -23,6 +23,7 @@ namespace GodSpeak.iOS
 			SetBorderFrame();
 			SetTextAligment();
 			SetFontWeight();
+			SetBackgroundColor();
 		}
 
 		protected override void OnElementPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -37,6 +38,8 @@ namespace GodSpeak.iOS
 			{
 				SetFontWeight();
 			}
+
+			SetBackgroundColor();
 		}
 
 		public override void LayoutSubviews()
@@ -79,6 +82,14 @@ namespace GodSpeak.iOS
 			{
 				CustomPicker.IsFocused = true;
 			};
+		}
+
+		private void SetBackgroundColor()
+		{
+			if (this.Control != null)
+			{
+				this.Control.BackgroundColor = this.CustomPicker.BackgroundColor.ToUIColor();
+			}
 		}
 
 		private void SetBorderFrame()

@@ -24,6 +24,7 @@ namespace GodSpeak.iOS
 			SetTextAligment();
 			SetFontWeight();
 			SetHasAutoComplete();
+			SetBackgroundColor();
 		}
 
 		protected override void OnElementPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -33,6 +34,7 @@ namespace GodSpeak.iOS
 			SetBorderColor();
 			SetFontWeight();
 			SetHasAutoComplete();
+			SetBackgroundColor();
 		}
 
 		private void SetTextAligment()
@@ -40,6 +42,14 @@ namespace GodSpeak.iOS
 			if (this.Control != null)
 			{
 				this.Control.TextAlignment = UITextAlignment.Center;
+			}
+		}
+
+		private void SetBackgroundColor()
+		{
+			if (this.Control != null)
+			{
+				this.Control.BackgroundColor = this.CustomEntry.BackgroundColor.ToUIColor();
 			}
 		}
 
