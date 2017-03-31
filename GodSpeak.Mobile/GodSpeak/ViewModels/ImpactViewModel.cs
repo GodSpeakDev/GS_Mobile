@@ -4,12 +4,12 @@ using System.Linq;
 using System.Collections.ObjectModel;
 using MvvmCross.Core.ViewModels;
 using System.Threading.Tasks;
+using GodSpeak.Services;
 
 namespace GodSpeak
 {
 	public class ImpactViewModel : CustomViewModel
-	{
-		private IWebApiService _webApi;
+	{		
 		private List<ImpactDay> _allImpactDays;
 
 		private bool _isPlaying;
@@ -87,9 +87,8 @@ namespace GodSpeak
 			}
 		}
 
-		public ImpactViewModel(IDialogService dialogService, IWebApiService webApi) : base(dialogService)
-		{
-			_webApi = webApi;
+		public ImpactViewModel(IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService) : base(dialogService, hudService, sessionService, webApiService)
+		{			
 			ShownImpactDays = new ObservableCollection<ImpactDay>();
 
 			MinimumDayValue = 0;
@@ -98,7 +97,7 @@ namespace GodSpeak
 
 		public async void Init()
 		{
-			var response = await _webApi.GetImpact(new GetImpactRequest());
+			var response = await WebApiService.GetImpact(new GetImpactRequest());
 			if (response.IsSuccess)
 			{
 				_allImpactDays = response.Payload.Payload;

@@ -32,20 +32,15 @@ namespace GodSpeak
                 var isValid = !string.IsNullOrEmpty (GiftCodeText);
                 return isValid;
             }
-        }
+        }		       
 
-        readonly IWebApiService webApiService;
-        readonly IProgressHudService hudService;
-
-        public GetStartedViewModel (IDialogService dialogService, IWebApiService webApiService, IProgressHudService hudService) : base (dialogService)
-        {
-            this.hudService = hudService;
-            this.webApiService = webApiService;
+        public GetStartedViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService) : base (dialogService, hudService, sessionService, webApiService)
+        {            
         }
 
         public void Init ()
         {
-            GiftCodeText = string.Empty;
+            GiftCodeText = "GoDDZHKC";
         }
 
         private MvxCommand _tapGetStartedCommand;
@@ -92,22 +87,22 @@ namespace GodSpeak
 
         protected async void DoSubmitGiftCodeCommand ()
         {
-            if (string.IsNullOrEmpty (GiftCodeText)) {
+            if (string.IsNullOrEmpty (GiftCodeText)) 
+			{
                 await this.DialogService.ShowAlert (Text.ErrorPopupTitle, Text.InviteCodeRequiredMessage);
                 return;
             }
-            hudService.Show ();
-            var response = await webApiService.ValidateCode (new ValidateCodeRequest () { Code = this.GiftCodeText });
-            hudService.Hide ();
-            if (response.IsSuccess) {
-                ShowGiftCodeSuccessBox ();
-                //ShowViewModel<RegisterViewModel> ();
-            } else {
-                //await HandleBadResponse (response);
-                await this.DialogService.ShowAlert (response.Title, response.Message);
+
+            HudService.Show ();
+            var response = await WebApiService.ValidateCode (new ValidateCodeRequest () { Code = this.GiftCodeText });
+            HudService.Hide ();
+            if (response.IsSuccess) 
+			{
+                ShowGiftCodeSuccessBox ();                
+            } else 
+			{
+                await HandleResponse (response);                
             }
-
-
         }
 
         private void DoRegisterCommand ()
@@ -116,11 +111,23 @@ namespace GodSpeak
         }
 
         private async void DoDontHaveCodeCommand ()
-        {
+        {			
             var result = await this.DialogService.ShowInputPopup (Text.AnonymousTitle, Text.AnonymousText, new InputOptions () { Placeholder = Text.AnonymousInputPlaceholder }, Text.AnonymousSubmit, Text.AnonymousNevermind);
 
-            if (result.SelectedButton == Text.AnonymousSubmit) {
-                await this.DialogService.ShowAlert (Text.AnonymousSuccessTitle, string.Format (Text.AnonymousSuccessText, result.InputText), Text.AnonymousSuccessButtonTitle);
+            if (result.SelectedButton == Text.AnonymousSubmit) 
+			{
+				HudService.Show();
+				var response = await WebApiService.RequestInvite(new RequestInviteRequest() {Email=result.InputText});
+				HudService.Hide();
+
+				if (response.IsSuccess)
+				{
+					await this.DialogService.ShowAlert(Text.AnonymousSuccessTitle, string.Format(Text.AnonymousSuccessText, result.InputText), Text.AnonymousSuccessButtonTitle);
+				}
+				else
+				{
+					await HandleResponse(response);
+				}
             }
         }
 

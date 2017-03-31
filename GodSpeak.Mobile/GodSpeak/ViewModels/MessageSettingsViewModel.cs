@@ -13,9 +13,6 @@ namespace GodSpeak
 {
     public class MessageSettingsViewModel : CustomViewModel
     {
-        private IWebApiService _webApi;
-
-
         private MvxCommand _goSaveCommand;
         public MvxCommand GoSaveCommand {
             get {
@@ -44,7 +41,7 @@ namespace GodSpeak
                 User.MessageCategorySettings.First (s => s.Title == setting.Title).Enabled = setting.IsEnabled;
             }
 
-            await _webApi.SaveProfile (User);
+            await WebApiService.SaveProfile (User);
 
             hudService.Hide ();
         }
@@ -98,11 +95,8 @@ namespace GodSpeak
         readonly ISessionService sessionService;
         readonly IProgressHudService hudService;
 
-        public MessageSettingsViewModel (IProgressHudService hudService, ISessionService sessionService, IDialogService dialogService, IWebApiService webApi) : base (dialogService)
-        {
-            this.hudService = hudService;
-            this.sessionService = sessionService;
-            _webApi = webApi;
+        public MessageSettingsViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService) : base (dialogService, hudService, sessionService, webApiService)
+        {            
             Groups = new ObservableCollection<SettingsGroup> ()
             {
                 new SettingsGroup("Allow messages on these days:")
@@ -121,7 +115,7 @@ namespace GodSpeak
         public async void Init ()
         {
             hudService.Show ();
-            var response = await _webApi.GetProfile (new TokenRequest () { Token = sessionService.GetUser ().Token });
+            var response = await WebApiService.GetProfile (new TokenRequest () { Token = sessionService.GetUser ().Token });
 
             User = response.Payload;
             StartTime = User.MessageDayOfWeekSettings.First ().StartTime;
@@ -141,23 +135,16 @@ namespace GodSpeak
                     Title = item.Title,
                     IsEnabled = item.Enabled
                 });
-
-
-
         }
 
         private void LoadDaysOfWeek (User user)
         {
-
             var daysCollection = Groups [0];
             foreach (var item in user.MessageDayOfWeekSettings)
                 daysCollection.Add (new SettingsItem () {
                     Title = item.Title,
                     IsEnabled = item.Enabled
                 });
-
-
-
         }
 
         private void DoPlusButtonCommand ()

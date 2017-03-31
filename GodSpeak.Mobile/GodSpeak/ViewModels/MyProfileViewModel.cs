@@ -13,9 +13,7 @@ using GodSpeak.Services;
 namespace GodSpeak
 {
     public class MyProfileViewModel : CustomViewModel
-    {
-        private IWebApiService _webApi;
-        private ISessionService _sessionService;
+    {        
         private IMediaPicker _mediaPicker;
 
         private int _selectedCountryIndex;
@@ -118,43 +116,38 @@ namespace GodSpeak
             }
         }
 
-        readonly IProgressHudService hudService;
-
-        public MyProfileViewModel (IProgressHudService hudService, IDialogService dialogService, IWebApiService webApi, ISessionService sessionService, IMediaPicker mediaPicker) : base (dialogService)
-        {
-            this.hudService = hudService;
-            _webApi = webApi;
-            _sessionService = sessionService;
+        public MyProfileViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, IMediaPicker mediaPicker) : base (dialogService, hudService, sessionService, webApiService)
+        {            
             _mediaPicker = mediaPicker;
         }
 
         public async void Init ()
         {
-            hudService.Show ();
-            var countries = (await _webApi.GetCountries ()).Payload;
+            HudService.Show ();
+            var countries = (await WebApiService.GetCountries ()).Payload;
             Countries = countries.Select (c => c.Title).ToArray ();
             CountryCodes = countries.Select (c => c.Code).ToArray ();
 
-            var user = (await _webApi.GetProfile (new TokenRequest () { Token = _sessionService.GetUser ().Token })).Payload;
+            var user = (await WebApiService.GetProfile (new TokenRequest () { Token = SessionService.GetUser ().Token })).Payload;
             this._image = user.PhotoUrl;
             this._firstName = user.FirstName;
             this._lastName = user.LastName;
             this._selectedCountryIndex = new List<string> (CountryCodes).IndexOf (user.CountryCode);
             this._zipCode = user.PostalCode;
-            hudService.Hide ();
+            HudService.Hide ();
             RaiseAllPropertiesChanged ();
         }
 
         private async void DoSaveCommand ()
         {
-            hudService.Show ();
-            var user = _sessionService.GetUser ();
+            HudService.Show ();
+            var user = SessionService.GetUser ();
             user.FirstName = FirstName;
             user.LastName = LastName;
             user.CountryCode = CountryCodes [SelectedCountryIndex];
             user.PostalCode = ZipCode;
-            await _webApi.SaveProfile (user);
-            hudService.Hide ();
+            await WebApiService.SaveProfile (user);
+            HudService.Hide ();
             this.Close (this);
         }
 
@@ -164,13 +157,20 @@ namespace GodSpeak
 
             MediaFile response;
 
-            if (menuResponse == "Cancel") {
+            if (menuResponse == "Cancel") 
+			{
                 return;
-            } else if (menuResponse == Text.PictureSourceFromCamera) {
+            } 
+			else if (menuResponse == Text.PictureSourceFromCamera) 
+			{
                 response = await _mediaPicker.TakePhotoAsync (new CameraMediaStorageOptions ());
-            } else if (menuResponse == Text.PictureSourceFromGallery) {
+            } 
+			else if (menuResponse == Text.PictureSourceFromGallery) 
+			{
                 response = await _mediaPicker.SelectPhotoAsync (new CameraMediaStorageOptions ());
-            } else {
+            } 
+			else 
+			{
                 return;
             }
 

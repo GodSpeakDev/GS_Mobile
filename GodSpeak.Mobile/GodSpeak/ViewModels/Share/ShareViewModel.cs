@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using MvvmCross.Core.ViewModels;
+using GodSpeak.Services;
 
 namespace GodSpeak
 {
@@ -14,13 +15,12 @@ namespace GodSpeak
 		private Tab _unclaimedTab;
 		private Tab _claimedTab;
 
-		public ShareViewModel(IDialogService dialogService, IWebApiService webApi, IShareService shareService) : base(dialogService)
-		{
-			_webApi = webApi;
+		public ShareViewModel(IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, IShareService shareService) : base(dialogService, hudService, sessionService, webApiService)
+		{			
 			_shareService = shareService;
 
-			UnclaimedGiftViewModel = new UnclaimedGiftViewModel(dialogService, webApi, shareService);
-			ClaimedGiftViewModel = new ClaimedGiftViewModel(dialogService, webApi, shareService);
+			UnclaimedGiftViewModel = new UnclaimedGiftViewModel(dialogService, hudService, sessionService, webApiService, shareService);
+			ClaimedGiftViewModel = new ClaimedGiftViewModel(dialogService, hudService, sessionService, webApiService, shareService);
 
 			SelectedTab = TabTypes.Unclaimed;
 

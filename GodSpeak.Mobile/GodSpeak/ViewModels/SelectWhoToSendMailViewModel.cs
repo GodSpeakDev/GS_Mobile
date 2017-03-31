@@ -8,6 +8,7 @@ using MvvmCross.Platform;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using GodSpeak.Services;
 
 namespace GodSpeak
 {
@@ -15,7 +16,6 @@ namespace GodSpeak
 	{
 		private IContactService _contactService;
 		private IMailService _mailService;
-		private ISessionService _sessionService;
 
 		private MvxCommand _composeEmailCommand;
 		public MvxCommand ComposeEmailCommand
@@ -55,11 +55,10 @@ namespace GodSpeak
 
 		private ObservableCollection<SelectableItem<Contact>> _deviceContacts;
 
-		public SelectWhoToSendMailViewModel(IDialogService dialogService, IContactService contactService, IMailService mailService, ISessionService sessionService) : base(dialogService)
+		public SelectWhoToSendMailViewModel(IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, IContactService contactService, IMailService mailService) : base(dialogService, hudService, sessionService, webApiService)
 		{
 			_contactService = contactService;
 			_mailService = mailService;
-			_sessionService = sessionService;
 		}
 
 		public async void Init() 
@@ -113,7 +112,7 @@ namespace GodSpeak
 			{
 				var selectedContacsMail = _deviceContacts.Where(x => x.IsEnabled).Select(x => x.Item.EmailAddresses.First().Address);
 				//var selectedContacsMail = new string[] {"paulo.ortins@gmail.com"};
-				var body = string.Format(Text.ShareEmailBody, _sessionService.GetUser().FirstName);
+				var body = string.Format(Text.ShareEmailBody, SessionService.GetUser().FirstName);
 				_mailService.SendMail(to: "pauloortinstesting@gmail.com", subject: Text.ShareEmailSubject, bcc: selectedContacsMail.ToArray(), body: body);
 			}	
 		}

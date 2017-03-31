@@ -5,13 +5,13 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using MvvmCross.Forms.Presenter.Core;
 using Xamarin.Forms;
+using GodSpeak.Services;
 
 namespace GodSpeak
 {
 	public class MessageDetailViewModel : CustomViewModel
 	{
 		private IShareService _shareService;
-		private IWebApiService _webApiService;
 
 		private Message _message;
 		public Message Message
@@ -118,12 +118,9 @@ namespace GodSpeak
 		}
 
 		public MessageDetailViewModel(
-			IDialogService dialogService,
-			IWebApiService webApiService,
-			IShareService shareService) : base(dialogService)
+			IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, IShareService shareService) : base(dialogService, hudService, sessionService, webApiService)
 		{
 			_shareService = shareService;
-			_webApiService = webApiService;
 		}
 
 		private MvxCommand _shareCommand;
@@ -139,7 +136,7 @@ namespace GodSpeak
 		{		
 			CurrentVerseSelected = true;	
 
-			var messageResponse = await _webApiService.GetMessage(new GetMessageRequest() 
+			var messageResponse = await WebApiService.GetMessage(new GetMessageRequest() 
 			{
 				MessageId = new Guid(messageId)
 			});

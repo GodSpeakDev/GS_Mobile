@@ -42,7 +42,6 @@ namespace GodSpeak.Api
         {
             this.tracer = tracer;
             client.BaseAddress = new Uri ("http://godspeak-staging.azurewebsites.net/api/");
-
         }
 
         public new async Task<ApiResponse<List<Country>>> GetCountries ()
@@ -53,7 +52,6 @@ namespace GodSpeak.Api
         public new async Task<ApiResponse<String>> ForgotPassword (ForgotPasswordRequest request)
         {
             return await DoGet<String> (RecoverPasswordUri, new Dictionary<string, string> () { { "emailAddress", request.Email } });
-
         }
 
         public new async Task<ApiResponse<User>> RegisterUser (RegisterUserRequest request)
@@ -63,7 +61,6 @@ namespace GodSpeak.Api
 
         public new async Task<ApiResponse<User>> GetProfile (TokenRequest request)
         {
-
             AddAuthToken (request.Token);
             return await DoGet<User> (ProfileUri);
         }
@@ -73,7 +70,6 @@ namespace GodSpeak.Api
             AddAuthToken (user.Token);
             return await DoPut<User> (ProfileUri, user);
         }
-
 
         public new async Task<ApiResponse<ValidateCodeResponse>> ValidateCode (ValidateCodeRequest request)
         {
@@ -89,12 +85,10 @@ namespace GodSpeak.Api
         {
             AddAuthToken (request.Token);
             return await DoPost<PurchaseInviteResponse> (PurchaseInviteUri, request);
-
         }
 
         public new async Task<ApiResponse<User>> Login (LoginRequest request)
         {
-
             return await DoPost<User> (LoginMethodUri, request);
         }
 
@@ -143,21 +137,15 @@ namespace GodSpeak.Api
             return await ParseResponse<T> (uri, apiResponse);
         }
 
-
-
         protected async Task<ApiResponse<T>> DoGet<T> (string uri, Dictionary<string, string> args)
         {
-
             var builder = new StringBuilder ("?");
-
 
             foreach (var pair in args) {
                 if (builder.Length != 1)
                     builder.Append ("&");
-                builder.Append ($"{pair.Key}={System.Net.WebUtility.UrlDecode (pair.Value)}")
-                       ;
+                builder.Append ($"{pair.Key}={System.Net.WebUtility.UrlDecode (pair.Value)}");
             };
-
 
             var requestUri = uri + builder;
             tracer.Trace (MvxTraceLevel.Diagnostic, "api-get", $"METHOD: {requestUri}");
@@ -177,7 +165,6 @@ namespace GodSpeak.Api
 
         protected async Task<ApiResponse<T>> ParseResponse<T> (string uri, HttpResponseMessage apiResponse)
         {
-
             var json = await apiResponse.Content.ReadAsStringAsync ();
             var parsedResponse = JsonConvert.DeserializeObject<ApiResponse<T>> (json);
             parsedResponse.StatusCode = apiResponse.StatusCode;
@@ -195,22 +182,12 @@ namespace GodSpeak.Api
 
         void LogResponse<T> (string method, ApiResponse<T> parsedResponse, string json)
         {
-
             tracer.Trace (parsedResponse.StatusCode == System.Net.HttpStatusCode.OK ? MvxTraceLevel.Diagnostic : MvxTraceLevel.Error, "api-response", $"METHOD: {method}\rSTATUS CODE: {parsedResponse.StatusCode}\rTITLE:{parsedResponse.Title}\rMESSAGE:{parsedResponse.Message}\rPAYLOAD:{JsonConvert.SerializeObject (parsedResponse.Payload)}");
-
-
-
         }
 
         void LogResponse (string method, ApiResponse parsedResponse, string json)
         {
-
             tracer.Trace (parsedResponse.StatusCode == System.Net.HttpStatusCode.OK ? MvxTraceLevel.Diagnostic : MvxTraceLevel.Error, "api-response", $"METHOD: {method}\rSTATUS CODE: {parsedResponse.StatusCode}\rTITLE:{parsedResponse.Title}\rMESSAGE:{parsedResponse.Message}");
-
-
-
         }
-
-
     }
 }

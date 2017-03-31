@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using MvvmCross.Core.ViewModels;
+using GodSpeak.Services;	
 
 namespace GodSpeak
 {
 	public class InvitesViewModel : CustomViewModel
-	{
-		private IWebApiService _webApi;
+	{		
 		private IShareService _shareService;
 
 		private ObservableCollection<SelectModel<Invite>> _invites;
@@ -47,9 +47,8 @@ namespace GodSpeak
 			}
 		}
 
-		public InvitesViewModel(IDialogService dialogService, IWebApiService webApi, IShareService shareService) : base(dialogService)
-		{
-			_webApi = webApi;
+		public InvitesViewModel(IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, IShareService shareService) : base(dialogService, hudService, sessionService, webApiService)
+		{			
 			_shareService = shareService;
 
 			Invites = new ObservableCollection<SelectModel<Invite>>();
@@ -57,7 +56,7 @@ namespace GodSpeak
 
 		public async void Init()
 		{
-			var response = await _webApi.GetInvites(new GetInvitesRequest());
+			var response = await WebApiService.GetInvites(new GetInvitesRequest());
 			if (response.IsSuccess)
 			{
 				Invites = new ObservableCollection<SelectModel<Invite>>(

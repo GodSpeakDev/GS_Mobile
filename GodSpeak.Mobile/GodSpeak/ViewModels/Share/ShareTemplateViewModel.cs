@@ -1,12 +1,12 @@
 ﻿using System;
 using MvvmCross.Core.ViewModels;
 using GodSpeak.Resources;
+using GodSpeak.Services;
 
 namespace GodSpeak
 {
 	public class ShareTemplateViewModel : CustomViewModel
 	{
-		private IWebApiService _webApi;
 		private IShareService _shareService;
 
 		private MvxCommand _shareWithFriendsCommand;
@@ -27,9 +27,8 @@ namespace GodSpeak
 			}
 		}
 
-		public ShareTemplateViewModel(IDialogService dialogService, IWebApiService webApi, IShareService shareService) : base(dialogService)
-		{
-			_webApi = webApi;
+		public ShareTemplateViewModel(IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, IShareService shareService) : base(dialogService, hudService, sessionService, webApiService)
+		{			
 			_shareService = shareService;
 		}
 

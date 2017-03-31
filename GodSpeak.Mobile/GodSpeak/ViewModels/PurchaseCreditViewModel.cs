@@ -5,6 +5,7 @@ using MvvmCross.Binding;
 using MvvmCross.Core.ViewModels;
 using GodSpeak.Resources;
 using System.Linq;
+using GodSpeak.Services;
 
 namespace GodSpeak
 {
@@ -25,14 +26,13 @@ namespace GodSpeak
             }
         }
 
-        public PurchaseCreditViewModel (IDialogService dialogService, IWebApiService webApi) : base (dialogService)
-        {
-            _webApi = webApi;
+        public PurchaseCreditViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService) : base (dialogService, hudService, sessionService, webApiService)
+        {            
         }
 
         public async void Init ()
         {
-            var response = await _webApi.GetInviteBundles (new GetInviteBundlesRequest ());
+            var response = await WebApiService.GetInviteBundles (new GetInviteBundlesRequest ());
 
             if (response.IsSuccess) {
                 Bundles = new ObservableCollection<SelectModel<InviteBundle>> (response.Payload.Select (x => new SelectModel<InviteBundle> () {
@@ -54,11 +54,15 @@ namespace GodSpeak
                 Text.Yes,
                 Text.No);
 
-            if (result) {
+            if (result) 
+			{
                 var purchaseResponse = await _webApi.PurchaseInvite (new PurchaseInviteRequest () { Guid = bundle.InviteBundleId });
-                if (purchaseResponse.IsSuccess) {
+                if (purchaseResponse.IsSuccess) 
+				{
                     await this.DialogService.ShowAlert (Text.PurchaseSuccessTitle, Text.PurchaseSuccessText);
-                } else {
+                } 
+				else 
+				{
                     await HandleResponse (purchaseResponse);
                 }
             }

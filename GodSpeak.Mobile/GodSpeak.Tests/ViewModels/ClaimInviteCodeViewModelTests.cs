@@ -8,183 +8,183 @@ using Ploeh.AutoFixture;
 
 namespace GodSpeak.Tests.ViewModels
 {
-    public class ClaimInviteCodeViewModelTests : BaseViewModelTest
-    {
-        const string GetACode = "Get a Code";
-        const string TryAgain = "Try Again";
+    //public class ClaimInviteCodeViewModelTests : BaseViewModelTest
+    //{
+    //    const string GetACode = "Get a Code";
+    //    const string TryAgain = "Try Again";
 
-        ClaimInviteCodeViewModel ViewModelUT;
+    //    ClaimInviteCodeViewModel ViewModelUT;
 
-        WelcomeViewModel FakeWelcomeVM;
+    //    WelcomeViewModel FakeWelcomeVM;
 
-        IDialogService FakeDialogService;
-        IWebApiService FakeWebApiService;
+    //    IDialogService FakeDialogService;
+    //    IWebApiService FakeWebApiService;
 
-        [SetUp]
-        public void Init ()
-        {
+    //    [SetUp]
+    //    public void Init ()
+    //    {
 
-            FakeWelcomeVM = A.Fake<WelcomeViewModel> ();
-            FakeDialogService = A.Fake<IDialogService> ();
-            FakeWebApiService = A.Fake<IWebApiService> ();
+    //        FakeWelcomeVM = A.Fake<WelcomeViewModel> ();
+    //        FakeDialogService = A.Fake<IDialogService> ();
+    //        FakeWebApiService = A.Fake<IWebApiService> ();
 
-            ViewModelUT = new ClaimInviteCodeViewModel (FakeWelcomeVM, FakeDialogService, FakeWebApiService);
-        }
-
-
-        [Test]
-        public void bindable_props_SHOULD_dispatch_change_events ()
-        {
-            PropShouldDispatchChange (ViewModelUT, "InviteCode", () => ViewModelUT.InviteCode = DataFixture.Create<string> ());
-        }
+    //        ViewModelUT = new ClaimInviteCodeViewModel (FakeWelcomeVM, FakeDialogService, FakeWebApiService);
+    //    }
 
 
-
-        /// <summary>
-        /// ClaimInviteCodeCommand Tests
-        /// </summary>
-
-        [Test]
-        public void if_invite_code_null_or_empty_DialogService_ShowAlert_SHOULD_BE_called ()
-        {
-
-            const string expectedErrorTitle = "Error";
-            const string expectedErrorMessage = "Sorry, you can't claim a empty invite code.";
-
-            ViewModelUT.InviteCode = string.Empty;
-            ViewModelUT.ClaimInviteCodeCommand.Execute ();
-
-            //A.CallTo (() => FakeDialogService.ShowAlert (expectedErrorTitle, expectedErrorMessage)).MustHaveHappened ();
-
-            ViewModelUT.InviteCode = null;
-            ViewModelUT.ClaimInviteCodeCommand.Execute ();
-            //A.CallTo (() => FakeDialogService.ShowAlert (expectedErrorTitle, expectedErrorMessage)).MustHaveHappened ();
-        }
-
-        [Test]
-        public void if_invite_code_null_or_empty_WebApiService_ValidateCode_SHOULD_NOT_be_called ()
-        {
-
-            ViewModelUT.InviteCode = string.Empty;
-            ViewModelUT.ClaimInviteCodeCommand.Execute ();
-            A.CallTo (() => FakeWebApiService.ValidateCode (A<ValidateCodeRequest>.Ignored)).MustNotHaveHappened ();
-
-            ViewModelUT.InviteCode = null;
-            ViewModelUT.ClaimInviteCodeCommand.Execute ();
-            A.CallTo (() => FakeWebApiService.ValidateCode (A<ValidateCodeRequest>.Ignored)).MustNotHaveHappened ();
-        }
-
-        [Test]
-        public void if_WebApiService_ValidateCode_returns_success_ShowViewModel_RegisterViewModel_should_be_invoked ()
-        {
-
-            //Arrangee
-            WebApiValidateWillReturn (new ApiResponse<ValidateCodeResponse> () { StatusCode = System.Net.HttpStatusCode.OK });
-            //Act
-            ViewModelUT.ClaimInviteCodeCommand.Execute ();
-
-            //Assert
-            ShouldShowVM<RegisterViewModel> ();
-
-        }
-
-        [Test]
-        public void if_WebApiService_ValidateCode_returns_bad_request_ShowViewModel_SHOULD_NOT_BE_invoked ()
-        {
-            //Arrange
-            WebApiValidateWillReturn (new ApiResponse<ValidateCodeResponse> () { StatusCode = System.Net.HttpStatusCode.BadRequest });
-
-            //Act
-            ViewModelUT.ClaimInviteCodeCommand.Execute ();
-
-            //Assert
-            ShouldNotShowVM<RegisterViewModel> ();
-        }
-
-        [Test]
-        public void if_WebApiService_ValidateCode_returns_bad_request_DialogService_ShowConfirmation_SHOULD_BE_invoked ()
-        {
-            //Arrange
-            var badResponse = new ApiResponse<ValidateCodeResponse> () { StatusCode = System.Net.HttpStatusCode.BadRequest, Title = DataFixture.Create<string> (), Message = DataFixture.Create<string> () };
-            WebApiValidateWillReturn (badResponse);
-
-            //Act
-            ViewModelUT.ClaimInviteCodeCommand.Execute ();
-
-            //Assert
-            A.CallTo (() => FakeDialogService.ShowConfirmation (badResponse.Title, badResponse.Message, GetACode, TryAgain));
-        }
+    //    [Test]
+    //    public void bindable_props_SHOULD_dispatch_change_events ()
+    //    {
+    //        PropShouldDispatchChange (ViewModelUT, "InviteCode", () => ViewModelUT.InviteCode = DataFixture.Create<string> ());
+    //    }
 
 
-        [Test]
-        public void if_ShowConfirmation_returns_True_WelcomeVM_SelectPage_SHOULD_BE_invoked ()
-        {
-            //Arrange
-            var badResponse = new ApiResponse<ValidateCodeResponse> () { StatusCode = System.Net.HttpStatusCode.BadRequest, Title = DataFixture.Create<string> (), Message = DataFixture.Create<string> () };
-            A.CallTo (() => FakeDialogService.ShowConfirmation (badResponse.Title, badResponse.Message, GetACode, TryAgain)).Returns (Task.FromResult (true));
 
-            WebApiValidateWillReturn (badResponse);
+    //    /// <summary>
+    //    /// ClaimInviteCodeCommand Tests
+    //    /// </summary>
 
-            //Act
-            ViewModelUT.ClaimInviteCodeCommand.Execute ();
+    //    [Test]
+    //    public void if_invite_code_null_or_empty_DialogService_ShowAlert_SHOULD_BE_called ()
+    //    {
+
+    //        const string expectedErrorTitle = "Error";
+    //        const string expectedErrorMessage = "Sorry, you can't claim a empty invite code.";
+
+    //        ViewModelUT.InviteCode = string.Empty;
+    //        ViewModelUT.ClaimInviteCodeCommand.Execute ();
+
+    //        //A.CallTo (() => FakeDialogService.ShowAlert (expectedErrorTitle, expectedErrorMessage)).MustHaveHappened ();
+
+    //        ViewModelUT.InviteCode = null;
+    //        ViewModelUT.ClaimInviteCodeCommand.Execute ();
+    //        //A.CallTo (() => FakeDialogService.ShowAlert (expectedErrorTitle, expectedErrorMessage)).MustHaveHappened ();
+    //    }
+
+    //    [Test]
+    //    public void if_invite_code_null_or_empty_WebApiService_ValidateCode_SHOULD_NOT_be_called ()
+    //    {
+
+    //        ViewModelUT.InviteCode = string.Empty;
+    //        ViewModelUT.ClaimInviteCodeCommand.Execute ();
+    //        A.CallTo (() => FakeWebApiService.ValidateCode (A<ValidateCodeRequest>.Ignored)).MustNotHaveHappened ();
+
+    //        ViewModelUT.InviteCode = null;
+    //        ViewModelUT.ClaimInviteCodeCommand.Execute ();
+    //        A.CallTo (() => FakeWebApiService.ValidateCode (A<ValidateCodeRequest>.Ignored)).MustNotHaveHappened ();
+    //    }
+
+    //    [Test]
+    //    public void if_WebApiService_ValidateCode_returns_success_ShowViewModel_RegisterViewModel_should_be_invoked ()
+    //    {
+
+    //        //Arrangee
+    //        WebApiValidateWillReturn (new ApiResponse<ValidateCodeResponse> () { StatusCode = System.Net.HttpStatusCode.OK });
+    //        //Act
+    //        ViewModelUT.ClaimInviteCodeCommand.Execute ();
+
+    //        //Assert
+    //        ShouldShowVM<RegisterViewModel> ();
+
+    //    }
+
+    //    [Test]
+    //    public void if_WebApiService_ValidateCode_returns_bad_request_ShowViewModel_SHOULD_NOT_BE_invoked ()
+    //    {
+    //        //Arrange
+    //        WebApiValidateWillReturn (new ApiResponse<ValidateCodeResponse> () { StatusCode = System.Net.HttpStatusCode.BadRequest });
+
+    //        //Act
+    //        ViewModelUT.ClaimInviteCodeCommand.Execute ();
+
+    //        //Assert
+    //        ShouldNotShowVM<RegisterViewModel> ();
+    //    }
+
+    //    [Test]
+    //    public void if_WebApiService_ValidateCode_returns_bad_request_DialogService_ShowConfirmation_SHOULD_BE_invoked ()
+    //    {
+    //        //Arrange
+    //        var badResponse = new ApiResponse<ValidateCodeResponse> () { StatusCode = System.Net.HttpStatusCode.BadRequest, Title = DataFixture.Create<string> (), Message = DataFixture.Create<string> () };
+    //        WebApiValidateWillReturn (badResponse);
+
+    //        //Act
+    //        ViewModelUT.ClaimInviteCodeCommand.Execute ();
+
+    //        //Assert
+    //        A.CallTo (() => FakeDialogService.ShowConfirmation (badResponse.Title, badResponse.Message, GetACode, TryAgain));
+    //    }
 
 
-            //Assert
-            A.CallTo (() => FakeWelcomeVM.SelectPage<RequestInviteCodeViewModel> ()).MustHaveHappened ();
-        }
+    //    [Test]
+    //    public void if_ShowConfirmation_returns_True_WelcomeVM_SelectPage_SHOULD_BE_invoked ()
+    //    {
+    //        //Arrange
+    //        var badResponse = new ApiResponse<ValidateCodeResponse> () { StatusCode = System.Net.HttpStatusCode.BadRequest, Title = DataFixture.Create<string> (), Message = DataFixture.Create<string> () };
+    //        A.CallTo (() => FakeDialogService.ShowConfirmation (badResponse.Title, badResponse.Message, GetACode, TryAgain)).Returns (Task.FromResult (true));
+
+    //        WebApiValidateWillReturn (badResponse);
+
+    //        //Act
+    //        ViewModelUT.ClaimInviteCodeCommand.Execute ();
 
 
-        [Test]
-        public void if_ShowConfirmation_returns_False_WelcomeVM_SelectPage_SHOULD_NOT_BE_invoked ()
-        {
-            //Arrange
-            var badResponse = new ApiResponse<ValidateCodeResponse> () { StatusCode = System.Net.HttpStatusCode.BadRequest, Title = DataFixture.Create<string> (), Message = DataFixture.Create<string> () };
-            A.CallTo (() => FakeDialogService.ShowConfirmation (badResponse.Title, badResponse.Message, GetACode, TryAgain)).Returns (Task.FromResult (false));
-
-            WebApiValidateWillReturn (badResponse);
-
-            //Act
-            ViewModelUT.ClaimInviteCodeCommand.Execute ();
+    //        //Assert
+    //        A.CallTo (() => FakeWelcomeVM.SelectPage<RequestInviteCodeViewModel> ()).MustHaveHappened ();
+    //    }
 
 
-            //Assert
-            A.CallTo (() => FakeWelcomeVM.SelectPage<RequestInviteCodeViewModel> ()).MustNotHaveHappened ();
-        }
+    //    [Test]
+    //    public void if_ShowConfirmation_returns_False_WelcomeVM_SelectPage_SHOULD_NOT_BE_invoked ()
+    //    {
+    //        //Arrange
+    //        var badResponse = new ApiResponse<ValidateCodeResponse> () { StatusCode = System.Net.HttpStatusCode.BadRequest, Title = DataFixture.Create<string> (), Message = DataFixture.Create<string> () };
+    //        A.CallTo (() => FakeDialogService.ShowConfirmation (badResponse.Title, badResponse.Message, GetACode, TryAgain)).Returns (Task.FromResult (false));
 
-        [Test]
-        public void DontHaveCodeCommand_SHOULD_invoke_SelectPage_on_WelcomeVM ()
-        {
-            //Act
-            ViewModelUT.DontHaveCodeCommand.Execute ();
+    //        WebApiValidateWillReturn (badResponse);
 
-            //Assert
-            A.CallTo (() => FakeWelcomeVM.SelectPage<RequestInviteCodeViewModel> ()).MustHaveHappened ();
-        }
-
-        [Test]
-        public void AlreadyRegisteredCommand_SHOULD_ShowViewModel_LoginViewModel ()
-        {
-            //Act
-            ViewModelUT.AlreadyRegisteredCommand.Execute ();
-
-            //Assert
-            ShouldShowVM<LoginViewModel> ();
+    //        //Act
+    //        ViewModelUT.ClaimInviteCodeCommand.Execute ();
 
 
-        }
+    //        //Assert
+    //        A.CallTo (() => FakeWelcomeVM.SelectPage<RequestInviteCodeViewModel> ()).MustNotHaveHappened ();
+    //    }
 
-        /// <summary>
-        /// Helper Method for setting up Fake Web Api
-        /// </summary>
-        /// <param name="response">Response.</param>
-        void WebApiValidateWillReturn (ApiResponse<ValidateCodeResponse> response)
-        {
-            var expectedCode = DataFixture.Create<string> ();
+    //    [Test]
+    //    public void DontHaveCodeCommand_SHOULD_invoke_SelectPage_on_WelcomeVM ()
+    //    {
+    //        //Act
+    //        ViewModelUT.DontHaveCodeCommand.Execute ();
 
-            A.CallTo (() => FakeWebApiService.ValidateCode (A<ValidateCodeRequest>.That.Matches (req => req.Code == expectedCode))).Returns (Task.FromResult (response));
-            ViewModelUT.InviteCode = expectedCode;
+    //        //Assert
+    //        A.CallTo (() => FakeWelcomeVM.SelectPage<RequestInviteCodeViewModel> ()).MustHaveHappened ();
+    //    }
+
+    //    [Test]
+    //    public void AlreadyRegisteredCommand_SHOULD_ShowViewModel_LoginViewModel ()
+    //    {
+    //        //Act
+    //        ViewModelUT.AlreadyRegisteredCommand.Execute ();
+
+    //        //Assert
+    //        ShouldShowVM<LoginViewModel> ();
 
 
-        }
-    }
+    //    }
+
+    //    /// <summary>
+    //    /// Helper Method for setting up Fake Web Api
+    //    /// </summary>
+    //    /// <param name="response">Response.</param>
+    //    void WebApiValidateWillReturn (ApiResponse<ValidateCodeResponse> response)
+    //    {
+    //        var expectedCode = DataFixture.Create<string> ();
+
+    //        A.CallTo (() => FakeWebApiService.ValidateCode (A<ValidateCodeRequest>.That.Matches (req => req.Code == expectedCode))).Returns (Task.FromResult (response));
+    //        ViewModelUT.InviteCode = expectedCode;
+
+
+    //    }
+    //}
 }

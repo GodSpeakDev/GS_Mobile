@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using MvvmCross.Core.ViewModels;
+using GodSpeak.Services;
 
 namespace GodSpeak
 {
     public class UnclaimedGiftViewModel : CustomViewModel
-    {
-        private IWebApiService _webApi;
+    {        
         private IShareService _shareService;
 
         private ObservableCollection<CustomViewModel> _pages;
@@ -45,21 +45,21 @@ namespace GodSpeak
 			}
 		}
 
-        public UnclaimedGiftViewModel (IDialogService dialogService, IWebApiService webApi, IShareService shareService) : base (dialogService)
-        {
-            _webApi = webApi;
+        public UnclaimedGiftViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, IShareService shareService) : base (dialogService, hudService, sessionService, webApiService)
+        {            
             _shareService = shareService;
         }
 
         public async Task Init ()
         {
             var pages = new List<CustomViewModel> ();
-            pages.Add (new ShareTemplateViewModel (DialogService, _webApi, _shareService));
-            pages.Add (new DidYouKnowTemplateViewModel (DialogService, _webApi, _shareService));
+            pages.Add (new ShareTemplateViewModel (DialogService, HudService, SessionService, WebApiService, _shareService));
+            pages.Add (new DidYouKnowTemplateViewModel (DialogService, HudService, SessionService, WebApiService, _shareService));
             Pages = new ObservableCollection<CustomViewModel> (pages);
 
-            var bundlesResponse = await _webApi.GetInviteBundles (new GetInviteBundlesRequest ());
-            if (bundlesResponse.IsSuccess) {
+            var bundlesResponse = await WebApiService.GetInviteBundles (new GetInviteBundlesRequest ());
+            if (bundlesResponse.IsSuccess) 
+			{
                 Bundles = new ObservableCollection<ItemCommand<InviteBundle>> (
 					bundlesResponse.Payload.Select(x => new ItemCommand<InviteBundle>() 
 					{

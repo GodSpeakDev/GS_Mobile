@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace GodSpeak.Services
 {
     public interface IProgressHudService

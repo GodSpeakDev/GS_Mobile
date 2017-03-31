@@ -1,6 +1,7 @@
 ﻿using System;
 using MvvmCross.Core.ViewModels;
 using GodSpeak.Resources;
+using GodSpeak.Services;
 
 namespace GodSpeak
 {
@@ -24,9 +25,8 @@ namespace GodSpeak
 			}
 		}
 
-		public ForgotPasswordViewModel(IDialogService dialogService, IWebApiService webApi) : base(dialogService)
-		{
-			_webApi = webApi;
+		public ForgotPasswordViewModel(IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService) : base(dialogService, hudService, sessionService, webApiService)
+		{			
 		}
 
 		private async void DoSendInstructionsCommand()
@@ -37,7 +37,7 @@ namespace GodSpeak
 				return;
 			}
 
-			var response = await _webApi.ForgotPassword(new ForgotPasswordRequest() {Email=Email});
+			var response = await WebApiService.ForgotPassword(new ForgotPasswordRequest() {Email=Email});
 
 			if (response.IsSuccess)
 			{

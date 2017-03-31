@@ -13,9 +13,7 @@ using GodSpeak.Services;
 namespace GodSpeak
 {
     public class RegisterViewModel : CustomViewModel
-    {
-        private IWebApiService _webApi;
-        private ISessionService _sessionService;
+    {        
         private IMediaPicker _mediaPicker;
 
         private int _selectedCountryIndex;
@@ -136,11 +134,8 @@ namespace GodSpeak
 
         readonly IProgressHudService hudService;
 
-        public RegisterViewModel (IDialogService dialogService, IWebApiService webApi, ISessionService sessionService, IMediaPicker mediaPicker, IProgressHudService hudService) : base (dialogService)
-        {
-            this.hudService = hudService;
-            _webApi = webApi;
-            _sessionService = sessionService;
+        public RegisterViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, IMediaPicker mediaPicker) : base (dialogService, hudService, sessionService, webApiService)
+        {            
             _mediaPicker = mediaPicker;
         }
 
@@ -156,7 +151,7 @@ namespace GodSpeak
 
         async Task PopulateCountries ()
         {
-            var countries = (await _webApi.GetCountries ()).Payload;
+            var countries = (await WebApiService.GetCountries ()).Payload;
             Countries = countries.Select (c => c.Title).ToArray ();
             CountryCodes = countries.Select (c => c.Code).ToArray ();
         }
@@ -181,14 +176,16 @@ namespace GodSpeak
             };
 
             hudService.Show ();
-            var response = await _webApi.RegisterUser (request);
+            var response = await WebApiService.RegisterUser (request);
             hudService.Hide ();
 
-            if (response.IsSuccess) {
+            if (response.IsSuccess) 
+			{
                 await DialogService.ShowAlert (Text.SuccessfulRegisterPopupTitle, Text.SuccessGiftCodeText, Text.SuccessfulRegisterButtonText);
-                await _sessionService.SaveUser (response.Payload);
+                await SessionService.SaveUser (response.Payload);
                 this.ShowViewModel<HomeViewModel> ();
-            } else {
+            } else 
+			{
                 await HandleResponse (response);
             }
         }

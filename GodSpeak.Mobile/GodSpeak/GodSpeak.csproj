@@ -185,11 +185,6 @@
     <Compile Include="Pages\WelcomePage.xaml.cs">
       <DependentUpon>WelcomePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\Welcome\WelcomeViewModel.cs" />
-    <Compile Include="ViewModels\Welcome\GetStartedViewModel.cs" />
-    <Compile Include="ViewModels\Welcome\ClaimInviteCodeViewModel.cs" />
-    <Compile Include="ViewModels\Welcome\RequestInviteCodeViewModel.cs" />
-    <Compile Include="Pages\WelcomePageSelector.cs" />
     <Compile Include="Pages\GetStartedPage.xaml.cs">
       <DependentUpon>GetStartedView.xaml</DependentUpon>
     </Compile>
@@ -377,6 +372,7 @@
     <Compile Include="Models\ItemCommand.cs" />
     <Compile Include="Api\Request\TokenRequest.cs" />
     <Compile Include="ViewModels\MessageDetailViewModel.cs" />
+    <Compile Include="ViewModels\Welcome\GetStartedViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />
@@ -387,7 +383,6 @@
     <Folder Include="Models\" />
     <Folder Include="Converters\" />
     <Folder Include="MvvmCross\" />
-    <Folder Include="ViewModels\Welcome\" />
     <Folder Include="CustomComponents\" />
     <Folder Include="Resources\" />
     <Folder Include="Services\" />

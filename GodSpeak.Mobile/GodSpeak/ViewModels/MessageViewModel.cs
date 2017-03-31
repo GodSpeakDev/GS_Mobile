@@ -4,12 +4,12 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using MvvmCross.Forms.Presenter.Core;
+using GodSpeak.Services;
 
 namespace GodSpeak
 {
 	public class MessageViewModel : CustomViewModel
-	{
-		private IWebApiService _webApi;
+	{		
 		private IReminderService _reminderService;
 
 		private ObservableCollection<GroupedCollection<Message, DateTime>> _messages;
@@ -76,11 +76,9 @@ namespace GodSpeak
 		}
 
 		public MessageViewModel(
-			IDialogService dialogService, 
-			IWebApiService webApi, 
-			IReminderService reminderService) : base(dialogService)
-		{
-			_webApi = webApi;
+			IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, 
+			IReminderService reminderService) : base(dialogService, hudService, sessionService, webApiService)
+		{			
 			_reminderService = reminderService;
 
 			Messages = new ObservableCollection<GroupedCollection<Message, DateTime>>();
@@ -88,7 +86,7 @@ namespace GodSpeak
 
 		public async void Init()
 		{			
-			var messages = await _webApi.GetMessages(new GetMessagesRequest());
+			var messages = await WebApiService.GetMessages(new GetMessagesRequest());
 
 			if (messages.IsSuccess)
 			{
@@ -103,7 +101,7 @@ namespace GodSpeak
 				await HandleResponse(messages);
 			}	
 
-			var response = await _webApi.GetImpact(new GetImpactRequest());
+			var response = await WebApiService.GetImpact(new GetImpactRequest());
 			if (response.IsSuccess)
 			{
 				ShownImpactDays = new ObservableCollection<ImpactDay>(response.Payload.Payload);

@@ -5,17 +5,16 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using GodSpeak.Resources;
 using MvvmCross.Core.ViewModels;
+using GodSpeak.Services;
 
 namespace GodSpeak
 {
 	public class ClaimedGiftViewModel : CustomViewModel
-	{
-		private IWebApiService _webApi;
+	{		
 		private IShareService _shareService;
 
-		public ClaimedGiftViewModel(IDialogService dialogService, IWebApiService webApi, IShareService shareService) : base(dialogService)
-		{
-			_webApi = webApi;
+		public ClaimedGiftViewModel(IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, IShareService shareService) : base(dialogService, hudService, sessionService, webApiService)
+		{			
 			_shareService = shareService;
 
 			SortOptions = new string[] 
