@@ -82,7 +82,7 @@ namespace GodSpeak
 				Text = _message,
 			};
 
-			_okButton = new Button()
+			_okButton = new CustomButton()
 			{				
 				Style = (Style)Application.Current.Resources["ButtonWhite"],
 				Margin = new Thickness(10, 30, 10, 5),

@@ -48,7 +48,7 @@
 									Orientation="Horizontal"
 									HeightRequest="30"
 									Spacing="0">
-									<Button
+									<views:PlusButton
 										HeightRequest="{StaticResource PlusButtonHeight}"
 										WidthRequest="{StaticResource PlusButtonWidth}"
 										Text="-"
@@ -61,7 +61,7 @@
 										WidthRequest="1"
 										Color="{x:Static views:ColorHelper.Secondary}"
 									/>
-									<Button 
+									<views:PlusButton 
 										HeightRequest="{StaticResource PlusButtonHeight}"
 										WidthRequest="{StaticResource PlusButtonWidth}"
 										Text="+"
@@ -121,7 +121,8 @@
 								<StackLayout
 									Orientation="Horizontal"
 									HorizontalOptions="FillAndExpand">
-									<views:CustomLabel
+									<views:CustomLabel										
+										WidthRequest="200"
 										HorizontalOptions="StartAndExpand"									
 										Margin="10,0"
 										Text="{Binding Title}" 

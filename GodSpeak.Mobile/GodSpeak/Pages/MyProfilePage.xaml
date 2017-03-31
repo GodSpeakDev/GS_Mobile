@@ -175,7 +175,7 @@
 							</views:RegisterEntry>
 						</Grid>			
 					</ScrollView>
-					<Button
+					<views:CustomButton 
 						Grid.Row="1"
 						Margin="10, 10"
 						Style="{StaticResource ButtonBlue}"

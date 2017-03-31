@@ -13,15 +13,15 @@
 	Spacing="10">
 	<Image
 		x:Name="Icon"	
-		WidthRequest="30" 
-		HeightRequest="30"
+		WidthRequest="{StaticResource ShareButtonSize}" 
+		HeightRequest="{StaticResource ShareButtonSize}"
 		VerticalOptions="Center"
 		HorizontalOptions="Start"
 	/>
 	<views:CustomLabel
 		x:Name="Label"
 		VerticalOptions="CenterAndExpand"
-		HorizontalOptions="StartAndExpand"
+		HorizontalOptions="{StaticResource ShareButtonAlignment}"
 		TextColor="{StaticResource secondaryColor}"
 		FontSize="17"
 		FontWeight="Bold"

@@ -144,6 +144,21 @@
     <Reference Include="AndHUD">
       <HintPath>..\packages\AndHUD.1.2.0\lib\MonoAndroid\AndHUD.dll</HintPath>
     </Reference>
+    <Reference Include="Plugin.CurrentActivity">
+      <HintPath>..\packages\Plugin.CurrentActivity.1.0.1\lib\MonoAndroid10\Plugin.CurrentActivity.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Permissions.Abstractions">
+      <HintPath>..\packages\Plugin.Permissions.1.2.1\lib\MonoAndroid10\Plugin.Permissions.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Permissions">
+      <HintPath>..\packages\Plugin.Permissions.1.2.1\lib\MonoAndroid10\Plugin.Permissions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Contacts.Abstractions">
+      <HintPath>..\packages\Xam.Plugin.Contacts.2.2.0.37-beta\lib\MonoAndroid10\Plugin.Contacts.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Contacts">
+      <HintPath>..\packages\Xam.Plugin.Contacts.2.2.0.37-beta\lib\MonoAndroid10\Plugin.Contacts.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GodSpeak\GodSpeak.csproj">
@@ -176,6 +191,11 @@
     <Compile Include="Services\ProgressHudService.cs" />
     <Compile Include="Renderers\PlusMinusButtonViewRenderer.cs" />
     <Compile Include="Renderers\PlusButtonRenderer.cs" />
+    <Compile Include="Renderers\CustomButtonRenderer.cs" />
+    <Compile Include="Renderers\ButtonWithImageRenderer.cs" />
+    <Compile Include="Services\ContactsService.cs" />
+    <Compile Include="Services\MailService.cs" />
+    <Compile Include="MainApplication.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -188,7 +208,6 @@
     <AndroidResource Include="Resources\layout\Tabbar.axml" />
     <AndroidResource Include="Resources\layout\Toolbar.axml" />
     <AndroidResource Include="Resources\values\styles.xml" />
-    <AndroidResource Include="Resources\drawable\icon.png" />
     <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
@@ -212,40 +231,86 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\people_background.jpg" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\login_form_background.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\people_background.jpg" />
-    <AndroidResource Include="Resources\drawable\login_form_background.png" />
     <AndroidResource Include="Resources\drawable\people_background.jpg" />
     <AndroidResource Include="Resources\drawable\arrow_down.png" />
-    <AndroidResource Include="Resources\drawable\arrow_left.png" />
     <AndroidResource Include="Resources\drawable\arrow_right.png" />
-    <AndroidResource Include="Resources\drawable\back_button.png" />
-    <AndroidResource Include="Resources\drawable\blue_down_arrow.png" />
-    <AndroidResource Include="Resources\drawable\bundle_icon.png" />
     <AndroidResource Include="Resources\drawable\curveBackground.png" />
-    <AndroidResource Include="Resources\drawable\gift_claimed_icon.png" />
     <AndroidResource Include="Resources\drawable\gift_icon.png" />
-    <AndroidResource Include="Resources\drawable\gift_unclaimed_icon.png" />
-    <AndroidResource Include="Resources\drawable\gray_speach_arrow.png" />
-    <AndroidResource Include="Resources\drawable\hamburgerMenu.png" />
     <AndroidResource Include="Resources\drawable\impact_background.png" />
-    <AndroidResource Include="Resources\drawable\impactWithNotification.png" />
-    <AndroidResource Include="Resources\drawable\invitesFAB.png" />
-    <AndroidResource Include="Resources\drawable\loginBackground.png" />
-    <AndroidResource Include="Resources\drawable\logo.png" />
-    <AndroidResource Include="Resources\drawable\logoutIcon.png" />
     <AndroidResource Include="Resources\drawable\menu_image.jpg" />
     <AndroidResource Include="Resources\drawable\messagesBackground.png" />
     <AndroidResource Include="Resources\drawable\oval.png" />
     <AndroidResource Include="Resources\drawable\pano_background.jpg" />
     <AndroidResource Include="Resources\drawable\play_icon.png" />
     <AndroidResource Include="Resources\drawable\profile_placeholder.png" />
-    <AndroidResource Include="Resources\drawable\profileIcon.png" />
     <AndroidResource Include="Resources\drawable\scripture_icon.png" />
-    <AndroidResource Include="Resources\drawable\search_icon.png" />
-    <AndroidResource Include="Resources\drawable\settingsIcon.png" />
     <AndroidResource Include="Resources\drawable\share_background.png" />
-    <AndroidResource Include="Resources\drawable\share_icon.png" />
     <AndroidResource Include="Resources\drawable\speechBalloonBackground.png" />
     <AndroidResource Include="Resources\drawable\stop_icon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\gray_speach_arrow.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\gray_speach_arrow.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\gray_speach_arrow.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\gray_speach_arrow.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\unclaimed_gift_selected_icon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\claimed_gift_unselected_icon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\unclaimed_gift_unselected_icon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\claimed_gift_selected_icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\unclaimed_gift_selected_icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\claimed_gift_unselected_icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\unclaimed_gift_unselected_icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\claimed_gift_selected_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\unclaimed_gift_selected_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\claimed_gift_unselected_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\unclaimed_gift_unselected_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\claimed_gift_selected_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\unclaimed_gift_selected_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\claimed_gift_unselected_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\unclaimed_gift_unselected_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\claimed_gift_selected_icon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\back_button.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\back_button.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\back_button.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\back_button.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\share_icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\search_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\share_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\share_icon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\search_icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\logo.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\search_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\search_icon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\impactWithNotification.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\hamburgerMenu.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\impactWithNotification.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\hamburgerMenu.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\impactWithNotification.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\hamburgerMenu.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\impactWithNotification.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\hamburgerMenu.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\invitesFAB.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\invitesFAB.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\invitesFAB.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\invitesFAB.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\logout_icon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\profile_icon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\settings_icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\logout_icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\profile_icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\settings_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\logout_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\profile_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\settings_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\logout_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\profile_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\settings_icon.png" />
+    <AndroidResource Include="Resources\drawable\blue_down_arrow.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\logo.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\logo.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\logo.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\bundle_icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\bundle_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\bundle_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\bundle_icon.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="MvvmCross\" />

@@ -59,7 +59,7 @@
 							<views:ReturnKeyEffect ReturnText="Done" />
 						</Entry.Effects>
 					</views:CustomEntry>
-					<Button 
+					<views:CustomButton  
 						Margin="10,0"
 						HorizontalOptions="FillAndExpand"
 						Style="{StaticResource ButtonBlue}"

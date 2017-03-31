@@ -207,7 +207,7 @@
 							</Grid>
 						</Grid>			
 					</ScrollView>
-					<Button
+					<views:CustomButton 
 						Grid.Row="1"
 						Margin="10, 10, 10, 0"
 						Text="Register"						

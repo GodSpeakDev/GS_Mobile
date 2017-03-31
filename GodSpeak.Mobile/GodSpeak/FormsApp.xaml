@@ -40,6 +40,17 @@
 			<OnPlatform x:TypeArguments="x:Double" x:Key="HeightHeader" Android="60" iOS="40" WinPhone="60" />
 			<OnPlatform x:TypeArguments="x:Double" x:Key="PlusButtonWidth" Android="55" iOS="35" WinPhone="0" />
 			<OnPlatform x:TypeArguments="x:Double" x:Key="PlusButtonHeight" Android="70" iOS="25" WinPhone="35" />
+
+			<OnPlatform x:TypeArguments="x:Double" x:Key="PriceWidth" Android="90" iOS="80" WinPhone="90" />
+			<OnPlatform x:TypeArguments="x:Double" x:Key="ShareButtonFontSize" Android="14" iOS="16" WinPhone="14" />
+			<OnPlatform x:TypeArguments="x:Double" x:Key="OnboardingEntryFontSize" Android="19" iOS="24" WinPhone="20" />
+			<OnPlatform x:TypeArguments="x:Double" x:Key="BackButtonWidth" Android="20" iOS="12" WinPhone="20" />
+			<OnPlatform x:TypeArguments="x:Double" x:Key="BackButtonHeight" Android="20" iOS="21" WinPhone="20" />
+			<OnPlatform x:TypeArguments="Rectangle" x:Key="FabButtonBounds" Android="1,1.05,100,100" iOS="1,1.05,100,100" WinPhone="1,1.05,100,100" />
+
+			<OnPlatform x:TypeArguments="x:String" x:Key="ShareButtonImage" Android="" iOS="bundle_icon.png" WinPhone="" />
+			<OnPlatform x:TypeArguments="x:Double" x:Key="ShareButtonSize" Android="0" iOS="30" WinPhone="30" />
+			<OnPlatform x:TypeArguments="LayoutOptions" x:Key="ShareButtonAlignment" Android="CenterAndExpand" iOS="StartAndExpand" WinPhone="StartAndExpand" />
 						
 			<!-- Global Colors -->
 			<Color x:Key="primaryColor">#00a5ff</Color>
@@ -55,6 +66,7 @@
 			<Color x:Key="warningColor">#FF9000</Color>	
 			<Color x:Key="textInputDisabled">#d9dadb</Color>	
 			<Color x:Key="disableTab">#474843</Color>	
+			<Color x:Key="textInputFocusEnteredText">#303132</Color>	
 
 			<!-- Label Styles -->
 			<Style x:Key="AlertSheetTitle" TargetType="Label">
@@ -275,12 +287,12 @@
 				<Setter Property="BorderColor" Value="{StaticResource secondaryColor}" />
 			</Style>
 
-			<Style x:Key="ShareButtonWhite" TargetType="Button" BasedOn="{StaticResource ButtonWhite}">
-				<Setter Property="FontSize" Value="16" />		
+			<Style x:Key="ShareButtonWhite" TargetType="Button" BasedOn="{StaticResource ButtonWhite}">				
+				<Setter Property="FontSize" Value="{StaticResource ShareButtonFontSize}" />		
 			</Style>
 
 			<Style x:Key="ShareButtonBlue" TargetType="Button" BasedOn="{StaticResource ButtonBlue}">
-				<Setter Property="FontSize" Value="16" />		
+				<Setter Property="FontSize" Value="{StaticResource ShareButtonFontSize}" />		
 			</Style>
 
 			<!-- Entry Styles -->	
@@ -295,7 +307,10 @@
 
 			<Style x:Key="OnboardingEntry" TargetType="godspeak:CustomEntry">						
 				<Setter Property="FontWeight" Value="Bold" />
-				<Setter Property="FontSize" Value="24" />	
+				<Setter Property="FontSize" Value="{StaticResource OnboardingEntryFontSize}" />	
+				<Setter Property="TextColor" Value="{StaticResource textInputFocusEnteredText}" />
+				<Setter Property="PlaceholderColor" Value="{StaticResource textInputFocusPlaceholder}" />
+				<Setter Property="BackgroundColor" Value="{StaticResource secondaryColor}" />
 				<Setter Property="HasAutoComplete" Value="false" />
 			</Style>
 

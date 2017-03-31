@@ -51,7 +51,7 @@
 									Text="{Binding Model.ReedemedDescription}"
 									IsVisible="{Binding Model.Redeemed}"
 								/>
-								<Button 									
+								<views:CustomButton  									
 									Text="{x:Static res:Text.ShareButtonText}"
 									IsVisible="{Binding Model.Redeemed, Converter={StaticResource InverseBooleanConverter}}"
 									VerticalOptions="Center"
@@ -64,7 +64,7 @@
 					</DataTemplate>
 				</ListView.ItemTemplate>				
 			</ListView>
-			<Button 
+			<views:CustomButton  
 				Grid.Row="2"
 				Grid.Column="0"
 				Text="{x:Static res:Text.PurchaseMoreInvitesButtonText}" 

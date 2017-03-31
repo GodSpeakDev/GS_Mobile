@@ -43,7 +43,7 @@
 				Placeholder="{x:Static res:Text.InviteCodePlaceholder}"
 				Text="{Binding InviteCode}"
 			/>
-			<Button 
+			<views:CustomButton 
 				Grid.Row="3"
 				Margin="30,0"
 				Text="Claim Invite Code"	

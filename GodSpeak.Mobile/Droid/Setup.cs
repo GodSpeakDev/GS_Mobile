@@ -27,6 +27,8 @@ namespace GodSpeak.Droid
             Mvx.LazyConstructAndRegisterSingleton<IShareService, ShareService> ();
             Mvx.LazyConstructAndRegisterSingleton<IReminderService, ReminderService> ();
             Mvx.LazyConstructAndRegisterSingleton<IProgressHudService, ProgressHudService> ();
+			Mvx.LazyConstructAndRegisterSingleton<IContactService, ContactsService>();
+			Mvx.LazyConstructAndRegisterSingleton<IMailService, MailService>();
 
             return new App ();
         }

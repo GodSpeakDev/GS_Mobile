@@ -27,8 +27,8 @@ namespace GodSpeak
 			_unclaimedTab = new Tab()
 			{
 				Title = "12 Gifts Unclaimed",
-				SelectedImage = "gift_unclaimed_icon.png",
-				UnselectedImage = "gift_claimed_icon.png",
+				SelectedImage = "unclaimed_gift_selected_icon.png",
+				UnselectedImage = "unclaimed_gift_unselected_icon.png",
 				TabType = TabTypes.Unclaimed,
 				IsSelected = true
 			};
@@ -36,8 +36,8 @@ namespace GodSpeak
 			_claimedTab = new Tab()
 			{
 				Title = "6 Gifts claimed",
-				SelectedImage = "gift_unclaimed_icon.png",
-				UnselectedImage = "gift_claimed_icon.png",
+				SelectedImage = "claimed_gift_selected_icon.png",
+				UnselectedImage = "claimed_gift_unselected_icon.png",
 				TabType = TabTypes.Claimed,
 				IsSelected = false
 			};

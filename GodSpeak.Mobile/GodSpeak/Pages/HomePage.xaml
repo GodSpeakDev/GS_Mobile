@@ -52,7 +52,7 @@
 				Source="blue_down_arrow.png" 
 			/>
 			<views:ButtonWithImage
-				Image="bundle_icon.png"
+				Image="{StaticResource ShareButtonImage}"
 				Text="Share Your 123 Gifts"
 				AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"
 				AbsoluteLayout.LayoutBounds="0,1,1,AutoSize"

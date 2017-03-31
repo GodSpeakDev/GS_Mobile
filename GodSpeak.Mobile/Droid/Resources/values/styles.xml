@@ -1,10 +1,16 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <resources>
-	<style name="AppTheme.Base" parent="Theme.AppCompat.NoActionBar">
+	<!--<style name="AppTheme.Base" parent="Theme.AppCompat.NoActionBar">
 		
 	</style>	
 
 	<style name="AppTheme" parent="AppTheme.Base">
+		<item name="android:colorAccent">#00a5ff</item>
+  	</style>-->
+	
+	<style name="AppTheme" parent="android:Theme.Material.Light">
 		
-  	</style>
+	    <item name="android:colorAccent">#00a5ff</item>		
+		<item name="android:actionBarSize">0dp</item>
+	</style>
 </resources>

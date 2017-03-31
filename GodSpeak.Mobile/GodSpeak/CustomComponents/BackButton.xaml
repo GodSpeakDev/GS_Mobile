@@ -9,11 +9,11 @@
 	Orientation="Horizontal"
 	Padding="0,0,10,0"
 	Spacing="5"
-	WidthRequest="60">
+	WidthRequest="80">
 	<Image
 		Source="back_button.png"
-		WidthRequest="12"
-		HeightRequest="21"
+		WidthRequest="{StaticResource BackButtonWidth}"
+		HeightRequest="{StaticResource BackButtonHeight}"
 		Aspect="AspectFit"
 		VerticalOptions="Center"
 	/>
