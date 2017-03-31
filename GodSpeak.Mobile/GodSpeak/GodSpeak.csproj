@@ -147,7 +147,6 @@
     <Compile Include="Api\Response\GetMessagesResponse.cs" />
     <Compile Include="Api\Dtos\Message.cs" />
     <Compile Include="Api\Request\LogoutRequest.cs" />
-    <Compile Include="Api\Response\LogoutResponse.cs" />
     <Compile Include="Api\Request\GetinvitesRequest.cs" />
     <Compile Include="Api\Dtos\Invite.cs" />
     <Compile Include="Api\Response\GetInvitesResponse.cs" />

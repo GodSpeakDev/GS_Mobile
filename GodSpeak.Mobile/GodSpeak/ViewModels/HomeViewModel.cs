@@ -22,19 +22,33 @@ namespace GodSpeak
             }
         }
 
-        private MvxCommand _logoutCommand;
+
+
+
+        private MvxCommand _goLogoutCommand;
         public MvxCommand LogoutCommand {
             get {
-                return _logoutCommand ?? (_logoutCommand = new MvxCommand (() => {
-                    this.ChangePresentation (new CloseMenuPresentationHint ());
-                    this.ShowViewModel<LoginViewModel> (presentationBundle:
-                                                       new MvxBundle (new Dictionary<string, string> ()
-                    {
-                        {"NavigationMode", "RestoreNavigation"}
-                    }));
-                }));
+                _goLogoutCommand = _goLogoutCommand ?? new MvxCommand (DoGoLogoutCommand);
+                return _goLogoutCommand;
             }
         }
+
+        public virtual async void DoGoLogoutCommand ()
+        {
+
+
+            hudService.Show ();
+            await webService.Logout (new LogoutRequest () { Token = sessionService.GetUser ().Token });
+            hudService.Hide ();
+
+            this.ChangePresentation (new CloseMenuPresentationHint ());
+            this.ShowViewModel<LoginViewModel> (presentationBundle:
+                                               new MvxBundle (new Dictionary<string, string> ()
+            {
+                        {"NavigationMode", "RestoreNavigation"}
+            }));
+        }
+
 
         private MvxCommand _messageSettingsCommand;
         public MvxCommand MessageSettingsCommand {
@@ -71,15 +85,13 @@ namespace GodSpeak
             }
         }
 
-		private MvxCommand<MenuItem> _menuItemSelectedCommand;
-		public MvxCommand<MenuItem> MenuItemSelectedCommand
-		{
-			get
-			{
-				_menuItemSelectedCommand = _menuItemSelectedCommand ?? new MvxCommand<MenuItem>(DoMenuItemSelectedCommand);
-				return _menuItemSelectedCommand;
-			}
-		}
+        private MvxCommand<MenuItem> _menuItemSelectedCommand;
+        public MvxCommand<MenuItem> MenuItemSelectedCommand {
+            get {
+                _menuItemSelectedCommand = _menuItemSelectedCommand ?? new MvxCommand<MenuItem> (DoMenuItemSelectedCommand);
+                return _menuItemSelectedCommand;
+            }
+        }
 
         public virtual void DoGonotset ()
         {
@@ -87,9 +99,15 @@ namespace GodSpeak
         }
 
         readonly IFeedbackService feedbackService;
+        readonly IWebApiService webService;
+        readonly IProgressHudService hudService;
+        readonly ISessionService sessionService;
 
-        public HomeViewModel (IFeedbackService feedbackService)
+        public HomeViewModel (ISessionService sessionService, IFeedbackService feedbackService, IWebApiService webService, IProgressHudService hudService)
         {
+            this.sessionService = sessionService;
+            this.hudService = hudService;
+            this.webService = webService;
             this.feedbackService = feedbackService;
             MenuItems = new ObservableCollection<MenuItem> ()
             {
@@ -121,10 +139,10 @@ namespace GodSpeak
             };
         }
 
-		private void DoMenuItemSelectedCommand(MenuItem menuItem)
-		{
-			menuItem.Command.Execute();
-		}			
+        private void DoMenuItemSelectedCommand (MenuItem menuItem)
+        {
+            menuItem.Command.Execute ();
+        }
     }
 }
 

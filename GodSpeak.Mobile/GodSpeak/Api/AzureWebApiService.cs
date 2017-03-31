@@ -11,14 +11,29 @@ namespace GodSpeak.Api
 {
     public class AzureWebApiService : FakeWebApiService, IWebApiService
     {
-        const string ValidateCodeUri = "invite/validate";
+
         const string LoginMethodUri = "user/login";
-        const string InviteBundlesUri = "invite/bundles";
+        const string RecoverPasswordUri = "user/recoverpassword/";
         const string ProfileUri = "user";
         const string RegisterUri = "user";
+        const string LogoutUri = "user/logout";
+
         const string CountriesUri = "geo/countries";
+        const string PostalCodeExistsUri = "geo/postalCodeExists";
+
+        const string ImpactDaysUri = "impact/days";
+        const string ImpactMessageUri = "impact/message";
+        const string ImpactDidYouKnowUri = "impact/didyouknow";
+
+        const string MessagesQueueUri = "messages/queue";
+
         const string PurchaseInviteUri = "invite/purchase";
-        const string RecoverPasswordInviteUri = "user/recoverpassword/";
+        const string AcceptedInviteUri = "invite/accpeted";
+        const string ValidateCodeUri = "invite/validate";
+        const string InviteBundlesUri = "invite/bundles";
+        const string RequestInviteUri = "invite/request";
+        const string DonateInviteUri = "invite/donate";
+
 
         protected HttpClient client = new HttpClient ();
         readonly IMvxTrace tracer;
@@ -37,7 +52,7 @@ namespace GodSpeak.Api
 
         public new async Task<ApiResponse<String>> ForgotPassword (ForgotPasswordRequest request)
         {
-            return await DoGet<String> (RecoverPasswordInviteUri, new Dictionary<string, string> () { { "emailAddress", request.Email } });
+            return await DoGet<String> (RecoverPasswordUri, new Dictionary<string, string> () { { "emailAddress", request.Email } });
 
         }
 
@@ -93,6 +108,19 @@ namespace GodSpeak.Api
         {
 
             return await DoPost<User> (LoginMethodUri, request);
+        }
+
+        public new async Task<ApiResponse> Logout (LogoutRequest request)
+        {
+            AddAuthToken (request.Token);
+            return await DoPost (LogoutUri);
+        }
+
+        protected async Task<ApiResponse> DoPost (string uri)
+        {
+            var apiResponse = await client.PostAsync (uri, null);
+
+            return await ParseResponse (uri, apiResponse);
         }
 
         protected async Task<ApiResponse<T>> DoPost<T> (string uri, object request)
@@ -151,6 +179,14 @@ namespace GodSpeak.Api
 
         }
 
+        protected async Task<ApiResponse> ParseResponse (string uri, HttpResponseMessage apiResponse)
+        {
+            var json = await apiResponse.Content.ReadAsStringAsync ();
+            var parsedResponse = JsonConvert.DeserializeObject<ApiResponse> (json);
+            LogResponse (uri, parsedResponse, json);
+            return parsedResponse;
+        }
+
         protected async Task<ApiResponse<T>> ParseResponse<T> (string uri, HttpResponseMessage apiResponse)
         {
 
@@ -173,6 +209,15 @@ namespace GodSpeak.Api
         {
 
             tracer.Trace (parsedResponse.StatusCode == System.Net.HttpStatusCode.OK ? MvxTraceLevel.Diagnostic : MvxTraceLevel.Error, "api-response", $"METHOD: {method}\rSTATUS CODE: {parsedResponse.StatusCode}\rTITLE:{parsedResponse.Title}\rMESSAGE:{parsedResponse.Message}\rPAYLOAD:{JsonConvert.SerializeObject (parsedResponse.Payload)}");
+
+
+
+        }
+
+        void LogResponse (string method, ApiResponse parsedResponse, string json)
+        {
+
+            tracer.Trace (parsedResponse.StatusCode == System.Net.HttpStatusCode.OK ? MvxTraceLevel.Diagnostic : MvxTraceLevel.Error, "api-response", $"METHOD: {method}\rSTATUS CODE: {parsedResponse.StatusCode}\rTITLE:{parsedResponse.Title}\rMESSAGE:{parsedResponse.Message}");
 
 
 

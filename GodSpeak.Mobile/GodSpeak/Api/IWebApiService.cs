@@ -11,7 +11,7 @@ namespace GodSpeak
         Task<ApiResponse<ValidateCodeResponse>> ValidateCode (ValidateCodeRequest request);
         Task<ApiResponse<RequestInviteResponse>> RequestInvite (RequestInviteRequest request);
         Task<ApiResponse<User>> Login (LoginRequest request);
-        Task<ApiResponse<LogoutResponse>> Logout (LogoutRequest request);
+        Task<ApiResponse> Logout (LogoutRequest request);
         Task<ApiResponse<GetCategoriesResponse>> GetCategories (GetCategoriesRequest request);
         Task<ApiResponse<GetMessageConfigResponse>> GetMessageConfig (GetMessageConfigRequest request);
         Task<ApiResponse<GetImpactResponse>> GetImpact (GetImpactRequest request);
