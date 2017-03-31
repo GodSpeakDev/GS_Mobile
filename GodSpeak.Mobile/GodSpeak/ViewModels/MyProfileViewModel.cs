@@ -7,187 +7,174 @@ using MvvmCross.Forms;
 using MvvmCross.Platform;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
+using System.Linq;
+using GodSpeak.Services;
 
 namespace GodSpeak
 {
-	public class MyProfileViewModel : CustomViewModel
-	{
-		private IWebApiService _webApi;
-		private ISessionService _sessionService;
-		private IMediaPicker _mediaPicker;
+    public class MyProfileViewModel : CustomViewModel
+    {
+        private IWebApiService _webApi;
+        private ISessionService _sessionService;
+        private IMediaPicker _mediaPicker;
 
-		private int _selectedCountryIndex;
-		public int SelectedCountryIndex
-		{
-			get { return _selectedCountryIndex; }
-			set
-			{
-				SetProperty(ref _selectedCountryIndex, value);
-				RaisePropertyChanged(nameof(HasSelectedCountry));
-			}
-		}
+        private int _selectedCountryIndex;
+        public int SelectedCountryIndex {
+            get { return _selectedCountryIndex; }
+            set {
+                SetProperty (ref _selectedCountryIndex, value);
+                RaisePropertyChanged (nameof (HasSelectedCountry));
+            }
+        }
 
-		public bool HasSelectedCountry
-		{
-			get { return SelectedCountryIndex > 0; }
-		}
+        public bool HasSelectedCountry {
+            get { return SelectedCountryIndex > 0; }
+        }
 
-		private string[] _countries;
-		public string[] Countries
-		{
-			get { return _countries; }
-			set { SetProperty(ref _countries, value); }
-		}
+        private string [] _countries;
+        public string [] Countries {
+            get { return _countries; }
+            set { SetProperty (ref _countries, value); }
+        }
 
-		private object _image;
-		public object Image
-		{
-			get { return _image; }
-			set { SetProperty(ref _image, value); }
-		}
+        protected string [] CountryCodes;
 
-		private string _firstName;
-		public string FirstName
-		{
-			get { return _firstName; }
-			set { SetProperty(ref _firstName, value); }
-		}
+        private object _image;
+        public object Image {
+            get { return _image; }
+            set { SetProperty (ref _image, value); }
+        }
 
-		private string _lastName;
-		public string LastName
-		{
-			get { return _lastName; }
-			set { SetProperty(ref _lastName, value); }
-		}
+        private string _firstName;
+        public string FirstName {
+            get { return _firstName; }
+            set { SetProperty (ref _firstName, value); }
+        }
 
-		private string _zipCode;
-		public string ZipCode
-		{
-			get { return _zipCode; }
-			set { SetProperty(ref _zipCode, value); }
-		}
+        private string _lastName;
+        public string LastName {
+            get { return _lastName; }
+            set { SetProperty (ref _lastName, value); }
+        }
 
-		private string _password;
-		public string Password
-		{
-			get { return _password; }
-			set
-			{
-				SetProperty(ref _password, value);
-				RaisePropertyChanged(nameof(IsPasswordValid));
-				RaisePropertyChanged(nameof(IsConfirmPasswordValid));
-			}
-		}
+        private string _zipCode;
+        public string ZipCode {
+            get { return _zipCode; }
+            set { SetProperty (ref _zipCode, value); }
+        }
 
-		public bool IsPasswordValid
-		{
-			get
-			{
-				var numberDetector = new Regex(@"\d{1}?");
-				var lowerCaseDetector = new Regex(@"[a-z]{1}?");
-				var upperCaseDetector = new Regex(@"[A-Z]{1}?");
+        private string _password;
+        public string Password {
+            get { return _password; }
+            set {
+                SetProperty (ref _password, value);
+                RaisePropertyChanged (nameof (IsPasswordValid));
+                RaisePropertyChanged (nameof (IsConfirmPasswordValid));
+            }
+        }
 
-				return string.IsNullOrEmpty(Password) || (numberDetector.IsMatch(Password) && lowerCaseDetector.IsMatch(Password) && upperCaseDetector.IsMatch(Password));
-			}
-		}
+        public bool IsPasswordValid {
+            get {
+                var numberDetector = new Regex (@"\d{1}?");
+                var lowerCaseDetector = new Regex (@"[a-z]{1}?");
+                var upperCaseDetector = new Regex (@"[A-Z]{1}?");
 
-		private string _confirmPassword;
-		public string ConfirmPassword
-		{
-			get { return _confirmPassword; }
-			set
-			{
-				SetProperty(ref _confirmPassword, value);
-				RaisePropertyChanged(nameof(IsConfirmPasswordValid));
-			}
-		}
+                return string.IsNullOrEmpty (Password) || (numberDetector.IsMatch (Password) && lowerCaseDetector.IsMatch (Password) && upperCaseDetector.IsMatch (Password));
+            }
+        }
 
-		public bool IsConfirmPasswordValid
-		{
-			get
-			{
-				return string.IsNullOrEmpty(ConfirmPassword) || ConfirmPassword == Password;
-			}
-		}
+        private string _confirmPassword;
+        public string ConfirmPassword {
+            get { return _confirmPassword; }
+            set {
+                SetProperty (ref _confirmPassword, value);
+                RaisePropertyChanged (nameof (IsConfirmPasswordValid));
+            }
+        }
 
-		private string _currentPassword;
-		public string CurrentPassword
-		{
-			get { return _currentPassword;}
-			set { SetProperty(ref _currentPassword, value);}
-		}
+        public bool IsConfirmPasswordValid {
+            get {
+                return string.IsNullOrEmpty (ConfirmPassword) || ConfirmPassword == Password;
+            }
+        }
 
-		private MvxCommand _saveCommand;
-		public MvxCommand SaveCommand
-		{
-			get
-			{
-				return _saveCommand ?? (_saveCommand = new MvxCommand(DoSaveCommand));
-			}
-		}
+        private string _currentPassword;
+        public string CurrentPassword {
+            get { return _currentPassword; }
+            set { SetProperty (ref _currentPassword, value); }
+        }
 
-		private MvxCommand _choosePictureCommand;
-		public MvxCommand ChoosePictureCommand
-		{
-			get
-			{
-				return _choosePictureCommand ?? (_choosePictureCommand = new MvxCommand(DoChoosePictureCommand));
-			}
-		}
+        private MvxCommand _saveCommand;
+        public MvxCommand SaveCommand {
+            get {
+                return _saveCommand ?? (_saveCommand = new MvxCommand (DoSaveCommand));
+            }
+        }
 
-		public MyProfileViewModel(IDialogService dialogService, IWebApiService webApi, ISessionService sessionService, IMediaPicker mediaPicker) : base(dialogService)
-		{
-			_webApi = webApi;
-			_sessionService = sessionService;
-			_mediaPicker = mediaPicker;
-		}
+        private MvxCommand _choosePictureCommand;
+        public MvxCommand ChoosePictureCommand {
+            get {
+                return _choosePictureCommand ?? (_choosePictureCommand = new MvxCommand (DoChoosePictureCommand));
+            }
+        }
 
-		public void Init()
-		{
-			Countries = new string[]
-			{
-				"Country",
-				"USA"
-			};
+        readonly IProgressHudService hudService;
 
-			var user = _sessionService.GetUser();
-			this.Image = user.PhotoUrl;
-			this.FirstName = user.FirstName;
-			this.LastName = user.LastName;
-			this.SelectedCountryIndex = new List<string>(Countries).IndexOf(user.CountryCode);
-			this.ZipCode = user.PostalCode;
-		}
+        public MyProfileViewModel (IProgressHudService hudService, IDialogService dialogService, IWebApiService webApi, ISessionService sessionService, IMediaPicker mediaPicker) : base (dialogService)
+        {
+            this.hudService = hudService;
+            _webApi = webApi;
+            _sessionService = sessionService;
+            _mediaPicker = mediaPicker;
+        }
 
-		private async void DoSaveCommand()
-		{
-			await DialogService.ShowAlert(Text.MyProfileSuccessTitle, Text.MyProfileSuccessText, Text.AnonymousSuccessButtonTitle);
-			this.Close(this);
-		}
+        public async void Init ()
+        {
+            hudService.Show ();
+            var countries = (await _webApi.GetCountries ()).Payload;
+            Countries = countries.Select (c => c.Title).ToArray ();
+            CountryCodes = countries.Select (c => c.Code).ToArray ();
 
-		private async void DoChoosePictureCommand()
-		{
-			var menuResponse = await this.DialogService.ShowMenu(Text.PictureSourceQuestion, "Cancel", null, Text.PictureSourceFromGallery, Text.PictureSourceFromCamera);
+            var user = (await _webApi.GetProfile (new TokenRequest () { Token = _sessionService.GetUser ().Token })).Payload;
+            this._image = user.PhotoUrl;
+            this._firstName = user.FirstName;
+            this._lastName = user.LastName;
+            this._selectedCountryIndex = new List<string> (CountryCodes).IndexOf (user.CountryCode);
+            this._zipCode = user.PostalCode;
+            hudService.Hide ();
+            RaiseAllPropertiesChanged ();
+        }
 
-			MediaFile response;
+        private async void DoSaveCommand ()
+        {
+            hudService.Show ();
+            var user = _sessionService.GetUser ();
+            user.FirstName = FirstName;
+            user.LastName = LastName;
+            user.CountryCode = CountryCodes [SelectedCountryIndex];
+            user.PostalCode = ZipCode;
+            await _webApi.SaveProfile (user);
+            hudService.Hide ();
+            this.Close (this);
+        }
 
-			if (menuResponse == "Cancel")
-			{
-				return;
-			}
-			else if (menuResponse == Text.PictureSourceFromCamera)
-			{
-				response = await _mediaPicker.TakePhotoAsync(new CameraMediaStorageOptions());
-			}
-			else if (menuResponse == Text.PictureSourceFromGallery)
-			{
-				response = await _mediaPicker.SelectPhotoAsync(new CameraMediaStorageOptions());
-			}
-			else
-			{
-				return;
-			}
+        private async void DoChoosePictureCommand ()
+        {
+            var menuResponse = await this.DialogService.ShowMenu (Text.PictureSourceQuestion, "Cancel", null, Text.PictureSourceFromGallery, Text.PictureSourceFromCamera);
 
-			Image = response.Source.ToByteArray();
-		}
-	}
+            MediaFile response;
+
+            if (menuResponse == "Cancel") {
+                return;
+            } else if (menuResponse == Text.PictureSourceFromCamera) {
+                response = await _mediaPicker.TakePhotoAsync (new CameraMediaStorageOptions ());
+            } else if (menuResponse == Text.PictureSourceFromGallery) {
+                response = await _mediaPicker.SelectPhotoAsync (new CameraMediaStorageOptions ());
+            } else {
+                return;
+            }
+
+            Image = response.Source.ToByteArray ();
+        }
+    }
 }
