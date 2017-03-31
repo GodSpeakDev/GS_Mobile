@@ -382,6 +382,7 @@
     <Compile Include="Api\Dtos\Country.cs" />
     <Compile Include="CustomComponents\PlusButton.cs" />
     <Compile Include="CustomComponents\CustomButton.cs" />
+    <Compile Include="Models\ItemCommand.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using MvvmCross.Core.ViewModels;
 
 namespace GodSpeak
 {
@@ -17,8 +18,8 @@ namespace GodSpeak
             set { SetProperty (ref _pages, value); }
         }
 
-        private ObservableCollection<InviteBundle> _bundles;
-        public ObservableCollection<InviteBundle> Bundles {
+        private ObservableCollection<ItemCommand<InviteBundle>> _bundles;
+        public ObservableCollection<ItemCommand<InviteBundle>> Bundles {
             get { return _bundles; }
             set { SetProperty (ref _bundles, value); }
         }
@@ -35,6 +36,15 @@ namespace GodSpeak
             set { SetProperty (ref _isVisible, value); }
         }
 
+		private MvxCommand<InviteBundle> _tapBundleCommand;
+		public MvxCommand<InviteBundle> TapBundleCommand
+		{
+			get
+			{
+				return _tapBundleCommand ?? (_tapBundleCommand = new MvxCommand<InviteBundle>(DoTapBundleCommand));
+			}
+		}
+
         public UnclaimedGiftViewModel (IDialogService dialogService, IWebApiService webApi, IShareService shareService) : base (dialogService)
         {
             _webApi = webApi;
@@ -50,8 +60,19 @@ namespace GodSpeak
 
             var bundlesResponse = await _webApi.GetInviteBundles (new GetInviteBundlesRequest ());
             if (bundlesResponse.IsSuccess) {
-                Bundles = new ObservableCollection<InviteBundle> (bundlesResponse.Payload);
+                Bundles = new ObservableCollection<ItemCommand<InviteBundle>> (
+					bundlesResponse.Payload.Select(x => new ItemCommand<InviteBundle>() 
+					{
+						Item = x,
+						TappedCommand = TapBundleCommand
+					}));
             }
         }
+
+		private async void DoTapBundleCommand(InviteBundle bundle)
+		{
+			var userModel1 = bundle;
+			await this.DialogService.ShowAlert("In Development", "In Development");
+		}
     }
 }

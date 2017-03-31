@@ -95,15 +95,16 @@
 											<Image WidthRequest="30" HeightRequest="30" Source="bundle_icon.png" />
 											<views:CustomLabel 
 												Margin="10,0,0,0"
-												Text="{Binding Description}" 
+												Text="{Binding Item.Description}" 
 												Style="{StaticResource TextShoppingCartItemTitle}"
 												HorizontalOptions="FillAndExpand"
 												VerticalOptions="Center"
 											/>
 											<views:CustomButton 				
 												WidthRequest="{StaticResource PriceWidth}"
+												Command="{Binding TappedCommand}"
 												Style="{StaticResource ButtonBlue}"
-												Text="{Binding CostDescription}">
+												Text="{Binding Item.CostDescription}">
 											</views:CustomButton>	
 										</StackLayout>
 									</DataTemplate>
