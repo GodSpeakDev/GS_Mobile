@@ -20,21 +20,21 @@
 						HorizontalOptions="FillAndExpand"
 						VerticalOptions="FillAndExpand">
 						<views:CustomLabel 									
-							Text="{Binding Message.BeforeVerse}"
+							Text="{Binding Message.PreviousVerse.Text}"
 							Style="{Binding BeforeVerseSelected, Converter={StaticResource MessageDetailStyleConverter}}">
 							<Label.GestureRecognizers>
 			        			<TapGestureRecognizer Command="{Binding SelectBeforeVerseCommand}" />
 			    			</Label.GestureRecognizers>
 						</views:CustomLabel>
 						<views:CustomLabel 							
-							Text="{Binding Message.Text}"
+							Text="{Binding Message.Verse.Text}"
 							Style="{Binding CurrentVerseSelected, Converter={StaticResource MessageDetailStyleConverter}}">
 							<Label.GestureRecognizers>
 			        			<TapGestureRecognizer Command="{Binding SelectCurrentVerseCommand}" />
 			    			</Label.GestureRecognizers>
 						</views:CustomLabel>
 						<views:CustomLabel 							
-							Text="{Binding Message.AfterVerse}"
+							Text="{Binding Message.NextVerse.Text}"
 							Style="{Binding AfterVerseSelected, Converter={StaticResource MessageDetailStyleConverter}}">
 							<Label.GestureRecognizers>
 			        			<TapGestureRecognizer Command="{Binding SelectAfterVerseCommand}" />

@@ -59,55 +59,52 @@ namespace GodSpeak
             return null;
         }
 
-		public async Task<ApiResponse<List<AcceptedInvite>>> GetAcceptedInvites(TokenRequest request)
-		{
-			await Task.Delay(1000);
-			return new ApiResponse<List<AcceptedInvite>>()
-			{
-				Payload = new List<AcceptedInvite>() 
-				{
-					new AcceptedInvite() 
-					{
-						ImageUrl = null,
-						Title = "Anonymous Donor",
-						SubTitle = "Has not given any gifts",
-						ButtonTitle= "Encourage Anonymous",
-						Message = "Don't forget to pay it forward!",
-						EmailAddress = "donations@godspeakapp.com"
-					},
-					new AcceptedInvite()
-					{
-						ImageUrl = null,
-						Title = "Brett Williams",
-						SubTitle = "Has not given any gifts",
-						ButtonTitle= "Encourage Brett",
-						Message = "Don't forget to pay it forward!",
-						EmailAddress = "brett@venadotech.com"
-					},
-				}
-			};
-		}
+        public async Task<ApiResponse<List<AcceptedInvite>>> GetAcceptedInvites (TokenRequest request)
+        {
+            await Task.Delay (1000);
+            return new ApiResponse<List<AcceptedInvite>> () {
+                Payload = new List<AcceptedInvite> ()
+                {
+                    new AcceptedInvite()
+                    {
+                        ImageUrl = null,
+                        Title = "Anonymous Donor",
+                        SubTitle = "Has not given any gifts",
+                        ButtonTitle= "Encourage Anonymous",
+                        Message = "Don't forget to pay it forward!",
+                        EmailAddress = "donations@godspeakapp.com"
+                    },
+                    new AcceptedInvite()
+                    {
+                        ImageUrl = null,
+                        Title = "Brett Williams",
+                        SubTitle = "Has not given any gifts",
+                        ButtonTitle= "Encourage Brett",
+                        Message = "Don't forget to pay it forward!",
+                        EmailAddress = "brett@venadotech.com"
+                    },
+                }
+            };
+        }
 
-		public async Task<ApiResponse<User>> UploadPhoto(UploadPhotoRequest request)
-		{
-			await Task.Delay(1000);
+        public async Task<ApiResponse<User>> UploadPhoto (UploadPhotoRequest request)
+        {
+            await Task.Delay (1000);
 
-			return new ApiResponse<User>()
-			{
-				Payload = GetTestPayload()
-			};
-		}
+            return new ApiResponse<User> () {
+                Payload = GetTestPayload ()
+            };
+        }
 
-		public async Task<ApiResponse<string>> DonateInvite(TokenRequest request)
-		{
-			await Task.Delay(1000);
+        public async Task<ApiResponse<string>> DonateInvite (TokenRequest request)
+        {
+            await Task.Delay (1000);
 
-			return new ApiResponse<string>()
-			{
-				Title = "Gift Request",
-				Message = "You have successfully donated a gift to the world."
-			};
-		}
+            return new ApiResponse<string> () {
+                Title = "Gift Request",
+                Message = "You have successfully donated a gift to the world."
+            };
+        }
 
         public async Task<ApiResponse<GetInvitesResponse>> GetInvites (GetInvitesRequest request)
         {
@@ -151,15 +148,13 @@ namespace GodSpeak
             };
         }
 
-        public async Task<ApiResponse<GetMessagesResponse>> GetMessages (GetMessagesRequest request)
+        public async Task<ApiResponse<List<Message>>> GetMessages (TokenRequest request)
         {
             await Task.Delay (delay);
-            var content = new GetMessagesResponse () {
-                Messages = _messages
-            };
 
-            return new ApiResponse<GetMessagesResponse> () {
-                Payload = content,
+
+            return new ApiResponse<List<Message>> () {
+                Payload = _messages,
                 StatusCode = System.Net.HttpStatusCode.OK
             };
         }
@@ -220,7 +215,7 @@ namespace GodSpeak
                             Cost = 9.97m,
                             NumberOfInvites=3,
                             AppStoreSku="1",
-                            PlayStoreSku="1",                            
+                            PlayStoreSku="1",
                         },
                         new InviteBundle()
                         {
@@ -228,7 +223,7 @@ namespace GodSpeak
                             Cost = 19.90m,
                             NumberOfInvites=10,
                             AppStoreSku="2",
-                            PlayStoreSku="2",                            
+                            PlayStoreSku="2",
                         },
                         new InviteBundle()
                         {
@@ -236,7 +231,7 @@ namespace GodSpeak
                             Cost = 24.75m,
                             NumberOfInvites=25,
                             AppStoreSku="3",
-                            PlayStoreSku="3",                            
+                            PlayStoreSku="3",
                         },
                         new InviteBundle()
                         {
@@ -244,7 +239,7 @@ namespace GodSpeak
                             Cost = 44.50m,
                             NumberOfInvites=50,
                             AppStoreSku="4",
-                            PlayStoreSku="4",                            
+                            PlayStoreSku="4",
                         },
                     }
             };
@@ -255,21 +250,20 @@ namespace GodSpeak
             await Task.Delay (delay);
             return new ApiResponse<string> () {
                 StatusCode = System.Net.HttpStatusCode.OK,
-				Title="Gift Purchase Failed",
-				Message="No gift bundle was found with submitted guid",
+                Title = "Gift Purchase Failed",
+                Message = "No gift bundle was found with submitted guid",
             };
         }
 
-		public async Task<ApiResponse<string>> GetDidYouKnow(TokenRequest request)
-		{
-			await Task.Delay(delay);
-			return new ApiResponse<string>()
-			{
-				Title = "Impact",
-				Message = "Did You Know",
-				Payload = "GodSpeak has been gifted 3 times.\\rGodSpeak has delivered 0 scriptures."
-			};
-		}
+        public async Task<ApiResponse<string>> GetDidYouKnow (TokenRequest request)
+        {
+            await Task.Delay (delay);
+            return new ApiResponse<string> () {
+                Title = "Impact",
+                Message = "Did You Know",
+                Payload = "GodSpeak has been gifted 3 times.\\rGodSpeak has delivered 0 scriptures."
+            };
+        }
 
         private User GetTestPayload ()
         {
@@ -460,62 +454,61 @@ namespace GodSpeak
             },
         };
 
-        private static List<Message> _messages = new List<Message> ()
-        {
-            new Message()
-            {
-                DateTimeToDisplay = DateTime.Now.AddSeconds(30),
-                BeforeVerse="Therefore I say to you, all things for which you pray and ask, believe that you have received them, and they will be granted you.",
-                Text = "If you abide in Me, and My words abide in you, ask whatever you wish, and it will be done for you.",
-                AfterVerse="Truly I say to you, whoever says to this mountain, 'Be taken up and cast into the sea,' and does not doubt in his heart, but believes that what he says is going to happen, it will be granted him.",
-                MessageId = Guid.NewGuid(),
-                BeforeAuthor = "John 15:6 NASB",
-                Author="John 15:7 NASB",
-                AfterAuthor="John 15:8 NASB",
-            },
-            new Message()
-            {
-                DateTimeToDisplay = DateTime.Now,
-                AfterVerse="Truly I say to you, whoever says to this mountain, 'Be taken up and cast into the sea,' and does not doubt in his heart, but believes that what he says is going to happen, it will be granted him.",
-                Text = "If you abide in Me, and My words abide in you, ask whatever you wish, and it will be done for you.",
-                BeforeVerse="Therefore I say to you, all things for which you pray and ask, believe that you have received them, and they will be granted you.",
-                MessageId = Guid.NewGuid(),
-                BeforeAuthor = "John 15:6 NASB",
-                Author="John 15:7 NASB",
-                AfterAuthor="John 15:8 NASB",
-            },
-            new Message()
-            {
-                DateTimeToDisplay = DateTime.Now,
-                AfterVerse="Therefore I say to you, all things for which you pray and ask, believe that you have received them, and they will be granted you.",
-                Text = "Be anxious for nothing, but in everything by prayer and supplication with thanksgiving let your requests be made known to God.",
-                MessageId = Guid.NewGuid(),
-                Author="Philippians 4:6 NASB",
-                AfterAuthor="Philippians 4:7 NASB",
-            },
-            new Message()
-            {
-                DateTimeToDisplay = DateTime.Now.AddDays(-1),
-                Text = "Therefore I say to you, all things for which you pray and ask, believe that you have received them, and they will be granted you.",
-                BeforeVerse="Truly I say to you, whoever says to this mountain, 'Be taken up and cast into the sea,' and does not doubt in his heart, but believes that what he says is going to happen, it will be granted him.",
-                MessageId = Guid.NewGuid(),
-                Author="Mark 11:24 NASB",
-                BeforeAuthor="Mark 11:23 NASB",
-            },
-            new Message()
-            {
-                DateTimeToDisplay = DateTime.Now.AddDays(-1),
-                Text = "And when you are praying, do not use meaningless repetition as the Gentiles do, for they suppose that they will be heard for their many words.",
-                MessageId = Guid.NewGuid(),
-                Author="Mark 11:24 NASB"
-            },
-            new Message()
-            {
-                DateTimeToDisplay = DateTime.Now.AddDays(-7),
-                Text = "So I say to you, ask, and it will be given to you; seek, and you will find; knock, and it will be opened to you.",
-                MessageId = Guid.NewGuid(),
-                Author="Mark 11:24 NASB"
-            },
+        private static List<Message> _messages = new List<Message> () {
+            //new Message()
+            //{
+            //    DateTimeToDisplay = DateTime.Now.AddSeconds(30),
+            //    BeforeVerse="Therefore I say to you, all things for which you pray and ask, believe that you have received them, and they will be granted you.",
+            //    Text = "If you abide in Me, and My words abide in you, ask whatever you wish, and it will be done for you.",
+            //    AfterVerse="Truly I say to you, whoever says to this mountain, 'Be taken up and cast into the sea,' and does not doubt in his heart, but believes that what he says is going to happen, it will be granted him.",
+            //    MessageId = Guid.NewGuid(),
+            //    BeforeAuthor = "John 15:6 NASB",
+            //    Author="John 15:7 NASB",
+            //    AfterAuthor="John 15:8 NASB",
+            //},
+            //new Message()
+            //{
+            //    DateTimeToDisplay = DateTime.Now,
+            //    AfterVerse="Truly I say to you, whoever says to this mountain, 'Be taken up and cast into the sea,' and does not doubt in his heart, but believes that what he says is going to happen, it will be granted him.",
+            //    Text = "If you abide in Me, and My words abide in you, ask whatever you wish, and it will be done for you.",
+            //    BeforeVerse="Therefore I say to you, all things for which you pray and ask, believe that you have received them, and they will be granted you.",
+            //    MessageId = Guid.NewGuid(),
+            //    BeforeAuthor = "John 15:6 NASB",
+            //    Author="John 15:7 NASB",
+            //    AfterAuthor="John 15:8 NASB",
+            //},
+            //new Message()
+            //{
+            //    DateTimeToDisplay = DateTime.Now,
+            //    AfterVerse="Therefore I say to you, all things for which you pray and ask, believe that you have received them, and they will be granted you.",
+            //    Text = "Be anxious for nothing, but in everything by prayer and supplication with thanksgiving let your requests be made known to God.",
+            //    MessageId = Guid.NewGuid(),
+            //    Author="Philippians 4:6 NASB",
+            //    AfterAuthor="Philippians 4:7 NASB",
+            //},
+            //new Message()
+            //{
+            //    DateTimeToDisplay = DateTime.Now.AddDays(-1),
+            //    Text = "Therefore I say to you, all things for which you pray and ask, believe that you have received them, and they will be granted you.",
+            //    BeforeVerse="Truly I say to you, whoever says to this mountain, 'Be taken up and cast into the sea,' and does not doubt in his heart, but believes that what he says is going to happen, it will be granted him.",
+            //    MessageId = Guid.NewGuid(),
+            //    Author="Mark 11:24 NASB",
+            //    BeforeAuthor="Mark 11:23 NASB",
+            //},
+            //new Message()
+            //{
+            //    DateTimeToDisplay = DateTime.Now.AddDays(-1),
+            //    Text = "And when you are praying, do not use meaningless repetition as the Gentiles do, for they suppose that they will be heard for their many words.",
+            //    MessageId = Guid.NewGuid(),
+            //    Author="Mark 11:24 NASB"
+            //},
+            //new Message()
+            //{
+            //    DateTimeToDisplay = DateTime.Now.AddDays(-7),
+            //    Text = "So I say to you, ask, and it will be given to you; seek, and you will find; knock, and it will be opened to you.",
+            //    MessageId = Guid.NewGuid(),
+            //    Author="Mark 11:24 NASB"
+            //},
         };
     }
 }

@@ -376,6 +376,7 @@
     <Compile Include="Api\Response\GetAcceptedInvitesResponse.cs" />
     <Compile Include="Api\Dtos\AcceptedInvite.cs" />
     <Compile Include="Api\Request\UploadPhotoRequest.cs" />
+    <Compile Include="Api\Dtos\Verse.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

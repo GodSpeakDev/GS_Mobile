@@ -91,7 +91,7 @@
 										HorizontalOptions="FillAndExpand"
 										VerticalOptions="StartAndExpand">
 										<views:CustomLabel 																				
-											Text="{Binding Text}"
+											Text="{Binding Verse.Text}"
 											HorizontalOptions="FillAndExpand"
 											VerticalOptions="Start"
 											Style="{StaticResource TextMessageBody}"

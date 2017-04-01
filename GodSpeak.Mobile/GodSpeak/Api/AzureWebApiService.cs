@@ -30,7 +30,7 @@ namespace GodSpeak.Api
         const string ImpactMessageUri = "impact/message";
         const string ImpactDidYouKnowUri = "impact/didyouknow";
 
-        const string MessagesQueueUri = "messages/queue";
+        const string MessagesQueueUri = "message/queue";
 
         const string PurchaseInviteUri = "invite/purchase";
         const string AcceptedInviteUri = "invite/accepted";
@@ -49,6 +49,13 @@ namespace GodSpeak.Api
             this.tracer = tracer;
             client.BaseAddress = new Uri (ServerUrl + "api/");
         }
+
+        public new async Task<ApiResponse<List<Message>>> GetMessages (TokenRequest request)
+        {
+            AddAuthToken (request.Token);
+            return await DoGet<List<Message>> (MessagesQueueUri);
+        }
+
 
         public new async Task<ApiResponse<List<Country>>> GetCountries ()
         {

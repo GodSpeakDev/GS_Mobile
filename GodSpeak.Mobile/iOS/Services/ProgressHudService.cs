@@ -19,12 +19,14 @@ namespace GodSpeak.iOS.Services
         public void Hide ()
         {
             BTProgressHUD.Dismiss ();
+
         }
 
         public void Show ()
         {
 
             BTProgressHUD.Show (null, -1, ProgressHUD.MaskType.Black);
+
 
 
         }
