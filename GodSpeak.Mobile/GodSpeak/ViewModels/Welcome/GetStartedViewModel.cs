@@ -32,15 +32,15 @@ namespace GodSpeak
                 var isValid = !string.IsNullOrEmpty (GiftCodeText);
                 return isValid;
             }
-        }		       
+        }
 
         public GetStartedViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService) : base (dialogService, hudService, sessionService, webApiService)
-        {            
+        {
         }
 
         public void Init ()
         {
-            GiftCodeText = "GoDDZHKC";
+            GiftCodeText = "ubQYPmAr";
         }
 
         private MvxCommand _tapGetStartedCommand;
@@ -87,8 +87,7 @@ namespace GodSpeak
 
         protected async void DoSubmitGiftCodeCommand ()
         {
-            if (string.IsNullOrEmpty (GiftCodeText)) 
-			{
+            if (string.IsNullOrEmpty (GiftCodeText)) {
                 await this.DialogService.ShowAlert (Text.ErrorPopupTitle, Text.InviteCodeRequiredMessage);
                 return;
             }
@@ -96,12 +95,10 @@ namespace GodSpeak
             HudService.Show ();
             var response = await WebApiService.ValidateCode (new ValidateCodeRequest () { Code = this.GiftCodeText });
             HudService.Hide ();
-            if (response.IsSuccess) 
-			{
-                ShowGiftCodeSuccessBox ();                
-            } else 
-			{
-                await HandleResponse (response);                
+            if (response.IsSuccess) {
+                ShowGiftCodeSuccessBox ();
+            } else {
+                await HandleResponse (response);
             }
         }
 
@@ -111,23 +108,19 @@ namespace GodSpeak
         }
 
         private async void DoDontHaveCodeCommand ()
-        {			
+        {
             var result = await this.DialogService.ShowInputPopup (Text.AnonymousTitle, Text.AnonymousText, new InputOptions () { Placeholder = Text.AnonymousInputPlaceholder }, Text.AnonymousSubmit, Text.AnonymousNevermind);
 
-            if (result.SelectedButton == Text.AnonymousSubmit) 
-			{
-				HudService.Show();
-				var response = await WebApiService.RequestInvite(new RequestInviteRequest() {Email=result.InputText});
-				HudService.Hide();
+            if (result.SelectedButton == Text.AnonymousSubmit) {
+                HudService.Show ();
+                var response = await WebApiService.RequestInvite (new RequestInviteRequest () { Email = result.InputText });
+                HudService.Hide ();
 
-				if (response.IsSuccess)
-				{
-					await this.DialogService.ShowAlert(Text.AnonymousSuccessTitle, string.Format(Text.AnonymousSuccessText, result.InputText), Text.AnonymousSuccessButtonTitle);
-				}
-				else
-				{
-					await HandleResponse(response);
-				}
+                if (response.IsSuccess) {
+                    await this.DialogService.ShowAlert (Text.AnonymousSuccessTitle, string.Format (Text.AnonymousSuccessText, result.InputText), Text.AnonymousSuccessButtonTitle);
+                } else {
+                    await HandleResponse (response);
+                }
             }
         }
 
