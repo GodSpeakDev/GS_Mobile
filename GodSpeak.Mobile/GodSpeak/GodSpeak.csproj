@@ -376,6 +376,8 @@
     <Compile Include="Api\Request\UploadPhotoRequest.cs" />
     <Compile Include="Api\Dtos\Verse.cs" />
     <Compile Include="Converters\TextTruncationConverter.cs" />
+    <Compile Include="Services\IImageService.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

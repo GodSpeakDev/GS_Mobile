@@ -256,7 +256,7 @@ namespace GodSpeak.Api
             LogResponse (uri, parsedResponse, json);
 
             var userResponse = parsedResponse as ApiResponse<User>;
-            if (userResponse != null && !userResponse.Payload.PhotoUrl.Contains (ServerUrl))
+            if (userResponse != null && userResponse.IsSuccess && userResponse.Payload.PhotoUrl != null && !userResponse.Payload.PhotoUrl.Contains (ServerUrl))
                 userResponse.Payload.PhotoUrl = ServerUrl + userResponse.Payload.PhotoUrl;
 
             return parsedResponse;

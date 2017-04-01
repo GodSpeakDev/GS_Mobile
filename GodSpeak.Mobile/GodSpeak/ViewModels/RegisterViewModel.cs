@@ -5,7 +5,6 @@ using GodSpeak.Resources;
 using MvvmCross.Core;
 using MvvmCross.Forms;
 using MvvmCross.Platform;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Linq;
 using GodSpeak.Services;
@@ -15,6 +14,8 @@ namespace GodSpeak
     public class RegisterViewModel : CustomViewModel
     {        
         private IMediaPicker _mediaPicker;
+		private IImageService _imageService;
+		private MediaFile _response;
 
         private int _selectedCountryIndex;
         public int SelectedCountryIndex {
@@ -87,12 +88,9 @@ namespace GodSpeak
         }
 
         public bool IsPasswordValid {
-            get {
-                var numberDetector = new Regex (@"\d{1}?");
-                var lowerCaseDetector = new Regex (@"[a-z]{1}?");
-                var upperCaseDetector = new Regex (@"[A-Z]{1}?");
-
-                return string.IsNullOrEmpty (Password) || (numberDetector.IsMatch (Password) && lowerCaseDetector.IsMatch (Password) && upperCaseDetector.IsMatch (Password));
+            get 
+			{
+				return Password.IsValidPassword();
             }
         }
 
@@ -132,21 +130,20 @@ namespace GodSpeak
             }
         }
 
-        readonly IProgressHudService hudService;
-
-        public RegisterViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, IMediaPicker mediaPicker) : base (dialogService, hudService, sessionService, webApiService)
+        public RegisterViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, IMediaPicker mediaPicker, IImageService imageService) : base (dialogService, hudService, sessionService, webApiService)
         {            
             _mediaPicker = mediaPicker;
+			_imageService = imageService;
         }
 
         string _inviteCode;
 
-        public void Init (string inviteCode)
+        public async void Init (string inviteCode)
         {
             _inviteCode = inviteCode;
             //Image = "http://www.gravatar.com/avatar/a1c6e240931b44f7f4b21492232cd3fc.png?s=160";
             Image = "profile_placeholder.png";
-            PopulateCountries ();
+            await PopulateCountries ();
         }
 
         async Task PopulateCountries ()
@@ -161,7 +158,8 @@ namespace GodSpeak
             if (!ValidateForm ())
                 return;
 
-            var request = new RegisterUserRequest () {
+            var request = new RegisterUserRequest () 
+			{
                 FirstName = FirstName,
                 LastName = LastName,
                 EmailAddress = Email,
@@ -170,43 +168,77 @@ namespace GodSpeak
                 CountryCode = CountryCodes [SelectedCountryIndex],
                 PostalCode = ZipCode,
                 InviteCode = _inviteCode
-
-
-
             };
 
-            hudService.Show ();
-            var response = await WebApiService.RegisterUser (request);
-            hudService.Hide ();
+            HudService.Show ();
+            var response = await WebApiService.RegisterUser (request);            
 
             if (response.IsSuccess) 
 			{
-                await DialogService.ShowAlert (Text.SuccessfulRegisterPopupTitle, Text.SuccessGiftCodeText, Text.SuccessfulRegisterButtonText);
-                await SessionService.SaveUser (response.Payload);
-                this.ShowViewModel<HomeViewModel> ();
-            } else 
+				if (Image != null)
+				{
+					var photoResponse = await WebApiService.UploadPhoto(new UploadPhotoRequest()
+					{
+						Token = response.Payload.Token,
+						FilePath = _response.Path
+					});
+					HudService.Hide();
+
+					if (photoResponse.IsSuccess)
+					{
+						await DialogService.ShowAlert(Text.SuccessfulRegisterPopupTitle, Text.SuccessGiftCodeText, Text.SuccessfulRegisterButtonText);
+						await SessionService.SaveUser(response.Payload);
+						this.ShowViewModel<HomeViewModel>();
+					}
+					else
+					{												
+						await HandleResponse(photoResponse);
+					}
+				}
+				else
+				{
+					HudService.Hide();
+
+					await DialogService.ShowAlert(Text.SuccessfulRegisterPopupTitle, Text.SuccessGiftCodeText, Text.SuccessfulRegisterButtonText);
+					await SessionService.SaveUser(response.Payload);
+					this.ShowViewModel<HomeViewModel>();
+				}
+            }
+			else 
 			{
+				HudService.Hide();
                 await HandleResponse (response);
             }
         }
 
         private async void DoChoosePictureCommand ()
         {
-            var menuResponse = await this.DialogService.ShowMenu (Text.PictureSourceQuestion, "Cancel", null, Text.PictureSourceFromGallery, Text.PictureSourceFromCamera);
+            var menuResponse = await this.DialogService.ShowMenu (Text.PictureSourceQuestion, null, Text.PictureSourceFromGallery, Text.PictureSourceFromCamera, Text.Cancel);			           
 
-            MediaFile response;
-
-            if (menuResponse == "Cancel") {
+            if (menuResponse == Text.Cancel) 
+			{
                 return;
-            } else if (menuResponse == Text.PictureSourceFromCamera) {
-                response = await _mediaPicker.TakePhotoAsync (new CameraMediaStorageOptions ());
-            } else if (menuResponse == Text.PictureSourceFromGallery) {
-                response = await _mediaPicker.SelectPhotoAsync (new CameraMediaStorageOptions ());
-            } else {
+            } 
+			else if (menuResponse == Text.PictureSourceFromCamera) 
+			{
+                _response = await _mediaPicker.TakePhotoAsync (new CameraMediaStorageOptions ());
+            } 
+			else if (menuResponse == Text.PictureSourceFromGallery) 
+			{
+                _response = await _mediaPicker.SelectPhotoAsync (new CameraMediaStorageOptions ());
+            } 
+			else 
+			{
                 return;
             }
 
-            Image = response.Source.ToByteArray ();
+			if (_response != null)
+			{
+				HudService.Show();
+				_imageService.Compress(_response, 200, 200);
+				Image = _response.Path;
+				HudService.Hide();
+			}
         }
 
         private async void DoAlreadyRegisteredCommand ()

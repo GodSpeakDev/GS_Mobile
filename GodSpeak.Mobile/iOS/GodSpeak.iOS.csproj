@@ -241,6 +241,7 @@
     <Compile Include="Effects\ReturnKeyEffect.cs" />
     <Compile Include="Services\FeedbackService.cs" />
     <Compile Include="Services\ProgressHudService.cs" />
+    <Compile Include="Services\ImageService.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\profile_placeholder.png" />

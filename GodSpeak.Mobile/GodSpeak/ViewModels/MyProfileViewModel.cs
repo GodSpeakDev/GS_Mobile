@@ -15,6 +15,7 @@ namespace GodSpeak
     public class MyProfileViewModel : CustomViewModel
     {
         private IMediaPicker _mediaPicker;
+		private IImageService _imageService;
 
         private int _selectedCountryIndex;
         public int SelectedCountryIndex {
@@ -72,12 +73,9 @@ namespace GodSpeak
         }
 
         public bool IsPasswordValid {
-            get {
-                var numberDetector = new Regex (@"\d{1}?");
-                var lowerCaseDetector = new Regex (@"[a-z]{1}?");
-                var upperCaseDetector = new Regex (@"[A-Z]{1}?");
-
-                return string.IsNullOrEmpty (Password) || (numberDetector.IsMatch (Password) && lowerCaseDetector.IsMatch (Password) && upperCaseDetector.IsMatch (Password));
+            get 
+			{
+                return Password.IsValidPassword();
             }
         }
 
@@ -116,9 +114,10 @@ namespace GodSpeak
             }
         }
 
-        public MyProfileViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, IMediaPicker mediaPicker) : base (dialogService, hudService, sessionService, webApiService)
+        public MyProfileViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, IMediaPicker mediaPicker, IImageService imageService) : base (dialogService, hudService, sessionService, webApiService)
         {
             _mediaPicker = mediaPicker;
+			_imageService = imageService;
         }
 
         public async void Init ()
@@ -180,24 +179,35 @@ namespace GodSpeak
             if (menuResponse == Text.Cancel) {
                 return;
             } else if (menuResponse == Text.PictureSourceFromCamera) {
-                response = await _mediaPicker.TakePhotoAsync (new CameraMediaStorageOptions ());
+				response = await _mediaPicker.TakePhotoAsync (new CameraMediaStorageOptions());
             } else if (menuResponse == Text.PictureSourceFromGallery) {
-                response = await _mediaPicker.SelectPhotoAsync (new CameraMediaStorageOptions ());
+                response = await _mediaPicker.SelectPhotoAsync  (new CameraMediaStorageOptions());
             } else {
                 return;
             }
 
-            if (response != null) {
+            if (response != null) 
+			{
                 this.HudService.Show ();
-                var photoResponse = await WebApiService.UploadPhoto (new UploadPhotoRequest () {
+
+				_imageService.Compress(response, 200, 200);
+
+                var photoResponse = await WebApiService.UploadPhoto (new UploadPhotoRequest () 
+				{
                     Token = SessionService.GetUser ().Token,
                     FilePath = response.Path
                 });
+
+				System.Diagnostics.Debug.WriteLine("Image Size: {0}", response.Source.ToByteArray().Length);
+
                 this.HudService.Hide ();
 
-                if (photoResponse.IsSuccess) {
+                if (photoResponse.IsSuccess) 
+				{
                     SetPhoto (photoResponse.Payload);
-                } else {
+					RaisePropertyChanged(() => Image);
+                } else 
+				{
                     await HandleResponse (photoResponse);
                 }
             }
