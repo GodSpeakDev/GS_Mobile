@@ -13,7 +13,7 @@ using GodSpeak.Services;
 namespace GodSpeak
 {
     public class MyProfileViewModel : CustomViewModel
-    {        
+    {
         private IMediaPicker _mediaPicker;
 
         private int _selectedCountryIndex;
@@ -117,7 +117,7 @@ namespace GodSpeak
         }
 
         public MyProfileViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, IMediaPicker mediaPicker) : base (dialogService, hudService, sessionService, webApiService)
-        {            
+        {
             _mediaPicker = mediaPicker;
         }
 
@@ -129,31 +129,28 @@ namespace GodSpeak
             CountryCodes = countries.Select (c => c.Code).ToArray ();
 
             var user = (await WebApiService.GetProfile (new TokenRequest () { Token = SessionService.GetUser ().Token }));
-			if (user.IsSuccess)
-			{
-				SetUserInfo(user.Payload);
-				HudService.Hide();
-				RaiseAllPropertiesChanged();
-			}
-			else
-			{
-				await HandleResponse(user);
-			}
+            if (user.IsSuccess) {
+                SetUserInfo (user.Payload);
+                HudService.Hide ();
+                RaiseAllPropertiesChanged ();
+            } else {
+                await HandleResponse (user);
+            }
         }
 
-		private void SetUserInfo(User user)
-		{
-			SetPhoto(user);
-			this.FirstName = user.FirstName;
-			this._lastName = user.LastName;
-			this._selectedCountryIndex = new List<string>(CountryCodes).IndexOf(user.CountryCode);
-			this._zipCode = user.PostalCode;
-		}
+        private void SetUserInfo (User user)
+        {
+            SetPhoto (user);
+            this.FirstName = user.FirstName;
+            this._lastName = user.LastName;
+            this._selectedCountryIndex = new List<string> (CountryCodes).IndexOf (user.CountryCode);
+            this._zipCode = user.PostalCode;
+        }
 
-		private void SetPhoto(User user)
-		{
-			this._image = user.PhotoUrl;
-		}
+        private void SetPhoto (User user)
+        {
+            this._image = user.PhotoUrl;
+        }
 
         private async void DoSaveCommand ()
         {
@@ -167,14 +164,11 @@ namespace GodSpeak
             var response = await WebApiService.SaveProfile (user);
             HudService.Hide ();
 
-			if (response.IsSuccess)
-			{
-				this.Close(this);
-			}
-			else
-			{
-				await HandleResponse(response);
-			}
+            if (response.IsSuccess) {
+                this.Close (this);
+            } else {
+                await HandleResponse (response);
+            }
         }
 
         private async void DoChoosePictureCommand ()
@@ -183,42 +177,30 @@ namespace GodSpeak
 
             MediaFile response;
 
-            if (menuResponse == Text.Cancel) 
-			{
+            if (menuResponse == Text.Cancel) {
                 return;
-            } 
-			else if (menuResponse == Text.PictureSourceFromCamera) 
-			{
+            } else if (menuResponse == Text.PictureSourceFromCamera) {
                 response = await _mediaPicker.TakePhotoAsync (new CameraMediaStorageOptions ());
-            } 
-			else if (menuResponse == Text.PictureSourceFromGallery) 
-			{
+            } else if (menuResponse == Text.PictureSourceFromGallery) {
                 response = await _mediaPicker.SelectPhotoAsync (new CameraMediaStorageOptions ());
-            } 
-			else 
-			{
+            } else {
                 return;
             }
 
-			if (response != null)
-			{
-				this.HudService.Show();
-				var photoResponse = await WebApiService.UploadPhoto(new UploadPhotoRequest()
-				{
-					Token = SessionService.GetUser().Token,
-					Photo = response.Source.ToByteArray()
-				});
-				this.HudService.Hide();
+            if (response != null) {
+                this.HudService.Show ();
+                var photoResponse = await WebApiService.UploadPhoto (new UploadPhotoRequest () {
+                    Token = SessionService.GetUser ().Token,
+                    FilePath = response.Path
+                });
+                this.HudService.Hide ();
 
-				if (photoResponse.IsSuccess)
-				{
-					SetPhoto(photoResponse.Payload);
-				}
-				else
-				{
-					await HandleResponse(photoResponse);
-				}
-			}
+                if (photoResponse.IsSuccess) {
+                    SetPhoto (photoResponse.Payload);
+                } else {
+                    await HandleResponse (photoResponse);
+                }
+            }
         }
     }
 }

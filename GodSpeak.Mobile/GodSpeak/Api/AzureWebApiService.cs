@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using GodSpeak.Api.Dtos;
 using System.Net.Http.Headers;
 using System.IO;
+using PCLStorage;
+using System.Linq;
 
 namespace GodSpeak.Api
 {
@@ -18,7 +20,7 @@ namespace GodSpeak.Api
         const string RecoverPasswordUri = "user/recoverpassword/";
         const string ProfileUri = "user";
         const string RegisterUri = "user";
-		const string PhotoUploadUri = "user/photo";
+        const string PhotoUploadUri = "user/photo";
         const string LogoutUri = "user/logout";
 
         const string CountriesUri = "geo/countries";
@@ -83,17 +85,17 @@ namespace GodSpeak.Api
             return await DoGet<List<InviteBundle>> (InviteBundlesUri);
         }
 
-		public new async Task<ApiResponse<List<AcceptedInvite>>> GetAcceptedInvites(TokenRequest request)
-		{
-			AddAuthToken(request.Token);
-			return await DoGet<List<AcceptedInvite>>(AcceptedInviteUri);
-		}
+        public new async Task<ApiResponse<List<AcceptedInvite>>> GetAcceptedInvites (TokenRequest request)
+        {
+            AddAuthToken (request.Token);
+            return await DoGet<List<AcceptedInvite>> (AcceptedInviteUri);
+        }
 
-		public new async Task<ApiResponse<string>> DonateInvite(TokenRequest request)
-		{
-			AddAuthToken(request.Token);
-			return await DoPost<string>(DonateInviteUri, request);
-		}
+        public new async Task<ApiResponse<string>> DonateInvite (TokenRequest request)
+        {
+            AddAuthToken (request.Token);
+            return await DoPost<string> (DonateInviteUri, request);
+        }
 
         public new async Task<ApiResponse<string>> PurchaseInvite (PurchaseInviteRequest request)
         {
@@ -106,55 +108,48 @@ namespace GodSpeak.Api
             return await DoPost<User> (LoginMethodUri, request);
         }
 
-		public new async Task<ApiResponse<string>> GetDidYouKnow(TokenRequest request)
-		{
-			AddAuthToken(request.Token);
-			return await DoGet<string>(ImpactDidYouKnowUri);
-		}
+        public new async Task<ApiResponse<string>> GetDidYouKnow (TokenRequest request)
+        {
+            AddAuthToken (request.Token);
+            return await DoGet<string> (ImpactDidYouKnowUri);
+        }
 
-		public new async Task<ApiResponse<User>> UploadPhoto(UploadPhotoRequest request)
-		{
-			AddAuthToken(request.Token);
+        public new async Task<ApiResponse<User>> UploadPhoto (UploadPhotoRequest request)
+        {
+            AddAuthToken (request.Token);
 
-			// Solution 1
-			//MediaTypeWithQualityHeaderValue header = new MediaTypeWithQualityHeaderValue("multipart/form-data");
-			//client.DefaultRequestHeaders.Accept.Add(header);
 
-			//MultipartFormDataContent postContent = new MultipartFormDataContent();
-			//var imageStream = new ByteArrayContent(request.Photo);
-			//imageStream.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
-			//{
-			//	FileName = Guid.NewGuid() + ".Png"
-			//};
+            IFile file = await FileSystem.Current.GetFileFromPathAsync (request.FilePath);
+            Stream imageStream = await file.OpenAsync (FileAccess.Read);
 
-			//postContent.Add(imageStream, "photo", "image.jpg");
 
-			// Solution 2
-			var imageStream = new ByteArrayContent(request.Photo);
-			imageStream.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
-			{
-				FileName = Guid.NewGuid() + ".Png"
-			};
 
-			var postContent = new MultipartContent();
-			postContent.Add(imageStream);
+            MultipartFormDataContent multipartContent =
+                new MultipartFormDataContent ();
 
-			// Solution 3
-			//MediaTypeWithQualityHeaderValue header = new MediaTypeWithQualityHeaderValue("multipart/form-data");
-			//client.DefaultRequestHeaders.Accept.Add(header);
+            multipartContent.Add (
+                new StreamContent (imageStream),
+                "photo",
+                file.Name);
 
-			//MultipartFormDataContent postContent = new MultipartFormDataContent();
-			//var imageStream = new StreamContent(new MemoryStream(request.Photo));
-			//imageStream.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
-			//{
-			//	FileName = Guid.NewGuid() + ".Png"
-			//};
-			////postContent.Headers.ContentType = new MediaTypeWithQualityHeaderValue("multipart/form-data");
-			//postContent.Add(imageStream, "photo", "image.jpg");
 
-			var apiResponse = await client.PostAsync(PhotoUploadUri, postContent);
-			return await ParseResponse<User>(PhotoUploadUri, apiResponse);
-		}
+
+
+            HttpResponseMessage response = await client.PostAsync (PhotoUploadUri, multipartContent);
+
+            return await ParseResponse<User> (PhotoUploadUri, response);
+        }
+
+        private StreamContent CreateFileContent (Stream stream, string fileName, string contentType)
+        {
+            var fileContent = new StreamContent (stream);
+            fileContent.Headers.ContentDisposition = new ContentDispositionHeaderValue ("form-data") {
+                Name = "\"files\"",
+                FileName = "\"" + fileName + "\""
+            }; // the extra quotes are key here
+            fileContent.Headers.ContentType = new MediaTypeHeaderValue (contentType);
+            return fileContent;
+        }
 
         public new async Task<ApiResponse> Logout (LogoutRequest request)
         {

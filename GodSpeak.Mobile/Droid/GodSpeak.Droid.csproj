@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>GodSpeak.Droid</RootNamespace>
     <AssemblyName>GodSpeak.Droid</AssemblyName>
-    <TargetFrameworkVersion>v7.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v7.1</TargetFrameworkVersion>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
@@ -158,6 +158,12 @@
     </Reference>
     <Reference Include="Plugin.Contacts">
       <HintPath>..\packages\Xam.Plugin.Contacts.2.2.0.37-beta\lib\MonoAndroid10\Plugin.Contacts.dll</HintPath>
+    </Reference>
+    <Reference Include="PCLStorage.Abstractions">
+      <HintPath>..\packages\PCLStorage.1.0.2\lib\monoandroid\PCLStorage.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="PCLStorage">
+      <HintPath>..\packages\PCLStorage.1.0.2\lib\monoandroid\PCLStorage.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
