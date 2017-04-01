@@ -131,11 +131,7 @@ namespace GodSpeak
             var user = (await WebApiService.GetProfile (new TokenRequest () { Token = SessionService.GetUser ().Token }));
 			if (user.IsSuccess)
 			{
-				this._image = user.Payload.PhotoUrl;
-				this.FirstName = user.Payload.FirstName;
-				this._lastName = user.Payload.LastName;
-				this._selectedCountryIndex = new List<string>(CountryCodes).IndexOf(user.Payload.CountryCode);
-				this._zipCode = user.Payload.PostalCode;
+				SetUserInfo(user.Payload);
 				HudService.Hide();
 				RaiseAllPropertiesChanged();
 			}
@@ -144,6 +140,20 @@ namespace GodSpeak
 				await HandleResponse(user);
 			}
         }
+
+		private void SetUserInfo(User user)
+		{
+			SetPhoto(user);
+			this.FirstName = user.FirstName;
+			this._lastName = user.LastName;
+			this._selectedCountryIndex = new List<string>(CountryCodes).IndexOf(user.CountryCode);
+			this._zipCode = user.PostalCode;
+		}
+
+		private void SetPhoto(User user)
+		{
+			this._image = user.PhotoUrl;
+		}
 
         private async void DoSaveCommand ()
         {
@@ -169,7 +179,7 @@ namespace GodSpeak
 
         private async void DoChoosePictureCommand ()
         {
-            var menuResponse = await this.DialogService.ShowMenu (Text.PictureSourceQuestion, Text.Cancel, null, Text.PictureSourceFromGallery, Text.PictureSourceFromCamera);
+            var menuResponse = await this.DialogService.ShowMenu (Text.PictureSourceQuestion, null, Text.PictureSourceFromGallery, Text.PictureSourceFromCamera, Text.Cancel);
 
             MediaFile response;
 
@@ -190,7 +200,25 @@ namespace GodSpeak
                 return;
             }
 
-            Image = response.Source.ToByteArray ();
+			if (response != null)
+			{
+				this.HudService.Show();
+				var photoResponse = await WebApiService.UploadPhoto(new UploadPhotoRequest()
+				{
+					Token = SessionService.GetUser().Token,
+					Photo = response.Source.ToByteArray()
+				});
+				this.HudService.Hide();
+
+				if (photoResponse.IsSuccess)
+				{
+					SetPhoto(photoResponse.Payload);
+				}
+				else
+				{
+					await HandleResponse(photoResponse);
+				}
+			}
         }
     }
 }

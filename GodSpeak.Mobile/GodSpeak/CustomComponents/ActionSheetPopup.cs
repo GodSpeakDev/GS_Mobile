@@ -6,8 +6,8 @@ namespace GodSpeak
 {
 	public class ActionSheetPopup : PopupView
 	{
-		private Label _titleLabel;
-		private Label _messageLabel;
+		private CustomLabel _titleLabel;
+		private CustomLabel _messageLabel;
 		private TaskCompletionSource<string> _result;
 
 		private string _title;
@@ -63,38 +63,30 @@ namespace GodSpeak
 				grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(1, GridUnitType.Auto)});
 			}
 
-			_titleLabel = new Label()
+			_titleLabel = new CustomLabel()
 			{
-				TextColor = ColorHelper.Secondary,
+				Style = (Style)Application.Current.Resources["AlertSheetTitle"],
 				HorizontalTextAlignment = TextAlignment.Center,
-				FontAttributes = FontAttributes.Bold,
 				Text = _title,
-				FontSize = 24
 			};
 
-			_messageLabel = new Label()
+			_messageLabel = new CustomLabel()
 			{
 				Margin = new Thickness(20, 10, 20, 25),
-				TextColor = ColorHelper.Secondary,
+				Style = (Style)Application.Current.Resources["AlertSheetBody"],
 				HorizontalTextAlignment = TextAlignment.Center,
-				FontAttributes = FontAttributes.Bold,
 				Text = _message,
-				FontSize = 15
 			};
 
 			for (int i = 0; i < Buttons.Length; i++)
 			{				
 				var button = new CustomButton()
 				{
-					FontSize = 18,
-					BackgroundColor = i == 0 ? ColorHelper.Secondary : Color.Transparent,
-					TextColor = i == 0 ? ColorHelper.Primary : ColorHelper.Secondary,
-					BorderWidth = 1,
-					BorderColor = ColorHelper.Secondary,
+					Style = (Style)Application.Current.Resources[i != Buttons.Length-1 ? "BorderButtonWhite" : "BorderButtonTransparent"],
 					Margin = new Thickness(10, 5, 10, 5),
 					Text = Buttons[i],
-					FontAttributes = FontAttributes.Bold,
 				};
+
 				button.Clicked += (sender, e) =>
 				{
 					Hide();

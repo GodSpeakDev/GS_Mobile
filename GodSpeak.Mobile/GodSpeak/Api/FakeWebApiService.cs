@@ -88,6 +88,16 @@ namespace GodSpeak
 			};
 		}
 
+		public async Task<ApiResponse<User>> UploadPhoto(UploadPhotoRequest request)
+		{
+			await Task.Delay(1000);
+
+			return new ApiResponse<User>()
+			{
+				Payload = GetTestPayload()
+			};
+		}
+
 		public async Task<ApiResponse<string>> DonateInvite(TokenRequest request)
 		{
 			await Task.Delay(1000);

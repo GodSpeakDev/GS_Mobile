@@ -47,7 +47,7 @@ namespace GodSpeak.iOS
 
 		private void SetBackgroundColor()
 		{
-			if (this.Control != null)
+			if (this.Control != null && this.CustomEntry != null)
 			{
 				this.Control.BackgroundColor = this.CustomEntry.BackgroundColor.ToUIColor();
 			}

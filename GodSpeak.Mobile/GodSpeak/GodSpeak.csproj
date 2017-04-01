@@ -375,6 +375,7 @@
     <Compile Include="ViewModels\Welcome\GetStartedViewModel.cs" />
     <Compile Include="Api\Response\GetAcceptedInvitesResponse.cs" />
     <Compile Include="Api\Dtos\AcceptedInvite.cs" />
+    <Compile Include="Api\Request\UploadPhotoRequest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

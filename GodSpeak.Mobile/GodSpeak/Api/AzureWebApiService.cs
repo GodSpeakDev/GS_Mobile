@@ -6,6 +6,8 @@ using MvvmCross.Platform.Platform;
 using System.Text;
 using System.Collections.Generic;
 using GodSpeak.Api.Dtos;
+using System.Net.Http.Headers;
+using System.IO;
 
 namespace GodSpeak.Api
 {
@@ -16,6 +18,7 @@ namespace GodSpeak.Api
         const string RecoverPasswordUri = "user/recoverpassword/";
         const string ProfileUri = "user";
         const string RegisterUri = "user";
+		const string PhotoUploadUri = "user/photo";
         const string LogoutUri = "user/logout";
 
         const string CountriesUri = "geo/countries";
@@ -33,8 +36,6 @@ namespace GodSpeak.Api
         const string InviteBundlesUri = "invite/bundles";
         const string RequestInviteUri = "invite/request";
         const string DonateInviteUri = "invite/donate";
-
-
 
         protected HttpClient client = new HttpClient ();
         readonly IMvxTrace tracer;
@@ -109,6 +110,50 @@ namespace GodSpeak.Api
 		{
 			AddAuthToken(request.Token);
 			return await DoGet<string>(ImpactDidYouKnowUri);
+		}
+
+		public new async Task<ApiResponse<User>> UploadPhoto(UploadPhotoRequest request)
+		{
+			AddAuthToken(request.Token);
+
+			// Solution 1
+			//MediaTypeWithQualityHeaderValue header = new MediaTypeWithQualityHeaderValue("multipart/form-data");
+			//client.DefaultRequestHeaders.Accept.Add(header);
+
+			//MultipartFormDataContent postContent = new MultipartFormDataContent();
+			//var imageStream = new ByteArrayContent(request.Photo);
+			//imageStream.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
+			//{
+			//	FileName = Guid.NewGuid() + ".Png"
+			//};
+
+			//postContent.Add(imageStream, "photo", "image.jpg");
+
+			// Solution 2
+			var imageStream = new ByteArrayContent(request.Photo);
+			imageStream.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
+			{
+				FileName = Guid.NewGuid() + ".Png"
+			};
+
+			var postContent = new MultipartContent();
+			postContent.Add(imageStream);
+
+			// Solution 3
+			//MediaTypeWithQualityHeaderValue header = new MediaTypeWithQualityHeaderValue("multipart/form-data");
+			//client.DefaultRequestHeaders.Accept.Add(header);
+
+			//MultipartFormDataContent postContent = new MultipartFormDataContent();
+			//var imageStream = new StreamContent(new MemoryStream(request.Photo));
+			//imageStream.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
+			//{
+			//	FileName = Guid.NewGuid() + ".Png"
+			//};
+			////postContent.Headers.ContentType = new MediaTypeWithQualityHeaderValue("multipart/form-data");
+			//postContent.Add(imageStream, "photo", "image.jpg");
+
+			var apiResponse = await client.PostAsync(PhotoUploadUri, postContent);
+			return await ParseResponse<User>(PhotoUploadUri, apiResponse);
 		}
 
         public new async Task<ApiResponse> Logout (LogoutRequest request)

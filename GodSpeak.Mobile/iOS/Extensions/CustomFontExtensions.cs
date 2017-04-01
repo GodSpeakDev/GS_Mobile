@@ -7,6 +7,9 @@ namespace GodSpeak.iOS
 	{
 		public static UIFont GetUIFont(this ICustomFont customElement)
 		{
+			if (customElement == null)
+				return null;
+
 			switch (customElement.FontWeight)
 			{
 				case GodSpeak.FontWeight.Light:

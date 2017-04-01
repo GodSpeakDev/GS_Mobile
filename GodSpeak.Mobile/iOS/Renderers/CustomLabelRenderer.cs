@@ -33,7 +33,7 @@ namespace GodSpeak.iOS
 
 		private void SetFontWeight()
 		{
-			if (this.Control == null)
+			if (this.Control == null || this.CustomLabel == null)
 				return;
 
 			this.Control.Font = this.CustomLabel.GetUIFont();
