@@ -42,10 +42,12 @@ namespace GodSpeak.Api
         protected HttpClient client = new HttpClient ();
         readonly IMvxTrace tracer;
 
+        protected string ServerUrl = "http://godspeak-staging.azurewebsites.net/";
+
         public AzureWebApiService (IMvxTrace tracer)
         {
             this.tracer = tracer;
-            client.BaseAddress = new Uri ("http://godspeak-staging.azurewebsites.net/api/");
+            client.BaseAddress = new Uri (ServerUrl + "api/");
         }
 
         public new async Task<ApiResponse<List<Country>>> GetCountries ()
@@ -228,6 +230,11 @@ namespace GodSpeak.Api
             var parsedResponse = JsonConvert.DeserializeObject<ApiResponse<T>> (json);
             parsedResponse.StatusCode = apiResponse.StatusCode;
             LogResponse (uri, parsedResponse, json);
+
+            var userResponse = parsedResponse as ApiResponse<User>;
+            if (userResponse != null && !userResponse.Payload.PhotoUrl.Contains (ServerUrl))
+                userResponse.Payload.PhotoUrl = ServerUrl + userResponse.Payload.PhotoUrl;
+
             return parsedResponse;
         }
 
