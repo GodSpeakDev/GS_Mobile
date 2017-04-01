@@ -546,6 +546,16 @@ Claimed</value>
     	<value>{0} Gifts</value>
   	</data>
 	<data
+		name="GiftsUnclaimed"
+		xml:space="preserve">
+    	<value>Gifts Unclaimed</value>
+  	</data>
+	<data
+		name="GiftsClaimed"
+		xml:space="preserve">
+    	<value>Gifts Claimed</value>
+  	</data>
+	<data
 		name="ShareWithFriendsTitle"
 		xml:space="preserve">
     	<value>Please Select</value>

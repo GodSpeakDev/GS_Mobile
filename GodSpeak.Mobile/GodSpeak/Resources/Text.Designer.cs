@@ -665,6 +665,12 @@ namespace GodSpeak.Resources {
             }
         }
         
+        public static string GiftsUnclaimed {
+            get {
+                return ResourceManager.GetString("GiftsUnclaimed", resourceCulture);
+            }
+        }
+        
         public static string ShareWithFriendsTitle {
             get {
                 return ResourceManager.GetString("ShareWithFriendsTitle", resourceCulture);
