@@ -54,6 +54,7 @@
 										Grid.RowSpan="3"
 										Grid.Column="0"
 										Source="{Binding Item.ImageUrl}"
+										Aspect="AspectFill"
 										WidthRequest="70"
 										HeightRequest="70"
 										HorizontalOptions="Center"
