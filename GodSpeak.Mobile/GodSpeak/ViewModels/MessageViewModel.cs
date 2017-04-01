@@ -83,7 +83,8 @@ namespace GodSpeak
                 Messages = new ObservableCollection<GroupedCollection<Message, DateTime>>
                 (messages.Payload
                  //.Where (x => x.DateTimeToDisplay <= DateTime.Now)
-                 .GroupBy (x => x.DateTimeToDisplay)
+				 .OrderByDescending(x => x.DateTimeToDisplay)
+                 .GroupBy (x => x.DateTimeToDisplay.Date)
                  .Select (x => new GroupedCollection<Message, DateTime> (x.Key, x)));
             } else {
                 await HandleResponse (messages);

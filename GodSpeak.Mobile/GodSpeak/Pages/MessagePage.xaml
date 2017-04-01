@@ -67,13 +67,12 @@
 							<ViewCell>
 								<Grid
 									Margin="10,0"
-
 									HorizontalOptions="FillAndExpand"
 									RowSpacing="2">
 									<Grid.RowDefinitions>
 										<RowDefinition Height="auto" />
 										<RowDefinition Height="auto" />
-										<RowDefinition Height="20" />
+										<RowDefinition Height="10" />
 									</Grid.RowDefinitions>
 									<Grid.ColumnDefinitions>
 										<ColumnDefinition Width="*" />
@@ -115,10 +114,9 @@
 					</ListView.ItemTemplate>
 					<ListView.GroupHeaderTemplate>
 						<DataTemplate>
-							<ViewCell Height="20">
+							<ViewCell Height="30">
 			            		<views:CustomLabel									
-									Margin="10,0"
-
+									Margin="18,10,10,0"
 									HorizontalOptions="FillAndExpand" 
 									HorizontalTextAlignment="Start" 
 									VerticalOptions="Center"
