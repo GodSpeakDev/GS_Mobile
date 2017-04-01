@@ -173,7 +173,6 @@
     <Compile Include="MvvmCross\MvxMasterDetailViewModel.cs" />
     <Compile Include="MvvmCross\IMvxMasterDetailViewModel.cs" />
     <Compile Include="ViewModels\MessageViewModel.cs" />
-    <Compile Include="ViewModels\InvitesViewModel.cs" />
     <Compile Include="Pages\InvitesPage.xaml.cs">
       <DependentUpon>InvitesPage.xaml</DependentUpon>
     </Compile>
