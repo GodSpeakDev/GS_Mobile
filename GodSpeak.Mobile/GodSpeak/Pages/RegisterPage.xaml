@@ -55,9 +55,9 @@
 								Padding="{Binding Image, Converter={StaticResource ImagePaddingConverter}}"
 								BackgroundColor="Transparent"
 								>
-								<views:ImageContainer>
+								<views:ImageContainer.GestureRecognizers>
 						        	<TapGestureRecognizer Command="{Binding ChoosePictureCommand}" />
-						    	</views:ImageContainer>
+						    	</views:ImageContainer.GestureRecognizers>
 								<Image		
 									HorizontalOptions="Center"
 									VerticalOptions="Center"
