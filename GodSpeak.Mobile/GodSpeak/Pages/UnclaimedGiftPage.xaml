@@ -92,7 +92,7 @@
 											x:Name="SettingsItem"
 											BackgroundColor="Transparent"
 										>				
-											<Image WidthRequest="30" HeightRequest="30" Source="bundle_icon.png" />
+											<Image WidthRequest="30" HeightRequest="30" Source="gift_box.png" />
 											<views:CustomLabel 
 												Margin="10,0,0,0"
 												Text="{Binding Item.Description}" 

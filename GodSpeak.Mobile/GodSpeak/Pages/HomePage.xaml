@@ -53,7 +53,7 @@
 			/>
 			<views:ButtonWithImage
 				Image="{StaticResource ShareButtonImage}"
-				Text="Share Your 123 Gifts"
+				Text="Share Your Gifts"
 				AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"
 				AbsoluteLayout.LayoutBounds="0,1,1,AutoSize"
 				Margin="10"

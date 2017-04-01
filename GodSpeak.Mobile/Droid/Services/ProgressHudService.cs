@@ -16,9 +16,9 @@ namespace GodSpeak.Droid.Services
             AndHUD.Shared.Dismiss (Forms.Context);
         }
 
-        public void Show ()
+        public void Show (string message = null)
         {
-            AndHUD.Shared.Show (Forms.Context, null, -1, MaskType.Black);
+            AndHUD.Shared.Show (Forms.Context, (message == null) ? "Updating..." : message, -1, MaskType.Black);
         }
     }
 }

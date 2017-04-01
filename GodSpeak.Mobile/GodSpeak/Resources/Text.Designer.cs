@@ -790,5 +790,23 @@ namespace GodSpeak.Resources {
                 return ResourceManager.GetString("ShareEmailBody", resourceCulture);
             }
         }
+        
+        public static string Authenticating {
+            get {
+                return ResourceManager.GetString("Authenticating", resourceCulture);
+            }
+        }
+        
+        public static string RetrievingSettings {
+            get {
+                return ResourceManager.GetString("RetrievingSettings", resourceCulture);
+            }
+        }
+        
+        public static string SavingSettings {
+            get {
+                return ResourceManager.GetString("SavingSettings", resourceCulture);
+            }
+        }
     }
 }

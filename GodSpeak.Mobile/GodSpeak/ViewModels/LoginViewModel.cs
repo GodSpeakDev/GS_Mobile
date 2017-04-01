@@ -6,7 +6,7 @@ using GodSpeak.Services;
 namespace GodSpeak
 {
     public class LoginViewModel : CustomViewModel
-    {        
+    {
         private string _email;
         public string Email {
             get { return _email; }
@@ -41,7 +41,7 @@ namespace GodSpeak
         }
 
         public LoginViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService) : base (dialogService, hudService, sessionService, webApiService)
-        {                                   
+        {
         }
 
         public void Init ()
@@ -51,7 +51,7 @@ namespace GodSpeak
         }
 
         private async void DoLoginCommand ()
-        {			
+        {
             if (string.IsNullOrEmpty (Email)) {
                 await this.DialogService.ShowAlert (Text.ErrorPopupTitle, Text.EmailRequiredMessage);
                 return;
@@ -61,25 +61,19 @@ namespace GodSpeak
                 await this.DialogService.ShowAlert (Text.ErrorPopupTitle, Text.PasswordRequiredMessage);
                 return;
             }
-            HudService.Show ();
+            HudService.Show (Text.Authenticating);
             var response = await WebApiService.Login (new LoginRequest () { Email = Email, Password = Password });
             HudService.Hide ();
 
-            if (response.IsSuccess) 
-			{
+            if (response.IsSuccess) {
                 await SessionService.SaveUser (response.Payload);
                 this.ShowViewModel<HomeViewModel> ();
-            } 
-			else if (response.StatusCode == System.Net.HttpStatusCode.Forbidden) 
-			{
+            } else if (response.StatusCode == System.Net.HttpStatusCode.Forbidden) {
                 var result = await this.DialogService.ShowMenu (Text.BadRequestTitle, Text.LoginInvalidEmailPassword, Text.TryAgain, Text.ForgotMyPasswordButtonTitle);
-                if (result == Text.ForgotMyPasswordButtonTitle) 
-				{
+                if (result == Text.ForgotMyPasswordButtonTitle) {
                     ForgotPasswordCommand.Execute ();
                 }
-            } 
-			else 
-			{
+            } else {
                 await HandleResponse (response);
             }
         }
@@ -93,20 +87,16 @@ namespace GodSpeak
         {
             var input = await this.DialogService.ShowInputPopup (Text.RecoverPasswordTitle, Text.RecoverPasswordText, new InputOptions () { Placeholder = Text.EmailPlaceholder }, Text.SendInstructions, Text.AnonymousNevermind);
 
-            if (input.SelectedButton == Text.SendInstructions) 
-			{
-				this.HudService.Show();
+            if (input.SelectedButton == Text.SendInstructions) {
+                this.HudService.Show ();
                 var response = await WebApiService.ForgotPassword (new ForgotPasswordRequest () { Email = input.InputText });
-				this.HudService.Hide();
+                this.HudService.Hide ();
 
-				if (response.IsSuccess)
-				{
-					await this.DialogService.ShowAlert(Text.RecoverPasswordTitle, string.Format(Text.RecoverPasswordSuccessText, input.InputText), Text.AnonymousSuccessButtonTitle);
-				}
-				else
-				{
-					await HandleResponse(response);
-				}
+                if (response.IsSuccess) {
+                    await this.DialogService.ShowAlert (Text.RecoverPasswordTitle, string.Format (Text.RecoverPasswordSuccessText, input.InputText), Text.AnonymousSuccessButtonTitle);
+                } else {
+                    await HandleResponse (response);
+                }
             }
         }
     }

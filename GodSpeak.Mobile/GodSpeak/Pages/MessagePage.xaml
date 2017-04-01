@@ -56,6 +56,7 @@
 							<views:ImageButton 
 								AbsoluteLayout.LayoutFlags="XProportional,YProportional"
 								AbsoluteLayout.LayoutBounds="{StaticResource FabButtonBounds}"
+
 								Source="invitesFAB.png"														
 								Command="{Binding GoToShareCommand}"
 							/>								
