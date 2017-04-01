@@ -10,12 +10,12 @@ using GodSpeak.Services;
 namespace GodSpeak
 {
 	public class ClaimedGiftViewModel : CustomViewModel
-	{		
-		private IShareService _shareService;
+	{
+		private IMailService _mailService;
 
-		public ClaimedGiftViewModel(IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, IShareService shareService) : base(dialogService, hudService, sessionService, webApiService)
-		{			
-			_shareService = shareService;
+		public ClaimedGiftViewModel(IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, IMailService mailService) : base(dialogService, hudService, sessionService, webApiService)
+		{
+			_mailService = mailService;
 
 			SortOptions = new string[] 
 			{
@@ -106,10 +106,9 @@ namespace GodSpeak
 			}
 		}
 
-		private async void DoTapInviteCommand(AcceptedInvite userModel)
+		private void DoTapInviteCommand(AcceptedInvite userModel)
 		{
-			var userModel1 = userModel;
-			await this.DialogService.ShowAlert("In Development", "In Development");
+			_mailService.SendMail(to: userModel.EmailAddress, subject: userModel.Subject, body: userModel.Message);
 		}
 	}
 }

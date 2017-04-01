@@ -35,6 +35,12 @@ namespace GodSpeak
 			set;
 		}
 
+		public string Subject
+		{
+			get;
+			set;
+		}
+
 		public string EmailAddress
 		{
 			get;
