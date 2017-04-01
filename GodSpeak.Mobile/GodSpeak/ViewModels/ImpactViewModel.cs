@@ -93,11 +93,15 @@ namespace GodSpeak
 
 			MinimumDayValue = 0;
 			MaximumDayValue = 1;
+			DayValue = 1;
 		}
 
 		public async void Init()
 		{
+			this.HudService.Show();
 			var response = await WebApiService.GetImpact(new GetImpactRequest());
+			this.HudService.Hide();
+
 			if (response.IsSuccess)
 			{
 				_allImpactDays = response.Payload.Payload;
@@ -117,6 +121,9 @@ namespace GodSpeak
 
 		private void SetImpactDays()
 		{
+			if (_allImpactDays == null)
+				return;
+
 			var cutDate = _allImpactDays.OrderBy(x => x.Date).First().Date.Date.AddDays(DayValue - 1);
 			var daysToBeRemoved = ShownImpactDays.Where(x => x.Date > cutDate).ToList();
 

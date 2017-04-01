@@ -30,12 +30,14 @@
 			<StackLayout
 				AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"
 				AbsoluteLayout.LayoutBounds="0,1,1,100"
+				VerticalOptions="End"
 				>
 				<Frame
 					Padding="5"
 					BackgroundColor="{x:Static views:ColorHelper.Primary}"
 					HorizontalOptions="Center"
 					WidthRequest="240"
+					IsVisible="{Binding CurrentSliderDate, Converter={StaticResource NotMinDateConverter}}"
 					>
 					<views:CustomLabel									
 						HorizontalOptions="CenterAndExpand"
@@ -45,6 +47,7 @@
 					/>	
 				</Frame>
 				<StackLayout
+					VerticalOptions="End"
 					Orientation="Horizontal"
 					Padding="10"
 					Spacing="10"
@@ -77,7 +80,6 @@
 				AbsoluteLayout.LayoutFlags="XProportional,WidthProportional"
 				Margin="{StaticResource PaddingHeaderOnlyTop}"
 				AbsoluteLayout.LayoutBounds="0,50,1,AutoSize"
-
 				Padding="10,5"
 			>
 				<Grid.ColumnDefinitions>
