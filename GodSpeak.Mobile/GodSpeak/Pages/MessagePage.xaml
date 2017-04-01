@@ -66,11 +66,13 @@
 							<ViewCell>
 								<Grid
 									Margin="10,0"
+
 									HorizontalOptions="FillAndExpand"
 									RowSpacing="2">
 									<Grid.RowDefinitions>
 										<RowDefinition Height="auto" />
 										<RowDefinition Height="auto" />
+										<RowDefinition Height="20" />
 									</Grid.RowDefinitions>
 									<Grid.ColumnDefinitions>
 										<ColumnDefinition Width="*" />
@@ -91,7 +93,7 @@
 										HorizontalOptions="FillAndExpand"
 										VerticalOptions="StartAndExpand">
 										<views:CustomLabel 																				
-											Text="{Binding Verse.Text}"
+											Text="{Binding Verse.Text, Converter={StaticResource TextTruncationConverter}}}"
 											HorizontalOptions="FillAndExpand"
 											VerticalOptions="Start"
 											Style="{StaticResource TextMessageBody}"
@@ -101,7 +103,7 @@
 										Margin="5,0"
 										Grid.Row="1"
 										Grid.Column="1"
-										Text="{Binding Author}"
+										Text="{Binding Verse.Title}"
 										HorizontalOptions="End"
 										VerticalOptions="End"
 										Style="{StaticResource TextContent}"
@@ -114,7 +116,8 @@
 						<DataTemplate>
 							<ViewCell Height="20">
 			            		<views:CustomLabel									
-									Margin="15,0"
+									Margin="10,0"
+
 									HorizontalOptions="FillAndExpand" 
 									HorizontalTextAlignment="Start" 
 									VerticalOptions="Center"

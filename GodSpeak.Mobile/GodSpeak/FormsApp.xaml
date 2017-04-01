@@ -24,6 +24,7 @@
 			<godspeak:WeekdayConverter x:Key="WeekdayConverter" />
 			<godspeak:MessageDetailStyleConverter x:Key="MessageDetailStyleConverter" />
 			<godspeak:SwitchStyleConverter x:Key="SwitchStyleConverter" />
+			<godspeak:TextTruncationConverter x:Key="TextTruncationConverter" />
 			
 			<!-- Global Values -->
 			<x:Double x:Key="ElementHeight">42</x:Double>

@@ -56,6 +56,7 @@ namespace GodSpeak.Api
         {
             AddAuthToken (request.Token);
             var apiResponse = await DoGet<List<Message>> (MessagesQueueUri);
+
             CachedMessages = apiResponse.Payload;
             return apiResponse;
         }
