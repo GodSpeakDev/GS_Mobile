@@ -133,7 +133,7 @@ namespace GodSpeak
                 {
                     Command = FeedbackCommand,
                     Title = Text.SubmitBugFeedback,
-                    Image = "logout_icon.png"
+                    Image = "bug_icon.png"
                 }
 
             };
