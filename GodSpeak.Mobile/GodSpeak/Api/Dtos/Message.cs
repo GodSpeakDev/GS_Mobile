@@ -4,7 +4,7 @@ namespace GodSpeak
 {
     public class Message
     {
-        public Guid MessageId {
+        public Guid Id {
             get;
             set;
         }

@@ -74,10 +74,11 @@ namespace GodSpeak
 
         public async void Init ()
         {
+            HudService.Show ();
             var messages = await WebApiService.GetMessages (new TokenRequest () {
                 Token = SessionService.GetUser ().Token
             });
-
+            HudService.Hide ();
             if (messages.IsSuccess) {
                 Messages = new ObservableCollection<GroupedCollection<Message, DateTime>>
                 (messages.Payload
@@ -99,7 +100,7 @@ namespace GodSpeak
         private void DoTapMessageCommand (Message message)
         {
             SelectedItem = null;
-            this.ShowViewModel<MessageDetailViewModel> (new { messageId = message.MessageId.ToString () });
+            this.ShowViewModel<MessageDetailViewModel> (new { messageId = message.Id.ToString () });
         }
 
         private void DoGoToImpactCommand ()

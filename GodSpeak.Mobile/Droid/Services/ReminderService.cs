@@ -127,7 +127,7 @@ namespace GodSpeak.Droid
 			var random = new Random(DateTime.Now.Millisecond);
 			var id = random.Next();
 
-			NotificationManager.Notify(message.MessageId.ToString(), id, builder.Build());
+			NotificationManager.Notify(message.Id.ToString(), id, builder.Build());
 		}
 	}
 }

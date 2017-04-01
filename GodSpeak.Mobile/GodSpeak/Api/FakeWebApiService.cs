@@ -163,7 +163,7 @@ namespace GodSpeak
         {
             await Task.Delay (delay);
             var content = new GetMessageResponse () {
-                Payload = _messages.First (x => x.MessageId == request.MessageId)
+                Payload = _messages.First (x => x.Id == request.MessageId)
             };
 
             return new ApiResponse<GetMessageResponse> () {

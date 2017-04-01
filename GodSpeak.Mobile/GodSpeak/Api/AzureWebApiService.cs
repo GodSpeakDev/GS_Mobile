@@ -50,12 +50,28 @@ namespace GodSpeak.Api
             client.BaseAddress = new Uri (ServerUrl + "api/");
         }
 
+        protected List<Message> CachedMessages = new List<Message> ();
+
         public new async Task<ApiResponse<List<Message>>> GetMessages (TokenRequest request)
         {
             AddAuthToken (request.Token);
-            return await DoGet<List<Message>> (MessagesQueueUri);
+            var apiResponse = await DoGet<List<Message>> (MessagesQueueUri);
+            CachedMessages = apiResponse.Payload;
+            return apiResponse;
         }
 
+        public new async Task<ApiResponse<GetMessageResponse>> GetMessage (GetMessageRequest request)
+        {
+
+            var content = new GetMessageResponse () {
+                Payload = CachedMessages.First (x => x.Id == request.MessageId)
+            };
+
+            return new ApiResponse<GetMessageResponse> () {
+                Payload = content,
+                StatusCode = System.Net.HttpStatusCode.OK
+            };
+        }
 
         public new async Task<ApiResponse<List<Country>>> GetCountries ()
         {

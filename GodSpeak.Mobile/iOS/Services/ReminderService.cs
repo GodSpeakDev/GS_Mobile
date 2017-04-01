@@ -30,7 +30,7 @@ namespace GodSpeak.iOS
         private void AddLocalNotification (Message message)
         {
             var keys = new object [] { MessageIdKey };
-            var objects = new object [] { message.MessageId.ToString () };
+            var objects = new object [] { message.Id.ToString () };
 
             UILocalNotification notification = new UILocalNotification {
                 FireDate = message.DateTimeToDisplay.ToNSDate (),
@@ -51,7 +51,7 @@ namespace GodSpeak.iOS
             foreach (UILocalNotification notification in UIApplication.SharedApplication.ScheduledLocalNotifications) {
                 var messageId = notification.UserInfo.ValueForKey (new Foundation.NSString ("messageId"));
 
-                if (messageId.ToString () == message.MessageId.ToString ()) {
+                if (messageId.ToString () == message.Id.ToString ()) {
                     return true;
                 }
             }
