@@ -23,7 +23,7 @@
 		VerticalOptions="CenterAndExpand"
 		HorizontalOptions="{StaticResource ShareButtonAlignment}"
 		TextColor="{StaticResource secondaryColor}"
-		FontSize="17"
+		FontSize="18"
 		FontWeight="Bold"
 	>
 	</views:CustomLabel>	
