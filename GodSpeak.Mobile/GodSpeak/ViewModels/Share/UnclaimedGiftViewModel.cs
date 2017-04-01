@@ -11,6 +11,8 @@ namespace GodSpeak
     public class UnclaimedGiftViewModel : CustomViewModel
     {        
         private IShareService _shareService;
+		private ShareTemplateViewModel _shareTemplateViewModel;
+		private DidYouKnowTemplateViewModel _didYouKnowTemplateViewModel;
 
         private ObservableCollection<CustomViewModel> _pages;
         public ObservableCollection<CustomViewModel> Pages {
@@ -52,27 +54,51 @@ namespace GodSpeak
 
         public async Task Init ()
         {
+			_shareTemplateViewModel = new ShareTemplateViewModel(DialogService, HudService, SessionService, WebApiService, _shareService);
+			_didYouKnowTemplateViewModel = new DidYouKnowTemplateViewModel(DialogService, HudService, SessionService, WebApiService);
+
             var pages = new List<CustomViewModel> ();
-            pages.Add (new ShareTemplateViewModel (DialogService, HudService, SessionService, WebApiService, _shareService));
-            pages.Add (new DidYouKnowTemplateViewModel (DialogService, HudService, SessionService, WebApiService, _shareService));
+            pages.Add (_shareTemplateViewModel);
+            pages.Add (_didYouKnowTemplateViewModel);
             Pages = new ObservableCollection<CustomViewModel> (pages);
 
+			await _didYouKnowTemplateViewModel.Init();
+
             var bundlesResponse = await WebApiService.GetInviteBundles (new GetInviteBundlesRequest ());
-            if (bundlesResponse.IsSuccess) 
+			if (bundlesResponse.IsSuccess)
 			{
-                Bundles = new ObservableCollection<ItemCommand<InviteBundle>> (
-					bundlesResponse.Payload.Select(x => new ItemCommand<InviteBundle>() 
+				Bundles = new ObservableCollection<ItemCommand<InviteBundle>>(
+					bundlesResponse.Payload.OrderBy(x => x.Cost).Select(x => new ItemCommand<InviteBundle>()
 					{
 						Item = x,
 						TappedCommand = TapBundleCommand
 					}));
-            }
+			}
+			else
+			{
+				this.HudService.Hide();
+				await this.HandleResponse(bundlesResponse);
+			}
         }
 
 		private async void DoTapBundleCommand(InviteBundle bundle)
 		{
-			var userModel1 = bundle;
-			await this.DialogService.ShowAlert("In Development", "In Development");
+			this.HudService.Show();
+			var response = await WebApiService.PurchaseInvite(new PurchaseInviteRequest() 
+			{
+				Token = SessionService.GetUser().Token,
+				Guid = bundle.InviteBundleId
+			});
+			this.HudService.Hide();
+
+			if (response.IsSuccess)
+			{
+				await this.DialogService.ShowAlert(response.Title, response.Message);
+			}
+			else
+			{
+				await HandleResponse(response);
+			}
 		}
     }
 }

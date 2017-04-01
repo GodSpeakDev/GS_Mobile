@@ -30,10 +30,13 @@ namespace GodSpeak
             set;
         }
 
-        public string CostDescription {
-            get;
-            set;
-        }
+		public string CostDescription
+		{
+			get
+			{
+				return string.Format("$ {0}", Cost);
+			}
+		}
 
         public string Description {
             get {

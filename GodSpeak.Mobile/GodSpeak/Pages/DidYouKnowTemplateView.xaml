@@ -25,30 +25,16 @@
 					<Grid.RowDefinitions>
 						<RowDefinition Height="auto" />
 						<RowDefinition Height="auto" />
-						<RowDefinition Height="auto" />
-						<RowDefinition Height="auto" />
 					</Grid.RowDefinitions>
 					<views:CustomLabel 																				
 						Grid.Row="0"
-						Text="{x:Static res:Text.DidYouKnow}"
+						Text="{Binding BoxTitle}"
 						HorizontalOptions="FillAndExpand"
 						Style="{StaticResource UnclaimedPageTitle}"
 					/>
 					<views:CustomLabel 																				
 						Grid.Row="1"
-						Text="{x:Static res:Text.DidYouKnowDeliveredGifts}"
-						HorizontalOptions="FillAndExpand"
-						Style="{StaticResource TextContent}"
-					/>
-					<views:CustomLabel 																				
-						Grid.Row="2"
-						Text="{x:Static res:Text.DidYouKnowPurchasedGifts}"
-						HorizontalOptions="FillAndExpand"
-						Style="{StaticResource TextContent}"
-					/>
-					<views:CustomLabel																			
-						Grid.Row="3"
-						Text="{x:Static res:Text.DidYouKnowDonatedGifts}"
+						Text="{Binding BoxMessage}"
 						HorizontalOptions="FillAndExpand"
 						Style="{StaticResource TextContent}"
 					/>

@@ -636,6 +636,11 @@ Claimed</value>
     	<value>You Received a GodSpeak gift!</value>
   	</data>
 	<data
+		name="Cancel"
+		xml:space="preserve">
+    	<value>Cancel</value>
+  	</data>
+	<data
 		name="ShareEmailBody"
 		xml:space="preserve">
     	<value>Hey there, I wanted to pay-it-forward with this gift.   You can get it by going to this URL:   http://textthattransforms.com/gift/YGifOkl

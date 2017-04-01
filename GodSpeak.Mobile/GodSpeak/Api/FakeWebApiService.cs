@@ -59,7 +59,45 @@ namespace GodSpeak
             return null;
         }
 
+		public async Task<ApiResponse<List<AcceptedInvite>>> GetAcceptedInvites(TokenRequest request)
+		{
+			await Task.Delay(1000);
+			return new ApiResponse<List<AcceptedInvite>>()
+			{
+				Payload = new List<AcceptedInvite>() 
+				{
+					new AcceptedInvite() 
+					{
+						ImageUrl = null,
+						Title = "Anonymous Donor",
+						SubTitle = "Has not given any gifts",
+						ButtonTitle= "Encourage Anonymous",
+						Message = "Don't forget to pay it forward!",
+						EmailAddress = "donations@godspeakapp.com"
+					},
+					new AcceptedInvite()
+					{
+						ImageUrl = null,
+						Title = "Brett Williams",
+						SubTitle = "Has not given any gifts",
+						ButtonTitle= "Encourage Brett",
+						Message = "Don't forget to pay it forward!",
+						EmailAddress = "brett@venadotech.com"
+					},
+				}
+			};
+		}
 
+		public async Task<ApiResponse<string>> DonateInvite(TokenRequest request)
+		{
+			await Task.Delay(1000);
+
+			return new ApiResponse<string>()
+			{
+				Title = "Gift Request",
+				Message = "You have successfully donated a gift to the world."
+			};
+		}
 
         public async Task<ApiResponse<GetInvitesResponse>> GetInvites (GetInvitesRequest request)
         {
@@ -147,8 +185,6 @@ namespace GodSpeak
             };
         }
 
-
-
         public async Task<ApiResponse<SetMessagesConfigResponse>> SetMessagesConfigUser (SetMessagesConfigRequest request)
         {
             await Task.Delay (delay);
@@ -174,8 +210,7 @@ namespace GodSpeak
                             Cost = 9.97m,
                             NumberOfInvites=3,
                             AppStoreSku="1",
-                            PlayStoreSku="1",
-                            CostDescription = "$1.99"
+                            PlayStoreSku="1",                            
                         },
                         new InviteBundle()
                         {
@@ -183,8 +218,7 @@ namespace GodSpeak
                             Cost = 19.90m,
                             NumberOfInvites=10,
                             AppStoreSku="2",
-                            PlayStoreSku="2",
-                            CostDescription = "$4.99"
+                            PlayStoreSku="2",                            
                         },
                         new InviteBundle()
                         {
@@ -192,8 +226,7 @@ namespace GodSpeak
                             Cost = 24.75m,
                             NumberOfInvites=25,
                             AppStoreSku="3",
-                            PlayStoreSku="3",
-                            CostDescription = "$24.75"
+                            PlayStoreSku="3",                            
                         },
                         new InviteBundle()
                         {
@@ -201,22 +234,32 @@ namespace GodSpeak
                             Cost = 44.50m,
                             NumberOfInvites=50,
                             AppStoreSku="4",
-                            PlayStoreSku="4",
-                            CostDescription = "$44.50"
+                            PlayStoreSku="4",                            
                         },
                     }
             };
         }
 
-        public async Task<ApiResponse<PurchaseInviteResponse>> PurchaseInvite (PurchaseInviteRequest request)
+        public async Task<ApiResponse<string>> PurchaseInvite (PurchaseInviteRequest request)
         {
             await Task.Delay (delay);
-            return new ApiResponse<PurchaseInviteResponse> () {
+            return new ApiResponse<string> () {
                 StatusCode = System.Net.HttpStatusCode.OK,
+				Title="Gift Purchase Failed",
+				Message="No gift bundle was found with submitted guid",
             };
         }
 
-
+		public async Task<ApiResponse<string>> GetDidYouKnow(TokenRequest request)
+		{
+			await Task.Delay(delay);
+			return new ApiResponse<string>()
+			{
+				Title = "Impact",
+				Message = "Did You Know",
+				Payload = "GodSpeak has been gifted 3 times.\\rGodSpeak has delivered 0 scriptures."
+			};
+		}
 
         private User GetTestPayload ()
         {

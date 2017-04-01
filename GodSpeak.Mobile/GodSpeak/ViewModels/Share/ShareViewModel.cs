@@ -93,8 +93,10 @@ namespace GodSpeak
 
 		public async void Init()
 		{
+			this.HudService.Show();
 			await UnclaimedGiftViewModel.Init();
 			await ClaimedGiftViewModel.Init();
+			this.HudService.Hide();
 		}
 
 		private void DoSelectTabCommand(Tab selectedTab)

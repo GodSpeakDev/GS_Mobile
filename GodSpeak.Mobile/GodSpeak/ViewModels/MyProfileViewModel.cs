@@ -169,11 +169,11 @@ namespace GodSpeak
 
         private async void DoChoosePictureCommand ()
         {
-            var menuResponse = await this.DialogService.ShowMenu (Text.PictureSourceQuestion, "Cancel", null, Text.PictureSourceFromGallery, Text.PictureSourceFromCamera);
+            var menuResponse = await this.DialogService.ShowMenu (Text.PictureSourceQuestion, Text.Cancel, null, Text.PictureSourceFromGallery, Text.PictureSourceFromCamera);
 
             MediaFile response;
 
-            if (menuResponse == "Cancel") 
+            if (menuResponse == Text.Cancel) 
 			{
                 return;
             } 

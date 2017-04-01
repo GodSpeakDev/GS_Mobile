@@ -44,96 +44,46 @@ namespace GodSpeak
 			set { SetProperty(ref _isVisible, value);}
 		}
 
-		private ObservableCollection<UserModel> _users;
-		public ObservableCollection<UserModel> Users
+		private ObservableCollection<ItemCommand<AcceptedInvite>> _acceptedInvites;
+		public ObservableCollection<ItemCommand<AcceptedInvite>> AcceptedInvites
 		{
-			get { return _users;}
-			set { SetProperty(ref _users, value);}
+			get { return _acceptedInvites;}
+			set { SetProperty(ref _acceptedInvites, value);}
 		}
 
-		private MvxCommand<UserModel> _tapUserCommand;
-		public MvxCommand<UserModel> TapUserCommand
+		private MvxCommand<AcceptedInvite> _tapInviteCommand;
+		public MvxCommand<AcceptedInvite> TapInviteCommand
 		{
 			get
 			{
-				return _tapUserCommand ?? (_tapUserCommand = new MvxCommand<UserModel>(DoTapUserCommand));
+				return _tapInviteCommand ?? (_tapInviteCommand = new MvxCommand<AcceptedInvite>(DoTapInviteCommand));
 			}
 		}
 
 		public async Task Init()
-		{
-			Users = new ObservableCollection<UserModel>				
+		{			
+			var response = await WebApiService.GetAcceptedInvites(new TokenRequest() { Token = SessionService.GetUser().Token });						
+
+			if (response.IsSuccess)
 			{
-				new UserModel() 
-				{
-					Name="Dave Ortinau",
-					Image="http://www.gravatar.com/avatar/a1c6e240931b44f7f4b21492232cd3fc.png?s=160",
-					ClaimedDate=new DateTime(2017,12,30),
-					PeopleGifted=3,
-					TappedCommand = TapUserCommand
-				},
-				new UserModel() 
-				{
-					Name="Dave Ortinau",
-					Image="http://www.gravatar.com/avatar/a1c6e240931b44f7f4b21492232cd3fc.png?s=160",
-					ClaimedDate=new DateTime(2017,1,3),
-					PeopleGifted=0,
-					TappedCommand = TapUserCommand
-				}
-			};				
+				AcceptedInvites = new ObservableCollection<ItemCommand<AcceptedInvite>>(
+					response.Payload.Select(x => new ItemCommand<AcceptedInvite>() 
+					{
+						Item = x,
+						TappedCommand = TapInviteCommand
+					}));
+			}
+			else
+			{
+				this.HudService.Hide();
+				await HandleResponse(response);
+			}
 		}
 
-		private async void DoTapUserCommand(UserModel userModel)
+		private async void DoTapInviteCommand(AcceptedInvite userModel)
 		{
 			var userModel1 = userModel;
 			await this.DialogService.ShowAlert("In Development", "In Development");
-		}
-
-		public class UserModel : MvxViewModel
-		{
-			private string _image;
-			public string Image
-			{
-				get { return _image;}
-				set { SetProperty(ref _image, value);}
-			}
-
-			private string _name;
-			public string Name
-			{
-				get { return _name;}
-				set { SetProperty(ref _name, value);}
-			}
-
-			private DateTime _claimedDate;
-			public DateTime ClaimedDate
-			{
-				get { return _claimedDate; }
-				set 
-				{ 
-					SetProperty(ref _claimedDate, value);
-					RaisePropertyChanged(() => ClaimedDateDescription);
-				}
-			}
-
-			public string ClaimedDateDescription
-			{
-				get { return string.Format(Text.ClaimedDateDescription, ClaimedDate); }
-			}
-
-			private int _peopleGifted;
-			public int PeopleGifted
-			{
-				get { return _peopleGifted; }
-				set { SetProperty(ref _peopleGifted, value); }
-			}
-
-			private MvxCommand<UserModel> _tappedCommand;
-			public MvxCommand<UserModel> TappedCommand
-			{
-				get { return _tappedCommand; }					
-				set { _tappedCommand = new MvxCommand<UserModel>((obj) => value.Execute(this)); }
-			} 
 		}
 	}
 }

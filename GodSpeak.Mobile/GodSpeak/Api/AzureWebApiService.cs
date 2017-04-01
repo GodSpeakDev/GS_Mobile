@@ -28,11 +28,12 @@ namespace GodSpeak.Api
         const string MessagesQueueUri = "messages/queue";
 
         const string PurchaseInviteUri = "invite/purchase";
-        const string AcceptedInviteUri = "invite/accpeted";
+        const string AcceptedInviteUri = "invite/accepted";
         const string ValidateCodeUri = "invite/validate";
         const string InviteBundlesUri = "invite/bundles";
         const string RequestInviteUri = "invite/request";
         const string DonateInviteUri = "invite/donate";
+
 
 
         protected HttpClient client = new HttpClient ();
@@ -81,16 +82,34 @@ namespace GodSpeak.Api
             return await DoGet<List<InviteBundle>> (InviteBundlesUri);
         }
 
-        public new async Task<ApiResponse<PurchaseInviteResponse>> PurchaseInvite (PurchaseInviteRequest request)
+		public new async Task<ApiResponse<List<AcceptedInvite>>> GetAcceptedInvites(TokenRequest request)
+		{
+			AddAuthToken(request.Token);
+			return await DoGet<List<AcceptedInvite>>(AcceptedInviteUri);
+		}
+
+		public new async Task<ApiResponse<string>> DonateInvite(TokenRequest request)
+		{
+			AddAuthToken(request.Token);
+			return await DoPost<string>(DonateInviteUri, request);
+		}
+
+        public new async Task<ApiResponse<string>> PurchaseInvite (PurchaseInviteRequest request)
         {
             AddAuthToken (request.Token);
-            return await DoPost<PurchaseInviteResponse> (PurchaseInviteUri, request);
+            return await DoPost<string> (PurchaseInviteUri, request);
         }
 
         public new async Task<ApiResponse<User>> Login (LoginRequest request)
         {
             return await DoPost<User> (LoginMethodUri, request);
         }
+
+		public new async Task<ApiResponse<string>> GetDidYouKnow(TokenRequest request)
+		{
+			AddAuthToken(request.Token);
+			return await DoGet<string>(ImpactDidYouKnowUri);
+		}
 
         public new async Task<ApiResponse> Logout (LogoutRequest request)
         {

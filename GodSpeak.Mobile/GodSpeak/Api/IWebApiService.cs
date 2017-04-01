@@ -18,11 +18,14 @@ namespace GodSpeak
         Task<ApiResponse<GetImpactResponse>> GetImpact (GetImpactRequest request);
         Task<ApiResponse<GetInvitesResponse>> GetInvites (GetInvitesRequest request);
         Task<ApiResponse<List<InviteBundle>>> GetInviteBundles (GetInviteBundlesRequest request);
-        Task<ApiResponse<PurchaseInviteResponse>> PurchaseInvite (PurchaseInviteRequest request);
+        Task<ApiResponse<string>> PurchaseInvite (PurchaseInviteRequest request);
         Task<ApiResponse<GetMessagesResponse>> GetMessages (GetMessagesRequest request);
         Task<ApiResponse<GetMessageResponse>> GetMessage (GetMessageRequest request);
         Task<ApiResponse<string>> ForgotPassword (ForgotPasswordRequest request);
         Task<ApiResponse<User>> RegisterUser (RegisterUserRequest request);
 
+		Task<ApiResponse<List<AcceptedInvite>>> GetAcceptedInvites(TokenRequest request);
+		Task<ApiResponse<string>> DonateInvite(TokenRequest request);
+		Task<ApiResponse<string>> GetDidYouKnow(TokenRequest request);
     }
 }

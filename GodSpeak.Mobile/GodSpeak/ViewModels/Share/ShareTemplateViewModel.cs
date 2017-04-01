@@ -53,7 +53,18 @@ namespace GodSpeak
 
 		private async void DoShareWithWorldCommand()
 		{
-			await this.DialogService.ShowAlert("In Development", "In Development");
+			HudService.Show();
+			var response = await WebApiService.DonateInvite(new TokenRequest() { Token = SessionService.GetUser().Token });
+			HudService.Hide();
+
+			if (response.IsSuccess)
+			{
+				await DialogService.ShowAlert(response.Title, response.Message);
+			}
+			else
+			{
+				await HandleResponse(response);
+			}
 		}
 	}
 }

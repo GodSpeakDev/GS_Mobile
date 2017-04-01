@@ -373,6 +373,8 @@
     <Compile Include="Api\Request\TokenRequest.cs" />
     <Compile Include="ViewModels\MessageDetailViewModel.cs" />
     <Compile Include="ViewModels\Welcome\GetStartedViewModel.cs" />
+    <Compile Include="Api\Response\GetAcceptedInvitesResponse.cs" />
+    <Compile Include="Api\Dtos\AcceptedInvite.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

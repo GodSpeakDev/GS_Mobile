@@ -773,6 +773,12 @@ namespace GodSpeak.Resources {
             }
         }
         
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
         public static string ShareEmailBody {
             get {
                 return ResourceManager.GetString("ShareEmailBody", resourceCulture);

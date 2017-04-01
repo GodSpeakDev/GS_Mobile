@@ -30,7 +30,7 @@
 				<ScrollView 
 					VerticalOptions="FillAndExpand">
 					<views:StackList						
-						ItemsSource="{Binding Users}">
+						ItemsSource="{Binding AcceptedInvites}">
 						<views:StackList.ItemTemplate>
 							<DataTemplate>
 								<Grid 
@@ -53,7 +53,7 @@
 										Grid.Row="0"
 										Grid.RowSpan="3"
 										Grid.Column="0"
-										Source="{Binding Image}"
+										Source="{Binding Item.ImageUrl}"
 										WidthRequest="70"
 										HeightRequest="70"
 										HorizontalOptions="Center"
@@ -65,21 +65,20 @@
 									<views:CustomLabel 			
 										Grid.Row="0"
 										Grid.Column="1"
-										Text="{Binding Name}"
+										Text="{Binding Item.Title}"
 										HorizontalOptions="FillAndExpand"
 										Style="{StaticResource UnclaimedPageTitle}"
 									/>
 									<views:CustomLabel 																				
 										Grid.Row="1"
 										Grid.Column="1"
-										Text="{Binding ClaimedDateDescription}"
 										HorizontalOptions="FillAndExpand"
 										Style="{StaticResource TextContent}"
 									/>
 									<views:CustomLabel 																				
 										Grid.Row="2"
 										Grid.Column="1"
-										Text="{Binding PeopleGifted, Converter={StaticResource PeopleGiftedTextConverter}}"
+										Text="{Binding Item.SubTitle}"
 										HorizontalOptions="FillAndExpand"
 										Style="{StaticResource TextContent}"
 									/>
@@ -91,7 +90,7 @@
 										Style="{StaticResource ButtonWhite}"
 										Command="{Binding TappedCommand}"
 										HorizontalOptions="FillAndExpand"
-										Text="{Binding PeopleGifted, Converter={StaticResource PeopleGiftButtonTextConverter}}"												
+										Text="{Binding Item.ButtonTitle}"												
 									/>
 									<BoxView 
 										Grid.Row="4"
