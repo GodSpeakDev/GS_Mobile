@@ -9,10 +9,10 @@ using GodSpeak.Services;
 namespace GodSpeak
 {
     public class UnclaimedGiftViewModel : CustomViewModel
-    {        
+    {
         private IShareService _shareService;
-		private ShareTemplateViewModel _shareTemplateViewModel;
-		private DidYouKnowTemplateViewModel _didYouKnowTemplateViewModel;
+        private ShareTemplateViewModel _shareTemplateViewModel;
+        private DidYouKnowTemplateViewModel _didYouKnowTemplateViewModel;
 
         private ObservableCollection<CustomViewModel> _pages;
         public ObservableCollection<CustomViewModel> Pages {
@@ -38,67 +38,60 @@ namespace GodSpeak
             set { SetProperty (ref _isVisible, value); }
         }
 
-		private MvxCommand<InviteBundle> _tapBundleCommand;
-		public MvxCommand<InviteBundle> TapBundleCommand
-		{
-			get
-			{
-				return _tapBundleCommand ?? (_tapBundleCommand = new MvxCommand<InviteBundle>(DoTapBundleCommand));
-			}
-		}
+        private MvxCommand<InviteBundle> _tapBundleCommand;
+        public MvxCommand<InviteBundle> TapBundleCommand {
+            get {
+                return _tapBundleCommand ?? (_tapBundleCommand = new MvxCommand<InviteBundle> (DoTapBundleCommand));
+            }
+        }
 
         public UnclaimedGiftViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, IShareService shareService) : base (dialogService, hudService, sessionService, webApiService)
-        {            
+        {
             _shareService = shareService;
         }
 
         public async Task Init ()
         {
-			_shareTemplateViewModel = new ShareTemplateViewModel(DialogService, HudService, SessionService, WebApiService, _shareService);
-			_didYouKnowTemplateViewModel = new DidYouKnowTemplateViewModel(DialogService, HudService, SessionService, WebApiService);
+            _shareTemplateViewModel = new ShareTemplateViewModel (DialogService, HudService, SessionService, WebApiService, _shareService);
+
+            _didYouKnowTemplateViewModel = new DidYouKnowTemplateViewModel (DialogService, HudService, SessionService, WebApiService);
 
             var pages = new List<CustomViewModel> ();
             pages.Add (_shareTemplateViewModel);
             pages.Add (_didYouKnowTemplateViewModel);
             Pages = new ObservableCollection<CustomViewModel> (pages);
 
-			await _didYouKnowTemplateViewModel.Init();
+            await _didYouKnowTemplateViewModel.Init ();
+            await _shareTemplateViewModel.Init ();
 
             var bundlesResponse = await WebApiService.GetInviteBundles (new GetInviteBundlesRequest ());
-			if (bundlesResponse.IsSuccess)
-			{
-				Bundles = new ObservableCollection<ItemCommand<InviteBundle>>(
-					bundlesResponse.Payload.OrderBy(x => x.Cost).Select(x => new ItemCommand<InviteBundle>()
-					{
-						Item = x,
-						TappedCommand = TapBundleCommand
-					}));
-			}
-			else
-			{
-				this.HudService.Hide();
-				await this.HandleResponse(bundlesResponse);
-			}
+            if (bundlesResponse.IsSuccess) {
+                Bundles = new ObservableCollection<ItemCommand<InviteBundle>> (
+                    bundlesResponse.Payload.OrderBy (x => x.Cost).Select (x => new ItemCommand<InviteBundle> () {
+                        Item = x,
+                        TappedCommand = TapBundleCommand
+                    }));
+            } else {
+                this.HudService.Hide ();
+                await this.HandleResponse (bundlesResponse);
+            }
         }
 
-		private async void DoTapBundleCommand(InviteBundle bundle)
-		{
-			this.HudService.Show();
-			var response = await WebApiService.PurchaseInvite(new PurchaseInviteRequest() 
-			{
-				Token = SessionService.GetUser().Token,
-				Guid = bundle.InviteBundleId
-			});
-			this.HudService.Hide();
+        private async void DoTapBundleCommand (InviteBundle bundle)
+        {
+            this.HudService.Show ();
+            var response = await WebApiService.PurchaseInvite (new PurchaseInviteRequest () {
+                Token = SessionService.GetUser ().Token,
+                Guid = bundle.InviteBundleId
+            });
+            this.HudService.Hide ();
 
-			if (response.IsSuccess)
-			{
-				await this.DialogService.ShowAlert(response.Title, response.Message);
-			}
-			else
-			{
-				await HandleResponse(response);
-			}
-		}
+            if (response.IsSuccess) {
+                await _shareTemplateViewModel.UpdateGiftsLeftTitle ();
+                await this.DialogService.ShowAlert (response.Title, response.Message);
+            } else {
+                await HandleResponse (response);
+            }
+        }
     }
 }

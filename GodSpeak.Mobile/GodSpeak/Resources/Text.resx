@@ -518,7 +518,7 @@ Claimed</value>
 	<data
 		name="ShareGiftsLeft"
 		xml:space="preserve">
-    	<value>You have 12 gifts left</value>
+    	<value>You have {0} gifts left</value>
   	</data>
 	<data
 		name="DidYouKnow"

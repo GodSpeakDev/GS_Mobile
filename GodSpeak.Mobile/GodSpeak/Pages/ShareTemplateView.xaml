@@ -26,7 +26,7 @@
 				VerticalOptions="End"
 				HorizontalOptions="Center"
 				Style="{StaticResource TextWhiteWithShadow}"
-				Text="{x:Static res:Text.ShareGiftsLeft}" />			
+				Text="{Binding GiftsLeftTitle}" />			
 			<views:CustomButton  
 				Grid.Row="1"
 				Grid.Column="0"
