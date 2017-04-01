@@ -808,5 +808,17 @@ namespace GodSpeak.Resources {
                 return ResourceManager.GetString("SavingSettings", resourceCulture);
             }
         }
+        
+        public static string SortByName {
+            get {
+                return ResourceManager.GetString("SortByName", resourceCulture);
+            }
+        }
+        
+        public static string SortByGiftsGiven {
+            get {
+                return ResourceManager.GetString("SortByGiftsGiven", resourceCulture);
+            }
+        }
     }
 }

@@ -19,7 +19,9 @@ namespace GodSpeak
 
 			SortOptions = new string[] 
 			{
-				Text.SortByClaimDate
+				Text.SortByClaimDate,
+				Text.SortByName,
+				Text.SortByGiftsGiven
 			};
 		}
 
@@ -27,7 +29,10 @@ namespace GodSpeak
 		public int SelectedSortIndex
 		{
 			get { return _selectedSortIndex;}
-			set { SetProperty(ref _selectedSortIndex, value); }
+			set { 
+				SetProperty(ref _selectedSortIndex, value);
+				SortList();
+			}
 		}
 
 		private string[] _sortOptions;
@@ -66,17 +71,38 @@ namespace GodSpeak
 
 			if (response.IsSuccess)
 			{
-				AcceptedInvites = new ObservableCollection<ItemCommand<AcceptedInvite>>(
+				_acceptedInvites = new ObservableCollection<ItemCommand<AcceptedInvite>>(
 					response.Payload.Select(x => new ItemCommand<AcceptedInvite>() 
 					{
 						Item = x,
 						TappedCommand = TapInviteCommand
 					}));
+				SortList();
 			}
 			else
 			{
 				this.HudService.Hide();
 				await HandleResponse(response);
+			}
+		}
+
+		private void SortList()
+		{
+			if (AcceptedInvites == null)
+				return;
+			
+			var sortOption = SortOptions[SelectedSortIndex];
+			if (sortOption == Text.SortByClaimDate)
+			{
+				AcceptedInvites = new ObservableCollection<ItemCommand<AcceptedInvite>>(AcceptedInvites.OrderBy(x => x.Item.DateClaimed));
+			}
+			else if (sortOption == Text.SortByName)
+			{
+				AcceptedInvites = new ObservableCollection<ItemCommand<AcceptedInvite>>(AcceptedInvites.OrderBy(x => x.Item.Title));
+			}
+			else if (sortOption == Text.SortByGiftsGiven)
+			{
+				AcceptedInvites = new ObservableCollection<ItemCommand<AcceptedInvite>>(AcceptedInvites.OrderBy(x => x.Item.GiftsGiven));
 			}
 		}
 

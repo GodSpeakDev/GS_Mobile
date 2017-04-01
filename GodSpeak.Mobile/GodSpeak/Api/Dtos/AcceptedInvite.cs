@@ -1,4 +1,6 @@
 ﻿using System;
+using GodSpeak.Resources;
+
 namespace GodSpeak
 {
 	public class AcceptedInvite
@@ -38,5 +40,23 @@ namespace GodSpeak
 			get;
 			set;
 		}
+
+		public int GiftsGiven
+		{
+			get;
+			set;
+		}
+
+		public DateTime DateClaimed
+		{
+			get;
+			set;
+		}
+
+		public string DateClaimedDescription
+		{
+			get { return string.Format(Text.ClaimedDateDescription, DateClaimed); }
+		}
+
 	}
 }

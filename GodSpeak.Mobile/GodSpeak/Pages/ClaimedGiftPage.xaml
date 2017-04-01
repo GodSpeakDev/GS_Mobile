@@ -73,6 +73,7 @@
 										Grid.Row="1"
 										Grid.Column="1"
 										HorizontalOptions="FillAndExpand"
+										Text="{Binding Item.DateClaimedDescription}"
 										Style="{StaticResource TextContent}"
 									/>
 									<views:CustomLabel 																				

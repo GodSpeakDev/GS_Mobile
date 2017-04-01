@@ -675,4 +675,12 @@ Enjoy!
     	<value>Saving Settings...
 		</value>
   	</data>
+	<data
+		name="SortByName" xml:space="preserve">
+    	<value>Sort by Name</value>
+  	</data>
+	<data
+		name="SortByGiftsGiven" xml:space="preserve">
+    	<value>Sort By Gifts Given</value>
+  	</data>
 </root>
