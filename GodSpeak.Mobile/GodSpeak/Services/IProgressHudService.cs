@@ -4,7 +4,7 @@ namespace GodSpeak.Services
 {
     public interface IProgressHudService
     {
-        void Show ();
+        void Show (string message = null);
         void Hide ();
     }
 }

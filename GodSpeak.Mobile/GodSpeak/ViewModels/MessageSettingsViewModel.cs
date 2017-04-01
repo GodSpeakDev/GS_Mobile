@@ -23,7 +23,7 @@ namespace GodSpeak
 
         public async virtual void DoGoSave ()
         {
-            HudService.Show ();
+            HudService.Show (Text.SavingSettings);
 
             foreach (var setting in User.MessageDayOfWeekSettings) {
                 setting.StartTime = StartTime;
@@ -92,7 +92,7 @@ namespace GodSpeak
         }
 
         public MessageSettingsViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService) : base (dialogService, hudService, sessionService, webApiService)
-        {            
+        {
             Groups = new ObservableCollection<SettingsGroup> ()
             {
                 new SettingsGroup("Allow messages on these days:")
@@ -110,7 +110,7 @@ namespace GodSpeak
 
         public async void Init ()
         {
-            HudService.Show ();
+            HudService.Show (Text.RetrievingSettings);
             var response = await WebApiService.GetProfile (new TokenRequest () { Token = SessionService.GetUser ().Token });
 
             User = response.Payload;

@@ -12,7 +12,8 @@ namespace GodSpeak.iOS.Services
 
         public ProgressHudService ()
         {
-
+            ProgressHUD.Shared.HudBackgroundColour = UIColor.FromRGB (0, 165, 255);
+            ProgressHUD.Shared.HudForegroundColor = UIColor.White;
 
         }
 
@@ -22,10 +23,10 @@ namespace GodSpeak.iOS.Services
 
         }
 
-        public void Show ()
+        public void Show (string message = null)
         {
 
-            BTProgressHUD.Show (null, -1, ProgressHUD.MaskType.Black);
+            BTProgressHUD.Show ((message == null) ? "Updating..." : message, -1, ProgressHUD.MaskType.Black);
 
 
 

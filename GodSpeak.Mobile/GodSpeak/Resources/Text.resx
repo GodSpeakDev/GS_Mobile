@@ -657,4 +657,22 @@ Claimed</value>
 Enjoy! 
 - {0}</value>
   	</data>
+	<data
+		name="Authenticating"
+		xml:space="preserve">
+    	<value>Authenticating...
+		</value>
+  	</data>
+	<data
+		name="RetrievingSettings"
+		xml:space="preserve">
+    	<value>Retrieving Settings...
+		</value>
+  	</data>
+	<data
+		name="SavingSettings"
+		xml:space="preserve">
+    	<value>Saving Settings...
+		</value>
+  	</data>
 </root>
