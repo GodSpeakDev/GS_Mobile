@@ -160,6 +160,9 @@ namespace GodSpeak
             user.LastName = LastName;
             user.CountryCode = CountryCodes [SelectedCountryIndex];
             user.PostalCode = ZipCode;
+            user.CurrentPassword = CurrentPassword;
+            user.NewPassword = Password;
+            user.PasswordConfirm = ConfirmPassword;
 
             var response = await WebApiService.SaveProfile (user);
             HudService.Hide ();

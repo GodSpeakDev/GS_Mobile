@@ -70,5 +70,8 @@ namespace GodSpeak
             get;
             set;
         }
+        public string CurrentPassword { get; internal set; }
+        public string NewPassword { get; internal set; }
+        public string PasswordConfirm { get; internal set; }
     }
 }
