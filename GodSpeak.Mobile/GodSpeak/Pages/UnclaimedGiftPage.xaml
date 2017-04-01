@@ -94,7 +94,7 @@
 										>				
 											<Image WidthRequest="30" HeightRequest="30" Source="gift_box.png" />
 											<views:CustomLabel 
-												Margin="10,0,0,0"
+												Margin="5,0,0,0"
 												Text="{Binding Item.Description}" 
 												Style="{StaticResource TextShoppingCartItemTitle}"
 												HorizontalOptions="FillAndExpand"

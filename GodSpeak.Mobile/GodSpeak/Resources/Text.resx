@@ -543,7 +543,7 @@ Claimed</value>
 	<data
 		name="InviteBundleDescription"
 		xml:space="preserve">
-    	<value>{0} Gifts</value>
+    	<value>{0} Gifts (${1} each)</value>
   	</data>
 	<data
 		name="GiftsUnclaimed"

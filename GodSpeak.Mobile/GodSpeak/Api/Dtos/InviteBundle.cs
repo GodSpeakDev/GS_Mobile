@@ -40,7 +40,7 @@ namespace GodSpeak
 
         public string Description {
             get {
-                return string.Format (Text.InviteBundleDescription, NumberOfInvites);
+				return string.Format (Text.InviteBundleDescription, NumberOfInvites, (Cost/NumberOfInvites).ToString("N2"));
             }
         }
     }
