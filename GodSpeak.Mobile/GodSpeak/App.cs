@@ -2,7 +2,7 @@ using MvvmCross.Platform.IoC;
 using MvvmCross;
 using MvvmCross.Platform;
 using GodSpeak.Api;
-
+using MvvmCross.Plugins.Messenger;
 namespace GodSpeak
 {
     public partial class App : MvvmCross.Core.ViewModels.MvxApplication
@@ -20,6 +20,7 @@ namespace GodSpeak
                 .RegisterAsLazySingleton ();
 
             Mvx.LazyConstructAndRegisterSingleton<IWebApiService, AzureWebApiService> ();
+			Mvx.LazyConstructAndRegisterSingleton<IMvxMessenger, MvxMessengerHub>();
 
             CreatableTypes ().Containing ("DialogService").AsInterfaces ().RegisterAsDynamic ();
 

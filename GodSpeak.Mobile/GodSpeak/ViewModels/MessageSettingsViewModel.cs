@@ -8,11 +8,14 @@ using System.Windows.Input;
 using GodSpeak.Resources;
 using System.Threading.Tasks;
 using GodSpeak.Services;
+using MvvmCross.Plugins.Messenger;
 
 namespace GodSpeak
 {
     public class MessageSettingsViewModel : CustomViewModel
     {
+		private readonly IMvxMessenger _messenger;
+
         private MvxCommand _goSaveCommand;
         public MvxCommand GoSaveCommand {
             get {
@@ -22,7 +25,7 @@ namespace GodSpeak
         }
 
         public async virtual void DoGoSave ()
-        {
+        {			
             HudService.Show (Text.SavingSettings);
 
             foreach (var setting in User.MessageDayOfWeekSettings) {
@@ -44,6 +47,8 @@ namespace GodSpeak
             await WebApiService.SaveProfile (User);
 
             HudService.Hide ();
+
+			_messenger.Publish(new MessageSettingsChangeMessage(this));
         }
 
         private ObservableCollection<SettingsGroup> _groups;
@@ -91,8 +96,10 @@ namespace GodSpeak
             }
         }
 
-        public MessageSettingsViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService) : base (dialogService, hudService, sessionService, webApiService)
+        public MessageSettingsViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, IMvxMessenger messenger) : base (dialogService, hudService, sessionService, webApiService)
         {
+			_messenger = messenger;
+
             Groups = new ObservableCollection<SettingsGroup> ()
             {
                 new SettingsGroup("Allow messages on these days:")
