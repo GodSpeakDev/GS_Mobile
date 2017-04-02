@@ -7,6 +7,7 @@ using MvvmCross.Forms.Presenter.Core;
 using GodSpeak.Services;
 using System.Threading.Tasks;
 using MvvmCross.Plugins.Messenger;
+using GodSpeak.Resources;
 
 namespace GodSpeak
 {
@@ -15,6 +16,7 @@ namespace GodSpeak
         private IReminderService _reminderService;
 		private IMvxMessenger _messenger;
 		private MvxSubscriptionToken _token;
+		private bool _isAlreadyStarted = false;
 
         private ObservableCollection<GroupedCollection<Message, DateTime>> _messages;
         public ObservableCollection<GroupedCollection<Message, DateTime>> Messages {
@@ -94,17 +96,42 @@ namespace GodSpeak
 			{
                 await HandleResponse (response);
             }
+
+			_isAlreadyStarted = true;
         }
 
 		private async Task LoadMessages()
 		{
-			HudService.Show();
-
-			var messages = await WebApiService.GetMessages(new TokenRequest()
+			var messages = new ApiResponse<List<Message>>();
+			if (!_isAlreadyStarted)
 			{
-				Token = SessionService.GetUser().Token
-			});
-			HudService.Hide();
+				var shouldShowHud = true;
+				Task.Run(async () =>
+				{
+					await Task.Delay(2000);
+					if (shouldShowHud)
+					{
+						HudService.Show(Text.RetrievingMessages);
+					}
+				});
+
+				messages = await WebApiService.GetMessages(new TokenRequest()
+				{
+					Token = SessionService.GetUser().Token
+				});
+
+				shouldShowHud = false;
+				HudService.Hide();
+			}
+			else
+			{
+				this.HudService.Show(Text.RetrievingMessages);
+				messages = await WebApiService.GetMessages(new TokenRequest()
+				{
+					Token = SessionService.GetUser().Token
+				});
+				this.HudService.Hide();
+			}
 
 			if (messages.IsSuccess)
 			{
@@ -133,7 +160,7 @@ namespace GodSpeak
         }
 
         private void DoGoToShareCommand ()
-        {
+        {			
             this.ShowViewModel<ShareViewModel> ();
         }
 

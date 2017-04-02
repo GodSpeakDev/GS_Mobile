@@ -820,5 +820,11 @@ namespace GodSpeak.Resources {
                 return ResourceManager.GetString("SortByGiftsGiven", resourceCulture);
             }
         }
+        
+        public static string RetrievingMessages {
+            get {
+                return ResourceManager.GetString("RetrievingMessages", resourceCulture);
+            }
+        }
     }
 }

@@ -683,4 +683,8 @@ Enjoy!
 		name="SortByGiftsGiven" xml:space="preserve">
     	<value>Sort By Gifts Given</value>
   	</data>
+	<data
+		name="RetrievingMessages" xml:space="preserve">
+    	<value>Retrieving Messages</value>
+  	</data>
 </root>
