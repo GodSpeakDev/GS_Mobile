@@ -65,13 +65,13 @@ namespace GodSpeak.iOS
 		{
 			base.LayoutSubviews();
 
-			//this.Layer.MasksToBounds = false;
+			this.Layer.MasksToBounds = false;
 			this.Layer.CornerRadius = 10.0f;
-			//this.Layer.BackgroundColor = ColorHelper.Primary.ToCGColor();
-			//this.Layer.ShadowOffset = new System.Drawing.SizeF(0, 2);
-			//this.Layer.ShadowColor = UIColor.Black.CGColor;
-			//this.Layer.ShadowRadius = 2.0f;
-			//this.Layer.ShadowOpacity = 0.5f;
+			this.Layer.BackgroundColor = ColorHelper.Primary.ToCGColor();
+			this.Layer.ShadowOffset = new System.Drawing.SizeF(0, 2);
+			this.Layer.ShadowColor = UIColor.Black.CGColor;
+			this.Layer.ShadowRadius = 2.0f;
+			this.Layer.ShadowOpacity = 0.5f;
 		}
 	}
 }

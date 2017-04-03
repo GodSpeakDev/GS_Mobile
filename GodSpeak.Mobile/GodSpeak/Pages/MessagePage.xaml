@@ -29,7 +29,7 @@
 						<AbsoluteLayout 
 							HorizontalOptions="FillAndExpand"
 							HeightRequest="280"
-							IsClippedToBounds="true"
+							IsClippedToBounds="true"							
 						>
 							<views:ImpactMap 	
 								AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"
@@ -94,7 +94,7 @@
 											Style="{StaticResource TextMessageBody}"
 										/>											
 									</views:MessageBalloon>
-									<Image
+									<views:ImageWithShadow
 										Grid.Row="1"
 										Grid.Column="0"
 										Source="message_arrow.png"

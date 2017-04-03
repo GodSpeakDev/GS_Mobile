@@ -380,6 +380,7 @@
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Converters\NotMinDateConverter.cs" />
     <Compile Include="MvvmCross\Messages\MessageSettingsChangeMessage.cs" />
+    <Compile Include="CustomComponents\ImageWithShadow.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />
