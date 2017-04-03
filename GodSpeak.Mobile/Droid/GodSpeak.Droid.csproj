@@ -204,6 +204,7 @@
     <Compile Include="MainApplication.cs" />
     <Compile Include="Services\ImageService.cs" />
     <Compile Include="Renderers\MessageBalloonRenderer.cs" />
+    <Compile Include="Renderers\ImageContainerRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
