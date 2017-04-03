@@ -111,7 +111,7 @@ namespace GodSpeak.Droid
 		{
 			var alertDialog = new AlertDialog.Builder(Xamarin.Forms.Forms.Context)
 											 .SetTitle("God Speak")
-											 .SetMessage(message.Text)
+											 .SetMessage(message.Verse.Text)
 											 .SetCancelable(false)
 											 .SetPositiveButton("Ok", (sender, e) => { });
 			alertDialog.Show();
@@ -122,7 +122,7 @@ namespace GodSpeak.Droid
 			Notification.Builder builder = new Notification.Builder(context)
 				.SetContentTitle("God Speak")
 				.SetSmallIcon(Resource.Drawable.icon)
-				.SetContentText(message.Text);
+				.SetContentText(message.Verse.Text);
 
 			var random = new Random(DateTime.Now.Millisecond);
 			var id = random.Next();

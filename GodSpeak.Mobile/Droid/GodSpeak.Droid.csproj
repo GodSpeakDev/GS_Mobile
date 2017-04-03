@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>GodSpeak.Droid</RootNamespace>
     <AssemblyName>GodSpeak.Droid</AssemblyName>
-    <TargetFrameworkVersion>v7.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v7.0</TargetFrameworkVersion>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
@@ -202,6 +202,7 @@
     <Compile Include="Services\ContactsService.cs" />
     <Compile Include="Services\MailService.cs" />
     <Compile Include="MainApplication.cs" />
+    <Compile Include="Services\ImageService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
