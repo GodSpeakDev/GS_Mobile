@@ -51,7 +51,7 @@ namespace GodSpeak.iOS
 			if (Element == null)
 				return;
 
-			var colors = new Xamarin.Forms.Color[] {Xamarin.Forms.Color.FromRgb(1, 168, 248), Xamarin.Forms.Color.FromRgb(17, 164, 244)};
+			var colors = new Xamarin.Forms.Color[] {Xamarin.Forms.Color.FromRgb(1, 165, 255), Xamarin.Forms.Color.FromRgb(0, 145, 255)};
 			GradientLayer.Colors = colors.Select(s => s.ToCGColor()).ToArray();
 		}
 
@@ -65,13 +65,13 @@ namespace GodSpeak.iOS
 		{
 			base.LayoutSubviews();
 
-			this.Layer.MasksToBounds = false;
+			//this.Layer.MasksToBounds = false;
 			this.Layer.CornerRadius = 10.0f;
-			this.Layer.BackgroundColor = ColorHelper.Primary.ToCGColor();
-			this.Layer.ShadowOffset = new System.Drawing.SizeF(0, 2);
-			this.Layer.ShadowColor = UIColor.Black.CGColor;
-			this.Layer.ShadowRadius = 2.0f;
-			this.Layer.ShadowOpacity = 0.5f;
+			//this.Layer.BackgroundColor = ColorHelper.Primary.ToCGColor();
+			//this.Layer.ShadowOffset = new System.Drawing.SizeF(0, 2);
+			//this.Layer.ShadowColor = UIColor.Black.CGColor;
+			//this.Layer.ShadowRadius = 2.0f;
+			//this.Layer.ShadowOpacity = 0.5f;
 		}
 	}
 }
