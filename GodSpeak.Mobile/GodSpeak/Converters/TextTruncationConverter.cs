@@ -18,8 +18,8 @@ namespace GodSpeak
 
             var words = text.Split (' ').ToList ();
 
-            if (words.Count < maxWordCount)
-                return text;
+            //if (words.Count < maxWordCount)
+            return text;
 
             return string.Join (" ", words.GetRange (0, maxWordCount)) + "...";
         }
