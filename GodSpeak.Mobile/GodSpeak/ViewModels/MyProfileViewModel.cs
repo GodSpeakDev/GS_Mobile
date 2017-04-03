@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.Linq;
 using GodSpeak.Services;
+using System.Threading.Tasks;
 
 namespace GodSpeak
 {
@@ -177,43 +178,58 @@ namespace GodSpeak
         {
             var menuResponse = await this.DialogService.ShowMenu (Text.PictureSourceQuestion, null, Text.PictureSourceFromGallery, Text.PictureSourceFromCamera, Text.Cancel);
 
-            MediaFile response;
-
-            if (menuResponse == Text.Cancel) {
-                return;
-            } else if (menuResponse == Text.PictureSourceFromCamera) {
-				response = await _mediaPicker.TakePhotoAsync (new CameraMediaStorageOptions());
-            } else if (menuResponse == Text.PictureSourceFromGallery) {
-                response = await _mediaPicker.SelectPhotoAsync  (new CameraMediaStorageOptions());
-            } else {
-                return;
-            }
-
-            if (response != null) 
+			try
 			{
-                this.HudService.Show ();
+				MediaFile response;
 
-				_imageService.Compress(response, 200, 200);
-
-                var photoResponse = await WebApiService.UploadPhoto (new UploadPhotoRequest () 
+				if (menuResponse == Text.Cancel)
 				{
-                    Token = SessionService.GetUser ().Token,
-                    FilePath = response.Path
-                });
-
-				System.Diagnostics.Debug.WriteLine("Image Size: {0}", response.Source.ToByteArray().Length);
-
-                this.HudService.Hide ();
-
-                if (photoResponse.IsSuccess) 
+					return;
+				}
+				else if (menuResponse == Text.PictureSourceFromCamera)
 				{
-                    SetPhoto (photoResponse.Payload);
-					RaisePropertyChanged(() => Image);
-                } else 
+					response = await _mediaPicker.TakePhotoAsync(new CameraMediaStorageOptions());
+				}
+				else if (menuResponse == Text.PictureSourceFromGallery)
 				{
-                    await HandleResponse (photoResponse);
-                }
-            }
+					response = await _mediaPicker.SelectPhotoAsync(new CameraMediaStorageOptions());
+				}
+				else
+				{
+					return;
+				}
+
+				if (response != null)
+				{
+					this.HudService.Show();
+
+					_imageService.Compress(response, 200, 200);
+
+					var photoResponse = await WebApiService.UploadPhoto(new UploadPhotoRequest()
+					{
+						Token = SessionService.GetUser().Token,
+						FilePath = response.Path
+					});
+
+					System.Diagnostics.Debug.WriteLine("Image Size: {0}", response.Source.ToByteArray().Length);
+
+					this.HudService.Hide();
+
+					if (photoResponse.IsSuccess)
+					{
+						SetPhoto(photoResponse.Payload);
+						RaisePropertyChanged(() => Image);
+					}
+					else
+					{
+						await HandleResponse(photoResponse);
+					}
+				}
+			}
+			catch (TaskCanceledException ex)
+			{
+
+			}
         }
     }
 }
