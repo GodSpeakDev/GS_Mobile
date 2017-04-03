@@ -324,6 +324,14 @@
     <AndroidResource Include="Resources\drawable-xhdpi\message_arrow.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\message_arrow.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\message_arrow.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\bug_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\bug_icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\bug_icon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\bug_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\gift_box.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\gift_box.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\gift_box.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\gift_box.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="MvvmCross\" />
