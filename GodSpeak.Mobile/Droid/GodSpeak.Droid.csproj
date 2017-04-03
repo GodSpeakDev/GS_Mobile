@@ -203,6 +203,7 @@
     <Compile Include="Services\MailService.cs" />
     <Compile Include="MainApplication.cs" />
     <Compile Include="Services\ImageService.cs" />
+    <Compile Include="Renderers\MessageBalloonRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -318,6 +319,7 @@
     <AndroidResource Include="Resources\drawable-xhdpi\bundle_icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\bundle_icon.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\bundle_icon.png" />
+    <AndroidResource Include="Resources\drawable\message_arrow.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="MvvmCross\" />

@@ -117,7 +117,7 @@
 					</ListView.ItemTemplate>
 					<ListView.GroupHeaderTemplate>
 						<DataTemplate>
-							<ViewCell Height="25">
+							<ViewCell Height="{StaticResource MessageHeaderSize}">
 			            		<views:CustomLabel									
 									Margin="10,10,10,0"
 									HorizontalOptions="FillAndExpand" 

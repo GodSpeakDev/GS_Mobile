@@ -53,6 +53,8 @@
 			<OnPlatform x:TypeArguments="x:String" x:Key="ShareButtonImage" Android="" iOS="bundle_icon.png" WinPhone="" />
 			<OnPlatform x:TypeArguments="x:Double" x:Key="ShareButtonSize" Android="0" iOS="30" WinPhone="30" />
 			<OnPlatform x:TypeArguments="LayoutOptions" x:Key="ShareButtonAlignment" Android="CenterAndExpand" iOS="StartAndExpand" WinPhone="StartAndExpand" />
+
+			<OnPlatform x:TypeArguments="x:Double" x:Key="MessageHeaderSize" Android="30" iOS="25" WinPhone="30" />
 						
 			<!-- Global Colors -->
 			<Color x:Key="primaryColor">#00a5ff</Color>
