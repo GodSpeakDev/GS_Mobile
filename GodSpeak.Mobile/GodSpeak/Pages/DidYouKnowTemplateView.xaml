@@ -8,39 +8,54 @@
 	<ContentView.Content>
 		<AbsoluteLayout
 			Margin="10,50,10,0"
-
 			HorizontalOptions="CenterAndExpand"
-			VerticalOptions="CenterAndExpand">
-			<Image 
-				AbsoluteLayout.LayoutBounds="0.5,0.5,1,1"
+			VerticalOptions="FillAndExpand">
+			<Grid
 				AbsoluteLayout.LayoutFlags="All"
-				Source="speechBalloonBackground.png" 
-			/>
-			<views:MessageBalloon			
-				Padding="20,30,20, 10"
-				HorizontalOptions="CenterAndExpand"
-				VerticalOptions="CenterAndExpand">
-				<Grid
-					HorizontalOptions="FillAndExpand"
-					VerticalOptions="FillAndExpand">
-					<Grid.RowDefinitions>
-						<RowDefinition Height="auto" />
-						<RowDefinition Height="auto" />
-					</Grid.RowDefinitions>
-					<views:CustomLabel 																				
-						Grid.Row="0"
-						Text="{Binding BoxTitle}"
+				AbsoluteLayout.LayoutBounds="0,0,1,1"
+				Padding="10, 20"
+				VerticalOptions="FillAndExpand"
+				RowSpacing="0">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="auto" />
+					<RowDefinition Height="auto" />
+				</Grid.RowDefinitions>
+				<views:MessageBalloon
+					Grid.Row="0"
+					Padding="20,20,20, 20"
+					HorizontalOptions="CenterAndExpand"
+					VerticalOptions="Start">
+					<Grid
 						HorizontalOptions="FillAndExpand"
-						Style="{StaticResource UnclaimedPageTitle}"
-					/>
-					<views:CustomLabel 																				
-						Grid.Row="1"
-						Text="{Binding BoxMessage}"
-						HorizontalOptions="FillAndExpand"
-						Style="{StaticResource TextContent}"
-					/>
-				</Grid>
-			</views:MessageBalloon>
+						VerticalOptions="Start">
+						<Grid.RowDefinitions>
+							<RowDefinition Height="auto" />
+							<RowDefinition Height="auto" />
+						</Grid.RowDefinitions>
+						<views:CustomLabel 																				
+							Grid.Row="0"
+							Text="{Binding BoxTitle}"
+							VerticalOptions="Start"
+							HorizontalOptions="FillAndExpand"
+							Style="{StaticResource UnclaimedPageTitle}"
+						/>
+						<views:CustomLabel 																				
+							Grid.Row="1"
+							VerticalOptions="StartAndExpand"
+							Text="{Binding BoxMessage}"
+							HorizontalOptions="FillAndExpand"
+							Style="{StaticResource TextContent}"
+						/>
+					</Grid>
+				</views:MessageBalloon>
+				<views:ImageWithShadow
+					Grid.Row="1"
+					Source="message_arrow.png"
+					Margin="{StaticResource MessageArrowMargin}"
+					VerticalOptions="Start"
+					HorizontalOptions="Start"
+				/>
+			</Grid>
 		</AbsoluteLayout>
 	</ContentView.Content>
 </ContentView>
