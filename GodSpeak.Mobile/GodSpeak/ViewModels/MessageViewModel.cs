@@ -14,9 +14,9 @@ namespace GodSpeak
     public class MessageViewModel : CustomViewModel
     {
         private IReminderService _reminderService;
-		private IMvxMessenger _messenger;
-		private MvxSubscriptionToken _token;
-		private bool _isAlreadyStarted = false;
+        private IMvxMessenger _messenger;
+        private MvxSubscriptionToken _token;
+        private bool _isAlreadyStarted = false;
 
         private ObservableCollection<GroupedCollection<Message, DateTime>> _messages;
         public ObservableCollection<GroupedCollection<Message, DateTime>> Messages {
@@ -72,81 +72,68 @@ namespace GodSpeak
         public MessageViewModel (
             IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService,
             IReminderService reminderService, IMvxMessenger messenger) : base (dialogService, hudService, sessionService, webApiService)
-        { 
+        {
             _reminderService = reminderService;
-			_messenger = messenger;
+            _messenger = messenger;
 
             Messages = new ObservableCollection<GroupedCollection<Message, DateTime>> ();
         }
 
         public async void Init ()
         {
-			await LoadMessages();
+            await LoadMessages ();
 
-			_token = _messenger.SubscribeOnMainThread<MessageSettingsChangeMessage>(async (obj) => 
-			{ 
-				await LoadMessages();
-			});
+            _token = _messenger.SubscribeOnMainThread<MessageSettingsChangeMessage> (async (obj) => {
+                await LoadMessages ();
+            });
 
             var response = await WebApiService.GetImpact (new GetImpactRequest ());
-            if (response.IsSuccess) 
-			{
+            if (response.IsSuccess) {
                 ShownImpactDays = new ObservableCollection<ImpactDay> (response.Payload.Payload);
-            } else 
-			{
+            } else {
                 await HandleResponse (response);
             }
 
-			_isAlreadyStarted = true;
+            _isAlreadyStarted = true;
         }
 
-		private async Task LoadMessages()
-		{
-			var messages = new ApiResponse<List<Message>>();
-			if (!_isAlreadyStarted)
-			{
-				var shouldShowHud = true;
-				Task.Run(async () =>
-				{
-					await Task.Delay(2000);
-					if (shouldShowHud)
-					{
-						HudService.Show(Text.RetrievingMessages);
-					}
-				});
+        private async Task LoadMessages ()
+        {
+            var messages = new ApiResponse<List<Message>> ();
+            if (!_isAlreadyStarted) {
+                var shouldShowHud = true;
+                Task.Run (async () => {
+                    await Task.Delay (2000);
+                    if (shouldShowHud) {
+                        HudService.Show (Text.RetrievingMessages);
+                    }
+                });
 
-				messages = await WebApiService.GetMessages(new TokenRequest()
-				{
-					Token = SessionService.GetUser().Token
-				});
+                messages = await WebApiService.GetMessages (new TokenRequest () {
+                    Token = SessionService.GetUser ().Token
+                });
 
-				shouldShowHud = false;
-				HudService.Hide();
-			}
-			else
-			{
-				this.HudService.Show(Text.RetrievingMessages);
-				messages = await WebApiService.GetMessages(new TokenRequest()
-				{
-					Token = SessionService.GetUser().Token
-				});
-				this.HudService.Hide();
-			}
+                shouldShowHud = false;
+                HudService.Hide ();
+            } else {
+                this.HudService.Show (Text.RetrievingMessages);
+                messages = await WebApiService.GetMessages (new TokenRequest () {
+                    Token = SessionService.GetUser ().Token
+                });
+                this.HudService.Hide ();
+            }
 
-			if (messages.IsSuccess)
-			{
-				Messages = new ObservableCollection<GroupedCollection<Message, DateTime>>
-				(messages.Payload
-				 //.Where (x => x.DateTimeToDisplay <= DateTime.Now)
-				 .OrderByDescending(x => x.DateTimeToDisplay)
-				 .GroupBy(x => x.DateTimeToDisplay.Date)
-				 .Select(x => new GroupedCollection<Message, DateTime>(x.Key, x)));
-			}
-			else
-			{
-				await HandleResponse(messages);
-			}
-		}
+            if (messages.IsSuccess) {
+                Messages = new ObservableCollection<GroupedCollection<Message, DateTime>>
+                (messages.Payload
+                 //.Where (x => x.DateTimeToDisplay <= DateTime.Now)
+                 .OrderByDescending (x => x.DateTimeToDisplay)
+                 .GroupBy (x => x.DateTimeToDisplay)
+                 .Select (x => new GroupedCollection<Message, DateTime> (x.Key, x)));
+            } else {
+                await HandleResponse (messages);
+            }
+        }
 
         private void DoTapMessageCommand (Message message)
         {
@@ -160,7 +147,7 @@ namespace GodSpeak
         }
 
         private void DoGoToShareCommand ()
-        {			
+        {
             this.ShowViewModel<ShareViewModel> ();
         }
 
