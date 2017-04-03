@@ -163,6 +163,9 @@
     <Reference Include="PCLStorage">
       <HintPath>..\packages\PCLStorage.1.0.2\lib\portable-Xamarin.iOS+Xamarin.Mac\PCLStorage.dll</HintPath>
     </Reference>
+    <Reference Include="MvvmCross.Plugins.Messenger">
+      <HintPath>..\packages\MvvmCross.Plugin.Messenger.4.4.0\lib\Xamarin.iOS10\MvvmCross.Plugins.Messenger.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GodSpeak\GodSpeak.csproj">
@@ -242,6 +245,8 @@
     <Compile Include="Services\FeedbackService.cs" />
     <Compile Include="Services\ProgressHudService.cs" />
     <Compile Include="Services\ImageService.cs" />
+    <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
+    <Compile Include="Renderers\ImageWithShadowRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\profile_placeholder.png" />
@@ -358,6 +363,10 @@
     <BundleResource Include="Resources\bug_icon.png" />
     <BundleResource Include="Resources\bug_icon%402x.png" />
     <BundleResource Include="Resources\bug_icon%403x.png" />
+    <BundleResource Include="Resources\blue_triangle.png" />
+    <BundleResource Include="Resources\message_arrow.png" />
+    <BundleResource Include="Resources\message_arrow%402x.png" />
+    <BundleResource Include="Resources\message_arrow%403x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.3.180\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.3.180\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
