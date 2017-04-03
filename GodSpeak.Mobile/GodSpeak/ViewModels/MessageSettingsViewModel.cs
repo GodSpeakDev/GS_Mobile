@@ -157,7 +157,7 @@ namespace GodSpeak
 
         private void DoMinusButtonCommand ()
         {
-            if (NumberOfMessages > 0) {
+            if (NumberOfMessages > 1) {
                 NumberOfMessages -= 1;
             }
         }
