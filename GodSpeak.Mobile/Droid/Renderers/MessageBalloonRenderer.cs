@@ -14,7 +14,7 @@ namespace GodSpeak.Droid
 	{
 		private GradientDrawable _drawable;
 
-		protected override void OnElementChanged(ElementChangedEventArgs<GradientBoxView> e)
+		protected override void OnElementChanged(ElementChangedEventArgs<View> e)
 		{
 			base.OnElementChanged(e);
 
@@ -44,9 +44,7 @@ namespace GodSpeak.Droid
 			if (_drawable == null)
 				return;
 
-			var radius = GetRadius(15);
-
-			_drawable.SetCornerRadii(new float[] { radius, radius, radius, radius, radius, radius, radius, radius });
+			_drawable.SetCornerRadius(25);
 		}
 
 		private void UpdateColors()
@@ -54,7 +52,7 @@ namespace GodSpeak.Droid
 			if (_drawable == null)
 				return;
 			
-			var colors = new Xamarin.Forms.Color[] { Element.BackgroundColor, Element.BackgroundColor };
+			var colors = new Xamarin.Forms.Color[] { Xamarin.Forms.Color.FromRgb(1, 185, 255), Xamarin.Forms.Color.FromRgb(0, 165, 255) };
 
 			_drawable.SetColors(colors.Select(s => s.ToAndroid().ToArgb()).ToArray());
 		}

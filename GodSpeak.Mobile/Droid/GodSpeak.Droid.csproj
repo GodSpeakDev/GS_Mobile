@@ -319,7 +319,10 @@
     <AndroidResource Include="Resources\drawable-xhdpi\bundle_icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\bundle_icon.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\bundle_icon.png" />
-    <AndroidResource Include="Resources\drawable\message_arrow.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\message_arrow.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\message_arrow.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\message_arrow.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\message_arrow.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="MvvmCross\" />

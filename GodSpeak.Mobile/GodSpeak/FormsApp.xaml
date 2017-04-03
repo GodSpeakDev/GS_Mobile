@@ -55,6 +55,7 @@
 			<OnPlatform x:TypeArguments="LayoutOptions" x:Key="ShareButtonAlignment" Android="CenterAndExpand" iOS="StartAndExpand" WinPhone="StartAndExpand" />
 
 			<OnPlatform x:TypeArguments="x:Double" x:Key="MessageHeaderSize" Android="30" iOS="25" WinPhone="30" />
+			<OnPlatform x:TypeArguments="Thickness" x:Key="MessageArrowMargin" Android="20,-4,0,0" iOS="20,-2,0,0" WinPhone="20,-2,0,0" />
 						
 			<!-- Global Colors -->
 			<Color x:Key="primaryColor">#00a5ff</Color>

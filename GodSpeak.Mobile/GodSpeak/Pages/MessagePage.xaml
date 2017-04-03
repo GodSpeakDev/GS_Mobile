@@ -98,7 +98,7 @@
 										Grid.Row="1"
 										Grid.Column="0"
 										Source="message_arrow.png"
-										Margin="20,-2,0,0"
+										Margin="{StaticResource MessageArrowMargin}"
 										HorizontalOptions="Start"
 									/>
 									<views:CustomLabel 	
