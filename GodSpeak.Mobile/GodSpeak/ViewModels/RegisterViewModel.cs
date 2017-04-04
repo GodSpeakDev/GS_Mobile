@@ -12,10 +12,10 @@ using GodSpeak.Services;
 namespace GodSpeak
 {
     public class RegisterViewModel : CustomViewModel
-    {        
+    {
         private IMediaPicker _mediaPicker;
-		private IImageService _imageService;
-		private MediaFile _response;
+        private IImageService _imageService;
+        private MediaFile _response;
 
         private int _selectedCountryIndex;
         public int SelectedCountryIndex {
@@ -88,9 +88,8 @@ namespace GodSpeak
         }
 
         public bool IsPasswordValid {
-            get 
-			{
-				return Password.IsValidPassword();
+            get {
+                return Password.IsValidPassword ();
             }
         }
 
@@ -131,9 +130,9 @@ namespace GodSpeak
         }
 
         public RegisterViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, IMediaPicker mediaPicker, IImageService imageService) : base (dialogService, hudService, sessionService, webApiService)
-        {            
+        {
             _mediaPicker = mediaPicker;
-			_imageService = imageService;
+            _imageService = imageService;
         }
 
         string _inviteCode;
@@ -158,8 +157,7 @@ namespace GodSpeak
             if (!ValidateForm ())
                 return;
 
-            var request = new RegisterUserRequest () 
-			{
+            var request = new RegisterUserRequest () {
                 FirstName = FirstName,
                 LastName = LastName,
                 EmailAddress = Email,
@@ -171,42 +169,32 @@ namespace GodSpeak
             };
 
             HudService.Show ();
-            var response = await WebApiService.RegisterUser (request);            
+            var response = await WebApiService.RegisterUser (request);
 
-            if (response.IsSuccess) 
-			{
-				if (Image != null)
-				{
-					var photoResponse = await WebApiService.UploadPhoto(new UploadPhotoRequest()
-					{
-						Token = response.Payload.Token,
-						FilePath = _response.Path
-					});
-					HudService.Hide();
+            if (response.IsSuccess) {
+                if (Image != null && Image != "profile_placeholder.png") {
+                    var photoResponse = await WebApiService.UploadPhoto (new UploadPhotoRequest () {
+                        Token = response.Payload.Token,
+                        FilePath = _response.Path
+                    });
+                    HudService.Hide ();
 
-					if (photoResponse.IsSuccess)
-					{
-						await DialogService.ShowAlert(Text.SuccessfulRegisterPopupTitle, Text.SuccessGiftCodeText, Text.SuccessfulRegisterButtonText);
-						await SessionService.SaveUser(response.Payload);
-						this.ShowViewModel<HomeViewModel>();
-					}
-					else
-					{												
-						await HandleResponse(photoResponse);
-					}
-				}
-				else
-				{
-					HudService.Hide();
+                    if (photoResponse.IsSuccess) {
+                        await DialogService.ShowAlert (Text.SuccessfulRegisterPopupTitle, Text.SuccessGiftCodeText, Text.SuccessfulRegisterButtonText);
+                        await SessionService.SaveUser (response.Payload);
+                        this.ShowViewModel<HomeViewModel> ();
+                    } else {
+                        await HandleResponse (photoResponse);
+                    }
+                } else {
+                    HudService.Hide ();
 
-					await DialogService.ShowAlert(Text.SuccessfulRegisterPopupTitle, Text.SuccessGiftCodeText, Text.SuccessfulRegisterButtonText);
-					await SessionService.SaveUser(response.Payload);
-					this.ShowViewModel<HomeViewModel>();
-				}
-            }
-			else 
-			{
-				HudService.Hide();
+                    await DialogService.ShowAlert (Text.SuccessfulRegisterPopupTitle, Text.SuccessGiftCodeText, Text.SuccessfulRegisterButtonText);
+                    await SessionService.SaveUser (response.Payload);
+                    this.ShowViewModel<HomeViewModel> ();
+                }
+            } else {
+                HudService.Hide ();
                 await HandleResponse (response);
             }
         }
@@ -215,38 +203,27 @@ namespace GodSpeak
         {
             var menuResponse = await this.DialogService.ShowMenu (Text.PictureSourceQuestion, null, Text.PictureSourceFromGallery, Text.PictureSourceFromCamera, Text.Cancel);
 
-			try
-			{
+            try {
 
-				if (menuResponse == Text.Cancel)
-				{
-					return;
-				}
-				else if (menuResponse == Text.PictureSourceFromCamera)
-				{
-					_response = await _mediaPicker.TakePhotoAsync(new CameraMediaStorageOptions());
-				}
-				else if (menuResponse == Text.PictureSourceFromGallery)
-				{
-					_response = await _mediaPicker.SelectPhotoAsync(new CameraMediaStorageOptions());
-				}
-				else
-				{
-					return;
-				}
+                if (menuResponse == Text.Cancel) {
+                    return;
+                } else if (menuResponse == Text.PictureSourceFromCamera) {
+                    _response = await _mediaPicker.TakePhotoAsync (new CameraMediaStorageOptions ());
+                } else if (menuResponse == Text.PictureSourceFromGallery) {
+                    _response = await _mediaPicker.SelectPhotoAsync (new CameraMediaStorageOptions ());
+                } else {
+                    return;
+                }
 
-				if (_response != null)
-				{
-					HudService.Show();
-					_imageService.Compress(_response, 200, 200);
-					Image = _response.Path;
-					HudService.Hide();
-				}
-			}
-			catch (TaskCanceledException ex)
-			{
-				
-			}
+                if (_response != null) {
+                    HudService.Show ();
+                    _imageService.Compress (_response, 200, 200);
+                    Image = _response.Path;
+                    HudService.Hide ();
+                }
+            } catch (TaskCanceledException ex) {
+
+            }
         }
 
         private async void DoAlreadyRegisteredCommand ()
