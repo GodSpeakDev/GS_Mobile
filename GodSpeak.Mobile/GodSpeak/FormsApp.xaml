@@ -50,7 +50,7 @@
 			<OnPlatform x:TypeArguments="x:Double" x:Key="BackButtonHeight" Android="20" iOS="21" WinPhone="20" />
 			<OnPlatform x:TypeArguments="Rectangle" x:Key="FabButtonBounds" Android="1,1.05,100,100" iOS="1,1,90,90" WinPhone="1,1.05,100,100" />
 
-			<OnPlatform x:TypeArguments="x:String" x:Key="ShareButtonImage" Android="" iOS="bundle_icon.png" WinPhone="" />
+			<OnPlatform x:TypeArguments="x:String" x:Key="ShareButtonImage" Android="" iOS="gift_box.png" WinPhone="" />
 			<OnPlatform x:TypeArguments="x:Double" x:Key="ShareButtonSize" Android="0" iOS="30" WinPhone="30" />
 			<OnPlatform x:TypeArguments="LayoutOptions" x:Key="ShareButtonAlignment" Android="CenterAndExpand" iOS="StartAndExpand" WinPhone="StartAndExpand" />
 
