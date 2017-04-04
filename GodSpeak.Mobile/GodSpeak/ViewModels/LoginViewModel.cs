@@ -46,8 +46,10 @@ namespace GodSpeak
 
         public void Init ()
         {
+#if DEBUG
             Email = "Ben@rendr.io";
             Password = "J0hn_galt";
+#endif
         }
 
         private async void DoLoginCommand ()
