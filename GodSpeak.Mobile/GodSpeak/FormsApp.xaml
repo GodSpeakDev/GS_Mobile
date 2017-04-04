@@ -26,6 +26,7 @@
 			<godspeak:SwitchStyleConverter x:Key="SwitchStyleConverter" />
 			<godspeak:TextTruncationConverter x:Key="TextTruncationConverter" />
 			<godspeak:NotMinDateConverter x:Key="NotMinDateConverter" />
+			<godspeak:ImageLayoutOptionsConverter x:Key="ImageLayoutOptionsConverter" />
 			
 			<!-- Global Values -->
 			<x:Double x:Key="ElementHeight">42</x:Double>

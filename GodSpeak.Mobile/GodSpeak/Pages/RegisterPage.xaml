@@ -32,8 +32,8 @@
 							HorizontalOptions="FillAndExpand"
 							VerticalOptions="FillAndExpand">
 							<Grid.RowDefinitions>
-								<RowDefinition Height="auto" />
-								<RowDefinition Height="auto" />
+								<RowDefinition Height="42" />
+								<RowDefinition Height="42" />
 								<RowDefinition Height="auto" />
 								<RowDefinition Height="auto" />
 								<RowDefinition Height="auto" />
@@ -59,8 +59,9 @@
 						        	<TapGestureRecognizer Command="{Binding ChoosePictureCommand}" />
 						    	</views:ImageContainer.GestureRecognizers>
 								<Image		
-									HorizontalOptions="Center"
-									VerticalOptions="Center"
+									Aspect="AspectFill"	
+									HorizontalOptions="{Binding Image, Converter={StaticResource ImageLayoutOptionsConverter}}"
+									VerticalOptions="{Binding Image, Converter={StaticResource ImageLayoutOptionsConverter}}"
 									Source="{Binding Image, Converter={StaticResource ImageObjectToImageSourceConverter}}">
 								</Image>
 							</views:ImageContainer>

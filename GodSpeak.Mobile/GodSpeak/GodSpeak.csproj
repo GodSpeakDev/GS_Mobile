@@ -381,6 +381,7 @@
     <Compile Include="Converters\NotMinDateConverter.cs" />
     <Compile Include="MvvmCross\Messages\MessageSettingsChangeMessage.cs" />
     <Compile Include="CustomComponents\ImageWithShadow.cs" />
+    <Compile Include="Converters\ImageLayoutOptionsConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />
