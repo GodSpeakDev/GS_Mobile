@@ -16,7 +16,7 @@
 					Margin="0,80,0,0">
 					<StackLayout
 						Spacing="15"
-						Padding="15,0"
+						Padding="15, 0, 15, 10"
 						HorizontalOptions="FillAndExpand"
 						VerticalOptions="FillAndExpand">
 						<views:CustomLabel 									
