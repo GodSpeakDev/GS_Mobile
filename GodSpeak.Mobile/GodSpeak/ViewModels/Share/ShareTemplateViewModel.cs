@@ -60,7 +60,14 @@ namespace GodSpeak
         public async Task UpdateGiftsLeftTitle ()
         {
             var profileResponse = await WebApiService.GetProfile (new TokenRequest () { Token = SessionService.GetUser ().Token });
-            GiftsLeftTitle = string.Format (Text.ShareGiftsLeft, profileResponse.Payload.InviteBalance);
+			if (profileResponse.IsSuccess)
+			{
+				GiftsLeftTitle = string.Format(Text.ShareGiftsLeft, profileResponse.Payload.InviteBalance);
+			}
+			else
+			{
+				await HandleResponse(profileResponse);
+			}
         }
 
         private async void DoShareWithWorldCommand ()
