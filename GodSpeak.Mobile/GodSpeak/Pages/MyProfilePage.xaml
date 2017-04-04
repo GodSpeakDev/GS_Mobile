@@ -89,6 +89,7 @@
 
 							<views:CustomPicker
 								x:Name="Countries"
+								HasEmptyValue="false"
 								Grid.Row="2"
 								Grid.Column="0"
 								Grid.ColumnSpan="2"

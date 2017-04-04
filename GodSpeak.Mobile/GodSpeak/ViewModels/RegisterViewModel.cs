@@ -27,7 +27,7 @@ namespace GodSpeak
         }
 
         public bool HasSelectedCountry {
-            get { return SelectedCountryIndex > 0; }
+            get { return SelectedCountryIndex >= 0; }
         }
 
         private string [] _countries;

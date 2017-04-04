@@ -76,7 +76,15 @@ namespace GodSpeak.Api
 
         public new async Task<ApiResponse<List<Country>>> GetCountries ()
         {
-            return await DoGet<List<Country>> (CountriesUri);
+            var countriesList = await DoGet<List<Country>> (CountriesUri);
+
+			var userCountry = countriesList.Payload.FirstOrDefault(x => x.Code == "US");
+
+			countriesList.Payload.Remove(userCountry);
+			countriesList.Payload = new List<Country>(countriesList.Payload.OrderBy(x => x.Title));
+			countriesList.Payload.Insert(0, userCountry);
+
+			return countriesList;
         }
 
         public new async Task<ApiResponse<String>> ForgotPassword (ForgotPasswordRequest request)
