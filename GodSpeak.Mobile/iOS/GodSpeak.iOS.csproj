@@ -224,7 +224,6 @@
     <Compile Include="Renderers\CustomEntryRenderer.cs" />
     <Compile Include="Renderers\ImageContainerRenderer.cs" />
     <Compile Include="Renderers\CustomPickerRenderer.cs" />
-    <Compile Include="Renderers\CustomContentPageRenderer.cs" />
     <Compile Include="Renderers\GradientBoxViewRenderer.cs" />
     <Compile Include="Renderers\CustomTimePickerRenderer.cs" />
     <Compile Include="Renderers\TransparentViewCellRenderer.cs" />
