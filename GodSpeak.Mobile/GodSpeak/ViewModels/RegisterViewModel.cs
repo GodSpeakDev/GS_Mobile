@@ -213,31 +213,39 @@ namespace GodSpeak
 
         private async void DoChoosePictureCommand ()
         {
-            var menuResponse = await this.DialogService.ShowMenu (Text.PictureSourceQuestion, null, Text.PictureSourceFromGallery, Text.PictureSourceFromCamera, Text.Cancel);			           
+            var menuResponse = await this.DialogService.ShowMenu (Text.PictureSourceQuestion, null, Text.PictureSourceFromGallery, Text.PictureSourceFromCamera, Text.Cancel);
 
-            if (menuResponse == Text.Cancel) 
+			try
 			{
-                return;
-            } 
-			else if (menuResponse == Text.PictureSourceFromCamera) 
-			{
-                _response = await _mediaPicker.TakePhotoAsync (new CameraMediaStorageOptions ());
-            } 
-			else if (menuResponse == Text.PictureSourceFromGallery) 
-			{
-                _response = await _mediaPicker.SelectPhotoAsync (new CameraMediaStorageOptions ());
-            } 
-			else 
-			{
-                return;
-            }
 
-			if (_response != null)
+				if (menuResponse == Text.Cancel)
+				{
+					return;
+				}
+				else if (menuResponse == Text.PictureSourceFromCamera)
+				{
+					_response = await _mediaPicker.TakePhotoAsync(new CameraMediaStorageOptions());
+				}
+				else if (menuResponse == Text.PictureSourceFromGallery)
+				{
+					_response = await _mediaPicker.SelectPhotoAsync(new CameraMediaStorageOptions());
+				}
+				else
+				{
+					return;
+				}
+
+				if (_response != null)
+				{
+					HudService.Show();
+					_imageService.Compress(_response, 200, 200);
+					Image = _response.Path;
+					HudService.Hide();
+				}
+			}
+			catch (TaskCanceledException ex)
 			{
-				HudService.Show();
-				_imageService.Compress(_response, 200, 200);
-				Image = _response.Path;
-				HudService.Hide();
+				
 			}
         }
 

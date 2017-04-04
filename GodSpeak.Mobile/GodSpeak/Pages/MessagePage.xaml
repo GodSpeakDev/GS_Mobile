@@ -98,7 +98,7 @@
 										Grid.Row="1"
 										Grid.Column="0"
 										Source="message_arrow.png"
-										Margin="20,-2,0,0"
+										Margin="{StaticResource MessageArrowMargin}"
 										HorizontalOptions="Start"
 									/>
 									<views:CustomLabel 	
@@ -117,7 +117,7 @@
 					</ListView.ItemTemplate>
 					<ListView.GroupHeaderTemplate>
 						<DataTemplate>
-							<ViewCell Height="25">
+							<ViewCell Height="{StaticResource MessageHeaderSize}">
 			            		<views:CustomLabel									
 									Margin="10,10,10,0"
 									HorizontalOptions="FillAndExpand" 

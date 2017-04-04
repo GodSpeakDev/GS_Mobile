@@ -203,6 +203,8 @@
     <Compile Include="Services\MailService.cs" />
     <Compile Include="MainApplication.cs" />
     <Compile Include="Services\ImageService.cs" />
+    <Compile Include="Renderers\MessageBalloonRenderer.cs" />
+    <Compile Include="Renderers\ImageContainerRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -318,6 +320,18 @@
     <AndroidResource Include="Resources\drawable-xhdpi\bundle_icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\bundle_icon.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\bundle_icon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\message_arrow.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\message_arrow.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\message_arrow.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\message_arrow.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\bug_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\bug_icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\bug_icon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\bug_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\gift_box.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\gift_box.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\gift_box.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\gift_box.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="MvvmCross\" />

@@ -1,15 +1,15 @@
 ﻿using System;
+using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using GodSpeak;
-using Xamarin.Forms;
 using GodSpeak.Droid;
 using Android.Graphics.Drawables;
 using Android.Graphics;
 
-[assembly: ExportRendererAttribute(typeof(CustomImage), typeof(CustomImageRenderer))]
+[assembly: ExportRendererAttribute(typeof(ImageContainer), typeof(ImageContainerRenderer))]
 namespace GodSpeak.Droid
 {
-	public class CustomImageRenderer : ImageRenderer
+	public class ImageContainerRenderer : ViewRenderer
 	{
 		private GradientDrawable _drawable;
 		private GradientDrawable Drawable
@@ -19,21 +19,17 @@ namespace GodSpeak.Droid
 				if (_drawable == null)
 				{
 					_drawable = new GradientDrawable();
-					this.Control.SetBackground(_drawable);
+					this.SetBackground(_drawable);
 				}
 
 				return _drawable;
 			}
 		}
 
-		public CustomImage CustomImage
-		{
-			get { return Element as CustomImage; }
-		}
-
-		protected override void OnElementChanged(ElementChangedEventArgs<Image> e)
+		protected override void OnElementChanged(ElementChangedEventArgs<View> e)
 		{
 			base.OnElementChanged(e);
+			SetBorderFrame();
 			SetBorderColor();
 		}
 
@@ -44,12 +40,13 @@ namespace GodSpeak.Droid
 		}
 
 		private void SetBorderColor()
-		{
-			var customImage = this.Element as CustomImage;
-			if (this.Control != null && customImage != null)
-			{
-				Drawable.SetStroke(2, this.CustomImage.BorderColor.ToAndroid());
-			}
+		{			
+			Drawable.SetStroke(2, ColorHelper.OutlinePlaceHolder.ToAndroid());		
+		}
+
+		private void SetBorderFrame()
+		{			
+			Drawable.SetCornerRadius(15);		
 		}
 	}
 }

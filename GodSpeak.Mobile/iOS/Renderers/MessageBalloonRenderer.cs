@@ -51,7 +51,7 @@ namespace GodSpeak.iOS
 			if (Element == null)
 				return;
 
-			var colors = new Xamarin.Forms.Color[] {Xamarin.Forms.Color.FromRgb(1, 165, 255), Xamarin.Forms.Color.FromRgb(0, 145, 255)};
+			var colors = new Xamarin.Forms.Color[] { Xamarin.Forms.Color.FromRgb(1, 165, 255), Xamarin.Forms.Color.FromRgb(0, 145, 255) };
 			GradientLayer.Colors = colors.Select(s => s.ToCGColor()).ToArray();
 		}
 
