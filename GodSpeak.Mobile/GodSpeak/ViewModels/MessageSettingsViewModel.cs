@@ -152,7 +152,10 @@ namespace GodSpeak
 
         private void DoPlusButtonCommand ()
         {
-            NumberOfMessages += 1;
+			if (NumberOfMessages < 12)
+			{
+				NumberOfMessages += 1;
+			}
         }
 
         private void DoMinusButtonCommand ()
