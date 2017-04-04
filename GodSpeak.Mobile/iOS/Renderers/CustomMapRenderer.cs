@@ -66,7 +66,7 @@ namespace GodSpeak.iOS
 			{
 				var image = UIImage.FromBundle("oval.png");
 
-				var size = new CoreGraphics.CGSize(20, 20);
+				var size = new CoreGraphics.CGSize(10, 10);
 
 				UIGraphics.BeginImageContext(size);
 				image.Draw(new CoreGraphics.CGRect(0, 0, size.Width, size.Height));
