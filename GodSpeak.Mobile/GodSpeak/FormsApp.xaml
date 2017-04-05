@@ -307,7 +307,7 @@
 				<Setter Property="BackgroundColor" Value="{StaticResource secondaryColor}" />				
 				<Setter Property="PlaceholderColor" Value="{StaticResource textInputFocusPlaceholder}" />				
 				<Setter Property="FontWeight" Value="Bold" />
-				<Setter Property="FontSize" Value="24" />
+				<Setter Property="FontSize" Value="{StaticResource OnboardingEntryFontSize}" />
 				<Setter Property="HasAutoComplete" Value="false" />
 			</Style>
 
