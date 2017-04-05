@@ -12,13 +12,13 @@ namespace GodSpeak.Droid
 {
 	public class MailService : IMailService
 	{
-		public void SendMail(string to, string[] cc = null, string[] bcc = null, string subject = null, string body = "")
+		public void SendMail(string[] to, string[] cc = null, string[] bcc = null, string subject = null, string body = "")
 		{			
 			Intent emailIntent = new Intent(Intent.ActionSend);
 			emailIntent.SetType("application/image");
 			emailIntent.PutExtra(Intent.ExtraSubject, subject);
 			emailIntent.PutExtra(Intent.ExtraText, body);
-			emailIntent.PutExtra(Intent.ExtraEmail, new string[] { to });
+			emailIntent.PutExtra(Intent.ExtraEmail, to);
 			emailIntent.PutExtra(Intent.ExtraCc, cc);
 			emailIntent.PutExtra(Intent.ExtraBcc, bcc);
 

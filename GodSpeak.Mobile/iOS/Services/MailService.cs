@@ -8,7 +8,7 @@ namespace GodSpeak.iOS
 {
 	public class MailService : IMailService
 	{
-		public void SendMail(string to, string[] cc = null, string[] bcc = null, string subject = null, string body = "")
+		public void SendMail(string[] to, string[] cc = null, string[] bcc = null, string subject = null, string body = "")
 		{
 			if (MFMailComposeViewController.CanSendMail)
 			{
@@ -20,7 +20,7 @@ namespace GodSpeak.iOS
 				};
 
 				mailController.SetSubject(subject);
-				mailController.SetToRecipients(new string[] { to });
+				mailController.SetToRecipients(to);
 				mailController.SetCcRecipients(cc);
 				mailController.SetBccRecipients(bcc);
 				mailController.SetMessageBody(body, false);

@@ -113,7 +113,7 @@ namespace GodSpeak
 				var selectedContacsMail = _deviceContacts.Where(x => x.IsEnabled).Select(x => x.Item.EmailAddresses.First().Address);
 				//var selectedContacsMail = new string[] {"paulo.ortins@gmail.com"};
 				var body = string.Format(Text.ShareEmailBody, SessionService.GetUser().FirstName);
-				_mailService.SendMail(to: "pauloortinstesting@gmail.com", subject: Text.ShareEmailSubject, bcc: selectedContacsMail.ToArray(), body: body);
+				_mailService.SendMail(to: selectedContacsMail.ToArray(), subject: Text.ShareEmailSubject, body: body);
 			}	
 		}
 	}
