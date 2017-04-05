@@ -21,7 +21,7 @@ using HockeyApp.Android;
 
 namespace GodSpeak.Droid
 {
-    [Activity (Theme = "@style/AppTheme", Label = "MvxFormsApplicationActivity", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.ScreenSize)]
+    [Activity (Theme = "@style/AppTheme", Label = "MvxFormsApplicationActivity", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.ScreenSize, WindowSoftInputMode = SoftInput.AdjustPan)]
     public class MainActivity : FormsApplicationActivity
     {
 		public const int RequestReadContacts = 0;

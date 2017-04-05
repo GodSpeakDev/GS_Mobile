@@ -133,7 +133,7 @@ namespace GodSpeak
 		{
 			this.Animate("Hiding", new Animation((x) =>
 			{
-				PopupContent.TranslationY = -PopupContent.Height + x * PopupContent.Height;
+				AbsoluteLayout.SetLayoutBounds(PopupContent, new Rectangle(0, 1 + x, 1, AbsoluteLayout.AutoSize));
 				Overlay.Opacity = 0.55 - (0.55 * x);
 			}), finished: (rate, finished) =>
 			{
@@ -148,9 +148,12 @@ namespace GodSpeak
 		{
 			this.Animate("Showing", new Animation((x) =>
 			{
-				PopupContent.TranslationY = -x * PopupContent.Height;
+				AbsoluteLayout.SetLayoutBounds(PopupContent, new Rectangle(0, 2-x, 1, AbsoluteLayout.AutoSize));
 				Overlay.Opacity = x * 0.55;
-			}), finished: (arg1, arg2) => { _input.Focus();});
+			}), finished: (arg1, arg2) => 
+			{								
+				_input.Focus();
+			});
 
 			_result = new TaskCompletionSource<InputResult>();
 			return _result.Task;

@@ -42,7 +42,7 @@ namespace GodSpeak
 					Content = CreateContent(),
 					Colors = new Color[] {ColorHelper.BlueGradientEnd, ColorHelper.Primary}
 				};
-				Layout.Children.Add(PopupContent, new Rectangle(0, this.Height, this.Width, AbsoluteLayout.AutoSize), AbsoluteLayoutFlags.None);
+				Layout.Children.Add(PopupContent, new Rectangle(0, 2, this.Width, AbsoluteLayout.AutoSize), AbsoluteLayoutFlags.YProportional|AbsoluteLayoutFlags.WidthProportional);
 			}
 		}
 
@@ -50,7 +50,7 @@ namespace GodSpeak
 		{
 			this.Animate("Showing", new Animation((x) =>
 			{
-				PopupContent.TranslationY = -x * PopupContent.Height;
+				AbsoluteLayout.SetLayoutBounds(PopupContent, new Rectangle(0, 2 - x, 1, AbsoluteLayout.AutoSize));
 				Overlay.Opacity = x * 0.55;
 			}));
 		}
@@ -59,7 +59,7 @@ namespace GodSpeak
 		{
 			this.Animate("Hiding", new Animation((x) =>
 			{
-				PopupContent.TranslationY = -PopupContent.Height + x * PopupContent.Height;
+				AbsoluteLayout.SetLayoutBounds(PopupContent, new Rectangle(0, 1 + x, 1, AbsoluteLayout.AutoSize));
 				Overlay.Opacity = 0.55 - (0.55 * x);
 			}), finished: (rate, finished) =>
 			{
