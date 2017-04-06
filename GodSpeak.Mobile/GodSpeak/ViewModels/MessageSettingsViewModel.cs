@@ -15,6 +15,7 @@ namespace GodSpeak
     public class MessageSettingsViewModel : CustomViewModel
     {
 		private readonly IMvxMessenger _messenger;
+		private SettingsItem _everyDayItem;
 
         private MvxCommand _goSaveCommand;
         public MvxCommand GoSaveCommand {
@@ -34,10 +35,25 @@ namespace GodSpeak
                 setting.NumOfMessages = NumberOfMessages;
             }
 
-            var daySettings = Groups [0];
-            foreach (var setting in daySettings) {
-                User.MessageDayOfWeekSettings.First (s => s.Title == setting.Title).Enabled = setting.IsEnabled;
-            }
+			if (_everyDayItem.IsEnabled)
+			{
+				foreach (var item in User.MessageDayOfWeekSettings)
+				{
+					item.Enabled = true;
+				}
+			}
+			else
+			{
+				var daySettings = Groups[0];
+				foreach (var setting in daySettings)
+				{
+					var day = User.MessageDayOfWeekSettings.FirstOrDefault(s => s.Title == setting.Title);
+					if (day != null)
+					{
+						day.Enabled = setting.IsEnabled;
+					}
+				}
+			}
 
             var categorySettings = Groups [1];
             foreach (var setting in categorySettings) {
@@ -151,12 +167,51 @@ namespace GodSpeak
         private void LoadDaysOfWeek (User user)
         {
             var daysCollection = Groups [0];
-            foreach (var item in user.MessageDayOfWeekSettings)
-                daysCollection.Add (new SettingsItem () {
-                    Title = item.Title,
-                    IsEnabled = item.Enabled
-                });
+
+			_everyDayItem = new SettingsItem() 
+			{
+				Title = Text.Everyday,
+				IsEnabled = user.MessageDayOfWeekSettings.All(x => x.Enabled)
+			};
+			_everyDayItem.PropertyChanged += (sender, e) => 
+			{
+				if (e.PropertyName == nameof(_everyDayItem.IsEnabled))
+				{
+					RefreshDaysOfWeek(true);
+				}
+			};
+
+			daysCollection.Add(_everyDayItem);
+
+			RefreshDaysOfWeek();
         }
+
+		private void RefreshDaysOfWeek(bool force = false)
+		{
+			if (_everyDayItem.IsEnabled)
+			{
+				foreach (var item in Groups[0].ToList())
+				{
+					if (item != _everyDayItem)
+					{
+						Groups[0].Remove(item);
+						item.IsEnabled = true;
+					}
+				}
+			}
+			else
+			{
+				var daysCollection = Groups[0];
+				foreach (var item in User.MessageDayOfWeekSettings.OrderBy(x => (DayOfWeek)Enum.Parse(typeof(DayOfWeek), x.Title)))
+				{
+					daysCollection.Add(new SettingsItem()
+					{
+						Title = item.Title,
+						IsEnabled = force ? false : item.Enabled
+					});
+				}
+			}
+		}
 
         private void DoPlusButtonCommand ()
         {

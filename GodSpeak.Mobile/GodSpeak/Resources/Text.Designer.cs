@@ -844,5 +844,11 @@ namespace GodSpeak.Resources {
                 return ResourceManager.GetString("ShareWithNoBalance", resourceCulture);
             }
         }
+        
+        public static string Everyday {
+            get {
+                return ResourceManager.GetString("Everyday", resourceCulture);
+            }
+        }
     }
 }

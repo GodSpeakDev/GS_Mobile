@@ -714,4 +714,8 @@ Enjoy!
 			You don't have gifts to share. Why don't you buy some?
 		</value>
   	</data>
+	<data
+		name="Everyday" xml:space="preserve">
+    	<value>Everyday</value>
+  	</data>
 </root>
