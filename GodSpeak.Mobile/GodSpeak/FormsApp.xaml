@@ -25,6 +25,7 @@
 			<godspeak:MessageDetailStyleConverter x:Key="MessageDetailStyleConverter" />
 			<godspeak:SwitchStyleConverter x:Key="SwitchStyleConverter" />
 			<godspeak:TextTruncationConverter x:Key="TextTruncationConverter" />
+			<godspeak:VerseFormatter x:Key="VerseFormatterConverter" />
 			<godspeak:NotMinDateConverter x:Key="NotMinDateConverter" />
 			<godspeak:ImageLayoutOptionsConverter x:Key="ImageLayoutOptionsConverter" />
 			

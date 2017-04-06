@@ -90,7 +90,7 @@
 													HorizontalOptions="FillAndExpand"
 													VerticalOptions="StartAndExpand">
 													<views:CustomLabel 																				
-														Text="{Binding Verse.Text, Converter={StaticResource TextTruncationConverter}}}"
+														Text="{Binding Verse.Text, Converter={StaticResource VerseFormatterConverter}}}"
 														HorizontalOptions="FillAndExpand"
 														VerticalOptions="Start"
 														Style="{StaticResource TextMessageBody}"
@@ -128,7 +128,7 @@
 													HorizontalOptions="FillAndExpand"
 													VerticalOptions="StartAndExpand">
 													<views:CustomLabel 																				
-														Text="{Binding Verse.Text, Converter={StaticResource TextTruncationConverter}}}"
+														Text="{Binding Verse.Text, Converter={StaticResource VerseFormatterConverter}}}"
 														HorizontalOptions="FillAndExpand"
 														VerticalOptions="Start"
 														Style="{StaticResource TextMessageBody}"

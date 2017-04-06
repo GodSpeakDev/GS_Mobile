@@ -382,6 +382,7 @@
     <Compile Include="MvvmCross\Messages\MessageSettingsChangeMessage.cs" />
     <Compile Include="CustomComponents\ImageWithShadow.cs" />
     <Compile Include="Converters\ImageLayoutOptionsConverter.cs" />
+    <Compile Include="Converters\VerseFormatter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />
