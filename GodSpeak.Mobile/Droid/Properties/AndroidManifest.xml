@@ -9,7 +9,7 @@
 	<application
 		android:label="GodSpeak"
 		android:icon="@drawable/app_icon">
-		<meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyCZhml4MdJ17vtBFkTGtMaGX8esvSpIXI8" />
+		<meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyBzo7-QUVdoFfwKNSFV9hddsSjP20H7Jew" />
 	</application>
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
