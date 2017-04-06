@@ -421,7 +421,7 @@ If so, we’ll send you their gift!</value>
 	<data
 		name="MenuCitationText"
 		xml:space="preserve">
-    	<value>“So will my word be which goes forth from my mouth; it will not return to me empty, without accomplishing what I desire, and without succeeding in the matter for which I sent it”.</value>
+    	<value>“So will my word be which goes forth from my mouth; it will not return to me empty...”.</value>
   	</data>
 	<data
 		name="MenuCitationAuthor"

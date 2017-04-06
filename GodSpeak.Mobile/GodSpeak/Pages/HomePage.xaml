@@ -26,6 +26,7 @@
 				<views:CustomLabel 								
 					Text="{x:Static res:Text.MenuCitationText}"
 					Style="{StaticResource QuotaText}"
+					FontSize="20"
 				/>
 				<views:CustomLabel 	 								
 					HorizontalTextAlignment="End"
