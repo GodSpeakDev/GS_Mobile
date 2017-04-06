@@ -27,7 +27,7 @@ namespace GodSpeak
 			WebApiService = webApiService;
         }
 
-        protected void DoCloseCommand ()
+        protected virtual void DoCloseCommand ()
         {
             this.Close (this);
         }

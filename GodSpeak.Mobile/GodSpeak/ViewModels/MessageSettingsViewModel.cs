@@ -120,13 +120,21 @@ namespace GodSpeak
             HudService.Show (Text.RetrievingSettings);
             var response = await WebApiService.GetProfile (new TokenRequest () { Token = SessionService.GetUser ().Token });
 
-            User = response.Payload;
-            StartTime = User.MessageDayOfWeekSettings.First ().StartTime;
-            EndTime = User.MessageDayOfWeekSettings.First ().EndTime;
-            NumberOfMessages = User.MessageDayOfWeekSettings.First ().NumOfMessages;
-            LoadDaysOfWeek (User);
-            LoadCategories (User);
-            HudService.Hide ();
+			if (response.IsSuccess)
+			{
+				User = response.Payload;
+				StartTime = User.MessageDayOfWeekSettings.First().StartTime;
+				EndTime = User.MessageDayOfWeekSettings.First().EndTime;
+				NumberOfMessages = User.MessageDayOfWeekSettings.First().NumOfMessages;
+				LoadDaysOfWeek(User);
+				LoadCategories(User);
+				HudService.Hide();
+			}
+			else
+			{
+				HudService.Hide();
+				await HandleResponse(response);
+			}
         }
 
         private void LoadCategories (User user)
@@ -164,6 +172,18 @@ namespace GodSpeak
                 NumberOfMessages -= 1;
             }
         }
+
+		protected async override void DoCloseCommand()
+		{
+			if (Groups.All(group => group.Any(item => item.IsEnabled)))
+			{
+				base.DoCloseCommand();
+			}
+			else
+			{
+				await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.MessageSettingsNotSelected);
+			}
+		}
     }
 
     public class SettingsGroup : ObservableCollection<SettingsItem>

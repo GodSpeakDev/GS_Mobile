@@ -108,7 +108,7 @@ namespace GodSpeak
 
 		private void DoTapInviteCommand(AcceptedInvite userModel)
 		{
-			_mailService.SendMail(to: userModel.EmailAddress, subject: userModel.Subject, body: userModel.Message);
+			_mailService.SendMail(to: new string[] { userModel.EmailAddress }, subject: userModel.Subject, body: userModel.Message);
 		}
 	}
 }

@@ -687,4 +687,8 @@ Enjoy!
 		name="RetrievingMessages" xml:space="preserve">
     	<value>Retrieving Messages</value>
   	</data>
+	<data
+		name="MessageSettingsNotSelected" xml:space="preserve">
+    	<value>You should select at least one day and one category.</value>
+  	</data>
 </root>

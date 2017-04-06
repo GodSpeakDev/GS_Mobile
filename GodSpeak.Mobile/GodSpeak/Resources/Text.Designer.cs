@@ -826,5 +826,11 @@ namespace GodSpeak.Resources {
                 return ResourceManager.GetString("RetrievingMessages", resourceCulture);
             }
         }
+        
+        public static string MessageSettingsNotSelected {
+            get {
+                return ResourceManager.GetString("MessageSettingsNotSelected", resourceCulture);
+            }
+        }
     }
 }
