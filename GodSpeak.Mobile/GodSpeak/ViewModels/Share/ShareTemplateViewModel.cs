@@ -42,19 +42,8 @@ namespace GodSpeak
         }
 
         private async void DoShareWithFriendsCommand ()
-        {
-            var action = await this.DialogService.ShowMenu (
-                Text.ShareWithFriendsTitle,
-                Text.ShareWithFriendsDescription,
-                Text.Individually,
-                Text.ViaEmail,
-                Text.AnonymousNevermind);
-
-            if (action == Text.Individually) {
-                _shareService.Share ("Share Code Text");
-            } else if (action == Text.ViaEmail) {
-                this.ShowViewModel<SelectWhoToSendMailViewModel> ();
-            }
+        {            
+        	_shareService.Share ("Share Code Text");         
         }
 
         public async Task UpdateGiftsLeftTitle ()
