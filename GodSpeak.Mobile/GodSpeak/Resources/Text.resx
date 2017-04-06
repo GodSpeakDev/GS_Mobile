@@ -27,7 +27,7 @@
 	<data
 		name="ClaimInviteCodeText"
 		xml:space="preserve">
-    	<value>God Speak is a gift, freely given and paid forward, and not self-purchased. If you have received God Speak, it's because someone you know was paiyng their gift forward and they thought about you.
+    	<value>GodSpeak is a gift, freely given and paid forward, and not self-purchased. If you have received GodSpeak, it's because someone you know was paying their gift forward and they thought about you.
 		</value>
   	</data>
 	<data
@@ -676,15 +676,18 @@ Enjoy!
 		</value>
   	</data>
 	<data
-		name="SortByName" xml:space="preserve">
+		name="SortByName"
+		xml:space="preserve">
     	<value>Sort by Name</value>
   	</data>
 	<data
-		name="SortByGiftsGiven" xml:space="preserve">
+		name="SortByGiftsGiven"
+		xml:space="preserve">
     	<value>Sort By Gifts Given</value>
   	</data>
 	<data
-		name="RetrievingMessages" xml:space="preserve">
+		name="RetrievingMessages"
+		xml:space="preserve">
     	<value>Retrieving Messages</value>
   	</data>
 </root>
