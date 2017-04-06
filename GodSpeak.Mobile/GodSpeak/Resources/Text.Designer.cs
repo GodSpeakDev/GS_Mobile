@@ -832,5 +832,17 @@ namespace GodSpeak.Resources {
                 return ResourceManager.GetString("MessageSettingsNotSelected", resourceCulture);
             }
         }
+        
+        public static string ShareText {
+            get {
+                return ResourceManager.GetString("ShareText", resourceCulture);
+            }
+        }
+        
+        public static string ShareWithNoBalance {
+            get {
+                return ResourceManager.GetString("ShareWithNoBalance", resourceCulture);
+            }
+        }
     }
 }

@@ -42,8 +42,16 @@ namespace GodSpeak
         }
 
         private async void DoShareWithFriendsCommand ()
-        {            
-        	_shareService.Share ("Share Code Text");         
+        {
+			var currentUser = SessionService.GetUser();
+			if (currentUser.InviteBalance > 0)
+			{
+				_shareService.Share(string.Format(Text.ShareText, currentUser.InviteCode, currentUser.FirstName));
+			}
+			else
+			{
+				await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.ShareWithNoBalance);
+			}
         }
 
         public async Task UpdateGiftsLeftTitle ()
