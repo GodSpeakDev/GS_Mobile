@@ -726,4 +726,8 @@ Enjoy!
 		name="DontWantToPayItForward" xml:space="preserve">
     	<value>I don't want</value>
   	</data>	
+	<data
+		name="TapToPayItForward" xml:space="preserve">
+    	<value>Tap to Pay it Forward</value>
+  	</data>
 </root>

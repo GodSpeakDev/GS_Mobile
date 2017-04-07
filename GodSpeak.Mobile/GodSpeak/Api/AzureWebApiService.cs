@@ -270,7 +270,7 @@ namespace GodSpeak.Api
 			}
 
 			var acceptedInviteResponse = parsedResponse as ApiResponse<List<AcceptedInvite>>;
-			if (acceptedInviteResponse != null)
+			if (acceptedInviteResponse != null && acceptedInviteResponse.Payload != null)
 			{
 				foreach (var item in acceptedInviteResponse.Payload)
 				{

@@ -23,18 +23,42 @@ namespace GodSpeak
 			}
 		}
 
-		public ImageButton()
-		{
-		}
-
 		private static void OnCommandChanged(BindableObject bindable, ICommand oldvalue, ICommand newValue)
 		{
 			var entry = (ImageButton)bindable;
 			entry.Command = newValue;
 		}
 
+		public static readonly BindableProperty PreCommandProperty =
+			BindableProperty.Create<ImageButton, ICommand>(
+				p => p.PreCommand, null, BindingMode.TwoWay, propertyChanged: OnPreCommandChanged);
+
+		public ICommand PreCommand
+		{
+			get { return (ICommand)this.GetValue(PreCommandProperty); }
+			set
+			{
+				this.SetValue(PreCommandProperty, value);
+			}
+		}
+
+		private static void OnPreCommandChanged(BindableObject bindable, ICommand oldvalue, ICommand newValue)
+		{
+			var entry = (ImageButton)bindable;
+			entry.PreCommand = newValue;
+		}
+
+		public ImageButton()
+		{
+		}
+
 		private void AnimateView(View view, ICommand command, object commandParameter)
 		{
+			if (PreCommand != null)
+			{
+				PreCommand.Execute(null);
+			}
+
 			var reduceOpacityAnimation = new Animation((x) =>
 			{
 				view.Opacity = 1 - x * .5;

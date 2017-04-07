@@ -211,8 +211,8 @@ namespace GodSpeak
 				this.ShowViewModel<ShareViewModel>(new {comesFromRegisterFlow=true});
 			}
 			else
-			{
-				this.ShowViewModel<HomeViewModel>();		
+			{				
+				this.ShowViewModel<HomeViewModel>(new {comesFromRegisterFlow=true});		
 			}
 		}
 

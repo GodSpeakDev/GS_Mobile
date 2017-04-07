@@ -22,9 +22,6 @@ namespace GodSpeak
             }
         }
 
-
-
-
         private MvxCommand _goLogoutCommand;
         public MvxCommand LogoutCommand {
             get {
@@ -35,8 +32,6 @@ namespace GodSpeak
 
         public virtual async void DoGoLogoutCommand ()
         {
-
-
             hudService.Show ();
             await webService.Logout (new LogoutRequest () { Token = sessionService.GetUser ().Token });
             hudService.Hide ();
@@ -48,7 +43,6 @@ namespace GodSpeak
                         {"NavigationMode", "RestoreNavigation"}
             }));
         }
-
 
         private MvxCommand _messageSettingsCommand;
         public MvxCommand MessageSettingsCommand {

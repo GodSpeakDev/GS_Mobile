@@ -38,6 +38,7 @@ namespace GodSpeak.Droid
 			SetBorderFrame();
 			SetBackgroundColor();
 			SetBorderColor();
+			SetTextAlignment();
 		}
 
 		protected override void OnElementPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -46,6 +47,7 @@ namespace GodSpeak.Droid
 
 			SetBackgroundColor();
 			SetBorderColor();
+            SetTextAlignment();
 
 			if (e.PropertyName == "BackgroundColor")
 			{
@@ -73,6 +75,22 @@ namespace GodSpeak.Droid
 			if (this.Control != null)
 			{
 				Drawable.SetCornerRadius(15);
+			}
+		}
+
+		private void SetTextAlignment()
+		{
+			if (CustomButton.TextAlignment == Xamarin.Forms.TextAlignment.Start)
+			{
+				this.Control.Gravity = Android.Views.GravityFlags.Left | Android.Views.GravityFlags.CenterVertical;
+			}
+			else if (CustomButton.TextAlignment == Xamarin.Forms.TextAlignment.Center)
+			{
+                this.Control.Gravity = Android.Views.GravityFlags.CenterHorizontal | Android.Views.GravityFlags.CenterVertical;
+			}
+			else if (CustomButton.TextAlignment == Xamarin.Forms.TextAlignment.End)
+			{
+                this.Control.Gravity = Android.Views.GravityFlags.Right | Android.Views.GravityFlags.CenterVertical;
 			}
 		}
 	}

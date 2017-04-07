@@ -16,13 +16,28 @@ namespace GodSpeak
         private IReminderService _reminderService;
         private IMvxMessenger _messenger;
         private MvxSubscriptionToken _token;
-        private bool _isAlreadyStarted = false;
+        private bool _isAlreadyStarted = true;
 
         private ObservableCollection<GroupedCollection<Message, DateTime>> _messages;
-        public ObservableCollection<GroupedCollection<Message, DateTime>> Messages {
-            get { return _messages; }
-            set { SetProperty (ref _messages, value); }
-        }
+        public ObservableCollection<GroupedCollection<Message, DateTime>> Messages
+		{
+			get { return _messages; }
+			set { SetProperty(ref _messages, value); }
+		}
+
+		private bool _shouldShowOverlay;
+		public bool ShouldShowOverlay
+		{
+			get { return _shouldShowOverlay;}
+			set { SetProperty(ref _shouldShowOverlay, value);}
+		}
+
+		private bool _shouldShowTip;
+		public bool ShouldShowTip
+		{
+			get { return _shouldShowTip; }
+			set { SetProperty(ref _shouldShowTip, value); }
+		}
 
         private ObservableCollection<ImpactDay> _shownImpactDays;
         public ObservableCollection<ImpactDay> ShownImpactDays {
@@ -63,11 +78,31 @@ namespace GodSpeak
         }
 
         private MvxCommand _openDrawerMenuCommand;
-        public MvxCommand OpenDrawerMenuCommand {
-            get {
+        public MvxCommand OpenDrawerMenuCommand 
+		{
+            get 
+			{
                 return _openDrawerMenuCommand ?? (_openDrawerMenuCommand = new MvxCommand (DoOpenDrawerMenuCommand));
             }
         }
+
+		private MvxCommand _hideOverlayCommand;
+		public MvxCommand HideOverlayCommand
+		{
+			get 
+			{
+				return _hideOverlayCommand ?? (_hideOverlayCommand = new MvxCommand(DoHideOverlayCommand));
+			}
+		}
+
+		private MvxCommand _hideTipCommand;
+		public MvxCommand HideTipCommand
+		{
+			get
+			{
+				return _hideTipCommand ?? (_hideTipCommand = new MvxCommand(DoHideTipCommand));
+			}
+		}
 
         public MessageViewModel (
             IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService,
@@ -79,8 +114,11 @@ namespace GodSpeak
             Messages = new ObservableCollection<GroupedCollection<Message, DateTime>> ();
         }
 
-        public async void Init ()
+        public async void Init (bool comesFromRegisterFlow = false)
         {
+			ShouldShowOverlay = comesFromRegisterFlow;
+			ShouldShowTip = comesFromRegisterFlow;
+
             await LoadMessages ();
 
             _token = _messenger.SubscribeOnMainThread<MessageSettingsChangeMessage> (async (obj) => {
@@ -147,13 +185,25 @@ namespace GodSpeak
         }
 
         private void DoGoToShareCommand ()
-        {
+        {			
             this.ShowViewModel<ShareViewModel> ();
+			ShouldShowOverlay = false;
         }
 
         private void DoOpenDrawerMenuCommand ()
         {
             this.ChangePresentation (new OpenMenuPresentationHint ());
         }
+
+		private void DoHideOverlayCommand()
+		{
+			ShouldShowTip = false;
+			ShouldShowOverlay = false;
+		}
+
+		private void DoHideTipCommand()
+		{
+			ShouldShowTip = false;
+		}
     }
 }

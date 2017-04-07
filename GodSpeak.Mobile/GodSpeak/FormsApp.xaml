@@ -51,7 +51,9 @@
 			<OnPlatform x:TypeArguments="x:Double" x:Key="BackButtonWidth" Android="20" iOS="12" WinPhone="20" />
 			<OnPlatform x:TypeArguments="x:Double" x:Key="BackButtonHeight" Android="20" iOS="21" WinPhone="20" />
 			<OnPlatform x:TypeArguments="Rectangle" x:Key="FabButtonBounds" Android="1,1.05,100,100" iOS="1,1,90,90" WinPhone="1,1.05,100,100" />
-
+			<OnPlatform x:TypeArguments="Rectangle" x:Key="PayItForwardButtonBounds" Android="0.8,217,220,40" iOS="0.8,218,240,34" WinPhone="1,1.05,100,100" />
+			<OnPlatform x:TypeArguments="x:Double" x:Key="TapToPayForwardFontSize" Android="12" iOS="15" WinPhone="13" />
+			
 			<OnPlatform x:TypeArguments="x:String" x:Key="ShareButtonImage" Android="" iOS="gift_box.png" WinPhone="" />
 			<OnPlatform x:TypeArguments="x:Double" x:Key="ShareButtonSize" Android="0" iOS="30" WinPhone="30" />
 			<OnPlatform x:TypeArguments="LayoutOptions" x:Key="ShareButtonAlignment" Android="CenterAndExpand" iOS="StartAndExpand" WinPhone="StartAndExpand" />
@@ -74,6 +76,7 @@
 			<Color x:Key="textInputDisabled">#d9dadb</Color>	
 			<Color x:Key="disableTab">#474843</Color>	
 			<Color x:Key="textInputFocusEnteredText">#303132</Color>	
+			<Color x:Key="payForwardOverlay">#99000000</Color>
 
 			<!-- Label Styles -->
 			<Style x:Key="AlertSheetTitle" TargetType="Label">
@@ -300,6 +303,10 @@
 
 			<Style x:Key="ShareButtonBlue" TargetType="Button" BasedOn="{StaticResource ButtonBlue}">
 				<Setter Property="FontSize" Value="{StaticResource ShareButtonFontSize}" />		
+			</Style>
+
+			<Style x:Key="TapToPayForwardButton" TargetType="Button" BasedOn="{StaticResource ButtonBlue}">
+				<Setter Property="FontSize" Value="{StaticResource TapToPayForwardFontSize}" />		
 			</Style>
 
 			<!-- Entry Styles -->	

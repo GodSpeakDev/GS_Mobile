@@ -4,6 +4,7 @@
 		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 		xmlns:pages="clr-namespace:GodSpeak;assembly=GodSpeak"
 		xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
+		xmlns:res="clr-namespace:GodSpeak.Resources;assembly=GodSpeak"
 		Title="Messages"
 		x:Class="GodSpeak.MessagePage">			
 	<ContentPage.Content>	
@@ -210,6 +211,39 @@
 					Command="{Binding GoToImpactCommand}"
 					Source="impactWithNotification.png" />				
 			</views:HeaderOverlay>
+			<BoxView
+				AbsoluteLayout.LayoutFlags="All"
+				AbsoluteLayout.LayoutBounds="0,0,1,1"
+				IsVisible="{Binding ShouldShowOverlay}"
+				Color="{StaticResource payForwardOverlay}">
+				<BoxView.GestureRecognizers>
+			    	<TapGestureRecognizer Command="{Binding HideOverlayCommand}" />
+			    </BoxView.GestureRecognizers>				
+			</BoxView>
+			<AbsoluteLayout 
+				HorizontalOptions="FillAndExpand"
+				HeightRequest="280"
+				IsVisible="{Binding ShouldShowOverlay}"
+				AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"
+				AbsoluteLayout.LayoutBounds="0,0,1,AutoSize">	
+					<AbsoluteLayout.GestureRecognizers>
+				    	<TapGestureRecognizer Command="{Binding HideOverlayCommand}" />
+				    </AbsoluteLayout.GestureRecognizers>	
+					<views:CustomButton				
+						AbsoluteLayout.LayoutFlags="XProportional"
+						AbsoluteLayout.LayoutBounds="{StaticResource PayItForwardButtonBounds}"
+						Style="{StaticResource TapToPayForwardButton}"
+						Text="{x:Static res:Text.TapToPayItForward}"
+						TextAlignment="Start"
+						IsVisible="{Binding ShouldShowTip}"
+					/>
+					<views:ImageButton 
+						AbsoluteLayout.LayoutFlags="XProportional,YProportional"
+						AbsoluteLayout.LayoutBounds="{StaticResource FabButtonBounds}"			
+						Source="invitesFAB.png"	
+						PreCommand="{Binding HideTipCommand}"
+						Command="{Binding GoToShareCommand}" />				
+			</AbsoluteLayout>
 		</AbsoluteLayout>
 	</ContentPage.Content>
 </ContentPage>
