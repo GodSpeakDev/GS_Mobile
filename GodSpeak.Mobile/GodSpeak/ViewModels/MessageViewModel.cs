@@ -16,7 +16,7 @@ namespace GodSpeak
         private IReminderService _reminderService;
         private IMvxMessenger _messenger;
         private MvxSubscriptionToken _token;
-        private bool _isAlreadyStarted = true;
+		private bool _isAlreadyStarted = false;
 
         private ObservableCollection<GroupedCollection<Message, DateTime>> _messages;
         public ObservableCollection<GroupedCollection<Message, DateTime>> Messages
@@ -135,23 +135,29 @@ namespace GodSpeak
             _isAlreadyStarted = true;
         }
 
+		private bool _isShowingHud = false;
         private async Task LoadMessages ()
         {
             var messages = new ApiResponse<List<Message>> ();
-            if (!_isAlreadyStarted) {
-                var shouldShowHud = true;
-                Task.Run (async () => {
-                    await Task.Delay (2000);
-                    if (shouldShowHud) {
-                        HudService.Show (Text.RetrievingMessages);
-                    }
+			if (!_isAlreadyStarted && Xamarin.Forms.Device.RuntimePlatform == "iOS") 
+			{				
+                Task.Run (async () => 
+				{
+                    await Task.Delay (1000);                    
+                    _isShowingHud = true;
+					HudService.Show (Text.RetrievingMessages);
                 });
 
                 messages = await WebApiService.GetMessages (new TokenRequest () {
                     Token = SessionService.GetUser ().Token
                 });
 
-                shouldShowHud = false;
+				while (!_isShowingHud)
+				{
+					
+				}
+
+				await Task.Delay(500);
                 HudService.Hide ();
             } else {
                 this.HudService.Show (Text.RetrievingMessages);
