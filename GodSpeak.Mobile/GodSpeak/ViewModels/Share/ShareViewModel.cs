@@ -83,11 +83,11 @@ namespace GodSpeak
             }
         }
 
-        public async void Init ()
+        public async void Init (bool comesFromRegisterFlow)
         {
             this.HudService.Show ();
-            await UnclaimedGiftViewModel.Init ();
-            await ClaimedGiftViewModel.Init ();
+            await UnclaimedGiftViewModel.Init (comesFromRegisterFlow);
+            await ClaimedGiftViewModel.Init (comesFromRegisterFlow);
             this.HudService.Hide ();
         }
 

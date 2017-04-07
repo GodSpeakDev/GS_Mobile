@@ -13,6 +13,7 @@ namespace GodSpeak
         private IShareService _shareService;
         private ShareTemplateViewModel _shareTemplateViewModel;
         private DidYouKnowTemplateViewModel _didYouKnowTemplateViewModel;
+		private bool _comesFromRegisterFlow;
 
         private ObservableCollection<CustomViewModel> _pages;
         public ObservableCollection<CustomViewModel> Pages {
@@ -50,8 +51,21 @@ namespace GodSpeak
             _shareService = shareService;
         }
 
-        public async Task Init ()
+		protected override void DoCloseCommand()
+		{
+			if (_comesFromRegisterFlow)
+			{
+				this.ShowViewModel<HomeViewModel>();
+			}
+			else
+			{
+				base.DoCloseCommand();
+			}
+		}
+
+        public async Task Init (bool comesFromRegisterFlow)
         {
+			_comesFromRegisterFlow = comesFromRegisterFlow;
             _shareTemplateViewModel = new ShareTemplateViewModel (DialogService, HudService, SessionService, WebApiService, _shareService);
 
             _didYouKnowTemplateViewModel = new DidYouKnowTemplateViewModel (DialogService, HudService, SessionService, WebApiService);

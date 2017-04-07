@@ -309,7 +309,7 @@
 	<data
 		name="SuccessGiftCodeText"
 		xml:space="preserve">
-    	<value>You made the first step in inviting God to speak into your crazy, busy day. The Word of God works and never fails! Now, purchase multiple GodSpeak gifts to send to your friends, family and God-given circle of influence!</value>
+		<value>You made the first step in inviting God to speak into your crazy, busy day. The Word of God works and never fails! Now, purchase multiple GodSpeak gifts to send to your friends, family and God-given circle of influence!</value>    	
   	</data>
 	<data
 		name="AnonymousTitle"
@@ -361,7 +361,7 @@ If so, we’ll send you their gift!</value>
 	<data
 		name="SuccessfulRegisterPopupText"
 		xml:space="preserve">
-    	<value>We are now going to take you to the messages screen.</value>
+    	<value>Would you like to give this great gift to someone else?</value>
   	</data>
 	<data
 		name="SuccessfulRegisterButtonText"
@@ -718,4 +718,12 @@ Enjoy!
 		name="Everyday" xml:space="preserve">
     	<value>Everyday</value>
   	</data>
+	<data
+		name="PayItForward" xml:space="preserve">
+    	<value>Pay it Forward</value>
+  	</data>
+	<data
+		name="DontWantToPayItForward" xml:space="preserve">
+    	<value>I don't want</value>
+  	</data>	
 </root>

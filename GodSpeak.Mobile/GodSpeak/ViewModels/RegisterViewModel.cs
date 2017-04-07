@@ -171,7 +171,8 @@ namespace GodSpeak
             HudService.Show ();
             var response = await WebApiService.RegisterUser (request);
 
-            if (response.IsSuccess) {
+            if (response.IsSuccess) 
+			{
                 if (Image != null && Image != "profile_placeholder.png") {
                     var photoResponse = await WebApiService.UploadPhoto (new UploadPhotoRequest () {
                         Token = response.Payload.Token,
@@ -179,25 +180,41 @@ namespace GodSpeak
                     });
                     HudService.Hide ();
 
-                    if (photoResponse.IsSuccess) {
-                        await DialogService.ShowAlert (Text.SuccessfulRegisterPopupTitle, Text.SuccessGiftCodeText, Text.SuccessfulRegisterButtonText);
-                        await SessionService.SaveUser (response.Payload);
-                        this.ShowViewModel<HomeViewModel> ();
-                    } else {
+                    if (photoResponse.IsSuccess) 
+					{
+                    	await SuccessfullRegister(response.Payload);    
+                    } 
+					else 
+					{
                         await HandleResponse (photoResponse);
                     }
-                } else {
+                } 
+				else 
+				{
                     HudService.Hide ();
-
-                    await DialogService.ShowAlert (Text.SuccessfulRegisterPopupTitle, Text.SuccessGiftCodeText, Text.SuccessfulRegisterButtonText);
-                    await SessionService.SaveUser (response.Payload);
-                    this.ShowViewModel<HomeViewModel> ();
+					await SuccessfullRegister(response.Payload);
                 }
-            } else {
+            } 
+			else 
+			{
                 HudService.Hide ();
                 await HandleResponse (response);
             }
         }
+
+		private async Task SuccessfullRegister(User user)
+		{
+			await SessionService.SaveUser(user);
+			var result = await DialogService.ShowMenu(Text.SuccessfulRegisterPopupTitle, Text.SuccessfulRegisterPopupText, Text.PayItForward, Text.DontWantToPayItForward);
+			if (result == Text.PayItForward)
+			{
+				this.ShowViewModel<ShareViewModel>(new {comesFromRegisterFlow=true});
+			}
+			else
+			{
+				this.ShowViewModel<HomeViewModel>();		
+			}
+		}
 
         private async void DoChoosePictureCommand ()
         {

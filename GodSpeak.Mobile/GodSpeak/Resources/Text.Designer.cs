@@ -850,5 +850,17 @@ namespace GodSpeak.Resources {
                 return ResourceManager.GetString("Everyday", resourceCulture);
             }
         }
+        
+        public static string PayItForward {
+            get {
+                return ResourceManager.GetString("PayItForward", resourceCulture);
+            }
+        }
+        
+        public static string DontWantToPayItForward {
+            get {
+                return ResourceManager.GetString("DontWantToPayItForward", resourceCulture);
+            }
+        }
     }
 }

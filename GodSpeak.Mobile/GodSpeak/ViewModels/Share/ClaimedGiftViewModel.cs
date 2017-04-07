@@ -11,6 +11,7 @@ namespace GodSpeak
 {
     public class ClaimedGiftViewModel : CustomViewModel
     {
+		private bool _comesFromRegisterFlow;
         private IMailService _mailService;
 
         public ClaimedGiftViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, IMailService mailService) : base (dialogService, hudService, sessionService, webApiService)
@@ -59,8 +60,21 @@ namespace GodSpeak
             }
         }
 
-        public async Task Init ()
+		protected override void DoCloseCommand()
+		{
+			if (_comesFromRegisterFlow)
+			{
+				this.ShowViewModel<HomeViewModel>();
+			}
+			else
+			{
+				base.DoCloseCommand();
+			}
+		}
+
+        public async Task Init (bool comesFromRegisterFlow)
         {
+			_comesFromRegisterFlow = comesFromRegisterFlow;
             var response = await WebApiService.GetAcceptedInvites (new TokenRequest () { Token = SessionService.GetUser ().Token });
 
             if (response.IsSuccess) {
