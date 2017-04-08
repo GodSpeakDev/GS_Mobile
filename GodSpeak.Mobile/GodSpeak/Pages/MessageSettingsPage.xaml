@@ -46,7 +46,6 @@
 								/>
 								<views:PlusMinusButtonView
 									Orientation="Horizontal"
-									HeightRequest="30"
 									Spacing="0">
 									<views:PlusButton
 										HeightRequest="{StaticResource PlusButtonHeight}"
