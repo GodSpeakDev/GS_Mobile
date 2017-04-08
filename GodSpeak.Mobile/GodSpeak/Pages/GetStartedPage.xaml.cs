@@ -39,7 +39,7 @@ namespace GodSpeak
             PanoBackground.TranslationX = -1 * 70 * BackgroundRatio;
         }
 
-        private void TriggerAnimation (View viewToHide, View viewToShow)
+        private void TriggerAnimation (View viewToHide, View viewToShow, bool isGoingBack = false)
         {
             var boxBackgroundPosDict = new Dictionary<View, int> ();
             boxBackgroundPosDict [ClaimInviteCodeView] = 190;
@@ -57,7 +57,15 @@ namespace GodSpeak
                 viewToShow.Opacity = x;
             });
 
-            var panoAnimation = PanoLayout.GoForwardAnimation (boxBackgroundPosDict [viewToShow] * BackgroundRatio);
+			Animation panoAnimation = null;
+			if (isGoingBack)
+			{
+				panoAnimation = PanoLayout.GoForwardAnimation(-boxBackgroundPosDict[viewToHide] * BackgroundRatio);
+			}
+			else
+			{
+				panoAnimation = PanoLayout.GoForwardAnimation(boxBackgroundPosDict[viewToShow] * BackgroundRatio);
+			}
 
             var animation = new Animation ();
             animation.Add (0, 0.8, fadeOutAnimation);
@@ -69,6 +77,17 @@ namespace GodSpeak
 
 		protected override bool OnBackButtonPressed()
 		{
+			if (ClaimInviteCodeView.IsVisible)
+			{
+				TriggerAnimation(ClaimInviteCodeView, GetStartedView,true);
+				return true;
+			}
+			else if (GiftCodeSuccessView.IsVisible)
+			{
+                TriggerAnimation(GiftCodeSuccessView, ClaimInviteCodeView,true);
+				return true;
+			}
+			
 			return base.OnBackButtonPressed();
 		}
     }
