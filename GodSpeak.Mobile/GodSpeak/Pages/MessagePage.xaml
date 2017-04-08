@@ -11,7 +11,7 @@
 		<AbsoluteLayout
 			VerticalOptions="FillAndExpand"
 			HorizontalOptions="FillAndExpand">
-			<views:GrayGradientBackgroundView
+			<views:MessageGradientView
 				AbsoluteLayout.LayoutBounds="0,0,1,1" 
 				AbsoluteLayout.LayoutFlags="All">
 				<views:CustomListView			
@@ -176,7 +176,7 @@
 			            </DataTemplate>
 					</ListView.GroupHeaderTemplate>
 				</views:CustomListView>
-			</views:GrayGradientBackgroundView>
+			</views:MessageGradientView>
 			<views:HeaderOverlay
 				AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"
 				AbsoluteLayout.LayoutBounds="0,0,1,AutoSize"

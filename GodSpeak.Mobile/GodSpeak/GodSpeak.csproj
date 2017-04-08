@@ -383,6 +383,7 @@
     <Compile Include="CustomComponents\ImageWithShadow.cs" />
     <Compile Include="Converters\ImageLayoutOptionsConverter.cs" />
     <Compile Include="Converters\VerseFormatter.cs" />
+    <Compile Include="CustomComponents\MessageGradientView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />
