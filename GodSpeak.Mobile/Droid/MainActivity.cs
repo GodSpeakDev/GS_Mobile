@@ -53,11 +53,7 @@ namespace GodSpeak.Droid
 
 
             App.ScreenWidth = (int)(Resources.DisplayMetrics.WidthPixels / Resources.DisplayMetrics.Density);
-            App.ScreenHeight = (int)(Resources.DisplayMetrics.HeightPixels / Resources.DisplayMetrics.Density);
-            //App.HardwareBackPressed = () =>
-            //{
-            //	MoveTaskToBack(true);
-            //};
+            App.ScreenHeight = (int)(Resources.DisplayMetrics.HeightPixels / Resources.DisplayMetrics.Density);            
         }
 
         protected override void OnStart ()

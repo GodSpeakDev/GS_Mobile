@@ -38,7 +38,7 @@
 	            	<OnPlatform.WinPhone>0,0,0,0</OnPlatform.WinPhone>
             	</OnPlatform>	
 			</Thickness>
-			<OnPlatform x:TypeArguments="Thickness" x:Key="PaddingHeaderOnlyTop" Android="0,0,0,0" iOS="0,20,0,0" WinPhone="0,0,0,0" />
+			<OnPlatform x:TypeArguments="Thickness" x:Key="PaddingHeaderOnlyTop" Android="0,10,0,0" iOS="0,20,0,0" WinPhone="0,0,0,0" />
 			<OnPlatform x:TypeArguments="Thickness" x:Key="PaddingHeader" Android="10,0,10,0" iOS="10,20,10,0" WinPhone="0,0,0,0" />
 			<OnPlatform x:TypeArguments="Thickness" x:Key="PaddingBelowHeader" Android="0,60,0,0" iOS="0,80,0,0" WinPhone="0,60,0,0" />
 			<OnPlatform x:TypeArguments="x:Double" x:Key="HeightHeader" Android="60" iOS="50" WinPhone="60" />

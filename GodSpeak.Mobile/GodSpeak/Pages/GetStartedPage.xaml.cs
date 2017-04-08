@@ -66,5 +66,10 @@ namespace GodSpeak
 
             animation.Commit (this, "Toggling", length: 600, finished: (arg1, arg2) => { viewToHide.IsVisible = false; });
         }
+
+		protected override bool OnBackButtonPressed()
+		{
+			return base.OnBackButtonPressed();
+		}
     }
 }

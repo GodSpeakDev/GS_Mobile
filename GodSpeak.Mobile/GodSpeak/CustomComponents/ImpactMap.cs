@@ -79,6 +79,10 @@ namespace GodSpeak
 				var pin = _pins[point.MapPointId];
 				_pins.Remove(point.MapPointId);
 				Pins.Remove(pin);
+				if (OnRemovePin != null)
+				{
+					OnRemovePin(point.MapPointId);
+				}
 			}
 		}
 
@@ -98,6 +102,10 @@ namespace GodSpeak
 				{
 					_pins.Add(point.MapPointId, pin);
 					mapPoints.Add(pin);
+					if (OnAddPin != null)
+					{
+                        OnAddPin(point.MapPointId, pin);
+					}
 				}
 			}
 
