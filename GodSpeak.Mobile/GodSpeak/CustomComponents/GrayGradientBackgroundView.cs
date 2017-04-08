@@ -7,11 +7,23 @@ namespace GodSpeak
 	{
 		public GrayGradientBackgroundView()
 		{
-			Colors = new Color[] 
+			if (Device.RuntimePlatform == Device.iOS)
 			{
-				ColorHelper.IosDarkGrayGradient,
-				ColorHelper.IosLightGrayGradient,
-			};
+				Colors = new Color[]
+				{
+					ColorHelper.IosDarkGrayGradient,
+					ColorHelper.IosLightGrayGradient,
+				};
+			}
+			else
+			{
+				Colors = new Color[]
+				{
+					ColorHelper.DarkGray,
+					ColorHelper.LightGray,
+				};
+			}
+
 			BackgroundColor = Color.Transparent;
 		}
 	}
