@@ -394,6 +394,11 @@ If so, we’ll send you their gift!</value>
     	<value>I forgot my password</value>
   	</data>
 	<data
+		name="NeedToRegister"
+		xml:space="preserve">
+    	<value>I need to register</value>
+  	</data>
+	<data
 		name="RecoverPasswordTitle"
 		xml:space="preserve">
     	<value>Recover Password</value>

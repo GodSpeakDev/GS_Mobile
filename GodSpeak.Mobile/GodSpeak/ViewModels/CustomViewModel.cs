@@ -54,5 +54,14 @@ namespace GodSpeak
 				BackToLoginPage();
 			}            
         }
+
+		protected void ShowAndRestoreNavigation<T>() where T : IMvxViewModel
+		{
+            this.ShowViewModel<T>(presentationBundle:
+											   new MvxBundle(new Dictionary<string, string>()
+			{
+						{"NavigationMode", "RestoreNavigation"}
+			}));
+		}
     }
 }

@@ -491,6 +491,12 @@ namespace GodSpeak.Resources {
             }
         }
         
+        public static string NeedToRegister {
+            get {
+                return ResourceManager.GetString("NeedToRegister", resourceCulture);
+            }
+        }
+        
         public static string RecoverPasswordTitle {
             get {
                 return ResourceManager.GetString("RecoverPasswordTitle", resourceCulture);

@@ -20,25 +20,40 @@ namespace GodSpeak
         }
 
         private MvxCommand _loginCommand;
-        public MvxCommand LoginCommand {
-            get {
+        public MvxCommand LoginCommand 
+		{
+            get 
+			{
                 return _loginCommand ?? (_loginCommand = new MvxCommand (DoLoginCommand));
             }
         }
 
         private MvxCommand _registerCommand;
-        public MvxCommand RegisterCommand {
-            get {
+        public MvxCommand RegisterCommand 
+		{
+            get 
+			{
                 return _registerCommand ?? (_registerCommand = new MvxCommand (DoRegisterCommand));
             }
         }
 
         private MvxCommand _forgotPasswordCommand;
-        public MvxCommand ForgotPasswordCommand {
-            get {
+        public MvxCommand ForgotPasswordCommand 
+		{
+            get 
+			{
                 return _forgotPasswordCommand ?? (_forgotPasswordCommand = new MvxCommand (DoForgotPasswordCommand));
             }
         }
+
+		private MvxCommand _needRegisterCommand;
+		public MvxCommand NeedRegisterCommand
+		{
+			get
+			{
+				return _needRegisterCommand ?? (_needRegisterCommand = new MvxCommand(DoNeedRegisterCommand));
+			}
+		}
 
         public LoginViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService) : base (dialogService, hudService, sessionService, webApiService)
         {
@@ -101,5 +116,10 @@ namespace GodSpeak
                 }
             }
         }
+
+		private void DoNeedRegisterCommand()
+		{
+			CloseCommand.Execute();
+		}
     }
 }
