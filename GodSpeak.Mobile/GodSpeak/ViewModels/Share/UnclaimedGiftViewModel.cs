@@ -97,13 +97,17 @@ namespace GodSpeak
             var response = await WebApiService.PurchaseInvite (new PurchaseInviteRequest () {
                 Token = SessionService.GetUser ().Token,
                 Guid = bundle.InviteBundleId
-            });
-            this.HudService.Hide ();
+            });            
 
-            if (response.IsSuccess) {
+            if (response.IsSuccess) 
+			{
                 await _shareTemplateViewModel.UpdateGiftsLeftTitle ();
+                this.HudService.Hide ();
                 await this.DialogService.ShowAlert (response.Title, response.Message);
-            } else {
+            } 
+			else 
+			{
+                this.HudService.Hide ();
                 await HandleResponse (response);
             }
         }

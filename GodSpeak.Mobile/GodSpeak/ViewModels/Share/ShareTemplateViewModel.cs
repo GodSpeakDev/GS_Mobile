@@ -59,6 +59,7 @@ namespace GodSpeak
             var profileResponse = await WebApiService.GetProfile (new TokenRequest () { Token = SessionService.GetUser ().Token });
 			if (profileResponse.IsSuccess)
 			{
+				await SessionService.SaveUser(profileResponse.Payload);	
 				GiftsLeftTitle = string.Format(Text.ShareGiftsLeft, profileResponse.Payload.InviteBalance);
 			}
 			else
@@ -69,15 +70,26 @@ namespace GodSpeak
 
         private async void DoShareWithWorldCommand ()
         {
-            HudService.Show ();
-            var response = await WebApiService.DonateInvite (new TokenRequest () { Token = SessionService.GetUser ().Token });
-            HudService.Hide ();
+			var currentUser = SessionService.GetUser();
+			if (currentUser.InviteBalance > 0)
+			{
+				HudService.Show ();
+            	var response = await WebApiService.DonateInvite(new TokenRequest() { Token = SessionService.GetUser().Token });
+				HudService.Hide ();
 
-            if (response.IsSuccess) {
-                await DialogService.ShowAlert (response.Title, response.Message);
-            } else {
-                await HandleResponse (response);
-            }
+				if (response.IsSuccess) 
+				{
+			    	await DialogService.ShowAlert(response.Title, response.Message);
+				} 
+				else 
+				{
+			    	await HandleResponse(response);
+				}
+			}
+			else
+			{
+				await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.ShareWithNoBalance);
+			}
         }
     }
 }
