@@ -39,6 +39,14 @@ namespace GodSpeak
 			}
 		}
 
+		protected override void OnSizeAllocated(double width, double height)
+		{
+			if (Device.RuntimePlatform == Device.Android && height > 680)
+			{
+				this.LayoutChildren(0, 0, width + 1, height + 1);
+			}
+		}
+
 		private async Task ShowAlert(string title, string message, string cancel)
 		{			
 			await Task.Delay(1);

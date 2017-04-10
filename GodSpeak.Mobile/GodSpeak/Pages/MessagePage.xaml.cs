@@ -4,7 +4,7 @@ using Xamarin.Forms;
 
 namespace GodSpeak
 {
-    public partial class MessagePage : ContentPage
+    public partial class MessagePage : CustomContentPage
     {
         public MessagePage ()
         {

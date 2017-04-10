@@ -8,8 +8,7 @@
 	<views:CustomContentPage.Content>
 		<AbsoluteLayout
 			HorizontalOptions="FillAndExpand"
-			VerticalOptions="FillAndExpand"
-		>
+			VerticalOptions="FillAndExpand">
 			<views:PanoLayout
 				AbsoluteLayout.LayoutFlags="All"
 				AbsoluteLayout.LayoutBounds="0,0,1,1"

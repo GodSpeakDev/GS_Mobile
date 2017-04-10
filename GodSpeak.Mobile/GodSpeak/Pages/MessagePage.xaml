@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage 
+<views:CustomContentPage 
 		xmlns="http://xamarin.com/schemas/2014/forms" 
 		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 		xmlns:pages="clr-namespace:GodSpeak;assembly=GodSpeak"
@@ -7,7 +7,7 @@
 		xmlns:res="clr-namespace:GodSpeak.Resources;assembly=GodSpeak"
 		Title="Messages"
 		x:Class="GodSpeak.MessagePage">			
-	<ContentPage.Content>	
+	<views:CustomContentPage.Content>	
 		<AbsoluteLayout
 			VerticalOptions="FillAndExpand"
 			HorizontalOptions="FillAndExpand">
@@ -245,5 +245,5 @@
 						Command="{Binding GoToShareCommand}" />				
 			</AbsoluteLayout>
 		</AbsoluteLayout>
-	</ContentPage.Content>
-</ContentPage>
+	</views:CustomContentPage.Content>
+</views:CustomContentPage>
