@@ -29,5 +29,7 @@ namespace GodSpeak
         Task<ApiResponse<string>> GetDidYouKnow (TokenRequest request);
 
         Task<ApiResponse<User>> UploadPhoto (UploadPhotoRequest request);
+
+		Task<ApiResponse<string>> RecordMessageDelivered(RecordMessageDeliveredRequest request);
     }
 }

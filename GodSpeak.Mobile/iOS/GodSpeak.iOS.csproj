@@ -160,6 +160,12 @@
     <Reference Include="Xamarin.Forms.Maps.iOS">
       <HintPath>..\packages\Xamarin.Forms.Maps.2.3.4.224\lib\Xamarin.iOS10\Xamarin.Forms.Maps.iOS.dll</HintPath>
     </Reference>
+    <Reference Include="Cheesebaron.MvxPlugins.Settings">
+      <HintPath>..\packages\Cheesebaron.MvxPlugins.Settings.3.0.3\lib\Xamarin.iOS10\Cheesebaron.MvxPlugins.Settings.dll</HintPath>
+    </Reference>
+    <Reference Include="Cheesebaron.MvxPlugins.Settings.Touch">
+      <HintPath>..\packages\Cheesebaron.MvxPlugins.Settings.3.0.3\lib\Xamarin.iOS10\Cheesebaron.MvxPlugins.Settings.Touch.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GodSpeak\GodSpeak.csproj">
@@ -241,6 +247,7 @@
     <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
     <Compile Include="Renderers\ImageWithShadowRenderer.cs" />
     <Compile Include="Renderers\CustomButtonRenderer.cs" />
+    <Compile Include="Bootstrap\SettingsPluginBootstrap.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\profile_placeholder.png" />

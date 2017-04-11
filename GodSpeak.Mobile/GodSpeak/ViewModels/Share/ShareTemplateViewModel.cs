@@ -31,7 +31,7 @@ namespace GodSpeak
         }
 
 
-        public ShareTemplateViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, IShareService shareService) : base (dialogService, hudService, sessionService, webApiService)
+        public ShareTemplateViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, ISettingsService settingsService, IShareService shareService) : base (dialogService, hudService, sessionService, webApiService, settingsService)
         {
             _shareService = shareService;
         }

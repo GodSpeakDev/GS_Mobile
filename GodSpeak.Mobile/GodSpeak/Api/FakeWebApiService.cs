@@ -347,8 +347,16 @@ namespace GodSpeak
                     Payload = GetImpactedDays ()
                 }
             };
-
         }
+
+		public async Task<ApiResponse<string>> RecordMessageDelivered(RecordMessageDeliveredRequest request)
+		{
+			await Task.Delay(delay);
+			return new ApiResponse<string>()
+			{
+				StatusCode = System.Net.HttpStatusCode.OK
+			};
+		}
 
         public async Task<ApiResponse<User>> SaveProfile (User user)
         {

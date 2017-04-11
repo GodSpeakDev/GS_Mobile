@@ -34,7 +34,7 @@ namespace GodSpeak
             }
         }
 
-        public GetStartedViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService) : base (dialogService, hudService, sessionService, webApiService)
+        public GetStartedViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, ISettingsService settingsService) : base (dialogService, hudService, sessionService, webApiService, settingsService)
         {
         }
 

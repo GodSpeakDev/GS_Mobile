@@ -129,7 +129,7 @@ namespace GodSpeak
             }
         }
 
-        public RegisterViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, IMediaPicker mediaPicker, IImageService imageService) : base (dialogService, hudService, sessionService, webApiService)
+        public RegisterViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, ISettingsService settingsService, IMediaPicker mediaPicker, IImageService imageService) : base (dialogService, hudService, sessionService, webApiService, settingsService)
         {
             _mediaPicker = mediaPicker;
             _imageService = imageService;

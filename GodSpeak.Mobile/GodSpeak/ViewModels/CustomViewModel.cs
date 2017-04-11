@@ -13,18 +13,20 @@ namespace GodSpeak
 		public IProgressHudService HudService { get; private set; }
 		public ISessionService SessionService { get; private set; }
 		public IWebApiService WebApiService { get; private set; }
+		public ISettingsService SettingsService { get; private set; }
 
         private MvxCommand closeCommand;
         public MvxCommand CloseCommand {
             get { return closeCommand ?? (closeCommand = new MvxCommand (DoCloseCommand)); }
         }
 
-        public CustomViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService)
+        public CustomViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, ISettingsService settingsService)
         {
             DialogService = dialogService;
 			HudService = hudService;
 			SessionService = sessionService;
 			WebApiService = webApiService;
+			SettingsService = settingsService;
         }
 
         protected virtual void DoCloseCommand ()

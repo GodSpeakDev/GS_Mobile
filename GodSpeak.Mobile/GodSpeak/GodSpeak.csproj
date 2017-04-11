@@ -384,6 +384,9 @@
     <Compile Include="Converters\ImageLayoutOptionsConverter.cs" />
     <Compile Include="Converters\VerseFormatter.cs" />
     <Compile Include="CustomComponents\MessageGradientView.cs" />
+    <Compile Include="Api\Request\RecordMessageDeliveredRequest.cs" />
+    <Compile Include="Services\ISettingsService.cs" />
+    <Compile Include="Services\SettingsService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />
@@ -453,6 +456,9 @@
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\portable-net45+win8+wpa81+wp8\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Cheesebaron.MvxPlugins.Settings">
+      <HintPath>..\packages\Cheesebaron.MvxPlugins.Settings.3.0.3\lib\portable-net45+win+wpa81+wp80\Cheesebaron.MvxPlugins.Settings.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

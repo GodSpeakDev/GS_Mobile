@@ -55,7 +55,7 @@ namespace GodSpeak
 
 		private ObservableCollection<SelectableItem<Contact>> _deviceContacts;
 
-		public SelectWhoToSendMailViewModel(IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, IContactService contactService, IMailService mailService) : base(dialogService, hudService, sessionService, webApiService)
+		public SelectWhoToSendMailViewModel(IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, ISettingsService settingsService, IContactService contactService, IMailService mailService) : base(dialogService, hudService, sessionService, webApiService, settingsService)
 		{
 			_contactService = contactService;
 			_mailService = mailService;

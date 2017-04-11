@@ -63,7 +63,6 @@ namespace GodSpeak.Api
 
         public new async Task<ApiResponse<GetMessageResponse>> GetMessage (GetMessageRequest request)
         {
-
             var content = new GetMessageResponse () {
                 Payload = CachedMessages.First (x => x.Id == request.MessageId)
             };
@@ -73,6 +72,11 @@ namespace GodSpeak.Api
                 StatusCode = System.Net.HttpStatusCode.OK
             };
         }
+
+		public new async Task<ApiResponse<string>> RecordMessageDelivered(RecordMessageDeliveredRequest request)
+		{			
+			return await DoPost<string>(ImpactMessageUri, request);
+		}
 
         public new async Task<ApiResponse<List<Country>>> GetCountries ()
         {

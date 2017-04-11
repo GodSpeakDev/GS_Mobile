@@ -46,7 +46,7 @@ namespace GodSpeak
             }
         }
 
-        public UnclaimedGiftViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, IShareService shareService) : base (dialogService, hudService, sessionService, webApiService)
+        public UnclaimedGiftViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, ISettingsService settingsService, IShareService shareService) : base (dialogService, hudService, sessionService, webApiService, settingsService)
         {
             _shareService = shareService;
         }
@@ -66,9 +66,9 @@ namespace GodSpeak
         public async Task Init (bool comesFromRegisterFlow)
         {
 			_comesFromRegisterFlow = comesFromRegisterFlow;
-            _shareTemplateViewModel = new ShareTemplateViewModel (DialogService, HudService, SessionService, WebApiService, _shareService);
+            _shareTemplateViewModel = new ShareTemplateViewModel (DialogService, HudService, SessionService, WebApiService, SettingsService, _shareService);
 
-            _didYouKnowTemplateViewModel = new DidYouKnowTemplateViewModel (DialogService, HudService, SessionService, WebApiService);
+            _didYouKnowTemplateViewModel = new DidYouKnowTemplateViewModel (DialogService, HudService, SessionService, WebApiService, SettingsService);
 
             var pages = new List<CustomViewModel> ();
             pages.Add (_shareTemplateViewModel);

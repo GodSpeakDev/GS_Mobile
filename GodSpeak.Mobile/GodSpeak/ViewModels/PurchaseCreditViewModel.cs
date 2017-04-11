@@ -26,7 +26,7 @@ namespace GodSpeak
             }
         }
 
-        public PurchaseCreditViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService) : base (dialogService, hudService, sessionService, webApiService)
+        public PurchaseCreditViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, ISettingsService settingsService) : base (dialogService, hudService, sessionService, webApiService, settingsService)
         {            
         }
 

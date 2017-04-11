@@ -55,7 +55,7 @@ namespace GodSpeak
 			}
 		}
 
-        public LoginViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService) : base (dialogService, hudService, sessionService, webApiService)
+        public LoginViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, ISettingsService settingsService) : base (dialogService, hudService, sessionService, webApiService, settingsService)
         {
         }
 

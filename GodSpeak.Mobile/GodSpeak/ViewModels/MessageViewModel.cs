@@ -105,8 +105,8 @@ namespace GodSpeak
 		}
 
         public MessageViewModel (
-            IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService,
-            IReminderService reminderService, IMvxMessenger messenger) : base (dialogService, hudService, sessionService, webApiService)
+            IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, ISettingsService settingsService,
+            IReminderService reminderService, IMvxMessenger messenger) : base (dialogService, hudService, sessionService, webApiService, settingsService)
         {
             _reminderService = reminderService;
             _messenger = messenger;

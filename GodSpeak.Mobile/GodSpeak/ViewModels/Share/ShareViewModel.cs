@@ -16,12 +16,12 @@ namespace GodSpeak
         private Tab _unclaimedTab;
         private Tab _claimedTab;
 
-        public ShareViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, IShareService shareService, IMailService mailService) : base (dialogService, hudService, sessionService, webApiService)
+        public ShareViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, ISettingsService settingsService, IShareService shareService, IMailService mailService) : base (dialogService, hudService, sessionService, webApiService, settingsService)
         {
             _shareService = shareService;
 
-            UnclaimedGiftViewModel = new UnclaimedGiftViewModel (dialogService, hudService, sessionService, webApiService, shareService);
-            ClaimedGiftViewModel = new ClaimedGiftViewModel (dialogService, hudService, sessionService, webApiService, mailService);
+            UnclaimedGiftViewModel = new UnclaimedGiftViewModel (dialogService, hudService, sessionService, webApiService, settingsService, shareService);
+            ClaimedGiftViewModel = new ClaimedGiftViewModel (dialogService, hudService, sessionService, webApiService, settingsService, mailService);
 
             SelectedTab = TabTypes.Unclaimed;
 

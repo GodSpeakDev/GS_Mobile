@@ -100,7 +100,7 @@ namespace GodSpeak
         }
 
         public MessageDetailViewModel (
-            IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, IShareService shareService) : base (dialogService, hudService, sessionService, webApiService)
+            IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, ISettingsService settingsService, IShareService shareService) : base (dialogService, hudService, sessionService, webApiService, settingsService)
         {
             _shareService = shareService;
         }
@@ -120,10 +120,30 @@ namespace GodSpeak
                 MessageId = new Guid (messageId)
             });
 
-            if (messageResponse.IsSuccess) {
+            if (messageResponse.IsSuccess) 
+			{
                 Message = messageResponse.Payload.Payload;
                 Author = Message.Verse.Title;
-            } else {
+
+				if (!SettingsService.DeliveredVerseCodes.Contains(Message.Verse.Title))
+				{
+					var deliverResponse = await WebApiService.RecordMessageDelivered(new RecordMessageDeliveredRequest
+					{
+						VerseCode = Message.Verse.Title,
+						DateDelivered = DateTime.Now,
+						Token = SessionService.GetUser().Token
+					});
+
+					if (deliverResponse.IsSuccess)
+					{
+						var verses = SettingsService.DeliveredVerseCodes;
+						verses.Add(Message.Verse.Title);
+						SettingsService.DeliveredVerseCodes = new List<string>(verses);
+					}
+				}
+            } 
+			else 
+			{
                 await HandleResponse (messageResponse);
             }
         }

@@ -112,7 +112,7 @@ namespace GodSpeak
             }
         }
 
-        public MessageSettingsViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, IMvxMessenger messenger) : base (dialogService, hudService, sessionService, webApiService)
+        public MessageSettingsViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, ISettingsService settingsService, IMvxMessenger messenger) : base (dialogService, hudService, sessionService, webApiService, settingsService)
         {
 			_messenger = messenger;
 

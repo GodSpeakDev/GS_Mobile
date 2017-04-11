@@ -20,7 +20,7 @@ namespace GodSpeak
 			set { SetProperty(ref _boxMessage, value);}
 		}
 
-		public DidYouKnowTemplateViewModel(IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService) : base(dialogService, hudService, sessionService, webApiService)
+		public DidYouKnowTemplateViewModel(IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, ISettingsService settingsService) : base(dialogService, hudService, sessionService, webApiService, settingsService)
 		{						
 		}
 

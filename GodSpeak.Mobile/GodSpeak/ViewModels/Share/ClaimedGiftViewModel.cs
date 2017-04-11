@@ -14,7 +14,7 @@ namespace GodSpeak
 		private bool _comesFromRegisterFlow;
         private IMailService _mailService;
 
-        public ClaimedGiftViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, IMailService mailService) : base (dialogService, hudService, sessionService, webApiService)
+        public ClaimedGiftViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, ISettingsService settingsService, IMailService mailService) : base (dialogService, hudService, sessionService, webApiService, settingsService)
         {
             _mailService = mailService;
 
