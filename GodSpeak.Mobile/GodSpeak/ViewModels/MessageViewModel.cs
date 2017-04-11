@@ -167,14 +167,23 @@ namespace GodSpeak
                 this.HudService.Hide ();
             }
 
-            if (messages.IsSuccess) {
+            if (messages.IsSuccess) 
+			{
                 Messages = new ObservableCollection<GroupedCollection<Message, DateTime>>
                 (messages.Payload
                  .Where (x => x.DateTimeToDisplay <= DateTime.Now)
                  .OrderByDescending (x => x.DateTimeToDisplay)
                  .GroupBy (x => x.DateTimeToDisplay.Date)
                  .Select (x => new GroupedCollection<Message, DateTime> (x.Key, x)));
-            } else {
+
+				_reminderService.ClearReminders();
+				foreach (var message in messages.Payload)
+				{
+					_reminderService.SetMessageReminder(message);
+				}
+            } 
+			else 
+			{
                 await HandleResponse (messages);
             }
         }
