@@ -13,7 +13,11 @@ namespace GodSpeak
 {
 	public class ImpactMap : CustomMap
 	{
-		private Dictionary<Guid, Pin> _pins;
+		public Dictionary<Guid, Pin> _pins;
+		public Dictionary<Guid, Pin> PinsDictionary
+		{
+			get { return _pins;}
+		}
 
 		public static readonly BindableProperty ItemsSourceProperty =
 			BindableProperty.Create<ImpactMap, ObservableCollection<ImpactDay>>(

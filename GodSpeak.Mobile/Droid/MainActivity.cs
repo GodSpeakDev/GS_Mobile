@@ -35,6 +35,8 @@ namespace GodSpeak.Droid
             Xamarin.FormsMaps.Init (this, bundle);
 			global::Xamarin.Forms.Forms.SetTitleBarVisibility(Xamarin.Forms.AndroidTitleBarVisibility.Never);
 
+			Android.Gms.Maps.MapsInitializer.Initialize(ApplicationContext);
+
             ServicePointManager
                 .ServerCertificateValidationCallback +=
                     (sender, cert, chain, sslPolicyErrors) => {
@@ -50,7 +52,6 @@ namespace GodSpeak.Droid
             presenter.MvxFormsApp = mvxFormsApp;
 
             Mvx.Resolve<IMvxAppStart> ().Start ();
-
 
             App.ScreenWidth = (int)(Resources.DisplayMetrics.WidthPixels / Resources.DisplayMetrics.Density);
             App.ScreenHeight = (int)(Resources.DisplayMetrics.HeightPixels / Resources.DisplayMetrics.Density);            

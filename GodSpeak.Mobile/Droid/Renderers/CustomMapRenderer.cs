@@ -33,13 +33,19 @@ namespace GodSpeak.Droid
 
 		private void OnRemovePin(Guid id)
 		{
-			var marker = _markers[id];
-			marker.Remove();
-			_markers.Remove(id);
+			if (_markers.ContainsKey(id))
+			{
+				var marker = _markers[id];
+				marker.Remove();
+				_markers.Remove(id);
+			}
 		}
 
 		private void OnAddPin(Guid id, Pin pin)
 		{
+			if (_googleMap == null || _markers.ContainsKey(id))
+				return;
+
 			var newMarker = new MarkerOptions();
 			newMarker.SetPosition(new LatLng(pin.Position.Latitude, pin.Position.Longitude));
 			newMarker.SetTitle(pin.Label);
@@ -63,6 +69,12 @@ namespace GodSpeak.Droid
 			_googleMap = googleMap;
 
 			_googleMap.Clear();
+
+			var customMap = this.Element as ImpactMap;
+			foreach (var item in customMap.PinsDictionary)
+			{
+				OnAddPin(item.Key, item.Value);
+			}
 		}
 
 		protected override void OnElementPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
