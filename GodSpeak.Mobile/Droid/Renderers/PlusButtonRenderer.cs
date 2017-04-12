@@ -34,12 +34,19 @@ namespace GodSpeak.Droid
 		{
 			base.OnElementChanged(e);
 			SetBackgroundColor();
+            SetAlignment();
 		}
 
 		protected override void OnElementPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
 		{
 			base.OnElementPropertyChanged(sender, e);
 			SetBackgroundColor();
+			SetAlignment();
+		}
+
+		private void SetAlignment() 
+		{
+			this.Control.SetPadding(0, 0, 0, 0);
 		}
 
 		private void SetBackgroundColor()

@@ -24,6 +24,7 @@
 					Grid.Row="1"
 					IsGroupingEnabled="true"
 					BackgroundColor="Transparent"
+					SeparatorColor="{StaticResource outlinePlaceholderColor}"
 					ItemsSource="{Binding Groups}" 					
 					SelectedItem="{Binding SelectedMenu, Mode=TwoWay}">
 					<ListView.Header>
@@ -47,28 +48,20 @@
 								<views:PlusMinusButtonView
 									Orientation="Horizontal"
 									Spacing="0">
-									<views:PlusButton
-										HeightRequest="{StaticResource PlusButtonHeight}"
-										WidthRequest="{StaticResource PlusButtonWidth}"
+									<views:PlusButton										
+										Style="{StaticResource PlusMinusButton}"
 										Text="-"
-										TextColor="{x:Static views:ColorHelper.Secondary}"
-										BorderColor="Transparent"
-										BackgroundColor="Transparent"
 										Command="{Binding MinusButtonCommand}"
-										/>
+									/>
 									<BoxView
 										WidthRequest="1"
 										Color="{x:Static views:ColorHelper.Secondary}"
 									/>
 									<views:PlusButton 
-										HeightRequest="{StaticResource PlusButtonHeight}"
-										WidthRequest="{StaticResource PlusButtonWidth}"
+										Style="{StaticResource PlusMinusButton}"
 										Text="+"
-										TextColor="{x:Static views:ColorHelper.Secondary}"
-										BorderColor="Transparent"
-										BackgroundColor="Transparent"
 										Command="{Binding PlusButtonCommand}"
-										/>
+									/>
 								</views:PlusMinusButtonView>
 								<views:CustomLabel 
 									Text="{Binding NumberOfMessagesText}"
