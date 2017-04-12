@@ -125,10 +125,19 @@ namespace GodSpeak
                 await LoadMessages ();
             });
 
-            var response = await WebApiService.GetImpact (new GetImpactRequest ());
-            if (response.IsSuccess) {
-                ShownImpactDays = new ObservableCollection<ImpactDay> (response.Payload.Payload);
-            } else {
+			var currentUser = SessionService.GetUser();
+			var response = await WebApiService.GetImpact (new GetImpactRequest 
+			{
+				InviteCode = currentUser.InviteCode,
+				Token = currentUser.Token
+			});
+
+            if (response.IsSuccess) 
+			{
+                ShownImpactDays = new ObservableCollection<ImpactDay> (response.Payload);
+            } 
+			else 
+			{
                 await HandleResponse (response);
             }
 

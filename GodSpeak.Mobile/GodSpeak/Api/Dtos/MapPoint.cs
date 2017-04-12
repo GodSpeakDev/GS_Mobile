@@ -3,12 +3,6 @@ namespace GodSpeak
 {
 	public class MapPoint
 	{
-		public Guid MapPointId
-		{
-			get;
-			set;
-		}
-
 		public float Latitude
 		{
 			get;
@@ -16,12 +10,6 @@ namespace GodSpeak
 		}
 
 		public float Longitude
-		{
-			get;
-			set;
-		}
-
-		public string Title
 		{
 			get;
 			set;

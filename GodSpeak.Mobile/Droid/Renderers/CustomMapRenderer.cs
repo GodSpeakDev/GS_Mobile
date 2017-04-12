@@ -14,7 +14,7 @@ namespace GodSpeak.Droid
 	public class CustomMapRenderer : MapRenderer, IOnMapReadyCallback
 	{
 		private IList<Pin> _pins;
-		private Dictionary<Guid, Marker> _markers = new Dictionary<Guid, Marker>();
+		private Dictionary<MapPoint, Marker> _markers = new Dictionary<MapPoint, Marker>();
 		private GoogleMap _googleMap;
 		private bool isDrawn;
 
@@ -31,7 +31,7 @@ namespace GodSpeak.Droid
             }
 		}
 
-		private void OnRemovePin(Guid id)
+		private void OnRemovePin(MapPoint id)
 		{
 			if (_markers.ContainsKey(id))
 			{
@@ -41,7 +41,7 @@ namespace GodSpeak.Droid
 			}
 		}
 
-		private void OnAddPin(Guid id, Pin pin)
+		private void OnAddPin(MapPoint id, Pin pin)
 		{
 			if (_googleMap == null || _markers.ContainsKey(id))
 				return;

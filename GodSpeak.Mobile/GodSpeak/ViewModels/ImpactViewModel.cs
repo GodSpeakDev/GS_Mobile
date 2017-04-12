@@ -99,19 +99,28 @@ namespace GodSpeak
 		public async void Init()
 		{
 			this.HudService.Show();
-			var response = await WebApiService.GetImpact(new GetImpactRequest());
+
+			var currentUser = SessionService.GetUser();
+			var response = await WebApiService.GetImpact(new GetImpactRequest() 
+			{
+				Token = currentUser.Token,
+				InviteCode = currentUser.InviteCode
+			});
 			this.HudService.Hide();
 
 			if (response.IsSuccess)
 			{
-				_allImpactDays = response.Payload.Payload;
+				_allImpactDays = response.Payload;
 
-				var firstDate = _allImpactDays.OrderBy(x => x.Date).First();
-				var lastDate = _allImpactDays.OrderBy(x => x.Date).Last();
+				if (_allImpactDays.Count > 0)
+				{
+					var firstDate = _allImpactDays.OrderBy(x => x.Date).First();
+					var lastDate = _allImpactDays.OrderBy(x => x.Date).Last();
 
-				MaximumDayValue = (lastDate.Date.Date - firstDate.Date).Days + 1;
-				MinDate = firstDate.Date;
-				DayValue = MaximumDayValue;
+					MaximumDayValue = (lastDate.Date.Date - firstDate.Date).Days + 1;
+					MinDate = firstDate.Date;
+					DayValue = MaximumDayValue;
+				}
 			}
 			else
 			{
@@ -124,7 +133,9 @@ namespace GodSpeak
 			if (_allImpactDays == null)
 				return;
 
-			var cutDate = _allImpactDays.OrderBy(x => x.Date).First().Date.Date.AddDays(DayValue - 1);
+			var firstDate = _allImpactDays.OrderBy(x => x.Date).FirstOrDefault();
+
+			var cutDate = firstDate != null ? _allImpactDays.OrderBy(x => x.Date).First().Date.Date.AddDays(DayValue - 1) : DateTime.MinValue;
 			var daysToBeRemoved = ShownImpactDays.Where(x => x.Date > cutDate).ToList();
 
 			foreach (var impactDay in daysToBeRemoved)

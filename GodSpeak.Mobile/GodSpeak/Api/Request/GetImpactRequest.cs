@@ -10,5 +10,11 @@ namespace GodSpeak
 			get;
 			set;
 		}
+
+		public string InviteCode
+		{
+			get;
+			set;
+		}
 	}
 }

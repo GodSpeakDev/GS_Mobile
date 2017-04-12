@@ -73,8 +73,15 @@ namespace GodSpeak.Api
             };
         }
 
-		public new async Task<ApiResponse<string>> RecordMessageDelivered(RecordMessageDeliveredRequest request)
+		public new async Task<ApiResponse<List<ImpactDay>>> GetImpact(GetImpactRequest request)
 		{			
+            AddAuthToken(request.Token);
+            return await DoGet<List<ImpactDay>>(ImpactDaysUri, new Dictionary<string, string> () { { "inviteCode", request.InviteCode } });
+	   	}
+
+		public new async Task<ApiResponse<string>> RecordMessageDelivered(RecordMessageDeliveredRequest request)
+		{
+			AddAuthToken(request.Token);
 			return await DoPost<string>(ImpactMessageUri, request);
 		}
 
@@ -169,9 +176,6 @@ namespace GodSpeak.Api
                 new StreamContent (imageStream),
                 "photo",
                 file.Name);
-
-
-
 
             HttpResponseMessage response = await client.PostAsync (PhotoUploadUri, multipartContent);
 

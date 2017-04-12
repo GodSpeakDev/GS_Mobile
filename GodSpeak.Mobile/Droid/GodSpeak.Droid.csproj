@@ -192,6 +192,13 @@
     <Reference Include="Xamarin.Forms.Maps">
       <HintPath>..\packages\Xamarin.Forms.Maps.2.3.4.224\lib\MonoAndroid10\Xamarin.Forms.Maps.dll</HintPath>
     </Reference>
+    <Reference Include="Cheesebaron.MvxPlugins.Settings">
+      <HintPath>..\packages\Cheesebaron.MvxPlugins.Settings.3.0.3\lib\MonoAndroid10\Cheesebaron.MvxPlugins.Settings.dll</HintPath>
+    </Reference>
+    <Reference Include="Cheesebaron.MvxPlugins.Settings.Droid">
+      <HintPath>..\packages\Cheesebaron.MvxPlugins.Settings.3.0.3\lib\MonoAndroid10\Cheesebaron.MvxPlugins.Settings.Droid.dll</HintPath>
+    </Reference>
+    <Reference Include="Java.Interop" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GodSpeak\GodSpeak.csproj">
@@ -232,6 +239,7 @@
     <Compile Include="Services\ImageService.cs" />
     <Compile Include="Renderers\MessageBalloonRenderer.cs" />
     <Compile Include="Renderers\ImageContainerRenderer.cs" />
+    <Compile Include="Bootstrap\SettingsPluginBootstrap.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

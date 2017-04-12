@@ -5,12 +5,6 @@ namespace GodSpeak
 {
 	public class ImpactDay
 	{
-		public Guid ImpactDayId
-		{
-			get;
-			set;
-		}
-
 		public DateTime Date
 		{
 			get;
@@ -19,8 +13,11 @@ namespace GodSpeak
 
 		public int InvitesClaimed
 		{
-			get;
-			set;
+			get 
+			{
+				return Points.Count;
+			}
+
 		}
 
 		public int ScripturesDelivered
@@ -29,7 +26,7 @@ namespace GodSpeak
 			set;
 		}
 
-		public List<MapPoint> MapPoints
+		public List<MapPoint> Points
 		{
 			get;
 			set;
@@ -37,7 +34,7 @@ namespace GodSpeak
 
 		public ImpactDay()
 		{
-			MapPoints = new List<MapPoint>();
+			Points = new List<MapPoint>();
 		}
 	}
 }

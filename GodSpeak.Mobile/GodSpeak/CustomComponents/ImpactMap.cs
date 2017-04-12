@@ -13,8 +13,8 @@ namespace GodSpeak
 {
 	public class ImpactMap : CustomMap
 	{
-		public Dictionary<Guid, Pin> _pins;
-		public Dictionary<Guid, Pin> PinsDictionary
+		public Dictionary<MapPoint, Pin> _pins;
+		public Dictionary<MapPoint, Pin> PinsDictionary
 		{
 			get { return _pins;}
 		}
@@ -41,7 +41,7 @@ namespace GodSpeak
 		
 		public ImpactMap()
 		{
-			_pins = new Dictionary<Guid, Pin>();
+			_pins = new Dictionary<MapPoint, Pin>();
 		}
 
 		private void OnShowImpactChange(object sender, NotifyCollectionChangedEventArgs e)
@@ -68,7 +68,7 @@ namespace GodSpeak
 			{
 				Pins.Remove(pin);
 			}
-			_pins = new Dictionary<Guid, Pin>();
+			_pins = new Dictionary<MapPoint, Pin>();
 
 			foreach (var day in ItemsSource)
 			{
@@ -78,14 +78,14 @@ namespace GodSpeak
 
 		private void RemoveImpactDayPins(ImpactDay day)
 		{
-			foreach (var point in day.MapPoints)
+			foreach (var point in day.Points)
 			{
-				var pin = _pins[point.MapPointId];
-				_pins.Remove(point.MapPointId);
+				var pin = _pins[point];
+				_pins.Remove(point);
 				Pins.Remove(pin);
 				if (OnRemovePin != null)
 				{
-					OnRemovePin(point.MapPointId);
+					OnRemovePin(point);
 				}
 			}
 		}
@@ -93,22 +93,22 @@ namespace GodSpeak
 		private void AddImpactDayPins(ImpactDay day)
 		{
 			var mapPoints = new List<Pin>();
-			foreach (var point in day.MapPoints)
+			foreach (var point in day.Points)
 			{
 				var pin = new Pin()
 				{
 					Position = new Position(point.Latitude, point.Longitude),
 					Type = PinType.Generic,
-					Label = point.Title,
+					Label = day.Date.ToString("d")
 				};
 
-				if (!_pins.ContainsKey(point.MapPointId))
+				if (!_pins.ContainsKey(point))
 				{
-					_pins.Add(point.MapPointId, pin);
+					_pins.Add(point, pin);
 					mapPoints.Add(pin);
 					if (OnAddPin != null)
 					{
-                        OnAddPin(point.MapPointId, pin);
+                        OnAddPin(point, pin);
 					}
 				}
 			}

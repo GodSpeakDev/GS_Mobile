@@ -5,13 +5,13 @@ namespace GodSpeak
 {
 	public class CustomMap : Map
 	{
-		public Action<Guid, Pin> OnAddPin
+		public Action<MapPoint, Pin> OnAddPin
 		{
 			get;
 			set;
 		}
 
-		public Action<Guid> OnRemovePin
+		public Action<MapPoint> OnRemovePin
 		{
 			get;
 			set;

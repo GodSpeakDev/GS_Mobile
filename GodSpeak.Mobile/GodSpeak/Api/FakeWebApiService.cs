@@ -293,24 +293,19 @@ namespace GodSpeak
             for (int i = 0; i < 30; i++) {
                 Task.Delay (100);
                 var impactDay = new ImpactDay () {
-                    Date = DateTime.Now.AddDays (-i),
-                    InvitesClaimed = 1,
+                    Date = DateTime.Now.AddDays (-i),                    
                     ScripturesDelivered = 1,
-                    MapPoints = new List<MapPoint> ()
+                    Points = new List<MapPoint> ()
                     {
                         new MapPoint()
-                        {
-                            Title = DateTime.Now.AddDays(-i).ToString(),
+                        {                            
                             Latitude = (float) (38.4 + (random.Next(0, 3000) / 10000.0)),
-                            Longitude = (float) (-90.1 + (random.Next(0, 3000) / 10000.0)),
-                            MapPointId = Guid.NewGuid()
+                            Longitude = (float) (-90.1 + (random.Next(0, 3000) / 10000.0)),                         
                         },
                         new MapPoint()
-                        {
-                            Title = DateTime.Now.AddDays(-i).ToString(),
+                        {                            
                             Latitude =  (float) (38.4 + (random.Next(0, 3000) / 10000.0)),
-                            Longitude = (float) (-90.1 + (random.Next(0, 3000) / 10000.0)),
-                            MapPointId = Guid.NewGuid()
+                            Longitude = (float) (-90.1 + (random.Next(0, 3000) / 10000.0)),                         
                         },
                     }
                 };
@@ -338,14 +333,12 @@ namespace GodSpeak
             return new ApiResponse<User> () { Payload = new User () };
         }
 
-        public async Task<ApiResponse<GetImpactResponse>> GetImpact (GetImpactRequest request)
+        public async Task<ApiResponse<List<ImpactDay>>> GetImpact (GetImpactRequest request)
         {
             await Task.Delay (delay);
-            return new ApiResponse<GetImpactResponse> () {
+            return new ApiResponse<List<ImpactDay>> () {
                 StatusCode = System.Net.HttpStatusCode.OK,
-                Payload = new GetImpactResponse () {
-                    Payload = GetImpactedDays ()
-                }
+                Payload = GetImpactedDays ()
             };
         }
 
