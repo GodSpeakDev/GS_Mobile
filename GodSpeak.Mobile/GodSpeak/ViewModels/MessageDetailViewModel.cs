@@ -130,8 +130,7 @@ namespace GodSpeak
 					var deliverResponse = await WebApiService.RecordMessageDelivered(new RecordMessageDeliveredRequest
 					{
 						VerseCode = Message.Verse.Title,
-						DateDelivered = DateTime.Now,
-						Token = (await SessionService.GetUser()).Token
+						DateDelivered = DateTime.Now
 					});
 
 					if (deliverResponse.IsSuccess)

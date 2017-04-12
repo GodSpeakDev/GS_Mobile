@@ -174,8 +174,8 @@ namespace GodSpeak
             if (response.IsSuccess) 
 			{
                 if (Image != null && Image != "profile_placeholder.png") {
-                    var photoResponse = await WebApiService.UploadPhoto (new UploadPhotoRequest () {
-                        Token = response.Payload.Token,
+                    var photoResponse = await WebApiService.UploadPhoto (new UploadPhotoRequest () 
+					{                        
                         FilePath = _response.Path
                     });
                     HudService.Hide ();

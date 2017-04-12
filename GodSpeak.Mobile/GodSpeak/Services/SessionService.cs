@@ -29,9 +29,12 @@ namespace GodSpeak
 
 		public async Task<User> GetUser()
 		{
+			if (string.IsNullOrEmpty(_settingsService.Token))
+				return null;
+			
 			if (_user == null)
 			{
-				var response = await _webApiService.GetProfile(new TokenRequest {Token=_settingsService.Token});
+				var response = await _webApiService.GetProfile();
 				_user = response.Payload;
 			}
 

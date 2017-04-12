@@ -103,7 +103,6 @@ namespace GodSpeak
 			var currentUser = await SessionService.GetUser();
 			var response = await WebApiService.GetImpact(new GetImpactRequest() 
 			{
-				Token = currentUser.Token,
 				InviteCode = currentUser.InviteCode
 			});
 			this.HudService.Hide();

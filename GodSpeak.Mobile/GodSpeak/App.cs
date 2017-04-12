@@ -25,13 +25,13 @@ namespace GodSpeak
             CreatableTypes ().Containing ("DialogService").AsInterfaces ().RegisterAsDynamic ();
 
 			var settingsService = Mvx.Resolve<ISettingsService>();
-			if (string.IsNullOrEmpty(settingsService.Token))
-            {
-                RegisterAppStart<GetStartedViewModel> ();
+			if (!string.IsNullOrEmpty(settingsService.Token))
+			{
+                RegisterAppStart<HomeViewModel>();
             }
             else
             {
-                RegisterAppStart<HomeViewModel>();
+				RegisterAppStart<GetStartedViewModel> ();                
             }
         }
     }

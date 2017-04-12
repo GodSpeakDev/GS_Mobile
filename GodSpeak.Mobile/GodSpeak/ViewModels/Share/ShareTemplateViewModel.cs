@@ -56,7 +56,7 @@ namespace GodSpeak
 
         public async Task UpdateGiftsLeftTitle ()
         {
-			var profileResponse = await WebApiService.GetProfile (new TokenRequest () { Token = (await SessionService.GetUser ()).Token });
+			var profileResponse = await WebApiService.GetProfile ();
 			if (profileResponse.IsSuccess)
 			{
 				await SessionService.SaveUser(profileResponse.Payload);	
@@ -74,7 +74,7 @@ namespace GodSpeak
 			if (currentUser.InviteBalance > 0)
 			{
 				HudService.Show ();
-				var response = await WebApiService.DonateInvite(new TokenRequest() { Token = (await SessionService.GetUser()).Token });
+				var response = await WebApiService.DonateInvite();
 				HudService.Hide ();
 
 				if (response.IsSuccess) 

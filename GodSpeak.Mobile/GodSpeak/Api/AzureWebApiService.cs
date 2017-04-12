@@ -15,7 +15,6 @@ namespace GodSpeak.Api
 {
     public class AzureWebApiService : FakeWebApiService, IWebApiService
     {
-
         const string LoginMethodUri = "user/login";
         const string RecoverPasswordUri = "user/recoverpassword/";
         const string ProfileUri = "user";
@@ -39,22 +38,25 @@ namespace GodSpeak.Api
         const string RequestInviteUri = "invite/request";
         const string DonateInviteUri = "invite/donate";
 
+		private ISettingsService _settingsService;
         protected HttpClient client = new HttpClient ();
         readonly IMvxTrace tracer;
 
         protected string ServerUrl = "http://godspeak-staging.azurewebsites.net/";
 
-        public AzureWebApiService (IMvxTrace tracer)
+        public AzureWebApiService (IMvxTrace tracer, ISettingsService settingsService)
         {
             this.tracer = tracer;
+
+			_settingsService = settingsService;
             client.BaseAddress = new Uri (ServerUrl + "api/");
         }
 
         protected List<Message> CachedMessages = new List<Message> ();
 
-        public new async Task<ApiResponse<List<Message>>> GetMessages (TokenRequest request)
+        public new async Task<ApiResponse<List<Message>>> GetMessages ()
         {
-            AddAuthToken (request.Token);
+            AddAuthToken (_settingsService.Token);
             var apiResponse = await DoGet<List<Message>> (MessagesQueueUri);
 
             CachedMessages = apiResponse.Payload;
@@ -75,13 +77,13 @@ namespace GodSpeak.Api
 
 		public new async Task<ApiResponse<List<ImpactDay>>> GetImpact(GetImpactRequest request)
 		{			
-            AddAuthToken(request.Token);
+            AddAuthToken(_settingsService.Token);
             return await DoGet<List<ImpactDay>>(ImpactDaysUri, new Dictionary<string, string> () { { "inviteCode", request.InviteCode } });
 	   	}
 
 		public new async Task<ApiResponse<string>> RecordMessageDelivered(RecordMessageDeliveredRequest request)
 		{
-			AddAuthToken(request.Token);
+			AddAuthToken(_settingsService.Token);
 			return await DoPost<string>(ImpactMessageUri, request);
 		}
 
@@ -105,18 +107,25 @@ namespace GodSpeak.Api
 
         public new async Task<ApiResponse<User>> RegisterUser (RegisterUserRequest request)
         {
-            return await DoPost<User> (RegisterUri, request);
+            var response = await DoPost<User> (RegisterUri, request);
+
+			if (response.IsSuccess)
+			{
+				_settingsService.Token = response.Payload.Token;
+			}
+
+			return response;
         }
 
-        public new async Task<ApiResponse<User>> GetProfile (TokenRequest request)
+        public new async Task<ApiResponse<User>> GetProfile ()
         {
-            AddAuthToken (request.Token);
+            AddAuthToken (_settingsService.Token);
             return await DoGet<User> (ProfileUri);
         }
 
         public new async Task<ApiResponse<User>> SaveProfile (User user)
         {
-            AddAuthToken (user.Token);
+            AddAuthToken (_settingsService.Token);
             return await DoPut<User> (ProfileUri, user);
         }
 
@@ -130,39 +139,45 @@ namespace GodSpeak.Api
             return await DoGet<List<InviteBundle>> (InviteBundlesUri);
         }
 
-        public new async Task<ApiResponse<List<AcceptedInvite>>> GetAcceptedInvites (TokenRequest request)
+        public new async Task<ApiResponse<List<AcceptedInvite>>> GetAcceptedInvites ()
         {
-            AddAuthToken (request.Token);
+            AddAuthToken (_settingsService.Token);
             return await DoGet<List<AcceptedInvite>> (AcceptedInviteUri);
         }
 
-        public new async Task<ApiResponse<string>> DonateInvite (TokenRequest request)
+        public new async Task<ApiResponse<string>> DonateInvite ()
         {
-            AddAuthToken (request.Token);
-            return await DoPost<string> (DonateInviteUri, request);
+            AddAuthToken (_settingsService.Token);
+            return await DoPost<string> (DonateInviteUri, null);
         }
 
         public new async Task<ApiResponse<string>> PurchaseInvite (PurchaseInviteRequest request)
         {
-            AddAuthToken (request.Token);
+            AddAuthToken (_settingsService.Token);
             return await DoPost<string> (PurchaseInviteUri, request);
         }
 
         public new async Task<ApiResponse<User>> Login (LoginRequest request)
         {
-            return await DoPost<User> (LoginMethodUri, request);
+            var response = await DoPost<User> (LoginMethodUri, request);
+
+			if (response.IsSuccess)
+			{
+				_settingsService.Token = response.Payload.Token;
+			}
+
+			return response;
         }
 
-        public new async Task<ApiResponse<string>> GetDidYouKnow (TokenRequest request)
+        public new async Task<ApiResponse<string>> GetDidYouKnow ()
         {
-            AddAuthToken (request.Token);
+            AddAuthToken (_settingsService.Token);
             return await DoGet<string> (ImpactDidYouKnowUri);
         }
 
         public new async Task<ApiResponse<User>> UploadPhoto (UploadPhotoRequest request)
         {
-            AddAuthToken (request.Token);
-
+            AddAuthToken (_settingsService.Token);
 
             IFile file = await FileSystem.Current.GetFileFromPathAsync (request.FilePath);
             Stream imageStream = await file.OpenAsync (FileAccess.Read);
@@ -193,9 +208,9 @@ namespace GodSpeak.Api
             return fileContent;
         }
 
-        public new async Task<ApiResponse> Logout (LogoutRequest request)
+        public new async Task<ApiResponse> Logout ()
         {
-            AddAuthToken (request.Token);
+            AddAuthToken (_settingsService.Token);
             return await DoPost (LogoutUri);
         }
 

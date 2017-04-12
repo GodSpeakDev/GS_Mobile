@@ -33,7 +33,7 @@ namespace GodSpeak
         public virtual async void DoGoLogoutCommand ()
         {
             hudService.Show ();
-			await webService.Logout (new LogoutRequest () { Token = (await sessionService.GetUser ()).Token });
+			await webService.Logout ();
             hudService.Hide ();
 
 			this.settingsService.Token = null;

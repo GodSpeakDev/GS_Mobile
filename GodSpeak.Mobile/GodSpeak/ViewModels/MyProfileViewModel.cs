@@ -128,7 +128,7 @@ namespace GodSpeak
             Countries = countries.Select (c => c.Title).ToArray ();
             CountryCodes = countries.Select (c => c.Code).ToArray ();
 
-			var user = (await WebApiService.GetProfile (new TokenRequest () { Token = (await SessionService.GetUser ()).Token }));
+			var user = await WebApiService.GetProfile ();
             if (user.IsSuccess) {
                 SetUserInfo (user.Payload);
                 HudService.Hide ();
@@ -206,8 +206,7 @@ namespace GodSpeak
 					_imageService.Compress(response, 200, 200);
 
 					var photoResponse = await WebApiService.UploadPhoto(new UploadPhotoRequest()
-					{
-						Token = (await SessionService.GetUser()).Token,
+					{						
 						FilePath = response.Path
 					});
 

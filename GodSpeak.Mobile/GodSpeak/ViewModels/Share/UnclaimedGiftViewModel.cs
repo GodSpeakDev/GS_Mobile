@@ -94,8 +94,7 @@ namespace GodSpeak
         private async void DoTapBundleCommand (InviteBundle bundle)
         {
             this.HudService.Show ();
-            var response = await WebApiService.PurchaseInvite (new PurchaseInviteRequest () {
-				Token = (await SessionService.GetUser ()).Token,
+            var response = await WebApiService.PurchaseInvite (new PurchaseInviteRequest () {				
                 Guid = bundle.InviteBundleId
             });            
 

@@ -45,16 +45,18 @@ namespace GodSpeak
 
         public async Task HandleResponse<T> (ApiResponse<T> response)
         {
-            await DialogService.ShowAlert (response.Title ?? Text.ErrorPopupTitle, response.Message ?? Text.ErrorPopupText);
-
 			if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized || response.StatusCode == System.Net.HttpStatusCode.Forbidden)
 			{
 				HudService.Show();
-				await WebApiService.Logout(new LogoutRequest() { Token = (await SessionService.GetUser()).Token });
+				await WebApiService.Logout();
 				HudService.Hide();
 
 				BackToLoginPage();
-			}            
+			}
+			else
+			{
+				await DialogService.ShowAlert(response.Title ?? Text.ErrorPopupTitle, response.Message ?? Text.ErrorPopupText);
+			}
         }
 
 		protected void ShowAndRestoreNavigation<T>() where T : IMvxViewModel

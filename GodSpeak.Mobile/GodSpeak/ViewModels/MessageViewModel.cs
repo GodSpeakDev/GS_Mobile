@@ -128,8 +128,7 @@ namespace GodSpeak
 			var currentUser = await SessionService.GetUser();
 			var response = await WebApiService.GetImpact (new GetImpactRequest 
 			{
-				InviteCode = currentUser.InviteCode,
-				Token = currentUser.Token
+				InviteCode = currentUser != null ? currentUser.InviteCode : null,
 			});
 
             if (response.IsSuccess) 
@@ -157,9 +156,7 @@ namespace GodSpeak
 					HudService.Show (Text.RetrievingMessages);
                 });
 
-                messages = await WebApiService.GetMessages (new TokenRequest () {
-					Token = (await SessionService.GetUser ()).Token
-                });
+                messages = await WebApiService.GetMessages ();
 
 				while (!_isShowingHud)
 				{
@@ -170,26 +167,28 @@ namespace GodSpeak
                 HudService.Hide ();
             } else {
                 this.HudService.Show (Text.RetrievingMessages);
-                messages = await WebApiService.GetMessages (new TokenRequest () {
-                    Token = (await SessionService.GetUser ()).Token
-                });
+                messages = await WebApiService.GetMessages ();
                 this.HudService.Hide ();
             }
 
-            if (messages.IsSuccess) 
+			if (messages.IsSuccess)
 			{
-                Messages = new ObservableCollection<GroupedCollection<Message, DateTime>>
-                (messages.Payload
-                 .Where (x => x.DateTimeToDisplay <= DateTime.Now)
-                 .OrderByDescending (x => x.DateTimeToDisplay)
-                 .GroupBy (x => x.DateTimeToDisplay.Date)
-                 .Select (x => new GroupedCollection<Message, DateTime> (x.Key, x)));
+				Messages = new ObservableCollection<GroupedCollection<Message, DateTime>>
+				(messages.Payload
+				 .Where(x => x.DateTimeToDisplay <= DateTime.Now)
+				 .OrderByDescending(x => x.DateTimeToDisplay)
+				 .GroupBy(x => x.DateTimeToDisplay.Date)
+				 .Select(x => new GroupedCollection<Message, DateTime>(x.Key, x)));
 
-				_reminderService.ClearReminders();
-				foreach (var message in messages.Payload)
-				{
-					_reminderService.SetMessageReminder(message);
-				}
+				// Executes in background
+				Task.Run(async () =>
+				{					
+					_reminderService.ClearReminders();
+					foreach (var message in messages.Payload.Where(x => x.DateTimeToDisplay > DateTime.Now))
+					{
+						_reminderService.SetMessageReminder(message);
+					}
+				});
             } 
 			else 
 			{

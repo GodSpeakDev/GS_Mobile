@@ -54,12 +54,12 @@ namespace GodSpeak
             }
         }
 
-        public async Task<ApiResponse> Logout (LogoutRequest request)
+		public async Task<ApiResponse> Logout ()
         {
             return null;
         }
 
-        public async Task<ApiResponse<List<AcceptedInvite>>> GetAcceptedInvites (TokenRequest request)
+        public async Task<ApiResponse<List<AcceptedInvite>>> GetAcceptedInvites ()
         {
             await Task.Delay (1000);
             return new ApiResponse<List<AcceptedInvite>> () {
@@ -96,7 +96,7 @@ namespace GodSpeak
             };
         }
 
-        public async Task<ApiResponse<string>> DonateInvite (TokenRequest request)
+        public async Task<ApiResponse<string>> DonateInvite ()
         {
             await Task.Delay (1000);
 
@@ -148,7 +148,7 @@ namespace GodSpeak
             };
         }
 
-        public async Task<ApiResponse<List<Message>>> GetMessages (TokenRequest request)
+        public async Task<ApiResponse<List<Message>>> GetMessages ()
         {
             await Task.Delay (delay);
 
@@ -255,7 +255,7 @@ namespace GodSpeak
             };
         }
 
-        public async Task<ApiResponse<string>> GetDidYouKnow (TokenRequest request)
+        public async Task<ApiResponse<string>> GetDidYouKnow ()
         {
             await Task.Delay (delay);
             return new ApiResponse<string> () {
@@ -327,7 +327,7 @@ namespace GodSpeak
             };
         }
 
-        public async Task<ApiResponse<User>> GetProfile (TokenRequest request)
+        public async Task<ApiResponse<User>> GetProfile ()
         {
             await Task.Delay (delay);
             return new ApiResponse<User> () { Payload = new User () };
