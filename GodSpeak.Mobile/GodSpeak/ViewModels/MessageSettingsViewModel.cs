@@ -26,10 +26,14 @@ namespace GodSpeak
         }
 
         public async virtual void DoGoSave ()
-        {			
-            HudService.Show (Text.SavingSettings);
+        {
+			if (!HasAnyChange())
+				return;
 
-            foreach (var setting in User.MessageDayOfWeekSettings) {
+			HudService.Show (Text.SavingSettings);
+
+            foreach (var setting in User.MessageDayOfWeekSettings) 
+			{
                 setting.StartTime = StartTime;
                 setting.EndTime = EndTime;
                 setting.NumOfMessages = NumberOfMessages;
@@ -56,7 +60,8 @@ namespace GodSpeak
 			}
 
             var categorySettings = Groups [1];
-            foreach (var setting in categorySettings) {
+            foreach (var setting in categorySettings) 
+			{
                 User.MessageCategorySettings.First (s => s.Title == setting.Title).Enabled = setting.IsEnabled;
             }
 
@@ -66,6 +71,44 @@ namespace GodSpeak
 
 			_messenger.Publish(new MessageSettingsChangeMessage(this));
         }
+
+		private bool HasAnyChange()
+		{
+			if (NumberOfMessages != User.MessageDayOfWeekSettings[0].NumOfMessages)
+			{
+				return true;
+			}
+
+			if (StartTime != User.MessageDayOfWeekSettings[0].StartTime)
+			{
+				return true;
+			}
+
+			if (EndTime != User.MessageDayOfWeekSettings[0].EndTime)
+			{
+				return true;
+			}
+
+			var daySettings = Groups[0];
+			var previousDaySettings = string.Join(",", User.MessageDayOfWeekSettings.Where(x => x.Enabled).Select(x => x.Title));
+			var currentDaySettings = string.Join(",", daySettings.Where(x => x.IsEnabled && x != _everyDayItem).Select(x => x.Title));
+
+			if (!previousDaySettings.Equals(currentDaySettings))
+			{
+				return true;
+			}
+
+			var categorySettings = Groups[1];
+			var previousCategories = string.Join(",", User.MessageCategorySettings.Where(x => x.Enabled).Select(x => x.Title));
+			var currentCategories = string.Join(",", categorySettings.Where(x => x.IsEnabled).Select(x => x.Title.ToString()));
+
+			if (!previousCategories.Equals(currentCategories))
+			{
+				return true;
+			}
+
+			return false;
+		}
 
         private ObservableCollection<SettingsGroup> _groups;
         public ObservableCollection<SettingsGroup> Groups {
