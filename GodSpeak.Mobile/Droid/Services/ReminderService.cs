@@ -15,6 +15,8 @@ using Newtonsoft.Json;
 using Android.Content.PM;
 using Xamarin.Forms;
 
+using Java.Util;
+
 namespace GodSpeak.Droid
 {
 	public class ReminderService : IReminderService
@@ -44,9 +46,16 @@ namespace GodSpeak.Droid
 			var intent = CreateAlarmIntent(message);
 			var pendingIntent = CreatePendingIntent(intent, PendingIntentFlags.CancelCurrent);
 
-			AlarmManager.Set(AlarmType.RtcWakeup, (long)message.DateTimeToDisplay.ToUniversalTime().Subtract(
-					new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)
-				).TotalMilliseconds, pendingIntent);
+			var calendar = Calendar.Instance;
+			calendar.TimeInMillis = Java.Lang.JavaSystem.CurrentTimeMillis();
+			calendar.Set(
+				message.DateTimeToDisplay.Year,
+				message.DateTimeToDisplay.Month-1,
+				message.DateTimeToDisplay.Day,
+				message.DateTimeToDisplay.Hour,
+				message.DateTimeToDisplay.Minute);
+
+			AlarmManager.Set(AlarmType.RtcWakeup, calendar.TimeInMillis, pendingIntent);
 
 			return true;
 		}
@@ -62,7 +71,7 @@ namespace GodSpeak.Droid
 
 		private PendingIntent CreatePendingIntent(Intent intent, PendingIntentFlags flag)
 		{
-			var random = new Random(DateTime.Now.Millisecond);
+			var random = new System.Random(DateTime.Now.Millisecond);
 			var id = random.Next();
 
 			return PendingIntent.GetBroadcast(Xamarin.Forms.Forms.Context, id, intent, flag);
@@ -124,7 +133,7 @@ namespace GodSpeak.Droid
 				.SetSmallIcon(Resource.Drawable.icon)
 				.SetContentText(message.Verse.Text);
 
-			var random = new Random(DateTime.Now.Millisecond);
+			var random = new System.Random(DateTime.Now.Millisecond);
 			var id = random.Next();
 
 			NotificationManager.Notify(message.Id.ToString(), id, builder.Build());
