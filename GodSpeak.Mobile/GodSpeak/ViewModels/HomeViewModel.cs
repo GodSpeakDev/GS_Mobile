@@ -33,9 +33,10 @@ namespace GodSpeak
         public virtual async void DoGoLogoutCommand ()
         {
             hudService.Show ();
-            await webService.Logout (new LogoutRequest () { Token = sessionService.GetUser ().Token });
+			await webService.Logout (new LogoutRequest () { Token = (await sessionService.GetUser ()).Token });
             hudService.Hide ();
 
+			this.settingsService.Token = null;
             this.ChangePresentation (new CloseMenuPresentationHint ());
             this.ShowViewModel<LoginViewModel> (presentationBundle:
                                                new MvxBundle (new Dictionary<string, string> ()
@@ -96,13 +97,16 @@ namespace GodSpeak
         readonly IWebApiService webService;
         readonly IProgressHudService hudService;
         readonly ISessionService sessionService;
+		readonly ISettingsService settingsService;
 
-        public HomeViewModel (ISessionService sessionService, IFeedbackService feedbackService, IWebApiService webService, IProgressHudService hudService)
+        public HomeViewModel (ISessionService sessionService, IFeedbackService feedbackService, IWebApiService webService, IProgressHudService hudService, ISettingsService settingsService)
         {
             this.sessionService = sessionService;
             this.hudService = hudService;
             this.webService = webService;
             this.feedbackService = feedbackService;
+			this.settingsService = settingsService;
+
             MenuItems = new ObservableCollection<MenuItem> ()
             {
                 new MenuItem()

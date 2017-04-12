@@ -177,7 +177,7 @@ namespace GodSpeak
         public async void Init ()
         {
             HudService.Show (Text.RetrievingSettings);
-            var response = await WebApiService.GetProfile (new TokenRequest () { Token = SessionService.GetUser ().Token });
+			var response = await WebApiService.GetProfile (new TokenRequest () { Token = (await SessionService.GetUser ()).Token });
 
 			if (response.IsSuccess)
 			{

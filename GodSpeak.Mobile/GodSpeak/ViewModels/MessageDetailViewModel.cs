@@ -131,7 +131,7 @@ namespace GodSpeak
 					{
 						VerseCode = Message.Verse.Title,
 						DateDelivered = DateTime.Now,
-						Token = SessionService.GetUser().Token
+						Token = (await SessionService.GetUser()).Token
 					});
 
 					if (deliverResponse.IsSuccess)

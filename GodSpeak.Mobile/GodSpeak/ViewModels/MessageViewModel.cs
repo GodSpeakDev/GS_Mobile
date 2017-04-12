@@ -125,7 +125,7 @@ namespace GodSpeak
                 await LoadMessages ();
             });
 
-			var currentUser = SessionService.GetUser();
+			var currentUser = await SessionService.GetUser();
 			var response = await WebApiService.GetImpact (new GetImpactRequest 
 			{
 				InviteCode = currentUser.InviteCode,
@@ -158,7 +158,7 @@ namespace GodSpeak
                 });
 
                 messages = await WebApiService.GetMessages (new TokenRequest () {
-                    Token = SessionService.GetUser ().Token
+					Token = (await SessionService.GetUser ()).Token
                 });
 
 				while (!_isShowingHud)
@@ -171,7 +171,7 @@ namespace GodSpeak
             } else {
                 this.HudService.Show (Text.RetrievingMessages);
                 messages = await WebApiService.GetMessages (new TokenRequest () {
-                    Token = SessionService.GetUser ().Token
+                    Token = (await SessionService.GetUser ()).Token
                 });
                 this.HudService.Hide ();
             }

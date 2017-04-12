@@ -50,7 +50,7 @@ namespace GodSpeak
 			if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized || response.StatusCode == System.Net.HttpStatusCode.Forbidden)
 			{
 				HudService.Show();
-				await WebApiService.Logout(new LogoutRequest() { Token = SessionService.GetUser().Token });
+				await WebApiService.Logout(new LogoutRequest() { Token = (await SessionService.GetUser()).Token });
 				HudService.Hide();
 
 				BackToLoginPage();

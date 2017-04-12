@@ -95,7 +95,7 @@ namespace GodSpeak
         {
             this.HudService.Show ();
             var response = await WebApiService.PurchaseInvite (new PurchaseInviteRequest () {
-                Token = SessionService.GetUser ().Token,
+				Token = (await SessionService.GetUser ()).Token,
                 Guid = bundle.InviteBundleId
             });            
 

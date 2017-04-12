@@ -82,15 +82,21 @@ namespace GodSpeak
             var response = await WebApiService.Login (new LoginRequest () { Email = Email, Password = Password });
             HudService.Hide ();
 
-            if (response.IsSuccess) {
+            if (response.IsSuccess) 
+			{
                 await SessionService.SaveUser (response.Payload);
+				SettingsService.Token = response.Payload.Token;
                 this.ShowViewModel<HomeViewModel> ();
-            } else if (response.StatusCode == System.Net.HttpStatusCode.Forbidden) {
+            } 
+			else if (response.StatusCode == System.Net.HttpStatusCode.Forbidden) 
+			{
                 var result = await this.DialogService.ShowMenu (Text.BadRequestTitle, Text.LoginInvalidEmailPassword, Text.TryAgain, Text.ForgotMyPasswordButtonTitle);
                 if (result == Text.ForgotMyPasswordButtonTitle) {
                     ForgotPasswordCommand.Execute ();
                 }
-            } else {
+            } 
+			else 
+			{
                 await HandleResponse (response);
             }
         }

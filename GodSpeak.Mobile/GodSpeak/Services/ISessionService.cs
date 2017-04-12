@@ -7,6 +7,6 @@ namespace GodSpeak
 	{
 		Task SaveUser(User user);
 		Task ClearUser();
-		User GetUser();
+		Task<User> GetUser();
 	}
 }

@@ -10,5 +10,11 @@ namespace GodSpeak
 			get;
 			set;
 		}
+
+		string Token
+		{
+			get;
+			set;
+		}
 	}
 }

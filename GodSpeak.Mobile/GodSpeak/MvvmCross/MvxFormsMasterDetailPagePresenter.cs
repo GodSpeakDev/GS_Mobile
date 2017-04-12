@@ -142,9 +142,16 @@ namespace GodSpeak
 
 			if (_mvxFormsApp.MainPage == null)
 			{
-				_mvxFormsApp.MainPage = new CustomNavigationPage(page);
-				var navPage = MvxFormsApp.MainPage as NavigationPage;
-				CustomPlatformInitialization(navPage);
+				if (viewModel is MvxMasterDetailViewModel)
+				{
+					SetMasterDetail(viewModel, page, request);
+				}
+				else
+				{
+					_mvxFormsApp.MainPage = new CustomNavigationPage(page);
+					var navPage = MvxFormsApp.MainPage as NavigationPage;
+					CustomPlatformInitialization(navPage);
+				}
 			}
 			else if (_mvxFormsApp.MainPage is MasterDetailPage)
 			{
@@ -178,37 +185,7 @@ namespace GodSpeak
 			{
 				if (viewModel is MvxMasterDetailViewModel)
 				{
-					var masterDetailViewModel = viewModel as MvxMasterDetailViewModel;
-
-					Page rootContentPage = null;
-					if (masterDetailViewModel.RootContentPageViewModelType != null)
-					{
-						var rootContentRequest = new MvxViewModelRequest(masterDetailViewModel.RootContentPageViewModelType, new MvxBundle(request.ParameterValues), null, null);
-
-						var rootContentViewModel = MvxPresenterHelpers.LoadViewModel(rootContentRequest);
-						rootContentPage = MvxPresenterHelpers.CreatePage(rootContentRequest);
-						SetupForBinding(rootContentPage, rootContentViewModel, rootContentRequest);
-					}
-					else
-						rootContentPage = new ContentPage();
-
-					var navPage = new CustomNavigationPage(rootContentPage);
-
-					//Hook to Popped event to launch RootContentPageActivated if proceeds
-					navPage.Popped += (sender, e) =>
-					{
-						if (navPage.Navigation.NavigationStack.Count == 1)
-							RootContentPageActivated();
-					};
-
-					var mainPage = new MasterDetailPage
-					{
-						Master = page,
-						Detail = navPage
-					};
-
-					_mvxFormsApp.MainPage = mainPage;
-					CustomPlatformInitialization(mainPage);
+					SetMasterDetail(viewModel, page, request);
 				}
 				else
 				{
@@ -301,6 +278,43 @@ namespace GodSpeak
 			//}
 
 			return true;
+		}
+
+		private void SetMasterDetail(IMvxViewModel viewModel, Page page, MvxViewModelRequest request)
+		{
+			var masterDetailViewModel = viewModel as MvxMasterDetailViewModel;
+
+			Page rootContentPage = null;
+			if (masterDetailViewModel.RootContentPageViewModelType != null)
+			{
+				var rootContentRequest = new MvxViewModelRequest(masterDetailViewModel.RootContentPageViewModelType, new MvxBundle(request.ParameterValues), null, null);
+
+				var rootContentViewModel = MvxPresenterHelpers.LoadViewModel(rootContentRequest);
+				rootContentPage = MvxPresenterHelpers.CreatePage(rootContentRequest);
+				SetupForBinding(rootContentPage, rootContentViewModel, rootContentRequest);
+			}
+			else
+			{
+				rootContentPage = new ContentPage();
+			}
+
+			var navPage = new CustomNavigationPage(rootContentPage);
+
+			//Hook to Popped event to launch RootContentPageActivated if proceeds
+			navPage.Popped += (sender, e) =>
+			{
+				if (navPage.Navigation.NavigationStack.Count == 1)
+					RootContentPageActivated();
+			};
+
+			var mainPage = new MasterDetailPage
+			{
+				Master = page,
+				Detail = navPage
+			};
+
+			_mvxFormsApp.MainPage = mainPage;
+			CustomPlatformInitialization(mainPage);
 		}
 
 		private void RootContentPageActivated()

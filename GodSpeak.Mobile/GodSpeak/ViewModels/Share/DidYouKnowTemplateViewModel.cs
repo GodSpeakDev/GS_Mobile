@@ -26,7 +26,7 @@ namespace GodSpeak
 
 		public async Task Init()
 		{			
-			var response = await WebApiService.GetDidYouKnow(new TokenRequest() { Token = SessionService.GetUser().Token });
+			var response = await WebApiService.GetDidYouKnow(new TokenRequest() { Token = (await SessionService.GetUser()).Token });
 
 			if (response.IsSuccess)
 			{

@@ -75,7 +75,7 @@ namespace GodSpeak
         public async Task Init (bool comesFromRegisterFlow)
         {
 			_comesFromRegisterFlow = comesFromRegisterFlow;
-            var response = await WebApiService.GetAcceptedInvites (new TokenRequest () { Token = SessionService.GetUser ().Token });
+			var response = await WebApiService.GetAcceptedInvites (new TokenRequest () { Token = (await SessionService.GetUser ()).Token });
 
             if (response.IsSuccess) {
                 _acceptedInvites = new ObservableCollection<ItemCommand<AcceptedInvite>> (

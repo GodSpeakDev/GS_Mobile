@@ -106,13 +106,13 @@ namespace GodSpeak
 			Contacts = new ObservableCollection<SelectableItem<Contact>>(contacts);
 		}
 
-		private void DoComposeEmailCommand()
+		private async void DoComposeEmailCommand()
 		{
 			if (HasEmailSelected)
 			{
 				var selectedContacsMail = _deviceContacts.Where(x => x.IsEnabled).Select(x => x.Item.EmailAddresses.First().Address);
 				//var selectedContacsMail = new string[] {"paulo.ortins@gmail.com"};
-				var body = string.Format(Text.ShareEmailBody, SessionService.GetUser().FirstName);
+				var body = string.Format(Text.ShareEmailBody, (await SessionService.GetUser()).FirstName);
 				_mailService.SendMail(to: selectedContacsMail.ToArray(), subject: Text.ShareEmailSubject, body: body);
 			}	
 		}

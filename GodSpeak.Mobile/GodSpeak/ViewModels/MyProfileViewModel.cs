@@ -128,7 +128,7 @@ namespace GodSpeak
             Countries = countries.Select (c => c.Title).ToArray ();
             CountryCodes = countries.Select (c => c.Code).ToArray ();
 
-            var user = (await WebApiService.GetProfile (new TokenRequest () { Token = SessionService.GetUser ().Token }));
+			var user = (await WebApiService.GetProfile (new TokenRequest () { Token = (await SessionService.GetUser ()).Token }));
             if (user.IsSuccess) {
                 SetUserInfo (user.Payload);
                 HudService.Hide ();
@@ -155,7 +155,7 @@ namespace GodSpeak
         private async void DoSaveCommand ()
         {
             HudService.Show ();
-            var user = SessionService.GetUser ();
+            var user = await SessionService.GetUser ();
             user.FirstName = FirstName;
             user.LastName = LastName;
             user.CountryCode = CountryCodes [SelectedCountryIndex];
@@ -207,7 +207,7 @@ namespace GodSpeak
 
 					var photoResponse = await WebApiService.UploadPhoto(new UploadPhotoRequest()
 					{
-						Token = SessionService.GetUser().Token,
+						Token = (await SessionService.GetUser()).Token,
 						FilePath = response.Path
 					});
 

@@ -43,7 +43,7 @@ namespace GodSpeak
 
         private async void DoShareWithFriendsCommand ()
         {
-			var currentUser = SessionService.GetUser();
+			var currentUser = await SessionService.GetUser();
 			if (currentUser.InviteBalance > 0)
 			{
 				_shareService.Share(string.Format(Text.ShareText, currentUser.InviteCode, currentUser.FirstName));
@@ -56,7 +56,7 @@ namespace GodSpeak
 
         public async Task UpdateGiftsLeftTitle ()
         {
-            var profileResponse = await WebApiService.GetProfile (new TokenRequest () { Token = SessionService.GetUser ().Token });
+			var profileResponse = await WebApiService.GetProfile (new TokenRequest () { Token = (await SessionService.GetUser ()).Token });
 			if (profileResponse.IsSuccess)
 			{
 				await SessionService.SaveUser(profileResponse.Payload);	
@@ -70,11 +70,11 @@ namespace GodSpeak
 
         private async void DoShareWithWorldCommand ()
         {
-			var currentUser = SessionService.GetUser();
+			var currentUser = await SessionService.GetUser();
 			if (currentUser.InviteBalance > 0)
 			{
 				HudService.Show ();
-            	var response = await WebApiService.DonateInvite(new TokenRequest() { Token = SessionService.GetUser().Token });
+				var response = await WebApiService.DonateInvite(new TokenRequest() { Token = (await SessionService.GetUser()).Token });
 				HudService.Hide ();
 
 				if (response.IsSuccess) 

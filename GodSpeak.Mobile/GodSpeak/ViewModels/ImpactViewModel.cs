@@ -100,7 +100,7 @@ namespace GodSpeak
 		{
 			this.HudService.Show();
 
-			var currentUser = SessionService.GetUser();
+			var currentUser = await SessionService.GetUser();
 			var response = await WebApiService.GetImpact(new GetImpactRequest() 
 			{
 				Token = currentUser.Token,
