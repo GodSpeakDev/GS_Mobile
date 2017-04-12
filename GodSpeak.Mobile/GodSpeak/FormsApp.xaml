@@ -62,7 +62,7 @@
 			<OnPlatform x:TypeArguments="Thickness" x:Key="MessageArrowMargin" Android="20,-4,0,0" iOS="20,-2,0,0" WinPhone="20,-2,0,0" />
 
 			<OnPlatform x:TypeArguments="x:Boolean" x:Key="NavigationBarTitleVisibility" Android="false" iOS="true" WinPhone="true" />
-
+			<OnPlatform x:TypeArguments="x:Double" x:Key="LoginCurveBackgrounSize" Android="360" iOS="350" WinPhone="350" />
 			
 			<!-- Global Colors -->
 			<Color x:Key="primaryColor">#00a5ff</Color>

@@ -22,7 +22,7 @@
 					Grid.Row="1">
 					<Image Source="login_form_background.png"
 						Aspect="Fill"
-						HeightRequest="350"
+						HeightRequest="{StaticResource LoginCurveBackgrounSize}"
 						AbsoluteLayout.LayoutBounds="0,0,1,1"
 						AbsoluteLayout.LayoutFlags="All"></Image>
 					<StackLayout 
