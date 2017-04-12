@@ -60,7 +60,10 @@
 
 			<OnPlatform x:TypeArguments="x:Double" x:Key="MessageHeaderSize" Android="30" iOS="25" WinPhone="30" />
 			<OnPlatform x:TypeArguments="Thickness" x:Key="MessageArrowMargin" Android="20,-4,0,0" iOS="20,-2,0,0" WinPhone="20,-2,0,0" />
-						
+
+			<OnPlatform x:TypeArguments="x:Boolean" x:Key="NavigationBarTitleVisibility" Android="false" iOS="true" WinPhone="true" />
+
+			
 			<!-- Global Colors -->
 			<Color x:Key="primaryColor">#00a5ff</Color>
 			<Color x:Key="secondaryColor">#ffffff</Color>

@@ -21,6 +21,7 @@
 		VerticalOptions="CenterAndExpand"
 		HorizontalOptions="StartAndExpand"
 		Style="{StaticResource NavigationBarButtonTitle}"
+		IsVisible="{StaticResource NavigationBarTitleVisibility}"
 		Text="Back">
 	</views:CustomLabel>	
 </StackLayout>
