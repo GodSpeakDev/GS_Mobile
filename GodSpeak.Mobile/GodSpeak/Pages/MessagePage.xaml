@@ -135,14 +135,15 @@
 														Style="{StaticResource TextMessageBody}"
 													/>											
 												</views:MessageBalloon>
-												<StackLayout
+												<StackLayout													
 													Orientation="Horizontal">
-													<views:ImageWithShadow											
+													<views:ImageWithShadow																
 														Source="message_arrow.png"
 														Margin="{StaticResource MessageArrowMargin}"
 														HorizontalOptions="Start"
+														VerticalOptions="Start"
 													/>
-													<views:CustomLabel 	
+													<views:CustomLabel														
 														Margin="5,3,0,0"
 														Text="{Binding Verse.Title}"
 														HorizontalOptions="EndAndExpand"
