@@ -845,6 +845,18 @@ namespace GodSpeak.Resources {
             }
         }
         
+        public static string LearnMore {
+            get {
+                return ResourceManager.GetString("LearnMore", resourceCulture);
+            }
+        }
+        
+        public static string DonateInvite {
+            get {
+                return ResourceManager.GetString("DonateInvite", resourceCulture);
+            }
+        }
+        
         public static string ShareWithNoBalance {
             get {
                 return ResourceManager.GetString("ShareWithNoBalance", resourceCulture);

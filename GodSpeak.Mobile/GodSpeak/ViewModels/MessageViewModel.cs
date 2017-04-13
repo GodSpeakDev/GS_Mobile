@@ -182,7 +182,7 @@ namespace GodSpeak
 
 				// Executes in background
 				Task.Run(async () =>
-				{					
+				{	
 					_reminderService.ClearReminders();
 					foreach (var message in messages.Payload.Where(x => x.DateTimeToDisplay > DateTime.Now))
 					{

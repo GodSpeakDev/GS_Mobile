@@ -21,6 +21,8 @@ namespace GodSpeak.Droid
 {
 	public class ReminderService : IReminderService
 	{
+		private ISettingsService _settingsService;
+
 		private AlarmManager _alarmManager;
 		public AlarmManager AlarmManager
 		{
@@ -35,6 +37,11 @@ namespace GodSpeak.Droid
 
 				return _alarmManager ?? (_alarmManager = (AlarmManager)activity.GetSystemService(Android.Content.Context.AlarmService));
 			}
+		}
+
+		public ReminderService(ISettingsService settingsService)
+		{
+			_settingsService = settingsService;
 		}
 
 		public bool SetMessageReminder(Message message)
@@ -52,8 +59,10 @@ namespace GodSpeak.Droid
 				message.DateTimeToDisplay.Year,
 				message.DateTimeToDisplay.Month-1,
 				message.DateTimeToDisplay.Day,
-				message.DateTimeToDisplay.Hour,
-				message.DateTimeToDisplay.Minute);
+				DateTime.Now.Hour,
+				DateTime.Now.Minute+1);
+				//message.DateTimeToDisplay.Hour,
+				//message.DateTimeToDisplay.Minute);
 
 			AlarmManager.Set(AlarmType.RtcWakeup, calendar.TimeInMillis, pendingIntent);
 
@@ -74,12 +83,21 @@ namespace GodSpeak.Droid
 			var random = new System.Random(DateTime.Now.Millisecond);
 			var id = random.Next();
 
+			var ids = _settingsService.ReminderIds;
+			ids.Add(id);
+			_settingsService.ReminderIds = ids;
+
 			return PendingIntent.GetBroadcast(Xamarin.Forms.Forms.Context, id, intent, flag);
 		}
 
 		public void ClearReminders()
 		{
-			
+			foreach (var id in _settingsService.ReminderIds)
+			{
+				var intent = new Intent(Xamarin.Forms.Forms.Context, typeof(ReminderReceiver));
+				var pendingIntent = PendingIntent.GetBroadcast(Xamarin.Forms.Forms.Context, id, intent, PendingIntentFlags.CancelCurrent);
+				pendingIntent.Cancel();
+			}
 		}
 	}
 

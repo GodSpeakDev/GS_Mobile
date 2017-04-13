@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using MvvmCross.Core.ViewModels;
 using GodSpeak.Services;
+using MvvmCross.Plugins.WebBrowser;
 
 namespace GodSpeak
 {
@@ -13,7 +14,7 @@ namespace GodSpeak
         private IShareService _shareService;
         private ShareTemplateViewModel _shareTemplateViewModel;
         private DidYouKnowTemplateViewModel _didYouKnowTemplateViewModel;
-		private bool _comesFromRegisterFlow;
+        private bool _comesFromRegisterFlow;
 
         private ObservableCollection<CustomViewModel> _pages;
         public ObservableCollection<CustomViewModel> Pages {
@@ -46,27 +47,27 @@ namespace GodSpeak
             }
         }
 
-        public UnclaimedGiftViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, ISettingsService settingsService, IShareService shareService) : base (dialogService, hudService, sessionService, webApiService, settingsService)
+        readonly IMvxWebBrowserTask _browserTask;
+
+        public UnclaimedGiftViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, ISettingsService settingsService, IShareService shareService, IMvxWebBrowserTask browserTask) : base (dialogService, hudService, sessionService, webApiService, settingsService)
         {
+            this._browserTask = browserTask;
             _shareService = shareService;
         }
 
-		protected override void DoCloseCommand()
-		{
-			if (_comesFromRegisterFlow)
-			{
-				this.ShowViewModel<HomeViewModel>();
-			}
-			else
-			{
-				base.DoCloseCommand();
-			}
-		}
+        protected override void DoCloseCommand ()
+        {
+            if (_comesFromRegisterFlow) {
+                this.ShowViewModel<HomeViewModel> ();
+            } else {
+                base.DoCloseCommand ();
+            }
+        }
 
         public async Task Init (bool comesFromRegisterFlow)
         {
-			_comesFromRegisterFlow = comesFromRegisterFlow;
-            _shareTemplateViewModel = new ShareTemplateViewModel (DialogService, HudService, SessionService, WebApiService, SettingsService, _shareService);
+            _comesFromRegisterFlow = comesFromRegisterFlow;
+            _shareTemplateViewModel = new ShareTemplateViewModel (DialogService, HudService, SessionService, WebApiService, SettingsService, _shareService, _browserTask);
 
             _didYouKnowTemplateViewModel = new DidYouKnowTemplateViewModel (DialogService, HudService, SessionService, WebApiService, SettingsService);
 
@@ -94,18 +95,15 @@ namespace GodSpeak
         private async void DoTapBundleCommand (InviteBundle bundle)
         {
             this.HudService.Show ();
-            var response = await WebApiService.PurchaseInvite (new PurchaseInviteRequest () {				
+            var response = await WebApiService.PurchaseInvite (new PurchaseInviteRequest () {
                 Guid = bundle.InviteBundleId
-            });            
+            });
 
-            if (response.IsSuccess) 
-			{
+            if (response.IsSuccess) {
                 await _shareTemplateViewModel.UpdateGiftsLeftTitle ();
                 this.HudService.Hide ();
                 await this.DialogService.ShowAlert (response.Title, response.Message);
-            } 
-			else 
-			{
+            } else {
                 this.HudService.Hide ();
                 await HandleResponse (response);
             }

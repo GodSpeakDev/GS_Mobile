@@ -124,6 +124,9 @@
     <EmbeddedResource Include="Pages\SelectWhoToSendMailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\DonateTemplateView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -387,6 +390,9 @@
     <Compile Include="Api\Request\RecordMessageDeliveredRequest.cs" />
     <Compile Include="Services\ISettingsService.cs" />
     <Compile Include="Services\SettingsService.cs" />
+    <Compile Include="Pages\DonateTemplateView.xaml.cs">
+      <DependentUpon>DonateTemplateView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />
@@ -459,6 +465,9 @@
     </Reference>
     <Reference Include="Cheesebaron.MvxPlugins.Settings">
       <HintPath>..\packages\Cheesebaron.MvxPlugins.Settings.3.0.3\lib\portable-net45+win+wpa81+wp80\Cheesebaron.MvxPlugins.Settings.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.WebBrowser">
+      <HintPath>..\packages\MvvmCross.Plugin.WebBrowser.4.4.0\lib\portable-net45+win+wpa81+wp80\MvvmCross.Plugins.WebBrowser.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

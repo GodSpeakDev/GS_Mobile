@@ -91,7 +91,11 @@ namespace GodSpeak
 
 			var daySettings = Groups[0];
 			var previousDaySettings = string.Join(",", User.MessageDayOfWeekSettings.Where(x => x.Enabled).Select(x => x.Title));
-			var currentDaySettings = string.Join(",", daySettings.Where(x => x.IsEnabled && x != _everyDayItem).Select(x => x.Title));
+			var currentDaySettings = string.Join(",", daySettings.Where(x => x.IsEnabled).Select(x => x.Title));
+			if (currentDaySettings == _everyDayItem.Title)
+			{
+				currentDaySettings = string.Join(",", User.MessageDayOfWeekSettings.Select(x => x.Title));
+			}
 
 			if (!previousDaySettings.Equals(currentDaySettings))
 			{

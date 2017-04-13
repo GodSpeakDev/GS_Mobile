@@ -696,11 +696,13 @@ Enjoy!
     	<value>Retrieving Messages</value>
   	</data>
 	<data
-		name="MessageSettingsNotSelected" xml:space="preserve">
+		name="MessageSettingsNotSelected"
+		xml:space="preserve">
     	<value>You should select at least one day and one category.</value>
   	</data>
 	<data
-		name="ShareText" xml:space="preserve">
+		name="ShareText"
+		xml:space="preserve">
     	<value>Hey there,
 			
 I would like to give you the gift of GodSpeak. You can claim it with this link:
@@ -714,23 +716,38 @@ Enjoy!
 		</value>
   	</data>
 	<data
-		name="ShareWithNoBalance" xml:space="preserve">
+		name="LearnMore"
+		xml:space="preserve">
+    	<value>Learn More</value>
+  	</data>
+	<data
+		name="DonateInvite"
+		xml:space="preserve">
+    	<value>Donate Invite</value>
+  	</data>
+	<data
+		name="ShareWithNoBalance"
+		xml:space="preserve">
     	<value>You don't have gifts to share. Why don't you buy some?</value>
   	</data>
 	<data
-		name="Everyday" xml:space="preserve">
+		name="Everyday"
+		xml:space="preserve">
     	<value>Everyday</value>
   	</data>
 	<data
-		name="PayItForward" xml:space="preserve">
+		name="PayItForward"
+		xml:space="preserve">
     	<value>Pay it Forward</value>
   	</data>
 	<data
-		name="DontWantToPayItForward" xml:space="preserve">
-    	<value>I don't want</value>
-  	</data>	
+		name="DontWantToPayItForward"
+		xml:space="preserve">
+    	<value>I don't want to</value>
+  	</data>
 	<data
-		name="TapToPayItForward" xml:space="preserve">
+		name="TapToPayItForward"
+		xml:space="preserve">
     	<value>Tap to Pay it Forward</value>
   	</data>
 </root>
