@@ -11,6 +11,12 @@ namespace GodSpeak
 			set;
 		}
 
+		List<int> ReminderIds
+		{
+			get;
+			set;
+		}
+
 		string Token
 		{
 			get;

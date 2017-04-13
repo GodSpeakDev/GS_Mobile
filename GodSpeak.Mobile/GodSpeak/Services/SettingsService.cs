@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Cheesebaron.MvxPlugins.Settings.Interfaces;
+using System.Linq;
 
 namespace GodSpeak
 {
@@ -13,6 +14,9 @@ namespace GodSpeak
 
 		private string _tokenKey = "Godspeak.Token";
 		private string _tokenDefault = null;
+
+		private string _remindersKey = "Godspeak.Reminders";
+		private string _remindersDefault = string.Empty;
 
 		public SettingsService(ISettings settings)
 		{
@@ -29,6 +33,24 @@ namespace GodSpeak
 			set 
 			{ 
 				_settings.AddOrUpdateValue<string>(_verseCodesKey, string.Join(",", value));
+			}
+		}
+
+		public List<int> ReminderIds
+		{
+			get
+			{
+				var str = _settings.GetValue<string>(_remindersKey, _remindersDefault);
+				if (string.IsNullOrEmpty(str))
+				{
+					return new List<int>();	
+				}
+
+				return new List<int>(new List<string>(str.Split(',')).Select(x => int.Parse(x)));
+			}
+			set
+			{
+				_settings.AddOrUpdateValue<string>(_remindersKey, string.Join(",", value));
 			}
 		}
 
