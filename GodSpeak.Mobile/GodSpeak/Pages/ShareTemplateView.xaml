@@ -18,20 +18,29 @@
 				<ColumnDefinition Width="*" />
 				<ColumnDefinition Width="*" />
 			</Grid.ColumnDefinitions>
-			<views:CustomLabel	
+			<Frame
 				Grid.Row="0"
 				Grid.Column="0"
 				Grid.ColumnSpan="2"
 				Margin="0,0,0,15"
+				Padding="5"
+				BackgroundColor="#4D000000"
 				VerticalOptions="End"
-				HorizontalOptions="Center"
-				Style="{StaticResource TextWhiteWithShadow}"
-				Text="{Binding GiftsLeftTitle}" />			
+			>
+				<views:CustomLabel	
+					VerticalOptions="Center"
+					HorizontalOptions="Center"
+					Style="{StaticResource TextWhiteWithShadow}"
+					Text="{Binding GiftsLeftTitle}" />			
+			</Frame>
+
 			<views:CustomButton  
 				Grid.Row="1"
 				Grid.Column="0"
 				VerticalOptions="Center"
 				Style="{StaticResource ShareButtonBlue}"
+				IsEnabled="{Binding ShareEnabled}"
+
 				Text="{x:Static res:Text.ShareWithFriend}"
 				Command="{Binding ShareWithFriendsCommand}"
 			/>

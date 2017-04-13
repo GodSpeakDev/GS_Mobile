@@ -159,7 +159,7 @@
 	<data
 		name="PictureSourceQuestion"
 		xml:space="preserve">
-    	<value>Where you want to choose your picture?</value>
+    	<value>Where do you want to choose your picture from?</value>
   	</data>
 	<data
 		name="PictureSourceFromGallery"
@@ -513,7 +513,7 @@ Claimed</value>
 	<data
 		name="ShareWithFriend"
 		xml:space="preserve">
-    	<value>Share with Friend</value>
+    	<value>Share with Friends</value>
   	</data>
 	<data
 		name="ShareWithWorld"
@@ -524,6 +524,11 @@ Claimed</value>
 		name="ShareGiftsLeft"
 		xml:space="preserve">
     	<value>You have {0} gifts left</value>
+  	</data>
+	<data
+		name="DonateStranger"
+		xml:space="preserve">
+    	<value>Pay 1 of your {0} gifts forward to someone you don't know...</value>
   	</data>
 	<data
 		name="DidYouKnow"
@@ -723,7 +728,12 @@ Enjoy!
 	<data
 		name="DonateInvite"
 		xml:space="preserve">
-    	<value>Donate Invite</value>
+    	<value>Pay it Forward</value>
+  	</data>
+	<data
+		name="PurchaseInvitesText"
+		xml:space="preserve">
+    	<value>Purchase gifts to share GodSpeak with others...</value>
   	</data>
 	<data
 		name="ShareWithNoBalance"

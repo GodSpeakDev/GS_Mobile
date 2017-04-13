@@ -641,6 +641,12 @@ namespace GodSpeak.Resources {
             }
         }
         
+        public static string DonateStranger {
+            get {
+                return ResourceManager.GetString("DonateStranger", resourceCulture);
+            }
+        }
+        
         public static string DidYouKnow {
             get {
                 return ResourceManager.GetString("DidYouKnow", resourceCulture);
@@ -854,6 +860,12 @@ namespace GodSpeak.Resources {
         public static string DonateInvite {
             get {
                 return ResourceManager.GetString("DonateInvite", resourceCulture);
+            }
+        }
+        
+        public static string PurchaseInvitesText {
+            get {
+                return ResourceManager.GetString("PurchaseInvitesText", resourceCulture);
             }
         }
         

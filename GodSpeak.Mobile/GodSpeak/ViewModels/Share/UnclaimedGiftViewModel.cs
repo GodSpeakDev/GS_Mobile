@@ -13,6 +13,7 @@ namespace GodSpeak
     {
         private IShareService _shareService;
         private ShareTemplateViewModel _shareTemplateViewModel;
+        private DonateTemplateViewModel _donateViewModel;
         private DidYouKnowTemplateViewModel _didYouKnowTemplateViewModel;
         private bool _comesFromRegisterFlow;
 
@@ -70,19 +71,21 @@ namespace GodSpeak
             _shareTemplateViewModel = new ShareTemplateViewModel (DialogService, HudService, SessionService, WebApiService, SettingsService, _shareService, _browserTask);
 
             _didYouKnowTemplateViewModel = new DidYouKnowTemplateViewModel (DialogService, HudService, SessionService, WebApiService, SettingsService);
-
+            _donateViewModel = new DonateTemplateViewModel (DialogService, HudService, SessionService, WebApiService, SettingsService, _shareService, _browserTask);
             var pages = new List<CustomViewModel> ();
             pages.Add (_shareTemplateViewModel);
+            pages.Add (_donateViewModel);
             pages.Add (_didYouKnowTemplateViewModel);
             Pages = new ObservableCollection<CustomViewModel> (pages);
 
             await _didYouKnowTemplateViewModel.Init ();
+            await _donateViewModel.Init ();
             await _shareTemplateViewModel.Init ();
 
             var bundlesResponse = await WebApiService.GetInviteBundles (new GetInviteBundlesRequest ());
             if (bundlesResponse.IsSuccess) {
                 Bundles = new ObservableCollection<ItemCommand<InviteBundle>> (
-                    bundlesResponse.Payload.OrderBy (x => x.Cost).Select (x => new ItemCommand<InviteBundle> () {
+                    bundlesResponse.Payload.OrderBy (x => x.NumberOfInvites).Select (x => new ItemCommand<InviteBundle> () {
                         Item = x,
                         TappedCommand = TapBundleCommand
                     }));
