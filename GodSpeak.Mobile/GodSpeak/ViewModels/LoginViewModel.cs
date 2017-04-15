@@ -125,7 +125,7 @@ namespace GodSpeak
 
 		private void DoNeedRegisterCommand()
 		{
-			CloseCommand.Execute();
+			this.ShowAndRestoreNavigation<GetStartedViewModel>();
 		}
     }
 }
