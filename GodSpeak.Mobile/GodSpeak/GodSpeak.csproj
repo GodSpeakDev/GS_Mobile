@@ -394,6 +394,7 @@
       <DependentUpon>DonateTemplateView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Share\DonateTemplateViewModel.cs" />
+    <Compile Include="MvvmCross\Messages\MessageDeliveredMessage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

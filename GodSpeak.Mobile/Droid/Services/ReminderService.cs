@@ -17,6 +17,12 @@ using Xamarin.Forms;
 
 using Java.Util;
 
+using MvvmCross.Core.ViewModels;
+using MvvmCross.Droid.Platform;
+using MvvmCross.Platform;
+
+using MvvmCross.Plugins.Messenger;
+
 namespace GodSpeak.Droid
 {
 	public class ReminderService : IReminderService
@@ -59,10 +65,8 @@ namespace GodSpeak.Droid
 				message.DateTimeToDisplay.Year,
 				message.DateTimeToDisplay.Month-1,
 				message.DateTimeToDisplay.Day,
-				DateTime.Now.Hour,
-				DateTime.Now.Minute+1);
-				//message.DateTimeToDisplay.Hour,
-				//message.DateTimeToDisplay.Minute);
+				message.DateTimeToDisplay.Hour,
+				message.DateTimeToDisplay.Minute);
 
 			AlarmManager.Set(AlarmType.RtcWakeup, calendar.TimeInMillis, pendingIntent);
 
@@ -132,6 +136,12 @@ namespace GodSpeak.Droid
 			{
 				SendNotification(message, context);
 			}
+
+			var hasMessenger = Mvx.CanResolve<IMvxMessenger>();
+			if (hasMessenger)
+			{
+				Mvx.Resolve<IMvxMessenger>().Publish(new MessageDeliveredMessage(this));	
+			}
 		}
 
 		private void ShowMessage(Message message)
@@ -148,7 +158,7 @@ namespace GodSpeak.Droid
 		{			
 			Notification.Builder builder = new Notification.Builder(context)
 				.SetContentTitle("God Speak")
-				.SetSmallIcon(Resource.Drawable.icon)
+				.SetSmallIcon(Resource.Drawable.app_icon)
 				.SetContentText(message.Verse.Text);
 
 			var random = new System.Random(DateTime.Now.Millisecond);
