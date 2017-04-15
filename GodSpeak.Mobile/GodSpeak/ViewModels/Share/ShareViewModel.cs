@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using MvvmCross.Core.ViewModels;
 using GodSpeak.Services;
 using GodSpeak.Resources;
+using MvvmCross.Plugins.WebBrowser;
 
 namespace GodSpeak
 {
@@ -16,11 +17,11 @@ namespace GodSpeak
         private Tab _unclaimedTab;
         private Tab _claimedTab;
 
-        public ShareViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, ISettingsService settingsService, IShareService shareService, IMailService mailService) : base (dialogService, hudService, sessionService, webApiService, settingsService)
+        public ShareViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, ISettingsService settingsService, IShareService shareService, IMailService mailService, IMvxWebBrowserTask browserTask) : base (dialogService, hudService, sessionService, webApiService, settingsService)
         {
             _shareService = shareService;
 
-            UnclaimedGiftViewModel = new UnclaimedGiftViewModel (dialogService, hudService, sessionService, webApiService, settingsService, shareService);
+            UnclaimedGiftViewModel = new UnclaimedGiftViewModel (dialogService, hudService, sessionService, webApiService, settingsService, shareService, browserTask);
             ClaimedGiftViewModel = new ClaimedGiftViewModel (dialogService, hudService, sessionService, webApiService, settingsService, mailService);
 
             SelectedTab = TabTypes.Unclaimed;

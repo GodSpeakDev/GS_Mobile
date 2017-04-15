@@ -199,6 +199,12 @@
       <HintPath>..\packages\Cheesebaron.MvxPlugins.Settings.3.0.3\lib\MonoAndroid10\Cheesebaron.MvxPlugins.Settings.Droid.dll</HintPath>
     </Reference>
     <Reference Include="Java.Interop" />
+    <Reference Include="MvvmCross.Plugins.WebBrowser">
+      <HintPath>..\packages\MvvmCross.Plugin.WebBrowser.4.4.0\lib\MonoAndroid\MvvmCross.Plugins.WebBrowser.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.WebBrowser.Droid">
+      <HintPath>..\packages\MvvmCross.Plugin.WebBrowser.4.4.0\lib\MonoAndroid\MvvmCross.Plugins.WebBrowser.Droid.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GodSpeak\GodSpeak.csproj">
@@ -240,6 +246,7 @@
     <Compile Include="Renderers\MessageBalloonRenderer.cs" />
     <Compile Include="Renderers\ImageContainerRenderer.cs" />
     <Compile Include="Bootstrap\SettingsPluginBootstrap.cs" />
+    <Compile Include="Bootstrap\WebBrowserPluginBootstrap.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

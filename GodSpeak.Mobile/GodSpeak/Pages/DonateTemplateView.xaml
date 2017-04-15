@@ -4,7 +4,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 	xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
 	xmlns:res="clr-namespace:GodSpeak.Resources;assembly=GodSpeak"
-	x:Class="GodSpeak.ShareTemplateView">
+	x:Class="GodSpeak.DonateTemplateView">
 	<ContentView.Content>
 		<Grid
 			ColumnSpacing="10"
@@ -39,10 +39,8 @@
 				Grid.Column="0"
 				VerticalOptions="Center"
 				Style="{StaticResource ShareButtonBlue}"
-				IsEnabled="{Binding ShareEnabled}"
-
-				Text="{x:Static res:Text.ShareWithFriend}"
-				Command="{Binding ShareWithFriendsCommand}"
+				Text="{x:Static res:Text.DonateInvite}"
+				Command="{Binding DonateCommand}"
 			/>
 			<views:CustomButton 
 				Grid.Row="1"

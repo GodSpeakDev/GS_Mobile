@@ -159,7 +159,7 @@
 	<data
 		name="PictureSourceQuestion"
 		xml:space="preserve">
-    	<value>Where you want to choose your picture?</value>
+    	<value>Where do you want to choose your picture from?</value>
   	</data>
 	<data
 		name="PictureSourceFromGallery"
@@ -513,7 +513,7 @@ Claimed</value>
 	<data
 		name="ShareWithFriend"
 		xml:space="preserve">
-    	<value>Share with Friend</value>
+    	<value>Share with Friends</value>
   	</data>
 	<data
 		name="ShareWithWorld"
@@ -524,6 +524,11 @@ Claimed</value>
 		name="ShareGiftsLeft"
 		xml:space="preserve">
     	<value>You have {0} gifts left</value>
+  	</data>
+	<data
+		name="DonateStranger"
+		xml:space="preserve">
+    	<value>Pay 1 of your {0} gifts forward to someone you don't know...</value>
   	</data>
 	<data
 		name="DidYouKnow"
@@ -696,11 +701,13 @@ Enjoy!
     	<value>Retrieving Messages</value>
   	</data>
 	<data
-		name="MessageSettingsNotSelected" xml:space="preserve">
+		name="MessageSettingsNotSelected"
+		xml:space="preserve">
     	<value>You should select at least one day and one category.</value>
   	</data>
 	<data
-		name="ShareText" xml:space="preserve">
+		name="ShareText"
+		xml:space="preserve">
     	<value>Hey there,
 			
 I would like to give you the gift of GodSpeak. You can claim it with this link:
@@ -714,23 +721,43 @@ Enjoy!
 		</value>
   	</data>
 	<data
-		name="ShareWithNoBalance" xml:space="preserve">
-    	<value>You don't have gifts to share. Why don't you buy some?</value>
+		name="LearnMore"
+		xml:space="preserve">
+    	<value>Learn More</value>
   	</data>
 	<data
-		name="Everyday" xml:space="preserve">
-    	<value>Everyday</value>
-  	</data>
-	<data
-		name="PayItForward" xml:space="preserve">
+		name="DonateInvite"
+		xml:space="preserve">
     	<value>Pay it Forward</value>
   	</data>
 	<data
-		name="DontWantToPayItForward" xml:space="preserve">
-    	<value>I don't want</value>
-  	</data>	
+		name="PurchaseInvitesText"
+		xml:space="preserve">
+    	<value>Purchase gifts to share GodSpeak with others...</value>
+  	</data>
 	<data
-		name="TapToPayItForward" xml:space="preserve">
+		name="ShareWithNoBalance"
+		xml:space="preserve">
+    	<value>You don't have gifts to share. Why don't you buy some?</value>
+  	</data>
+	<data
+		name="Everyday"
+		xml:space="preserve">
+    	<value>Everyday</value>
+  	</data>
+	<data
+		name="PayItForward"
+		xml:space="preserve">
+    	<value>Pay it Forward</value>
+  	</data>
+	<data
+		name="DontWantToPayItForward"
+		xml:space="preserve">
+    	<value>I don't want to</value>
+  	</data>
+	<data
+		name="TapToPayItForward"
+		xml:space="preserve">
     	<value>Tap to Pay it Forward</value>
   	</data>
 </root>

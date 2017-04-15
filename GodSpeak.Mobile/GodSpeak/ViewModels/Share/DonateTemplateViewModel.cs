@@ -7,14 +7,14 @@ using MvvmCross.Plugins.WebBrowser;
 
 namespace GodSpeak
 {
-    public class ShareTemplateViewModel : CustomViewModel
+    public class DonateTemplateViewModel : CustomViewModel
     {
         private IShareService _shareService;
 
-        private MvxCommand _shareWithFriendsCommand;
-        public MvxCommand ShareWithFriendsCommand {
+        private MvxCommand _donateCommand;
+        public MvxCommand DonateCommand {
             get {
-                return _shareWithFriendsCommand ?? (_shareWithFriendsCommand = new MvxCommand (DoShareWithFriendsCommand));
+                return _donateCommand ?? (_donateCommand = new MvxCommand (DoDonateCommand));
             }
         }
 
@@ -31,17 +31,9 @@ namespace GodSpeak
             set { SetProperty (ref _giftsLeftTitle, value); }
         }
 
-        private bool _shareEnabled;
-        public bool ShareEnabled {
-            get { return _shareEnabled; }
-            set { SetProperty (ref _shareEnabled, value); }
-        }
-
-
-
         readonly IMvxWebBrowserTask browserTask;
 
-        public ShareTemplateViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, ISettingsService settingsService, IShareService shareService, IMvxWebBrowserTask browserTask) : base (dialogService, hudService, sessionService, webApiService, settingsService)
+        public DonateTemplateViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, ISettingsService settingsService, IShareService shareService, IMvxWebBrowserTask browserTask) : base (dialogService, hudService, sessionService, webApiService, settingsService)
         {
             this.browserTask = browserTask;
             _shareService = shareService;
@@ -52,11 +44,21 @@ namespace GodSpeak
             await UpdateGiftsLeftTitle ();
         }
 
-        private async void DoShareWithFriendsCommand ()
+        private async void DoDonateCommand ()
         {
             var currentUser = await SessionService.GetUser ();
             if (currentUser.InviteBalance > 0) {
-                _shareService.Share (string.Format (Text.ShareText, currentUser.InviteCode, currentUser.FirstName));
+
+                HudService.Show ();
+                var response = await WebApiService.DonateInvite ();
+                HudService.Hide ();
+
+                if (response.IsSuccess) {
+                    await DialogService.ShowAlert (response.Title, response.Message);
+                } else {
+                    await HandleResponse (response);
+                }
+
             } else {
                 await DialogService.ShowAlert (Text.ErrorPopupTitle, Text.ShareWithNoBalance);
             }
@@ -65,21 +67,9 @@ namespace GodSpeak
         public async Task UpdateGiftsLeftTitle ()
         {
             var profileResponse = await WebApiService.GetProfile ();
-
-
-
             if (profileResponse.IsSuccess) {
                 await SessionService.SaveUser (profileResponse.Payload);
-
-                var inviteBalance = profileResponse.Payload.InviteBalance;
-                ShareEnabled = inviteBalance > 0;
-                if (inviteBalance > 0) {
-                    GiftsLeftTitle = string.Format (Text.ShareGiftsLeft, inviteBalance);
-                } else {
-                    GiftsLeftTitle = Text.PurchaseInvitesText;
-                }
-
-
+                GiftsLeftTitle = string.Format (Text.DonateStranger, profileResponse.Payload.InviteBalance);
             } else {
                 await HandleResponse (profileResponse);
             }

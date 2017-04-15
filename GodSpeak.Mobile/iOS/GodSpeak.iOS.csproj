@@ -166,6 +166,12 @@
     <Reference Include="Cheesebaron.MvxPlugins.Settings.Touch">
       <HintPath>..\packages\Cheesebaron.MvxPlugins.Settings.3.0.3\lib\Xamarin.iOS10\Cheesebaron.MvxPlugins.Settings.Touch.dll</HintPath>
     </Reference>
+    <Reference Include="MvvmCross.Plugins.WebBrowser">
+      <HintPath>..\packages\MvvmCross.Plugin.WebBrowser.4.4.0\lib\Xamarin.iOS10\MvvmCross.Plugins.WebBrowser.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.WebBrowser.iOS">
+      <HintPath>..\packages\MvvmCross.Plugin.WebBrowser.4.4.0\lib\Xamarin.iOS10\MvvmCross.Plugins.WebBrowser.iOS.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GodSpeak\GodSpeak.csproj">
@@ -248,6 +254,7 @@
     <Compile Include="Renderers\ImageWithShadowRenderer.cs" />
     <Compile Include="Renderers\CustomButtonRenderer.cs" />
     <Compile Include="Bootstrap\SettingsPluginBootstrap.cs" />
+    <Compile Include="Bootstrap\WebBrowserPluginBootstrap.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\profile_placeholder.png" />
