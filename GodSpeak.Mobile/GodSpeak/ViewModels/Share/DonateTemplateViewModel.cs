@@ -53,13 +53,19 @@ namespace GodSpeak
                 var response = await WebApiService.DonateInvite ();
                 HudService.Hide ();
 
-                if (response.IsSuccess) {
+                if (response.IsSuccess) 
+				{
+					await SessionService.SaveUser(response.Payload);
                     await DialogService.ShowAlert (response.Title, response.Message);
-                } else {
+					GiftsLeftTitle = string.Format(Text.DonateStranger, response.Payload.InviteBalance);
+                } 
+				else 
+				{
                     await HandleResponse (response);
                 }
-
-            } else {
+            } 
+			else 
+			{
                 await DialogService.ShowAlert (Text.ErrorPopupTitle, Text.ShareWithNoBalance);
             }
         }
@@ -67,10 +73,13 @@ namespace GodSpeak
         public async Task UpdateGiftsLeftTitle ()
         {
             var profileResponse = await WebApiService.GetProfile ();
-            if (profileResponse.IsSuccess) {
+            if (profileResponse.IsSuccess) 
+			{
                 await SessionService.SaveUser (profileResponse.Payload);
                 GiftsLeftTitle = string.Format (Text.DonateStranger, profileResponse.Payload.InviteBalance);
-            } else {
+            } 
+			else 
+			{
                 await HandleResponse (profileResponse);
             }
         }
