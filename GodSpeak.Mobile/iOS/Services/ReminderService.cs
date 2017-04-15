@@ -32,10 +32,18 @@ namespace GodSpeak.iOS
             var keys = new object [] { MessageIdKey };
             var objects = new object [] { message.Id.ToString () };
 
-            UILocalNotification notification = new UILocalNotification {
-                FireDate = message.DateTimeToDisplay.ToNSDate (),
-                TimeZone = NSTimeZone.LocalTimeZone,
-                AlertBody = message.Verse.Text,
+			var date = new DateTime(message.DateTimeToDisplay.Year, message.DateTimeToDisplay.Month, message.DateTimeToDisplay.Day);
+			//date = date.AddHours(DateTime.Now.Hour);
+			//date = date.AddMinutes(DateTime.Now.Minute + 5);
+
+			date = date.AddHours(message.DateTimeToDisplay.Hour);
+			date = date.AddMinutes(message.DateTimeToDisplay.Minute);
+
+			UILocalNotification notification = new UILocalNotification
+			{
+				FireDate = date.ToNSDate(),
+				TimeZone = NSTimeZone.LocalTimeZone,
+				AlertBody = new VerseFormatter().Convert(message.Verse.Text, null, null, null).ToString(),
                 RepeatInterval = 0,
                 UserInfo = NSDictionary.FromObjectsAndKeys (objects, keys),
                 SoundName = UILocalNotification.DefaultSoundName,

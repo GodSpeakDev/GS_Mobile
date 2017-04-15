@@ -63,8 +63,10 @@ namespace GodSpeak.Droid
 			calendar.TimeInMillis = Java.Lang.JavaSystem.CurrentTimeMillis();
 			calendar.Set(
 				message.DateTimeToDisplay.Year,
-				message.DateTimeToDisplay.Month-1,
+				message.DateTimeToDisplay.Month - 1,
 				message.DateTimeToDisplay.Day,
+				//DateTime.Now.Hour,
+				//DateTime.Now.Minute + 1);
 				message.DateTimeToDisplay.Hour,
 				message.DateTimeToDisplay.Minute);
 
@@ -148,7 +150,7 @@ namespace GodSpeak.Droid
 		{
 			var alertDialog = new AlertDialog.Builder(Xamarin.Forms.Forms.Context)
 											 .SetTitle("God Speak")
-											 .SetMessage(message.Verse.Text)
+			                                 .SetMessage(new VerseFormatter().Convert(message.Verse.Text, null, null, null).ToString())
 											 .SetCancelable(false)
 											 .SetPositiveButton("Ok", (sender, e) => { });
 			alertDialog.Show();
@@ -159,7 +161,7 @@ namespace GodSpeak.Droid
 			Notification.Builder builder = new Notification.Builder(context)
 				.SetContentTitle("God Speak")
 				.SetSmallIcon(Resource.Drawable.app_icon)
-				.SetContentText(message.Verse.Text);
+				.SetContentText(new VerseFormatter().Convert(message.Verse.Text, null, null, null).ToString());
 
 			var random = new System.Random(DateTime.Now.Millisecond);
 			var id = random.Next();
