@@ -56,6 +56,12 @@ namespace GodSpeak.iOS
             return true;
         }
 
+		public override void WillEnterForeground(UIApplication application)
+		{
+			base.WillEnterForeground(application);
+			UIApplication.SharedApplication.ApplicationIconBadgeNumber = 0;
+		}
+
         public override void ReceivedLocalNotification (UIApplication application, UILocalNotification notification)
         {
             var alert = new UIAlertView ("God Speak", notification.AlertBody, null, "Ok");
