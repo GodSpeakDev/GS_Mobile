@@ -17,6 +17,12 @@ using Xamarin.Forms;
 
 using Java.Util;
 
+using MvvmCross.Core.ViewModels;
+using MvvmCross.Droid.Platform;
+using MvvmCross.Platform;
+
+using MvvmCross.Plugins.Messenger;
+
 namespace GodSpeak.Droid
 {
 	public class ReminderService : IReminderService
@@ -57,12 +63,12 @@ namespace GodSpeak.Droid
 			calendar.TimeInMillis = Java.Lang.JavaSystem.CurrentTimeMillis();
 			calendar.Set(
 				message.DateTimeToDisplay.Year,
-				message.DateTimeToDisplay.Month-1,
+				message.DateTimeToDisplay.Month - 1,
 				message.DateTimeToDisplay.Day,
-				DateTime.Now.Hour,
-				DateTime.Now.Minute+1);
-				//message.DateTimeToDisplay.Hour,
-				//message.DateTimeToDisplay.Minute);
+				//DateTime.Now.Hour,
+				//DateTime.Now.Minute + 1);
+				message.DateTimeToDisplay.Hour,
+				message.DateTimeToDisplay.Minute);
 
 			AlarmManager.Set(AlarmType.RtcWakeup, calendar.TimeInMillis, pendingIntent);
 
@@ -132,13 +138,19 @@ namespace GodSpeak.Droid
 			{
 				SendNotification(message, context);
 			}
+
+			var hasMessenger = Mvx.CanResolve<IMvxMessenger>();
+			if (hasMessenger)
+			{
+				Mvx.Resolve<IMvxMessenger>().Publish(new MessageDeliveredMessage(this));	
+			}
 		}
 
 		private void ShowMessage(Message message)
 		{
 			var alertDialog = new AlertDialog.Builder(Xamarin.Forms.Forms.Context)
 											 .SetTitle("God Speak")
-											 .SetMessage(message.Verse.Text)
+			                                 .SetMessage(new VerseFormatter().Convert(message.Verse.Text, null, null, null).ToString())
 											 .SetCancelable(false)
 											 .SetPositiveButton("Ok", (sender, e) => { });
 			alertDialog.Show();
@@ -148,8 +160,8 @@ namespace GodSpeak.Droid
 		{			
 			Notification.Builder builder = new Notification.Builder(context)
 				.SetContentTitle("God Speak")
-				.SetSmallIcon(Resource.Drawable.icon)
-				.SetContentText(message.Verse.Text);
+				.SetSmallIcon(Resource.Drawable.app_icon)
+				.SetContentText(new VerseFormatter().Convert(message.Verse.Text, null, null, null).ToString());
 
 			var random = new System.Random(DateTime.Now.Millisecond);
 			var id = random.Next();

@@ -25,7 +25,7 @@ namespace GodSpeak
         Task<ApiResponse<User>> RegisterUser (RegisterUserRequest request);
 
         Task<ApiResponse<List<AcceptedInvite>>> GetAcceptedInvites ();
-        Task<ApiResponse<string>> DonateInvite ();
+        Task<ApiResponse<User>> DonateInvite ();
         Task<ApiResponse<string>> GetDidYouKnow ();
 
         Task<ApiResponse<User>> UploadPhoto (UploadPhotoRequest request);

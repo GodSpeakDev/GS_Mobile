@@ -5,6 +5,7 @@ using Foundation;
 using UIKit;
 using System;
 using HockeyApp.iOS;
+using MvvmCross.Plugins.Messenger;
 
 namespace GodSpeak.iOS
 {
@@ -55,11 +56,19 @@ namespace GodSpeak.iOS
             return true;
         }
 
+		public override void WillEnterForeground(UIApplication application)
+		{
+			base.WillEnterForeground(application);
+			UIApplication.SharedApplication.ApplicationIconBadgeNumber = 0;
+		}
+
         public override void ReceivedLocalNotification (UIApplication application, UILocalNotification notification)
         {
             var alert = new UIAlertView ("God Speak", notification.AlertBody, null, "Ok");
             alert.Show ();
             UIApplication.SharedApplication.ApplicationIconBadgeNumber = 0;
+
+			Mvx.Resolve<IMvxMessenger>().Publish(new MessageDeliveredMessage(this));
         }
     }
 }

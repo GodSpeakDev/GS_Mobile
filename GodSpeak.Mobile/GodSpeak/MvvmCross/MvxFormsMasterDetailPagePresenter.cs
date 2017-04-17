@@ -320,7 +320,10 @@ namespace GodSpeak
 		private void RootContentPageActivated()
 		{
 			var mainPage = Application.Current.MainPage as MasterDetailPage;
-			(mainPage.Master.BindingContext as MvxMasterDetailViewModel)?.RootContentPageActivated();
+			if (mainPage != null)
+			{
+				(mainPage.Master.BindingContext as MvxMasterDetailViewModel)?.RootContentPageActivated();
+			}
 		}
 	}
 }

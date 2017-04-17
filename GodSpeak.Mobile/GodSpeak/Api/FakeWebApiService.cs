@@ -96,13 +96,12 @@ namespace GodSpeak
             };
         }
 
-        public async Task<ApiResponse<string>> DonateInvite ()
+        public async Task<ApiResponse<User>> DonateInvite ()
         {
             await Task.Delay (1000);
 
-            return new ApiResponse<string> () {
-                Title = "Gift Request",
-                Message = "You have successfully donated a gift to the world."
+            return new ApiResponse<User> () {
+                Payload = GetTestPayload ()
             };
         }
 

@@ -145,10 +145,10 @@ namespace GodSpeak.Api
             return await DoGet<List<AcceptedInvite>> (AcceptedInviteUri);
         }
 
-        public new async Task<ApiResponse<string>> DonateInvite ()
+        public new async Task<ApiResponse<User>> DonateInvite ()
         {
             AddAuthToken (_settingsService.Token);
-            return await DoPost<string> (DonateInviteUri, null);
+            return await DoPost<User> (DonateInviteUri, null);
         }
 
         public new async Task<ApiResponse<string>> PurchaseInvite (PurchaseInviteRequest request)

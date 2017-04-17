@@ -15,8 +15,11 @@ namespace GodSpeak
     {
         private IReminderService _reminderService;
         private IMvxMessenger _messenger;
-        private MvxSubscriptionToken _token;
+        private MvxSubscriptionToken _messageSettingsToken;
+		private MvxSubscriptionToken _newMessageToken;
 		private bool _isAlreadyStarted = false;
+
+		private List<Message> _messagesToBeReminded = new List<Message>();
 
         private ObservableCollection<GroupedCollection<Message, DateTime>> _messages;
         public ObservableCollection<GroupedCollection<Message, DateTime>> Messages
@@ -121,8 +124,13 @@ namespace GodSpeak
 
             await LoadMessages ();
 
-            _token = _messenger.SubscribeOnMainThread<MessageSettingsChangeMessage> (async (obj) => {
+            _messageSettingsToken = _messenger.SubscribeOnMainThread<MessageSettingsChangeMessage> (async (obj) => {
                 await LoadMessages ();
+				AddReminders();
+            });
+
+			_newMessageToken = _messenger.SubscribeOnMainThread<MessageDeliveredMessage> (async(obj) => {
+				await ReloadMessages();
             });
 
 			var currentUser = await SessionService.GetUser();
@@ -141,6 +149,7 @@ namespace GodSpeak
             }
 
             _isAlreadyStarted = true;
+            AddReminders();
         }
 
 		private bool _isShowingHud = false;
@@ -180,21 +189,36 @@ namespace GodSpeak
 				 .GroupBy(x => x.DateTimeToDisplay.Date)
 				 .Select(x => new GroupedCollection<Message, DateTime>(x.Key, x)));
 
-				// Executes in background
-				Task.Run(async () =>
-				{	
-					_reminderService.ClearReminders();
-					foreach (var message in messages.Payload.Where(x => x.DateTimeToDisplay > DateTime.Now))
-					{
-						_reminderService.SetMessageReminder(message);
-					}
-				});
+				_messagesToBeReminded = messages.Payload.Where(x => x.DateTimeToDisplay > DateTime.Now).ToList();
             } 
 			else 
 			{
                 await HandleResponse (messages);
             }
         }
+
+		private void AddReminders()
+		{
+			_reminderService.ClearReminders();
+			foreach (var message in _messagesToBeReminded)
+			{
+				_reminderService.SetMessageReminder(message);
+			}	
+		}
+
+		private async Task ReloadMessages()
+		{
+			var messages = await WebApiService.GetMessages ();
+			if (messages.IsSuccess)
+			{
+				Messages = new ObservableCollection<GroupedCollection<Message, DateTime>>
+				(messages.Payload
+				 .Where(x => x.DateTimeToDisplay <= DateTime.Now)
+				 .OrderByDescending(x => x.DateTimeToDisplay)
+				 .GroupBy(x => x.DateTimeToDisplay.Date)
+				 .Select(x => new GroupedCollection<Message, DateTime>(x.Key, x)));
+			}
+		}
 
         private void DoTapMessageCommand (Message message)
         {
