@@ -39,28 +39,54 @@ namespace GodSpeak.Api
         const string DonateInviteUri = "invite/donate";
 
 		private ISettingsService _settingsService;
+		private IFileService _fileService;
         protected HttpClient client = new HttpClient ();
         readonly IMvxTrace tracer;
 
         protected string ServerUrl = "http://godspeak-staging.azurewebsites.net/";
 
-        public AzureWebApiService (IMvxTrace tracer, ISettingsService settingsService)
+        public AzureWebApiService (IMvxTrace tracer, ISettingsService settingsService, IFileService fileService)
         {
             this.tracer = tracer;
 
 			_settingsService = settingsService;
+			_fileService = fileService;
+
             client.BaseAddress = new Uri (ServerUrl + "api/");
         }
 
         protected List<Message> CachedMessages = new List<Message> ();
 
-        public new async Task<ApiResponse<List<Message>>> GetMessages ()
+        public new async Task<ApiResponse<List<Message>>> GetMessages (User user, bool shouldRefresh = false)
         {
-            AddAuthToken (_settingsService.Token);
-            var apiResponse = await DoGet<List<Message>> (MessagesQueueUri);
+			var fileName = string.Format("{0}-messages.json", user.Email);
+			
+			var fileExists = await _fileService.ExistsAsync(fileName);
+			if (shouldRefresh || !fileExists)
+			{
+				AddAuthToken(_settingsService.Token);
+				var apiResponse = await DoGet<List<Message>>(MessagesQueueUri);
 
-            CachedMessages = apiResponse.Payload;
-            return apiResponse;
+				CachedMessages = apiResponse.Payload;
+				if (apiResponse.IsSuccess)
+				{
+					if (fileExists)
+					{
+						await _fileService.DeleteFileAsync(fileName);
+					}	
+
+					await _fileService.WriteTextAsync(fileName, JsonConvert.SerializeObject(apiResponse));
+				}
+
+				return apiResponse;
+			}
+			else
+			{
+				var content = await _fileService.ReadTextAsync(fileName);
+				var apiResponse = JsonConvert.DeserializeObject<ApiResponse<List<Message>>>(content);
+				CachedMessages = apiResponse.Payload;
+				return apiResponse;
+			}
         }
 
         public new async Task<ApiResponse<GetMessageResponse>> GetMessage (GetMessageRequest request)

@@ -45,6 +45,7 @@ namespace GodSpeak.iOS
             Mvx.LazyConstructAndRegisterSingleton<IFeedbackService, FeedbackService> ();
             Mvx.LazyConstructAndRegisterSingleton<IProgressHudService, ProgressHudService> ();
 			Mvx.LazyConstructAndRegisterSingleton<IImageService, ImageService>();
+			Mvx.LazyConstructAndRegisterSingleton<IFileService, FileService>();
 
             return new App ();
         }

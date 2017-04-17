@@ -147,7 +147,7 @@ namespace GodSpeak
             };
         }
 
-        public async Task<ApiResponse<List<Message>>> GetMessages ()
+        public async Task<ApiResponse<List<Message>>> GetMessages (User user, bool shouldRefresh = false)
         {
             await Task.Delay (delay);
 

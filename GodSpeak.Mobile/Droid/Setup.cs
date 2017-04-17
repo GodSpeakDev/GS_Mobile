@@ -30,6 +30,7 @@ namespace GodSpeak.Droid
 			Mvx.LazyConstructAndRegisterSingleton<IContactService, ContactsService>();
 			Mvx.LazyConstructAndRegisterSingleton<IMailService, MailService>();
 			Mvx.LazyConstructAndRegisterSingleton<IImageService, ImageService>();
+			Mvx.LazyConstructAndRegisterSingleton<IFileService, FileService>();
 
             return new App ();
         }

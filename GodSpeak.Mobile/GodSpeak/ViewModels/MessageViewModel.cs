@@ -125,7 +125,7 @@ namespace GodSpeak
             await LoadMessages ();
 
             _messageSettingsToken = _messenger.SubscribeOnMainThread<MessageSettingsChangeMessage> (async (obj) => {
-                await LoadMessages ();
+				await LoadMessages(true);
 				AddReminders();
             });
 
@@ -153,7 +153,7 @@ namespace GodSpeak
         }
 
 		private bool _isShowingHud = false;
-        private async Task LoadMessages ()
+        private async Task LoadMessages (bool shouldRefreshMessages = false)
         {
             var messages = new ApiResponse<List<Message>> ();
 			if (!_isAlreadyStarted && Xamarin.Forms.Device.RuntimePlatform == "iOS") 
@@ -165,7 +165,7 @@ namespace GodSpeak
 					HudService.Show (Text.RetrievingMessages);
                 });
 
-                messages = await WebApiService.GetMessages ();
+				messages = await WebApiService.GetMessages (await SessionService.GetUser(), shouldRefreshMessages);
 
 				while (!_isShowingHud)
 				{
@@ -176,7 +176,7 @@ namespace GodSpeak
                 HudService.Hide ();
             } else {
                 this.HudService.Show (Text.RetrievingMessages);
-                messages = await WebApiService.GetMessages ();
+                messages = await WebApiService.GetMessages (await SessionService.GetUser(), shouldRefreshMessages);
                 this.HudService.Hide ();
             }
 
@@ -208,7 +208,7 @@ namespace GodSpeak
 
 		private async Task ReloadMessages()
 		{
-			var messages = await WebApiService.GetMessages ();
+			var messages = await WebApiService.GetMessages (await SessionService.GetUser());
 			if (messages.IsSuccess)
 			{
 				Messages = new ObservableCollection<GroupedCollection<Message, DateTime>>
