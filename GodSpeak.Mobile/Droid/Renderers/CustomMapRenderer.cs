@@ -7,6 +7,8 @@ using Android.Gms.Maps;
 using Xamarin.Forms.Maps;
 using Android.Gms.Maps.Model;
 using System.Collections.Generic;
+using MvvmCross.Platform;
+using System.Threading.Tasks;
 
 [assembly: ExportRenderer(typeof(CustomMap), typeof(CustomMapRenderer))]
 namespace GodSpeak.Droid
@@ -56,7 +58,7 @@ namespace GodSpeak.Droid
 
 			if (_markers.Count == 1)
 			{
-				_googleMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom (marker.Position, 7));
+				
 			}
 		}
 
@@ -69,6 +71,18 @@ namespace GodSpeak.Droid
 			_googleMap = googleMap;
 
 			_googleMap.Clear();
+
+			Task.Run(async () => 
+			{
+				var user = await Mvx.Resolve<ISessionService>().GetUser();
+				if (user != null)
+				{
+					Device.BeginInvokeOnMainThread(() =>
+					{
+						_googleMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(user.Latitude, user.Longitude), 7));
+					});
+				}	
+			});
 
 			var customMap = this.Element as ImpactMap;
 			foreach (var item in customMap.PinsDictionary)

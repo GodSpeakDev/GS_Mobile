@@ -8,6 +8,8 @@ using GodSpeak.Services;
 using System.Threading.Tasks;
 using MvvmCross.Plugins.Messenger;
 using GodSpeak.Resources;
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
 
 namespace GodSpeak
 {
@@ -165,7 +167,11 @@ namespace GodSpeak
 					HudService.Show (Text.RetrievingMessages);
                 });
 
-				messages = await WebApiService.GetMessages (await SessionService.GetUser(), shouldRefreshMessages);
+				var user = await GetUser();
+				if (user == null)
+					return;
+				
+				messages = await WebApiService.GetMessages (user, shouldRefreshMessages);
 
 				while (!_isShowingHud)
 				{
@@ -174,9 +180,16 @@ namespace GodSpeak
 
 				await Task.Delay(500);
                 HudService.Hide ();
-            } else {
+            } 
+			else 
+			{
                 this.HudService.Show (Text.RetrievingMessages);
-                messages = await WebApiService.GetMessages (await SessionService.GetUser(), shouldRefreshMessages);
+
+				var user = await GetUser();
+				if (user == null)
+					return;
+				
+                messages = await WebApiService.GetMessages (user, shouldRefreshMessages);
                 this.HudService.Hide ();
             }
 
@@ -208,7 +221,11 @@ namespace GodSpeak
 
 		private async Task ReloadMessages()
 		{
-			var messages = await WebApiService.GetMessages (await SessionService.GetUser());
+			var user = await GetUser();
+			if (user == null)
+				return;
+			
+			var messages = await WebApiService.GetMessages (user);
 			if (messages.IsSuccess)
 			{
 				Messages = new ObservableCollection<GroupedCollection<Message, DateTime>>
@@ -251,6 +268,20 @@ namespace GodSpeak
 		private void DoHideTipCommand()
 		{
 			ShouldShowTip = false;
+		}
+
+		private async Task<User> GetUser()
+		{
+			var user = await SessionService.GetUser();
+			if (user == null)
+			{
+				await HandleResponse(new ApiResponse<string>() { StatusCode = System.Net.HttpStatusCode.Forbidden });
+				return null;
+			}
+			else
+			{
+				return user;
+			}
 		}
     }
 }

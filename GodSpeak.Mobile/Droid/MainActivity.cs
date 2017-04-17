@@ -19,6 +19,8 @@ using Android.OS;
 using System.Net;
 using HockeyApp.Android;
 
+using Plugin.Permissions;
+
 namespace GodSpeak.Droid
 {
     [Activity (Theme = "@style/AppTheme", Label = "MvxFormsApplicationActivity", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.ScreenSize, WindowSoftInputMode = SoftInput.AdjustPan)]
@@ -89,6 +91,10 @@ namespace GodSpeak.Droid
 			{
 				var contactService = Mvx.Resolve<IContactService>() as ContactsService;
 				contactService.OnRequestPermissionsResult(grantResults[0] == Permission.Granted);
+			}
+			else
+			{
+				PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 			}
 		}
     }
