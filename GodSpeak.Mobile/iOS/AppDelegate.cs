@@ -6,6 +6,7 @@ using UIKit;
 using System;
 using HockeyApp.iOS;
 using MvvmCross.Plugins.Messenger;
+using Google.Maps;
 
 namespace GodSpeak.iOS
 {
@@ -19,6 +20,7 @@ namespace GodSpeak.iOS
 
         public override bool FinishedLaunching (UIApplication app, NSDictionary options)
         {
+			MapServices.ProvideAPIKey ("AIzaSyBzo7-QUVdoFfwKNSFV9hddsSjP20H7Jew");
 
             var manager = BITHockeyManager.SharedHockeyManager;
             manager.Configure ("f63257a3cdd24189a417326e041a318f");
