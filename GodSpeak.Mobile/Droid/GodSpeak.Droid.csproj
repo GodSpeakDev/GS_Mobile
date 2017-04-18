@@ -214,6 +214,10 @@
       <Project>{C388A8AD-DB50-4093-BE30-9215B80C4D0C}</Project>
       <Name>GodSpeak</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GoogleMapsUtility\GoogleMapsUtility.csproj">
+      <Project>{F38A2B58-0051-4E72-ADF9-9305AD4274A8}</Project>
+      <Name>GoogleMapsUtility</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
