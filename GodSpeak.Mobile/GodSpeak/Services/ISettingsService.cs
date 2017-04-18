@@ -22,5 +22,11 @@ namespace GodSpeak
 			get;
 			set;
 		}
+
+		string Email
+		{
+			get;
+			set;
+		}
 	}
 }

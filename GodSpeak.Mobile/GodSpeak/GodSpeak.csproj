@@ -396,6 +396,8 @@
     <Compile Include="ViewModels\Share\DonateTemplateViewModel.cs" />
     <Compile Include="MvvmCross\Messages\MessageDeliveredMessage.cs" />
     <Compile Include="Services\IFileService.cs" />
+    <Compile Include="Services\IMessageService.cs" />
+    <Compile Include="Services\MessageService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

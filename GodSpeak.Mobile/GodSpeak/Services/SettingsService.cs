@@ -18,6 +18,9 @@ namespace GodSpeak
 		private string _remindersKey = "Godspeak.Reminders";
 		private string _remindersDefault = string.Empty;
 
+		private string _emailKey = "Godspeak.Email";
+		private string _emailDefault = null;
+
 		public SettingsService(ISettings settings)
 		{
 			_settings = settings;
@@ -69,6 +72,25 @@ namespace GodSpeak
 				else
 				{
 					_settings.AddOrUpdateValue<string>(_tokenKey, value);
+				}
+			}
+		}
+
+		public string Email
+		{
+			get
+			{
+				return _settings.GetValue<string>(_emailKey, _emailDefault);
+			}
+			set
+			{
+				if (string.IsNullOrEmpty(value) && _settings.Contains(_emailKey))
+				{
+					_settings.DeleteValue(_emailKey);
+				}
+				else
+				{
+					_settings.AddOrUpdateValue<string>(_emailKey, value);
 				}
 			}
 		}
