@@ -49,18 +49,20 @@ namespace GodSpeak.Api
             this.tracer = tracer;
 
 			_settingsService = settingsService;
+
             client.BaseAddress = new Uri (ServerUrl + "api/");
         }
 
         protected List<Message> CachedMessages = new List<Message> ();
 
         public new async Task<ApiResponse<List<Message>>> GetMessages ()
-        {
-            AddAuthToken (_settingsService.Token);
-            var apiResponse = await DoGet<List<Message>> (MessagesQueueUri);
-
-            CachedMessages = apiResponse.Payload;
-            return apiResponse;
+        {			
+			AddAuthToken(_settingsService.Token);
+			var apiResponse = await DoGet<List<Message>>(MessagesQueueUri);
+			
+			CachedMessages = apiResponse.Payload;				
+			
+			return apiResponse;
         }
 
         public new async Task<ApiResponse<GetMessageResponse>> GetMessage (GetMessageRequest request)
@@ -112,6 +114,7 @@ namespace GodSpeak.Api
 			if (response.IsSuccess)
 			{
 				_settingsService.Token = response.Payload.Token;
+				_settingsService.Email = response.Payload.Email;
 			}
 
 			return response;
@@ -164,6 +167,7 @@ namespace GodSpeak.Api
 			if (response.IsSuccess)
 			{
 				_settingsService.Token = response.Payload.Token;
+				_settingsService.Email = response.Payload.Email;
 			}
 
 			return response;

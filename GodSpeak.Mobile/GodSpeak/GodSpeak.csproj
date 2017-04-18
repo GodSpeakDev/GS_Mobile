@@ -395,6 +395,9 @@
     </Compile>
     <Compile Include="ViewModels\Share\DonateTemplateViewModel.cs" />
     <Compile Include="MvvmCross\Messages\MessageDeliveredMessage.cs" />
+    <Compile Include="Services\IFileService.cs" />
+    <Compile Include="Services\IMessageService.cs" />
+    <Compile Include="Services\MessageService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />
@@ -470,6 +473,12 @@
     </Reference>
     <Reference Include="MvvmCross.Plugins.WebBrowser">
       <HintPath>..\packages\MvvmCross.Plugin.WebBrowser.4.4.0\lib\portable-net45+win+wpa81+wp80\MvvmCross.Plugins.WebBrowser.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Permissions.Abstractions">
+      <HintPath>..\packages\Plugin.Permissions.1.2.1\lib\portable-net45+wp80+win+wpa81\Plugin.Permissions.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Permissions">
+      <HintPath>..\packages\Plugin.Permissions.1.2.1\lib\portable-net45+wp80+win+wpa81\Plugin.Permissions.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

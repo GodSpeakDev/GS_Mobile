@@ -12,6 +12,7 @@ namespace GodSpeak
     public class MessageDetailViewModel : CustomViewModel
     {
         private IShareService _shareService;
+		private IMessageService _messageService;
 
         private Message _message;
         public Message Message {
@@ -100,9 +101,10 @@ namespace GodSpeak
         }
 
         public MessageDetailViewModel (
-            IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, ISettingsService settingsService, IShareService shareService) : base (dialogService, hudService, sessionService, webApiService, settingsService)
+            IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, ISettingsService settingsService, IShareService shareService, IMessageService messageService) : base (dialogService, hudService, sessionService, webApiService, settingsService)
         {
             _shareService = shareService;
+			_messageService = messageService;
         }
 
         private MvxCommand _shareCommand;
@@ -116,13 +118,11 @@ namespace GodSpeak
         {
             CurrentVerseSelected = true;
 
-            var messageResponse = await WebApiService.GetMessage (new GetMessageRequest () {
-                MessageId = new Guid (messageId)
-            });
+            var message = await _messageService.GetSingleMessage (new Guid (messageId));
 
-            if (messageResponse.IsSuccess) 
+            if (message != null) 
 			{
-                Message = messageResponse.Payload.Payload;
+                Message = message;
                 Author = Message.Verse.Title;
 
 				if (!SettingsService.DeliveredVerseCodes.Contains(Message.Verse.Title))
@@ -143,7 +143,7 @@ namespace GodSpeak
             } 
 			else 
 			{
-                await HandleResponse (messageResponse);
+                //await HandleResponse (messageResponse);
             }
         }
 

@@ -8,18 +8,18 @@ using GodSpeak.Services;
 using System.Threading.Tasks;
 using MvvmCross.Plugins.Messenger;
 using GodSpeak.Resources;
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
 
 namespace GodSpeak
 {
     public class MessageViewModel : CustomViewModel
     {
-        private IReminderService _reminderService;
+        private IMessageService _messageService;
         private IMvxMessenger _messenger;
         private MvxSubscriptionToken _messageSettingsToken;
 		private MvxSubscriptionToken _newMessageToken;
 		private bool _isAlreadyStarted = false;
-
-		private List<Message> _messagesToBeReminded = new List<Message>();
 
         private ObservableCollection<GroupedCollection<Message, DateTime>> _messages;
         public ObservableCollection<GroupedCollection<Message, DateTime>> Messages
@@ -109,9 +109,9 @@ namespace GodSpeak
 
         public MessageViewModel (
             IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, ISettingsService settingsService,
-            IReminderService reminderService, IMvxMessenger messenger) : base (dialogService, hudService, sessionService, webApiService, settingsService)
+            IMessageService messageService, IMvxMessenger messenger) : base (dialogService, hudService, sessionService, webApiService, settingsService)
         {
-            _reminderService = reminderService;
+            _messageService = messageService;
             _messenger = messenger;
 
             Messages = new ObservableCollection<GroupedCollection<Message, DateTime>> ();
@@ -125,8 +125,7 @@ namespace GodSpeak
             await LoadMessages ();
 
             _messageSettingsToken = _messenger.SubscribeOnMainThread<MessageSettingsChangeMessage> (async (obj) => {
-                await LoadMessages ();
-				AddReminders();
+				await _messageService.UpdateUpcomingMessages();
             });
 
 			_newMessageToken = _messenger.SubscribeOnMainThread<MessageDeliveredMessage> (async(obj) => {
@@ -148,14 +147,18 @@ namespace GodSpeak
                 await HandleResponse (response);
             }
 
-            _isAlreadyStarted = true;
-            AddReminders();
+            _isAlreadyStarted = true;            
         }
 
 		private bool _isShowingHud = false;
         private async Task LoadMessages ()
         {
-            var messages = new ApiResponse<List<Message>> ();
+			if (!await _messageService.HasUpcomingMessagesInCache())
+			{
+				await _messageService.UpdateUpcomingMessages();
+			}
+
+            var messages = new List<Message> ();
 			if (!_isAlreadyStarted && Xamarin.Forms.Device.RuntimePlatform == "iOS") 
 			{				
                 Task.Run (async () => 
@@ -165,7 +168,7 @@ namespace GodSpeak
 					HudService.Show (Text.RetrievingMessages);
                 });
 
-                messages = await WebApiService.GetMessages ();
+				messages = await _messageService.GetDeliveredMessages();
 
 				while (!_isShowingHud)
 				{
@@ -174,50 +177,41 @@ namespace GodSpeak
 
 				await Task.Delay(500);
                 HudService.Hide ();
-            } else {
-                this.HudService.Show (Text.RetrievingMessages);
-                messages = await WebApiService.GetMessages ();
-                this.HudService.Hide ();
-            }
-
-			if (messages.IsSuccess)
-			{
-				Messages = new ObservableCollection<GroupedCollection<Message, DateTime>>
-				(messages.Payload
-				 .Where(x => x.DateTimeToDisplay <= DateTime.Now)
-				 .OrderByDescending(x => x.DateTimeToDisplay)
-				 .GroupBy(x => x.DateTimeToDisplay.Date)
-				 .Select(x => new GroupedCollection<Message, DateTime>(x.Key, x)));
-
-				_messagesToBeReminded = messages.Payload.Where(x => x.DateTimeToDisplay > DateTime.Now).ToList();
             } 
 			else 
 			{
-                await HandleResponse (messages);
-            }
-        }
+                this.HudService.Show (Text.RetrievingMessages);
 
-		private void AddReminders()
-		{
-			_reminderService.ClearReminders();
-			foreach (var message in _messagesToBeReminded)
-			{
-				_reminderService.SetMessageReminder(message);
-			}	
-		}
+				var user = await GetUser();
+				if (user == null)
+					return;
+				
+                messages = await _messageService.GetDeliveredMessages();
+                this.HudService.Hide ();
+            }
+
+			Messages = new ObservableCollection<GroupedCollection<Message, DateTime>>
+			(messages
+			 .Where(x => x.DateTimeToDisplay <= DateTime.Now)
+			 .OrderByDescending(x => x.DateTimeToDisplay)
+			 .GroupBy(x => x.DateTimeToDisplay.Date)
+			 .Select(x => new GroupedCollection<Message, DateTime>(x.Key, x)));
+        }
 
 		private async Task ReloadMessages()
 		{
-			var messages = await WebApiService.GetMessages ();
-			if (messages.IsSuccess)
-			{
-				Messages = new ObservableCollection<GroupedCollection<Message, DateTime>>
-				(messages.Payload
-				 .Where(x => x.DateTimeToDisplay <= DateTime.Now)
-				 .OrderByDescending(x => x.DateTimeToDisplay)
-				 .GroupBy(x => x.DateTimeToDisplay.Date)
-				 .Select(x => new GroupedCollection<Message, DateTime>(x.Key, x)));
-			}
+			var user = await GetUser();
+			if (user == null)
+				return;
+			
+			var messages = await _messageService.GetDeliveredMessages();
+
+			Messages = new ObservableCollection<GroupedCollection<Message, DateTime>>
+			(messages
+			 .Where(x => x.DateTimeToDisplay <= DateTime.Now)
+			 .OrderByDescending(x => x.DateTimeToDisplay)
+			 .GroupBy(x => x.DateTimeToDisplay.Date)
+			 .Select(x => new GroupedCollection<Message, DateTime>(x.Key, x)));			
 		}
 
         private void DoTapMessageCommand (Message message)
@@ -251,6 +245,20 @@ namespace GodSpeak
 		private void DoHideTipCommand()
 		{
 			ShouldShowTip = false;
+		}
+
+		private async Task<User> GetUser()
+		{
+			var user = await SessionService.GetUser();
+			if (user == null)
+			{
+				await HandleResponse(new ApiResponse<string>() { StatusCode = System.Net.HttpStatusCode.Forbidden });
+				return null;
+			}
+			else
+			{
+				return user;
+			}
 		}
     }
 }

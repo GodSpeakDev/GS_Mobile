@@ -251,6 +251,7 @@
     <Compile Include="Bootstrap\SettingsPluginBootstrap.cs" />
     <Compile Include="Bootstrap\WebBrowserPluginBootstrap.cs" />
     <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
+    <Compile Include="Services\FileService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

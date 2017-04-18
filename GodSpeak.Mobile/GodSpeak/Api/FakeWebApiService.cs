@@ -151,7 +151,6 @@ namespace GodSpeak
         {
             await Task.Delay (delay);
 
-
             return new ApiResponse<List<Message>> () {
                 Payload = _messages,
                 StatusCode = System.Net.HttpStatusCode.OK

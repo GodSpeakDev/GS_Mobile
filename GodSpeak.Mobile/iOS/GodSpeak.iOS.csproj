@@ -172,6 +172,12 @@
     <Reference Include="MvvmCross.Plugins.WebBrowser.iOS">
       <HintPath>..\packages\MvvmCross.Plugin.WebBrowser.4.4.0\lib\Xamarin.iOS10\MvvmCross.Plugins.WebBrowser.iOS.dll</HintPath>
     </Reference>
+    <Reference Include="Plugin.Permissions.Abstractions">
+      <HintPath>..\packages\Plugin.Permissions.1.2.1\lib\Xamarin.iOS10\Plugin.Permissions.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Permissions">
+      <HintPath>..\packages\Plugin.Permissions.1.2.1\lib\Xamarin.iOS10\Plugin.Permissions.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GodSpeak\GodSpeak.csproj">
@@ -255,6 +261,7 @@
     <Compile Include="Renderers\CustomButtonRenderer.cs" />
     <Compile Include="Bootstrap\SettingsPluginBootstrap.cs" />
     <Compile Include="Bootstrap\WebBrowserPluginBootstrap.cs" />
+    <Compile Include="Services\FileService.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\profile_placeholder.png" />

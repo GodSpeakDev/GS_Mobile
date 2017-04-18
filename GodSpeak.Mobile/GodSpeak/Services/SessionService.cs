@@ -27,18 +27,32 @@ namespace GodSpeak
 			_user = null;
 		}
 
-		public async Task<User> GetUser()
+		private static Task<User> _getUserTask;
+		public Task<User> GetUser()
 		{
 			if (string.IsNullOrEmpty(_settingsService.Token))
 				return null;
 			
-			if (_user == null)
+			if (_getUserTask == null)
 			{
-				var response = await _webApiService.GetProfile();
-				_user = response.Payload;
+				_getUserTask = MakeUserCall();
 			}
 
-			return _user;
+			if (_getUserTask != null && _getUserTask.IsCompleted)
+			{
+				if (_getUserTask.Result == null)
+				{
+					_getUserTask = MakeUserCall();
+				}
+			}
+
+			return _getUserTask;
+		}
+
+		private async Task<User> MakeUserCall() 
+		{
+			var result = await _webApiService.GetProfile();
+			return result.Payload;
 		}
 	}
 }
