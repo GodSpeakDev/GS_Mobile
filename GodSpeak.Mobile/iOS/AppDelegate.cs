@@ -20,7 +20,7 @@ namespace GodSpeak.iOS
 
         public override bool FinishedLaunching (UIApplication app, NSDictionary options)
         {
-			MapServices.ProvideAPIKey ("AIzaSyBzo7-QUVdoFfwKNSFV9hddsSjP20H7Jew");
+			MapServices.ProvideAPIKey ("AIzaSyCMq-dyjRIfRaJmQ6XhPuO7ZABmkxJKgJ0");
 
             var manager = BITHockeyManager.SharedHockeyManager;
             manager.Configure ("f63257a3cdd24189a417326e041a318f");

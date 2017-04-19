@@ -182,6 +182,9 @@
     <Reference Include="Google.Maps">
       <HintPath>..\packages\Xamarin.Google.iOS.Maps.2.1.0.1\lib\Xamarin.iOS10\Google.Maps.dll</HintPath>
     </Reference>
+    <Reference Include="GoogleMapsUtils.iOS">
+      <HintPath>GoogleMapsUtils.iOS.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GodSpeak\GodSpeak.csproj">

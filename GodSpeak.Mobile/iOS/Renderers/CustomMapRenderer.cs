@@ -11,26 +11,70 @@ using System.Drawing;
 using Xamarin.Forms.Platform.iOS;
 using Google.Maps;
 using CoreGraphics;
+using GMCluster;
+using Xamarin.Forms.Maps;
+using System.Collections.Generic;
 
 [assembly: ExportRenderer(typeof(CustomMap), typeof(CustomMapRenderer))]
 namespace GodSpeak.iOS
 {
-	public class CustomMapRenderer : ViewRenderer
+	public class CustomMapRenderer : ViewRenderer, IGMUClusterRendererDelegate, IGMUClusterManagerDelegate, IMapViewDelegate
 	{
 		MapView mapView;
+		GMUClusterManager clusterManager;
+		private Dictionary<MapPoint, IGMUClusterItem> _markers = new Dictionary<MapPoint, IGMUClusterItem>();
+
+		private ISettingsService SettingsService
+		{
+			get 
+			{
+				return MvvmCross.Platform.Mvx.Resolve<ISettingsService>();
+			}
+		}
 
 		protected override void OnElementChanged(Xamarin.Forms.Platform.iOS.ElementChangedEventArgs<View> e)
 		{
 			base.OnElementChanged(e);
 
-			var camera = CameraPosition.FromCamera(latitude: 37.79,
-								longitude: -122.40,
+			var camera = CameraPosition.FromCamera(latitude: SettingsService.Latitude,
+								longitude: SettingsService.Longitude,
 								zoom: 6);
 			mapView = MapView.FromCamera (CGRect.Empty, camera);
-			mapView.MyLocationEnabled = true;
+			AddMyOrigin();
+
 			this.SetNativeControl(mapView);
 
+			if (e.NewElement != null)
+			{
+				var formsMap = (CustomMap)e.NewElement;
+				formsMap.OnAddPin = OnAddPin;
+				formsMap.OnRemovePin = OnRemovePin;
+			}
+
             AddCluster ();
+		}
+
+		private void OnRemovePin(MapPoint id)
+		{
+			if (_markers.ContainsKey(id))
+			{
+				var marker = _markers[id];
+
+				clusterManager.RemoveItem(marker);
+				_markers.Remove(id);
+			}
+		}
+
+		private void OnAddPin(MapPoint id, Pin pin)
+		{
+			if (mapView == null || _markers.ContainsKey(id))
+				return;
+
+			var item = new POIItem(pin.Position.Latitude, pin.Position.Longitude, pin.Label);
+
+			_markers.Add(id, item);
+			clusterManager.AddItem(item);
+			clusterManager.Cluster();
 		}
 
 		protected override void OnElementPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -40,75 +84,78 @@ namespace GodSpeak.iOS
 
 		void AddCluster()
 		{
-			//var googleMapView = mapView; //use the real mapview init'd somewhere else instead of this
-			//var iconGenerator = new GMUDefaultClusterIconGenerator();
-			//var algorithm = new GMUNonHierarchicalDistanceBasedAlgorithm();
-			//var renderer = new GMUDefaultClusterRenderer(googleMapView, iconGenerator);
+			var googleMapView = mapView; //use the real mapview init'd somewhere else instead of this
+			var iconGenerator = new GMUDefaultClusterIconGenerator();
+			var algorithm = new GMUNonHierarchicalDistanceBasedAlgorithm();
+			var renderer = new GMUDefaultClusterRenderer(googleMapView, iconGenerator);
 
-			//renderer.WeakDelegate = this;
+			renderer.WeakDelegate = this;
 
-			//clusterManager = new GMUClusterManager(googleMapView, algorithm, renderer);
+			clusterManager = new GMUClusterManager(googleMapView, algorithm, renderer);
+			clusterManager.Cluster();
 
-			//for (var i = 0; i <= kClusterItemCount; i++)
-			//{
-			//	var lat = kCameraLatitude + extent * GetRandomNumber(-1.0, 1.0);
+			clusterManager.SetDelegate(this, this);
+		}
 
-			//	var lng = kCameraLongitude + extent * GetRandomNumber(-1.0, 1.0);
+		private void AddMyOrigin()
+		{
+			var marker = new Google.Maps.Marker();
+			marker.Position = new CoreLocation.CLLocationCoordinate2D(SettingsService.Latitude, SettingsService.Longitude);
+			marker.Title = "Me";
+			marker.Map = mapView;
+		}
 
-			//	var name = $"Item {i}";
+		public UIImage GetImage()
+		{
+			try
+			{
+				var image = UIImage.FromBundle("oval.png");
 
-			//	IGMUClusterItem item = new POIItem(lat, lng, name);
+				var size = new CoreGraphics.CGSize(15, 15);
 
-			//	clusterManager.AddItem(item);
-			//}
+				UIGraphics.BeginImageContext(size);
+				image.Draw(new CoreGraphics.CGRect(0, 0, size.Width, size.Height));
 
-			//clusterManager.Cluster();
+				var resizedImage = UIGraphics.GetImageFromCurrentImageContext();
+				UIGraphics.EndImageContext();
 
-			//clusterManager.SetDelegate(this, this);
+				return resizedImage;
+			}
+			catch (Exception ex)
+			{
+				return null;
+			}
+		}
+
+		[Export("renderer:willRenderMarker:")]
+		public void WillRenderMarker(GMUClusterRenderer renderer, Overlay marker)
+		{
+			if (marker is Marker)
+			{ 
+				// Overlays sneaking in here disguised as Markers...
+				var myMarker = (Marker)marker;
+
+				if (myMarker.UserData is POIItem)
+				{
+					POIItem item = (POIItem)myMarker.UserData;
+					myMarker.Title = item.Name;
+					myMarker.Icon = GetImage();
+				}
+				else
+				{
+					
+				}
+			}
+		}
+
+		[Export("clusterManager:didTapCluster:")]
+		public void DidTapCluster(GMUClusterManager clusterManager, IGMUCluster cluster)
+		{
+			var newCamera = CameraPosition.FromCamera(cluster.Position, mapView.Camera.Zoom + 1);
+
+			var update = CameraUpdate.SetCamera(newCamera);
+
+			mapView.MoveCamera(update);
 		}
 	}
-
-	//class MyMapDelegate : MKMapViewDelegate
-	//{
-	//	string pId = "PinAnnotation";
-
-	//	public override MKAnnotationView GetViewForAnnotation(MKMapView mapView, IMKAnnotation annotation)
-	//	{
-	//		if (!(annotation is MKPointAnnotation))
-	//			return null;
-
-	//		// create pin annotation view
-	//		var anView = (MKAnnotationView)mapView.DequeueReusableAnnotation(pId);
-
-	//		if (anView == null)
-	//			anView = new MKAnnotationView(annotation, pId);
-
-	//		anView.Image = GetImage();
-	//		anView.CanShowCallout = true;
-
-	//		return anView;
-	//	}
-
-	//	public UIImage GetImage()
-	//	{
-	//		try
-	//		{
-	//			var image = UIImage.FromBundle("oval.png");
-
-	//			var size = new CoreGraphics.CGSize(10, 10);
-
-	//			UIGraphics.BeginImageContext(size);
-	//			image.Draw(new CoreGraphics.CGRect(0, 0, size.Width, size.Height));
-
-	//			var resizedImage = UIGraphics.GetImageFromCurrentImageContext();
-	//			UIGraphics.EndImageContext();
-
-	//			return resizedImage;
-	//		}
-	//		catch (Exception ex)
-	//		{
-	//			return null;
-	//		}
-	//	}
-	//}
 }

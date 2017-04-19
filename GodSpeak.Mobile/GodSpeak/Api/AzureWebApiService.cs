@@ -77,11 +77,11 @@ namespace GodSpeak.Api
             };
         }
 
-		public new async Task<ApiResponse<List<ImpactDay>>> GetImpact(GetImpactRequest request)
-		{			
-            AddAuthToken(_settingsService.Token);
-            return await DoGet<List<ImpactDay>>(ImpactDaysUri, new Dictionary<string, string> () { { "inviteCode", request.InviteCode } });
-	   	}
+		//public new async Task<ApiResponse<List<ImpactDay>>> GetImpact(GetImpactRequest request)
+		//{			
+  //          AddAuthToken(_settingsService.Token);
+  //          return await DoGet<List<ImpactDay>>(ImpactDaysUri, new Dictionary<string, string> () { { "inviteCode", request.InviteCode } });
+	 //  	}
 
 		public new async Task<ApiResponse<string>> RecordMessageDelivered(RecordMessageDeliveredRequest request)
 		{
@@ -115,6 +115,8 @@ namespace GodSpeak.Api
 			{
 				_settingsService.Token = response.Payload.Token;
 				_settingsService.Email = response.Payload.Email;
+				_settingsService.Latitude = response.Payload.Latitude;
+				_settingsService.Longitude = response.Payload.Longitude;
 			}
 
 			return response;
@@ -168,6 +170,8 @@ namespace GodSpeak.Api
 			{
 				_settingsService.Token = response.Payload.Token;
 				_settingsService.Email = response.Payload.Email;
+				_settingsService.Latitude = response.Payload.Latitude;
+				_settingsService.Longitude = response.Payload.Longitude;
 			}
 
 			return response;

@@ -15,7 +15,7 @@
 				AbsoluteLayout.LayoutBounds="0,0,1,1"
 				HorizontalOptions="FillAndExpand" 
 				VerticalOptions="FillAndExpand"
-				IsShowingUser="true"
+				IsShowingUser="false"
 				HasZoomEnabled="true"
 				MapType="Street"
 				ItemsSource="{Binding ShownImpactDays}"

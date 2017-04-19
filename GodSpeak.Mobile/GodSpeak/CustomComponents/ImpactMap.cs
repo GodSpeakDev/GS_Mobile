@@ -83,7 +83,7 @@ namespace GodSpeak
 			{
 				var pin = _pins[point];
 				_pins.Remove(point);
-				Pins.Remove(pin);
+				//Pins.Remove(pin);
 				if (OnRemovePin != null)
 				{
 					OnRemovePin(point);
@@ -114,24 +114,24 @@ namespace GodSpeak
 				}
 			}
 
-			foreach (var point in mapPoints)
-			{
-				Pins.Add(point);
-			}
+			//foreach (var point in mapPoints)
+			//{
+			//	Pins.Add(point);
+			//}
 		}
 
 		protected async override void OnBindingContextChanged()
 		{
 			base.OnBindingContextChanged();
 
-			if (Device.RuntimePlatform == Device.iOS)
-			{
-				var user = await Mvx.Resolve<ISessionService>().GetUser();
-				if (user != null)
-				{
-					MoveToRegion(MapSpan.FromCenterAndRadius(new Position(user.Latitude, user.Longitude), Distance.FromKilometers(50)));
-				}
-			}
+			//if (Device.RuntimePlatform == Device.iOS)
+			//{
+			//	var user = await Mvx.Resolve<ISessionService>().GetUser();
+			//	if (user != null)
+			//	{
+			//		MoveToRegion(MapSpan.FromCenterAndRadius(new Position(user.Latitude, user.Longitude), Distance.FromKilometers(50)));
+			//	}
+			//}
 		}
 	}
 }
