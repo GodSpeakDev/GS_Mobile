@@ -55,11 +55,6 @@ namespace GodSpeak.Droid
 
 			var marker = _googleMap.AddMarker(newMarker);
 			_markers.Add(id, marker);
-
-			if (_markers.Count == 1)
-			{
-				
-			}
 		}
 
 		public void OnMapReady(GoogleMap googleMap)

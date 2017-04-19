@@ -21,6 +21,12 @@ namespace GodSpeak
 		private string _emailKey = "Godspeak.Email";
 		private string _emailDefault = null;
 
+		private string _latitudeKey = "Godspeak.Latitude";
+		private float _latitudeDefault = 0;
+
+		private string _longitudeKey = "Godspeak.Longitude";
+		private float _longitudeDefault = 0;
+
 		public SettingsService(ISettings settings)
 		{
 			_settings = settings;
@@ -92,6 +98,30 @@ namespace GodSpeak
 				{
 					_settings.AddOrUpdateValue<string>(_emailKey, value);
 				}
+			}
+		}
+
+		public float Latitude
+		{
+			get
+			{
+				return _settings.GetValue<float>(_latitudeKey, _latitudeDefault);
+			}
+			set
+			{
+				_settings.AddOrUpdateValue<float>(_latitudeKey, value);
+			}
+		}
+
+		public float Longitude
+		{
+			get
+			{
+				return _settings.GetValue<float>(_longitudeKey, _longitudeDefault);
+			}
+			set
+			{
+				_settings.AddOrUpdateValue<float>(_longitudeKey, value);
 			}
 		}
 	}

@@ -289,7 +289,7 @@ namespace GodSpeak
             var impactedDays = new List<ImpactDay> ();
 
             for (int i = 0; i < 30; i++) {
-                Task.Delay (100);
+                Task.Delay (5);
                 var impactDay = new ImpactDay () {
                     Date = DateTime.Now.AddDays (-i),                    
                     ScripturesDelivered = 1,
