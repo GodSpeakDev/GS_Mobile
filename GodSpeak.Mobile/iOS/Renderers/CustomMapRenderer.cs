@@ -38,7 +38,7 @@ namespace GodSpeak.iOS
 
 			var camera = CameraPosition.FromCamera(latitude: SettingsService.Latitude,
 								longitude: SettingsService.Longitude,
-								zoom: 6);
+								zoom: 0);
 			mapView = MapView.FromCamera (CGRect.Empty, camera);
 			//AddMyOrigin();
 
@@ -85,7 +85,24 @@ namespace GodSpeak.iOS
 		void AddCluster()
 		{
 			var googleMapView = mapView; //use the real mapview init'd somewhere else instead of this
-			var iconGenerator = new GMUDefaultClusterIconGenerator();
+			var iconGenerator = new GMUDefaultClusterIconGenerator(
+				new NSNumber[] 
+				{ 
+					10, 
+					50, 
+					100, 
+					200, 
+					1000 
+				},
+				new UIImage[] 
+				{ 
+					GetImage(40, 40),
+                    GetImage(40, 40),
+                    GetImage(40, 40),
+                    GetImage(40, 40),
+                    GetImage(40, 40),
+				});
+
 			var algorithm = new GMUNonHierarchicalDistanceBasedAlgorithm();
 			var renderer = new GMUDefaultClusterRenderer(googleMapView, iconGenerator);
 
@@ -105,13 +122,13 @@ namespace GodSpeak.iOS
 			marker.Map = mapView;
 		}
 
-		public UIImage GetImage()
+		public UIImage GetImage(int height, int width)
 		{
 			try
 			{
 				var image = UIImage.FromBundle("oval.png");
 
-				var size = new CoreGraphics.CGSize(15, 15);
+				var size = new CoreGraphics.CGSize(width, height);
 
 				UIGraphics.BeginImageContext(size);
 				image.Draw(new CoreGraphics.CGRect(0, 0, size.Width, size.Height));
@@ -139,7 +156,7 @@ namespace GodSpeak.iOS
 				{
 					POIItem item = (POIItem)myMarker.UserData;
 					myMarker.Title = item.Name;
-					myMarker.Icon = GetImage();
+					myMarker.Icon = GetImage(15, 15);
 				}
 				else
 				{
