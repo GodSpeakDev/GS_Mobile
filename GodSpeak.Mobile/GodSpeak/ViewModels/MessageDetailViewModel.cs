@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using MvvmCross.Forms.Presenter.Core;
 using Xamarin.Forms;
 using GodSpeak.Services;
+using GodSpeak.Resources;
 
 namespace GodSpeak
 {
@@ -149,7 +150,7 @@ namespace GodSpeak
 
         private void DoShareCommand ()
         {
-            _shareService.Share (string.Format ("{0} - {1}", Message.Verse.Text, Message.Verse.Title));
+			_shareService.Share (string.Format ("{0} - {1} \n\n{2}", Message.Verse.Text, Message.Verse.Title, Text.GodSpeakWebSite));
         }
     }
 }

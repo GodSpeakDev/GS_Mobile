@@ -898,5 +898,11 @@ namespace GodSpeak.Resources {
                 return ResourceManager.GetString("TapToPayItForward", resourceCulture);
             }
         }
+        
+        public static string GodSpeakWebSite {
+            get {
+                return ResourceManager.GetString("GodSpeakWebSite", resourceCulture);
+            }
+        }
     }
 }
