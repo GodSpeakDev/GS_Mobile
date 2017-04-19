@@ -40,7 +40,7 @@ namespace GodSpeak.iOS
 								longitude: SettingsService.Longitude,
 								zoom: 6);
 			mapView = MapView.FromCamera (CGRect.Empty, camera);
-			AddMyOrigin();
+			//AddMyOrigin();
 
 			this.SetNativeControl(mapView);
 
