@@ -168,6 +168,9 @@ namespace GodSpeak
 					HudService.Show (Text.RetrievingMessages);
                 });
 
+				// Load User
+				await GetUser();
+
 				messages = await _messageService.GetDeliveredMessages();
 
 				while (!_isShowingHud)
@@ -182,10 +185,9 @@ namespace GodSpeak
 			{
                 this.HudService.Show (Text.RetrievingMessages);
 
-				var user = await GetUser();
-				if (user == null)
-					return;
-				
+				// Load User
+				await GetUser();
+
                 messages = await _messageService.GetDeliveredMessages();
                 this.HudService.Hide ();
             }
