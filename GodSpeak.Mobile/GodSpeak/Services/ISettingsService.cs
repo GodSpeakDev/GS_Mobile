@@ -29,13 +29,13 @@ namespace GodSpeak
 			set;
 		}
 
-		double Latitude
+		float Latitude
 		{
 			get;
 			set;
 		}
 
-		double Longitude
+		float Longitude
 		{
 			get;
 			set;

@@ -115,8 +115,8 @@ namespace GodSpeak.Api
 			{
 				_settingsService.Token = response.Payload.Token;
 				_settingsService.Email = response.Payload.Email;
-				_settingsService.Latitude = response.Payload.Latitude;
-				_settingsService.Longitude = response.Payload.Longitude;
+				_settingsService.Latitude = (float) response.Payload.Latitude;
+				_settingsService.Longitude = (float) response.Payload.Longitude;
 			}
 
 			return response;
@@ -170,8 +170,8 @@ namespace GodSpeak.Api
 			{
 				_settingsService.Token = response.Payload.Token;
 				_settingsService.Email = response.Payload.Email;
-				_settingsService.Latitude = response.Payload.Latitude;
-				_settingsService.Longitude = response.Payload.Longitude;
+				_settingsService.Latitude = (float) response.Payload.Latitude;
+				_settingsService.Longitude = (float) response.Payload.Longitude;
 			}
 
 			return response;
