@@ -775,4 +775,9 @@ Enjoy!
 		xml:space="preserve">
     	<value>Sorry, we couldn't process your order.</value>
   	</data>
+	<data
+		name="ProcessingOrder"
+		xml:space="preserve">
+    	<value>Processing your order...</value>
+  	</data>
 </root>
