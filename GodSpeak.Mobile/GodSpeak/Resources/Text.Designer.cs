@@ -904,5 +904,17 @@ namespace GodSpeak.Resources {
                 return ResourceManager.GetString("GodSpeakWebSite", resourceCulture);
             }
         }
+        
+        public static string UnableToConnectToStore {
+            get {
+                return ResourceManager.GetString("UnableToConnectToStore", resourceCulture);
+            }
+        }
+        
+        public static string UnableToProcessOrder {
+            get {
+                return ResourceManager.GetString("UnableToProcessOrder", resourceCulture);
+            }
+        }
     }
 }

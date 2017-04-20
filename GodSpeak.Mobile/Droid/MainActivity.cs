@@ -20,6 +20,7 @@ using System.Net;
 using HockeyApp.Android;
 
 using Plugin.Permissions;
+using Plugin.InAppBilling;
 
 namespace GodSpeak.Droid
 {
@@ -96,6 +97,12 @@ namespace GodSpeak.Droid
 			{
 				PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 			}
+		}
+
+		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+		{
+			base.OnActivityResult(requestCode, resultCode, data);
+			InAppBillingImplementation.HandleActivityResult(requestCode, resultCode, data);
 		}
     }
 }

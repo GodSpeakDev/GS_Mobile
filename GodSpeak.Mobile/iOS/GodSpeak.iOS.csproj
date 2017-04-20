@@ -185,6 +185,12 @@
     <Reference Include="GoogleMapsUtils.iOS">
       <HintPath>GoogleMapsUtils.iOS.dll</HintPath>
     </Reference>
+    <Reference Include="Plugin.InAppBilling.Abstractions">
+      <HintPath>..\packages\Plugin.InAppBilling.1.1.0.35-beta\lib\Xamarin.iOS10\Plugin.InAppBilling.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.InAppBilling">
+      <HintPath>..\packages\Plugin.InAppBilling.1.1.0.35-beta\lib\Xamarin.iOS10\Plugin.InAppBilling.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GodSpeak\GodSpeak.csproj">

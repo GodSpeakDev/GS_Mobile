@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using MvvmCross.Core.ViewModels;
 using GodSpeak.Services;
 using MvvmCross.Plugins.WebBrowser;
+using Plugin.InAppBilling;
+using GodSpeak.Resources;
+using Xamarin.Forms;
 
 namespace GodSpeak
 {
@@ -97,19 +100,64 @@ namespace GodSpeak
 
         private async void DoTapBundleCommand (InviteBundle bundle)
         {
-            this.HudService.Show ();
-            var response = await WebApiService.PurchaseInvite (new PurchaseInviteRequest () {
-                Guid = bundle.InviteBundleId
-            });
+			try
+			{
+				CrossInAppBilling.Current.InTestingMode = true;
 
-            if (response.IsSuccess) {
-                await _shareTemplateViewModel.UpdateGiftsLeftTitle ();
-                this.HudService.Hide ();
-                await this.DialogService.ShowAlert (response.Title, response.Message);
-            } else {
-                this.HudService.Hide ();
-                await HandleResponse (response);
-            }
+				var connect = await CrossInAppBilling.Current.ConnectAsync();
+				if (!connect)
+				{
+					// Error message
+					await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.UnableToConnectToStore);
+					return;
+				}
+
+				var purchase = await CrossInAppBilling.Current.PurchaseAsync(bundle.AppStoreSku, Plugin.InAppBilling.Abstractions.ItemType.InAppPurchase, "apppayload");
+				if (purchase == null)
+				{
+					// Not Purchased
+					await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.UnableToProcessOrder);
+					return;
+				}
+
+				if (Device.RuntimePlatform == Device.Android)
+				{
+					var consumedItem = await CrossInAppBilling.Current.ConsumePurchaseAsync(purchase.ProductId, purchase.PurchaseToken);
+					 
+					// Not Consumed
+					if(consumedItem == null)
+					{
+						await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.UnableToProcessOrder);
+						return;      
+					}				
+				}
+
+				this.HudService.Show();
+				var response = await WebApiService.PurchaseInvite(new PurchaseInviteRequest()
+				{
+					Guid = bundle.InviteBundleId
+				});
+
+				if (response.IsSuccess)
+				{
+					await _shareTemplateViewModel.UpdateGiftsLeftTitle();
+					this.HudService.Hide();
+					await this.DialogService.ShowAlert(response.Title, response.Message);
+				}
+				else
+				{
+					this.HudService.Hide();
+					await HandleResponse(response);
+				}
+			}
+			catch (Exception ex)
+			{
+				// Something bad occurs
+			}
+			finally
+			{
+				await CrossInAppBilling.Current.DisconnectAsync();
+			} 
         }
     }
 }
