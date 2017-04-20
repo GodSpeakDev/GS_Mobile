@@ -77,11 +77,11 @@ namespace GodSpeak.Api
             };
         }
 
-		public new async Task<ApiResponse<List<ImpactDay>>> GetImpact(GetImpactRequest request)
-		{			
-            AddAuthToken(_settingsService.Token);
-            return await DoGet<List<ImpactDay>>(ImpactDaysUri, new Dictionary<string, string> () { { "inviteCode", request.InviteCode } });
-	   	}
+		//public new async Task<ApiResponse<List<ImpactDay>>> GetImpact(GetImpactRequest request)
+		//{			
+  //          AddAuthToken(_settingsService.Token);
+  //          return await DoGet<List<ImpactDay>>(ImpactDaysUri, new Dictionary<string, string> () { { "inviteCode", request.InviteCode } });
+	 //  	}
 
 		public new async Task<ApiResponse<string>> RecordMessageDelivered(RecordMessageDeliveredRequest request)
 		{
