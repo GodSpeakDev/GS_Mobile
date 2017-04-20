@@ -209,6 +209,15 @@
     <Reference Include="MvvmCross.Plugins.Messenger">
       <HintPath>..\packages\MvvmCross.Plugin.Messenger.4.4.0\lib\MonoAndroid\MvvmCross.Plugins.Messenger.dll</HintPath>
     </Reference>
+    <Reference Include="Plugin.InAppBilling.Abstractions">
+      <HintPath>..\packages\Plugin.InAppBilling.1.1.0.35-beta\lib\MonoAndroid10\Plugin.InAppBilling.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.InAppBilling">
+      <HintPath>..\packages\Plugin.InAppBilling.1.1.0.35-beta\lib\MonoAndroid10\Plugin.InAppBilling.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.InAppBilling.VendingLibrary">
+      <HintPath>..\packages\Plugin.InAppBilling.1.1.0.35-beta\lib\MonoAndroid10\Plugin.InAppBilling.VendingLibrary.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GodSpeak\GodSpeak.csproj">

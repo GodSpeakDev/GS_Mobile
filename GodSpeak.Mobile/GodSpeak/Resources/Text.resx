@@ -765,4 +765,14 @@ Enjoy!
 		xml:space="preserve">
     	<value>http://givegodspeak.com</value>
   	</data>
+	<data
+		name="UnableToConnectToStore"
+		xml:space="preserve">
+    	<value>Sorry, we couldn't connect to the store.</value>
+  	</data>
+	<data
+		name="UnableToProcessOrder"
+		xml:space="preserve">
+    	<value>Sorry, we couldn't process your order.</value>
+  	</data>
 </root>
