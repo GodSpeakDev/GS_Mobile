@@ -20,6 +20,14 @@ namespace GodSpeak.Droid
 		private GoogleMap _googleMap;
 		ClusterManager _clusterManager;
 
+		private ISettingsService SettingsService
+		{
+			get
+			{
+				return MvvmCross.Platform.Mvx.Resolve<ISettingsService>();
+			}
+		}
+
 		protected override void OnElementChanged(Xamarin.Forms.Platform.Android.ElementChangedEventArgs<Map> e)
 		{
 			base.OnElementChanged(e);
@@ -61,12 +69,15 @@ namespace GodSpeak.Droid
 			settings.ZoomControlsEnabled = false;
 
 			_googleMap = googleMap;
+			_googleMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(SettingsService.Latitude, SettingsService.Longitude), 1));
 
 			_googleMap.Clear();
 
 			_clusterManager = new ClusterManager(this.Context, _googleMap);
 			_clusterManager.SetOnClusterClickListener(this);
 			_clusterManager.SetOnClusterItemClickListener(this);
+			_clusterManager.SetRenderer(new CustomClusterRenderer(this.Context, _googleMap, _clusterManager));
+			                            
 			_googleMap.SetOnCameraChangeListener(_clusterManager);
 			_googleMap.SetOnMarkerClickListener(_clusterManager);
 
