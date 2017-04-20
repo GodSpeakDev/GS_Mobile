@@ -760,4 +760,9 @@ Enjoy!
 		xml:space="preserve">
     	<value>Tap to Pay it Forward</value>
   	</data>
+	<data
+		name="GodSpeakWebSite"
+		xml:space="preserve">
+    	<value>http://givegodspeak.com</value>
+  	</data>
 </root>

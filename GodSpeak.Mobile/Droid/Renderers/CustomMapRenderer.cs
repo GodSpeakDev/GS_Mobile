@@ -9,16 +9,24 @@ using Android.Gms.Maps.Model;
 using System.Collections.Generic;
 using MvvmCross.Platform;
 using System.Threading.Tasks;
+using Com.Google.Maps.Android.Clustering;
 
 [assembly: ExportRenderer(typeof(CustomMap), typeof(CustomMapRenderer))]
 namespace GodSpeak.Droid
 {
-	public class CustomMapRenderer : MapRenderer, IOnMapReadyCallback
-	{
-		private IList<Pin> _pins;
-		private Dictionary<MapPoint, Marker> _markers = new Dictionary<MapPoint, Marker>();
+	public class CustomMapRenderer : MapRenderer, IOnMapReadyCallback, ClusterManager.IOnClusterClickListener, ClusterManager.IOnClusterItemClickListener
+	{		
+		private Dictionary<MapPoint, ClusterItem> _markers = new Dictionary<MapPoint, ClusterItem>();
 		private GoogleMap _googleMap;
-		private bool isDrawn;
+		ClusterManager _clusterManager;
+
+		private ISettingsService SettingsService
+		{
+			get
+			{
+				return MvvmCross.Platform.Mvx.Resolve<ISettingsService>();
+			}
+		}
 
 		protected override void OnElementChanged(Xamarin.Forms.Platform.Android.ElementChangedEventArgs<Map> e)
 		{
@@ -26,7 +34,6 @@ namespace GodSpeak.Droid
 			if (e.NewElement != null) 
 			{
                 var formsMap = (CustomMap)e.NewElement;
-				_pins = formsMap.Pins;
                 ((MapView)Control).GetMapAsync(this);
 				formsMap.OnAddPin = OnAddPin;
 				formsMap.OnRemovePin = OnRemovePin;
@@ -38,7 +45,8 @@ namespace GodSpeak.Droid
 			if (_markers.ContainsKey(id))
 			{
 				var marker = _markers[id];
-				marker.Remove();
+
+				_clusterManager.RemoveItem(marker);
 				_markers.Remove(id);
 			}
 		}
@@ -48,13 +56,10 @@ namespace GodSpeak.Droid
 			if (_googleMap == null || _markers.ContainsKey(id))
 				return;
 
-			var newMarker = new MarkerOptions();
-			newMarker.SetPosition(new LatLng(pin.Position.Latitude, pin.Position.Longitude));
-			newMarker.SetTitle(pin.Label);
-			newMarker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.oval));
-
-			var marker = _googleMap.AddMarker(newMarker);
-			_markers.Add(id, marker);
+			var clusterItem = new ClusterItem(pin.Position.Latitude, pin.Position.Longitude);
+			_markers.Add(id, clusterItem);
+			_clusterManager.AddItem(clusterItem);
+			_clusterManager.Cluster();
 		}
 
 		public void OnMapReady(GoogleMap googleMap)
@@ -64,20 +69,17 @@ namespace GodSpeak.Droid
 			settings.ZoomControlsEnabled = false;
 
 			_googleMap = googleMap;
+			_googleMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(SettingsService.Latitude, SettingsService.Longitude), 1));
 
 			_googleMap.Clear();
 
-			Task.Run(async () => 
-			{
-				var user = await Mvx.Resolve<ISessionService>().GetUser();
-				if (user != null)
-				{
-					Device.BeginInvokeOnMainThread(() =>
-					{
-						_googleMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(user.Latitude, user.Longitude), 7));
-					});
-				}	
-			});
+			_clusterManager = new ClusterManager(this.Context, _googleMap);
+			_clusterManager.SetOnClusterClickListener(this);
+			_clusterManager.SetOnClusterItemClickListener(this);
+			_clusterManager.SetRenderer(new CustomClusterRenderer(this.Context, _googleMap, _clusterManager));
+			                            
+			_googleMap.SetOnCameraChangeListener(_clusterManager);
+			_googleMap.SetOnMarkerClickListener(_clusterManager);
 
 			var customMap = this.Element as ImpactMap;
 			foreach (var item in customMap.PinsDictionary)
@@ -86,9 +88,32 @@ namespace GodSpeak.Droid
 			}
 		}
 
+		public bool OnClusterClick(ICluster cluster)
+		{			
+			return false;
+		}
+
+		public bool OnClusterItemClick(Java.Lang.Object marker)
+		{			
+			return false;
+		}
+
 		protected override void OnElementPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
 		{
 			base.OnElementPropertyChanged(sender, e);
 		}
+	}
+
+	public class ClusterItem : Java.Lang.Object, IClusterItem
+	{
+		public ClusterItem()
+		{
+		}
+		public LatLng Position { get; set; }
+
+		public ClusterItem(double lat, double lng)
+		{
+			Position = new LatLng(lat, lng);
+		}		
 	}
 }
