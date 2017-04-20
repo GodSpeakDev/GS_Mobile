@@ -916,5 +916,11 @@ namespace GodSpeak.Resources {
                 return ResourceManager.GetString("UnableToProcessOrder", resourceCulture);
             }
         }
+        
+        public static string ProcessingOrder {
+            get {
+                return ResourceManager.GetString("ProcessingOrder", resourceCulture);
+            }
+        }
     }
 }

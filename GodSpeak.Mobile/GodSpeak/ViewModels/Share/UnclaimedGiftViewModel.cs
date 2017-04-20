@@ -104,10 +104,12 @@ namespace GodSpeak
 			{
 				CrossInAppBilling.Current.InTestingMode = true;
 
+                this.HudService.Show(Text.ProcessingOrder);
 				var connect = await CrossInAppBilling.Current.ConnectAsync();
 				if (!connect)
 				{
 					// Error message
+                    this.HudService.Hide();
 					await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.UnableToConnectToStore);
 					return;
 				}
@@ -116,6 +118,7 @@ namespace GodSpeak
 				if (purchase == null)
 				{
 					// Not Purchased
+                    this.HudService.Hide();
 					await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.UnableToProcessOrder);
 					return;
 				}
@@ -127,12 +130,12 @@ namespace GodSpeak
 					// Not Consumed
 					if(consumedItem == null)
 					{
+                        this.HudService.Hide();
 						await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.UnableToProcessOrder);
 						return;      
 					}				
 				}
 
-				this.HudService.Show();
 				var response = await WebApiService.PurchaseInvite(new PurchaseInviteRequest()
 				{
 					Guid = bundle.InviteBundleId
@@ -153,9 +156,12 @@ namespace GodSpeak
 			catch (Exception ex)
 			{
 				// Something bad occurs
+                this.HudService.Hide();
+				await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.UnableToProcessOrder);
 			}
 			finally
 			{
+				this.HudService.Hide();
 				await CrossInAppBilling.Current.DisconnectAsync();
 			} 
         }
