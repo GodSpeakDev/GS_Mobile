@@ -193,8 +193,7 @@ namespace GodSpeak
             }
 
 			Messages = new ObservableCollection<GroupedCollection<Message, DateTime>>
-			(messages
-			 .Where(x => x.DateTimeToDisplay <= DateTime.Now)
+			(messages			 
 			 .OrderByDescending(x => x.DateTimeToDisplay)
 			 .GroupBy(x => x.DateTimeToDisplay.Date)
 			 .Select(x => new GroupedCollection<Message, DateTime>(x.Key, x)));
@@ -209,8 +208,7 @@ namespace GodSpeak
 			var messages = await _messageService.GetDeliveredMessages();
 
 			Messages = new ObservableCollection<GroupedCollection<Message, DateTime>>
-			(messages
-			 .Where(x => x.DateTimeToDisplay <= DateTime.Now)
+			(messages			 
 			 .OrderByDescending(x => x.DateTimeToDisplay)
 			 .GroupBy(x => x.DateTimeToDisplay.Date)
 			 .Select(x => new GroupedCollection<Message, DateTime>(x.Key, x)));			
