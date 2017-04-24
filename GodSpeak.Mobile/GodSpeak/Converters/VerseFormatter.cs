@@ -12,11 +12,7 @@ namespace GodSpeak
         public object Convert (object value, Type targetType, object parameter, CultureInfo culture)
         {
             var text = (string)value;
-            text = text.Replace ("``", "\"");
-            text = text.Replace ("*", "");
-            text = text.Replace ("{", "");
-            text = text.Replace ("}", "");
-            return text;
+			return text.FormatVerse();
         }
 
         public object ConvertBack (object value, Type targetType, object parameter, CultureInfo culture)

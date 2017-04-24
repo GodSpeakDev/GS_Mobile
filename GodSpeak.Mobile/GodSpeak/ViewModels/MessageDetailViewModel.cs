@@ -150,7 +150,8 @@ namespace GodSpeak
 
         private void DoShareCommand ()
         {
-			_shareService.Share (string.Format ("{0} - {1} \n\n{2}", Message.Verse.Text, Message.Verse.Title, Text.GodSpeakWebSite));
+			var formattedVerse = Message.Verse.Text.FormatVerse();
+			_shareService.Share (string.Format ("{0} - {1} \n\n{2}", formattedVerse, Message.Verse.Title, Text.GodSpeakWebSite));
         }
     }
 }

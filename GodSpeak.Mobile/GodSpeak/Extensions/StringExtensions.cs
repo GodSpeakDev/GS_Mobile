@@ -13,5 +13,15 @@ namespace GodSpeak
 
 			return string.IsNullOrEmpty(password) || (password.Length >= 6 && numberDetector.IsMatch(password) && lowerCaseDetector.IsMatch(password) && upperCaseDetector.IsMatch(password));
 		}
+
+		public static string FormatVerse(this string verse)
+		{
+			var text = (string)verse;
+			text = text.Replace ("``", "\"");
+            text = text.Replace ("*", "");
+            text = text.Replace ("{", "");
+            text = text.Replace ("}", "");
+            return text;
+		}
 	}
 }
