@@ -50,7 +50,7 @@
 			<OnPlatform x:TypeArguments="x:Double" x:Key="OnboardingEntryFontSize" Android="19" iOS="24" WinPhone="20" />
 			<OnPlatform x:TypeArguments="x:Double" x:Key="BackButtonWidth" Android="20" iOS="12" WinPhone="20" />
 			<OnPlatform x:TypeArguments="x:Double" x:Key="BackButtonHeight" Android="20" iOS="21" WinPhone="20" />
-			<OnPlatform x:TypeArguments="Rectangle" x:Key="FabButtonBounds" Android="1,1.05,100,100" iOS="1,1,90,90" WinPhone="1,1.05,100,100" />
+			<OnPlatform x:TypeArguments="Rectangle" x:Key="FabButtonBounds" Android="1,1,100,100" iOS="1,1,90,90" WinPhone="1,1.05,100,100" />
 			<OnPlatform x:TypeArguments="Rectangle" x:Key="PayItForwardButtonBounds" Android="0.8,217,220,40" iOS="0.8,218,240,34" WinPhone="1,1.05,100,100" />
 			<OnPlatform x:TypeArguments="x:Double" x:Key="TapToPayForwardFontSize" Android="12" iOS="15" WinPhone="13" />
 			<OnPlatform x:TypeArguments="x:Double" x:Key="PlusMinusButtonFontSize" Android="24" iOS="20" WinPhone="14" />

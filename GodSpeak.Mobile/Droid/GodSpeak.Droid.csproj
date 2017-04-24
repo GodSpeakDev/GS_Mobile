@@ -358,8 +358,6 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\hamburgerMenu.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\impactWithNotification.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\hamburgerMenu.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\invitesFAB.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\invitesFAB.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\invitesFAB.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\invitesFAB.png" />
     <AndroidResource Include="Resources\drawable-hdpi\logout_icon.png" />
@@ -394,6 +392,8 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\gift_box.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\gift_box.png" />
     <AndroidResource Include="Resources\drawable-hdpi\gift_box.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\invitesFAB.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\invitesFAB.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="MvvmCross\" />
