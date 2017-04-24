@@ -8,8 +8,6 @@
 	<string>GodSpeak</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.givegodspeak.ios</string>
-	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
@@ -54,6 +52,8 @@
 	<key>NSContactsUsageDescription</key>
 	<string>We&apos;d like access to your contacts so we can save you time sharing GodSpeak with friends.</string>
 	<key>CFBundleVersion</key>
-	<string>16</string>
+	<string>17</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
 </dict>
 </plist>
