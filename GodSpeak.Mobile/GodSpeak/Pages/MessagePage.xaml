@@ -68,53 +68,63 @@
 							<ViewCell>								
 									<OnPlatform x:TypeArguments="View">
 							            <OnPlatform.iOS>
-							                <Grid
-												Margin="10,0"
-												HorizontalOptions="FillAndExpand"
-												VerticalOptions="FillAndExpand"
-												RowSpacing="0">
-												<Grid.RowDefinitions>
-													<RowDefinition Height="*" />
-													<RowDefinition Height="auto" />
-													<RowDefinition Height="20" />
-												</Grid.RowDefinitions>
-												<Grid.ColumnDefinitions>
-													<ColumnDefinition Width="*" />
-													<ColumnDefinition Width="auto" />
-												</Grid.ColumnDefinitions>
-												<views:MessageBalloon
-													Grid.Row="0"
-													Grid.Column="0"
-													Grid.ColumnSpan="2"
-													Margin="0,10,0,0"
-													Padding="15, 12, 15, 15"
+											<ContentView>
+								                <Grid
+													Margin="10,0"
 													HorizontalOptions="FillAndExpand"
-													VerticalOptions="StartAndExpand">
-													<views:CustomLabel 																				
-														Text="{Binding Verse.Text, Converter={StaticResource VerseFormatterConverter}}}"
+													VerticalOptions="FillAndExpand"
+													RowSpacing="0">
+													<Grid.RowDefinitions>
+														<RowDefinition Height="*" />
+														<RowDefinition Height="auto" />
+														<RowDefinition Height="20" />
+													</Grid.RowDefinitions>
+													<Grid.ColumnDefinitions>
+														<ColumnDefinition Width="*" />
+														<ColumnDefinition Width="auto" />
+													</Grid.ColumnDefinitions>
+													<views:MessageBalloon
+														Grid.Row="0"
+														Grid.Column="0"
+														Grid.ColumnSpan="2"
+														Margin="0,10,0,0"
+														Padding="15, 12, 15, 15"
 														HorizontalOptions="FillAndExpand"
-														VerticalOptions="Start"
-														Style="{StaticResource TextMessageBody}"
-													/>											
-												</views:MessageBalloon>
-												<views:ImageWithShadow
-													Grid.Row="1"
-													Grid.Column="0"
-													Source="message_arrow.png"
-													Margin="{StaticResource MessageArrowMargin}"
-													HorizontalOptions="Start"
-												/>
-												<views:CustomLabel 	
-													Margin="5,3,0,0"
-													Grid.Row="1"
-													Grid.Column="1"
-													Text="{Binding Verse.Title}"
-													HorizontalOptions="EndAndExpand"
-													HorizontalTextAlignment="End"
-													VerticalOptions="End"
-													Style="{StaticResource TextContent}"
-												/>
-											</Grid>
+														VerticalOptions="FillAndExpand">
+														<views:CustomLabel 																				
+															Text="{Binding Verse.Text, Converter={StaticResource VerseFormatterConverter}}}"
+															HorizontalOptions="FillAndExpand"
+															VerticalOptions="FillAndExpand"
+															Style="{StaticResource TextMessageBody}"
+														/>											
+													</views:MessageBalloon>
+													<views:ImageWithShadow
+														Grid.Row="1"
+														Grid.Column="0"
+														Source="message_arrow.png"
+														Margin="{StaticResource MessageArrowMargin}"
+														HorizontalOptions="Start"
+													/>
+													<views:CustomLabel 	
+														Margin="5,3,0,0"
+														Grid.Row="1"
+														Grid.Column="1"
+														Text="{Binding Verse.Title}"
+														HorizontalOptions="EndAndExpand"
+														HorizontalTextAlignment="End"
+														VerticalOptions="End"
+														Style="{StaticResource TextContent}"
+													/>
+													<BoxView
+														Grid.Row="2"
+														Grid.Column="0"
+														Grid.ColumnSpan="2"
+														HeightRequest="20"
+														Color="Transparent"
+														BackgroundColor="Transparent"
+													/>
+												</Grid>
+											</ContentView>
 							            </OnPlatform.iOS>
 							            <OnPlatform.Android>
 							                <StackLayout

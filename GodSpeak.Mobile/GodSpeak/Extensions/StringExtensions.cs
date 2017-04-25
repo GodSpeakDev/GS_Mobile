@@ -21,7 +21,7 @@ namespace GodSpeak
             text = text.Replace ("*", "");
             text = text.Replace ("{", "");
             text = text.Replace ("}", "");
-            return text;
+			return text.Trim();
 		}
 	}
 }
