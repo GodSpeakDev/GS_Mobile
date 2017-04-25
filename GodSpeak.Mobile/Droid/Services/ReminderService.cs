@@ -23,6 +23,8 @@ using MvvmCross.Platform;
 
 using MvvmCross.Plugins.Messenger;
 
+using Android.Support.V4;
+
 namespace GodSpeak.Droid
 {
 	public class ReminderService : IReminderService
@@ -71,6 +73,7 @@ namespace GodSpeak.Droid
 				message.DateTimeToDisplay.Minute);
 
 			AlarmManager.Set(AlarmType.RtcWakeup, calendar.TimeInMillis, pendingIntent);
+			System.Diagnostics.Debug.WriteLine("Set Reminder for {0}", calendar);
 
 			return true;
 		}
@@ -107,8 +110,42 @@ namespace GodSpeak.Droid
 		}
 	}
 
-	[BroadcastReceiver]
-	public class ReminderReceiver : BroadcastReceiver
+	[BroadcastReceiver(Exported=true)]
+	public class ReminderReceiver : Android.Support.V4.Content.WakefulBroadcastReceiver
+	{
+		public override void OnReceive(Context context, Intent intent)
+		{
+			if (MainActivity.IsForeground)
+			{
+				var message = JsonConvert.DeserializeObject<Message>(intent.GetStringExtra("item_json"));
+				ShowMessage(message);
+				var hasMessenger = Mvx.CanResolve<IMvxMessenger>();
+				if (hasMessenger)
+				{
+					Mvx.Resolve<IMvxMessenger>().Publish(new MessageDeliveredMessage(this));
+				}
+			}
+			else
+			{
+				var newIntent = new Intent(context, typeof(AlarmServiceIntentService));
+				newIntent.ReplaceExtras(intent);                           
+				StartWakefulService(context, newIntent);
+			}
+		}
+
+		private void ShowMessage(Message message)
+		{
+			var alertDialog = new AlertDialog.Builder(Xamarin.Forms.Forms.Context)
+								 .SetTitle("God Speak")
+								 .SetMessage(new VerseFormatter().Convert(message.Verse.Text, null, null, null).ToString())
+								 .SetCancelable(false)
+								 .SetPositiveButton("Ok", (sender, e) => { });
+			alertDialog.Show();
+		}
+	}
+
+	[Service]
+	public class AlarmServiceIntentService : IntentService
 	{
 		private NotificationManager _notificationManager;
 		public NotificationManager NotificationManager
@@ -120,45 +157,35 @@ namespace GodSpeak.Droid
 					return _notificationManager;
 				}
 
-				var activity = (Forms.Context as Activity);
-
-				return _notificationManager ?? (_notificationManager = (NotificationManager)activity.GetSystemService(Android.Content.Context.NotificationService));
+				return _notificationManager ?? (_notificationManager = (NotificationManager)ApplicationContext.GetSystemService(Android.Content.Context.NotificationService));
 			}
 		}
 
-		public override void OnReceive(Context context, Intent intent)
+		public AlarmServiceIntentService() : base("AlarmServiceIntentService")
 		{
-			var message = JsonConvert.DeserializeObject<Message>(intent.GetStringExtra("item_json"));
-
-			if (MainActivity.IsForeground)
-			{
-				ShowMessage(message);
-			}
-			else
-			{
-				SendNotification(message, context);
-			}
-
-			var hasMessenger = Mvx.CanResolve<IMvxMessenger>();
-			if (hasMessenger)
-			{
-				Mvx.Resolve<IMvxMessenger>().Publish(new MessageDeliveredMessage(this));	
-			}
+			
 		}
 
-		private void ShowMessage(Message message)
+		protected override void OnHandleIntent(Intent intent)
 		{
-			var alertDialog = new AlertDialog.Builder(Xamarin.Forms.Forms.Context)
-											 .SetTitle("God Speak")
-			                                 .SetMessage(new VerseFormatter().Convert(message.Verse.Text, null, null, null).ToString())
-											 .SetCancelable(false)
-											 .SetPositiveButton("Ok", (sender, e) => { });
-			alertDialog.Show();
+			try
+			{
+				var message = JsonConvert.DeserializeObject<Message>(intent.GetStringExtra("item_json"));
+				SendNotification(message);
+			}
+			catch (Exception ex)
+			{
+
+			}
+			finally
+			{
+				Android.Support.V4.Content.WakefulBroadcastReceiver.CompleteWakefulIntent(intent);
+			}
 		}
 
-		private void SendNotification(Message message, Context context)
-		{			
-			Notification.Builder builder = new Notification.Builder(context)
+		private void SendNotification(Message message)
+		{
+			Notification.Builder builder = new Notification.Builder(ApplicationContext)
 				.SetContentTitle("God Speak")
 				.SetSmallIcon(Resource.Drawable.app_icon)
 				.SetContentText(new VerseFormatter().Convert(message.Verse.Text, null, null, null).ToString());
