@@ -964,5 +964,11 @@ namespace GodSpeak.Resources {
                 return ResourceManager.GetString("EmailRequired", resourceCulture);
             }
         }
+        
+        public static string InviteThem {
+            get {
+                return ResourceManager.GetString("InviteThem", resourceCulture);
+            }
+        }
     }
 }

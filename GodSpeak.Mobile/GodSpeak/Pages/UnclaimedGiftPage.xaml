@@ -22,22 +22,14 @@
 						Grid.Row="0"
 						Grid.RowSpan="2"
 						Source="share_background.png"
-						Aspect="AspectFill" />
-					<views:CustomCarouselView 
+						Aspect="AspectFill" />				
+					<views:DidYouKnowTemplateView
 						Grid.Row="0"
-						Grid.RowSpan="2"
+						Grid.RowSpan="2"										
 						HorizontalOptions="FillAndExpand"
 						VerticalOptions="FillAndExpand"
-						Position="{Binding SelectedPosition}"
-						ItemTemplate="{StaticResource pageSelector}"
-						ItemsSource="{Binding Pages}">    		
-						<views:CustomCarouselView.Resources>
-		        			<ResourceDictionary>
-		            			<views:SharePageSelector x:Key="pageSelector" />
-		        			</ResourceDictionary>
-		    			</views:CustomCarouselView.Resources>
-		  			</views:CustomCarouselView>
-
+						BindingContext="{Binding DidYouKnowTemplateViewModel}"
+					/>
 					<Image 
 						Grid.Row="1"
 						HeightRequest="50"
@@ -45,25 +37,24 @@
 						Aspect="Fill"
 						HorizontalOptions="FillAndExpand"																						
 					/>
-
-					<views:Pager
-						Grid.Row="1"
-						NumberOfDots="3"
-						SelectedDotIndex="{Binding SelectedPosition}"
-					/>
-
 					<views:GrayGradientBackgroundView
-						Grid.Row="2"
-					>
+						Grid.Row="2">
 					<Grid				
 						VerticalOptions="StartAndExpand">
 						<Grid.RowDefinitions>							
 							<RowDefinition Height="auto" />	
 							<RowDefinition Height="auto" />	
 							<RowDefinition Height="auto" />	
-						</Grid.RowDefinitions>								
+							<RowDefinition Height="*" />	
+							<RowDefinition Height="auto" />	
+						</Grid.RowDefinitions>		
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="auto" />
+						</Grid.ColumnDefinitions>
 						<views:CustomLabel			
 							Grid.Row="0"
+							Grid.ColumnSpan="2"
 							VerticalOptions="CenterAndExpand"
 							HorizontalOptions="StartAndExpand"
 							Margin="15,5,0,0"
@@ -71,55 +62,52 @@
 							Text="{x:Static res:Text.ShareTitle}"/>						
 						<views:CustomLabel
 							Grid.Row="1"
+							Grid.ColumnSpan="2"
 							Margin="15,0,0,0"
 							VerticalOptions="CenterAndExpand"
 							HorizontalOptions="StartAndExpand"
 							Style="{StaticResource TextContent}"
-							Text="{x:Static res:Text.ShareDescription}"/>						
-						<ScrollView
+							Text="{x:Static res:Text.ShareDescription}"/>	
+						<views:RegisterEntry
+							Margin="10,0,0,0"
 							Grid.Row="2"
-							VerticalOptions="FillAndExpand">
-							<views:StackList								
-								Spacing="0"
-								ItemsSource="{Binding Bundles}"
-								Padding="15,0,0,0">
-								<views:StackList.ItemTemplate>
-									<DataTemplate>
-										<StackLayout								
-											Orientation="Horizontal"
-											Padding="0, 5, 15, 5"
-											Spacing="10"
-											x:Name="SettingsItem"
-											BackgroundColor="Transparent"
-										>				
-											<Image WidthRequest="30" HeightRequest="30" Source="gift_box.png" />
-											<views:CustomLabel 
-												Margin="5,0,0,0"
-												Text="{Binding Item.Description}" 
-												Style="{StaticResource TextShoppingCartItemTitle}"
-												HorizontalOptions="FillAndExpand"
-												VerticalOptions="Center"
-											/>
-											<views:CustomButton 				
-												WidthRequest="{StaticResource PriceWidth}"
-												Command="{Binding TappedCommand}"
-												Style="{StaticResource ButtonBlue}"
-												Text="{Binding Item.CostDescription}">
-											</views:CustomButton>	
-										</StackLayout>
-									</DataTemplate>
-								</views:StackList.ItemTemplate>	
-								<views:StackList.SeparatorTemplate>
-									<DataTemplate>
-										<BoxView 
-											Margin="0,0,0,0"
-											Color="{x:Static views:ColorHelper.Secondary}"
-											HeightRequest="0.5"				
-										/>
-									</DataTemplate>
-								</views:StackList.SeparatorTemplate>
-							</views:StackList>	
-						</ScrollView>
+							Grid.Column="0"
+							Placeholder="{x:Static res:Text.EmailSearchPlaceholder}" 							
+							Text="{Binding SearchText}" 
+							HeightRequest="{StaticResource ElementHeight}"
+							VerticalOptions="Center"
+						/>
+						<Image
+							Margin="10,0,20,0"
+							Grid.Row="2"
+							Grid.Column="1"
+							Source="search_icon.png"
+							WidthRequest="20"
+							HeightRequest="20"
+						/>
+						<views:CustomListView
+							Margin="0,5,0,0"
+							Grid.Row="3"
+							Grid.Column="0"
+							Grid.ColumnSpan="2"
+							BackgroundColor="Transparent"
+							ItemsSource="{Binding Contacts}">
+							<ListView.ItemTemplate>
+					            <DataTemplate>
+									<views:ContactCell />									
+					            </DataTemplate>
+				        	</ListView.ItemTemplate>
+						</views:CustomListView>
+						<views:CustomButton 
+							Grid.Row="4"
+							Grid.Column="0"
+							Grid.ColumnSpan="2"
+							Margin="10, 10"
+							Style="{StaticResource ButtonBlue}"
+							Text="{x:Static res:Text.InviteThem}"
+							Command="{Binding InviteThemCommand}"
+							IsEnabled="{Binding HasEmailSelected}"
+						/>
 					</Grid>
 				</views:GrayGradientBackgroundView>
 				</Grid>

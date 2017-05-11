@@ -153,53 +153,54 @@ namespace GodSpeak
         }
 
         private async void DoSaveCommand ()
-        {				
-			if (!(await ValidateForm ()))
-                return;
+        {		
+			await SuccessfullRegister(new User());
+			//if (!(await ValidateForm ()))
+   //             return;
 
-            var request = new RegisterUserRequest () {
-                FirstName = FirstName,
-                LastName = LastName,
-                EmailAddress = Email,
-                Password = Password,
-                PasswordConfirm = ConfirmPassword,
-                CountryCode = CountryCodes [SelectedCountryIndex],
-                PostalCode = ZipCode,
-                InviteCode = _inviteCode
-            };
+   //         var request = new RegisterUserRequest () {
+   //             FirstName = FirstName,
+   //             LastName = LastName,
+   //             EmailAddress = Email,
+   //             Password = Password,
+   //             PasswordConfirm = ConfirmPassword,
+   //             CountryCode = CountryCodes [SelectedCountryIndex],
+   //             PostalCode = ZipCode,
+   //             InviteCode = _inviteCode
+   //         };
 
-            HudService.Show ();
-            var response = await WebApiService.RegisterUser (request);
+   //         HudService.Show ();
+   //         var response = await WebApiService.RegisterUser (request);
 
-            if (response.IsSuccess) 
-			{
-                if (Image != null && Image != "profile_placeholder.png") {
-                    var photoResponse = await WebApiService.UploadPhoto (new UploadPhotoRequest () 
-					{                        
-                        FilePath = _response.Path
-                    });
-                    HudService.Hide ();
+   //         if (response.IsSuccess) 
+			//{
+   //             if (Image != null && Image != "profile_placeholder.png") {
+   //                 var photoResponse = await WebApiService.UploadPhoto (new UploadPhotoRequest () 
+			//		{                        
+   //                     FilePath = _response.Path
+   //                 });
+   //                 HudService.Hide ();
 
-                    if (photoResponse.IsSuccess) 
-					{
-                    	await SuccessfullRegister(response.Payload);    
-                    } 
-					else 
-					{
-                        await HandleResponse (photoResponse);
-                    }
-                } 
-				else 
-				{
-                    HudService.Hide ();
-					await SuccessfullRegister(response.Payload);
-                }
-            } 
-			else 
-			{
-                HudService.Hide ();
-                await HandleResponse (response);
-            }
+   //                 if (photoResponse.IsSuccess) 
+			//		{
+   //                 	await SuccessfullRegister(response.Payload);    
+   //                 } 
+			//		else 
+			//		{
+   //                     await HandleResponse (photoResponse);
+   //                 }
+   //             } 
+			//	else 
+			//	{
+   //                 HudService.Hide ();
+			//		await SuccessfullRegister(response.Payload);
+   //             }
+   //         } 
+			//else 
+			//{
+   //             HudService.Hide ();
+   //             await HandleResponse (response);
+   //         }
         }
 
 		private async Task SuccessfullRegister(User user)

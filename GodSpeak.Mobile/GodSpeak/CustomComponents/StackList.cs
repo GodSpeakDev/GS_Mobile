@@ -148,11 +148,16 @@ namespace GodSpeak
 			var content = ItemTemplate.CreateContent();
 			var view = content as View;
 
+			if (view == null)
+			{
+				view = (content as ViewCell).View;
+			}
+
 			view.GestureRecognizers.Add(new TapGestureRecognizer(
-				(sender, obj) => 
-			{ 
-				onItemTapped(sender, item);
-			}));
+					(sender, obj) =>
+				{
+					onItemTapped(sender, item);
+				}));
 
 			view.BindingContext = item;
 

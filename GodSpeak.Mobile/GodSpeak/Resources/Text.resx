@@ -508,7 +508,7 @@ Claimed</value>
 	<data
 		name="ShareDescription"
 		xml:space="preserve">
-    	<value>You can purchase more gifts right here, right now!</value>
+    	<value>Share GodSpeak with your friends!</value>
   	</data>
 	<data
 		name="ShareWithFriend"
@@ -814,5 +814,10 @@ Enjoy!
 		name="EmailRequired"
 		xml:space="preserve">
     	<value>Please, type the email.</value>
+  	</data>
+	<data
+		name="InviteThem"
+		xml:space="preserve">
+    	<value>Invite Them!</value>
   	</data>
 </root>
