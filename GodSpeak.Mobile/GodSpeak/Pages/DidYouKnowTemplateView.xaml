@@ -23,6 +23,7 @@
 				<views:MessageBalloon
 					Grid.Row="0"
 					Padding="20,20,20, 20"
+					IsVisible="{Binding IsBalloonVisible}"
 					HorizontalOptions="CenterAndExpand"
 					VerticalOptions="Start">
 					<Grid
@@ -54,6 +55,7 @@
 					Margin="{StaticResource MessageArrowMargin}"
 					VerticalOptions="Start"
 					HorizontalOptions="Start"
+					IsVisible="{Binding IsBalloonVisible}"
 				/>
 			</Grid>
 		</AbsoluteLayout>

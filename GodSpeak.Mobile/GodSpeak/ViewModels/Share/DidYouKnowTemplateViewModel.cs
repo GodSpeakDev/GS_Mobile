@@ -6,6 +6,13 @@ namespace GodSpeak
 {
 	public class DidYouKnowTemplateViewModel : CustomViewModel
 	{
+		private bool _isBalloonVisible;
+		public bool IsBalloonVisible
+		{
+			get { return _isBalloonVisible;}
+			set { SetProperty(ref _isBalloonVisible, value);}
+		}
+
 		private string _boxTitle;
 		public string BoxTitle
 		{
@@ -21,7 +28,8 @@ namespace GodSpeak
 		}
 
 		public DidYouKnowTemplateViewModel(IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, ISettingsService settingsService) : base(dialogService, hudService, sessionService, webApiService, settingsService)
-		{						
+		{
+			IsBalloonVisible = false;
 		}
 
 		public async Task Init()
@@ -32,6 +40,7 @@ namespace GodSpeak
 			{
 				BoxTitle = response.Message;
 				BoxMessage = response.Payload;
+				IsBalloonVisible = true;
 			}
 			else
 			{
