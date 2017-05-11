@@ -395,6 +395,9 @@
     <BundleResource Include="Resources\message_arrow.png" />
     <BundleResource Include="Resources\message_arrow%402x.png" />
     <BundleResource Include="Resources\message_arrow%403x.png" />
+    <BundleResource Include="Resources\map_screenshot.png" />
+    <BundleResource Include="Resources\map_screenshot%402x.png" />
+    <BundleResource Include="Resources\map_screenshot%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="googleiosmaps">

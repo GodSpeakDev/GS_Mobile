@@ -121,10 +121,13 @@
     <EmbeddedResource Include="CustomComponents\ButtonWithImage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\SelectWhoToSendMailPage.xaml">
+    <EmbeddedResource Include="Pages\SelectWhoPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\DonateTemplateView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\WhoReferredYouPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
@@ -352,9 +355,9 @@
     <Compile Include="CustomComponents\ButtonWithImage.xaml.cs">
       <DependentUpon>ButtonWithImage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\SelectWhoToSendMailViewModel.cs" />
-    <Compile Include="Pages\SelectWhoToSendMailPage.xaml.cs">
-      <DependentUpon>SelectWhoToSendMailPage.xaml</DependentUpon>
+    <Compile Include="ViewModels\SelectWhoViewModel.cs" />
+    <Compile Include="Pages\SelectWhoPage.xaml.cs">
+      <DependentUpon>SelectWhoPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Services\IContactService.cs" />
     <Compile Include="Models\Contact.cs" />
@@ -398,6 +401,10 @@
     <Compile Include="Services\IFileService.cs" />
     <Compile Include="Services\IMessageService.cs" />
     <Compile Include="Services\MessageService.cs" />
+    <Compile Include="ViewModels\WhoReferredYouViewModel.cs" />
+    <Compile Include="Pages\WhoReferredYouPage.xaml.cs">
+      <DependentUpon>WhoReferredYouPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

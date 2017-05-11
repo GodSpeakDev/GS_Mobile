@@ -9,20 +9,63 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using GodSpeak.Services;
+using System.Threading.Tasks;
 
 namespace GodSpeak
 {
-	public class SelectWhoToSendMailViewModel : CustomViewModel
+	public class SelectWhoViewModel : CustomViewModel
 	{
-		private IContactService _contactService;
-		private IMailService _mailService;
+		public enum SelectWhoPages
+		{
+			ShareEmail,
+			WhoReferred
+		}
 
-		private MvxCommand _composeEmailCommand;
-		public MvxCommand ComposeEmailCommand
+		private SelectWhoPages _pageMode;
+		protected SelectWhoPages PageMode
+		{
+			get { return _pageMode;}
+			set 
+			{ 
+				SetProperty(ref _pageMode, value);
+
+			}
+		}
+
+		protected bool SingleSelection
 		{
 			get
 			{
-				return _composeEmailCommand ?? (_composeEmailCommand = new MvxCommand(DoComposeEmailCommand));
+				return PageMode == SelectWhoPages.WhoReferred;
+			}
+		}
+
+		private IContactService _contactService;
+		private IMailService _mailService;
+
+		private MvxCommand _submitCommand;
+		public MvxCommand SubmitCommand
+		{
+			get
+			{
+				return _submitCommand ?? (_submitCommand = new MvxCommand(DoSubmitCommand));
+			}
+		}
+
+		public string SubmitText
+		{
+			get 
+			{
+				if (PageMode == SelectWhoPages.ShareEmail)
+				{
+					return Text.ComposeEmail;
+				}
+				else if (PageMode == SelectWhoPages.WhoReferred)
+				{
+					return Text.AnonymousSubmit;
+				}
+
+				return string.Empty;
 			}
 		}
 
@@ -55,14 +98,15 @@ namespace GodSpeak
 
 		private ObservableCollection<SelectableItem<Contact>> _deviceContacts;
 
-		public SelectWhoToSendMailViewModel(IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, ISettingsService settingsService, IContactService contactService, IMailService mailService) : base(dialogService, hudService, sessionService, webApiService, settingsService)
+		public SelectWhoViewModel(IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, ISettingsService settingsService, IContactService contactService, IMailService mailService) : base(dialogService, hudService, sessionService, webApiService, settingsService)
 		{
 			_contactService = contactService;
 			_mailService = mailService;
 		}
 
-		public async void Init() 
+		public async void Init(string pageMode) 
 		{
+			PageMode = (SelectWhoPages) Enum.Parse(typeof(SelectWhoPages), pageMode);
 			if (await _contactService.CanAccessContacts())
 			{
 				_contactService.GetAllContacts((List<Contact> contacts) =>
@@ -92,6 +136,18 @@ namespace GodSpeak
 			if (e.PropertyName == "IsEnabled")
 			{
 				HasEmailSelected = _deviceContacts.Any(x => x.IsEnabled);
+
+				var contact = (SelectableItem<Contact>)sender;
+				if (contact.IsEnabled)
+				{
+					foreach (var selection in _deviceContacts)
+					{
+						if (selection.Item.Id != contact.Item.Id)
+						{
+							selection.IsEnabled = false;
+						}
+					}
+				}
 			}
 		}
 
@@ -106,7 +162,19 @@ namespace GodSpeak
 			Contacts = new ObservableCollection<SelectableItem<Contact>>(contacts);
 		}
 
-		private async void DoComposeEmailCommand()
+		private async void DoSubmitCommand()
+		{
+			if (PageMode == SelectWhoPages.ShareEmail)
+			{
+				await DoComposeEmailCommand();
+			}
+			else if (PageMode == SelectWhoPages.WhoReferred)
+			{
+				await DoSendReferrerUser();
+			}
+		}
+
+		private async Task DoComposeEmailCommand()
 		{
 			if (HasEmailSelected)
 			{
@@ -115,6 +183,11 @@ namespace GodSpeak
 				var body = string.Format(Text.ShareEmailBody, (await SessionService.GetUser()).FirstName);
 				_mailService.SendMail(to: selectedContacsMail.ToArray(), subject: Text.ShareEmailSubject, body: body);
 			}	
+		}
+
+		private async Task DoSendReferrerUser()
+		{
+            this.ShowViewModel<HomeViewModel>(new {comesFromRegisterFlow=true});		
 		}
 	}
 }

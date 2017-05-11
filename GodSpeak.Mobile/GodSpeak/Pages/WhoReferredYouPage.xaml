@@ -2,13 +2,16 @@
 <views:CustomContentPage 
 		xmlns="http://xamarin.com/schemas/2014/forms" 
 		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-		xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
 		xmlns:res="clr-namespace:GodSpeak.Resources;assembly=GodSpeak"
-		x:Class="GodSpeak.LoginPage">
+		xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
+		Title="{x:Static res:Text.ImpactPageTitle}"
+		x:Class="GodSpeak.WhoReferredYouPage">	
 	<ContentPage.Content>
-		<AbsoluteLayout>			
+		<AbsoluteLayout
+			HorizontalOptions="FillAndExpand"
+			VerticalOptions="FillAndExpand">
 			<Image
-				Source="people_background.jpg"
+				Source="map_screenshot.png"
 				Aspect="Fill"				
 				AbsoluteLayout.LayoutFlags="All"
 				AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
@@ -37,63 +40,46 @@
 						Padding="0,0,0,10"
 						Spacing="10"
 						AbsoluteLayout.LayoutBounds="0,0,1,1"
-						AbsoluteLayout.LayoutFlags="All"
-					>
-						<views:CustomEntry 
+						AbsoluteLayout.LayoutFlags="All">
+						<views:CustomLabel 		
 							Margin="10,0"
+							Text="{x:Static res:Text.WhoReferredBoxTitle}"
+							VerticalOptions="Start"
+							HorizontalOptions="FillAndExpand"
+							Style="{StaticResource UnclaimedPageTitle}"
+						/>
+						<views:CustomLabel 																											
+							Margin="10,0"
+							VerticalOptions="StartAndExpand"
+							Text="{x:Static res:Text.WhoReferredBoxTextContent}"
+							HorizontalOptions="FillAndExpand"
+							Style="{StaticResource TextContent}"
+						/>
+						<views:CustomEntry 
+							Margin="10,10,10,0"
 							Keyboard="Email"
 							x:Name="EmailEntry"
 							Style="{StaticResource LoginEntry}"
 							HeightRequest="{StaticResource ElementHeight}"	
 							Placeholder="{x:Static res:Text.EmailPlaceholder}" 
 							Text="{Binding Email}">
-							<Entry.Effects>
-								<views:ReturnKeyEffect ReturnText="Next" />
-							</Entry.Effects>
-						</views:CustomEntry>
-						<views:CustomEntry 
-							Margin="10,0"
-							IsPassword="true"
-							x:Name="PasswordEntry"
-							Style="{StaticResource LoginEntry}"
-							HeightRequest="{StaticResource ElementHeight}"
-							Placeholder="{x:Static res:Text.PasswordPlaceholder}" 
-							Text="{Binding Password}">
-							<Entry.Effects>
-								<views:ReturnKeyEffect ReturnText="Done" />
-							</Entry.Effects>
 						</views:CustomEntry>
 						<views:CustomButton  
 							Margin="10,0"
 							HorizontalOptions="FillAndExpand"
 							Style="{StaticResource ButtonBlue}"
-							Text="{x:Static res:Text.LoginButton}" 
-							Command="{Binding LoginCommand}" />	
+							Text="{x:Static res:Text.AnonymousSubmit}" 
+							Command="{Binding SubmitCommand}" />	
 						<views:CustomButton  
-							Margin="10,10,10,0"
+							Margin="10,0"
 							HorizontalOptions="FillAndExpand"
-							Style="{StaticResource BorderButtonTransparent}"
-							Text="{x:Static res:Text.NeedToRegister}"
-							Command="{Binding RegisterCommand}" />	
-						<views:CustomLabel 
-							Margin="0,0"
-							Style="{StaticResource ButtonLinkText}"
-							Text="{x:Static res:Text.ForgotMyPasswordLinkText}">
-							<Label.GestureRecognizers>
-						        <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" />
-						    </Label.GestureRecognizers>
-						</views:CustomLabel >
-						<views:CustomLabel 
-							Margin="0,0"
-							Style="{StaticResource ButtonLinkText}"
-							Text="{x:Static res:Text.PrivacyPolicyTerms}">
-							<Label.GestureRecognizers>
-						        <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" />
-						    </Label.GestureRecognizers>
-						</views:CustomLabel>
+							Style="{StaticResource ButtonWhite}"
+							Text="{x:Static res:Text.UseContactsButton}"
+							Command="{Binding UseContactsCommand}" />							
 					</StackLayout>
 				</AbsoluteLayout>
 			</Grid>
+			<views:SolidHeader Title="{x:Static res:Text.WhoReferrerPageTitle}" BackgroundColor="{StaticResource headerOverlay}" />			
 		</AbsoluteLayout>
 	</ContentPage.Content>
 </views:CustomContentPage>

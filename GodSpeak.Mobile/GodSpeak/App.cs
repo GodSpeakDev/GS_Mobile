@@ -31,7 +31,7 @@ namespace GodSpeak
             }
             else
             {
-				RegisterAppStart<GetStartedViewModel> ();                
+				RegisterAppStart<LoginViewModel> ();                
             }
         }
     }

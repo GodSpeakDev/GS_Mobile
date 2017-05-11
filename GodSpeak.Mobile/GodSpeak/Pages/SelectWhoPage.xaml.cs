@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-
 using Xamarin.Forms;
 
 namespace GodSpeak
 {
-	public partial class SelectWhoToSendMailPage : CustomContentPage
+	public partial class SelectWhoPage : CustomContentPage
 	{
-		public SelectWhoToSendMailPage()
+		public SelectWhoPage()
 		{
 			InitializeComponent();
 			NavigationPage.SetHasNavigationBar(this, false);

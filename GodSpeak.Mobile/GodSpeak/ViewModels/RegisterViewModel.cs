@@ -153,62 +153,63 @@ namespace GodSpeak
         }
 
         private async void DoSaveCommand ()
-        {
-            if (!ValidateForm ())
-                return;
+        {	
+			await SuccessfullRegister(new User());
+			//if (!(await ValidateForm ()))
+   //             return;
 
-            var request = new RegisterUserRequest () {
-                FirstName = FirstName,
-                LastName = LastName,
-                EmailAddress = Email,
-                Password = Password,
-                PasswordConfirm = ConfirmPassword,
-                CountryCode = CountryCodes [SelectedCountryIndex],
-                PostalCode = ZipCode,
-                InviteCode = _inviteCode
-            };
+   //         var request = new RegisterUserRequest () {
+   //             FirstName = FirstName,
+   //             LastName = LastName,
+   //             EmailAddress = Email,
+   //             Password = Password,
+   //             PasswordConfirm = ConfirmPassword,
+   //             CountryCode = CountryCodes [SelectedCountryIndex],
+   //             PostalCode = ZipCode,
+   //             InviteCode = _inviteCode
+   //         };
 
-            HudService.Show ();
-            var response = await WebApiService.RegisterUser (request);
+   //         HudService.Show ();
+   //         var response = await WebApiService.RegisterUser (request);
 
-            if (response.IsSuccess) 
-			{
-                if (Image != null && Image != "profile_placeholder.png") {
-                    var photoResponse = await WebApiService.UploadPhoto (new UploadPhotoRequest () 
-					{                        
-                        FilePath = _response.Path
-                    });
-                    HudService.Hide ();
+   //         if (response.IsSuccess) 
+			//{
+   //             if (Image != null && Image != "profile_placeholder.png") {
+   //                 var photoResponse = await WebApiService.UploadPhoto (new UploadPhotoRequest () 
+			//		{                        
+   //                     FilePath = _response.Path
+   //                 });
+   //                 HudService.Hide ();
 
-                    if (photoResponse.IsSuccess) 
-					{
-                    	await SuccessfullRegister(response.Payload);    
-                    } 
-					else 
-					{
-                        await HandleResponse (photoResponse);
-                    }
-                } 
-				else 
-				{
-                    HudService.Hide ();
-					await SuccessfullRegister(response.Payload);
-                }
-            } 
-			else 
-			{
-                HudService.Hide ();
-                await HandleResponse (response);
-            }
+   //                 if (photoResponse.IsSuccess) 
+			//		{
+   //                 	await SuccessfullRegister(response.Payload);    
+   //                 } 
+			//		else 
+			//		{
+   //                     await HandleResponse (photoResponse);
+   //                 }
+   //             } 
+			//	else 
+			//	{
+   //                 HudService.Hide ();
+			//		await SuccessfullRegister(response.Payload);
+   //             }
+   //         } 
+			//else 
+			//{
+   //             HudService.Hide ();
+   //             await HandleResponse (response);
+   //         }
         }
 
 		private async Task SuccessfullRegister(User user)
 		{
 			await SessionService.SaveUser(user);
-			var result = await DialogService.ShowMenu(Text.SuccessfulRegisterPopupTitle, Text.SuccessfulRegisterPopupText, Text.PayItForward, Text.DontWantToPayItForward);
-			if (result == Text.PayItForward)
+			var result = await DialogService.ShowMenu(Text.Impact, Text.ImpactQuestion, Text.Yes, Text.No);
+			if (result == Text.Yes)
 			{
-				this.ShowViewModel<ShareViewModel>(new {comesFromRegisterFlow=true});
+				this.ShowViewModel<WhoReferredYouViewModel>();
 			}
 			else
 			{				
@@ -248,45 +249,32 @@ namespace GodSpeak
             this.ShowViewModel<LoginViewModel> ();
         }
 
-        bool ValidateForm ()
+        private async Task<bool> ValidateForm ()
         {
-            //await DialogService.ShowAlert("Ooops", "Sorry, please enter a valid email address");
+    //        if (string.IsNullOrEmpty(FirstName))
+    //        {
+    //          	await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.FirstNameRequiredMessage);
+				//return false;
+    //        }
 
-            //if (string.IsNullOrEmpty(FirstName))
-            //{
-            //  await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.FirstNameRequiredMessage);
-            //  return;
-            //}
+    //        if (string.IsNullOrEmpty(LastName))
+    //        {
+    //        	await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.LastNameRequiredMessage);
+				//return false;
+    //        }
 
-            //if (string.IsNullOrEmpty(LastName))
-            //{
-            //  await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.LastNameRequiredMessage);
-            //  return;
-            //}
+    //        if (string.IsNullOrEmpty(Email))
+    //        {
+    //          await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.EmailRequiredMessage);
+				//return false;
+    //        }
 
-            //if (string.IsNullOrEmpty(City))
-            //{
-            //  await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.CityRequiredMessage);
-            //  return;
-            //}
+    //        if (string.IsNullOrEmpty(Password))
+    //        {
+    //          	await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.PasswordRequiredMessage);
+				//return false;
+    //        }
 
-            //if (string.IsNullOrEmpty(State))
-            //{
-            //  await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.StateRequiredMessage);
-            //  return;
-            //}
-
-            //if (string.IsNullOrEmpty(Email))
-            //{
-            //  await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.EmailRequiredMessage);
-            //  return;
-            //}
-
-            //if (string.IsNullOrEmpty(Password))
-            //{
-            //  await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.PasswordRequiredMessage);
-            //  return;
-            //}
             return true;
         }
     }

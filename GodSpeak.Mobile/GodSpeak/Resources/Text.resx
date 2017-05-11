@@ -396,7 +396,7 @@ If so, we’ll send you their gift!</value>
 	<data
 		name="NeedToRegister"
 		xml:space="preserve">
-    	<value>I need to register</value>
+    	<value>Register</value>
   	</data>
 	<data
 		name="RecoverPasswordTitle"
@@ -779,5 +779,40 @@ Enjoy!
 		name="ProcessingOrder"
 		xml:space="preserve">
     	<value>Processing your order...</value>
+  	</data>
+	<data
+		name="Impact"
+		xml:space="preserve">
+    	<value>Impact</value>
+  	</data>
+	<data
+		name="ImpactQuestion"
+		xml:space="preserve">
+    	<value>Did someone refer or gift GodSpeak to you?</value>
+  	</data>
+	<data
+		name="WhoReferrerPageTitle"
+		xml:space="preserve">
+    	<value>Who Referred You?</value>
+  	</data>
+	<data
+		name="UseContactsButton"
+		xml:space="preserve">
+    	<value>Use Contacts</value>
+  	</data>
+	<data
+		name="WhoReferredBoxTitle"
+		xml:space="preserve">
+    	<value>Let Them See Their Impact!</value>
+  	</data>
+	<data
+		name="WhoReferredBoxTextContent"
+		xml:space="preserve">
+    	<value>By entering the email address of who referred you to GodSpeak or by selecting the referrer from your contacts, you are letting that person know what kind of impact they are making in God's world.</value>
+  	</data>
+	<data
+		name="EmailRequired"
+		xml:space="preserve">
+    	<value>Please, type the email.</value>
   	</data>
 </root>

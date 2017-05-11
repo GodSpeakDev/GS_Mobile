@@ -922,5 +922,47 @@ namespace GodSpeak.Resources {
                 return ResourceManager.GetString("ProcessingOrder", resourceCulture);
             }
         }
+        
+        public static string Impact {
+            get {
+                return ResourceManager.GetString("Impact", resourceCulture);
+            }
+        }
+        
+        public static string ImpactQuestion {
+            get {
+                return ResourceManager.GetString("ImpactQuestion", resourceCulture);
+            }
+        }
+        
+        public static string WhoReferrerPageTitle {
+            get {
+                return ResourceManager.GetString("WhoReferrerPageTitle", resourceCulture);
+            }
+        }
+        
+        public static string UseContactsButton {
+            get {
+                return ResourceManager.GetString("UseContactsButton", resourceCulture);
+            }
+        }
+        
+        public static string WhoReferredBoxTitle {
+            get {
+                return ResourceManager.GetString("WhoReferredBoxTitle", resourceCulture);
+            }
+        }
+        
+        public static string WhoReferredBoxTextContent {
+            get {
+                return ResourceManager.GetString("WhoReferredBoxTextContent", resourceCulture);
+            }
+        }
+        
+        public static string EmailRequired {
+            get {
+                return ResourceManager.GetString("EmailRequired", resourceCulture);
+            }
+        }
     }
 }
