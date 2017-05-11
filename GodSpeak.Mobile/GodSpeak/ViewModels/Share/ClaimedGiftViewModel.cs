@@ -77,15 +77,18 @@ namespace GodSpeak
 			_comesFromRegisterFlow = comesFromRegisterFlow;
 			var response = await WebApiService.GetAcceptedInvites ();
 
-            if (response.IsSuccess) {
+            if (response.IsSuccess) 
+			{
                 _acceptedInvites = new ObservableCollection<ItemCommand<AcceptedInvite>> (
                     response.Payload.Select (x => new ItemCommand<AcceptedInvite> () {
                         Item = x,
                         TappedCommand = TapInviteCommand
                     }));
                 SortList ();
-            } else {
-                this.HudService.Hide ();
+            } 
+			else 
+			{                
+                this.HudService.Hide();
                 await HandleResponse (response);
             }
         }

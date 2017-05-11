@@ -43,8 +43,8 @@ namespace GodSpeak
 				IsBalloonVisible = true;
 			}
 			else
-			{
-				this.HudService.Hide();
+			{				
+                this.HudService.Hide();
 				await HandleResponse(response);
 			}
 		}

@@ -98,6 +98,7 @@ namespace GodSpeak
 			}
 			else
 			{
+				this.HudService.Hide();
 				await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.ContactAccessDenied);
 			}
         }
