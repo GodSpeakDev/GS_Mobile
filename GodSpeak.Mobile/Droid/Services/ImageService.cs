@@ -34,9 +34,12 @@ namespace GodSpeak.Droid
 			options.InJustDecodeBounds = false;
 			var resizedBitmap = BitmapFactory.DecodeFile(mediaFile.Path, options);
 
-			var stream = new FileStream(mediaFile.Path, FileMode.Create);
-			resizedBitmap.Compress(Bitmap.CompressFormat.Png, 100, stream);
-			stream.Close();
+			if (resizedBitmap != null)
+			{
+				var stream = new FileStream(mediaFile.Path, FileMode.Create);
+				resizedBitmap.Compress(Bitmap.CompressFormat.Png, 100, stream);
+				stream.Close();
+			}
 		}
 	}
 }
