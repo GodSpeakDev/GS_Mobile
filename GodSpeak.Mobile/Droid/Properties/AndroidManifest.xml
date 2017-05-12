@@ -1,22 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:versionName="1.0"
-	package="com.venado.mobile.godspeak"
-	android:versionCode="6">
-	<uses-sdk
-		android:minSdkVersion="15" />
-	<application
-		android:label="GodSpeak"
-		android:icon="@drawable/app_icon">
-		<meta-data
-			android:name="com.google.android.maps.v2.API_KEY"
-			android:value="AIzaSyBzo7-QUVdoFfwKNSFV9hddsSjP20H7Jew" />		
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.0" package="com.venado.mobile.godspeak" android:versionCode="6">
+	<uses-sdk android:minSdkVersion="15" />
+	<application android:label="GodSpeak" android:icon="@drawable/app_icon">
+		<meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyBzo7-QUVdoFfwKNSFV9hddsSjP20H7Jew" />
 	</application>
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 	<uses-permission android:name="android.permission.READ_CONTACTS" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-	<uses-permission android:name="android.permission.CAMERA" />	
+	<uses-permission android:name="android.permission.CAMERA" />
 	<uses-permission android:name="android.permission.WAKE_LOCK" />
+	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 </manifest>

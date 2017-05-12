@@ -188,21 +188,21 @@ namespace GodSpeak.Api
             AddAuthToken (_settingsService.Token);
 
             IFile file = await FileSystem.Current.GetFileFromPathAsync (request.FilePath);
-            Stream imageStream = await file.OpenAsync (FileAccess.Read);
+			using (Stream imageStream = await file.OpenAsync(FileAccess.Read))
+			{
 
+				MultipartFormDataContent multipartContent =
+					new MultipartFormDataContent();
 
+				multipartContent.Add(
+					new StreamContent(imageStream),
+					"photo",
+					file.Name);
 
-            MultipartFormDataContent multipartContent =
-                new MultipartFormDataContent ();
+				HttpResponseMessage response = await client.PostAsync(PhotoUploadUri, multipartContent);
 
-            multipartContent.Add (
-                new StreamContent (imageStream),
-                "photo",
-                file.Name);
-
-            HttpResponseMessage response = await client.PostAsync (PhotoUploadUri, multipartContent);
-
-            return await ParseResponse<User> (PhotoUploadUri, response);
+				return await ParseResponse<User>(PhotoUploadUri, response);
+			}
         }
 
         private StreamContent CreateFileContent (Stream stream, string fileName, string contentType)
