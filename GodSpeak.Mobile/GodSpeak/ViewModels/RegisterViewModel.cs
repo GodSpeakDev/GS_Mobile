@@ -250,29 +250,29 @@ namespace GodSpeak
 
         private async Task<bool> ValidateForm ()
         {
-    //        if (string.IsNullOrEmpty(FirstName))
-    //        {
-    //          	await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.FirstNameRequiredMessage);
-				//return false;
-    //        }
+            if (string.IsNullOrEmpty(FirstName))
+            {
+              	await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.FirstNameRequiredMessage);
+				return false;
+            }
 
-    //        if (string.IsNullOrEmpty(LastName))
-    //        {
-    //        	await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.LastNameRequiredMessage);
-				//return false;
-    //        }
+            if (string.IsNullOrEmpty(LastName))
+            {
+            	await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.LastNameRequiredMessage);
+				return false;
+            }
 
-    //        if (string.IsNullOrEmpty(Email))
-    //        {
-    //          await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.EmailRequiredMessage);
-				//return false;
-    //        }
+            if (string.IsNullOrEmpty(Email))
+            {
+              await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.EmailRequiredMessage);
+				return false;
+            }
 
-    //        if (string.IsNullOrEmpty(Password))
-    //        {
-    //          	await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.PasswordRequiredMessage);
-				//return false;
-    //        }
+            if (string.IsNullOrEmpty(Password))
+            {
+              	await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.PasswordRequiredMessage);
+				return false;
+            }
 
             return true;
         }
