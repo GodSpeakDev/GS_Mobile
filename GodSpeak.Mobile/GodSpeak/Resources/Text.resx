@@ -708,16 +708,14 @@ Enjoy!
 	<data
 		name="ShareText"
 		xml:space="preserve">
-    	<value>Hey there,
-			
-I would like to give you the gift of GodSpeak. You can claim it with this link:
-http://givegodspeak.com/invite/{0}
+    	<value>Hey there, I wanted to share this awesome app with you. GodSpeak has brought wisdom and encouragement to me on a daily basis!
 
-You can learn more about GodSpeak at:
+You can check it out at this URL:
+			
 http://givegodspeak.com
 
 Enjoy!
-{1}
+- {0}
 		</value>
   	</data>
 	<data
@@ -819,5 +817,50 @@ Enjoy!
 		name="InviteThem"
 		xml:space="preserve">
     	<value>Invite Them!</value>
+  	</data>
+	<data
+		name="ComposeMessateTitle"
+		xml:space="preserve">
+    	<value>Compose Message</value>
+  	</data>
+	<data
+		name="FromAddressPlaceholder"
+		xml:space="preserve">
+    	<value>From Address</value>
+  	</data>
+	<data
+		name="SubjectPlaceholder"
+		xml:space="preserve">
+    	<value>Subject</value>
+  	</data>
+	<data
+		name="SendEmail"
+		xml:space="preserve">
+    	<value>Send Email</value>
+  	</data>
+	<data
+		name="SendEmailSubject"
+		xml:space="preserve">
+    	<value>GodSpeak Invitation</value>
+  	</data>
+	<data
+		name="InviteSentSuccessfully"
+		xml:space="preserve">
+    	<value>Your invite was sent successfully.</value>
+  	</data>
+	<data
+		name="FromAddressRequired"
+		xml:space="preserve">
+    	<value>Please, type your email address.</value>
+  	</data>
+	<data
+		name="SubjectRequired"
+		xml:space="preserve">
+    	<value>Please, type the subject.</value>
+  	</data>
+	<data
+		name="MessageRequired"
+		xml:space="preserve">
+    	<value>Please, type the message.</value>
   	</data>
 </root>

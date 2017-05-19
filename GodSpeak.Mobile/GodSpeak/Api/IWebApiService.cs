@@ -28,6 +28,7 @@ namespace GodSpeak
         Task<ApiResponse<List<AcceptedInvite>>> GetAcceptedInvites ();
         Task<ApiResponse<User>> DonateInvite ();
         Task<ApiResponse<string>> GetDidYouKnow ();
+		Task<ApiResponse<string>> Share (ShareRequest request);
 
         Task<ApiResponse<User>> UploadPhoto (UploadPhotoRequest request);
 

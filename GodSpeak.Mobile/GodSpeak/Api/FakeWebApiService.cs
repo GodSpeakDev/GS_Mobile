@@ -36,6 +36,14 @@ namespace GodSpeak
             };
         }
 
+		public async Task<ApiResponse<string>> Share(ShareRequest request)
+		{
+			await Task.Delay(1000);
+            return new ApiResponse<string> () {
+                StatusCode = System.Net.HttpStatusCode.OK,
+            };
+		}
+
         public async Task<ApiResponse<User>> Login (LoginRequest request)
         {
             await Task.Delay (1000);

@@ -133,6 +133,9 @@
     <EmbeddedResource Include="CustomComponents\ContactCell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\EmailComposerPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -411,6 +414,12 @@
       <DependentUpon>ContactCell.xaml</DependentUpon>
     </Compile>
     <Compile Include="Api\Request\SendReferralRequest.cs" />
+    <Compile Include="ViewModels\EmailComposerViewModel.cs" />
+    <Compile Include="Pages\EmailComposerPage.xaml.cs">
+      <DependentUpon>EmailComposerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomComponents\CustomEditor.cs" />
+    <Compile Include="Api\Request\ShareRequest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

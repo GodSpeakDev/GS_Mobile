@@ -108,18 +108,6 @@ namespace GodSpeak
 			if (e.PropertyName == "IsEnabled")
 			{
 				HasEmailSelected = _deviceContacts.Any(x => x.IsEnabled);
-
-				var contact = (SelectableItem<Contact>)sender;
-				if (contact.IsEnabled)
-				{
-					foreach (var selection in _deviceContacts)
-					{
-						if (selection.Item.Id != contact.Item.Id)
-						{
-							selection.IsEnabled = false;
-						}
-					}
-				}
 			}
 		}
 
@@ -134,13 +122,12 @@ namespace GodSpeak
 			Contacts = new ObservableCollection<SelectableItem<Contact>>(contacts);
 		}
 
-		private async void DoInviteThemCommand()
+		private void DoInviteThemCommand()
 		{
 			if (HasEmailSelected)
 			{
-				var selectedContacsMail = _deviceContacts.Where(x => x.IsEnabled).Select(x => x.Item.EmailAddresses.First().Address);
-				var body = string.Format(Text.ShareEmailBody, (await SessionService.GetUser()).FirstName);
-				_mailService.SendMail(to: selectedContacsMail.ToArray(), subject: Text.ShareEmailSubject, body: body);
+				var selectedEmails = _deviceContacts.Where(x => x.IsEnabled).Select(x => x.Item.EmailAddresses.First().Address).ToArray();
+				this.ShowViewModel<EmailComposerViewModel>(new {toAddresses=string.Join(",", selectedEmails)});
 			}
 		}
     }

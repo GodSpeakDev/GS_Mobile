@@ -970,5 +970,59 @@ namespace GodSpeak.Resources {
                 return ResourceManager.GetString("InviteThem", resourceCulture);
             }
         }
+        
+        public static string ComposeMessateTitle {
+            get {
+                return ResourceManager.GetString("ComposeMessateTitle", resourceCulture);
+            }
+        }
+        
+        public static string FromAddressPlaceholder {
+            get {
+                return ResourceManager.GetString("FromAddressPlaceholder", resourceCulture);
+            }
+        }
+        
+        public static string SubjectPlaceholder {
+            get {
+                return ResourceManager.GetString("SubjectPlaceholder", resourceCulture);
+            }
+        }
+        
+        public static string SendEmail {
+            get {
+                return ResourceManager.GetString("SendEmail", resourceCulture);
+            }
+        }
+        
+        public static string SendEmailSubject {
+            get {
+                return ResourceManager.GetString("SendEmailSubject", resourceCulture);
+            }
+        }
+        
+        public static string InviteSentSuccessfully {
+            get {
+                return ResourceManager.GetString("InviteSentSuccessfully", resourceCulture);
+            }
+        }
+        
+        public static string FromAddressRequired {
+            get {
+                return ResourceManager.GetString("FromAddressRequired", resourceCulture);
+            }
+        }
+        
+        public static string SubjectRequired {
+            get {
+                return ResourceManager.GetString("SubjectRequired", resourceCulture);
+            }
+        }
+        
+        public static string MessageRequired {
+            get {
+                return ResourceManager.GetString("MessageRequired", resourceCulture);
+            }
+        }
     }
 }

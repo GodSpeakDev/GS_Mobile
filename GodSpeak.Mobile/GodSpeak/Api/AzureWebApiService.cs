@@ -34,6 +34,7 @@ namespace GodSpeak.Api
 
         const string PurchaseInviteUri = "invite/purchase";
         const string AcceptedInviteUri = "shared";
+		const string ShareUri = "share";
         const string ValidateCodeUri = "invite/validate";
         const string InviteBundlesUri = "invite/bundles";
         const string RequestInviteUri = "invite/request";
@@ -83,6 +84,12 @@ namespace GodSpeak.Api
             AddAuthToken(_settingsService.Token);
             return await DoGet<List<ImpactDay>>(ImpactDaysUri);
 	   	}
+
+		public new async Task<ApiResponse<string>> Share(ShareRequest request)
+		{
+            AddAuthToken(_settingsService.Token);
+            return await DoPost<string>(ShareUri, request);
+		}
 
 		public new async Task<ApiResponse<string>> SendReferral(SendReferralRequest request)
 		{
