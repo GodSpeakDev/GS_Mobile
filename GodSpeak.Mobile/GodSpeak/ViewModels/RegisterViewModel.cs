@@ -205,14 +205,22 @@ namespace GodSpeak
 		private async Task SuccessfullRegister(User user)
 		{
 			await SessionService.SaveUser(user);
-			var result = await DialogService.ShowMenu(Text.Impact, Text.ImpactQuestion, Text.Yes, Text.No);
-			if (result == Text.Yes)
+
+			if (string.IsNullOrEmpty(user.ReferringEmailAddress))
 			{
-				this.ShowViewModel<WhoReferredYouViewModel>();
+				var result = await DialogService.ShowMenu(Text.Impact, Text.ImpactQuestion, Text.Yes, Text.No);
+				if (result == Text.Yes)
+				{
+					this.ShowViewModel<WhoReferredYouViewModel>();
+				}
+				else
+				{
+                    this.ShowViewModel<HomeViewModel>(new { comesFromRegisterFlow = true });
+				}
 			}
 			else
-			{				
-				this.ShowViewModel<HomeViewModel>(new {comesFromRegisterFlow=true});		
+			{
+				this.ShowViewModel<HomeViewModel>(new { comesFromRegisterFlow = true });
 			}
 		}
 
