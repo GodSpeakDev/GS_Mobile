@@ -133,10 +133,7 @@ namespace GodSpeak
             });
 
 			var currentUser = await SessionService.GetUser();
-			var response = await WebApiService.GetImpact (new GetImpactRequest 
-			{
-				InviteCode = currentUser != null ? currentUser.InviteCode : null,
-			});
+			var response = await WebApiService.GetImpact ();
 
             if (response.IsSuccess) 
 			{

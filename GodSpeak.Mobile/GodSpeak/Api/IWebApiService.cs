@@ -15,7 +15,7 @@ namespace GodSpeak
         Task<ApiResponse<User>> GetProfile ();
         Task<ApiResponse<User>> SaveProfile (User user);
 
-        Task<ApiResponse<List<ImpactDay>>> GetImpact (GetImpactRequest request);
+        Task<ApiResponse<List<ImpactDay>>> GetImpact ();
         Task<ApiResponse<GetInvitesResponse>> GetInvites (GetInvitesRequest request);
         Task<ApiResponse<List<InviteBundle>>> GetInviteBundles (GetInviteBundlesRequest request);
         Task<ApiResponse<string>> PurchaseInvite (PurchaseInviteRequest request);

@@ -25,7 +25,7 @@ namespace GodSpeak.Api
         const string CountriesUri = "geo/countries";
         const string PostalCodeExistsUri = "geo/postalCodeExists";
 
-        const string ImpactDaysUri = "impact/days";
+        const string ImpactDaysUri = "user/impact";
         const string ImpactMessageUri = "impact/message";
         const string ImpactDidYouKnowUri = "impact/didyouknow";
 
@@ -77,10 +77,10 @@ namespace GodSpeak.Api
             };
         }
 
-		public new async Task<ApiResponse<List<ImpactDay>>> GetImpact(GetImpactRequest request)
+		public new async Task<ApiResponse<List<ImpactDay>>> GetImpact()
 		{			
             AddAuthToken(_settingsService.Token);
-            return await DoGet<List<ImpactDay>>(ImpactDaysUri, new Dictionary<string, string> () { { "inviteCode", request.InviteCode } });
+            return await DoGet<List<ImpactDay>>(ImpactDaysUri);
 	   	}
 
 		public new async Task<ApiResponse<string>> RecordMessageDelivered(RecordMessageDeliveredRequest request)

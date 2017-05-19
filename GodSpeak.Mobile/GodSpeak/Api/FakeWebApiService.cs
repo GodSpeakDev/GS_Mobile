@@ -331,7 +331,7 @@ namespace GodSpeak
             return new ApiResponse<User> () { Payload = new User () };
         }
 
-        public async Task<ApiResponse<List<ImpactDay>>> GetImpact (GetImpactRequest request)
+        public async Task<ApiResponse<List<ImpactDay>>> GetImpact ()
         {
             await Task.Delay (delay);
             return new ApiResponse<List<ImpactDay>> () {

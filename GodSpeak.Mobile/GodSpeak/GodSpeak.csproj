@@ -161,7 +161,6 @@
     <Compile Include="Api\Response\GetInvitesResponse.cs" />
     <Compile Include="Api\Request\SaveCategoriesRequest.cs" />
     <Compile Include="Api\Response\SaveCategoriesResponse.cs" />
-    <Compile Include="Api\Request\GetImpactRequest.cs" />
     <Compile Include="Api\Response\GetImpactResponse.cs" />
     <Compile Include="Api\Request\SetMessagesConfigRequest.cs" />
     <Compile Include="Api\IWebApiService.cs" />
