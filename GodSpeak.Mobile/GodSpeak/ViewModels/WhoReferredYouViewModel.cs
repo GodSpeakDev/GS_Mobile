@@ -55,8 +55,22 @@ namespace GodSpeak
 				await this.DialogService.ShowAlert (Text.ErrorPopupTitle, Text.EmailRequired);
                 return;
 			}
-			
-            this.ShowViewModel<HomeViewModel>(new {comesFromRegisterFlow=true});		
+
+			HudService.Show();
+			var referrerResponse = await WebApiService.SendReferral(new SendReferralRequest() 
+			{ 
+				ReferringEmailAddress = Email 
+			});
+			HudService.Hide();
+
+			if (referrerResponse.IsSuccess)
+			{
+				this.ShowViewModel<HomeViewModel>(new { comesFromRegisterFlow = true });
+			}
+			else
+			{
+				await HandleResponse(referrerResponse);
+			}
 		}
 
 		private async void DoUseContactsCommand()

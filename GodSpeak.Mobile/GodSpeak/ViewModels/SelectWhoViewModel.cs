@@ -187,7 +187,26 @@ namespace GodSpeak
 
 		private async Task DoSendReferrerUser()
 		{
-            this.ShowViewModel<HomeViewModel>(new {comesFromRegisterFlow=true});		
+			if (HasEmailSelected)
+			{
+				var selectedEmail = _deviceContacts.Where(x => x.IsEnabled).Select(x => x.Item.EmailAddresses.First().Address).First();
+
+				HudService.Show();
+				var referrerResponse = await WebApiService.SendReferral(new SendReferralRequest()
+				{
+					ReferringEmailAddress = selectedEmail
+				});
+				HudService.Hide();
+
+				if (referrerResponse.IsSuccess)
+				{
+					this.ShowViewModel<HomeViewModel>(new { comesFromRegisterFlow = true });
+				}
+				else
+				{
+					await HandleResponse(referrerResponse);
+				}
+			}			            
 		}
 	}
 }

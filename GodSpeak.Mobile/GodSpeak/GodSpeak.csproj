@@ -410,6 +410,7 @@
     <Compile Include="CustomComponents\ContactCell.xaml.cs">
       <DependentUpon>ContactCell.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Api\Request\SendReferralRequest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

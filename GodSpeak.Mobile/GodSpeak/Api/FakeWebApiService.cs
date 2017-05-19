@@ -331,6 +331,15 @@ namespace GodSpeak
             return new ApiResponse<User> () { Payload = new User () };
         }
 
+		public async Task<ApiResponse<string>> SendReferral(SendReferralRequest request)
+		{
+			await Task.Delay(delay);
+            return new ApiResponse<string> () 
+			{
+                StatusCode = System.Net.HttpStatusCode.OK,                
+            };
+		}
+
         public async Task<ApiResponse<List<ImpactDay>>> GetImpact ()
         {
             await Task.Delay (delay);

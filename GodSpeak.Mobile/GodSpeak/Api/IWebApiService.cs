@@ -14,6 +14,7 @@ namespace GodSpeak
         Task<ApiResponse> Logout ();
         Task<ApiResponse<User>> GetProfile ();
         Task<ApiResponse<User>> SaveProfile (User user);
+		Task<ApiResponse<string>> SendReferral(SendReferralRequest request);
 
         Task<ApiResponse<List<ImpactDay>>> GetImpact ();
         Task<ApiResponse<GetInvitesResponse>> GetInvites (GetInvitesRequest request);

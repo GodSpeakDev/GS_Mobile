@@ -17,6 +17,7 @@ namespace GodSpeak.Api
     {
         const string LoginMethodUri = "user/login";
         const string RecoverPasswordUri = "user/recoverpassword/";
+		const string ReferralUri = "user/referral/";
         const string ProfileUri = "user";
         const string RegisterUri = "user";
         const string PhotoUploadUri = "user/photo";
@@ -82,6 +83,12 @@ namespace GodSpeak.Api
             AddAuthToken(_settingsService.Token);
             return await DoGet<List<ImpactDay>>(ImpactDaysUri);
 	   	}
+
+		public new async Task<ApiResponse<string>> SendReferral(SendReferralRequest request)
+		{
+            AddAuthToken(_settingsService.Token);
+            return await DoPost<string>(ReferralUri, request);
+		}
 
 		public new async Task<ApiResponse<string>> RecordMessageDelivered(RecordMessageDeliveredRequest request)
 		{
