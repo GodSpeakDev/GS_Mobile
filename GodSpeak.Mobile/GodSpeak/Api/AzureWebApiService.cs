@@ -32,7 +32,7 @@ namespace GodSpeak.Api
         const string MessagesQueueUri = "message/queue";
 
         const string PurchaseInviteUri = "invite/purchase";
-        const string AcceptedInviteUri = "invite/accepted";
+        const string AcceptedInviteUri = "shared";
         const string ValidateCodeUri = "invite/validate";
         const string InviteBundlesUri = "invite/bundles";
         const string RequestInviteUri = "invite/request";

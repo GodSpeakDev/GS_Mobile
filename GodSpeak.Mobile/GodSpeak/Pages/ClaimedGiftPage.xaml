@@ -70,15 +70,15 @@
 										HorizontalOptions="FillAndExpand"
 										Style="{StaticResource UnclaimedPageTitle}"
 									/>
-									<views:CustomLabel 																				
+									<!--<views:CustomLabel 																				
 										Grid.Row="1"
 										Grid.Column="1"
 										HorizontalOptions="FillAndExpand"
 										Text="{Binding Item.DateClaimedDescription}"
 										Style="{StaticResource TextContent}"
-									/>
+									/>-->
 									<views:CustomLabel 																				
-										Grid.Row="2"
+										Grid.Row="1"
 										Grid.Column="1"
 										Text="{Binding Item.SubTitle}"
 										HorizontalOptions="FillAndExpand"
