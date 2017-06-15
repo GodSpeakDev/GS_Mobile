@@ -11,7 +11,7 @@ namespace GodSpeak.iOS
 
         public bool SetMessageReminder (Message message)
         {
-            if (IsReminderSet (message)) {
+            if (IsReminderSet (message) || UIApplication.SharedApplication.ScheduledLocalNotifications.Length == 64) {
                 return false;
             }
 
@@ -47,6 +47,8 @@ namespace GodSpeak.iOS
                 ApplicationIconBadgeNumber = 1
 
             };
+
+			Console.WriteLine("Setting reminder: " + notification.FireDate); 
             Debug.WriteLine ("Setting reminder: " + notification.FireDate);
             UIApplication.SharedApplication.ScheduleLocalNotification (notification);
         }

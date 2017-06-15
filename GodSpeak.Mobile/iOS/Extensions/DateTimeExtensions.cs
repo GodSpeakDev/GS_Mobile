@@ -14,11 +14,6 @@ namespace GodSpeak.iOS
 
         public static NSDate ToNSDate (this DateTime date)
         {
-			var newDate = new DateTime(date.Year, date.Month, date.Day);
-
-			newDate = newDate.AddHours (date.Hour);
-            newDate = newDate.AddMinutes (date.Minute);
-
             if (date.Kind == DateTimeKind.Unspecified) {
                 date = DateTime.SpecifyKind (date, DateTimeKind.Local);
             }
