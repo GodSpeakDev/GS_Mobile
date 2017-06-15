@@ -149,12 +149,7 @@ namespace GodSpeak
 
 		private bool _isShowingHud = false;
         private async Task LoadMessages ()
-        {
-			if (!await _messageService.HasUpcomingMessagesInCache())
-			{
-				await _messageService.UpdateUpcomingMessages();
-			}
-
+        {			
             var messages = new List<Message> ();
 			if (!_isAlreadyStarted && Xamarin.Forms.Device.RuntimePlatform == "iOS") 
 			{				
@@ -166,9 +161,7 @@ namespace GodSpeak
                 });
 
 				// Load User
-				await GetUser();
-
-				messages = await _messageService.GetDeliveredMessages();
+				await InitMessages();
 
 				while (!_isShowingHud)
 				{
@@ -182,19 +175,47 @@ namespace GodSpeak
 			{
                 this.HudService.Show (Text.RetrievingMessages);
 
-				// Load User
-				await GetUser();
+				await InitMessages();
 
-                messages = await _messageService.GetDeliveredMessages();
                 this.HudService.Hide ();
             }
+        }
+
+		private async Task InitMessages()
+		{
+			if (!await _messageService.HasUpcomingMessagesInCache())
+			{
+				if (await _messageService.HasUpcomingMessagesFile())
+				{
+					// Messages Ran out
+
+					// Load User
+					await GetUser();
+
+					var response = await WebApiService.GetProfile();
+					var user = response.Payload;
+
+					foreach (var item in user.MessageCategorySettings)
+					{
+						item.Enabled = item.Title.Contains("Top 100");
+					}
+
+					await WebApiService.SaveProfile(user);
+				}
+
+				await _messageService.UpdateUpcomingMessages();
+			}
+
+			await GetUser();
+
+			var messages = await _messageService.GetDeliveredMessages();
 
 			Messages = new ObservableCollection<GroupedCollection<Message, DateTime>>
 			(messages			 
 			 .OrderByDescending(x => x.DateTimeToDisplay)
 			 .GroupBy(x => x.DateTimeToDisplay.Date)
 			 .Select(x => new GroupedCollection<Message, DateTime>(x.Key, x)));
-        }
+		}
 
 		private async Task ReloadMessages()
 		{

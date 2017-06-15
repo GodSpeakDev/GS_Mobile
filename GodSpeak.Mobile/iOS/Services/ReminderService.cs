@@ -7,7 +7,7 @@ namespace GodSpeak.iOS
 {
     public class ReminderService : IReminderService
     {
-        private static string MessageIdKey = "messageId";
+        public static string MessageIdKey = "messageId";
 
         public bool SetMessageReminder (Message message)
         {
@@ -32,14 +32,12 @@ namespace GodSpeak.iOS
             var keys = new object [] { MessageIdKey };
             var objects = new object [] { message.Id.ToString () };
 
-            var date = new DateTime (message.DateTimeToDisplay.Year, message.DateTimeToDisplay.Month, message.DateTimeToDisplay.Day);
-            //date = date.AddHours(DateTime.Now.Hour);
-            //date = date.AddMinutes(DateTime.Now.Minute + 5);
+            var date = new DateTime (message.DateTimeToDisplay.Year, message.DateTimeToDisplay.Month, message.DateTimeToDisplay.Day);            
 
             date = date.AddHours (message.DateTimeToDisplay.Hour);
             date = date.AddMinutes (message.DateTimeToDisplay.Minute);
 
-            UILocalNotification notification = new UILocalNotification {
+            UILocalNotification notification = new UILocalNotification {				
                 FireDate = date.ToNSDate (),
                 //TimeZone = NSTimeZone.LocalTimeZone,
                 AlertBody = new VerseFormatter ().Convert (string.Format ("{0}\n-{1}", message.Verse.Text, message.Verse.Title), null, null, null).ToString (),

@@ -10,5 +10,7 @@ namespace GodSpeak
 		Task<List<Message>> GetDeliveredMessages();
 		Task<bool> HasUpcomingMessagesInCache();
 		Task<Message> GetSingleMessage(Guid messageId);
+		Task<List<Message>> GetUpcomingMessages();
+		Task<bool> HasUpcomingMessagesFile();
 	}
 }
