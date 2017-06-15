@@ -22,6 +22,8 @@ using HockeyApp.Android;
 using Plugin.Permissions;
 using Plugin.InAppBilling;
 
+using Android.Content.Res;
+
 namespace GodSpeak.Droid
 {
     [Activity (Theme = "@style/AppTheme", Label = "MvxFormsApplicationActivity", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.ScreenSize, WindowSoftInputMode = SoftInput.AdjustPan)]
@@ -103,6 +105,18 @@ namespace GodSpeak.Droid
 		{
 			base.OnActivityResult(requestCode, resultCode, data);
 			InAppBillingImplementation.HandleActivityResult(requestCode, resultCode, data);
+		}
+
+		protected override void AttachBaseContext(Context @base)
+		{
+			base.AttachBaseContext(@base);
+			var configuration = new Configuration(
+				// Copy the original configuration so it isn't lost.
+				@base.Resources.Configuration
+        	);
+			configuration.FontScale = 1.0f;
+
+			ApplyOverrideConfiguration(configuration);
 		}
     }
 }

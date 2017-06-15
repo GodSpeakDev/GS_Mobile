@@ -60,8 +60,17 @@ namespace GodSpeak
 
         public async Task<bool> HasUpcomingMessagesInCache ()
         {
-            return await _fileService.ExistsAsync (UpcomingMessagesFile);
+            var hasUpcomingFile = await _fileService.ExistsAsync (UpcomingMessagesFile);
+			var upcomingMessages = (await GetUpcomingMessages()).Where(x => x.DateTimeToDisplay > DateTime.Now).ToList();
+
+			return hasUpcomingFile && upcomingMessages.Count > 0;
         }
+
+		public async Task<bool> HasUpcomingMessagesFile()
+		{
+			var hasUpcomingFile = await _fileService.ExistsAsync(UpcomingMessagesFile);
+			return hasUpcomingFile;
+		}
 
         public async Task<Message> GetSingleMessage (Guid messageId)
         {
@@ -89,12 +98,13 @@ namespace GodSpeak
         private void UpdateReminders (List<Message> messages)
         {
             _reminderService.ClearReminders ();
-            foreach (var message in messages) {
+			foreach (var message in messages.OrderBy(x => x.DateTimeToDisplay)) 
+			{
                 _reminderService.SetMessageReminder (message);
             }
         }
 
-        private async Task<List<Message>> GetUpcomingMessages ()
+        public async Task<List<Message>> GetUpcomingMessages ()
         {
             var fileExists = await _fileService.ExistsAsync (UpcomingMessagesFile);
             if (!fileExists) {
