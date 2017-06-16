@@ -41,6 +41,12 @@ namespace GodSpeak
             set;
         }
 
+        public string Platform {
+            get {
+                return "android";
+            }
+        }
+
         public byte [] ProfilePhoto {
             get;
             set;
