@@ -44,7 +44,8 @@ namespace GodSpeak.Api
         protected HttpClient client = new HttpClient ();
         readonly IMvxTrace tracer;
 
-        protected string ServerUrl = "http://godspeak-staging.azurewebsites.net/";
+        //protected string ServerUrl = "http://godspeak-staging.azurewebsites.net/";
+        protected string ServerUrl = "http://givegodspeak.azurewebsites.net/";
 
         public AzureWebApiService (IMvxTrace tracer, ISettingsService settingsService)
         {
