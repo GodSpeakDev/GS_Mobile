@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Threading.Tasks;
 using System.Net.Http;
 using Newtonsoft.Json;
@@ -239,59 +239,112 @@ namespace GodSpeak.Api
 
         protected async Task<ApiResponse> DoPost (string uri)
         {
-            var apiResponse = await client.PostAsync (uri, null);
+            try
+            {
+                var apiResponse = await client.PostAsync(uri, null);
 
-            return await ParseResponse (uri, apiResponse);
+                return await ParseResponse(uri, apiResponse);
+            }
+			catch (Exception ex)
+			{
+				tracer.Trace(MvxTraceLevel.Error, uri, ex.Message);
+				return new ApiResponse()
+				{
+					StatusCode = System.Net.HttpStatusCode.InternalServerError
+				};
+			}
         }
 
         protected async Task<ApiResponse<T>> DoPost<T> (string uri, object request)
         {
-            var jsonBody = JsonConvert.SerializeObject (request);
+            try
+            {
+                var jsonBody = JsonConvert.SerializeObject(request);
 
+                tracer.Trace(MvxTraceLevel.Diagnostic, "api-post", $"METHOD: {uri}\rBODY: {jsonBody}");
 
-            tracer.Trace (MvxTraceLevel.Diagnostic, "api-post", $"METHOD: {uri}\rBODY: {jsonBody}");
+                var apiResponse = await client.PostAsync(uri, new StringContent(jsonBody, Encoding.UTF8, "application/json"));
 
-            var apiResponse = await client.PostAsync (uri, new StringContent (jsonBody, Encoding.UTF8, "application/json"));
-
-            return await ParseResponse<T> (uri, apiResponse);
+                return await ParseResponse<T>(uri, apiResponse);
+            }
+			catch (Exception ex)
+			{
+				tracer.Trace(MvxTraceLevel.Error, uri, ex.Message);
+				return new ApiResponse<T>()
+				{
+					StatusCode = System.Net.HttpStatusCode.InternalServerError
+				};
+			}
         }
 
         protected async Task<ApiResponse<T>> DoPut<T> (string uri, object request)
         {
-            var jsonBody = JsonConvert.SerializeObject (request);
+            try
+            {
+                var jsonBody = JsonConvert.SerializeObject(request);
 
+                tracer.Trace(MvxTraceLevel.Diagnostic, "api-post", $"METHOD: {uri}\rBODY: {jsonBody}");
 
-            tracer.Trace (MvxTraceLevel.Diagnostic, "api-post", $"METHOD: {uri}\rBODY: {jsonBody}");
+                var apiResponse = await client.PutAsync(uri, new StringContent(jsonBody, Encoding.UTF8, "application/json"));
 
-            var apiResponse = await client.PutAsync (uri, new StringContent (jsonBody, Encoding.UTF8, "application/json"));
-
-            return await ParseResponse<T> (uri, apiResponse);
+                return await ParseResponse<T>(uri, apiResponse);
+            }
+			catch (Exception ex)
+			{
+				tracer.Trace(MvxTraceLevel.Error, uri, ex.Message);
+				return new ApiResponse<T>()
+				{
+					StatusCode = System.Net.HttpStatusCode.InternalServerError
+				};
+			}
         }
 
         protected async Task<ApiResponse<T>> DoGet<T> (string uri)
         {
-            tracer.Trace (MvxTraceLevel.Diagnostic, "api-get", $"METHOD: {uri}");
-            var apiResponse = await client.GetAsync (uri);
+			try
+			{
+	            tracer.Trace (MvxTraceLevel.Diagnostic, "api-get", $"METHOD: {uri}");
+	            var apiResponse = await client.GetAsync (uri);
 
-            return await ParseResponse<T> (uri, apiResponse);
+	            return await ParseResponse<T> (uri, apiResponse);
+            }
+			catch (Exception ex)
+			{
+				tracer.Trace(MvxTraceLevel.Error, uri, ex.Message);
+				return new ApiResponse<T>()
+				{
+					StatusCode = System.Net.HttpStatusCode.InternalServerError
+				};
+			}
         }
 
         protected async Task<ApiResponse<T>> DoGet<T> (string uri, Dictionary<string, string> args)
         {
-            var builder = new StringBuilder ("?");
+            try
+            {
+                var builder = new StringBuilder("?");
 
-            foreach (var pair in args) {
-                if (builder.Length != 1)
-                    builder.Append ("&");
-                builder.Append ($"{pair.Key}={System.Net.WebUtility.UrlDecode (pair.Value)}");
-            };
+                foreach (var pair in args)
+                {
+                    if (builder.Length != 1)
+                        builder.Append("&");
+                    builder.Append($"{pair.Key}={System.Net.WebUtility.UrlDecode(pair.Value)}");
+                };
 
-            var requestUri = uri + builder;
-            tracer.Trace (MvxTraceLevel.Diagnostic, "api-get", $"METHOD: {requestUri}");
-            var apiResponse = await client.GetAsync (requestUri);
+                var requestUri = uri + builder;
+                tracer.Trace(MvxTraceLevel.Diagnostic, "api-get", $"METHOD: {requestUri}");
+                var apiResponse = await client.GetAsync(requestUri);
 
-            return await ParseResponse<T> (uri, apiResponse);
-
+                return await ParseResponse<T>(uri, apiResponse);
+            }
+            catch (Exception ex)
+            {
+                tracer.Trace(MvxTraceLevel.Error, uri, ex.Message);
+                return new ApiResponse<T>()
+                {
+                    StatusCode = System.Net.HttpStatusCode.InternalServerError
+                };
+            }
         }
 
         protected async Task<ApiResponse> ParseResponse (string uri, HttpResponseMessage apiResponse)
