@@ -420,6 +420,8 @@
     </Compile>
     <Compile Include="CustomComponents\CustomEditor.cs" />
     <Compile Include="Api\Request\ShareRequest.cs" />
+    <Compile Include="Services\ILoggingService.cs" />
+    <Compile Include="Services\ILogManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

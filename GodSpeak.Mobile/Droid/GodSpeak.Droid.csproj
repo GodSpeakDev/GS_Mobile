@@ -219,6 +219,9 @@
     <Reference Include="Plugin.InAppBilling.VendingLibrary">
       <HintPath>..\packages\Plugin.InAppBilling.1.1.0.35-beta\lib\MonoAndroid10\Plugin.InAppBilling.VendingLibrary.dll</HintPath>
     </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\packages\NLog.4.4.11\lib\MonoAndroid10\NLog.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GodSpeak\GodSpeak.csproj">
@@ -269,6 +272,8 @@
     <Compile Include="Services\FileService.cs" />
     <Compile Include="Renderers\CustomClusterRenderer.cs" />
     <Compile Include="Renderers\CustomEditorRenderer.cs" />
+    <Compile Include="Services\LoggingService.cs" />
+    <Compile Include="Services\NLogManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

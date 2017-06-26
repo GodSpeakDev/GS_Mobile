@@ -192,6 +192,9 @@
     <Reference Include="Plugin.InAppBilling">
       <HintPath>..\packages\Plugin.InAppBilling.1.1.0.35-beta\lib\Xamarin.iOS10\Plugin.InAppBilling.dll</HintPath>
     </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\packages\NLog.4.4.11\lib\Xamarin.iOS10\NLog.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GodSpeak\GodSpeak.csproj">
@@ -277,6 +280,8 @@
     <Compile Include="Bootstrap\WebBrowserPluginBootstrap.cs" />
     <Compile Include="Services\FileService.cs" />
     <Compile Include="Renderers\CustomEditorRenderer.cs" />
+    <Compile Include="Services\LoggingService.cs" />
+    <Compile Include="Services\NLogManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\profile_placeholder.png" />
