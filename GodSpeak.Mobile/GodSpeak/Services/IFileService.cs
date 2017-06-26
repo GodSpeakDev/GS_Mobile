@@ -10,6 +10,7 @@ namespace GodSpeak
 		Task<string> ReadTextAsync(string filename);
 		Task WriteTextAsync(string filename, string text);
 		Task<IEnumerable<string>> GetFilesAsync();
-		Task DeleteFileAsync(string filename);	
+		Task DeleteFileAsync(string filename);
+		string GetFilePath(string filename);
 	}
 }

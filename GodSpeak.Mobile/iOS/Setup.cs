@@ -46,13 +46,15 @@ namespace GodSpeak.iOS
             Mvx.LazyConstructAndRegisterSingleton<IProgressHudService, ProgressHudService> ();
 			Mvx.LazyConstructAndRegisterSingleton<IImageService, ImageService>();
 			Mvx.LazyConstructAndRegisterSingleton<IFileService, FileService>();
+			Mvx.LazyConstructAndRegisterSingleton<ILoggingService, LoggingService>();
+			Mvx.LazyConstructAndRegisterSingleton<ILogManager, NLogManager>();
 
             return new App ();
         }
 
         protected override IMvxTrace CreateDebugTrace ()
-        {
-            return new DebugTrace ();
+        {			
+			return new DebugTrace();
         }
 
         private class MvxFormsIosPagePresenterCustom : MvxFormsIosMasterDetailPagePresenter

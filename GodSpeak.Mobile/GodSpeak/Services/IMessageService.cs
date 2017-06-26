@@ -5,7 +5,17 @@ using System.Threading.Tasks;
 namespace GodSpeak
 {
 	public interface IMessageService
-	{
+	{		
+		string UpcomingMessagesFile
+		{
+			get;
+		}
+
+		string DeliveredMessagesFile
+		{
+			get;
+		}
+
 		Task UpdateUpcomingMessages();
 		Task<List<Message>> GetDeliveredMessages();
 		Task<bool> HasUpcomingMessagesInCache();

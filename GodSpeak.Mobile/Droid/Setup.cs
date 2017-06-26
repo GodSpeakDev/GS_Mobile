@@ -33,6 +33,8 @@ namespace GodSpeak.Droid
 			Mvx.LazyConstructAndRegisterSingleton<IImageService, ImageService>();
 			Mvx.LazyConstructAndRegisterSingleton<IFileService, FileService>();
             Mvx.LazyConstructAndRegisterSingleton<IMvxWebBrowserTask, GodSpeakWebBrowserTask> ();
+			Mvx.LazyConstructAndRegisterSingleton<ILogManager, NLogManager>();
+			Mvx.LazyConstructAndRegisterSingleton<ILoggingService, LoggingService>();
 
             return new App ();
         }

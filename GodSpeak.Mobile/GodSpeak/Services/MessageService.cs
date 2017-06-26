@@ -13,13 +13,13 @@ namespace GodSpeak
         private IReminderService _reminderService;
         private ISettingsService _settingsService;
 
-        private string UpcomingMessagesFile {
+        public string UpcomingMessagesFile {
             get {
                 return string.Format ("{0}-upcoming-messages.json", _settingsService.Email);
             }
         }
 
-        private string DeliveredMessagesFile {
+        public string DeliveredMessagesFile {
             get {
                 return string.Format ("{0}-delivered-messages.json", _settingsService.Email);
             }

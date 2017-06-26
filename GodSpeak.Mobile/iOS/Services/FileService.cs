@@ -55,7 +55,7 @@ namespace GodSpeak.iOS
 			return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 		}
 
-		string GetFilePath(string filename)
+		public string GetFilePath(string filename)
 		{
 			string docsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 			return Path.Combine(docsPath, filename);

@@ -45,9 +45,9 @@ namespace GodSpeak.Api
         //protected string ServerUrl = "http://godspeak-staging.azurewebsites.net/";
         protected string ServerUrl = "http://go.givegodspeak.com/";
 
-        public AzureWebApiService (IMvxTrace tracer, ISettingsService settingsService)
+        public AzureWebApiService (ILogManager logManager, ISettingsService settingsService)
         {
-            this.tracer = tracer;
+			this.tracer = logManager.GetLog();
 
 			_settingsService = settingsService;
 
