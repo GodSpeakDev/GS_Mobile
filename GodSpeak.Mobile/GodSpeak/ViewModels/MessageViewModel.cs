@@ -183,6 +183,16 @@ namespace GodSpeak
 
 		private async Task InitMessages()
 		{
+			await GetUser();
+
+			var messages = await _messageService.GetDeliveredMessages();
+
+			Messages = new ObservableCollection<GroupedCollection<Message, DateTime>>
+			(messages
+			 .OrderByDescending(x => x.DateTimeToDisplay)
+			 .GroupBy(x => x.DateTimeToDisplay.Date)
+			 .Select(x => new GroupedCollection<Message, DateTime>(x.Key, x)));
+            
 			if (!await _messageService.HasUpcomingMessagesInCache())
 			{
 				if (await _messageService.HasUpcomingMessagesFile())
@@ -205,16 +215,6 @@ namespace GodSpeak
 
 				await _messageService.UpdateUpcomingMessages();
 			}
-
-			await GetUser();
-
-			var messages = await _messageService.GetDeliveredMessages();
-
-			Messages = new ObservableCollection<GroupedCollection<Message, DateTime>>
-			(messages			 
-			 .OrderByDescending(x => x.DateTimeToDisplay)
-			 .GroupBy(x => x.DateTimeToDisplay.Date)
-			 .Select(x => new GroupedCollection<Message, DateTime>(x.Key, x)));
 		}
 
 		private async Task ReloadMessages()

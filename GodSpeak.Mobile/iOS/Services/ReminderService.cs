@@ -8,6 +8,12 @@ namespace GodSpeak.iOS
     public class ReminderService : IReminderService
     {
         public static string MessageIdKey = "messageId";
+        private ILoggingService _logger;
+
+        public ReminderService(ILogManager logManager)
+        {
+            _logger = logManager.GetLog();
+        }
 
         public bool SetMessageReminder (Message message)
         {
@@ -48,8 +54,8 @@ namespace GodSpeak.iOS
 
             };
 
-			Console.WriteLine("Setting reminder: " + notification.FireDate); 
-            Debug.WriteLine ("Setting reminder: " + notification.FireDate);
+            _logger.Trace(string.Format("ADDED REMINDER: Id: {0} DateToDisplay: {1} FireDate: {2} Message: {3}", message.Id, message.DateTimeToDisplay, notification.FireDate, message.Verse.Text)); 
+            Debug.WriteLine (string.Format("ADDED REMINDER: Id: {0} DateToDisplay: {1} FireDate: {2} Message: {3}", message.Id, message.DateTimeToDisplay, notification.FireDate, message.Verse.Text));
             UIApplication.SharedApplication.ScheduleLocalNotification (notification);
         }
 

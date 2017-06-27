@@ -30,6 +30,7 @@ namespace GodSpeak.Droid
 	public class ReminderService : IReminderService
 	{
 		private ISettingsService _settingsService;
+        private ILoggingService _logger;
 
 		private AlarmManager _alarmManager;
 		public AlarmManager AlarmManager
@@ -47,9 +48,10 @@ namespace GodSpeak.Droid
 			}
 		}
 
-		public ReminderService(ISettingsService settingsService)
+		public ReminderService(ISettingsService settingsService, ILogManager logManager)
 		{
 			_settingsService = settingsService;
+            _logger = logManager.GetLog();
 		}
 
 		public bool SetMessageReminder(Message message)
@@ -73,7 +75,9 @@ namespace GodSpeak.Droid
 				message.DateTimeToDisplay.Minute);
 
 			AlarmManager.Set(AlarmType.RtcWakeup, calendar.TimeInMillis, pendingIntent);
-			System.Diagnostics.Debug.WriteLine("Set Reminder for {0}", calendar);
+
+			_logger.Trace(string.Format("ADDED REMINDER: Id: {0} DateToDisplay: {1} FireDate: {2} Message: {3}", message.Id, message.DateTimeToDisplay, calendar, message.Verse.Text));
+			System.Diagnostics.Debug.WriteLine(string.Format("ADDED REMINDER: Id: {0} DateToDisplay: {1} FireDate: {2} Message: {3}", message.Id, message.DateTimeToDisplay, calendar, message.Verse.Text));
 
 			return true;
 		}

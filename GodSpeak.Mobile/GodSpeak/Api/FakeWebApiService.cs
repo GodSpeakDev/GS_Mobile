@@ -473,7 +473,7 @@ namespace GodSpeak
         private static List<Message> _messages = new List<Message> () {
             new Message()
             {
-                DateTimeToDisplay = DateTime.Now.AddSeconds(90),
+                DateTimeToDisplay = DateTime.Now.AddSeconds(150),
 				PreviousVerse = new Verse() 
 				{
 					Text = "Therefore I say to you, all things for which you pray and ask, believe that you have received them, and they will be granted you.",
