@@ -101,7 +101,16 @@ namespace GodSpeak.Api
 		public new async Task<ApiResponse<string>> RecordMessageDelivered(RecordMessageDeliveredRequest request)
 		{
 			AddAuthToken(_settingsService.Token);
-			return await DoPost<string>(ImpactMessageUri, request);
+			var response = await DoPost<string>(ImpactMessageUri, request);
+
+			if (response.IsSuccess)
+			{
+				var verses = _settingsService.DeliveredVerseCodes;
+				verses.Add(request.VerseCode);
+				_settingsService.DeliveredVerseCodes = new List<string>(verses);
+			}
+
+			return response;
 		}
 
         public new async Task<ApiResponse<List<Country>>> GetCountries ()

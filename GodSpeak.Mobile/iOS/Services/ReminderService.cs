@@ -8,6 +8,8 @@ namespace GodSpeak.iOS
     public class ReminderService : IReminderService
     {
         public static string MessageIdKey = "messageId";
+		public static string MessageTitleKey = "messageTitle";
+
         private ILoggingService _logger;
 
         public ReminderService(ILogManager logManager)
@@ -35,8 +37,8 @@ namespace GodSpeak.iOS
 
         private void AddLocalNotification (Message message)
         {
-            var keys = new object [] { MessageIdKey };
-            var objects = new object [] { message.Id.ToString () };
+            var keys = new object [] { MessageIdKey, MessageTitleKey };
+            var objects = new object [] { message.Id.ToString (), message.Verse.Title };
 
             var date = new DateTime (message.DateTimeToDisplay.Year, message.DateTimeToDisplay.Month, message.DateTimeToDisplay.Day);            
 
@@ -62,7 +64,7 @@ namespace GodSpeak.iOS
         private bool IsReminderSet (Message message)
         {
             foreach (UILocalNotification notification in UIApplication.SharedApplication.ScheduledLocalNotifications) {
-                var messageId = notification.UserInfo.ValueForKey (new Foundation.NSString ("messageId"));
+                var messageId = notification.UserInfo.ValueForKey (new Foundation.NSString (MessageIdKey));
 
                 if (messageId.ToString () == message.Id.ToString ()) {
                     return true;

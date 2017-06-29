@@ -133,13 +133,6 @@ namespace GodSpeak
 						VerseCode = Message.Verse.Title,
 						DateDelivered = DateTime.Now
 					});
-
-					if (deliverResponse.IsSuccess)
-					{
-						var verses = SettingsService.DeliveredVerseCodes;
-						verses.Add(Message.Verse.Title);
-						SettingsService.DeliveredVerseCodes = new List<string>(verses);
-					}
 				}
             } 
 			else 

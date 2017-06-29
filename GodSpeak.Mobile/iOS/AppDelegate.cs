@@ -98,7 +98,20 @@ namespace GodSpeak.iOS
             var alert = new UIAlertView ("God Speak", notification.AlertBody, null, "Ok");
 			alert.Show();
 
-			Mvx.Resolve<IMvxMessenger>().Publish(new MessageDeliveredMessage(this));	
+			Mvx.Resolve<IMvxMessenger>().Publish(new MessageDeliveredMessage(this));
+
+			var azureApi = Mvx.Resolve<IWebApiService>();
+
+			if (azureApi != null)
+			{
+				var messageTitle = notification.UserInfo.ValueForKey(new Foundation.NSString(ReminderService.MessageTitleKey));
+				azureApi.RecordMessageDelivered(new RecordMessageDeliveredRequest() 
+				{
+					VerseCode = messageTitle.ToString(),
+					DateDelivered=DateTime.Now
+				});
+			}
+
 			UIApplication.SharedApplication.ApplicationIconBadgeNumber = 0;
         }
     }

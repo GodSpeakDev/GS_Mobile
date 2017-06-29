@@ -127,6 +127,18 @@ namespace GodSpeak.Droid
 				if (hasMessenger)
 				{
 					Mvx.Resolve<IMvxMessenger>().Publish(new MessageDeliveredMessage(this));
+
+					var azureApi = Mvx.Resolve<IWebApiService>();
+
+					if (azureApi != null)
+					{
+						var messageTitle = message.Verse.Title;
+						azureApi.RecordMessageDelivered(new RecordMessageDeliveredRequest()
+						{
+							VerseCode = messageTitle.ToString(),
+							DateDelivered = DateTime.Now
+						});
+					}
 				}
 			}
 			else
