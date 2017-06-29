@@ -11,6 +11,7 @@ using Xamarin.Forms;
 using MvvmCross.Forms.Presenter.Core;
 using GodSpeak.Services;
 using GodSpeak.Droid.Services;
+using MvvmCross.Plugins.WebBrowser;
 
 namespace GodSpeak.Droid
 {
@@ -33,6 +34,7 @@ namespace GodSpeak.Droid
 			Mvx.LazyConstructAndRegisterSingleton<IFileService, FileService>();
 			Mvx.LazyConstructAndRegisterSingleton<ILogManager, NLogManager>();
 			Mvx.LazyConstructAndRegisterSingleton<ILoggingService, LoggingService>();
+			Mvx.LazyConstructAndRegisterSingleton<IMvxWebBrowserTask, CustomDroidWebBrowserTask>();
 
             return new App ();
         }

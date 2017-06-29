@@ -677,9 +677,21 @@ namespace GodSpeak.Resources {
             }
         }
         
-        public static string GiftsUnclaimed {
+        public static string SendGift {
             get {
-                return ResourceManager.GetString("GiftsUnclaimed", resourceCulture);
+                return ResourceManager.GetString("SendGift", resourceCulture);
+            }
+        }
+        
+        public static string SendInvitation {
+            get {
+                return ResourceManager.GetString("SendInvitation", resourceCulture);
+            }
+        }
+        
+        public static string WhoYouHaveImpacted {
+            get {
+                return ResourceManager.GetString("WhoYouHaveImpacted", resourceCulture);
             }
         }
         
@@ -1022,6 +1034,12 @@ namespace GodSpeak.Resources {
         public static string MessageRequired {
             get {
                 return ResourceManager.GetString("MessageRequired", resourceCulture);
+            }
+        }
+        
+        public static string LearnHowToPayForward {
+            get {
+                return ResourceManager.GetString("LearnHowToPayForward", resourceCulture);
             }
         }
     }

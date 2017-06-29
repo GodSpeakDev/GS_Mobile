@@ -214,6 +214,7 @@ namespace GodSpeak
 				}
 
 				await _messageService.UpdateUpcomingMessages();
+				await ReloadMessages();
 			}
 		}
 

@@ -556,14 +556,19 @@ Claimed</value>
     	<value>{0} Gifts (${1} each)</value>
   	</data>
 	<data
-		name="GiftsUnclaimed"
+		name="SendGift"
 		xml:space="preserve">
-    	<value>Gifts Unclaimed</value>
+    	<value>Send Gift</value>
   	</data>
 	<data
-		name="GiftsClaimed"
+		name="SendInvitation"
 		xml:space="preserve">
-    	<value>Gifts Claimed</value>
+    	<value>Send Invitation</value>
+  	</data>
+	<data
+		name="WhoYouHaveImpacted"
+		xml:space="preserve">
+    	<value>Who You've Impacted</value>
   	</data>
 	<data
 		name="ShareWithFriendsTitle"
@@ -863,4 +868,10 @@ Enjoy!
 		xml:space="preserve">
     	<value>Please, type the message.</value>
   	</data>
+	<data
+		name="LearnHowToPayForward"
+		xml:space="preserve">
+    	<value>Learn How to “Pay It Forward”</value>
+  	</data>
+	
 </root>

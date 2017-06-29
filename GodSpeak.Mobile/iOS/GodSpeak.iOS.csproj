@@ -405,6 +405,15 @@
     <BundleResource Include="Resources\map_screenshot.png" />
     <BundleResource Include="Resources\map_screenshot%402x.png" />
     <BundleResource Include="Resources\map_screenshot%403x.png" />
+    <BundleResource Include="Resources\send_gift_promo.png" />
+    <BundleResource Include="Resources\send_gift_promo%402x.png" />
+    <BundleResource Include="Resources\send_gift_promo%403x.png" />
+    <BundleResource Include="Resources\send_gift_selected_icon.png" />
+    <BundleResource Include="Resources\send_gift_selected_icon%402x.png" />
+    <BundleResource Include="Resources\send_gift_selected_icon%403x.png" />
+    <BundleResource Include="Resources\send_gift_unselected_icon.png" />
+    <BundleResource Include="Resources\send_gift_unselected_icon%402x.png" />
+    <BundleResource Include="Resources\send_gift_unselected_icon%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="googleiosmaps">

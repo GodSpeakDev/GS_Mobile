@@ -136,6 +136,9 @@
     <EmbeddedResource Include="Pages\EmailComposerPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\SendGiftPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -422,6 +425,10 @@
     <Compile Include="Api\Request\ShareRequest.cs" />
     <Compile Include="Services\ILoggingService.cs" />
     <Compile Include="Services\ILogManager.cs" />
+    <Compile Include="ViewModels\Share\SendGiftViewModel.cs" />
+    <Compile Include="Pages\SendGiftPage.xaml.cs">
+      <DependentUpon>SendGiftPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

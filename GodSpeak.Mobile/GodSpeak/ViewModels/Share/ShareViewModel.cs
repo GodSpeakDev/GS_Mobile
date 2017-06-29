@@ -14,28 +14,39 @@ namespace GodSpeak
         private IWebApiService _webApi;
         private IShareService _shareService;
 
-        private Tab _unclaimedTab;
-        private Tab _claimedTab;
+		private Tab _sendGift;
+		private Tab _sendInvitation;
+		private Tab _whoYouHaveImpacted;
 
-        public ShareViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, ISettingsService settingsService, IShareService shareService, IMailService mailService, IContactService contactService) : base (dialogService, hudService, sessionService, webApiService, settingsService)
+        public ShareViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, ISettingsService settingsService, IShareService shareService, IMailService mailService, IContactService contactService, IMvxWebBrowserTask webBrowserTask) : base (dialogService, hudService, sessionService, webApiService, settingsService)
         {
             _shareService = shareService;
 
             UnclaimedGiftViewModel = new UnclaimedGiftViewModel (dialogService, hudService, sessionService, webApiService, settingsService, contactService, mailService);
             ClaimedGiftViewModel = new ClaimedGiftViewModel (dialogService, hudService, sessionService, webApiService, settingsService, mailService);
+			SendGiftViewModel = new SendGiftViewModel(dialogService, hudService, sessionService, webApiService, settingsService, webBrowserTask);
 
-            SelectedTab = TabTypes.Unclaimed;
+            SelectedTab = TabTypes.SendGift;
 
-            _unclaimedTab = new Tab () {
-                Title = Text.GiftsUnclaimed,
+			_sendGift = new Tab() 
+			{
+				Title = Text.SendGift,
+                SelectedImage = "send_gift_selected_icon.png",
+                UnselectedImage = "send_gift_unselected_icon.png",
+                TabType = TabTypes.SendGift,
+                IsSelected = true
+			};
+
+            _sendInvitation = new Tab () {
+                Title = Text.SendInvitation,
                 SelectedImage = "unclaimed_gift_selected_icon.png",
                 UnselectedImage = "unclaimed_gift_unselected_icon.png",
                 TabType = TabTypes.Unclaimed,
-                IsSelected = true
+                IsSelected = false
             };
 
-            _claimedTab = new Tab () {
-                Title = Text.GiftsClaimed,
+            _whoYouHaveImpacted = new Tab () {
+                Title = Text.WhoYouHaveImpacted,
                 SelectedImage = "claimed_gift_selected_icon.png",
                 UnselectedImage = "claimed_gift_unselected_icon.png",
                 TabType = TabTypes.Claimed,
@@ -44,10 +55,18 @@ namespace GodSpeak
 
             Tabs = new ObservableCollection<Tab> ()
             {
-                _unclaimedTab,
-                _claimedTab
+				_sendGift,
+                _sendInvitation,
+                _whoYouHaveImpacted
             };
         }
+
+		private SendGiftViewModel _sendGiftViewModel;
+		public SendGiftViewModel SendGiftViewModel
+		{
+			private set { SetProperty(ref _sendGiftViewModel, value); }
+			get { return _sendGiftViewModel; }
+		}
 
         private UnclaimedGiftViewModel _unclaimedGiftViewModel;
         public UnclaimedGiftViewModel UnclaimedGiftViewModel {
@@ -79,6 +98,7 @@ namespace GodSpeak
             get { return _selectedTab; }
             set {
                 SetProperty (ref _selectedTab, value);
+				SendGiftViewModel.IsVisible = SelectedTab == TabTypes.SendGift;
                 UnclaimedGiftViewModel.IsVisible = SelectedTab == TabTypes.Unclaimed;
                 ClaimedGiftViewModel.IsVisible = SelectedTab == TabTypes.Claimed;
             }
@@ -104,8 +124,9 @@ namespace GodSpeak
             }
         }
 
-        public enum TabTypes
-        {
+		public enum TabTypes
+		{
+			SendGift,
             Unclaimed,
             Claimed
         }

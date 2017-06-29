@@ -20,6 +20,12 @@
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="*" />
 			</Grid.ColumnDefinitions>
+			<views:SendGiftPage 
+				Grid.Row="0"
+				Grid.Column="0"
+				BindingContext="{Binding SendGiftViewModel}"
+				IsVisible="{Binding IsVisible}"
+			/>
 			<views:UnclaimedGiftPage 
 				Grid.Row="0"
 				Grid.Column="0"
@@ -43,21 +49,24 @@
 				HeightRequest="60">
 				<views:StackList.ItemTemplate>
 					<DataTemplate>
-						<StackLayout
+						<!-- WidthRequest="500" is a hack to make all tabs have the same size -->
+						<StackLayout							
 							Padding="0,5"
-							HorizontalOptions="FillAndExpand"
+							WidthRequest="500"
+							HorizontalOptions="CenterAndExpand"
 							VerticalOptions="FillAndExpand">
 							<Image
 								Source="{Binding CurrentImage}"
-								HeightRequest="35"
-								WidthRequest="35"
+								HeightRequest="30"
+								WidthRequest="30"
 								HorizontalOptions="Center"
 								VerticalOptions="CenterAndExpand"
 							/>
 							<views:CustomLabel
 								Style="{StaticResource TabTitle}"
 							 	Text="{Binding Title}"
-								HorizontalOptions="Center"
+								HorizontalTextAlignment="Center"
+								HorizontalOptions="CenterAndExpand"
 								VerticalOptions="Center">
 							</views:CustomLabel>
 						</StackLayout>

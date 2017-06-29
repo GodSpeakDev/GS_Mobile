@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+	xmlns="http://xamarin.com/schemas/2014/forms" 
+	xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
+	xmlns:res="clr-namespace:GodSpeak.Resources;assembly=GodSpeak"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+	x:Class="GodSpeak.SendGiftPage">
+	<ContentView.Content>
+		<AbsoluteLayout
+				HorizontalOptions="FillAndExpand"
+				VerticalOptions="FillAndExpand">
+			<Image
+				AbsoluteLayout.LayoutFlags="All"
+				AbsoluteLayout.LayoutBounds="0,0,1,1"
+				Aspect="AspectFill"
+				Source="send_gift_promo.png"
+			/>
+			<views:CustomButton 
+				AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"
+				AbsoluteLayout.LayoutBounds="0,1,1,AutoSize"
+				Margin="10, 10"
+				Style="{StaticResource ButtonBlue}"
+				Text="{x:Static res:Text.LearnHowToPayForward}"
+				Command="{Binding TapLearnHowToPayForwardCommand}"
+			/>
+			<views:SolidHeader />
+		</AbsoluteLayout>
+	</ContentView.Content>
+</ContentView>
