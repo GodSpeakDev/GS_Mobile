@@ -20,8 +20,7 @@ namespace GodSpeak
         Task<ApiResponse<GetInvitesResponse>> GetInvites (GetInvitesRequest request);
         Task<ApiResponse<List<InviteBundle>>> GetInviteBundles (GetInviteBundlesRequest request);
         Task<ApiResponse<string>> PurchaseInvite (PurchaseInviteRequest request);
-        Task<ApiResponse<List<Message>>> GetMessages ();
-        Task<ApiResponse<GetMessageResponse>> GetMessage (GetMessageRequest request);
+        Task<ApiResponse<List<Message>>> GetMessages ();        
         Task<ApiResponse<string>> ForgotPassword (ForgotPasswordRequest request);
         Task<ApiResponse<User>> RegisterUser (RegisterUserRequest request);
 

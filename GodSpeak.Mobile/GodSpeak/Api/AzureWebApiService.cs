@@ -62,22 +62,10 @@ namespace GodSpeak.Api
         {			
 			AddAuthToken(_settingsService.Token);
 			var apiResponse = await DoGet<List<Message>>(MessagesQueueUri);
-			
+
 			CachedMessages = apiResponse.Payload;				
 			
 			return apiResponse;
-        }
-
-        public new async Task<ApiResponse<GetMessageResponse>> GetMessage (GetMessageRequest request)
-        {
-            var content = new GetMessageResponse () {
-                Payload = CachedMessages.First (x => x.Id == request.MessageId)
-            };
-
-            return new ApiResponse<GetMessageResponse> () {
-                Payload = content,
-                StatusCode = System.Net.HttpStatusCode.OK
-            };
         }
 
 		public new async Task<ApiResponse<List<ImpactDay>>> GetImpact()
