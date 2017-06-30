@@ -264,11 +264,11 @@ namespace GodSpeak
 				return false;
             }
 
-            if (string.IsNullOrEmpty(LastName))
-            {
-            	await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.LastNameRequiredMessage);
-				return false;
-            }
+    //        if (string.IsNullOrEmpty(LastName))
+    //        {
+    //        	await DialogService.ShowAlert(Text.ErrorPopupTitle, Text.LastNameRequiredMessage);
+				//return false;
+    //        }
 
             if (string.IsNullOrEmpty(Email))
             {
