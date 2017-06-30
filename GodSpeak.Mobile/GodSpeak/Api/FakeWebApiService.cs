@@ -165,19 +165,6 @@ namespace GodSpeak
             };
         }
 
-        public async Task<ApiResponse<GetMessageResponse>> GetMessage (GetMessageRequest request)
-        {
-            await Task.Delay (delay);
-            var content = new GetMessageResponse () {
-                Payload = _messages.First (x => x.Id == request.MessageId)
-            };
-
-            return new ApiResponse<GetMessageResponse> () {
-                Payload = content,
-                StatusCode = System.Net.HttpStatusCode.OK
-            };
-        }
-
         public async Task<ApiResponse<string>> ForgotPassword (ForgotPasswordRequest request)
         {
             await Task.Delay (delay);
