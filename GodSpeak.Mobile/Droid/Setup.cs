@@ -11,6 +11,7 @@ using Xamarin.Forms;
 using MvvmCross.Forms.Presenter.Core;
 using GodSpeak.Services;
 using GodSpeak.Droid.Services;
+using MvvmCross.Plugins.WebBrowser;
 
 namespace GodSpeak.Droid
 {
@@ -31,6 +32,7 @@ namespace GodSpeak.Droid
 			Mvx.LazyConstructAndRegisterSingleton<IMailService, MailService>();
 			Mvx.LazyConstructAndRegisterSingleton<IImageService, ImageService>();
 			Mvx.LazyConstructAndRegisterSingleton<IFileService, FileService>();
+            Mvx.LazyConstructAndRegisterSingleton<IMvxWebBrowserTask, GodSpeakWebBrowserTask> ();
 
             return new App ();
         }
