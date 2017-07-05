@@ -48,6 +48,7 @@ namespace GodSpeak.Droid
 
 				_clusterManager.RemoveItem(marker);
 				_markers.Remove(id);
+                _clusterManager.Cluster ();
 			}
 		}
 

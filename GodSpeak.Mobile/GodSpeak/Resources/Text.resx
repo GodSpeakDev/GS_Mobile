@@ -508,7 +508,7 @@ Claimed</value>
 	<data
 		name="ShareDescription"
 		xml:space="preserve">
-    	<value>You can purchase more gifts right here, right now!</value>
+    	<value>You can purchase more Android gifts right here, right now!</value>
   	</data>
 	<data
 		name="ShareWithFriend"
@@ -733,7 +733,7 @@ Enjoy!
 	<data
 		name="PurchaseInvitesText"
 		xml:space="preserve">
-    	<value>Purchase gifts to share GodSpeak with others...</value>
+    	<value>Purchase gifts to share GodSpeak with other Android users...</value>
   	</data>
 	<data
 		name="ShareWithNoBalance"

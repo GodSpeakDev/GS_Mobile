@@ -77,7 +77,7 @@ namespace GodSpeak
             _donateViewModel = new DonateTemplateViewModel (DialogService, HudService, SessionService, WebApiService, SettingsService, _shareService, _browserTask);
             var pages = new List<CustomViewModel> ();
             pages.Add (_shareTemplateViewModel);
-            pages.Add (_donateViewModel);
+            //pages.Add (_donateViewModel);
             pages.Add (_didYouKnowTemplateViewModel);
             Pages = new ObservableCollection<CustomViewModel> (pages);
 
