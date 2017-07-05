@@ -162,7 +162,7 @@ namespace GodSpeak
 				DayValue = MinimumDayValue;
 			}
 
-			for (int i = DayValue; i < MaximumDayValue; i++)
+			for (int i = DayValue; i <= MaximumDayValue; i++)
 			{
 				await Task.Delay(200);
 
