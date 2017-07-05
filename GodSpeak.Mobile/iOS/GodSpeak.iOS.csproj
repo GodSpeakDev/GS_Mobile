@@ -282,6 +282,7 @@
     <Compile Include="Renderers\CustomEditorRenderer.cs" />
     <Compile Include="Services\LoggingService.cs" />
     <Compile Include="Services\NLogManager.cs" />
+    <Compile Include="Renderers\CustomClusterRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\profile_placeholder.png" />

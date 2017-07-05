@@ -71,7 +71,6 @@ namespace GodSpeak.iOS
 				return;
 
 			var item = new POIItem(pin.Position.Latitude, pin.Position.Longitude, pin.Label);
-
 			_markers.Add(id, item);
 			clusterManager.AddItem(item);
 			clusterManager.Cluster();
@@ -87,7 +86,7 @@ namespace GodSpeak.iOS
 			var googleMapView = mapView; //use the real mapview init'd somewhere else instead of this
 			var iconGenerator = new GMUDefaultClusterIconGenerator(
 				new NSNumber[] 
-				{ 
+				{					
 					10, 
 					50, 
 					100, 
@@ -104,8 +103,7 @@ namespace GodSpeak.iOS
 				});
 
 			var algorithm = new GMUNonHierarchicalDistanceBasedAlgorithm();
-			var renderer = new GMUDefaultClusterRenderer(googleMapView, iconGenerator);
-
+			var renderer = new CustomClusterRenderer(mapView, iconGenerator);
 			renderer.WeakDelegate = this;
 
 			clusterManager = new GMUClusterManager(googleMapView, algorithm, renderer);
