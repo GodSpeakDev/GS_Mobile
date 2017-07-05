@@ -40,7 +40,7 @@ namespace GodSpeak
 
         public void Init ()
         {
-            GiftCodeText = "ubQYPmAr";
+            //GiftCodeText = "ubQYPmAr";
         }
 
         private MvxCommand _tapGetStartedCommand;
