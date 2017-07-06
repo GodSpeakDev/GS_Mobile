@@ -120,9 +120,9 @@ namespace GodSpeak
         public async void Init (bool comesFromRegisterFlow = false)
         {
 			ShouldShowOverlay = comesFromRegisterFlow;
-			ShouldShowTip = comesFromRegisterFlow;
+			ShouldShowTip = comesFromRegisterFlow;			            
 
-            await LoadMessages ();
+			await LoadMessages ();
 
             _messageSettingsToken = _messenger.SubscribeOnMainThread<MessageSettingsChangeMessage> (async (obj) => {
 				await _messageService.UpdateUpcomingMessages();
@@ -132,17 +132,7 @@ namespace GodSpeak
 				await ReloadMessages();
             });
 
-			var currentUser = await SessionService.GetUser();
-			var response = await WebApiService.GetImpact ();
-
-            if (response.IsSuccess) 
-			{
-                ShownImpactDays = new ObservableCollection<ImpactDay> (response.Payload);
-            } 
-			else 
-			{
-                await HandleResponse (response);
-            }
+			await RefreshImpact();
 
             _isAlreadyStarted = true;            
         }
@@ -233,6 +223,29 @@ namespace GodSpeak
 			 .Select(x => new GroupedCollection<Message, DateTime>(x.Key, x)));			
 		}
 
+		private async Task RefreshImpact()
+		{
+			var currentUser = await SessionService.GetUser();
+			var response = await WebApiService.GetImpact();
+
+            if (response.IsSuccess) 
+			{
+				if (ShownImpactDays != null)
+				{
+					foreach (var item in ShownImpactDays.ToList())
+					{
+						ShownImpactDays.Remove(item);
+					}
+				}
+
+                ShownImpactDays = new ObservableCollection<ImpactDay> (response.Payload);
+            } 
+			else 
+			{
+                await HandleResponse(response);
+            }
+		}
+
         private void DoTapMessageCommand (Message message)
         {
             SelectedItem = null;
@@ -277,6 +290,15 @@ namespace GodSpeak
 			else
 			{
 				return user;
+			}
+		}
+
+		public async override Task OnAppearing()
+		{
+			if (_isAlreadyStarted)
+			{
+				await InitMessages();
+				await RefreshImpact();
 			}
 		}
     }

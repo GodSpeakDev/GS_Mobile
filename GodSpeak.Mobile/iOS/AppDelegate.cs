@@ -60,6 +60,8 @@ namespace GodSpeak.iOS
 
 			UIApplication.SharedApplication.SetMinimumBackgroundFetchInterval(UIKit.UIApplication.BackgroundFetchIntervalMinimum);
 
+            Log("**** FINISHED LAUNCHING ****");
+
 			return true;
 		}
 
@@ -67,6 +69,34 @@ namespace GodSpeak.iOS
 		{
 			base.WillEnterForeground(application);
 			UIApplication.SharedApplication.ApplicationIconBadgeNumber = 0;
+
+			Log("**** FOREGROUND ****");
+			App.RefreshCurrentPage();
+		}
+
+		public override void DidEnterBackground(UIApplication application)
+		{
+			base.DidEnterBackground(application);
+            Log("**** BACKGROUND ****");
+		}
+
+		public override void WillTerminate(UIApplication application)
+		{
+			base.WillTerminate(application);
+            Log("**** TERMINATE ****");
+		}
+
+		private void Log(string text)
+		{
+			if (Mvx.CanResolve<ILoggingService>())
+			{
+				ILoggingService loggingService;
+				var hasLogging = Mvx.TryResolve<ILoggingService>(out loggingService);
+				if (hasLogging)
+				{
+					loggingService.Trace(text);
+				}
+			}
 		}
 
 		public async override void OnActivated(UIApplication application)

@@ -12,6 +12,7 @@ namespace GodSpeak
         private IFileService _fileService;
         private IReminderService _reminderService;
         private ISettingsService _settingsService;
+		private ILoggingService _loggingService;
 
         public string UpcomingMessagesFile {
             get {
@@ -25,12 +26,13 @@ namespace GodSpeak
             }
         }
 
-        public MessageService (IWebApiService webApiService, IFileService fileService, IReminderService reminderService, ISettingsService settingsService)
+        public MessageService (IWebApiService webApiService, IFileService fileService, IReminderService reminderService, ISettingsService settingsService, ILogManager logManager)
         {
             _webApiService = webApiService;
             _fileService = fileService;
             _reminderService = reminderService;
             _settingsService = settingsService;
+			_loggingService = logManager.GetLog();
         }
 
         public async Task UpdateUpcomingMessages ()
@@ -52,9 +54,12 @@ namespace GodSpeak
 
             foreach (var message in upcomingMessages.Where (x => x.DateTimeToDisplay < DateTime.Now.AddMinutes (2) && !deliveredMessages.Any (delivered => delivered.Id == x.Id))) {
                 deliveredMessages.Add (message);
+				_loggingService.Trace(string.Format("NEW MESSAGE ADDED TO THE DELIVERED FILE: {0}", JsonConvert.SerializeObject(message))); 
             }
 
             await CacheDeliveredMessages (deliveredMessages);
+
+
             return deliveredMessages;
         }
 
@@ -133,7 +138,9 @@ namespace GodSpeak
                 await _fileService.DeleteFileAsync (DeliveredMessagesFile);
             }
 
-            await _fileService.WriteTextAsync (DeliveredMessagesFile, Newtonsoft.Json.JsonConvert.SerializeObject (messages));
+			var json = Newtonsoft.Json.JsonConvert.SerializeObject(messages);
+            await _fileService.WriteTextAsync (DeliveredMessagesFile, json);
+			_loggingService.Trace(string.Format("DELIVERED FILE: {0}", json)); 
         }
     }
 }
