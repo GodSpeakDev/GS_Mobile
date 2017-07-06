@@ -62,6 +62,8 @@ namespace GodSpeak.iOS
 
 				clusterManager.RemoveItem(marker);
 				_markers.Remove(id);
+                clusterManager.Cluster();
+
 			}
 		}
 
@@ -79,6 +81,7 @@ namespace GodSpeak.iOS
 		protected override void OnElementPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
 		{
 			base.OnElementPropertyChanged(sender, e);
+            clusterManager.Cluster ();
 		}
 
 		void AddCluster()

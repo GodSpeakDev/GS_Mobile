@@ -498,7 +498,7 @@ Delivered</value>
 		name="GiftsClaimed"
 		xml:space="preserve">
     	<value>Gifts
-Claimed</value>
+&amp; Shares</value>
   	</data>
 	<data
 		name="ShareTitle"
@@ -563,7 +563,7 @@ Claimed</value>
 	<data
 		name="SendInvitation"
 		xml:space="preserve">
-    	<value>Send Invitation</value>
+    	<value>Share GodSpeak</value>
   	</data>
 	<data
 		name="WhoYouHaveImpacted"
