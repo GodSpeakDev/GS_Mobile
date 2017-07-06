@@ -473,7 +473,27 @@ namespace GodSpeak
 					Title = "John 15:8 NASB"
 				},                
                 Id = Guid.NewGuid(),                
-            }
+            },
+			new Message()
+			{
+				DateTimeToDisplay = DateTime.Now.AddMinutes(150),
+				PreviousVerse = new Verse()
+				{
+					Text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi iaculis tempor massa et ultrices. Praesent dignissim ex libero, sed auctor quam mattis eu. Vivamus nec lobortis ex, vitae elementum metus. Sed sollicitudin in diam at lacinia.",
+					Title = "Paul 20:6 NASB",
+				},
+				Verse = new Verse()
+				{
+					Text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi iaculis tempor massa et ultrices. Praesent dignissim ex libero, sed auctor quam mattis eu. Vivamus nec lobortis ex, vitae elementum metus. Sed sollicitudin in diam at lacinia.",
+					Title = "Paul 20:7 NASB",
+				},
+				NextVerse = new Verse()
+				{
+					Text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi iaculis tempor massa et ultrices. Praesent dignissim ex libero, sed auctor quam mattis eu. Vivamus nec lobortis ex, vitae elementum metus. Sed sollicitudin in diam at lacinia.",
+					Title = "Paul 20:8 NASB"
+				},                
+			    Id = Guid.NewGuid(),                
+            },
         };
     }
 }

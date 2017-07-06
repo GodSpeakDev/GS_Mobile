@@ -120,9 +120,9 @@ namespace GodSpeak
         public async void Init (bool comesFromRegisterFlow = false)
         {
 			ShouldShowOverlay = comesFromRegisterFlow;
-			ShouldShowTip = comesFromRegisterFlow;
+			ShouldShowTip = comesFromRegisterFlow;			            
 
-            await LoadMessages ();
+			await LoadMessages ();
 
             _messageSettingsToken = _messenger.SubscribeOnMainThread<MessageSettingsChangeMessage> (async (obj) => {
 				await _messageService.UpdateUpcomingMessages();
@@ -132,32 +132,14 @@ namespace GodSpeak
 				await ReloadMessages();
             });
 
-			var currentUser = await SessionService.GetUser();
-			var response = await WebApiService.GetImpact (new GetImpactRequest 
-			{
-				InviteCode = currentUser != null ? currentUser.InviteCode : null,
-			});
-
-            if (response.IsSuccess) 
-			{
-                ShownImpactDays = new ObservableCollection<ImpactDay> (response.Payload);
-            } 
-			else 
-			{
-                await HandleResponse (response);
-            }
+			await RefreshImpact();
 
             _isAlreadyStarted = true;            
         }
 
 		private bool _isShowingHud = false;
         private async Task LoadMessages ()
-        {
-			if (!await _messageService.HasUpcomingMessagesInCache())
-			{
-				await _messageService.UpdateUpcomingMessages();
-			}
-
+        {			
             var messages = new List<Message> ();
 			if (!_isAlreadyStarted && Xamarin.Forms.Device.RuntimePlatform == "iOS") 
 			{				
@@ -169,9 +151,7 @@ namespace GodSpeak
                 });
 
 				// Load User
-				await GetUser();
-
-				messages = await _messageService.GetDeliveredMessages();
+				await InitMessages();
 
 				while (!_isShowingHud)
 				{
@@ -185,19 +165,48 @@ namespace GodSpeak
 			{
                 this.HudService.Show (Text.RetrievingMessages);
 
-				// Load User
-				await GetUser();
+				await InitMessages();
 
-                messages = await _messageService.GetDeliveredMessages();
                 this.HudService.Hide ();
             }
+        }
+
+		private async Task InitMessages()
+		{
+			await GetUser();
+
+			var messages = await _messageService.GetDeliveredMessages();
 
 			Messages = new ObservableCollection<GroupedCollection<Message, DateTime>>
-			(messages			 
+			(messages
 			 .OrderByDescending(x => x.DateTimeToDisplay)
 			 .GroupBy(x => x.DateTimeToDisplay.Date)
 			 .Select(x => new GroupedCollection<Message, DateTime>(x.Key, x)));
-        }
+            
+			if (!await _messageService.HasUpcomingMessagesInCache())
+			{
+				if (await _messageService.HasUpcomingMessagesFile())
+				{
+					// Messages Ran out
+
+					// Load User
+					await GetUser();
+
+					var response = await WebApiService.GetProfile();
+					var user = response.Payload;
+
+					foreach (var item in user.MessageCategorySettings)
+					{
+						item.Enabled = item.Title.Contains("Top 100");
+					}
+
+					await WebApiService.SaveProfile(user);
+				}
+
+				await _messageService.UpdateUpcomingMessages();
+				await ReloadMessages();
+			}
+		}
 
 		private async Task ReloadMessages()
 		{
@@ -212,6 +221,29 @@ namespace GodSpeak
 			 .OrderByDescending(x => x.DateTimeToDisplay)
 			 .GroupBy(x => x.DateTimeToDisplay.Date)
 			 .Select(x => new GroupedCollection<Message, DateTime>(x.Key, x)));			
+		}
+
+		private async Task RefreshImpact()
+		{
+			var currentUser = await SessionService.GetUser();
+			var response = await WebApiService.GetImpact();
+
+            if (response.IsSuccess) 
+			{
+				if (ShownImpactDays != null)
+				{
+					foreach (var item in ShownImpactDays.ToList())
+					{
+						ShownImpactDays.Remove(item);
+					}
+				}
+
+                ShownImpactDays = new ObservableCollection<ImpactDay> (response.Payload);
+            } 
+			else 
+			{
+                await HandleResponse(response);
+            }
 		}
 
         private void DoTapMessageCommand (Message message)
@@ -258,6 +290,15 @@ namespace GodSpeak
 			else
 			{
 				return user;
+			}
+		}
+
+		public async override Task OnAppearing()
+		{
+			if (_isAlreadyStarted)
+			{
+				await InitMessages();
+				await RefreshImpact();
 			}
 		}
     }

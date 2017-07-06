@@ -67,5 +67,10 @@ namespace GodSpeak
 						{"NavigationMode", "RestoreNavigation"}
 			}));
 		}
+
+		public virtual async Task OnAppearing()
+		{
+			
+		}
     }
 }

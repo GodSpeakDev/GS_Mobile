@@ -68,17 +68,24 @@ namespace GodSpeak.Droid
         {
             base.OnStart ();
             IsForeground = true;
+
+            Log("**** START ****");
         }
 
         protected override void OnResume ()
         {
             base.OnResume ();
             IsForeground = true;
+
+            Log("**** RESUME ****");
+			App.RefreshCurrentPage();
         }
 
         protected override void OnStop ()
         {
             base.OnStop ();
+
+            Log("**** STOP ****");
             IsForeground = false;
         }
 
@@ -86,7 +93,22 @@ namespace GodSpeak.Droid
         {
             base.OnPause ();
             IsForeground = false;
+
+            Log("**** PAUSE ****");
         }
+
+		private void Log(string text)
+		{
+			if (Mvx.CanResolve<ILoggingService>())
+			{
+				ILoggingService loggingService;
+				var hasLogging = Mvx.TryResolve<ILoggingService>(out loggingService);
+				if (hasLogging)
+				{
+					loggingService.Trace(text);
+				}
+			}
+		}
 
 		public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
 		{

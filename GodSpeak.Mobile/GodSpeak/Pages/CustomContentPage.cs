@@ -88,5 +88,15 @@ namespace GodSpeak
 			layout.Children.Add(popupMenu, new Rectangle(0, 0, 1, 1), AbsoluteLayoutFlags.All);
 			return await popupMenu.Show();
 		}
+
+		protected override void OnAppearing()
+		{
+			base.OnAppearing();
+			var viewModel = BindingContext as CustomViewModel;
+			if (viewModel != null)
+			{
+				viewModel.OnAppearing();
+			}
+		}
 	}
 }
