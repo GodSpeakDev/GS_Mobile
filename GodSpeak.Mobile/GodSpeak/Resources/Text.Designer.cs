@@ -677,9 +677,21 @@ namespace GodSpeak.Resources {
             }
         }
         
-        public static string GiftsUnclaimed {
+        public static string SendGift {
             get {
-                return ResourceManager.GetString("GiftsUnclaimed", resourceCulture);
+                return ResourceManager.GetString("SendGift", resourceCulture);
+            }
+        }
+        
+        public static string SendInvitation {
+            get {
+                return ResourceManager.GetString("SendInvitation", resourceCulture);
+            }
+        }
+        
+        public static string WhoYouHaveImpacted {
+            get {
+                return ResourceManager.GetString("WhoYouHaveImpacted", resourceCulture);
             }
         }
         
@@ -920,6 +932,120 @@ namespace GodSpeak.Resources {
         public static string ProcessingOrder {
             get {
                 return ResourceManager.GetString("ProcessingOrder", resourceCulture);
+            }
+        }
+        
+        public static string Impact {
+            get {
+                return ResourceManager.GetString("Impact", resourceCulture);
+            }
+        }
+        
+        public static string ImpactQuestion {
+            get {
+                return ResourceManager.GetString("ImpactQuestion", resourceCulture);
+            }
+        }
+        
+        public static string WhoReferrerPageTitle {
+            get {
+                return ResourceManager.GetString("WhoReferrerPageTitle", resourceCulture);
+            }
+        }
+        
+        public static string UseContactsButton {
+            get {
+                return ResourceManager.GetString("UseContactsButton", resourceCulture);
+            }
+        }
+        
+        public static string WhoReferredBoxTitle {
+            get {
+                return ResourceManager.GetString("WhoReferredBoxTitle", resourceCulture);
+            }
+        }
+        
+        public static string WhoReferredBoxTextContent {
+            get {
+                return ResourceManager.GetString("WhoReferredBoxTextContent", resourceCulture);
+            }
+        }
+        
+        public static string EmailRequired {
+            get {
+                return ResourceManager.GetString("EmailRequired", resourceCulture);
+            }
+        }
+        
+        public static string InviteThem {
+            get {
+                return ResourceManager.GetString("InviteThem", resourceCulture);
+            }
+        }
+        
+        public static string ComposeMessateTitle {
+            get {
+                return ResourceManager.GetString("ComposeMessateTitle", resourceCulture);
+            }
+        }
+        
+        public static string FromAddressPlaceholder {
+            get {
+                return ResourceManager.GetString("FromAddressPlaceholder", resourceCulture);
+            }
+        }
+        
+        public static string SubjectPlaceholder {
+            get {
+                return ResourceManager.GetString("SubjectPlaceholder", resourceCulture);
+            }
+        }
+        
+        public static string SendEmail {
+            get {
+                return ResourceManager.GetString("SendEmail", resourceCulture);
+            }
+        }
+        
+        public static string SendEmailSubject {
+            get {
+                return ResourceManager.GetString("SendEmailSubject", resourceCulture);
+            }
+        }
+        
+        public static string InviteSentSuccessfully {
+            get {
+                return ResourceManager.GetString("InviteSentSuccessfully", resourceCulture);
+            }
+        }
+        
+        public static string FromAddressRequired {
+            get {
+                return ResourceManager.GetString("FromAddressRequired", resourceCulture);
+            }
+        }
+        
+        public static string SubjectRequired {
+            get {
+                return ResourceManager.GetString("SubjectRequired", resourceCulture);
+            }
+        }
+        
+        public static string MessageRequired {
+            get {
+                return ResourceManager.GetString("MessageRequired", resourceCulture);
+            }
+        }
+        
+        public static string LearnHowToPayForward {
+            get {
+                return ResourceManager.GetString("LearnHowToPayForward", resourceCulture);
+            }
+        }
+        
+        public static string Me {
+            get {
+                return ResourceManager.GetString("Me", resourceCulture);
             }
         }
     }

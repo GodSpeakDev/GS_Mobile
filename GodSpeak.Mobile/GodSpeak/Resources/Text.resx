@@ -396,7 +396,7 @@ If so, we’ll send you their gift!</value>
 	<data
 		name="NeedToRegister"
 		xml:space="preserve">
-    	<value>I need to register</value>
+    	<value>Register</value>
   	</data>
 	<data
 		name="RecoverPasswordTitle"
@@ -498,7 +498,7 @@ Delivered</value>
 		name="GiftsClaimed"
 		xml:space="preserve">
     	<value>Gifts
-Claimed</value>
+&amp; Shares</value>
   	</data>
 	<data
 		name="ShareTitle"
@@ -508,7 +508,7 @@ Claimed</value>
 	<data
 		name="ShareDescription"
 		xml:space="preserve">
-    	<value>You can purchase more Android gifts right here, right now!</value>
+    	<value>Share GodSpeak with your friends!</value>
   	</data>
 	<data
 		name="ShareWithFriend"
@@ -556,14 +556,19 @@ Claimed</value>
     	<value>{0} Gifts (${1} each)</value>
   	</data>
 	<data
-		name="GiftsUnclaimed"
+		name="SendGift"
 		xml:space="preserve">
-    	<value>Gifts Unclaimed</value>
+    	<value>Send Gift</value>
   	</data>
 	<data
-		name="GiftsClaimed"
+		name="SendInvitation"
 		xml:space="preserve">
-    	<value>Gifts Claimed</value>
+    	<value>Share GodSpeak</value>
+  	</data>
+	<data
+		name="WhoYouHaveImpacted"
+		xml:space="preserve">
+    	<value>Who You've Impacted</value>
   	</data>
 	<data
 		name="ShareWithFriendsTitle"
@@ -708,16 +713,14 @@ Enjoy!
 	<data
 		name="ShareText"
 		xml:space="preserve">
-    	<value>Hey there,
-			
-I would like to give you the gift of GodSpeak. You can claim it with this link:
-http://givegodspeak.com/invite/{0}
+    	<value>Hey there, I wanted to share this awesome app with you. GodSpeak has brought wisdom and encouragement to me on a daily basis!
 
-You can learn more about GodSpeak at:
+You can check it out at this URL:
+			
 http://givegodspeak.com
 
 Enjoy!
-{1}
+- {0}
 		</value>
   	</data>
 	<data
@@ -733,7 +736,7 @@ Enjoy!
 	<data
 		name="PurchaseInvitesText"
 		xml:space="preserve">
-    	<value>Purchase gifts to share GodSpeak with other Android users...</value>
+    	<value>Purchase gifts to share GodSpeak with others...</value>
   	</data>
 	<data
 		name="ShareWithNoBalance"
@@ -779,5 +782,100 @@ Enjoy!
 		name="ProcessingOrder"
 		xml:space="preserve">
     	<value>Processing your order...</value>
+  	</data>
+	<data
+		name="Impact"
+		xml:space="preserve">
+    	<value>Impact</value>
+  	</data>
+	<data
+		name="ImpactQuestion"
+		xml:space="preserve">
+    	<value>Did someone refer or gift GodSpeak to you?</value>
+  	</data>
+	<data
+		name="WhoReferrerPageTitle"
+		xml:space="preserve">
+    	<value>Who Referred You?</value>
+  	</data>
+	<data
+		name="UseContactsButton"
+		xml:space="preserve">
+    	<value>Use Contacts</value>
+  	</data>
+	<data
+		name="WhoReferredBoxTitle"
+		xml:space="preserve">
+    	<value>Let Them See Their Impact!</value>
+  	</data>
+	<data
+		name="WhoReferredBoxTextContent"
+		xml:space="preserve">
+    	<value>By entering the email address of who referred you to GodSpeak or by selecting the referrer from your contacts, you are letting that person know what kind of impact they are making in God's world.</value>
+  	</data>
+	<data
+		name="EmailRequired"
+		xml:space="preserve">
+    	<value>Please, type the email.</value>
+  	</data>
+	<data
+		name="InviteThem"
+		xml:space="preserve">
+    	<value>Invite Them!</value>
+  	</data>
+	<data
+		name="ComposeMessateTitle"
+		xml:space="preserve">
+    	<value>Compose Message</value>
+  	</data>
+	<data
+		name="FromAddressPlaceholder"
+		xml:space="preserve">
+    	<value>From Address</value>
+  	</data>
+	<data
+		name="SubjectPlaceholder"
+		xml:space="preserve">
+    	<value>Subject</value>
+  	</data>
+	<data
+		name="SendEmail"
+		xml:space="preserve">
+    	<value>Send Email</value>
+  	</data>
+	<data
+		name="SendEmailSubject"
+		xml:space="preserve">
+    	<value>GodSpeak Invitation</value>
+  	</data>
+	<data
+		name="InviteSentSuccessfully"
+		xml:space="preserve">
+    	<value>Your invite was sent successfully.</value>
+  	</data>
+	<data
+		name="FromAddressRequired"
+		xml:space="preserve">
+    	<value>Please, type your email address.</value>
+  	</data>
+	<data
+		name="SubjectRequired"
+		xml:space="preserve">
+    	<value>Please, type the subject.</value>
+  	</data>
+	<data
+		name="MessageRequired"
+		xml:space="preserve">
+    	<value>Please, type the message.</value>
+  	</data>
+	<data
+		name="LearnHowToPayForward"
+		xml:space="preserve">
+    	<value>Learn How to “Pay It Forward”</value>
+  	</data>
+	<data
+		name="Me"
+		xml:space="preserve">
+    	<value>Me</value>
   	</data>
 </root>

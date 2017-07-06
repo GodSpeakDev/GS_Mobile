@@ -15,7 +15,6 @@ using GMCluster;
 using Xamarin.Forms.Maps;
 using System.Collections.Generic;
 using GodSpeak.Resources;
-using System.Linq;
 
 [assembly: ExportRenderer(typeof(CustomMap), typeof(CustomMapRenderer))]
 namespace GodSpeak.iOS
@@ -107,7 +106,7 @@ namespace GodSpeak.iOS
                     GetImage(40, 40),
 				});
 
-			var algorithm = new CustomAlgorithm();
+			var algorithm = new GMUNonHierarchicalDistanceBasedAlgorithm();
 			var renderer = new CustomClusterRenderer(mapView, iconGenerator);
 			renderer.WeakDelegate = this;
 
@@ -175,17 +174,6 @@ namespace GodSpeak.iOS
 			var update = CameraUpdate.SetCamera(newCamera);
 
 			mapView.MoveCamera(update);
-		}
-
-		public class CustomAlgorithm : GMCluster.GMUGridBasedClusterAlgorithm
-		{			
-			public override IGMUCluster[] ClustersAtZoom(float zoom)
-			{
-				// Uncomment to test the zooming hack
-				//return base.ClustersAtZoom(zoom * 2);
-
-				return base.ClustersAtZoom(zoom);
-			} 
 		}
 	}
 }
