@@ -40,7 +40,6 @@ namespace GodSpeak.iOS
 								longitude: SettingsService.Longitude,
 								zoom: 0);
 			mapView = MapView.FromCamera (CGRect.Empty, camera);
-			//AddMyOrigin();
 
 			this.SetNativeControl(mapView);
 
@@ -52,6 +51,7 @@ namespace GodSpeak.iOS
 			}
 
             AddCluster ();
+            AddMyOrigin();
 		}
 
 		private void OnRemovePin(MapPoint id)
@@ -114,10 +114,9 @@ namespace GodSpeak.iOS
 
 		private void AddMyOrigin()
 		{
-			var marker = new Google.Maps.Marker();
-			marker.Position = new CoreLocation.CLLocationCoordinate2D(SettingsService.Latitude, SettingsService.Longitude);
-			marker.Title = "Me";
-			marker.Map = mapView;
+			var item = new POIItem(SettingsService.Latitude, SettingsService.Longitude, "Me");
+			clusterManager.AddItem(item);
+			clusterManager.Cluster();
 		}
 
 		public UIImage GetImage(int height, int width)

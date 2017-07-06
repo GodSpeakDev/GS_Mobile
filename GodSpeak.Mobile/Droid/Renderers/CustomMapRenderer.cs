@@ -62,6 +62,13 @@ namespace GodSpeak.Droid
 			_clusterManager.Cluster();
 		}
 
+		private void AddMyOrigin()
+		{
+			var clusterItem = new ClusterItem(SettingsService.Latitude, SettingsService.Longitude);
+			_clusterManager.AddItem(clusterItem);
+			_clusterManager.Cluster();
+		}
+
 		public void OnMapReady(GoogleMap googleMap)
 		{
 			var settings = googleMap.UiSettings;
@@ -80,6 +87,8 @@ namespace GodSpeak.Droid
 			                            
 			_googleMap.SetOnCameraChangeListener(_clusterManager);
 			_googleMap.SetOnMarkerClickListener(_clusterManager);
+
+			AddMyOrigin();
 
 			var customMap = this.Element as ImpactMap;
 			foreach (var item in customMap.PinsDictionary)
