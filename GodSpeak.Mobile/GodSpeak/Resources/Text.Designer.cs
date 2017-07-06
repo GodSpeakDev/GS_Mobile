@@ -1042,5 +1042,11 @@ namespace GodSpeak.Resources {
                 return ResourceManager.GetString("LearnHowToPayForward", resourceCulture);
             }
         }
+        
+        public static string Me {
+            get {
+                return ResourceManager.GetString("Me", resourceCulture);
+            }
+        }
     }
 }

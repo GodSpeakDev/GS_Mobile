@@ -113,8 +113,18 @@ namespace GodSpeak
 					var firstDate = _allImpactDays.OrderBy(x => x.Date).First();
 					var lastDate = _allImpactDays.OrderBy(x => x.Date).Last();
 
-					MaximumDayValue = (lastDate.Date.Date - firstDate.Date).Days + 1;
-					MinDate = firstDate.Date;
+					if (firstDate.Date == lastDate.Date)
+					{
+						MaximumDayValue = 1;
+						MinDate = firstDate.Date.Date.AddDays(-1);	
+					}
+					else
+					{
+						MaximumDayValue = (lastDate.Date.Date - firstDate.Date).Days;
+						MinDate = firstDate.Date.Date;	
+					}
+
+
 					DayValue = MaximumDayValue;
 				}
 			}
@@ -129,9 +139,11 @@ namespace GodSpeak
 			if (_allImpactDays == null)
 				return;
 
-			var firstDate = _allImpactDays.OrderBy(x => x.Date).FirstOrDefault();
+			var firstDate = MinDate;
 
-			var cutDate = firstDate != null ? _allImpactDays.OrderBy(x => x.Date).First().Date.Date.AddDays(DayValue - 1) : DateTime.MinValue;
+			var cutDate = firstDate != null ? firstDate.AddDays(DayValue) : DateTime.MinValue;
+			cutDate = cutDate.AddDays(1).AddSeconds(-1);
+
 			var daysToBeRemoved = ShownImpactDays.Where(x => x.Date > cutDate).ToList();
 
 			foreach (var impactDay in daysToBeRemoved)

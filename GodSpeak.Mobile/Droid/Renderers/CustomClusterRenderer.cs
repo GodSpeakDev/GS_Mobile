@@ -18,6 +18,11 @@ namespace GodSpeak.Droid
 			_clusterIconGenerator = new IconGenerator(context);
 		}
 
+		protected override bool ShouldRenderAsCluster(ICluster p0)
+		{
+			return p0.Size > 1;
+		}
+
 		protected override void OnBeforeClusterItemRendered(Java.Lang.Object obj, MarkerOptions markerOptions)
 		{
 			markerOptions.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.oval));
