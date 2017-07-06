@@ -14,6 +14,7 @@ using CoreGraphics;
 using GMCluster;
 using Xamarin.Forms.Maps;
 using System.Collections.Generic;
+using GodSpeak.Resources;
 
 [assembly: ExportRenderer(typeof(CustomMap), typeof(CustomMapRenderer))]
 namespace GodSpeak.iOS
@@ -117,7 +118,7 @@ namespace GodSpeak.iOS
 
 		private void AddMyOrigin()
 		{
-			var item = new POIItem(SettingsService.Latitude, SettingsService.Longitude, "Me");
+			var item = new POIItem(SettingsService.Latitude, SettingsService.Longitude, Text.Me);
 			clusterManager.AddItem(item);
 			clusterManager.Cluster();
 		}
