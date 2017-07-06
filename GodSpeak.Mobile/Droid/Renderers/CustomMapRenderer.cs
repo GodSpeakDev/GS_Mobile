@@ -78,7 +78,8 @@ namespace GodSpeak.Droid
 			_clusterManager.SetOnClusterClickListener(this);
 			_clusterManager.SetOnClusterItemClickListener(this);
 			_clusterManager.SetRenderer(new CustomClusterRenderer(this.Context, _googleMap, _clusterManager));
-			                            
+			_clusterManager.SetAlgorithm(new CustomAlgorithm());                            
+
 			_googleMap.SetOnCameraChangeListener(_clusterManager);
 			_googleMap.SetOnMarkerClickListener(_clusterManager);
 
@@ -116,5 +117,16 @@ namespace GodSpeak.Droid
 		{
 			Position = new LatLng(lat, lng);
 		}		
+	}
+
+	public class CustomAlgorithm : Com.Google.Maps.Android.Clustering.Algo.GridBasedAlgorithm
+	{
+		public override System.Collections.ICollection GetClusters(double p0)
+		{
+			// Uncomment to test the zooming hack
+			//return base.GetClusters(p0 * 2);
+
+			return base.GetClusters(p0);
+		}
 	}
 }

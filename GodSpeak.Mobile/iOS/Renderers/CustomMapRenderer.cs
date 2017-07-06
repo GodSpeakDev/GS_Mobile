@@ -14,6 +14,8 @@ using CoreGraphics;
 using GMCluster;
 using Xamarin.Forms.Maps;
 using System.Collections.Generic;
+using GodSpeak.Resources;
+using System.Linq;
 
 [assembly: ExportRenderer(typeof(CustomMap), typeof(CustomMapRenderer))]
 namespace GodSpeak.iOS
@@ -40,7 +42,6 @@ namespace GodSpeak.iOS
 								longitude: SettingsService.Longitude,
 								zoom: 0);
 			mapView = MapView.FromCamera (CGRect.Empty, camera);
-			//AddMyOrigin();
 
 			this.SetNativeControl(mapView);
 
@@ -52,6 +53,7 @@ namespace GodSpeak.iOS
 			}
 
             AddCluster ();
+            AddMyOrigin();
 		}
 
 		private void OnRemovePin(MapPoint id)
@@ -62,6 +64,8 @@ namespace GodSpeak.iOS
 
 				clusterManager.RemoveItem(marker);
 				_markers.Remove(id);
+                clusterManager.Cluster();
+
 			}
 		}
 
@@ -71,7 +75,6 @@ namespace GodSpeak.iOS
 				return;
 
 			var item = new POIItem(pin.Position.Latitude, pin.Position.Longitude, pin.Label);
-
 			_markers.Add(id, item);
 			clusterManager.AddItem(item);
 			clusterManager.Cluster();
@@ -80,6 +83,7 @@ namespace GodSpeak.iOS
 		protected override void OnElementPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
 		{
 			base.OnElementPropertyChanged(sender, e);
+            clusterManager.Cluster ();
 		}
 
 		void AddCluster()
@@ -87,7 +91,7 @@ namespace GodSpeak.iOS
 			var googleMapView = mapView; //use the real mapview init'd somewhere else instead of this
 			var iconGenerator = new GMUDefaultClusterIconGenerator(
 				new NSNumber[] 
-				{ 
+				{					
 					10, 
 					50, 
 					100, 
@@ -103,9 +107,8 @@ namespace GodSpeak.iOS
                     GetImage(40, 40),
 				});
 
-			var algorithm = new GMUNonHierarchicalDistanceBasedAlgorithm();
-			var renderer = new GMUDefaultClusterRenderer(googleMapView, iconGenerator);
-
+			var algorithm = new CustomAlgorithm();
+			var renderer = new CustomClusterRenderer(mapView, iconGenerator);
 			renderer.WeakDelegate = this;
 
 			clusterManager = new GMUClusterManager(googleMapView, algorithm, renderer);
@@ -116,10 +119,9 @@ namespace GodSpeak.iOS
 
 		private void AddMyOrigin()
 		{
-			var marker = new Google.Maps.Marker();
-			marker.Position = new CoreLocation.CLLocationCoordinate2D(SettingsService.Latitude, SettingsService.Longitude);
-			marker.Title = "Me";
-			marker.Map = mapView;
+			var item = new POIItem(SettingsService.Latitude, SettingsService.Longitude, Text.Me);
+			clusterManager.AddItem(item);
+			clusterManager.Cluster();
 		}
 
 		public UIImage GetImage(int height, int width)
@@ -173,6 +175,17 @@ namespace GodSpeak.iOS
 			var update = CameraUpdate.SetCamera(newCamera);
 
 			mapView.MoveCamera(update);
+		}
+
+		public class CustomAlgorithm : GMCluster.GMUGridBasedClusterAlgorithm
+		{			
+			public override IGMUCluster[] ClustersAtZoom(float zoom)
+			{
+				// Uncomment to test the zooming hack
+				//return base.ClustersAtZoom(zoom * 2);
+
+				return base.ClustersAtZoom(zoom);
+			} 
 		}
 	}
 }
