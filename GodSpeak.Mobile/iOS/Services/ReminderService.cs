@@ -43,11 +43,11 @@ namespace GodSpeak.iOS
             var date = new DateTime (message.DateTimeToDisplay.Year, message.DateTimeToDisplay.Month, message.DateTimeToDisplay.Day);            
 
             date = date.AddHours (message.DateTimeToDisplay.Hour);
-            date = date.AddMinutes (message.DateTimeToDisplay.Minute);
+            date = date.AddMinutes (25);
 
             UILocalNotification notification = new UILocalNotification {				
                 FireDate = date.ToNSDate (),
-                //TimeZone = NSTimeZone.LocalTimeZone,
+                TimeZone = NSTimeZone.LocalTimeZone,
                 AlertBody = new VerseFormatter ().Convert (string.Format ("{0}\n-{1}", message.Verse.Text, message.Verse.Title), null, null, null).ToString (),
                 RepeatInterval = 0,
                 UserInfo = NSDictionary.FromObjectsAndKeys (objects, keys),
@@ -56,7 +56,7 @@ namespace GodSpeak.iOS
 
             };
 
-            _logger.Trace(string.Format("ADDED REMINDER: Id: {0} DateToDisplay: {1} FireDate: {2} Message: {3}", message.Id, message.DateTimeToDisplay, notification.FireDate, message.Verse.Text)); 
+			_logger.Trace(string.Format("ADDED REMINDER: Id: {0} DateToDisplay: {1} FireDate: {2} Message: {3}", message.Id, message.DateTimeToDisplay, notification.FireDate, message.Verse.Text)); 
             Debug.WriteLine (string.Format("ADDED REMINDER: Id: {0} DateToDisplay: {1} FireDate: {2} Message: {3}", message.Id, message.DateTimeToDisplay, notification.FireDate, message.Verse.Text));
             UIApplication.SharedApplication.ScheduleLocalNotification (notification);
         }
