@@ -43,7 +43,7 @@ namespace GodSpeak.iOS
             var date = new DateTime (message.DateTimeToDisplay.Year, message.DateTimeToDisplay.Month, message.DateTimeToDisplay.Day);            
 
             date = date.AddHours (message.DateTimeToDisplay.Hour);
-            date = date.AddMinutes (25);
+            date = date.AddMinutes (message.DateTimeToDisplay.Minute);
 
             UILocalNotification notification = new UILocalNotification {				
                 FireDate = date.ToNSDate (),
