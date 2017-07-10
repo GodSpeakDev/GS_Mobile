@@ -124,8 +124,9 @@ namespace GodSpeak
 
 			await LoadMessages ();
 
-            _messageSettingsToken = _messenger.SubscribeOnMainThread<MessageSettingsChangeMessage> (async (obj) => {
-				await _messageService.UpdateUpcomingMessages();
+            _messageSettingsToken = _messenger.SubscribeOnMainThread<MessageSettingsChangeMessage> (async (obj) => 
+			{
+				await RefreshSettings();
             });
 
 			_newMessageToken = _messenger.SubscribeOnMainThread<MessageDeliveredMessage> (async(obj) => {
@@ -206,6 +207,12 @@ namespace GodSpeak
 				await _messageService.UpdateUpcomingMessages();
 				await ReloadMessages();
 			}
+		}
+
+		private async Task RefreshSettings()
+		{
+			await Task.Delay(1000);
+			await _messageService.UpdateUpcomingMessages();
 		}
 
 		private async Task ReloadMessages()
