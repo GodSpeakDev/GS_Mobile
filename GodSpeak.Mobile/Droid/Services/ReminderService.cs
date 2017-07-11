@@ -30,6 +30,7 @@ namespace GodSpeak.Droid
 	public class ReminderService : IReminderService
 	{
 		private ISettingsService _settingsService;
+		private ILoggingService _logger;
 
 		private AlarmManager _alarmManager;
 		public AlarmManager AlarmManager
@@ -47,9 +48,10 @@ namespace GodSpeak.Droid
 			}
 		}
 
-		public ReminderService(ISettingsService settingsService)
+		public ReminderService(ISettingsService settingsService, ILogManager logManager)
 		{
 			_settingsService = settingsService;
+			_logger = logManager.GetLog();
 		}
 
 		public bool SetMessageReminder(Message message)
@@ -67,13 +69,13 @@ namespace GodSpeak.Droid
 				message.DateTimeToDisplay.Year,
 				message.DateTimeToDisplay.Month - 1,
 				message.DateTimeToDisplay.Day,
-				//DateTime.Now.Hour,
-				//DateTime.Now.Minute + 1);
 				message.DateTimeToDisplay.Hour,
 				message.DateTimeToDisplay.Minute);
 
 			AlarmManager.Set(AlarmType.RtcWakeup, calendar.TimeInMillis, pendingIntent);
-			System.Diagnostics.Debug.WriteLine("Set Reminder for {0}", calendar);
+
+			_logger.Trace(string.Format("ADDED REMINDER: Id: {0} DateToDisplay: {1} FireDate: {2} Message: {3}", message.Id, message.DateTimeToDisplay, calendar, message.Verse.Text));
+			System.Diagnostics.Debug.WriteLine(string.Format("ADDED REMINDER: Id: {0} DateToDisplay: {1} FireDate: {2} Message: {3}", message.Id, message.DateTimeToDisplay, calendar, message.Verse.Text));
 
 			return true;
 		}
@@ -110,7 +112,7 @@ namespace GodSpeak.Droid
 		}
 	}
 
-	[BroadcastReceiver(Exported=true)]
+	[BroadcastReceiver(Exported = true)]
 	public class ReminderReceiver : Android.Support.V4.Content.WakefulBroadcastReceiver
 	{
 		public override void OnReceive(Context context, Intent intent)
@@ -123,12 +125,24 @@ namespace GodSpeak.Droid
 				if (hasMessenger)
 				{
 					Mvx.Resolve<IMvxMessenger>().Publish(new MessageDeliveredMessage(this));
+
+					var azureApi = Mvx.Resolve<IWebApiService>();
+
+					if (azureApi != null)
+					{
+						var messageTitle = message.Verse.Title;
+						azureApi.RecordMessageDelivered(new RecordMessageDeliveredRequest()
+						{
+							VerseCode = messageTitle.ToString(),
+							DateDelivered = DateTime.Now
+						});
+					}
 				}
 			}
 			else
 			{
 				var newIntent = new Intent(context, typeof(AlarmServiceIntentService));
-				newIntent.ReplaceExtras(intent);                           
+				newIntent.ReplaceExtras(intent);
 				StartWakefulService(context, newIntent);
 			}
 		}
@@ -163,7 +177,7 @@ namespace GodSpeak.Droid
 
 		public AlarmServiceIntentService() : base("AlarmServiceIntentService")
 		{
-			
+
 		}
 
 		protected override void OnHandleIntent(Intent intent)
@@ -186,9 +200,16 @@ namespace GodSpeak.Droid
 		private void SendNotification(Message message)
 		{
 			Notification.Builder builder = new Notification.Builder(ApplicationContext)
-				.SetContentTitle("God Speak")
+				.SetContentTitle("GodSpeak")
 				.SetSmallIcon(Resource.Drawable.app_icon)
 				.SetContentText(new VerseFormatter().Convert(message.Verse.Text, null, null, null).ToString());
+
+			Intent resultIntent = new Intent(this, typeof(SplashScreenActivity));
+			resultIntent.SetFlags (ActivityFlags.PreviousIsTop);
+
+			PendingIntent resultPendingIntent = PendingIntent.GetActivity(this.ApplicationContext, 0, resultIntent, PendingIntentFlags.UpdateCurrent);
+
+			builder.SetContentIntent(resultPendingIntent);
 
 			var random = new System.Random(DateTime.Now.Millisecond);
 			var id = random.Next();

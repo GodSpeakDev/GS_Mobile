@@ -5,65 +5,78 @@ using System.Diagnostics;
 
 namespace GodSpeak.iOS
 {
-    public class ReminderService : IReminderService
-    {
-        private static string MessageIdKey = "messageId";
+	public class ReminderService : IReminderService
+	{
+		public static string MessageIdKey = "messageId";
+		public static string MessageTitleKey = "messageTitle";
 
-        public bool SetMessageReminder (Message message)
-        {
-            if (IsReminderSet (message)) {
-                return false;
-            }
+		private ILoggingService _logger;
 
-            AddLocalNotification (message);
+		public ReminderService(ILogManager logManager)
+		{
+			_logger = logManager.GetLog();
+		}
 
-            return true;
-        }
+		public bool SetMessageReminder(Message message)
+		{
+			if (IsReminderSet(message) || UIApplication.SharedApplication.ScheduledLocalNotifications.Length == 64)
+			{
+				return false;
+			}
 
-        public void ClearReminders ()
-        {
-            foreach (UILocalNotification notification in UIApplication.SharedApplication.ScheduledLocalNotifications) {
-                UIApplication.SharedApplication.CancelLocalNotification (notification);
-            }
-        }
+			AddLocalNotification(message);
 
-        private void AddLocalNotification (Message message)
-        {
-            var keys = new object [] { MessageIdKey };
-            var objects = new object [] { message.Id.ToString () };
+			return true;
+		}
 
-            var date = new DateTime (message.DateTimeToDisplay.Year, message.DateTimeToDisplay.Month, message.DateTimeToDisplay.Day);
-            //date = date.AddHours(DateTime.Now.Hour);
-            //date = date.AddMinutes(DateTime.Now.Minute + 5);
+		public void ClearReminders()
+		{
+			foreach (UILocalNotification notification in UIApplication.SharedApplication.ScheduledLocalNotifications)
+			{
+				UIApplication.SharedApplication.CancelLocalNotification(notification);
+			}
+		}
 
-            date = date.AddHours (message.DateTimeToDisplay.Hour);
-            date = date.AddMinutes (message.DateTimeToDisplay.Minute);
+		private void AddLocalNotification(Message message)
+		{
+			var keys = new object[] { MessageIdKey, MessageTitleKey };
+			var objects = new object[] { message.Id.ToString(), message.Verse.Title };
 
-            UILocalNotification notification = new UILocalNotification {
-                FireDate = date.ToNSDate (),
-                //TimeZone = NSTimeZone.LocalTimeZone,
-                AlertBody = new VerseFormatter ().Convert (string.Format ("{0}\n-{1}", message.Verse.Text, message.Verse.Title), null, null, null).ToString (),
-                RepeatInterval = 0,
-                UserInfo = NSDictionary.FromObjectsAndKeys (objects, keys),
-                SoundName = UILocalNotification.DefaultSoundName,
-                ApplicationIconBadgeNumber = 1
+			var date = new DateTime(message.DateTimeToDisplay.Year, message.DateTimeToDisplay.Month, message.DateTimeToDisplay.Day);
 
-            };
-            Debug.WriteLine ("Setting reminder: " + notification.FireDate);
-            UIApplication.SharedApplication.ScheduleLocalNotification (notification);
-        }
+			date = date.AddHours(message.DateTimeToDisplay.Hour);
+			date = date.AddMinutes(message.DateTimeToDisplay.Minute);
 
-        private bool IsReminderSet (Message message)
-        {
-            foreach (UILocalNotification notification in UIApplication.SharedApplication.ScheduledLocalNotifications) {
-                var messageId = notification.UserInfo.ValueForKey (new Foundation.NSString ("messageId"));
+			UILocalNotification notification = new UILocalNotification
+			{
+				FireDate = date.ToNSDate(),
+				TimeZone = NSTimeZone.LocalTimeZone,
+				AlertBody = new VerseFormatter().Convert(string.Format("{0}\n-{1}", message.Verse.Text, message.Verse.Title), null, null, null).ToString(),
+				RepeatInterval = 0,
+				UserInfo = NSDictionary.FromObjectsAndKeys(objects, keys),
+				SoundName = UILocalNotification.DefaultSoundName,
+				ApplicationIconBadgeNumber = 1
 
-                if (messageId.ToString () == message.Id.ToString ()) {
-                    return true;
-                }
-            }
+			};
 
-            return false;
-        }
-    }
+			_logger.Trace(string.Format("ADDED REMINDER: Id: {0} DateToDisplay: {1} FireDate: {2} Message: {3}", message.Id, message.DateTimeToDisplay, notification.FireDate, message.Verse.Text));
+			Debug.WriteLine(string.Format("ADDED REMINDER: Id: {0} DateToDisplay: {1} FireDate: {2} Message: {3}", message.Id, message.DateTimeToDisplay, notification.FireDate, message.Verse.Text));
+			UIApplication.SharedApplication.ScheduleLocalNotification(notification);
+		}
+
+		private bool IsReminderSet(Message message)
+		{
+			foreach (UILocalNotification notification in UIApplication.SharedApplication.ScheduledLocalNotifications)
+			{
+				var messageId = notification.UserInfo.ValueForKey(new Foundation.NSString(MessageIdKey));
+
+				if (messageId.ToString() == message.Id.ToString())
+				{
+					return true;
+				}
+			}
+
+			return false;
+		}
+	}
 }

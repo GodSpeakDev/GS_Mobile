@@ -26,7 +26,7 @@ using Android.Content.Res;
 
 namespace GodSpeak.Droid
 {
-    [Activity (Theme = "@style/AppTheme", Label = "MvxFormsApplicationActivity", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.ScreenSize, WindowSoftInputMode = SoftInput.AdjustPan)]
+    [Activity (Theme = "@style/AppTheme", Label = "MvxFormsApplicationActivity", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.ScreenSize, WindowSoftInputMode = SoftInput.AdjustPan, LaunchMode=LaunchMode.SingleTop)]
     public class MainActivity : FormsApplicationActivity
     {
 		public const int RequestReadContacts = 0;
