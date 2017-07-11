@@ -37,7 +37,17 @@ namespace GodSpeak.Droid
                 ((MapView)Control).GetMapAsync(this);
 				formsMap.OnAddPin = OnAddPin;
 				formsMap.OnRemovePin = OnRemovePin;
+				formsMap.OnClearMap = OnClearMap;
             }
+		}
+
+		private void OnClearMap()
+		{
+			_markers.Clear();
+			_clusterManager.ClearItems();
+			_clusterManager.Cluster();
+
+			AddMyOrigin();
 		}
 
 		private void OnRemovePin(MapPoint id)
@@ -48,6 +58,7 @@ namespace GodSpeak.Droid
 
 				_clusterManager.RemoveItem(marker);
 				_markers.Remove(id);
+				_clusterManager.Cluster();
 			}
 		}
 

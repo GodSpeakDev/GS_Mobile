@@ -61,10 +61,20 @@ namespace GodSpeak
 					RemoveImpactDayPins((ImpactDay)item);
 				}
 			}
+			else if (e.Action == NotifyCollectionChangedAction.Reset)
+			{
+				ResetPins();
+			}
 		}
 
 		private void ResetPins()
 		{
+			Pins.Clear();
+			if (OnClearMap != null)
+			{
+				OnClearMap();	
+			}
+
 			foreach (var pin in _pins.Values)
 			{
 				Pins.Remove(pin);
