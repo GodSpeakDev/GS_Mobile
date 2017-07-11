@@ -36,6 +36,8 @@ namespace GodSpeak.Droid
         {
             CrashManager.Register (this, "da7c75f8b96b4b3abc8569120d7e1b3a");
 
+			FeedbackManager.Register(this, "da7c75f8b96b4b3abc8569120d7e1b3a");
+
             Xamarin.Forms.Forms.Init (this, bundle);
             Xamarin.FormsMaps.Init (this, bundle);
 			global::Xamarin.Forms.Forms.SetTitleBarVisibility(Xamarin.Forms.AndroidTitleBarVisibility.Never);
