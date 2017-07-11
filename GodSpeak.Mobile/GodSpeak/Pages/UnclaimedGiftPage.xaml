@@ -48,7 +48,7 @@
 
 					<views:Pager
 						Grid.Row="1"
-						NumberOfDots="3"
+						NumberOfDots="2"
 						SelectedDotIndex="{Binding SelectedPosition}"
 					/>
 

@@ -2573,26 +2573,26 @@ namespace GodSpeak.Droid
 			// aapt resource value: 0x7f020056
 			public const int avd_hide_password = 2130837590;
 			
-			// aapt resource value: 0x7f020151
-			public const int avd_hide_password_1 = 2130837841;
+			// aapt resource value: 0x7f02014e
+			public const int avd_hide_password_1 = 2130837838;
 			
-			// aapt resource value: 0x7f020152
-			public const int avd_hide_password_2 = 2130837842;
+			// aapt resource value: 0x7f02014f
+			public const int avd_hide_password_2 = 2130837839;
 			
-			// aapt resource value: 0x7f020153
-			public const int avd_hide_password_3 = 2130837843;
+			// aapt resource value: 0x7f020150
+			public const int avd_hide_password_3 = 2130837840;
 			
 			// aapt resource value: 0x7f020057
 			public const int avd_show_password = 2130837591;
 			
-			// aapt resource value: 0x7f020154
-			public const int avd_show_password_1 = 2130837844;
+			// aapt resource value: 0x7f020151
+			public const int avd_show_password_1 = 2130837841;
 			
-			// aapt resource value: 0x7f020155
-			public const int avd_show_password_2 = 2130837845;
+			// aapt resource value: 0x7f020152
+			public const int avd_show_password_2 = 2130837842;
 			
-			// aapt resource value: 0x7f020156
-			public const int avd_show_password_3 = 2130837846;
+			// aapt resource value: 0x7f020153
+			public const int avd_show_password_3 = 2130837843;
 			
 			// aapt resource value: 0x7f020058
 			public const int back_button = 2130837592;
@@ -3266,11 +3266,11 @@ namespace GodSpeak.Droid
 			// aapt resource value: 0x7f020137
 			public const int notification_icon_background = 2130837815;
 			
-			// aapt resource value: 0x7f02014f
-			public const int notification_template_icon_bg = 2130837839;
+			// aapt resource value: 0x7f02014c
+			public const int notification_template_icon_bg = 2130837836;
 			
-			// aapt resource value: 0x7f020150
-			public const int notification_template_icon_low_bg = 2130837840;
+			// aapt resource value: 0x7f02014d
+			public const int notification_template_icon_low_bg = 2130837837;
 			
 			// aapt resource value: 0x7f020138
 			public const int notification_tile_bg = 2130837816;
@@ -3309,37 +3309,28 @@ namespace GodSpeak.Droid
 			public const int search_icon = 2130837827;
 			
 			// aapt resource value: 0x7f020144
-			public const int send_gift_promo = 2130837828;
+			public const int settings_icon = 2130837828;
 			
 			// aapt resource value: 0x7f020145
-			public const int send_gift_selected_icon = 2130837829;
+			public const int share_background = 2130837829;
 			
 			// aapt resource value: 0x7f020146
-			public const int send_gift_unselected_icon = 2130837830;
+			public const int share_icon = 2130837830;
 			
 			// aapt resource value: 0x7f020147
-			public const int settings_icon = 2130837831;
+			public const int speechBalloonBackground = 2130837831;
 			
 			// aapt resource value: 0x7f020148
-			public const int share_background = 2130837832;
+			public const int splash = 2130837832;
 			
 			// aapt resource value: 0x7f020149
-			public const int share_icon = 2130837833;
+			public const int stop_icon = 2130837833;
 			
 			// aapt resource value: 0x7f02014a
-			public const int speechBalloonBackground = 2130837834;
+			public const int unclaimed_gift_selected_icon = 2130837834;
 			
 			// aapt resource value: 0x7f02014b
-			public const int splash = 2130837835;
-			
-			// aapt resource value: 0x7f02014c
-			public const int stop_icon = 2130837836;
-			
-			// aapt resource value: 0x7f02014d
-			public const int unclaimed_gift_selected_icon = 2130837837;
-			
-			// aapt resource value: 0x7f02014e
-			public const int unclaimed_gift_unselected_icon = 2130837838;
+			public const int unclaimed_gift_unselected_icon = 2130837835;
 			
 			static Drawable()
 			{

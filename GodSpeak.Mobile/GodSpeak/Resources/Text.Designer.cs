@@ -1048,5 +1048,11 @@ namespace GodSpeak.Resources {
                 return ResourceManager.GetString("Me", resourceCulture);
             }
         }
+        
+        public static string GiftsUnclaimed {
+            get {
+                return ResourceManager.GetString("GiftsUnclaimed", resourceCulture);
+            }
+        }
     }
 }

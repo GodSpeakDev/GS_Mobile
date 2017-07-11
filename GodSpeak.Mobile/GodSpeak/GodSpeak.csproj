@@ -398,22 +398,10 @@
     <Compile Include="Services\IFileService.cs" />
     <Compile Include="Services\IMessageService.cs" />
     <Compile Include="Services\MessageService.cs" />
-    <Compile Include="ViewModels\WhoReferredYouViewModel.cs" />
-    <Compile Include="Pages\WhoReferredYouPage.xaml.cs">
-      <DependentUpon>WhoReferredYouPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CustomComponents\ContactCell.xaml.cs">
-      <DependentUpon>ContactCell.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Api\Request\SendReferralRequest.cs" />
-    <Compile Include="ViewModels\EmailComposerViewModel.cs" />
-    <Compile Include="Pages\EmailComposerPage.xaml.cs">
-      <DependentUpon>EmailComposerPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CustomComponents\CustomEditor.cs" />
-    <Compile Include="Api\Request\ShareRequest.cs" />
     <Compile Include="Services\ILoggingService.cs" />
     <Compile Include="Services\ILogManager.cs" />
+    <Compile Include="Api\Request\SendReferralRequest.cs" />
+    <Compile Include="Api\Request\ShareRequest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

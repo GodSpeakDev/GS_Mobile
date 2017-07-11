@@ -878,4 +878,14 @@ Enjoy!
 		xml:space="preserve">
     	<value>Me</value>
   	</data>
+	<data
+		name="GiftsClaimed"
+		xml:space="preserve">
+    	<value>Gifts Claimed</value>
+    </data>
+	<data
+		name="GiftsUnclaimed"
+		xml:space="preserve">
+		<value>Gifts Unclaimed</value>
+    </data>
 </root>

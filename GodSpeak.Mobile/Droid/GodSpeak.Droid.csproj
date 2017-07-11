@@ -272,7 +272,6 @@
     <Compile Include="Services\FileService.cs" />
     <Compile Include="Renderers\CustomClusterRenderer.cs" />
     <Compile Include="Services\GodSpeakWebBrowserTask.cs" />
-    <Compile Include="Renderers\CustomEditorRenderer.cs" />
     <Compile Include="Services\LoggingService.cs" />
     <Compile Include="Services\NLogManager.cs" />
   </ItemGroup>

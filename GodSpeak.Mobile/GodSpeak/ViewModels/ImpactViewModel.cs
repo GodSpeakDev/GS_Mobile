@@ -9,28 +9,29 @@ using GodSpeak.Services;
 namespace GodSpeak
 {
 	public class ImpactViewModel : CustomViewModel
-	{		
+	{
 		private List<ImpactDay> _allImpactDays;
 
 		private bool _isPlaying;
 		public bool IsPlaying
 		{
-			get { return _isPlaying;}
-			set { SetProperty(ref _isPlaying, value);}
+			get { return _isPlaying; }
+			set { SetProperty(ref _isPlaying, value); }
 		}
 
-		private ObservableCollection<ImpactDay> _shownImpactDays; 
+		private ObservableCollection<ImpactDay> _shownImpactDays;
 		public ObservableCollection<ImpactDay> ShownImpactDays
 		{
 			get { return _shownImpactDays; }
-			set { SetProperty(ref _shownImpactDays, value);}
+			set { SetProperty(ref _shownImpactDays, value); }
 		}
 
 		private DateTime _minDate;
 		public DateTime MinDate
 		{
-			get { return _minDate;}
-			set { 
+			get { return _minDate; }
+			set
+			{
 				SetProperty(ref _minDate, value);
 				RaisePropertyChanged(() => CurrentSliderDate);
 			}
@@ -38,7 +39,7 @@ namespace GodSpeak
 
 		public DateTime CurrentSliderDate
 		{
-			get 
+			get
 			{
 				return MinDate.AddDays(DayValue);
 			}
@@ -47,8 +48,9 @@ namespace GodSpeak
 		private int _dayValue;
 		public int DayValue
 		{
-			get { return _dayValue;}
-			set { 
+			get { return _dayValue; }
+			set
+			{
 				SetProperty(ref _dayValue, value);
 				SetImpactDays();
 				RaisePropertyChanged(() => CurrentSliderDate);
@@ -58,8 +60,8 @@ namespace GodSpeak
 		private int _minimumDayValue;
 		public int MinimumDayValue
 		{
-			get { return _minimumDayValue;}
-			set { SetProperty(ref _minimumDayValue, value);}
+			get { return _minimumDayValue; }
+			set { SetProperty(ref _minimumDayValue, value); }
 		}
 
 		private int _maximumDayValue;
@@ -88,7 +90,7 @@ namespace GodSpeak
 		}
 
 		public ImpactViewModel(IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, ISettingsService settingsService) : base(dialogService, hudService, sessionService, webApiService, settingsService)
-		{			
+		{
 			ShownImpactDays = new ObservableCollection<ImpactDay>();
 
 			MinimumDayValue = 0;
@@ -101,10 +103,7 @@ namespace GodSpeak
 			this.HudService.Show();
 
 			var currentUser = await SessionService.GetUser();
-			var response = await WebApiService.GetImpact(new GetImpactRequest() 
-			{
-				InviteCode = currentUser.InviteCode
-			});
+			var response = await WebApiService.GetImpact();
 			this.HudService.Hide();
 
 			if (response.IsSuccess)
@@ -119,12 +118,12 @@ namespace GodSpeak
 					if (firstDate.Date == lastDate.Date)
 					{
 						MaximumDayValue = 1;
-						MinDate = firstDate.Date.Date.AddDays(-1);	
+						MinDate = firstDate.Date.Date.AddDays(-1);
 					}
 					else
 					{
 						MaximumDayValue = (lastDate.Date.Date - firstDate.Date).Days;
-						MinDate = firstDate.Date.Date;	
+						MinDate = firstDate.Date.Date;
 					}
 
 
@@ -178,7 +177,7 @@ namespace GodSpeak
 				DayValue = MinimumDayValue;
 			}
 
-			for (int i = DayValue; i < MaximumDayValue; i++)
+			for (int i = DayValue; i <= MaximumDayValue; i++)
 			{
 				await Task.Delay(200);
 
