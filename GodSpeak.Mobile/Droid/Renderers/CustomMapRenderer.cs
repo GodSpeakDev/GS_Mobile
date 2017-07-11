@@ -37,7 +37,17 @@ namespace GodSpeak.Droid
                 ((MapView)Control).GetMapAsync(this);
 				formsMap.OnAddPin = OnAddPin;
 				formsMap.OnRemovePin = OnRemovePin;
+				formsMap.OnClearMap = OnClearMap;
             }
+		}
+
+		private void OnClearMap()
+		{
+			_markers.Clear();
+			_clusterManager.ClearItems();
+			_clusterManager.Cluster();
+
+			AddMyOrigin();
 		}
 
 		private void OnRemovePin(MapPoint id)
@@ -48,7 +58,7 @@ namespace GodSpeak.Droid
 
 				_clusterManager.RemoveItem(marker);
 				_markers.Remove(id);
-                _clusterManager.Cluster ();
+				_clusterManager.Cluster();
 			}
 		}
 
@@ -59,6 +69,13 @@ namespace GodSpeak.Droid
 
 			var clusterItem = new ClusterItem(pin.Position.Latitude, pin.Position.Longitude);
 			_markers.Add(id, clusterItem);
+			_clusterManager.AddItem(clusterItem);
+			_clusterManager.Cluster();
+		}
+
+		private void AddMyOrigin()
+		{
+			var clusterItem = new ClusterItem(SettingsService.Latitude, SettingsService.Longitude);
 			_clusterManager.AddItem(clusterItem);
 			_clusterManager.Cluster();
 		}
@@ -82,6 +99,8 @@ namespace GodSpeak.Droid
 
 			_googleMap.SetOnCameraChangeListener(_clusterManager);
 			_googleMap.SetOnMarkerClickListener(_clusterManager);
+
+			AddMyOrigin();
 
 			var customMap = this.Element as ImpactMap;
 			foreach (var item in customMap.PinsDictionary)

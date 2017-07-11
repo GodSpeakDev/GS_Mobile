@@ -174,6 +174,7 @@ namespace GodSpeak
 
 			if (DayValue == MaximumDayValue)
 			{
+				ShownImpactDays.Clear();
 				DayValue = MinimumDayValue;
 			}
 
