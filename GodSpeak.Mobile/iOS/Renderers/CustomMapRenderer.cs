@@ -182,9 +182,9 @@ namespace GodSpeak.iOS
 			public override IGMUCluster[] ClustersAtZoom(float zoom)
 			{
 				// Uncomment to test the zooming hack
-				//return base.ClustersAtZoom(zoom * 2);
+				return base.ClustersAtZoom(zoom * 2);
 
-				return base.ClustersAtZoom(zoom);
+				//return base.ClustersAtZoom(zoom);
 			} 
 		}
 	}
