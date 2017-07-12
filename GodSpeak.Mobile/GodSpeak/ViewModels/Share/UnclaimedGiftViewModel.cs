@@ -102,7 +102,7 @@ namespace GodSpeak
         {
 			try
 			{
-				CrossInAppBilling.Current.InTestingMode = true;
+                CrossInAppBilling.Current.InTestingMode = false;
 
                 this.HudService.Show(Text.ProcessingOrder);
 				var connect = await CrossInAppBilling.Current.ConnectAsync();
@@ -114,7 +114,7 @@ namespace GodSpeak
 					return;
 				}
 
-				var purchase = await CrossInAppBilling.Current.PurchaseAsync(bundle.AppStoreSku, Plugin.InAppBilling.Abstractions.ItemType.InAppPurchase, "apppayload");
+                var purchase = await CrossInAppBilling.Current.PurchaseAsync(bundle.PlayStoreSku, Plugin.InAppBilling.Abstractions.ItemType.InAppPurchase, "apppayload");
 				if (purchase == null)
 				{
 					// Not Purchased
