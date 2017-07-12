@@ -74,6 +74,7 @@ namespace GodSpeak.Droid
 
 			AlarmManager.Set(AlarmType.RtcWakeup, calendar.TimeInMillis, pendingIntent);
 
+
 			_logger.Trace(string.Format("ADDED REMINDER: Id: {0} DateToDisplay: {1} FireDate: {2} Message: {3}", message.Id, message.DateTimeToDisplay, calendar, message.Verse.Text));
 			System.Diagnostics.Debug.WriteLine(string.Format("ADDED REMINDER: Id: {0} DateToDisplay: {1} FireDate: {2} Message: {3}", message.Id, message.DateTimeToDisplay, calendar, message.Verse.Text));
 
