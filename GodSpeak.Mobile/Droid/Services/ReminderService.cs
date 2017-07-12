@@ -201,6 +201,7 @@ namespace GodSpeak.Droid
 		{
 			Notification.Builder builder = new Notification.Builder(ApplicationContext)
 				.SetContentTitle("GodSpeak")
+				.SetAutoCancel(true)
 				.SetSmallIcon(Resource.Drawable.app_icon)
 				.SetContentText(new VerseFormatter().Convert(message.Verse.Text, null, null, null).ToString());
 
