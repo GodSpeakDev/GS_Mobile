@@ -15,9 +15,14 @@ namespace GodSpeak.iOS
         public static NSDate ToNSDate (this DateTime date)
         {
             if (date.Kind == DateTimeKind.Unspecified) {
-                date = DateTime.SpecifyKind (date, DateTimeKind.Local);
+                date = DateTime.SpecifyKind (date, DateTimeKind.Utc);
             }
-            return (NSDate)date;
+
+			var timeoffset = new DateTimeOffset(date, TimeSpan.FromHours(0));
+
+			var timeoffSetDate = DateTime.SpecifyKind(timeoffset.DateTime, DateTimeKind.Local);
+			var nsDate = (NSDate)timeoffSetDate;
+			return nsDate;
 
             //DateTime reference = TimeZone.CurrentTimeZone.ToLocalTime (
             //                         new DateTime (2001, 1, 1, 0, 0, 0));

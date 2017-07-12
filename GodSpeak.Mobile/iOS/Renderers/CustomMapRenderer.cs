@@ -50,10 +50,20 @@ namespace GodSpeak.iOS
 				var formsMap = (CustomMap)e.NewElement;
 				formsMap.OnAddPin = OnAddPin;
 				formsMap.OnRemovePin = OnRemovePin;
+				formsMap.OnClearMap = OnClearMap;
 			}
 
             AddCluster ();
             AddMyOrigin();
+		}
+
+		private void OnClearMap()
+		{
+			_markers.Clear();
+			clusterManager.ClearItems();
+			clusterManager.Cluster();
+
+			AddMyOrigin();
 		}
 
 		private void OnRemovePin(MapPoint id)

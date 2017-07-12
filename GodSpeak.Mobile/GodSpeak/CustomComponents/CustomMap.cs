@@ -17,6 +17,12 @@ namespace GodSpeak
 			set;
 		}
 
+		public Action OnClearMap
+		{
+			get;
+			set;
+		}
+
 		public CustomMap()
 		{
 			
