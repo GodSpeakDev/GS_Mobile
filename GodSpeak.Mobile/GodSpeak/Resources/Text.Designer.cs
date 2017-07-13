@@ -635,6 +635,12 @@ namespace GodSpeak.Resources {
             }
         }
         
+        public static string GiftiOS {
+            get {
+                return ResourceManager.GetString("GiftiOS", resourceCulture);
+            }
+        }
+        
         public static string ShareGiftsLeft {
             get {
                 return ResourceManager.GetString("ShareGiftsLeft", resourceCulture);

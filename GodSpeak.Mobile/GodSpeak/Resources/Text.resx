@@ -508,7 +508,7 @@ Delivered</value>
 	<data
 		name="ShareDescription"
 		xml:space="preserve">
-    	<value>Share GodSpeak with your friends!</value>
+    	<value>Share GodSpeak with your Android friends!</value>
   	</data>
 	<data
 		name="ShareWithFriend"
@@ -521,14 +521,19 @@ Delivered</value>
     	<value>Share with World</value>
   	</data>
 	<data
+		name="GiftiOS"
+		xml:space="preserve">
+    	<value>Gift iOS</value>
+  	</data>
+	<data
 		name="ShareGiftsLeft"
 		xml:space="preserve">
-    	<value>You have {0} gifts left</value>
+    	<value>You have {0} Android gifts left</value>
   	</data>
 	<data
 		name="DonateStranger"
 		xml:space="preserve">
-    	<value>Pay 1 of your {0} gifts forward to someone you don't know...</value>
+    	<value>Pay 1 of your {0} Android gifts forward to someone you don't know...</value>
   	</data>
 	<data
 		name="DidYouKnow"

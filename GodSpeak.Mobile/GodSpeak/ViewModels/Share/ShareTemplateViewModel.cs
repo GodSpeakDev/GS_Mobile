@@ -87,7 +87,7 @@ namespace GodSpeak
 
         private async void DoLearnMore ()
         {
-            browserTask.ShowWebPage ("http://givegodspeak.com");
+            browserTask.ShowWebPage ("http://go.givegodspeak.com/GiftiTunes");
         }
     }
 }
