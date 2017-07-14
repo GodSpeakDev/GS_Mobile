@@ -22,9 +22,10 @@ namespace GodSpeak.iOS
 {
 	public class CustomMapRenderer : ViewRenderer, IGMUClusterRendererDelegate, IGMUClusterManagerDelegate, IMapViewDelegate
 	{
-		MapView mapView;
-		GMUClusterManager clusterManager;
+		private MapView _mapView;
+		private GMUClusterManager _clusterManager;
 		private Dictionary<MapPoint, IGMUClusterItem> _markers = new Dictionary<MapPoint, IGMUClusterItem>();
+		private CustomIconGenerator _iconGenerator;
 
 		private ISettingsService SettingsService
 		{
@@ -41,9 +42,9 @@ namespace GodSpeak.iOS
 			var camera = CameraPosition.FromCamera(latitude: SettingsService.Latitude,
 								longitude: SettingsService.Longitude,
 								zoom: 0);
-			mapView = MapView.FromCamera (CGRect.Empty, camera);
+			_mapView = MapView.FromCamera (CGRect.Empty, camera);
 
-			this.SetNativeControl(mapView);
+			this.SetNativeControl(_mapView);
 
 			if (e.NewElement != null)
 			{
@@ -60,8 +61,8 @@ namespace GodSpeak.iOS
 		private void OnClearMap()
 		{
 			_markers.Clear();
-			clusterManager.ClearItems();
-			clusterManager.Cluster();
+			_clusterManager.ClearItems();
+			_clusterManager.Cluster();
 
 			AddMyOrigin();
 		}
@@ -72,34 +73,34 @@ namespace GodSpeak.iOS
 			{
 				var marker = _markers[id];
 
-				clusterManager.RemoveItem(marker);
+				_clusterManager.RemoveItem(marker);
 				_markers.Remove(id);
-                clusterManager.Cluster();
+                _clusterManager.Cluster();
 
 			}
 		}
 
 		private void OnAddPin(MapPoint id, Pin pin)
 		{
-			if (mapView == null || _markers.ContainsKey(id))
+			if (_mapView == null || _markers.ContainsKey(id))
 				return;
 
 			var item = new POIItem(pin.Position.Latitude, pin.Position.Longitude, pin.Label);
 			_markers.Add(id, item);
-			clusterManager.AddItem(item);
-			clusterManager.Cluster();
+			_clusterManager.AddItem(item);
+			_clusterManager.Cluster();
 		}
 
 		protected override void OnElementPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
 		{
 			base.OnElementPropertyChanged(sender, e);
-            clusterManager.Cluster ();
+            _clusterManager.Cluster ();
 		}
 
 		void AddCluster()
 		{
-			var googleMapView = mapView; //use the real mapview init'd somewhere else instead of this
-			var iconGenerator = new GMUDefaultClusterIconGenerator(
+			var googleMapView = _mapView; //use the real mapview init'd somewhere else instead of this
+			_iconGenerator = new CustomIconGenerator(
 				new NSNumber[] 
 				{					
 					10, 
@@ -110,28 +111,28 @@ namespace GodSpeak.iOS
 				},
 				new UIImage[] 
 				{ 
-					GetImage(40, 40),
-                    GetImage(40, 40),
-                    GetImage(40, 40),
-                    GetImage(40, 40),
-                    GetImage(40, 40),
+					GetImage(25, 25),
+                    GetImage(25, 25),
+                    GetImage(25, 25),
+                    GetImage(25, 25),
+                    GetImage(25, 25),
 				});
 
 			var algorithm = new CustomAlgorithm();
-			var renderer = new CustomClusterRenderer(mapView, iconGenerator);
+			var renderer = new CustomClusterRenderer(_mapView, _iconGenerator);
 			renderer.WeakDelegate = this;
 
-			clusterManager = new GMUClusterManager(googleMapView, algorithm, renderer);
-			clusterManager.Cluster();
+			_clusterManager = new GMUClusterManager(googleMapView, algorithm, renderer);
+			_clusterManager.Cluster();
 
-			clusterManager.SetDelegate(this, this);
+			_clusterManager.SetDelegate(this, this);
 		}
 
 		private void AddMyOrigin()
 		{
 			var item = new POIItem(SettingsService.Latitude, SettingsService.Longitude, Text.Me);
-			clusterManager.AddItem(item);
-			clusterManager.Cluster();
+			_clusterManager.AddItem(item);
+			_clusterManager.Cluster();
 		}
 
 		public UIImage GetImage(int height, int width)
@@ -156,6 +157,19 @@ namespace GodSpeak.iOS
 			}
 		}
 
+		public UIImage Resize(UIImage image, int height, int width)
+		{
+			var size = new CoreGraphics.CGSize(width, height);
+
+			UIGraphics.BeginImageContext(size);
+			image.Draw(new CoreGraphics.CGRect(0, 0, size.Width, size.Height));
+
+			var resizedImage = UIGraphics.GetImageFromCurrentImageContext();
+			UIGraphics.EndImageContext();
+
+			return resizedImage;
+		}
+
 		[Export("renderer:willRenderMarker:")]
 		public void WillRenderMarker(GMUClusterRenderer renderer, Overlay marker)
 		{
@@ -170,9 +184,11 @@ namespace GodSpeak.iOS
 					myMarker.Title = item.Name;
 					myMarker.Icon = GetImage(15, 15);
 				}
-				else
+				else if (myMarker.UserData is GMUStaticCluster)
 				{
-					
+					var cluster = (GMUStaticCluster) myMarker.UserData;
+					var size = (int) (15 + Math.Pow(_mapView.Camera.Zoom, 2));
+					myMarker.Icon = _iconGenerator.IconForText(new NSString(cluster.Count.ToString()), GetImage(size, size));
 				}
 			}
 		}
@@ -180,11 +196,11 @@ namespace GodSpeak.iOS
 		[Export("clusterManager:didTapCluster:")]
 		public void DidTapCluster(GMUClusterManager clusterManager, IGMUCluster cluster)
 		{
-			var newCamera = CameraPosition.FromCamera(cluster.Position, mapView.Camera.Zoom + 1);
+			var newCamera = CameraPosition.FromCamera(cluster.Position, _mapView.Camera.Zoom + 1);
 
 			var update = CameraUpdate.SetCamera(newCamera);
 
-			mapView.MoveCamera(update);
+			_mapView.MoveCamera(update);
 		}
 
 		public class CustomAlgorithm : GMCluster.GMUGridBasedClusterAlgorithm
@@ -193,9 +209,85 @@ namespace GodSpeak.iOS
 			{
 				// Uncomment to test the zooming hack
 				return base.ClustersAtZoom(zoom * 2);
-
-				//return base.ClustersAtZoom(zoom);
 			} 
+		}
+
+		public class CustomIconGenerator : GMUDefaultClusterIconGenerator
+		{
+			private NSNumber[] _buckets;
+			private UIImage[] _backgroundImages;
+			private NSCache _iconCache;
+
+			public CustomIconGenerator(NSNumber[] buckets, UIImage[] backgroundImages) : base(buckets, backgroundImages)
+			{
+				_buckets = buckets;
+				_backgroundImages = backgroundImages;
+				_iconCache = new NSCache();
+			}
+
+			public override UIImage IconForSize(nuint size)
+			{
+				var bucketIndex = BucketIndexForSize((int)size);
+				NSString text;
+
+				if (size < _buckets[bucketIndex].UnsignedLongValue) 
+				{
+					text = new NSString(size.ToString());
+  				} 
+				else 
+				{
+					text = new NSString(_buckets[bucketIndex].ToString() + "+");
+  				}
+
+			    var image = _backgroundImages[bucketIndex];
+				return IconForText(text, image);
+			}
+
+			private int BucketIndexForSize(int size)
+			{
+				var index = 0;
+				while (index + 1 < _buckets.Count() && (int) _buckets[index + 1] <= size) 
+				{
+    				++index;
+  				}
+
+  				return index;
+			}
+
+			public UIImage IconForText(NSString text, UIImage image)
+			{
+				var icon = (UIImage) _iconCache.ObjectForKey (text);
+  				if (icon != null) 
+				{
+    				return icon;
+  				}
+
+				var font = UIFont.BoldSystemFontOfSize(12);
+				CGSize size = image.Size;
+				UIGraphics.BeginImageContextWithOptions(size, false, 0.0f);
+				image.Draw(new CGRect(0, 0, size.Width, size.Height));
+				var rect = new CGRect(0, 0, image.Size.Width, image.Size.Height);
+
+				var paragraphStyle = new NSMutableParagraphStyle();
+				paragraphStyle.Alignment = UITextAlignment.Center;
+
+				var attributes = new UIStringAttributes();
+				attributes.Font = font;
+				attributes.ParagraphStyle = paragraphStyle;
+				attributes.ForegroundColor = UIColor.White;
+
+				var textSize = text.GetSizeUsingAttributes(attributes);
+				var textRect = rect.Inset((rect.Size.Width - textSize.Width) / 2, (rect.Size.Height - textSize.Height) / 2);
+				
+				text.DrawString(textRect, attributes);
+
+				var newImage = UIGraphics.GetImageFromCurrentImageContext();
+				UIGraphics.EndImageContext();
+
+				_iconCache.SetObjectforKey(newImage, text);
+  				
+				return newImage;
+			}
 		}
 	}
 }
