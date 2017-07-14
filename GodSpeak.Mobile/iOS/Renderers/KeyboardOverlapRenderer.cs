@@ -18,6 +18,7 @@ namespace GodSpeak.iOS
 		private bool _pageWasShiftedUp;
 		private double _activeViewBottom;
 		private bool _isKeyboardShown;
+		private double _initialHeightPosition;
 
 		public static void Init()
 		{
@@ -33,6 +34,7 @@ namespace GodSpeak.iOS
 
 			if (page != null)
 			{
+				_initialHeightPosition = Element.Bounds.Y;
 				var contentScrollView = page.Content as ScrollView;
 
 				if (contentScrollView != null || page.PreventKeyboardOverlap)
@@ -76,8 +78,8 @@ namespace GodSpeak.iOS
 		}
 
 		protected virtual void OnKeyboardShow(NSNotification notification)
-		{
-			if (!IsViewLoaded || _isKeyboardShown)
+		{			
+			if (!IsViewLoaded)
 				return;
 
 			_isKeyboardShown = true;
@@ -95,7 +97,7 @@ namespace GodSpeak.iOS
 			if (isOverlapping)
 			{
 				_activeViewBottom = activeView.GetViewRelativeBottom(View);
-				ShiftPageUp(keyboardFrame.Height, _activeViewBottom);
+				ShiftPageUp(keyboardFrame.Height, _activeViewBottom + (Element.Bounds.Y - _initialHeightPosition));
 			}
 		}
 
@@ -108,24 +110,24 @@ namespace GodSpeak.iOS
 			var keyboardFrame = UIKeyboard.FrameEndFromNotification(notification);
 
 			if (_pageWasShiftedUp)
-			{				
-				ShiftPageDown(keyboardFrame.Height, _activeViewBottom);			
+			{
+				ShiftPageDown(keyboardFrame.Height, _activeViewBottom);
 			}
 		}
 
 		private void ShiftPageUp(nfloat keyboardHeight, double activeViewBottom)
-		{			
+		{
 			var pageFrame = Element.Bounds;
 			var newY = pageFrame.Y + CalculateShiftByAmount(pageFrame.Height, keyboardHeight, activeViewBottom);
-			
+
 			Element.LayoutTo(new Rectangle(pageFrame.X, newY,
 				pageFrame.Width, pageFrame.Height));
-			
+
 			_pageWasShiftedUp = true;
 		}
 
 		private void ShiftPageDown(nfloat keyboardHeight, double activeViewBottom, bool invokeOnMainThread = false)
-		{			
+		{
 			var pageFrame = Element.Bounds;
 			var newY = pageFrame.Y - CalculateShiftByAmount(pageFrame.Height, keyboardHeight, activeViewBottom);
 

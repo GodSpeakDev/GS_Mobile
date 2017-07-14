@@ -61,12 +61,13 @@ namespace GodSpeak
 
         public void Init ()
         {
-#if DEBUG
-            Email = "Ben@rendr.io";
-            Password = "J0hn_galt";
-			//Email = "brett@venadotech.com";
-			//Password = "v3nad0";
-#endif
+			Email = SettingsService.Email;
+//#if DEBUG
+//            Email = "Ben@rendr.io";
+//            Password = "J0hn_galt";
+//			//Email = "brett@venadotech.com";
+//			//Password = "v3nad0";
+//#endif
         }
 
         private async void DoLoginCommand ()
