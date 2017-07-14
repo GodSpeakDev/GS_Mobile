@@ -90,7 +90,7 @@
 							Style="{StaticResource ButtonLinkText}"
 							Text="{x:Static res:Text.PrivacyPolicyTerms}">
 							<Label.GestureRecognizers>
-						        <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" />
+						        <TapGestureRecognizer Command="{Binding GoTocCommand}" />
 						    </Label.GestureRecognizers>
 						</views:CustomLabel>
 					</StackLayout>

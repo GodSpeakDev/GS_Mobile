@@ -2,6 +2,7 @@
 using MvvmCross.Core.ViewModels;
 using GodSpeak.Resources;
 using GodSpeak.Services;
+using MvvmCross.Plugins.WebBrowser;
 
 namespace GodSpeak
 {
@@ -55,8 +56,18 @@ namespace GodSpeak
 			}
 		}
 
-        public LoginViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, ISettingsService settingsService) : base (dialogService, hudService, sessionService, webApiService, settingsService)
+        private MvxCommand _goTocCommand;
+        public MvxCommand GoTocCommand {
+            get {
+                return _goTocCommand ?? (_goTocCommand = new MvxCommand(DoGoTocCommand));
+            }
+        }
+
+        readonly IMvxWebBrowserTask browserTask;
+
+        public LoginViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, ISettingsService settingsService, IMvxWebBrowserTask browserTask) : base (dialogService, hudService, sessionService, webApiService, settingsService)
         {
+            this.browserTask = browserTask;
         }
 
         public void Init ()
@@ -130,5 +141,10 @@ namespace GodSpeak
 		{
 			this.ShowAndRestoreNavigation<GetStartedViewModel>();
 		}
+
+        void DoGoTocCommand ()
+        {
+            this.browserTask.ShowWebPage ("http://go.givegodspeak.com/TermsConditions");
+        }
     }
 }
