@@ -36,7 +36,7 @@ namespace GodSpeak
 
 		private async void DoTapLearnHowToPayForwardCommand()
 		{
-			_browserTask.ShowWebPage("http://givegodspeak.azurewebsites.net/GiftiTunes");
+			_browserTask.ShowWebPage("http://go.givegodspeak.com/GiftiTunes");
 		}
 	}
 }
