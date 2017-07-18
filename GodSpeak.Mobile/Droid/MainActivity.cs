@@ -4,8 +4,6 @@ using Xamarin.Forms.Platform.Android;
 
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Core.Views;
-using MvvmCross.Forms.Presenter.Core;
-using MvvmCross.Forms.Presenter.Droid;
 using MvvmCross.Platform;
 
 using Android.App;

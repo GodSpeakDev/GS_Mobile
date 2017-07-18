@@ -10,7 +10,8 @@ using MvvmCross.Platform;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Binding.BindingContext;
 using Xamarin.Forms;
-using MvvmCross.Forms.Presenter.Core;
+using MvvmCross.Forms.Presenters;
+using MvvmCross.Forms.Core;
 
 namespace GodSpeak
 {

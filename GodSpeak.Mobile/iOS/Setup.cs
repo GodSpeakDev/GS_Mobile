@@ -6,24 +6,22 @@ using MvvmCross.Platform;
 using UIKit;
 using GodSpeak;
 using Xamarin.Forms;
-using MvvmCross.Forms.Presenter.Core;
-using MvvmCross.Forms.Presenter.iOS;
 using GodSpeak.Services;
 using GodSpeak.iOS.Services;
 
 namespace GodSpeak.iOS
 {
-    public class Setup : MvxIosSetup
+    public class Setup : MvvmCross.Forms.iOS.MvxFormsIosSetup
     {
         public Setup (MvxApplicationDelegate applicationDelegate, UIWindow window)
             : base (applicationDelegate, window)
         {
         }
 
-        public Setup (MvxApplicationDelegate applicationDelegate, IMvxIosViewPresenter presenter)
-            : base (applicationDelegate, presenter)
-        {
-        }
+        //public Setup (MvxApplicationDelegate applicationDelegate, IMvxIosViewPresenter presenter)
+        //    : base (applicationDelegate, presenter)
+        //{
+        //}
 
         protected override IMvxIosViewPresenter CreatePresenter ()
         {

@@ -1,5 +1,4 @@
 ﻿using System;
-using MvvmCross.Forms.Presenter.Core;
 using MvvmCross.Core.ViewModels;
 using System.Collections.Generic;
 
