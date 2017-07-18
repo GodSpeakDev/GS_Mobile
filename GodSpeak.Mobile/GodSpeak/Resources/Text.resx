@@ -721,11 +721,12 @@ Enjoy!
     	<value>Hey there, I wanted to share this awesome app with you. GodSpeak has brought wisdom and encouragement to me on a daily basis!
 
 You can check it out at this URL:
-			
-http://givegodspeak.com
+https://play.google.com/store/apps/details?id=com.givegodspeak.android
+
+Don't forget to use invite code: {0}			
 
 Enjoy!
-- {0}
+- {1}
 		</value>
   	</data>
 	<data
