@@ -44,8 +44,9 @@ namespace GodSpeak.Droid
 		private void OnClearMap()
 		{
 			_markers.Clear();
-			_clusterManager.ClearItems();
-			_clusterManager.Cluster();
+
+            _clusterManager?.ClearItems();
+            _clusterManager?.Cluster();
 
 			AddMyOrigin();
 		}
@@ -56,7 +57,7 @@ namespace GodSpeak.Droid
 			{
 				var marker = _markers[id];
 
-				_clusterManager.RemoveItem(marker);
+				_clusterManager?.RemoveItem(marker);
 				_markers.Remove(id);
 				_clusterManager.Cluster();
 			}
@@ -69,15 +70,15 @@ namespace GodSpeak.Droid
 
 			var clusterItem = new ClusterItem(pin.Position.Latitude, pin.Position.Longitude);
 			_markers.Add(id, clusterItem);
-			_clusterManager.AddItem(clusterItem);
-			_clusterManager.Cluster();
+			_clusterManager?.AddItem(clusterItem);
+			_clusterManager?.Cluster();
 		}
 
 		private void AddMyOrigin()
 		{
 			var clusterItem = new ClusterItem(SettingsService.Latitude, SettingsService.Longitude);
-			_clusterManager.AddItem(clusterItem);
-			_clusterManager.Cluster();
+			_clusterManager?.AddItem(clusterItem);
+			_clusterManager?.Cluster();
 		}
 
 		public void OnMapReady(GoogleMap googleMap)

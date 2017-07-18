@@ -3,7 +3,6 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using MvvmCross.Forms.Presenter.Core;
 using GodSpeak.Services;
 using System.Threading.Tasks;
 using MvvmCross.Plugins.Messenger;

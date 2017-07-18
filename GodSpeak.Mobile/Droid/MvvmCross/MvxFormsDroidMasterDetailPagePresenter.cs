@@ -1,5 +1,6 @@
-﻿using MvvmCross.Droid.Views;
-using MvvmCross.Forms.Presenter.Core;
+﻿using System;
+using MvvmCross.Core.ViewModels;
+using MvvmCross.Droid.Views;
 
 namespace GodSpeak.Droid
 {
@@ -11,9 +12,14 @@ namespace GodSpeak.Droid
 		{
 		}
 
-		public MvxFormsDroidMasterDetailPagePresenter(MvxFormsApp mvxFormsApp)
+		public MvxFormsDroidMasterDetailPagePresenter(Xamarin.Forms.Application mvxFormsApp)
 			: base(mvxFormsApp)
 		{
 		}
-	}
+
+        public override void Close(IMvxViewModel toClose)
+        {
+            
+        }
+    }
 }

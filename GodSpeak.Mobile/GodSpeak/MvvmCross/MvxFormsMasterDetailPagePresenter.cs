@@ -3,7 +3,7 @@ using MvvmCross.Core.ViewModels;
 using MvvmCross.Core.Views;
 using System;
 using Xamarin.Forms;
-using MvvmCross.Forms.Presenter.Core;
+using MvvmCross.Forms.Core;
 
 namespace GodSpeak
 {
@@ -287,7 +287,7 @@ namespace GodSpeak
 			Page rootContentPage = null;
 			if (masterDetailViewModel.RootContentPageViewModelType != null)
 			{
-				var rootContentRequest = new MvxViewModelRequest(masterDetailViewModel.RootContentPageViewModelType, new MvxBundle(request.ParameterValues), null, null);
+				var rootContentRequest = new MvxViewModelRequest(masterDetailViewModel.RootContentPageViewModelType, new MvxBundle(request.ParameterValues), null);
 
 				var rootContentViewModel = MvxPresenterHelpers.LoadViewModel(rootContentRequest);
 				rootContentPage = MvxPresenterHelpers.CreatePage(rootContentRequest);
