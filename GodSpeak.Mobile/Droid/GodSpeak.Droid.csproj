@@ -401,6 +401,7 @@
     <AndroidResource Include="Resources\drawable-hdpi\gift_box.png" />
     <AndroidResource Include="Resources\drawable-hdpi\invitesFAB.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\invitesFAB.png" />
+    <AndroidResource Include="Resources\values\id.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="MvvmCross\" />

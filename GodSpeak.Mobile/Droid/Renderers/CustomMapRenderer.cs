@@ -138,7 +138,7 @@ namespace GodSpeak.Droid
 		}		
 	}
 
-	public class CustomAlgorithm : Com.Google.Maps.Android.Clustering.Algo.GridBasedAlgorithm
+	public class CustomAlgorithm : Com.Google.Maps.Android.Clustering.Algo.NonHierarchicalDistanceBasedAlgorithm
 	{
 		public override System.Collections.ICollection GetClusters(double p0)
 		{
