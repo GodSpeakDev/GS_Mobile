@@ -71,6 +71,11 @@ namespace GodSpeak
 			set;
 		}
 
+		public string ReferringEmailAddress {
+			get;
+			set;
+		}
+
         public List<MessageCategory> MessageCategorySettings {
             get;
             set;

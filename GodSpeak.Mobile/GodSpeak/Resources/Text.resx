@@ -894,4 +894,19 @@ Enjoy!
 		xml:space="preserve">
 		<value>Gifts Unclaimed</value>
     </data>
+		<data
+		name="ReferringEmailAddressPlaceholder"
+		xml:space="preserve">
+    	<value>Referring email address</value>
+  	</data>
+	<data
+		name="ReferrerSectionTitle"
+		xml:space="preserve">
+    	<value>Did someone refer you?</value>
+  	</data>
+	<data
+		name="ReferrerSectionDescription"
+		xml:space="preserve">
+    	<value>By entering their email address you'll show on their Impact Map!</value>
+  	</data>
 </root>
