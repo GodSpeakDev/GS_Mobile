@@ -15,6 +15,8 @@ namespace GodSpeak
     public class UnclaimedGiftViewModel : CustomViewModel
     {
         private IShareService _shareService;
+        private IMvxWebBrowserTask _browserTask;
+        private ILogManager _logManager;
         private ShareTemplateViewModel _shareTemplateViewModel;
         private DonateTemplateViewModel _donateViewModel;
         private DidYouKnowTemplateViewModel _didYouKnowTemplateViewModel;
@@ -51,12 +53,11 @@ namespace GodSpeak
             }
         }
 
-        readonly IMvxWebBrowserTask _browserTask;
-
-        public UnclaimedGiftViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, ISettingsService settingsService, IShareService shareService, IMvxWebBrowserTask browserTask) : base (dialogService, hudService, sessionService, webApiService, settingsService)
+        public UnclaimedGiftViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, ISettingsService settingsService, IShareService shareService, IMvxWebBrowserTask browserTask, ILogManager logManager) : base (dialogService, hudService, sessionService, webApiService, settingsService)
         {
-            this._browserTask = browserTask;
+            _browserTask = browserTask;
             _shareService = shareService;
+            _logManager = logManager;
         }
 
         protected override void DoCloseCommand ()
@@ -71,7 +72,7 @@ namespace GodSpeak
         public async Task Init (bool comesFromRegisterFlow)
         {
             _comesFromRegisterFlow = comesFromRegisterFlow;
-            _shareTemplateViewModel = new ShareTemplateViewModel (DialogService, HudService, SessionService, WebApiService, SettingsService, _shareService, _browserTask);
+            _shareTemplateViewModel = new ShareTemplateViewModel (DialogService, HudService, SessionService, WebApiService, SettingsService, _shareService, _browserTask, _logManager);
 
             _didYouKnowTemplateViewModel = new DidYouKnowTemplateViewModel (DialogService, HudService, SessionService, WebApiService, SettingsService);
             _donateViewModel = new DonateTemplateViewModel (DialogService, HudService, SessionService, WebApiService, SettingsService, _shareService, _browserTask);

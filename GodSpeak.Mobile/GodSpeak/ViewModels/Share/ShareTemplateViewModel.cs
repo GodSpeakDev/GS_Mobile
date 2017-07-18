@@ -4,12 +4,14 @@ using GodSpeak.Resources;
 using GodSpeak.Services;
 using System.Threading.Tasks;
 using MvvmCross.Plugins.WebBrowser;
+using MvvmCross.Platform.Platform;
 
 namespace GodSpeak
 {
     public class ShareTemplateViewModel : CustomViewModel
     {
         private IShareService _shareService;
+        private readonly IMvxTrace _tracer;
 
         private MvxCommand _shareWithFriendsCommand;
         public MvxCommand ShareWithFriendsCommand {
@@ -37,14 +39,13 @@ namespace GodSpeak
             set { SetProperty (ref _shareEnabled, value); }
         }
 
-
-
         readonly IMvxWebBrowserTask browserTask;
 
-        public ShareTemplateViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, ISettingsService settingsService, IShareService shareService, IMvxWebBrowserTask browserTask) : base (dialogService, hudService, sessionService, webApiService, settingsService)
+        public ShareTemplateViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, ISettingsService settingsService, IShareService shareService, IMvxWebBrowserTask browserTask, ILogManager logManager) : base (dialogService, hudService, sessionService, webApiService, settingsService)
         {
             this.browserTask = browserTask;
             _shareService = shareService;
+            _tracer = logManager.GetLog();
         }
 
         public async Task Init ()
@@ -55,10 +56,18 @@ namespace GodSpeak
         private async void DoShareWithFriendsCommand ()
         {
             var currentUser = await SessionService.GetUser ();
-            if (currentUser.InviteBalance > 0) {
+
+            _tracer.Trace(MvxTraceLevel.Diagnostic, "Share", "Trying to share. Invite Balance: " + currentUser.InviteBalance);
+
+            if (currentUser.InviteBalance > 0) 
+            {
+                _tracer.Trace(MvxTraceLevel.Diagnostic, "Share", "Opening Share dialog.");
                 _shareService.Share (string.Format (Text.ShareText, currentUser.InviteCode, currentUser.FirstName));
-            } else {
+            } 
+            else 
+            {
                 await DialogService.ShowAlert (Text.ErrorPopupTitle, Text.ShareWithNoBalance);
+                _tracer.Trace(MvxTraceLevel.Diagnostic, "Share", "Error Sharing. NO BALANCE");
             }
         }
 
