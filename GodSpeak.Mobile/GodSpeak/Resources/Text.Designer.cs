@@ -1048,5 +1048,23 @@ namespace GodSpeak.Resources {
                 return ResourceManager.GetString("Me", resourceCulture);
             }
         }
+        
+        public static string ReferringEmailAddressPlaceholder {
+            get {
+                return ResourceManager.GetString("ReferringEmailAddressPlaceholder", resourceCulture);
+            }
+        }
+        
+        public static string ReferrerSectionTitle {
+            get {
+                return ResourceManager.GetString("ReferrerSectionTitle", resourceCulture);
+            }
+        }
+        
+        public static string ReferrerSectionDescription {
+            get {
+                return ResourceManager.GetString("ReferrerSectionDescription", resourceCulture);
+            }
+        }
     }
 }

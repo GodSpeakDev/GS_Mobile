@@ -35,8 +35,12 @@ namespace GodSpeak
             };
 
             ZipCodeEntry.Completed += (sender, e) => {
-                CurrentPasswordEntry.Focus ();
+				ReferringEmailAddressEntry.Focus();
             };
+
+			ReferringEmailAddressEntry.Completed += (sender, e) =>  {
+				CurrentPasswordEntry.Focus ();
+			};
 
             CurrentPasswordEntry.Completed += (sender, e) => {
                 NewPasswordEntry.Focus ();

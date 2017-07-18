@@ -63,6 +63,25 @@ namespace GodSpeak
             set { SetProperty (ref _zipCode, value); }
         }
 
+		private string _referringEmailAddress;
+		public string ReferringEmailAddress
+		{
+			get { return _referringEmailAddress; }
+			set 
+			{ 
+				SetProperty(ref _referringEmailAddress, value); 
+                RaisePropertyChanged(nameof (IsReferringEmailValid));
+			}
+		}
+
+		public bool IsReferringEmailValid
+		{
+			get
+			{
+				return string.IsNullOrEmpty(ReferringEmailAddress) || ReferringEmailAddress.Contains("@");
+			}
+		}
+
         private string _password;
         public string Password {
             get { return _password; }
@@ -145,6 +164,7 @@ namespace GodSpeak
             this._lastName = user.LastName;
             this._selectedCountryIndex = new List<string> (CountryCodes).IndexOf (user.CountryCode);
             this._zipCode = user.PostalCode;
+			this._referringEmailAddress = user.ReferringEmailAddress;
         }
 
         private void SetPhoto (User user)
@@ -163,6 +183,7 @@ namespace GodSpeak
             user.CurrentPassword = CurrentPassword;
             user.NewPassword = Password;
             user.PasswordConfirm = ConfirmPassword;
+			user.ReferringEmailAddress = ReferringEmailAddress;
 
             var response = await WebApiService.SaveProfile (user);
             HudService.Hide ();
