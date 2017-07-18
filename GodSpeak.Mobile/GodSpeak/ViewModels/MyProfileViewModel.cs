@@ -183,7 +183,7 @@ namespace GodSpeak
             user.CurrentPassword = CurrentPassword;
             user.NewPassword = Password;
             user.PasswordConfirm = ConfirmPassword;
-			user.ReferringEmailAddress = ReferringEmailAddress;
+			user.ReferringEmailAddress = string.IsNullOrEmpty(ReferringEmailAddress) ? null : ReferringEmailAddress;
 
             var response = await WebApiService.SaveProfile (user);
             HudService.Hide ();
