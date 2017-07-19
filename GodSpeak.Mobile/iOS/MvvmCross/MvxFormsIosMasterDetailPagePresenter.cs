@@ -1,7 +1,8 @@
-﻿using MvvmCross.Forms.Presenter.Core;
-using MvvmCross.iOS.Views.Presenters;
+﻿using MvvmCross.iOS.Views.Presenters;
 using UIKit;
 using Xamarin.Forms;
+using MvvmCross.Core.ViewModels;
+using System;
 
 namespace GodSpeak.iOS
 {
@@ -30,5 +31,10 @@ namespace GodSpeak.iOS
 		{
 			_window.RootViewController = mainPage.CreateViewController();
 		}
-	}
+
+        public override void Close(IMvxViewModel toClose)
+        {
+            
+        }
+    }
 }

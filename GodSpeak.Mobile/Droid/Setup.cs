@@ -3,19 +3,18 @@ using MvvmCross.Droid.Platform;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform.Platform;
 using MvvmCross.Droid.Views;
-using MvvmCross.Forms.Presenter.Droid;
 using MvvmCross.Platform;
 using MvvmCross.Core.Views;
 using GodSpeak;
 using Xamarin.Forms;
-using MvvmCross.Forms.Presenter.Core;
 using GodSpeak.Services;
 using GodSpeak.Droid.Services;
 using MvvmCross.Plugins.WebBrowser;
+using MvvmCross.Forms.Droid;
 
 namespace GodSpeak.Droid
 {
-    public class Setup : MvxAndroidSetup
+    public class Setup : MvxFormsAndroidSetup
     {
         public Setup (Context applicationContext) : base (applicationContext)
         {
@@ -58,7 +57,7 @@ namespace GodSpeak.Droid
             {
             }
 
-            public MvxFormsDroidPagePresenterCustom (MvxFormsApp mvxFormsApp) : base (mvxFormsApp)
+            public MvxFormsDroidPagePresenterCustom (Xamarin.Forms.Application mvxFormsApp) : base(mvxFormsApp)
             {
             }
         }

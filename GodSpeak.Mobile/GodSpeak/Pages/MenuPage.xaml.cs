@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using MvvmCross.Forms.Presenter.Core;
 
 using Xamarin.Forms;
 
