@@ -21,10 +21,11 @@ using Plugin.Permissions;
 using Plugin.InAppBilling;
 
 using Android.Content.Res;
+using MvvmCross.Droid.Platform;
 
 namespace GodSpeak.Droid
 {
-    [Activity (Theme = "@style/AppTheme", Label = "MvxFormsApplicationActivity", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.ScreenSize, WindowSoftInputMode = SoftInput.AdjustPan, LaunchMode=LaunchMode.SingleTop)]
+    [Activity (Theme = "@style/AppTheme", Label = "GodSpeak", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.ScreenSize, WindowSoftInputMode = SoftInput.AdjustPan, LaunchMode=LaunchMode.SingleTop)]
     public class MainActivity : FormsApplicationActivity
     {
 		public const int RequestReadContacts = 0;
@@ -52,6 +53,9 @@ namespace GodSpeak.Droid
 
             var mvxFormsApp = new FormsApp ();
             LoadApplication (mvxFormsApp);
+
+			var setup = MvxAndroidSetupSingleton.EnsureSingletonAvailable(ApplicationContext);
+			setup.EnsureInitialized();
 
             var presenter = Mvx.Resolve<IMvxViewPresenter> () as MvxFormsDroidMasterDetailPagePresenter;
             presenter.MvxFormsApp = mvxFormsApp;

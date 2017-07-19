@@ -9,7 +9,7 @@
   	</style>-->
 	
 	<style name="AppTheme" parent="android:Theme.Material.Light">
-		
+		<item name="android:windowDisablePreview">true</item>
 	    <item name="android:colorAccent">#00a5ff</item>		
 		<item name="android:actionBarSize">0dp</item>
 	</style>
