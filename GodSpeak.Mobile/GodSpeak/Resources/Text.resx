@@ -571,9 +571,9 @@ Delivered</value>
     	<value>Share GodSpeak</value>
   	</data>
 	<data
-		name="WhoYouHaveImpacted"
+		name="FollowUp"
 		xml:space="preserve">
-    	<value>Who You've Impacted</value>
+    	<value>Follow Up</value>
   	</data>
 	<data
 		name="ShareWithFriendsTitle"
@@ -890,9 +890,9 @@ Enjoy!
     	<value>Gifts Claimed</value>
     </data>
 	<data
-		name="GiftsUnclaimed"
+		name="GiftAndroid"
 		xml:space="preserve">
-		<value>Gifts Unclaimed</value>
+		<value>Gift Android</value>
     </data>
 		<data
 		name="ReferringEmailAddressPlaceholder"
