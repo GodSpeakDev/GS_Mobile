@@ -563,12 +563,12 @@ Delivered</value>
 	<data
 		name="SendInvitation"
 		xml:space="preserve">
-    	<value>Share GodSpeak</value>
+    	<value>Tell Friends</value>
   	</data>
 	<data
 		name="WhoYouHaveImpacted"
 		xml:space="preserve">
-    	<value>Who You've Impacted</value>
+    	<value>Follow Up</value>
   	</data>
 	<data
 		name="ShareWithFriendsTitle"
