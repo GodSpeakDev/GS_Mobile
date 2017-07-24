@@ -139,6 +139,9 @@
     <EmbeddedResource Include="Pages\SendGiftPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="CustomComponents\MenuItemView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -429,6 +432,10 @@
     <Compile Include="Pages\SendGiftPage.xaml.cs">
       <DependentUpon>SendGiftPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomComponents\MenuItemView.cs">
+      <DependentUpon>MenuItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomComponents\MenuBackground.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />
