@@ -98,11 +98,22 @@ namespace GodSpeak
 
 		public async void Init()
 		{
-			this.HudService.Show();
+			// --- SENDING 100 REQUESTS
+			//this.HudService.Show();
 
-			var currentUser = await SessionService.GetUser();
+			//var currentUser = await SessionService.GetUser();
+			//for (int i = 0; i < 100; i++)
+			//{
+			//	Task.Run(() => WebApiService.GetImpact());	
+			//}
+
+			//this.HudService.Hide();
+
+			// --- CORRECT IMPLEMENTATION
+
+			this.HudService.Show();
 			var response = await WebApiService.GetImpact();
-			this.HudService.Hide();
+            this.HudService.Hide();
 
 			if (response.IsSuccess)
 			{
