@@ -23,9 +23,9 @@
 						Grid.RowSpan="2"
 						Source="share_background.png"
 						Aspect="AspectFill" />
-					<views:CustomCarouselView 
+					<views:CustomCarouselView                         
 						Grid.Row="0"
-						Grid.RowSpan="2"
+						Grid.RowSpan="2"                        
 						HorizontalOptions="FillAndExpand"
 						VerticalOptions="FillAndExpand"
 						Position="{Binding SelectedPosition}"

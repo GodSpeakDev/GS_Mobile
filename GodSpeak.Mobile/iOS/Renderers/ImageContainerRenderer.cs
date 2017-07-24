@@ -14,7 +14,7 @@ namespace GodSpeak.iOS
 			base.OnElementChanged(e);
 
 			if (this.Control != null)
-			{
+			{				
 				this.Control.Layer.BorderWidth = 1;
 				this.Control.Layer.MasksToBounds = true;
 				this.Control.Layer.CornerRadius = 5.0f;

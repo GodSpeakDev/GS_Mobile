@@ -74,8 +74,8 @@ namespace GodSpeak
         {
 			Email = SettingsService.Email;
 #if DEBUG
-            Email = "Curtisb5673@gmail.com";
-			Password = "S3vn!1!";
+            Email = "Ben@rendr.io";
+			Password = "J0hn_galt";
 			//Email = "brett@venadotech.com";
 			//Password = "v3nad0";
 #endif

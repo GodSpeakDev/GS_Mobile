@@ -84,11 +84,22 @@ namespace GodSpeak
             }
         }
 
-        public async void Init (bool comesFromRegisterFlow)
+        public async void Init (bool comesFromRegisterFlow, TabTypes selectedTab = TabTypes.Unclaimed)
         {
             this.HudService.Show ();
-            await UnclaimedGiftViewModel.Init (comesFromRegisterFlow);
-            await ClaimedGiftViewModel.Init (comesFromRegisterFlow);
+
+			if (selectedTab == TabTypes.Unclaimed)
+			{
+				DoSelectTabCommand(_unclaimedTab);
+			}
+			else
+			{
+				DoSelectTabCommand(_claimedTab);
+			}
+
+            await ClaimedGiftViewModel.Init(comesFromRegisterFlow);
+            await UnclaimedGiftViewModel.Init(comesFromRegisterFlow);
+
             this.HudService.Hide ();
         }
 
