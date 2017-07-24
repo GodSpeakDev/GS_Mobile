@@ -199,7 +199,7 @@ namespace GodSpeak.Droid
 		}
 
 		private void SendNotification(Message message)
-		{
+		{			
 			Notification.Builder builder = new Notification.Builder(ApplicationContext)
 				.SetContentTitle("GodSpeak")
 				.SetAutoCancel(true)
@@ -217,6 +217,9 @@ namespace GodSpeak.Droid
 			var id = random.Next();
 
 			NotificationManager.Notify(message.Id.ToString(), id, builder.Build());
+
+			var logManager = new NLogManager();
+			logManager.GetLog().Trace(MvvmCross.Platform.Platform.MvxTraceLevel.Diagnostic, "NOTIFICATION SENT", JsonConvert.SerializeObject(message)); 
 		}
 	}
 }
