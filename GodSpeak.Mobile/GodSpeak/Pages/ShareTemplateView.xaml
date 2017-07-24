@@ -37,20 +37,14 @@
 			<views:CustomButton  
 				Grid.Row="1"
 				Grid.Column="0"
+				Grid.ColumnSpan="2"
 				VerticalOptions="Center"
+				HorizontalOptions="Center"
 				Style="{StaticResource ShareButtonBlue}"
 				IsEnabled="{Binding ShareEnabled}"
-
+				WidthRequest="220"
 				Text="{x:Static res:Text.ShareWithFriend}"
 				Command="{Binding ShareWithFriendsCommand}"
-			/>
-			<views:CustomButton 
-				Grid.Row="1"
-				Grid.Column="1"
-				VerticalOptions="Center"
-				Style="{StaticResource ShareButtonWhite}"
-				Text="{x:Static res:Text.GiftiOS}"
-				Command="{Binding LearnMoreCommand}"
 			/>
 		</Grid>
 	</ContentView.Content>

@@ -695,9 +695,9 @@ namespace GodSpeak.Resources {
             }
         }
         
-        public static string WhoYouHaveImpacted {
+        public static string FollowUp {
             get {
-                return ResourceManager.GetString("WhoYouHaveImpacted", resourceCulture);
+                return ResourceManager.GetString("FollowUp", resourceCulture);
             }
         }
         
@@ -1055,9 +1055,9 @@ namespace GodSpeak.Resources {
             }
         }
         
-        public static string GiftsUnclaimed {
+        public static string GiftAndroid {
             get {
-                return ResourceManager.GetString("GiftsUnclaimed", resourceCulture);
+                return ResourceManager.GetString("GiftAndroid", resourceCulture);
             }
         }
         

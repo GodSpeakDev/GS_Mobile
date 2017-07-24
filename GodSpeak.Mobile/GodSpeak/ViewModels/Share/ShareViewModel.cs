@@ -27,7 +27,7 @@ namespace GodSpeak
             SelectedTab = TabTypes.Unclaimed;
 
             _unclaimedTab = new Tab () {
-                Title = Text.GiftsUnclaimed,
+                Title = Text.GiftAndroid,
                 SelectedImage = "unclaimed_gift_selected_icon.png",
                 UnselectedImage = "unclaimed_gift_unselected_icon.png",
                 TabType = TabTypes.Unclaimed,
@@ -35,7 +35,7 @@ namespace GodSpeak
             };
 
             _claimedTab = new Tab () {
-                Title = Text.GiftsClaimed,
+                Title = Text.FollowUp,
                 SelectedImage = "claimed_gift_selected_icon.png",
                 UnselectedImage = "claimed_gift_unselected_icon.png",
                 TabType = TabTypes.Claimed,
