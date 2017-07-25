@@ -41,17 +41,30 @@ namespace GodSpeak.Api
         const string DonateInviteUri = "invite/donate";
 
 		private ISettingsService _settingsService;
+		private IFileService _fileService;
+
         protected HttpClient client = new HttpClient ();
         readonly IMvxTrace tracer;
 
         //protected string ServerUrl = "http://godspeak-staging.azurewebsites.net/";
         protected string ServerUrl = "http://givegodspeak.azurewebsites.net/";
 
-        public AzureWebApiService (ILogManager logManager, ISettingsService settingsService)
+		private const int MaximumRequestRetries = 3;
+
+		public string ImpactFile
+		{
+			get
+			{
+				return string.Format("{0}-impact-file.json", _settingsService.Email);
+			}
+		}
+
+        public AzureWebApiService (ILogManager logManager, ISettingsService settingsService, IFileService fileService)
         {
 			this.tracer = logManager.GetLog();
 
 			_settingsService = settingsService;
+			_fileService = fileService;
 
             client.BaseAddress = new Uri (ServerUrl + "api/");
         }
@@ -71,7 +84,22 @@ namespace GodSpeak.Api
 		public new async Task<ApiResponse<List<ImpactDay>>> GetImpact()
 		{			
             AddAuthToken(_settingsService.Token);
-            return await DoGet<List<ImpactDay>>(ImpactDaysUri);
+            var impactRequest = await DoGet<List<ImpactDay>>(ImpactDaysUri);
+			if (impactRequest.IsSuccess)
+			{
+				await _fileService.WriteTextAsync(ImpactFile, JsonConvert.SerializeObject(impactRequest.Payload));
+			}
+			else
+			{
+				if (await _fileService.ExistsAsync(ImpactFile))
+				{
+					var json = await _fileService.ReadTextAsync(ImpactFile);
+					impactRequest.StatusCode = System.Net.HttpStatusCode.OK;
+					impactRequest.Payload = JsonConvert.DeserializeObject<List<ImpactDay>>(json);
+				}
+			}
+
+			return impactRequest;
 	   	}
 
 		public new async Task<ApiResponse<string>> Share(ShareRequest request)
@@ -249,6 +277,13 @@ namespace GodSpeak.Api
             {
                 var apiResponse = await client.PostAsync(uri, null);
 
+				var retryCount = 0;
+				while (!apiResponse.IsSuccessStatusCode && retryCount++ < MaximumRequestRetries)
+				{
+					await Task.Delay(retryCount * 100);
+					apiResponse = await client.PostAsync(uri, null);
+				}
+
                 return await ParseResponse(uri, apiResponse);
             }
 			catch (Exception ex)
@@ -270,6 +305,13 @@ namespace GodSpeak.Api
                 tracer.Trace(MvxTraceLevel.Diagnostic, "api-post", $"METHOD: {uri}\rBODY: {jsonBody}");
 
                 var apiResponse = await client.PostAsync(uri, new StringContent(jsonBody, Encoding.UTF8, "application/json"));
+
+				var retryCount = 0;
+				while (!apiResponse.IsSuccessStatusCode && retryCount++ < MaximumRequestRetries)
+				{
+					await Task.Delay(retryCount* 100);
+					apiResponse = await client.PostAsync(uri, new StringContent(jsonBody, Encoding.UTF8, "application/json"));
+				}
 
                 return await ParseResponse<T>(uri, apiResponse);
             }
@@ -293,6 +335,13 @@ namespace GodSpeak.Api
 
                 var apiResponse = await client.PutAsync(uri, new StringContent(jsonBody, Encoding.UTF8, "application/json"));
 
+				var retryCount = 0;
+				while (!apiResponse.IsSuccessStatusCode && retryCount++ < MaximumRequestRetries)
+				{
+					await Task.Delay(retryCount* 100);
+					apiResponse = await client.PutAsync(uri, new StringContent(jsonBody, Encoding.UTF8, "application/json"));
+				}
+
                 return await ParseResponse<T>(uri, apiResponse);
             }
 			catch (Exception ex)
@@ -311,6 +360,13 @@ namespace GodSpeak.Api
 			{
 	            tracer.Trace (MvxTraceLevel.Diagnostic, "api-get", $"METHOD: {uri}");
 	            var apiResponse = await client.GetAsync (uri);
+
+				var retryCount = 0;
+				while (!apiResponse.IsSuccessStatusCode && retryCount++ < MaximumRequestRetries)
+				{
+					await Task.Delay(retryCount * 100);
+					apiResponse = await client.GetAsync(uri);					
+				}
 
 	            return await ParseResponse<T> (uri, apiResponse);
             }
@@ -340,6 +396,13 @@ namespace GodSpeak.Api
                 var requestUri = uri + builder;
                 tracer.Trace(MvxTraceLevel.Diagnostic, "api-get", $"METHOD: {requestUri}");
                 var apiResponse = await client.GetAsync(requestUri);
+
+				var retryCount = 0;
+				while (!apiResponse.IsSuccessStatusCode && retryCount++ < MaximumRequestRetries)
+				{
+					await Task.Delay(retryCount * 100);
+					apiResponse = await client.GetAsync(requestUri);					
+				}
 
                 return await ParseResponse<T>(uri, apiResponse);
             }

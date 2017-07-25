@@ -283,6 +283,8 @@
     <Compile Include="Renderers\CustomClusterRenderer.cs" />
     <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
     <Compile Include="Bootstrap\WebBrowserPluginBootstrap.cs" />
+    <Compile Include="Renderers\MenuItemViewRenderer.cs" />
+    <Compile Include="Renderers\MenuBackgroundRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\profile_placeholder.png" />
@@ -415,6 +417,27 @@
     <BundleResource Include="Resources\send_gift_unselected_icon.png" />
     <BundleResource Include="Resources\send_gift_unselected_icon%402x.png" />
     <BundleResource Include="Resources\send_gift_unselected_icon%403x.png" />
+    <BundleResource Include="Resources\close_button_icon%402x.png" />
+    <BundleResource Include="Resources\close_button_icon.png" />
+    <BundleResource Include="Resources\close_button_icon%403x.png" />
+    <BundleResource Include="Resources\iphone%402x.png" />
+    <BundleResource Include="Resources\iphone.png" />
+    <BundleResource Include="Resources\iphone%403x.png" />
+    <BundleResource Include="Resources\church.png" />
+    <BundleResource Include="Resources\church%402x.png" />
+    <BundleResource Include="Resources\church%403x.png" />
+    <BundleResource Include="Resources\follow_friends.png" />
+    <BundleResource Include="Resources\follow_friends%403x.png" />
+    <BundleResource Include="Resources\follow_friends%402x.png" />
+    <BundleResource Include="Resources\tell_friends.png" />
+    <BundleResource Include="Resources\tell_friends%402x.png" />
+    <BundleResource Include="Resources\tell_friends%403x.png" />
+    <BundleResource Include="Resources\android%402x.png" />
+    <BundleResource Include="Resources\android.png" />
+    <BundleResource Include="Resources\android%403x.png" />
+    <BundleResource Include="Resources\add_button_icon.png" />
+    <BundleResource Include="Resources\add_button_icon%402x.png" />
+    <BundleResource Include="Resources\add_button_icon%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="googleiosmaps">

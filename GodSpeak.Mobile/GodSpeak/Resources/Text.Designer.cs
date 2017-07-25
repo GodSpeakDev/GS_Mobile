@@ -1066,5 +1066,35 @@ namespace GodSpeak.Resources {
                 return ResourceManager.GetString("ReferrerSectionDescription", resourceCulture);
             }
         }
+        
+        public static string GiftToIphoneUser {
+            get {
+                return ResourceManager.GetString("GiftToIphoneUser", resourceCulture);
+            }
+        }
+        
+        public static string GiftToAndroidUser {
+            get {
+                return ResourceManager.GetString("GiftToAndroidUser", resourceCulture);
+            }
+        }
+        
+        public static string GiftToChurch {
+            get {
+                return ResourceManager.GetString("GiftToChurch", resourceCulture);
+            }
+        }
+        
+        public static string FollowUpWithFriends {
+            get {
+                return ResourceManager.GetString("FollowUpWithFriends", resourceCulture);
+            }
+        }
+        
+        public static string TellFriendsAboutGodSpeak {
+            get {
+                return ResourceManager.GetString("TellFriendsAboutGodSpeak", resourceCulture);
+            }
+        }
     }
 }

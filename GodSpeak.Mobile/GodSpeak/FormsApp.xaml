@@ -64,6 +64,8 @@
 
 			<OnPlatform x:TypeArguments="x:Boolean" x:Key="NavigationBarTitleVisibility" Android="false" iOS="true" WinPhone="true" />
 			<OnPlatform x:TypeArguments="x:Double" x:Key="LoginCurveBackgrounSize" Android="360" iOS="350" WinPhone="350" />
+
+            <OnPlatform x:TypeArguments="x:Double" x:Key="MenuItemSize" Android="80" iOS="70" WinPhone="70" />
 			
 			<!-- Global Colors -->
 			<Color x:Key="primaryColor">#00a5ff</Color>
@@ -80,7 +82,7 @@
 			<Color x:Key="textInputDisabled">#d9dadb</Color>	
 			<Color x:Key="disableTab">#474843</Color>	
 			<Color x:Key="textInputFocusEnteredText">#303132</Color>	
-			<Color x:Key="payForwardOverlay">#99000000</Color>
+			<Color x:Key="payForwardOverlay">#cc000000</Color>
 
 			<!-- Label Styles -->
 			<Style x:Key="AlertSheetTitle" TargetType="Label">
@@ -263,6 +265,14 @@
 				<Setter Property="TextColor" Value="{StaticResource primaryColor}" />				
 			</Style>
 
+			<Style x:Key="MenuItemTitle" TargetType="godspeak:CustomLabel">
+				<Setter Property="TextColor" Value="White" />				
+				<Setter Property="HorizontalOptions" Value="End"/>				
+				<Setter Property="VerticalTextAlignment" Value="Center"/>
+				<Setter Property="HorizontalTextAlignment" Value="End"/>
+				<Setter Property="Margin" Value="0,0,10,0" />
+			</Style>
+
 			<!-- Button Styles -->	
 			<Style  x:Key="CustomButton" TargetType="Button">
 				<Setter Property="FontAttributes" Value="Bold" />
@@ -429,6 +439,12 @@
 					</Trigger>
 				</Style.Triggers>
 			</Style>		
+
+			<!-- Menu Item View -->
+			<Style x:Key="MenuItem" TargetType="godspeak:CustomTimePicker">		
+				<Setter Property="HeightRequest" Value="{StaticResource MenuItemSize}" />
+				<Setter Property="WidthRequest" Value="{StaticResource MenuItemSize}" />
+			</Style>
 		</ResourceDictionary>
 	</Application.Resources>			
 </d:MvxFormsApplication>

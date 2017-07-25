@@ -273,6 +273,8 @@
     <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="DebugTrace.cs" />
     <Compile Include="Bootstrap\WebBrowserPluginBootstrap.cs" />
+    <Compile Include="Renderers\MenuBackgroundRenderer.cs" />
+    <Compile Include="Renderers\MenuItemViewRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -413,6 +415,34 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\send_gift_promo.png" />
     <AndroidResource Include="Resources\layout\MainView.axml" />
     <AndroidResource Include="Resources\drawable\splash.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\add_button_icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\add_button_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\add_button_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\add_button_icon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\church.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\follow_friends.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\tell_friends.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\android.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\close_button_icon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\iphone.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\android.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\church.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\close_button_icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\follow_friends.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\iphone.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\tell_friends.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\android.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\church.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\close_button_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\follow_friends.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\iphone.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\tell_friends.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\android.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\church.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\close_button_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\follow_friends.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\iphone.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\tell_friends.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="MvvmCross\" />

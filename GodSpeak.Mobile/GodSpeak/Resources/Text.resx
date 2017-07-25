@@ -563,12 +563,12 @@ Delivered</value>
 	<data
 		name="SendInvitation"
 		xml:space="preserve">
-    	<value>Share GodSpeak</value>
+    	<value>Tell Friends</value>
   	</data>
 	<data
 		name="WhoYouHaveImpacted"
 		xml:space="preserve">
-    	<value>Who You've Impacted</value>
+    	<value>Follow Up</value>
   	</data>
 	<data
 		name="ShareWithFriendsTitle"
@@ -898,5 +898,30 @@ Love God. Love others. Tell everyone.
 		name="ReferrerSectionDescription"
 		xml:space="preserve">
     	<value>By entering their email address you'll show on their Impact Map!</value>
+  	</data>
+	<data
+		name="GiftToIphoneUser"
+		xml:space="preserve">
+    	<value>Gift to iPhone User</value>
+  	</data>
+	<data
+		name="GiftToAndroidUser"
+		xml:space="preserve">
+    	<value>Gift to Android User</value>
+  	</data>	
+	<data
+		name="GiftToChurch"
+		xml:space="preserve">
+    	<value>Gift to Church</value>
+  	</data>
+	<data
+		name="FollowUpWithFriends"
+		xml:space="preserve">
+    	<value>Follow up with Friends</value>
+  	</data>
+	<data
+		name="TellFriendsAboutGodSpeak"
+		xml:space="preserve">
+    	<value>Tell Friends about GodSpeak</value>
   	</data>
 </root>

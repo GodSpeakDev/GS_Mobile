@@ -10,6 +10,7 @@ using MvvmCross.Plugins.Messenger;
 using GodSpeak.Resources;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
+using MvvmCross.Plugins.WebBrowser;
 
 namespace GodSpeak
 {
@@ -19,6 +20,7 @@ namespace GodSpeak
         private IMvxMessenger _messenger;
         private MvxSubscriptionToken _messageSettingsToken;
 		private MvxSubscriptionToken _newMessageToken;
+		private IMvxWebBrowserTask _browserTask;
 		private bool _isAlreadyStarted = false;
 
         private ObservableCollection<GroupedCollection<Message, DateTime>> _messages;
@@ -40,6 +42,13 @@ namespace GodSpeak
 		{
 			get { return _shouldShowTip; }
 			set { SetProperty(ref _shouldShowTip, value); }
+		}
+
+		private bool _isActionMenuOpened;
+		public bool IsActionMenuOpened
+		{
+			get { return _isActionMenuOpened; }
+			set { SetProperty(ref _isActionMenuOpened, value); }
 		}
 
         private ObservableCollection<ImpactDay> _shownImpactDays;
@@ -89,6 +98,32 @@ namespace GodSpeak
             }
         }
 
+		private MvxCommand _openActionMenuCommand;
+		public MvxCommand OpenActionMenuCommand
+		{
+			get
+			{
+				return _openActionMenuCommand ?? (_openActionMenuCommand = new MvxCommand(() => 
+				{
+					IsActionMenuOpened = true;
+					ShouldShowOverlay = true;
+				}));
+			}
+		}
+
+		private MvxCommand _closeActionMenuCommand;
+		public MvxCommand CloseActionMenuCommand
+		{
+			get
+			{
+				return _closeActionMenuCommand ?? (_closeActionMenuCommand = new MvxCommand(() =>
+				{
+					IsActionMenuOpened = false;
+					ShouldShowOverlay = false;
+				}));
+			}
+		}
+
 		private MvxCommand _hideOverlayCommand;
 		public MvxCommand HideOverlayCommand
 		{
@@ -107,12 +142,78 @@ namespace GodSpeak
 			}
 		}
 
+		public MvxCommand _giftIphoneCommand;
+		public MvxCommand GiftIphoneCommand
+		{
+			get
+			{
+				return _giftIphoneCommand ?? (_giftIphoneCommand = new MvxCommand(() => 
+				{
+					_browserTask.ShowWebPage("http://go.givegodspeak.com/GiftiTunes");
+					CloseActionMenuCommand.Execute();
+				}));
+			}
+		}
+
+		public MvxCommand _giftAndroidCommand;
+		public MvxCommand GiftAndroidCommand
+		{
+			get
+			{
+				return _giftAndroidCommand ?? (_giftAndroidCommand = new MvxCommand(() =>
+				{
+					_browserTask.ShowWebPage("http://go.givegodspeak.com/");
+					CloseActionMenuCommand.Execute();
+				}));
+			}
+		}
+
+		public MvxCommand _giftChurchCommand;
+		public MvxCommand GiftChurchCommand
+		{
+			get
+			{
+				return _giftChurchCommand ?? (_giftChurchCommand = new MvxCommand(async () =>
+				{
+					_browserTask.ShowWebPage(string.Format("http://go.givegodspeak.com/SignUp/{0}", (await SessionService.GetUser()).InviteCode));
+					CloseActionMenuCommand.Execute();
+				}));
+			}
+		}
+
+		public MvxCommand _followFriendsCommand;
+		public MvxCommand FollowFriendsCommand
+		{
+			get
+			{
+				return _followFriendsCommand ?? (_followFriendsCommand = new MvxCommand(() =>
+				{
+                    this.ShowViewModel<ShareViewModel>(new {selectedTab=ShareViewModel.TabTypes.Claimed});
+					CloseActionMenuCommand.Execute();
+				}));
+			}
+		}
+
+		public MvxCommand _tellFriendsCommand;
+		public MvxCommand TellFriendsCommand
+		{
+			get
+			{
+				return _tellFriendsCommand ?? (_tellFriendsCommand = new MvxCommand(() =>
+				{
+					this.ShowViewModel<ShareViewModel>(new {selectedTab=ShareViewModel.TabTypes.Unclaimed});
+					CloseActionMenuCommand.Execute();
+				}));
+			}
+		}
+
         public MessageViewModel (
             IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, ISettingsService settingsService,
-            IMessageService messageService, IMvxMessenger messenger) : base (dialogService, hudService, sessionService, webApiService, settingsService)
+            IMessageService messageService, IMvxMessenger messenger, IMvxWebBrowserTask browserTask) : base (dialogService, hudService, sessionService, webApiService, settingsService)
         {
             _messageService = messageService;
             _messenger = messenger;
+			_browserTask = browserTask;
 
             Messages = new ObservableCollection<GroupedCollection<Message, DateTime>> ();
         }
@@ -279,6 +380,7 @@ namespace GodSpeak
 		{
 			ShouldShowTip = false;
 			ShouldShowOverlay = false;
+			IsActionMenuOpened = false;
 		}
 
 		private void DoHideTipCommand()
