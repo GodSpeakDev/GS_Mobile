@@ -57,7 +57,10 @@ namespace GodSpeak
 						AbsoluteLayout.SetLayoutBounds(PopupContent, new Rectangle(0, 2 - x, 1, AbsoluteLayout.AutoSize));
 					}
 
-					Overlay?.Opacity = x * 0.55;
+					if (Overlay != null)
+					{
+						Overlay.Opacity = x * 0.55;
+					}
 				}));
 			}
 		}
@@ -73,7 +76,10 @@ namespace GodSpeak
 						AbsoluteLayout.SetLayoutBounds(PopupContent, new Rectangle(0, 1 + x, 1, AbsoluteLayout.AutoSize));
 					}
 
-					Overlay?.Opacity = 0.55 - (0.55 * x);
+					if (Overlay != null)
+					{
+						Overlay.Opacity = 0.55 - (0.55 * x);
+					}
 
 				}), finished: (rate, finished) =>
 				{
