@@ -52,8 +52,12 @@ namespace GodSpeak
 			{
 				this.Animate("Showing", new Animation((x) =>
 				{
-					AbsoluteLayout.SetLayoutBounds(PopupContent, new Rectangle(0, 2 - x, 1, AbsoluteLayout.AutoSize));
-					Overlay.Opacity = x * 0.55;
+					if (PopupContent != null)
+					{
+						AbsoluteLayout.SetLayoutBounds(PopupContent, new Rectangle(0, 2 - x, 1, AbsoluteLayout.AutoSize));
+					}
+
+					Overlay?.Opacity = x * 0.55;
 				}));
 			}
 		}
@@ -64,12 +68,20 @@ namespace GodSpeak
 			{
 				this.Animate("Hiding", new Animation((x) =>
 				{
-					AbsoluteLayout.SetLayoutBounds(PopupContent, new Rectangle(0, 1 + x, 1, AbsoluteLayout.AutoSize));
-					Overlay.Opacity = 0.55 - (0.55 * x);
+					if (PopupContent != null)
+					{
+						AbsoluteLayout.SetLayoutBounds(PopupContent, new Rectangle(0, 1 + x, 1, AbsoluteLayout.AutoSize));
+					}
+
+					Overlay?.Opacity = 0.55 - (0.55 * x);
+
 				}), finished: (rate, finished) =>
 				{
 					var parentAbsolute = this.Parent as AbsoluteLayout;
-					parentAbsolute.Children.Remove(this);
+					if (parentAbsolute != null)
+					{
+						parentAbsolute.Children.Remove(this);
+					}
 				});
 			}
 		}
