@@ -199,7 +199,17 @@ namespace GodSpeak.Droid
 		}
 
 		private void SendNotification(Message message)
-		{			
+		{
+            try
+            {				
+				new NLogManager().GetLog().Trace(MvvmCross.Platform.Platform.MvxTraceLevel.Diagnostic, "SENDING NOTIFICATION", JsonConvert.SerializeObject(message));   
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+
 			Notification.Builder builder = new Notification.Builder(ApplicationContext)
 				.SetContentTitle("GodSpeak")
 				.SetAutoCancel(true)
@@ -218,8 +228,15 @@ namespace GodSpeak.Droid
 
 			NotificationManager.Notify(message.Id.ToString(), id, builder.Build());
 
-			var logManager = new NLogManager();
-			logManager.GetLog().Trace(MvvmCross.Platform.Platform.MvxTraceLevel.Diagnostic, "NOTIFICATION SENT", JsonConvert.SerializeObject(message)); 
+            try
+            {
+                var logManager = new NLogManager();
+                logManager.GetLog().Trace(MvvmCross.Platform.Platform.MvxTraceLevel.Diagnostic, "NOTIFICATION SENT", JsonConvert.SerializeObject(message));
+            }
+            catch
+            {
+                
+            }
 		}
 	}
 }
