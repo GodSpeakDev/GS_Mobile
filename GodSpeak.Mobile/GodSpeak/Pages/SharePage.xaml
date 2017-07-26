@@ -20,12 +20,12 @@
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="*" />
 			</Grid.ColumnDefinitions>
-			<views:SendGiftPage 
+			<!--<views:SendGiftPage 
 				Grid.Row="0"
 				Grid.Column="0"
 				BindingContext="{Binding SendGiftViewModel}"
 				IsVisible="{Binding IsVisible}"
-			/>
+			/>-->
 			<views:UnclaimedGiftPage 
 				Grid.Row="0"
 				Grid.Column="0"
