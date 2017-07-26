@@ -60,13 +60,10 @@
 								AbsoluteLayout.LayoutBounds="{StaticResource FabButtonBounds}"
 
 								Source="invitesFAB.png"														
-								Command="{Binding GoToShareCommand}"
+								Command="{Binding OpenActionMenuCommand}"
 							/>								
 						</AbsoluteLayout>
-					</ListView.Header>
-                    <ListView.Footer>
-                        <BoxView HeightRequest="70" Color="Transparent" />
-                    </ListView.Footer>
+					</ListView.Header>                    
 					<ListView.ItemTemplate>
 						<DataTemplate>
 							<ViewCell>								
@@ -248,7 +245,7 @@
                         AbsoluteLayout.LayoutBounds="{StaticResource FabButtonBounds}"          
                         Source="invitesFAB.png" 
                         PreCommand="{Binding HideTipCommand}"
-                        Command="{Binding GoToShareCommand}" />             
+                        Command="{Binding OpenActionMenuCommand}" />             
             </AbsoluteLayout>
             <BoxView
                 AbsoluteLayout.LayoutFlags="All"
@@ -258,16 +255,7 @@
                 <BoxView.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding HideOverlayCommand}" />
                 </BoxView.GestureRecognizers>               
-            </BoxView>    
-			<views:MenuItemView
-				AbsoluteLayout.LayoutFlags="XProportional,YProportional"
-				AbsoluteLayout.LayoutBounds="{StaticResource FabButtonBounds}"
-				Margin="10"
-				Size="25"
-				Source="add_button_icon.png"
-				Command="{Binding OpenActionMenuCommand}"
-				IsVisible="{Binding IsActionMenuOpened, Converter={StaticResource InverseBooleanConverter}}"
-			/>
+            </BoxView>    			
 			<Grid
 				IsVisible="{Binding IsActionMenuOpened}"
 				AbsoluteLayout.LayoutFlags="XProportional,YProportional"
