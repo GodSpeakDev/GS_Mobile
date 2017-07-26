@@ -10,9 +10,14 @@ namespace GodSpeak
 	{
 		private IWebApiService _webApiService;
 		private IFileService _fileService;
-		private IReminderService _reminderService;
 		private ISettingsService _settingsService;
 		private ILoggingService _loggingService;
+
+        private IReminderService _reminderService;
+        public IReminderService ReminderService
+        {
+            get { return _reminderService; }
+        }
 
 		public string UpcomingMessagesFile
 		{
@@ -68,6 +73,17 @@ namespace GodSpeak
 
 			return deliveredMessages;
 		}
+
+        public async Task SetReminders()
+        {
+            _settingsService.ReminderIds.Clear();
+            var messages = await GetUpcomingMessages();
+
+			foreach (var message in messages.Where(x => x.DateTimeToDisplay > DateTime.Now).OrderBy(x => x.DateTimeToDisplay))
+			{
+				_reminderService.SetMessageReminder(message);
+			}
+        }
 
 		public async Task<bool> HasUpcomingMessagesInCache()
 		{
@@ -127,7 +143,13 @@ namespace GodSpeak
 			else
 			{
 				var fileContent = await _fileService.ReadTextAsync(UpcomingMessagesFile);
-				return JsonConvert.DeserializeObject<List<Message>>(fileContent);
+				var list = JsonConvert.DeserializeObject<List<Message>>(fileContent);
+                if (list == null)
+                {
+                    list = new List<Message>();
+                }
+
+                return list;
 			}
 		}
 
@@ -141,7 +163,13 @@ namespace GodSpeak
 			else
 			{
 				var fileContent = await _fileService.ReadTextAsync(DeliveredMessagesFile);
-				return JsonConvert.DeserializeObject<List<Message>>(fileContent);
+				var list = JsonConvert.DeserializeObject<List<Message>>(fileContent);
+                if (list == null)
+                {
+                    list = new List<Message>();
+                }
+
+                return list;
 			}
 		}
 

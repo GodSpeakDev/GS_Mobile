@@ -37,6 +37,11 @@ namespace GodSpeak
             }
         }
 
+        public static void SetupDependencyInjection()
+        {
+            
+        }
+
 		public static void RefreshCurrentPage()
 		{
 			var page = Xamarin.Forms.Application.Current.MainPage;
