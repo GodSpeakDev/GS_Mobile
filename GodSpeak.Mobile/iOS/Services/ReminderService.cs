@@ -2,11 +2,13 @@
 using UIKit;
 using Foundation;
 using System.Diagnostics;
+using GodSpeak.Resources;
 
 namespace GodSpeak.iOS
 {
     public class ReminderService : IReminderService
     {
+		public static int LocalNotificationLimit = 63;
         public static string MessageIdKey = "messageId";
 		public static string MessageTitleKey = "messageTitle";
 
@@ -19,7 +21,7 @@ namespace GodSpeak.iOS
 
         public bool SetMessageReminder (Message message)
         {
-            if (IsReminderSet (message) || UIApplication.SharedApplication.ScheduledLocalNotifications.Length == 64) {
+            if (IsReminderSet (message) || UIApplication.SharedApplication.ScheduledLocalNotifications.Length == LocalNotificationLimit) {
                 return false;
             }
 
@@ -53,7 +55,6 @@ namespace GodSpeak.iOS
                 UserInfo = NSDictionary.FromObjectsAndKeys (objects, keys),
                 SoundName = UILocalNotification.DefaultSoundName,
                 ApplicationIconBadgeNumber = 1
-
             };
 
 			_logger.Trace(string.Format("ADDED REMINDER: Id: {0} DateToDisplay: {1} FireDate: {2} Message: {3}", message.Id, message.DateTimeToDisplay, notification.FireDate, message.Verse.Text)); 
@@ -61,12 +62,52 @@ namespace GodSpeak.iOS
             UIApplication.SharedApplication.ScheduleLocalNotification (notification);
         }
 
+		public void AddReminderNotification()
+		{
+			UILocalNotification previousNotificationReminder = null;
+			NSDate lastDate = NSDate.Now;
+			foreach (UILocalNotification scheduleNotification in UIApplication.SharedApplication.ScheduledLocalNotifications)
+			{
+				if (scheduleNotification.AlertBody == Text.OpenGodSpeakReminder)
+				{
+					previousNotificationReminder = scheduleNotification;
+				}
+				else
+				{
+					lastDate = lastDate.LaterDate(scheduleNotification.FireDate);
+				}
+			}
+
+			if (previousNotificationReminder != null)
+			{
+				UIApplication.SharedApplication.CancelLocalNotification(previousNotificationReminder);
+			}
+
+			lastDate = lastDate.AddSeconds(60 * 60);
+
+			UILocalNotification notification = new UILocalNotification
+			{
+				FireDate = lastDate,
+				TimeZone = NSTimeZone.LocalTimeZone,
+				AlertBody = Text.OpenGodSpeakReminder,
+				RepeatInterval = 0,	
+				SoundName = UILocalNotification.DefaultSoundName,
+				ApplicationIconBadgeNumber=0     
+			};
+
+			_logger.Trace(string.Format("ADDED OPEN GODSPEAK MESSAGE: FireDate: {0}", notification.FireDate)); 
+            Debug.WriteLine (string.Format("ADDED OPEN GODSPEAK MESSAGE: FireDate: {0}", notification.FireDate)); 
+            UIApplication.SharedApplication.ScheduleLocalNotification (notification);
+		}
+
         private bool IsReminderSet (Message message)
         {
-            foreach (UILocalNotification notification in UIApplication.SharedApplication.ScheduledLocalNotifications) {
+            foreach (UILocalNotification notification in UIApplication.SharedApplication.ScheduledLocalNotifications) 
+			{
                 var messageId = notification.UserInfo.ValueForKey (new Foundation.NSString (MessageIdKey));
 
-                if (messageId.ToString () == message.Id.ToString ()) {
+                if (messageId != null && messageId.ToString () == message.Id.ToString ()) 
+				{
                     return true;
                 }
             }

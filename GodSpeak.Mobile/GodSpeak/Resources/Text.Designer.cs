@@ -1096,5 +1096,11 @@ namespace GodSpeak.Resources {
                 return ResourceManager.GetString("TellFriendsAboutGodSpeak", resourceCulture);
             }
         }
+        
+        public static string OpenGodSpeakReminder {
+            get {
+                return ResourceManager.GetString("OpenGodSpeakReminder", resourceCulture);
+            }
+        }
     }
 }

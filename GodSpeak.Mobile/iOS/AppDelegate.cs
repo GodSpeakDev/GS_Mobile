@@ -102,30 +102,23 @@ namespace GodSpeak.iOS
 		public async override void OnActivated(UIApplication application)
 		{
 #if !DEBUG
-			var uiLocalNotificationLimit = 64;
-			if (UIApplication.SharedApplication.ScheduledLocalNotifications.ToList().Count < 64)
+			if (UIApplication.SharedApplication.ScheduledLocalNotifications.ToList().Count < ReminderService.LocalNotificationLimit)
 			{
 				var messageService = Mvx.Resolve<IMessageService>();
-				var reminderService = Mvx.Resolve<IReminderService>();
-
-				var upcomingMessages = (await messageService.GetUpcomingMessages()).Where(x => x.DateTimeToDisplay > DateTime.Now.AddMinutes(2));
-
-				foreach (var upcomingMessage in upcomingMessages)
-				{					
-					reminderService.SetMessageReminder(upcomingMessage);					
-
-					if (UIApplication.SharedApplication.ScheduledLocalNotifications.Length == uiLocalNotificationLimit)
-					{
-						break;
-					}
-				}
+				await messageService.SetReminders();
 			}
 #endif
 		}
 
-        public override void ReceivedLocalNotification (UIApplication application, UILocalNotification notification)
-        {
-            var alert = new UIAlertView ("God Speak", notification.AlertBody, null, "Ok");
+		public override void ReceivedLocalNotification(UIApplication application, UILocalNotification notification)
+		{
+			if (notification.AlertBody == GodSpeak.Resources.Text.OpenGodSpeakReminder)
+			{
+				UIApplication.SharedApplication.ApplicationIconBadgeNumber = 0;
+				return;
+			}
+
+			var alert = new UIAlertView("God Speak", notification.AlertBody, null, "Ok");
 			alert.Show();
 
 			Mvx.Resolve<IMvxMessenger>().Publish(new MessageDeliveredMessage(this));

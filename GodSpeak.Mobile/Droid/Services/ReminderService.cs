@@ -54,6 +54,10 @@ namespace GodSpeak.Droid
             _logger = logManager.GetLog();
 		}
 
+		public void AddReminderNotification()
+		{
+		}
+
 		public bool SetMessageReminder(Message message)
 		{
 			//var context = Android.App.Application.Context;

@@ -77,6 +77,18 @@ namespace GodSpeak
 			return hasUpcomingFile;
 		}
 
+		public async Task SetReminders()
+		{
+			var upcomingMessages = (await GetUpcomingMessages()).Where(x => x.DateTimeToDisplay > DateTime.Now.AddMinutes(2));
+			
+			foreach (var upcomingMessage in upcomingMessages)
+			{					
+				_reminderService.SetMessageReminder(upcomingMessage);								
+			}
+
+			_reminderService.AddReminderNotification();
+		}
+
         public async Task<Message> GetSingleMessage (Guid messageId)
         {
             var deliveredMessages = await GetDeliveredMessages ();
@@ -107,6 +119,8 @@ namespace GodSpeak
 			{
                 _reminderService.SetMessageReminder (message);
             }
+
+			_reminderService.AddReminderNotification();
         }
 
         public async Task<List<Message>> GetUpcomingMessages ()
