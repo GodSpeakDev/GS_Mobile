@@ -19,6 +19,7 @@ namespace GodSpeak
         private IMvxMessenger _messenger;
         private MvxSubscriptionToken _messageSettingsToken;
 		private MvxSubscriptionToken _newMessageToken;
+		private MvxSubscriptionToken _openActionMenuToken;
 		private IMvxWebBrowserTask _browserTask;
 		private bool _isAlreadyStarted = false;
 
@@ -229,6 +230,10 @@ namespace GodSpeak
 
 			_newMessageToken = _messenger.SubscribeOnMainThread<MessageDeliveredMessage> (async(obj) => {
 				await ReloadMessages();
+            });
+
+			_openActionMenuToken = _messenger.SubscribeOnMainThread<ShowActionMenuMessage> ((obj) => {
+				OpenActionMenuCommand.Execute();
             });
 
 			await RefreshImpact();

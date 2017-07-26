@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using GodSpeak.Resources;
 using GodSpeak.Services;
+using MvvmCross.Plugins.Messenger;
 
 namespace GodSpeak
 {
@@ -14,9 +15,10 @@ namespace GodSpeak
         private MvxCommand _shareCommand;
         public ICommand ShareCommand {
             get {
-                return _shareCommand ?? (_shareCommand = new MvxCommand (() => {
+                return _shareCommand ?? (_shareCommand = new MvxCommand (() => 
+				{
                     this.ChangePresentation (new CloseMenuPresentationHint ());
-                    this.ShowViewModel<ShareViewModel> ();
+					this.messenger.Publish(new ShowActionMenuMessage(this));  
                 }));
             }
         }
@@ -97,14 +99,16 @@ namespace GodSpeak
         readonly IProgressHudService hudService;
         readonly ISessionService sessionService;
 		readonly ISettingsService settingsService;
+		readonly IMvxMessenger messenger;
 
-        public HomeViewModel (ISessionService sessionService, IFeedbackService feedbackService, IWebApiService webService, IProgressHudService hudService, ISettingsService settingsService)
+        public HomeViewModel (ISessionService sessionService, IFeedbackService feedbackService, IWebApiService webService, IProgressHudService hudService, ISettingsService settingsService, IMvxMessenger messenger)
         {
             this.sessionService = sessionService;
             this.hudService = hudService;
             this.webService = webService;
             this.feedbackService = feedbackService;
 			this.settingsService = settingsService;
+			this.messenger = messenger;
 
             MenuItems = new ObservableCollection<MenuItem> ()
             {
