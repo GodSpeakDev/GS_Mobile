@@ -431,6 +431,10 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\follow_friends.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\iphone.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\tell_friends.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\question_mark.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\question_mark.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\question_mark.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\question_mark.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="MvvmCross\" />

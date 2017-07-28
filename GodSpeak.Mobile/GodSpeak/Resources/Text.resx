@@ -931,4 +931,20 @@ Enjoy!
 		xml:space="preserve">
     	<value>Tell Friends about GodSpeak</value>
   	</data>
+
+	<data
+		name="OpenGodSpeakReminder"
+		xml:space="preserve">
+    	<value>Please open GodSpeak to continue receiving messages.</value>
+  	</data>	
+
+	<data
+		name="DoNotKnowPlatform"
+		xml:space="preserve">
+    	<value>What's My Friend's Phone</value>
+		<value>Friend's Phone Type?</value>
+  	</data>	
+
+	
+
 </root>
