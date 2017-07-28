@@ -58,7 +58,7 @@
 							<views:ImageButton 
 								AbsoluteLayout.LayoutFlags="XProportional,YProportional"
 								AbsoluteLayout.LayoutBounds="{StaticResource FabButtonBounds}"
-
+								IsVisible="{Binding IsActionMenuOpened, Converter={StaticResource InverseBooleanConverter}}"
 								Source="invitesFAB.png"														
 								Command="{Binding OpenActionMenuCommand}"
 							/>								
@@ -232,6 +232,7 @@
 			    	<TapGestureRecognizer Command="{Binding HideOverlayCommand}" />
 			    </BoxView.GestureRecognizers>				
 			</BoxView>
+			<!--
 			<views:MenuItemView
 				AbsoluteLayout.LayoutFlags="XProportional,YProportional"
 				AbsoluteLayout.LayoutBounds="{StaticResource FabButtonBounds}"
@@ -241,6 +242,7 @@
 				Command="{Binding OpenActionMenuCommand}"
 				IsVisible="{Binding IsActionMenuOpened, Converter={StaticResource InverseBooleanConverter}}"
 			/>
+			-->
 			<Grid
 				IsVisible="{Binding IsActionMenuOpened}"
 				AbsoluteLayout.LayoutFlags="XProportional,YProportional"
