@@ -160,7 +160,7 @@ namespace GodSpeak
 			{
 				return _giftAndroidCommand ?? (_giftAndroidCommand = new MvxCommand(() =>
 				{
-					_browserTask.ShowWebPage("http://go.givegodspeak.com/");
+					_browserTask.ShowWebPage("http://go.givegodspeak.com/GiftAndroid");
 					CloseActionMenuCommand.Execute();
 				}));
 			}
@@ -173,7 +173,8 @@ namespace GodSpeak
 			{
 				return _giftChurchCommand ?? (_giftChurchCommand = new MvxCommand(async () =>
 				{
-					_browserTask.ShowWebPage(string.Format("http://go.givegodspeak.com/SignUp/{0}", (await SessionService.GetUser()).InviteCode));
+                    mailService.SendMail (new string [] { "curtis@givegodspeak.com" }, null, null, "I Want to Share with My Church", "Hi,\rI'm interested in learning more about how to share with my fellow church members");
+					//_browserTask.ShowWebPage(string.Format("http://go.givegodspeak.com/SignUp/{0}", (await SessionService.GetUser()).InviteCode));
 					CloseActionMenuCommand.Execute();
 				}));
 			}
@@ -205,10 +206,13 @@ namespace GodSpeak
 			}
 		}
 
+        readonly IMailService mailService;
+
         public MessageViewModel (
             IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, ISettingsService settingsService,
-            IMessageService messageService, IMvxMessenger messenger, IMvxWebBrowserTask browserTask) : base (dialogService, hudService, sessionService, webApiService, settingsService)
+            IMessageService messageService, IMvxMessenger messenger, IMvxWebBrowserTask browserTask, IMailService mailService) : base (dialogService, hudService, sessionService, webApiService, settingsService)
         {
+            this.mailService = mailService;
             _messageService = messageService;
             _messenger = messenger;
 			_browserTask = browserTask;
