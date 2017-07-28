@@ -159,8 +159,34 @@ namespace GodSpeak
         {
             await Task.Delay (delay);
 
+			var messages = new List<Message>();
+
+			for (int i = 0; i < 120; i++)
+			{
+				messages.Add(new Message()
+				{
+					DateTimeToDisplay = DateTime.Now.AddMinutes(2 + 1 * i),
+					PreviousVerse = new Verse()
+					{
+						Text = "Therefore I say to you, all things for which you pray and ask, believe that you have received them, and they will be granted you.",
+						Title = "John 15:6 NASB",
+					},
+					Verse = new Verse()
+					{
+						Text = "If you abide in Me, and My words abide in you, ask whatever you wish, and it will be done for you.",
+						Title = "John 15:7 NASB",
+					},
+					NextVerse = new Verse()
+					{
+						Text = "Truly I say to you, whoever says to this mountain, 'Be taken up and cast into the sea,' and does not doubt in his heart, but believes that what he says is going to happen, it will be granted him.",
+						Title = "John 15:8 NASB"
+					},
+					Id = Guid.NewGuid(),
+				});
+			}
+
             return new ApiResponse<List<Message>> () {
-                Payload = _messages,
+                Payload = messages,
                 StatusCode = System.Net.HttpStatusCode.OK
             };
         }

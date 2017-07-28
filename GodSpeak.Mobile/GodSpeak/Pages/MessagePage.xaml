@@ -60,13 +60,10 @@
 								AbsoluteLayout.LayoutBounds="{StaticResource FabButtonBounds}"
 
 								Source="invitesFAB.png"														
-								Command="{Binding GoToShareCommand}"
+								Command="{Binding OpenActionMenuCommand}"
 							/>								
 						</AbsoluteLayout>
 					</ListView.Header>
-					<ListView.Footer>
-						<BoxView Color="Transparent" HeightRequest="60" />
-					</ListView.Footer>
 					<ListView.ItemTemplate>
 						<DataTemplate>
 							<ViewCell>								

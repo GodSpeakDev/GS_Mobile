@@ -5,5 +5,6 @@ namespace GodSpeak
 	{
 		bool SetMessageReminder(Message message);
 		void ClearReminders();
+		void AddReminderNotification();
 	}
 }

@@ -436,6 +436,7 @@
       <DependentUpon>MenuItemView.xaml</DependentUpon>
     </Compile>
     <Compile Include="CustomComponents\MenuBackground.cs" />
+    <Compile Include="MvvmCross\Messages\ShowActionMenuMessage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

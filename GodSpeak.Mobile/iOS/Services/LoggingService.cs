@@ -15,42 +15,98 @@ namespace GodSpeak.iOS
 
 		public void Debug(string text, params object[] args)
 		{
-			_log.Debug(text, args);
+			try 
+			{
+				_log.Debug(text, args);		
+			} 
+			catch (System.Exception ex) 
+			{
+				
+			}
 		}
 
 		public void Error(string text, params object[] args)
 		{
-			_log.Error(text, args);
+			try 
+			{
+				_log.Error(text, args);		
+			} 
+			catch (System.Exception ex) {
+				
+			}
+
 		}
 
 		public void Fatal(string text, params object[] args)
 		{
-			_log.Fatal(text, args);
+			try 
+			{
+				_log.Fatal(text, args);	
+			} 
+			catch (System.Exception ex) 
+			{
+				
+			}
 		}
 
 		public void Info(string text, params object[] args)
 		{
-			_log.Info(text, args);
+			try
+			{
+				_log.Info(text, args);		
+			}
+			catch (System.Exception ex)
+			{
+
+			}
 		}
 
 		public void Trace(string text, params object[] args)
 		{
-			_log.Trace(text, args);
+			try
+			{
+				_log.Trace(text, args);
+			}
+			catch (Exception ex)
+			{
+
+			}
 		}
 
 		public void Warn(string text, params object[] args)
 		{
-			_log.Warn(text, args);
+			try
+			{
+				_log.Warn(text, args);
+			}
+			catch (Exception ex)
+			{
+
+			}
 		}
 
 		public void Trace(MvxTraceLevel level, string tag, Func<string> message)
 		{
-			_log.Trace(tag + ":" + level + ":" + message());
+			try
+			{
+				_log.Trace(tag + ":" + level + ":" + message());
+			}
+			catch (Exception ex)
+			{
+
+			}
 		}
 
 		public void Trace(MvxTraceLevel level, string tag, string message)
 		{
-			_log.Trace(tag + ":" + level + ":" + message);
+			try
+			{
+				_log.Trace(tag + ":" + level + ":" + message);
+			}
+			catch (Exception ex)
+			{
+
+			}
 		}
 
 		public void Trace(MvxTraceLevel level, string tag, string message, params object[] args)
@@ -62,6 +118,10 @@ namespace GodSpeak.iOS
 			catch (FormatException)
 			{
 				Trace(MvxTraceLevel.Error, tag, "Exception during trace of {0} {1}", level, message);
+			}
+			catch (Exception)
+			{
+				
 			}
 		}
 	}
