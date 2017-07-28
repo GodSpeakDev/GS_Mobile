@@ -438,6 +438,12 @@
     <BundleResource Include="Resources\add_button_icon.png" />
     <BundleResource Include="Resources\add_button_icon%402x.png" />
     <BundleResource Include="Resources\add_button_icon%403x.png" />
+    <BundleResource Include="Resources\question_mark.png" />
+    <BundleResource Include="Resources\question_mark%402x.png" />
+    <BundleResource Include="Resources\question_mark%403x.png" />
+    <BundleResource Include="Resources\menu_separator.png" />
+    <BundleResource Include="Resources\menu_separator%402x.png" />
+    <BundleResource Include="Resources\menu_separator%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="googleiosmaps">

@@ -929,4 +929,13 @@ Love God. Love others. Tell everyone.
 		xml:space="preserve">
     	<value>Please open GodSpeak to continue receiving messages.</value>
   	</data>	
+
+	<data
+		name="DoNotKnowPlatform"
+		xml:space="preserve">
+    	<value>What's My Friend's Phone</value>
+		<value>Friend's Phone Type?</value>
+  	</data>	
+
+	
 </root>

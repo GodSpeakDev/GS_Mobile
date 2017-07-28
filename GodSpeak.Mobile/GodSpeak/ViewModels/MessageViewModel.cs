@@ -183,6 +183,18 @@ namespace GodSpeak
 			}
 		}
 
+
+
+        public MvxCommand _dontKnowCommand;
+        public MvxCommand DontKnowCommand {
+        	get {
+                return _dontKnowCommand ?? (_dontKnowCommand = new MvxCommand (() => {
+                    DialogService.ShowAlert ("Reach Out", "You can find out your friend's phone type by reaching out to them. You can use email, SMS, or reach out on any social networks they may be on.");
+                    CloseActionMenuCommand.Execute ();
+                }));
+		    }
+        }
+
 		public MvxCommand _followFriendsCommand;
 		public MvxCommand FollowFriendsCommand
 		{

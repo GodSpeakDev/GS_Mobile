@@ -254,6 +254,10 @@
 					<RowDefinition Height="auto" />
 					<RowDefinition Height="auto" />
 					<RowDefinition Height="auto" />
+
+
+					<RowDefinition Height="5" />
+					
 					<RowDefinition Height="auto" />
 					<RowDefinition Height="auto" />
 					<RowDefinition Height="auto" />
@@ -267,7 +271,7 @@
 					VerticalOptions="FillAndExpand"
 					Grid.Row="0"
 					Grid.Column="1"
-					Grid.RowSpan="7"
+					Grid.RowSpan="8"
 				/>
 				<views:CustomLabel Style="{StaticResource MenuItemTitle}" Grid.Column="0" Grid.Row="0" Text="{x:Static res:Text.Cancel}" />
 				<views:MenuItemView Size="20" Style="{StaticResource MenuItem}" Grid.Column="1" Grid.Row="0" Source="close_button_icon.png" Command="{Binding CloseActionMenuCommand}" />
@@ -277,10 +281,17 @@
 				<views:MenuItemView Style="{StaticResource MenuItem}" Grid.Column="1" Grid.Row="2" Source="android.png" Command="{Binding GiftAndroidCommand}" />
 				<views:CustomLabel Style="{StaticResource MenuItemTitle}" Grid.Column="0" Grid.Row="3" Text="{x:Static res:Text.GiftToChurch}" />
 				<views:MenuItemView Style="{StaticResource MenuItem}" Grid.Column="1" Grid.Row="3" Source="church.png" Command="{Binding GiftChurchCommand}" />	
+
+				<views:MenuItemView Style="{StaticResource MenuItem}" Grid.Column="1" Grid.Row="4" Source="menu_separator.png" Command="{Binding GiftChurchCommand}" />	
+
+				
 				<views:CustomLabel Style="{StaticResource MenuItemTitle}" Grid.Column="0" Grid.Row="5" Text="{x:Static res:Text.FollowUpWithFriends}" />
 				<views:MenuItemView Style="{StaticResource MenuItem}" Grid.Column="1" Grid.Row="5" Source="follow_friends.png" Command="{Binding FollowFriendsCommand}" />
 				<views:CustomLabel Style="{StaticResource MenuItemTitle}" Grid.Column="0" Grid.Row="6" Text="{x:Static res:Text.TellFriendsAboutGodSpeak}" />
 				<views:MenuItemView Style="{StaticResource MenuItem}" Grid.Column="1" Grid.Row="6" Source="tell_friends.png" Command="{Binding TellFriendsCommand}" />
+
+				<views:CustomLabel Style="{StaticResource MenuItemTitle}" Grid.Column="0" Grid.Row="7" Text="{x:Static res:Text.DoNotKnowPlatform}" />
+				<views:MenuItemView Style="{StaticResource MenuItem}" Grid.Column="1" Grid.Row="7" Source="question_mark.png" Command="{Binding DontKnowCommand}" />
 			</Grid>
 		</AbsoluteLayout>
 	</views:CustomContentPage.Content>

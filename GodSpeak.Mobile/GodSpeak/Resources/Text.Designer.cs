@@ -1102,5 +1102,11 @@ namespace GodSpeak.Resources {
                 return ResourceManager.GetString("OpenGodSpeakReminder", resourceCulture);
             }
         }
+        
+        public static string DoNotKnowPlatform {
+            get {
+                return ResourceManager.GetString("DoNotKnowPlatform", resourceCulture);
+            }
+        }
     }
 }
