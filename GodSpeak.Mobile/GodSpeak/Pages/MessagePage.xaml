@@ -232,15 +232,6 @@
 			    	<TapGestureRecognizer Command="{Binding HideOverlayCommand}" />
 			    </BoxView.GestureRecognizers>				
 			</BoxView>
-			<views:MenuItemView
-				AbsoluteLayout.LayoutFlags="XProportional,YProportional"
-				AbsoluteLayout.LayoutBounds="{StaticResource FabButtonBounds}"
-				Margin="10"
-				Size="25"
-				Source="add_button_icon.png"
-				Command="{Binding OpenActionMenuCommand}"
-				IsVisible="{Binding IsActionMenuOpened, Converter={StaticResource InverseBooleanConverter}}"
-			/>
 			<Grid
 				IsVisible="{Binding IsActionMenuOpened}"
 				AbsoluteLayout.LayoutFlags="XProportional,YProportional"
