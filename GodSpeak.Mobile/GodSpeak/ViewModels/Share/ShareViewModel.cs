@@ -97,8 +97,8 @@ namespace GodSpeak
 				DoSelectTabCommand(_claimedTab);
 			}
 
-            await ClaimedGiftViewModel.Init(comesFromRegisterFlow);
             await UnclaimedGiftViewModel.Init(comesFromRegisterFlow);
+            await ClaimedGiftViewModel.Init(comesFromRegisterFlow);
 
             this.HudService.Hide ();
         }
