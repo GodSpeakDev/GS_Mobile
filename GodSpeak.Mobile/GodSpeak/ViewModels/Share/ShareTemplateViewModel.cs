@@ -62,7 +62,7 @@ namespace GodSpeak
             if (currentUser.InviteBalance > 0) 
             {
                 _tracer.Trace(MvxTraceLevel.Diagnostic, "Share", "Opening Share dialog.");
-                _shareService.Share (string.Format (Text.ShareText, currentUser.InviteCode, currentUser.FirstName));
+                _shareService.Share (string.Format (Text.GiftToFriendText, currentUser.InviteCode, currentUser.FirstName));
             } 
             else 
             {

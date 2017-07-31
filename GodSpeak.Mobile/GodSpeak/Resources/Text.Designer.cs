@@ -869,6 +869,12 @@ namespace GodSpeak.Resources {
             }
         }
         
+        public static string GiftToFriendText {
+            get {
+                return ResourceManager.GetString("GiftToFriendText", resourceCulture);
+            }
+        }
+        
         public static string LearnMore {
             get {
                 return ResourceManager.GetString("LearnMore", resourceCulture);
