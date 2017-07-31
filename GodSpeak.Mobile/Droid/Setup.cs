@@ -22,20 +22,24 @@ namespace GodSpeak.Droid
 
         protected override IMvxApplication CreateApp ()
         {
-            Mvx.LazyConstructAndRegisterSingleton<IFeedbackService, FeedbackService> ();
-            Mvx.LazyConstructAndRegisterSingleton<IMediaPicker, MediaPicker> ();
-            Mvx.LazyConstructAndRegisterSingleton<IShareService, ShareService> ();
-            Mvx.LazyConstructAndRegisterSingleton<IReminderService, ReminderService> ();
-            Mvx.LazyConstructAndRegisterSingleton<IProgressHudService, ProgressHudService> ();
+            SetupDependencyInjection();
+            return new App ();
+        }
+
+        public static void SetupDependencyInjection()
+        {
+			Mvx.LazyConstructAndRegisterSingleton<IFeedbackService, FeedbackService>();
+			Mvx.LazyConstructAndRegisterSingleton<IMediaPicker, MediaPicker>();
+			Mvx.LazyConstructAndRegisterSingleton<IShareService, ShareService>();
+			Mvx.LazyConstructAndRegisterSingleton<IReminderService, ReminderService>();
+			Mvx.LazyConstructAndRegisterSingleton<IProgressHudService, ProgressHudService>();
 			Mvx.LazyConstructAndRegisterSingleton<IContactService, ContactsService>();
 			Mvx.LazyConstructAndRegisterSingleton<IMailService, MailService>();
 			Mvx.LazyConstructAndRegisterSingleton<IImageService, ImageService>();
 			Mvx.LazyConstructAndRegisterSingleton<IFileService, FileService>();
-            Mvx.LazyConstructAndRegisterSingleton<IMvxWebBrowserTask, GodSpeakWebBrowserTask> ();
+			Mvx.LazyConstructAndRegisterSingleton<IMvxWebBrowserTask, GodSpeakWebBrowserTask>();
 			Mvx.LazyConstructAndRegisterSingleton<ILogManager, NLogManager>();
 			Mvx.LazyConstructAndRegisterSingleton<ILoggingService, LoggingService>();
-
-            return new App ();
         }
 
         protected override IMvxTrace CreateDebugTrace ()

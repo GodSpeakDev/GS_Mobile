@@ -48,24 +48,48 @@ namespace GodSpeak
 
 		public void Show()
 		{
-			this.Animate("Showing", new Animation((x) =>
+			if (PopupContent != null)
 			{
-				AbsoluteLayout.SetLayoutBounds(PopupContent, new Rectangle(0, 2 - x, 1, AbsoluteLayout.AutoSize));
-				Overlay.Opacity = x * 0.55;
-			}));
+				this.Animate("Showing", new Animation((x) =>
+				{
+					if (PopupContent != null)
+					{
+						AbsoluteLayout.SetLayoutBounds(PopupContent, new Rectangle(0, 2 - x, 1, AbsoluteLayout.AutoSize));
+					}
+
+					if (Overlay != null)
+					{
+						Overlay.Opacity = x * 0.55;
+					}
+				}));
+			}
 		}
 
 		public void Hide()
 		{
-			this.Animate("Hiding", new Animation((x) =>
+			if (PopupContent != null)
 			{
-				AbsoluteLayout.SetLayoutBounds(PopupContent, new Rectangle(0, 1 + x, 1, AbsoluteLayout.AutoSize));
-				Overlay.Opacity = 0.55 - (0.55 * x);
-			}), finished: (rate, finished) =>
-			{
-				var parentAbsolute = this.Parent as AbsoluteLayout;
-				parentAbsolute.Children.Remove(this);
-			});
+				this.Animate("Hiding", new Animation((x) =>
+				{
+					if (PopupContent != null)
+					{
+						AbsoluteLayout.SetLayoutBounds(PopupContent, new Rectangle(0, 1 + x, 1, AbsoluteLayout.AutoSize));
+					}
+
+					if (Overlay != null)
+					{
+						Overlay.Opacity = 0.55 - (0.55 * x);
+					}
+
+				}), finished: (rate, finished) =>
+				{
+					var parentAbsolute = this.Parent as AbsoluteLayout;
+					if (parentAbsolute != null)
+					{
+						parentAbsolute.Children.Remove(this);
+					}
+				});
+			}
 		}
 	}
 }

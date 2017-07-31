@@ -12,6 +12,7 @@
 			VerticalOptions="FillAndExpand"
 			HorizontalOptions="FillAndExpand">
 			<views:MessageGradientView
+
 				AbsoluteLayout.LayoutBounds="0,0,1,1" 
 				AbsoluteLayout.LayoutFlags="All">
 				<views:CustomListView			
@@ -23,7 +24,7 @@
 					SelectedItem="{Binding SelectedItem}"
 					BackgroundColor="Transparent"
 					SeparatorVisibility="None"
-					SeparatorColor="Transparent"
+					SeparatorColor="Transparent"                    
 					HasUnevenRows="true"
 					>
 					<ListView.Header>
@@ -59,10 +60,10 @@
 								AbsoluteLayout.LayoutBounds="{StaticResource FabButtonBounds}"
 
 								Source="invitesFAB.png"														
-								Command="{Binding GoToShareCommand}"
+								Command="{Binding OpenActionMenuCommand}"
 							/>								
 						</AbsoluteLayout>
-					</ListView.Header>
+					</ListView.Header>                    
 					<ListView.ItemTemplate>
 						<DataTemplate>
 							<ViewCell>								
@@ -222,39 +223,78 @@
 					Command="{Binding GoToImpactCommand}"
 					Source="impactWithNotification.png" />				
 			</views:HeaderOverlay>
-			<BoxView
-				AbsoluteLayout.LayoutFlags="All"
-				AbsoluteLayout.LayoutBounds="0,0,1,1"
-				IsVisible="{Binding ShouldShowOverlay}"
-				Color="{StaticResource payForwardOverlay}">
-				<BoxView.GestureRecognizers>
-			    	<TapGestureRecognizer Command="{Binding HideOverlayCommand}" />
-			    </BoxView.GestureRecognizers>				
-			</BoxView>
-			<AbsoluteLayout 
-				HorizontalOptions="FillAndExpand"
-				HeightRequest="280"
-				IsVisible="{Binding ShouldShowOverlay}"
-				AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"
-				AbsoluteLayout.LayoutBounds="0,0,1,AutoSize">	
-					<AbsoluteLayout.GestureRecognizers>
-				    	<TapGestureRecognizer Command="{Binding HideOverlayCommand}" />
-				    </AbsoluteLayout.GestureRecognizers>	
-					<views:CustomButton				
-						AbsoluteLayout.LayoutFlags="XProportional"
-						AbsoluteLayout.LayoutBounds="{StaticResource PayItForwardButtonBounds}"
-						Style="{StaticResource TapToPayForwardButton}"
-						Text="{x:Static res:Text.TapToPayItForward}"
-						TextAlignment="Start"
-						IsVisible="{Binding ShouldShowTip}"
-					/>
-					<views:ImageButton 
-						AbsoluteLayout.LayoutFlags="XProportional,YProportional"
-						AbsoluteLayout.LayoutBounds="{StaticResource FabButtonBounds}"			
-						Source="invitesFAB.png"	
-						PreCommand="{Binding HideTipCommand}"
-						Command="{Binding GoToShareCommand}" />				
-			</AbsoluteLayout>
+            <AbsoluteLayout 
+                HorizontalOptions="FillAndExpand"
+                HeightRequest="280"
+                IsVisible="{Binding ShouldShowOverlay}"
+                AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"
+                AbsoluteLayout.LayoutBounds="0,0,1,AutoSize">   
+                    <AbsoluteLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding HideOverlayCommand}" />
+                    </AbsoluteLayout.GestureRecognizers>    
+                    <views:CustomButton             
+                        AbsoluteLayout.LayoutFlags="XProportional"
+                        AbsoluteLayout.LayoutBounds="{StaticResource PayItForwardButtonBounds}"
+                        Style="{StaticResource TapToPayForwardButton}"
+                        Text="{x:Static res:Text.TapToPayItForward}"
+                        TextAlignment="Start"
+                        IsVisible="{Binding ShouldShowTip}"
+                    />
+                    <views:ImageButton 
+                        AbsoluteLayout.LayoutFlags="XProportional,YProportional"
+                        AbsoluteLayout.LayoutBounds="{StaticResource FabButtonBounds}"          
+                        Source="invitesFAB.png" 
+                        PreCommand="{Binding HideTipCommand}"
+                        Command="{Binding OpenActionMenuCommand}" />             
+            </AbsoluteLayout>
+            <BoxView
+                AbsoluteLayout.LayoutFlags="All"
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                IsVisible="{Binding IsActionMenuOpened}"
+                Color="{StaticResource payForwardOverlay}">
+                <BoxView.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding HideOverlayCommand}" />
+                </BoxView.GestureRecognizers>               
+            </BoxView>    			
+			<Grid
+				IsVisible="{Binding IsActionMenuOpened}"
+				AbsoluteLayout.LayoutFlags="XProportional,YProportional"
+				AbsoluteLayout.LayoutBounds="1,1,AutoSize,AutoSize"
+				RowSpacing="0"
+				Margin="10">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="auto" />
+					<RowDefinition Height="auto" />
+					<RowDefinition Height="auto" />
+					<RowDefinition Height="auto" />
+					<RowDefinition Height="auto" />
+					<RowDefinition Height="auto" />
+					<RowDefinition Height="auto" />
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="auto" />
+					<ColumnDefinition Width="auto" />
+				</Grid.ColumnDefinitions>
+				<views:MenuBackground 
+					BackgroundColor="White" 
+					VerticalOptions="FillAndExpand"
+					Grid.Row="0"
+					Grid.Column="1"
+					Grid.RowSpan="7"
+				/>
+				<views:CustomLabel Style="{StaticResource MenuItemTitle}" Grid.Column="0" Grid.Row="0" Text="{x:Static res:Text.Cancel}" />
+				<views:MenuItemView Size="20" Style="{StaticResource MenuItem}" Grid.Column="1" Grid.Row="0" Source="close_button_icon.png" Command="{Binding CloseActionMenuCommand}" />
+				<views:CustomLabel Style="{StaticResource MenuItemTitle}" Grid.Column="0" Grid.Row="1" Text="{x:Static res:Text.GiftToIphoneUser}" />
+				<views:MenuItemView Style="{StaticResource MenuItem}" Grid.Column="1" Grid.Row="1" Source="iphone.png" Command="{Binding GiftIphoneCommand}" />
+				<views:CustomLabel Style="{StaticResource MenuItemTitle}" Grid.Column="0" Grid.Row="2" Text="{x:Static res:Text.GiftToAndroidUser}" />
+				<views:MenuItemView Style="{StaticResource MenuItem}" Grid.Column="1" Grid.Row="2" Source="android.png" Command="{Binding GiftAndroidCommand}" />
+				<views:CustomLabel Style="{StaticResource MenuItemTitle}" Grid.Column="0" Grid.Row="3" Text="{x:Static res:Text.GiftToChurch}" />
+				<views:MenuItemView Style="{StaticResource MenuItem}" Grid.Column="1" Grid.Row="3" Source="church.png" Command="{Binding GiftChurchCommand}" />	
+				<views:CustomLabel Style="{StaticResource MenuItemTitle}" Grid.Column="0" Grid.Row="5" Text="{x:Static res:Text.FollowUpWithFriends}" />
+				<views:MenuItemView Style="{StaticResource MenuItem}" Grid.Column="1" Grid.Row="5" Source="follow_friends.png" Command="{Binding FollowFriendsCommand}" />
+				<views:CustomLabel Style="{StaticResource MenuItemTitle}" Grid.Column="0" Grid.Row="6" Text="{x:Static res:Text.TellFriendsAboutGodSpeak}" />
+				<views:MenuItemView Style="{StaticResource MenuItem}" Grid.Column="1" Grid.Row="6" Source="tell_friends.png" Command="{Binding TellFriendsCommand}" />
+			</Grid>
 		</AbsoluteLayout>
 	</views:CustomContentPage.Content>
 </views:CustomContentPage>

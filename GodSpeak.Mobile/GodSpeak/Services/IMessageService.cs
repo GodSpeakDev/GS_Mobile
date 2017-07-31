@@ -22,5 +22,6 @@ namespace GodSpeak
 		Task<Message> GetSingleMessage(Guid messageId);
 		Task<List<Message>> GetUpcomingMessages();
 		Task<bool> HasUpcomingMessagesFile();	
+        Task SetReminders();
 	}
 }

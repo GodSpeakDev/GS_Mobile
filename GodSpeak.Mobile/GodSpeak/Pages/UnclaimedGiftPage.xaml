@@ -14,7 +14,7 @@
 					AbsoluteLayout.LayoutFlags="All"
 					AbsoluteLayout.LayoutBounds="0,0,1,1">
 					<Grid.RowDefinitions>
-						<RowDefinition Height="200" />
+						<RowDefinition Height="*" />
 						<RowDefinition Height="50" />
 						<RowDefinition Height="*" />
 					</Grid.RowDefinitions>
@@ -23,9 +23,9 @@
 						Grid.RowSpan="2"
 						Source="share_background.png"
 						Aspect="AspectFill" />
-					<views:CustomCarouselView 
+					<views:CustomCarouselView                         
 						Grid.Row="0"
-						Grid.RowSpan="2"
+						Grid.RowSpan="2"                        
 						HorizontalOptions="FillAndExpand"
 						VerticalOptions="FillAndExpand"
 						Position="{Binding SelectedPosition}"

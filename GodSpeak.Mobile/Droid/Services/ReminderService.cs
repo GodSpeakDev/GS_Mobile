@@ -32,6 +32,16 @@ namespace GodSpeak.Droid
 		private ISettingsService _settingsService;
 		private ILoggingService _logger;
 
+        private Context _context;
+        public Context Context
+        {
+            get 
+            {
+                return _context ?? Forms.Context;
+            }
+            set { _context = value; }
+        }       
+
 		private AlarmManager _alarmManager;
 		public AlarmManager AlarmManager
 		{
@@ -42,7 +52,9 @@ namespace GodSpeak.Droid
 					return _alarmManager;
 				}
 
-				var activity = (Forms.Context as Activity);
+                var activity = Context;
+
+                _logger.Info("Context OK:" + (activity != null).ToString());
 
 				return _alarmManager ?? (_alarmManager = (AlarmManager)activity.GetSystemService(Android.Content.Context.AlarmService));
 			}
@@ -83,7 +95,7 @@ namespace GodSpeak.Droid
 
 		private Intent CreateAlarmIntent(Message message)
 		{
-			Intent intent = new Intent(Xamarin.Forms.Forms.Context, typeof(ReminderReceiver));
+			Intent intent = new Intent(Context, typeof(ReminderReceiver));
 
 			var contents = JsonConvert.SerializeObject(message);
 			intent.PutExtra("item_json", contents);
@@ -99,15 +111,15 @@ namespace GodSpeak.Droid
 			ids.Add(id);
 			_settingsService.ReminderIds = ids;
 
-			return PendingIntent.GetBroadcast(Xamarin.Forms.Forms.Context, id, intent, flag);
+			return PendingIntent.GetBroadcast(Context, id, intent, flag);
 		}
 
 		public void ClearReminders()
 		{
 			foreach (var id in _settingsService.ReminderIds)
 			{
-				var intent = new Intent(Xamarin.Forms.Forms.Context, typeof(ReminderReceiver));
-				var pendingIntent = PendingIntent.GetBroadcast(Xamarin.Forms.Forms.Context, id, intent, PendingIntentFlags.CancelCurrent);
+				var intent = new Intent(Context, typeof(ReminderReceiver));
+				var pendingIntent = PendingIntent.GetBroadcast(Context, id, intent, PendingIntentFlags.CancelCurrent);
 				pendingIntent.Cancel();
 			}
 		}
@@ -159,7 +171,7 @@ namespace GodSpeak.Droid
 		}
 	}
 
-	[Service]
+    [Service]
 	public class AlarmServiceIntentService : IntentService
 	{
 		private NotificationManager _notificationManager;
@@ -200,6 +212,16 @@ namespace GodSpeak.Droid
 
 		private void SendNotification(Message message)
 		{
+            try
+            {				
+				new NLogManager().GetLog().Trace(MvvmCross.Platform.Platform.MvxTraceLevel.Diagnostic, "SENDING NOTIFICATION", JsonConvert.SerializeObject(message));   
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+
 			Notification.Builder builder = new Notification.Builder(ApplicationContext)
 				.SetContentTitle("GodSpeak")
 				.SetAutoCancel(true)
@@ -217,6 +239,16 @@ namespace GodSpeak.Droid
 			var id = random.Next();
 
 			NotificationManager.Notify(message.Id.ToString(), id, builder.Build());
+
+            try
+            {
+                var logManager = new NLogManager();
+                logManager.GetLog().Trace(MvvmCross.Platform.Platform.MvxTraceLevel.Diagnostic, "NOTIFICATION SENT", JsonConvert.SerializeObject(message));
+            }
+            catch
+            {
+                
+            }
 		}
 	}
 }
