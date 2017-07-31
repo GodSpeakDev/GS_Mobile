@@ -147,7 +147,7 @@ namespace GodSpeak
 			{
 				return _giftIphoneCommand ?? (_giftIphoneCommand = new MvxCommand(() => 
 				{
-					_browserTask.ShowWebPage("http://go.givegodspeak.com/GiftiTunes");
+					_browserTask.ShowWebPage("http://go.givegodspeak.com/GiftiTunes/Desktop");
 					CloseActionMenuCommand.Execute();
 				}));
 			}
@@ -160,8 +160,8 @@ namespace GodSpeak
 			{
 				return _giftAndroidCommand ?? (_giftAndroidCommand = new MvxCommand(() =>
 				{
-					_browserTask.ShowWebPage("http://go.givegodspeak.com/GiftAndroid");
-					CloseActionMenuCommand.Execute();
+                    this.ShowViewModel<ShareViewModel>(new {selectedTab=ShareViewModel.TabTypes.Unclaimed});
+                    CloseActionMenuCommand.Execute();
 				}));
 			}
 		}
@@ -173,7 +173,7 @@ namespace GodSpeak
 			{
 				return _giftChurchCommand ?? (_giftChurchCommand = new MvxCommand(async () =>
 				{
-                    mailService.SendMail (new string [] { "curtis@givegodspeak.com" }, null, null, "I Want to Share with My Church", "Hi,\rI'm interested in learning more about how to share with my fellow church members");
+                    mailService.SendMail (new string [] { "curtis@givegodspeak.com" }, null, null, "I Want to Share with My Church", "Hi,\nI'm interested in learning more about how to share with my fellow church members");
 					//_browserTask.ShowWebPage(string.Format("http://go.givegodspeak.com/SignUp/{0}", (await SessionService.GetUser()).InviteCode));
 					CloseActionMenuCommand.Execute();
 				}));
@@ -200,8 +200,9 @@ namespace GodSpeak
 			{
 				return _tellFriendsCommand ?? (_tellFriendsCommand = new MvxCommand(() =>
 				{
-					this.ShowViewModel<ShareViewModel>(new {selectedTab=ShareViewModel.TabTypes.Unclaimed});
-					CloseActionMenuCommand.Execute();
+                    mailService.SendMail (null, null, null, "Check out this app!", Resources.Text.ShareText);
+                    //_browserTask.ShowWebPage(string.Format("http://go.givegodspeak.com/SignUp/{0}", (await SessionService.GetUser()).InviteCode));
+                    CloseActionMenuCommand.Execute();
 				}));
 			}
 		}
