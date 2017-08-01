@@ -61,6 +61,7 @@ namespace GodSpeak.iOS
 			UIApplication.SharedApplication.SetMinimumBackgroundFetchInterval(UIKit.UIApplication.BackgroundFetchIntervalMinimum);
 
             Log("**** FINISHED LAUNCHING ****");
+            UIApplication.SharedApplication.ApplicationIconBadgeNumber = 0;
 
 			return true;
 		}
