@@ -24,7 +24,6 @@
 				Grid.Row="0"
 				Grid.Column="0"
 				BindingContext="{Binding UnclaimedGiftViewModel}"
-				IsVisible="{Binding IsVisible}"
 			/>
 			<views:ClaimedGiftPage  
 				Grid.Row="0"
