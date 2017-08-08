@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.0.6" package="com.givegodspeak.android" android:versionCode="14">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.0.7" package="com.givegodspeak.android" android:versionCode="15">
 	<uses-sdk android:minSdkVersion="15" />
 	<application android:label="GodSpeak" android:icon="@drawable/app_icon">
 		<meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyBzo7-QUVdoFfwKNSFV9hddsSjP20H7Jew" />
@@ -15,5 +15,4 @@
 	<uses-permission android:name="android.permission.WAKE_LOCK" />
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 	<uses-permission android:name="com.android.vending.BILLING" />
-
 </manifest>
