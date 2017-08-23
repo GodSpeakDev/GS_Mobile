@@ -411,6 +411,7 @@
     </Compile>
     <Compile Include="CustomComponents\MenuBackground.cs" />
     <Compile Include="MvvmCross\Messages\ShowActionMenuMessage.cs" />
+    <Compile Include="Services\ISmsService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

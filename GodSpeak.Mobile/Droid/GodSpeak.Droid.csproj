@@ -275,6 +275,7 @@
     <Compile Include="Renderers\MenuItemViewRenderer.cs" />
     <Compile Include="Receivers\BootCompletedReceiver.cs" />
     <Compile Include="Receivers\PackageReplacedReceiver.cs" />
+    <Compile Include="Services\SmsService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
