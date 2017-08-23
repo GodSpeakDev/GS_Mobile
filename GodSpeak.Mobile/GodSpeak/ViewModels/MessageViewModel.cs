@@ -194,7 +194,7 @@ namespace GodSpeak
 
                     if (response == Text.ReachOutViaEmail)
                     {
-                        _mailService.SendMail(new string[1], body: Text.ReachOutMessageBody, subject: Text.ReachOutMessageSubject);
+						_mailService.SendMail(new string[] {Text.ReachOutMailPlaceholder}, body: Text.ReachOutMessageBody, subject: Text.ReachOutMessageSubject);
                     }
                     else if (response == Text.ReachOutViaTextMessage)
                     {

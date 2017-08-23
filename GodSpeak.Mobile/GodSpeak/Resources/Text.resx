@@ -974,4 +974,10 @@ Love God. Love others. Tell everyone.
         xml:space="preserve">       
         <value>GodSpeak Gift</value>
     </data>
+
+	<data
+        name="ReachOutMailPlaceholder"
+        xml:space="preserve">       
+        <value>Your friend's address</value>
+    </data>
 </root>
