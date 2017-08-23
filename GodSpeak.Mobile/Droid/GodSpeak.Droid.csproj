@@ -275,6 +275,7 @@
     <Compile Include="Bootstrap\WebBrowserPluginBootstrap.cs" />
     <Compile Include="Renderers\MenuBackgroundRenderer.cs" />
     <Compile Include="Renderers\MenuItemViewRenderer.cs" />
+    <Compile Include="Services\SmsService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

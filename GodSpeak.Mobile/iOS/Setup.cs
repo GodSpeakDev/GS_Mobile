@@ -40,6 +40,7 @@ namespace GodSpeak.iOS
             Mvx.LazyConstructAndRegisterSingleton<IReminderService, ReminderService> ();
             Mvx.LazyConstructAndRegisterSingleton<IContactService, ContactsService> ();
             Mvx.LazyConstructAndRegisterSingleton<IMailService, MailService> ();
+            Mvx.LazyConstructAndRegisterSingleton<ISmsService, SmsService>();
             Mvx.LazyConstructAndRegisterSingleton<IFeedbackService, FeedbackService> ();
             Mvx.LazyConstructAndRegisterSingleton<IProgressHudService, ProgressHudService> ();
 			Mvx.LazyConstructAndRegisterSingleton<IImageService, ImageService>();

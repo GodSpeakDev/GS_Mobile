@@ -16,6 +16,8 @@ namespace GodSpeak
 {
     public class MessageViewModel : CustomViewModel
     {
+        private ISmsService _smsService;
+        private IMailService _mailService;
         private IMessageService _messageService;
         private IMvxMessenger _messenger;
         private MvxSubscriptionToken _messageSettingsToken;
@@ -175,22 +177,30 @@ namespace GodSpeak
 		{
 			get
 			{
-				return _giftChurchCommand ?? (_giftChurchCommand = new MvxCommand(async () =>
+				return _giftChurchCommand ?? (_giftChurchCommand = new MvxCommand(() =>
 				{
-                    mailService.SendMail (new string [] { "curtis@givegodspeak.com" }, null, null, "I Want to Share with My Church", "Hi,\rI'm interested in learning more about how to share with my fellow church members");
+                    _mailService.SendMail (new string [] { "curtis@givegodspeak.com" }, null, null, "I Want to Share with My Church", "Hi,\rI'm interested in learning more about how to share with my fellow church members");
 					//_browserTask.ShowWebPage(string.Format("http://go.givegodspeak.com/SignUp/{0}", (await SessionService.GetUser()).InviteCode));
 					CloseActionMenuCommand.Execute();
 				}));
 			}
 		}
 
-
-
         public MvxCommand _dontKnowCommand;
         public MvxCommand DontKnowCommand {
         	get {
-                return _dontKnowCommand ?? (_dontKnowCommand = new MvxCommand (() => {
-                    DialogService.ShowAlert ("Reach Out", "You can find out your friend's phone type by reaching out to them. You can use email, SMS, or reach out on any social networks they may be on.");
+                return _dontKnowCommand ?? (_dontKnowCommand = new MvxCommand (async () => {
+                    var response = await DialogService.ShowMenu(Text.ReachOutTitle, Text.ReachOutText, Text.ReachOutViaEmail, Text.ReachOutViaTextMessage, Text.AnonymousNevermind);
+
+                    if (response == Text.ReachOutViaEmail)
+                    {
+                        _mailService.SendMail(new string[1], body: Text.ReachOutMessageBody, subject: Text.ReachOutMessageSubject);
+                    }
+                    else if (response == Text.ReachOutViaTextMessage)
+                    {
+                        _smsService.SendMessage(Text.ReachOutMessageBody);
+                    }
+
                     CloseActionMenuCommand.Execute ();
                 }));
 		    }
@@ -222,13 +232,12 @@ namespace GodSpeak
 			}
 		}
 
-        readonly IMailService mailService;
-
         public MessageViewModel (
             IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, ISettingsService settingsService,
-            IMessageService messageService, IMvxMessenger messenger, IMvxWebBrowserTask browserTask, IMailService mailService) : base (dialogService, hudService, sessionService, webApiService, settingsService)
+            IMessageService messageService, IMvxMessenger messenger, IMvxWebBrowserTask browserTask, IMailService mailService, ISmsService smsService) : base (dialogService, hudService, sessionService, webApiService, settingsService)
         {
-            this.mailService = mailService;
+            _smsService = smsService;
+            _mailService = mailService;
             _messageService = messageService;
             _messenger = messenger;
 			_browserTask = browserTask;

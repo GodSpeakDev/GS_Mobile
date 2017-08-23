@@ -285,6 +285,7 @@
     <Compile Include="Bootstrap\WebBrowserPluginBootstrap.cs" />
     <Compile Include="Renderers\MenuItemViewRenderer.cs" />
     <Compile Include="Renderers\MenuBackgroundRenderer.cs" />
+    <Compile Include="Services\SmsService.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\profile_placeholder.png" />

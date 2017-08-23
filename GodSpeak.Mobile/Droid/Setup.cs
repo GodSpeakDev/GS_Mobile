@@ -29,6 +29,7 @@ namespace GodSpeak.Droid
             Mvx.LazyConstructAndRegisterSingleton<IProgressHudService, ProgressHudService> ();
 			Mvx.LazyConstructAndRegisterSingleton<IContactService, ContactsService>();
 			Mvx.LazyConstructAndRegisterSingleton<IMailService, MailService>();
+            Mvx.LazyConstructAndRegisterSingleton<ISmsService, SmsService>();
 			Mvx.LazyConstructAndRegisterSingleton<IImageService, ImageService>();
 			Mvx.LazyConstructAndRegisterSingleton<IFileService, FileService>();
 			Mvx.LazyConstructAndRegisterSingleton<ILogManager, NLogManager>();
