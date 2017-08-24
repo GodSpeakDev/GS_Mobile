@@ -1,7 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.0.6" package="com.givegodspeak.android" android:versionCode="14">
 	<uses-sdk android:minSdkVersion="15" />
-	<application android:label="GodSpeak" android:icon="@drawable/app_icon">
+	<application 
+		android:label="GodSpeak" 
+		android:icon="@drawable/app_icon"
+		android:allowBackup="false">
 		<meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyBzo7-QUVdoFfwKNSFV9hddsSjP20H7Jew" />
 		<meta-data android:name="net.hockeyapp.android.appIdentifier" android:value="da7c75f8b96b4b3abc8569120d7e1b3a" />
 	</application>
