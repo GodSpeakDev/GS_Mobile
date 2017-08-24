@@ -130,6 +130,12 @@
     <EmbeddedResource Include="CustomComponents\MenuItemView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\EmailComposerPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomComponents\ContactCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -412,6 +418,14 @@
     <Compile Include="CustomComponents\MenuBackground.cs" />
     <Compile Include="MvvmCross\Messages\ShowActionMenuMessage.cs" />
     <Compile Include="Services\ISmsService.cs" />
+    <Compile Include="Pages\EmailComposerPage.xaml.cs">
+      <DependentUpon>EmailComposerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Share\EmailComposerViewModel.cs" />
+    <Compile Include="CustomComponents\ContactCell.xaml.cs">
+      <DependentUpon>ContactCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomComponents\CustomEditor.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

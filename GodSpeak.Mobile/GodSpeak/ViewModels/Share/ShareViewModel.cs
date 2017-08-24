@@ -17,17 +17,17 @@ namespace GodSpeak
         private Tab _unclaimedTab;
         private Tab _claimedTab;
 
-        public ShareViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, ISettingsService settingsService, IShareService shareService, IMailService mailService, IMvxWebBrowserTask browserTask, ILogManager logManager) : base (dialogService, hudService, sessionService, webApiService, settingsService)
+        public ShareViewModel (IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, ISettingsService settingsService, IShareService shareService, IMailService mailService, IMvxWebBrowserTask browserTask, ILogManager logManager, IContactService contactService) : base (dialogService, hudService, sessionService, webApiService, settingsService)
         {
             _shareService = shareService;
 
-            UnclaimedGiftViewModel = new UnclaimedGiftViewModel (dialogService, hudService, sessionService, webApiService, settingsService, shareService, browserTask, logManager);
+            UnclaimedGiftViewModel = new UnclaimedGiftViewModel(dialogService, hudService, sessionService, webApiService, settingsService, contactService, mailService);
             ClaimedGiftViewModel = new ClaimedGiftViewModel (dialogService, hudService, sessionService, webApiService, settingsService, mailService);
 
             SelectedTab = TabTypes.Unclaimed;
 
             _unclaimedTab = new Tab () {
-                Title = Text.GiftAndroid,
+                Title = Text.SendInvitation,
                 SelectedImage = "unclaimed_gift_selected_icon.png",
                 UnselectedImage = "unclaimed_gift_unselected_icon.png",
                 TabType = TabTypes.Unclaimed,

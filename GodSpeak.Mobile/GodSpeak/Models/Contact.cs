@@ -44,7 +44,17 @@ namespace GodSpeak
 
 		public string Description
 		{
-			get { return string.Format("{0} {1} - {2}", FirstName, LastName, EmailAddresses.FirstOrDefault().Address);	}
+			get 
+            {
+                if (string.IsNullOrWhiteSpace(FirstName) && string.IsNullOrWhiteSpace(LastName))
+                {
+                    return EmailAddresses.FirstOrDefault().Address;
+                }
+                else
+                {
+                    return string.Format("{0} {1} - {2}", FirstName, LastName, EmailAddresses.FirstOrDefault().Address);
+                }
+            }
 		}
 
 		public Address Address

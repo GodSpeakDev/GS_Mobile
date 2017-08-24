@@ -227,9 +227,8 @@ namespace GodSpeak
 			{
 				return _tellFriendsCommand ?? (_tellFriendsCommand = new MvxCommand(() =>
 				{
-                    _mailService.SendMail (null, null, null, "Check out this app!", Resources.Text.ShareText);
-                    //_browserTask.ShowWebPage(string.Format("http://go.givegodspeak.com/SignUp/{0}", (await SessionService.GetUser()).InviteCode));
-                    CloseActionMenuCommand.Execute();
+					this.ShowViewModel<ShareViewModel>(new { selectedTab = ShareViewModel.TabTypes.Unclaimed });
+					CloseActionMenuCommand.Execute();
 				}));
 			}
 		}

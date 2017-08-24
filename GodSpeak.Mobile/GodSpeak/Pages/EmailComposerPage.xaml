@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<views:CustomContentPage 
+        xmlns="http://xamarin.com/schemas/2014/forms" 
+        xmlns:views="clr-namespace:GodSpeak;assembly=GodSpeak"
+        xmlns:res="clr-namespace:GodSpeak.Resources;assembly=GodSpeak"
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+        x:Class="GodSpeak.EmailComposerPage">
+    <views:CustomContentPage.Content>
+        <AbsoluteLayout
+            x:Name="Absolute"
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand">
+            <views:GrayGradientBackgroundView
+                AbsoluteLayout.LayoutBounds="0,0,1,1" 
+                AbsoluteLayout.LayoutFlags="All">
+                <Grid
+                    Margin="10, 0"
+                    RowSpacing="10"
+                    Padding="{StaticResource PaddingBelowHeader}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <views:RegisterEntry
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Placeholder="{x:Static res:Text.FromAddressPlaceholder}"                            
+                        Text="{Binding FromAddress}" 
+                        HeightRequest="{StaticResource ElementHeight}"
+                        VerticalOptions="Center">                                                               
+                    </views:RegisterEntry>
+                    <views:RegisterEntry
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Placeholder="{x:Static res:Text.SubjectPlaceholder}"                            
+                        Text="{Binding Subject}" 
+                        HeightRequest="{StaticResource ElementHeight}"
+                        VerticalOptions="Center">                                                               
+                    </views:RegisterEntry>
+                    <views:CustomEditor 
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Text="{Binding Message}"
+                        BackgroundColor="White"
+                    />
+                    <views:CustomButton 
+                        Grid.Row="3"
+                        Margin="0, 0, 0, 10"
+                        Text="{x:Static res:Text.SendEmail}"                        
+                        Style="{StaticResource ButtonBlue}"
+                        Command="{Binding SendCommand}"
+                    />
+                </Grid>         
+            </views:GrayGradientBackgroundView>         
+            <views:SolidHeader HasBackButton="True" Title="{x:Static res:Text.ComposeMessateTitle}" />
+        </AbsoluteLayout>
+    </views:CustomContentPage.Content>
+</views:CustomContentPage>
