@@ -161,10 +161,11 @@ namespace GodSpeak
 		{
 			get
 			{
-				return _giftAndroidCommand ?? (_giftAndroidCommand = new MvxCommand(() =>
+				return _giftAndroidCommand ?? (_giftAndroidCommand = new MvxCommand(async () =>
 				{
-                    this.ShowViewModel<ShareViewModel>(new {selectedTab=ShareViewModel.TabTypes.Unclaimed});
-                    CloseActionMenuCommand.Execute();
+					var user = await SessionService.GetUser();
+					_browserTask.ShowWebPage("http://go.givegodspeak.com/GiftAndroid?emailAddress=" + user.Email);
+					CloseActionMenuCommand.Execute();
 				}));
 			}
 		}
