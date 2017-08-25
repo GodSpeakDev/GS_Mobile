@@ -427,9 +427,6 @@
     <BundleResource Include="Resources\church.png" />
     <BundleResource Include="Resources\church%402x.png" />
     <BundleResource Include="Resources\church%403x.png" />
-    <BundleResource Include="Resources\follow_friends.png" />
-    <BundleResource Include="Resources\follow_friends%403x.png" />
-    <BundleResource Include="Resources\follow_friends%402x.png" />
     <BundleResource Include="Resources\tell_friends.png" />
     <BundleResource Include="Resources\tell_friends%402x.png" />
     <BundleResource Include="Resources\tell_friends%403x.png" />
@@ -445,6 +442,15 @@
     <BundleResource Include="Resources\menu_separator.png" />
     <BundleResource Include="Resources\menu_separator%402x.png" />
     <BundleResource Include="Resources\menu_separator%403x.png" />
+    <BundleResource Include="Resources\spread_word.png" />
+    <BundleResource Include="Resources\spread_word%402x.png" />
+    <BundleResource Include="Resources\spread_word%403x.png" />
+    <BundleResource Include="Resources\follow_friends.png" />
+    <BundleResource Include="Resources\follow_friends%402x.png" />
+    <BundleResource Include="Resources\follow_friends%403x.png" />
+    <BundleResource Include="Resources\phone_type.png" />
+    <BundleResource Include="Resources\phone_type%402x.png" />
+    <BundleResource Include="Resources\phone_type%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="googleiosmaps">

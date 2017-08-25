@@ -232,6 +232,18 @@ namespace GodSpeak
 			}
 		}
 
+		public MvxCommand _helpCommand;
+		public MvxCommand HelpCommand
+		{
+			get
+			{
+				return _helpCommand ?? (_helpCommand = new MvxCommand(() =>
+				{
+					
+				}));
+			}
+		}
+
         public MessageViewModel (
             IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, ISettingsService settingsService,
             IMessageService messageService, IMvxMessenger messenger, IMvxWebBrowserTask browserTask, IMailService mailService, ISmsService smsService) : base (dialogService, hudService, sessionService, webApiService, settingsService)
