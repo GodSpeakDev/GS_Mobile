@@ -184,8 +184,6 @@ namespace GodSpeak
 			}
 		}
 
-
-
         public MvxCommand _dontKnowCommand;
         public MvxCommand DontKnowCommand {
         	get {
@@ -229,6 +227,18 @@ namespace GodSpeak
 				{
 					this.ShowViewModel<ShareViewModel>(new { selectedTab = ShareViewModel.TabTypes.Unclaimed });
 					CloseActionMenuCommand.Execute();
+				}));
+			}
+		}
+
+		public MvxCommand _helpCommand;
+		public MvxCommand HelpCommand
+		{
+			get
+			{
+				return _helpCommand ?? (_helpCommand = new MvxCommand(() =>
+				{
+					
 				}));
 			}
 		}

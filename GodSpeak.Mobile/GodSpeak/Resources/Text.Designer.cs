@@ -1162,5 +1162,11 @@ namespace GodSpeak.Resources {
                 return ResourceManager.GetString("ReachOutMessageSubject", resourceCulture);
             }
         }
+        
+        public static string Help {
+            get {
+                return ResourceManager.GetString("Help", resourceCulture);
+            }
+        }
     }
 }

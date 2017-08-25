@@ -924,27 +924,27 @@ Enjoy!
 	<data
 		name="GiftToIphoneUser"
 		xml:space="preserve">
-    	<value>Gift to iPhone User</value>
+    	<value>Gift to iPhone Users</value>
   	</data>
 	<data
 		name="GiftToAndroidUser"
 		xml:space="preserve">
-    	<value>Gift to Android User</value>
+    	<value>Gift to Android Users</value>
   	</data>	
 	<data
 		name="GiftToChurch"
 		xml:space="preserve">
-    	<value>Gift to Church</value>
+    	<value>Gift to Congregation</value>
   	</data>
 	<data
 		name="FollowUpWithFriends"
 		xml:space="preserve">
-    	<value>Follow up with Friends</value>
+    	<value>Follow up on Gifts Given</value>
   	</data>
 	<data
 		name="TellFriendsAboutGodSpeak"
 		xml:space="preserve">
-    	<value>Tell Friends about GodSpeak</value>
+    	<value>Spread the Word</value>
   	</data>
 
 	<data
@@ -956,7 +956,7 @@ Enjoy!
 	<data
 		name="DoNotKnowPlatform"
 		xml:space="preserve">    	
-		<value>Friend's Phone Type?</value>
+		<value>Get Friend’s Phone Type</value>
   	</data>	
 
 	<data
@@ -998,5 +998,10 @@ Enjoy!
         <value>GodSpeak Gift</value>
     </data>
 
+    <data
+        name="Help"
+        xml:space="preserve">       
+        <value>Help</value>
+    </data>
 
 </root>
