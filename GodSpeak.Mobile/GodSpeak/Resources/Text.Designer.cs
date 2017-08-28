@@ -1156,5 +1156,53 @@ namespace GodSpeak.Resources {
                 return ResourceManager.GetString("Help", resourceCulture);
             }
         }
+        
+        public static string CancelHint {
+            get {
+                return ResourceManager.GetString("CancelHint", resourceCulture);
+            }
+        }
+        
+        public static string HelpHint {
+            get {
+                return ResourceManager.GetString("HelpHint", resourceCulture);
+            }
+        }
+        
+        public static string SpreadWordHint {
+            get {
+                return ResourceManager.GetString("SpreadWordHint", resourceCulture);
+            }
+        }
+        
+        public static string FollowFriendHint {
+            get {
+                return ResourceManager.GetString("FollowFriendHint", resourceCulture);
+            }
+        }
+        
+        public static string GiftChurchHint {
+            get {
+                return ResourceManager.GetString("GiftChurchHint", resourceCulture);
+            }
+        }
+        
+        public static string GiftIosHint {
+            get {
+                return ResourceManager.GetString("GiftIosHint", resourceCulture);
+            }
+        }
+        
+        public static string GiftDroidHint {
+            get {
+                return ResourceManager.GetString("GiftDroidHint", resourceCulture);
+            }
+        }
+        
+        public static string PhoneTypeHint {
+            get {
+                return ResourceManager.GetString("PhoneTypeHint", resourceCulture);
+            }
+        }
     }
 }

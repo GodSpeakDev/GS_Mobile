@@ -451,6 +451,27 @@
     <BundleResource Include="Resources\phone_type.png" />
     <BundleResource Include="Resources\phone_type%402x.png" />
     <BundleResource Include="Resources\phone_type%403x.png" />
+    <BundleResource Include="Resources\church_unselected.png" />
+    <BundleResource Include="Resources\church_unselected%402x.png" />
+    <BundleResource Include="Resources\church_unselected%403x.png" />
+    <BundleResource Include="Resources\android_unselected.png" />
+    <BundleResource Include="Resources\android_unselected%402x.png" />
+    <BundleResource Include="Resources\android_unselected%403x.png" />
+    <BundleResource Include="Resources\iphone_unselected.png" />
+    <BundleResource Include="Resources\iphone_unselected%402x.png" />
+    <BundleResource Include="Resources\iphone_unselected%403x.png" />
+    <BundleResource Include="Resources\phone_type_unselected.png" />
+    <BundleResource Include="Resources\phone_type_unselected%402x.png" />
+    <BundleResource Include="Resources\phone_type_unselected%403x.png" />
+    <BundleResource Include="Resources\spread_word_unselected.png" />
+    <BundleResource Include="Resources\spread_word_unselected%402x.png" />
+    <BundleResource Include="Resources\spread_word_unselected%403x.png" />
+    <BundleResource Include="Resources\follow_friends_unselected.png" />
+    <BundleResource Include="Resources\follow_friends_unselected%402x.png" />
+    <BundleResource Include="Resources\follow_friends_unselected%403x.png" />
+    <BundleResource Include="Resources\question_mark_unselected.png" />
+    <BundleResource Include="Resources\question_mark_unselected%402x.png" />
+    <BundleResource Include="Resources\question_mark_unselected%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="googleiosmaps">

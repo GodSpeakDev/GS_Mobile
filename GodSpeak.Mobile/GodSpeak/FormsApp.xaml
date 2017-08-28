@@ -65,7 +65,7 @@
 			<OnPlatform x:TypeArguments="x:Boolean" x:Key="NavigationBarTitleVisibility" Android="false" iOS="true" WinPhone="true" />
 			<OnPlatform x:TypeArguments="x:Double" x:Key="LoginCurveBackgrounSize" Android="360" iOS="350" WinPhone="350" />
 
-            <OnPlatform x:TypeArguments="x:Double" x:Key="MenuItemSize" Android="80" iOS="70" WinPhone="70" />
+            <OnPlatform x:TypeArguments="x:Double" x:Key="MenuItemSize" Android="80" iOS="60" WinPhone="70" />
 			
 			<!-- Global Colors -->
 			<Color x:Key="primaryColor">#00a5ff</Color>

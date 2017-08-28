@@ -26,6 +26,11 @@ namespace GodSpeak
 		private IMvxWebBrowserTask _browserTask;
 		private bool _isAlreadyStarted = false;
 
+		public Action<MenuItem> HighlightHint
+		{
+			get; set;
+		}
+
         private ObservableCollection<GroupedCollection<Message, DateTime>> _messages;
         public ObservableCollection<GroupedCollection<Message, DateTime>> Messages
 		{
@@ -45,6 +50,13 @@ namespace GodSpeak
 		{
 			get { return _shouldShowTip; }
 			set { SetProperty(ref _shouldShowTip, value); }
+		}
+
+		private bool _isHelpMode = false;
+		public bool IsHelpMode
+		{
+			get { return _isHelpMode; }
+			set { SetProperty(ref _isHelpMode, value); }
 		}
 
 		private bool _isActionMenuOpened;
@@ -121,8 +133,15 @@ namespace GodSpeak
 			{
 				return _closeActionMenuCommand ?? (_closeActionMenuCommand = new MvxCommand(() =>
 				{
-					IsActionMenuOpened = false;
-					ShouldShowOverlay = false;
+					if (!IsHelpMode)
+					{
+						IsActionMenuOpened = false;
+						ShouldShowOverlay = false;
+					}
+					else
+					{
+						ToggleHelpMode();
+					}
 				}));
 			}
 		}
@@ -152,8 +171,15 @@ namespace GodSpeak
 			{
 				return _giftIphoneCommand ?? (_giftIphoneCommand = new MvxCommand(() => 
 				{
-					_browserTask.ShowWebPage("http://go.givegodspeak.com/GiftiTunes");
-					CloseActionMenuCommand.Execute();
+					if (IsHelpMode)
+					{
+						HightlightHintItem(MenuItems.First(x => x.Title == Text.GiftToIphoneUser));
+					}
+					else
+					{
+						_browserTask.ShowWebPage("http://go.givegodspeak.com/GiftiTunes");
+						CloseActionMenuCommand.Execute();
+					}
 				}));
 			}
 		}
@@ -165,9 +191,16 @@ namespace GodSpeak
 			{
 				return _giftAndroidCommand ?? (_giftAndroidCommand = new MvxCommand(async () =>
 				{
-                    var user = await SessionService.GetUser();
-					_browserTask.ShowWebPage("http://go.givegodspeak.com/GiftAndroid?emailAddress=" + user.Email);
-					CloseActionMenuCommand.Execute();
+					if (IsHelpMode)
+					{
+						HightlightHintItem(MenuItems.First(x => x.Title == Text.GiftToAndroidUser));
+					}
+					else
+					{
+						var user = await SessionService.GetUser();
+						_browserTask.ShowWebPage("http://go.givegodspeak.com/GiftAndroid?emailAddress=" + user.Email);
+						CloseActionMenuCommand.Execute();
+					}
 				}));
 			}
 		}
@@ -179,9 +212,16 @@ namespace GodSpeak
 			{
 				return _giftChurchCommand ?? (_giftChurchCommand = new MvxCommand(() =>
 				{
-                    _mailService.SendMail (new string [] { "curtis@givegodspeak.com" }, null, null, "I Want to Share with My Church", "Hi,\rI'm interested in learning more about how to share with my fellow church members");
-					//_browserTask.ShowWebPage(string.Format("http://go.givegodspeak.com/SignUp/{0}", (await SessionService.GetUser()).InviteCode));
-					CloseActionMenuCommand.Execute();
+					if (IsHelpMode)
+					{
+						HightlightHintItem(MenuItems.First(x => x.Title == Text.GiftToChurch));
+					}
+					else
+					{
+						_mailService.SendMail(new string[] { "curtis@givegodspeak.com" }, null, null, "I Want to Share with My Church", "Hi,\rI'm interested in learning more about how to share with my fellow church members");
+						//_browserTask.ShowWebPage(string.Format("http://go.givegodspeak.com/SignUp/{0}", (await SessionService.GetUser()).InviteCode));
+						CloseActionMenuCommand.Execute();
+					}
 				}));
 			}
 		}
@@ -190,18 +230,26 @@ namespace GodSpeak
         public MvxCommand DontKnowCommand {
         	get {
                 return _dontKnowCommand ?? (_dontKnowCommand = new MvxCommand (async () => {
-                    var response = await DialogService.ShowMenu(Text.ReachOutTitle, Text.ReachOutText, Text.ReachOutViaEmail, Text.ReachOutViaTextMessage, Text.AnonymousNevermind);
 
-                    if (response == Text.ReachOutViaEmail)
-                    {
-						_mailService.SendMail(new string[] {Text.ReachOutMailPlaceholder}, body: Text.ReachOutMessageBody, subject: Text.ReachOutMessageSubject);
-                    }
-                    else if (response == Text.ReachOutViaTextMessage)
-                    {
-                        _smsService.SendMessage(Text.ReachOutMessageBody);
-                    }
+					if (IsHelpMode)
+					{
+						HightlightHintItem(MenuItems.First(x => x.Title == Text.DoNotKnowPlatform));
+					}
+					else
+					{
+						var response = await DialogService.ShowMenu(Text.ReachOutTitle, Text.ReachOutText, Text.ReachOutViaEmail, Text.ReachOutViaTextMessage, Text.AnonymousNevermind);
 
-                    CloseActionMenuCommand.Execute ();
+						if (response == Text.ReachOutViaEmail)
+						{
+							_mailService.SendMail(new string[] { Text.ReachOutMailPlaceholder }, body: Text.ReachOutMessageBody, subject: Text.ReachOutMessageSubject);
+						}
+						else if (response == Text.ReachOutViaTextMessage)
+						{
+							_smsService.SendMessage(Text.ReachOutMessageBody);
+						}
+
+						CloseActionMenuCommand.Execute();
+					}
                 }));
 		    }
         }
@@ -213,8 +261,15 @@ namespace GodSpeak
 			{
 				return _followFriendsCommand ?? (_followFriendsCommand = new MvxCommand(() =>
 				{
-                    this.ShowViewModel<ShareViewModel>(new {selectedTab=ShareViewModel.TabTypes.Claimed});
-					CloseActionMenuCommand.Execute();
+					if (IsHelpMode)
+					{
+						HightlightHintItem(MenuItems.First(x => x.Title == Text.FollowUpWithFriends));
+					}
+					else
+					{
+						this.ShowViewModel<ShareViewModel>(new { selectedTab = ShareViewModel.TabTypes.Claimed });
+						CloseActionMenuCommand.Execute();
+					}
 				}));
 			}
 		}
@@ -226,8 +281,15 @@ namespace GodSpeak
 			{
 				return _tellFriendsCommand ?? (_tellFriendsCommand = new MvxCommand(() =>
 				{
-					this.ShowViewModel<ShareViewModel>(new {selectedTab=ShareViewModel.TabTypes.Unclaimed});
-					CloseActionMenuCommand.Execute();
+					if (IsHelpMode)
+					{
+						HightlightHintItem(MenuItems.First(x => x.Title == Text.TellFriendsAboutGodSpeak));
+					}
+					else
+					{
+						this.ShowViewModel<ShareViewModel>(new { selectedTab = ShareViewModel.TabTypes.Unclaimed });
+						CloseActionMenuCommand.Execute();
+					}
 				}));
 			}
 		}
@@ -239,9 +301,23 @@ namespace GodSpeak
 			{
 				return _helpCommand ?? (_helpCommand = new MvxCommand(() =>
 				{
-					
+					if (IsHelpMode)
+					{
+						HightlightHintItem(MenuItems.First(x => x.Title == Text.Help));
+					}
+					else
+					{
+						ToggleHelpMode();
+					}
 				}));
 			}
+		}
+
+		private ObservableCollection<MenuItem> _menuItems;
+		public ObservableCollection<MenuItem> MenuItems
+		{
+			get { return _menuItems; }
+			set { SetProperty(ref _menuItems, value);}
 		}
 
         public MessageViewModel (
@@ -255,7 +331,89 @@ namespace GodSpeak
 			_browserTask = browserTask;
 
             Messages = new ObservableCollection<GroupedCollection<Message, DateTime>> ();
+			InitMenu();
         }
+
+		private void InitMenu()
+		{
+			var menuItems = new List<MenuItem>();
+
+			menuItems.Add(new MenuItem() 
+			{
+				Title = Text.Cancel,
+				Image = "close_button_icon.png",
+				IsHighlighted = true,
+				Hint = Text.CancelHint,
+				HintMode = MenuItem.HintModes.Inline,
+				Command = CloseActionMenuCommand
+			});
+
+			menuItems.Add(new MenuItem()
+			{
+				Title = Text.GiftToIphoneUser,
+				Image = "iphone.png",
+				IsHighlighted = true,
+				Hint = Text.GiftIosHint,
+				Command = GiftIphoneCommand
+			});
+
+			menuItems.Add(new MenuItem()
+			{
+				Title = Text.GiftToAndroidUser,
+				Image = "android.png",
+				IsHighlighted = true,
+				Hint = Text.GiftDroidHint,
+				Command = GiftAndroidCommand
+			});
+
+			menuItems.Add(new MenuItem()
+			{
+				Title = Text.DoNotKnowPlatform,
+				Image = "phone_type.png",
+				IsHighlighted = true,
+				Hint = Text.PhoneTypeHint,
+				Command = DontKnowCommand
+			});
+
+			menuItems.Add(new MenuItem()
+			{
+				Title = Text.GiftToChurch,
+				Image = "church.png",
+				IsHighlighted = true,
+				Hint = Text.GiftChurchHint,
+				Command = GiftChurchCommand
+			});
+
+			menuItems.Add(new MenuItem()
+			{
+				Title = Text.FollowUpWithFriends,
+				Image = "follow_friends.png",
+				IsHighlighted = true,
+				Hint = Text.FollowFriendHint,
+				Command = FollowFriendsCommand
+			});
+
+			menuItems.Add(new MenuItem()
+			{
+				Title = Text.TellFriendsAboutGodSpeak,
+				Image = "spread_word.png",
+				IsHighlighted = true,
+				Hint = Text.SpreadWordHint,
+				Command = TellFriendsCommand
+			});
+
+			menuItems.Add(new MenuItem()
+			{
+				Title = Text.Help,
+				Image = "question_mark.png",
+				IsHighlighted = true,
+				Hint = Text.HelpHint,
+				HintMode = MenuItem.HintModes.Inline,
+				Command = HelpCommand
+			});
+
+			MenuItems = new ObservableCollection<MenuItem>(menuItems);
+		}
 
         public async void Init (bool comesFromRegisterFlow = false)
         {
@@ -315,6 +473,53 @@ namespace GodSpeak
                 this.HudService.Hide ();
             }
         }
+
+		private void ToggleHelpMode()
+		{
+			IsHelpMode = !IsHelpMode;
+
+			if (IsHelpMode)
+			{
+				foreach (var menuItem in MenuItems)
+				{
+					if (menuItem.Title != Text.Cancel && menuItem.Title != Text.Help)
+					{
+						menuItem.IsHighlighted = false;
+						menuItem.ShowHint = false;
+					}
+				}
+
+				HightlightHintItem(MenuItems.First(x => x.Title == Text.Help));
+				MenuItems.First(x => x.Title == Text.Cancel).ShowHint = true;
+			}
+			else
+			{
+				foreach (var menuItem in MenuItems)
+				{
+					if (menuItem.Title != Text.Cancel)
+					{
+						menuItem.IsHighlighted = true;
+						menuItem.ShowHint = false;
+					}
+				}
+
+				MenuItems.First(x => x.Title == Text.Cancel).ShowHint = false;
+			}
+		}
+
+		private void HightlightHintItem(MenuItem item)
+		{
+			foreach (var menuItem in MenuItems)
+			{
+				if (menuItem.Title != Text.Cancel)
+				{
+					menuItem.IsHighlighted = menuItem == item;
+					menuItem.ShowHint = menuItem == item;
+				}
+			}
+
+			HighlightHint?.Invoke(item);
+		}
 
 		private async Task InitMessages()
 		{
