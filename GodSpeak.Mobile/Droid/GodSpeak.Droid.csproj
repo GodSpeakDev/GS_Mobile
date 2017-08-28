@@ -444,6 +444,34 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\spread_word.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\follow_friends.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\phone_type.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\question_mark_unselected.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\phone_type_unselected.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\spread_word_unselected.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\follow_friends_unselected.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\church_unselected.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\android_unselected.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\iphone_unselected.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\question_mark_unselected.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\phone_type_unselected.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\spread_word_unselected.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\follow_friends_unselected.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\church_unselected.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\android_unselected.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\iphone_unselected.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\question_mark_unselected.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\phone_type_unselected.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\spread_word_unselected.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\follow_friends_unselected.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\church_unselected.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\android_unselected.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\iphone_unselected.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\question_mark_unselected.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\phone_type_unselected.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\spread_word_unselected.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\follow_friends_unselected.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\church_unselected.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\android_unselected.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\iphone_unselected.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="MvvmCross\" />

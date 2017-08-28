@@ -1004,4 +1004,51 @@ Enjoy!
         <value>Help</value>
     </data>
 
+	<data
+        name="CancelHint"
+        xml:space="preserve">       
+        <value>Leave Help</value>
+    </data>
+    
+    <data
+        name="HelpHint"
+        xml:space="preserve">       
+        <value>Tap an Icon to Learn More</value>
+    </data>
+
+    <data
+        name="SpreadWordHint"
+        xml:space="preserve">       
+        <value>Now that you've Paid It Forward to (Gifted) everyone in your circle of influence, share GodSpeak with your more contacts by text or email.</value>
+    </data>
+
+    <data
+        name="FollowFriendHint"
+        xml:space="preserve">       
+        <value>See whom has received your Godspeak Gift; Congratulate or Encourage them by sending them an email or text message.</value>
+    </data>
+
+    <data
+        name="GiftChurchHint"
+        xml:space="preserve">       
+        <value>Contact GodSpeak to Pay It Forward (Gift) to your whole congregation, class or group of 20 or more people with multiple devices types.</value>
+    </data>
+
+    <data
+        name="GiftIosHint"
+        xml:space="preserve">       
+        <value>Pay It Forward (Gift) to an unlimited number of iOS devices (iPhones, iPads).</value>
+    </data>
+
+    <data
+        name="GiftDroidHint"
+        xml:space="preserve">       
+        <value>Pay It Forward (Gift) to an unlimited number of Android devices (Android, Samsung, LG, and more).</value>
+    </data>
+
+    <data
+        name="PhoneTypeHint"
+        xml:space="preserve">       
+        <value>Before Paying It Forward (Gifting) Godspeak to someone else, you must get their email address and phone type. You can send them a text or email from here!</value>
+    </data>
 </root>
