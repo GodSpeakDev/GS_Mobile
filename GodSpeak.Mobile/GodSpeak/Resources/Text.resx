@@ -568,7 +568,7 @@ Delivered</value>
 	<data
 		name="SendInvitation"
 		xml:space="preserve">
-    	<value>Share GodSpeak</value>
+    	<value>Tell Friends</value>
   	</data>
 	<data
 		name="FollowUp"
@@ -924,27 +924,27 @@ Enjoy!
 	<data
 		name="GiftToIphoneUser"
 		xml:space="preserve">
-    	<value>Gift to iPhone User</value>
+    	<value>Gift to iPhone Users</value>
   	</data>
 	<data
 		name="GiftToAndroidUser"
 		xml:space="preserve">
-    	<value>Gift to Android User</value>
+    	<value>Gift to Android Users</value>
   	</data>	
 	<data
 		name="GiftToChurch"
 		xml:space="preserve">
-    	<value>Gift to Church</value>
+    	<value>Gift to Congregation</value>
   	</data>
 	<data
 		name="FollowUpWithFriends"
 		xml:space="preserve">
-    	<value>Follow up with Friends</value>
+    	<value>Follow up on Gifts Given</value>
   	</data>
 	<data
 		name="TellFriendsAboutGodSpeak"
 		xml:space="preserve">
-    	<value>Tell Friends about GodSpeak</value>
+    	<value>Spread the Word</value>
   	</data>
 
 	<data
@@ -955,11 +955,100 @@ Enjoy!
 
 	<data
 		name="DoNotKnowPlatform"
-		xml:space="preserve">
-    	<value>What's My Friend's Phone</value>
-		<value>Friend's Phone Type?</value>
+		xml:space="preserve">    	
+		<value>Get Friend’s Phone Type</value>
   	</data>	
 
-	
+	<data
+        name="ReachOutTitle"
+        xml:space="preserve">       
+        <value>Reach Out</value>
+    </data> 
 
+    <data
+        name="ReachOutText"
+        xml:space="preserve">       
+        <value>In order to give the gift of God Speak we need to know what type of phone the receiver has. How would you like to ask them?</value>
+    </data>
+    
+    <data
+        name="ReachOutViaEmail"
+        xml:space="preserve">       
+        <value>Via Email</value>
+    </data>
+
+    <data
+        name="ReachOutViaTextMessage"
+        xml:space="preserve">       
+        <value>Via Text Message</value>
+    </data>
+
+    <data
+        name="ReachOutMessageBody"
+        xml:space="preserve">       
+        <value>Hi,
+        I want to give you the gift of GodSpeak, but I need to know what kind of phone do you have.
+
+        Do you have an Android or iPhone?</value>
+    </data>
+
+    <data
+        name="ReachOutMessageSubject"
+        xml:space="preserve">       
+        <value>GodSpeak Gift</value>
+    </data>
+
+    <data
+        name="Help"
+        xml:space="preserve">       
+        <value>Help</value>
+    </data>
+
+	<data
+        name="CancelHint"
+        xml:space="preserve">       
+        <value>Leave Help</value>
+    </data>
+    
+    <data
+        name="HelpHint"
+        xml:space="preserve">       
+        <value>Tap an Icon to Learn More</value>
+    </data>
+
+    <data
+        name="SpreadWordHint"
+        xml:space="preserve">       
+        <value>Now that you've Paid It Forward to (Gifted) everyone in your circle of influence, share GodSpeak with your more contacts by text or email.</value>
+    </data>
+
+    <data
+        name="FollowFriendHint"
+        xml:space="preserve">       
+        <value>See whom has received your Godspeak Gift; Congratulate or Encourage them by sending them an email or text message.</value>
+    </data>
+
+    <data
+        name="GiftChurchHint"
+        xml:space="preserve">       
+        <value>Contact GodSpeak to Pay It Forward (Gift) to your whole congregation, class or group of 20 or more people with multiple devices types.</value>
+    </data>
+
+    <data
+        name="GiftIosHint"
+        xml:space="preserve">       
+        <value>Pay It Forward (Gift) to an unlimited number of iOS devices (iPhones, iPads).</value>
+    </data>
+
+    <data
+        name="GiftDroidHint"
+        xml:space="preserve">       
+        <value>Pay It Forward (Gift) to an unlimited number of Android devices (Android, Samsung, LG, and more).</value>
+    </data>
+
+    <data
+        name="PhoneTypeHint"
+        xml:space="preserve">       
+        <value>Before Paying It Forward (Gifting) Godspeak to someone else, you must get their email address and phone type. You can send them a text or email from here!</value>
+    </data>
 </root>
