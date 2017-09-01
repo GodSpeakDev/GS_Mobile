@@ -29,11 +29,16 @@ namespace GodSpeak.iOS
 
 		public async Task WriteTextAsync(string filename, string text)
 		{
-			var filePath = GetFilePath(filename);
-			using (StreamWriter writer = File.CreateText(filePath))
-			{
-				await writer.WriteAsync(text);
-			}
+            try
+            {
+                var filePath = GetFilePath(filename);
+                using (StreamWriter writer = File.CreateText(filePath))
+                {
+                    await writer.WriteAsync(text);
+                }
+            }catch(Exception ex){
+                
+            }
 		}
 
 		public Task<IEnumerable<string>> GetFilesAsync()
