@@ -924,7 +924,7 @@ Enjoy!
 	<data
 		name="GiftToIphoneUser"
 		xml:space="preserve">
-    	<value>Gift to iPhone Users</value>
+    	<value>Gift to iOS Users</value>
   	</data>
 	<data
 		name="GiftToAndroidUser"
@@ -1025,7 +1025,7 @@ Enjoy!
     <data
         name="FollowFriendHint"
         xml:space="preserve">       
-        <value>See whom has received your Godspeak Gift; Congratulate or Encourage them by sending them an email or text message.</value>
+        <value>See whom has received your Godspeak Gift; Congratulate or Encourage them by sending them an email.</value>
     </data>
 
     <data
