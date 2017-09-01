@@ -523,39 +523,44 @@ namespace GodSpeak
 
 		private async Task InitMessages()
 		{
-			await GetUser();
+            try
+            {
+                await GetUser();
 
-			var messages = await _messageService.GetDeliveredMessages();
+                var messages = await _messageService.GetDeliveredMessages();
 
-			Messages = new ObservableCollection<GroupedCollection<Message, DateTime>>
-			(messages
-			 .OrderByDescending(x => x.DateTimeToDisplay)
-			 .GroupBy(x => x.DateTimeToDisplay.Date)
-			 .Select(x => new GroupedCollection<Message, DateTime>(x.Key, x)));
-            
-			if (!await _messageService.HasUpcomingMessagesInCache())
-			{
-				if (await _messageService.HasUpcomingMessagesFile())
-				{
-					// Messages Ran out
+                Messages = new ObservableCollection<GroupedCollection<Message, DateTime>>
+                (messages
+                 .OrderByDescending(x => x.DateTimeToDisplay)
+                 .GroupBy(x => x.DateTimeToDisplay.Date)
+                 .Select(x => new GroupedCollection<Message, DateTime>(x.Key, x)));
 
-					// Load User
-					await GetUser();
+                if (!await _messageService.HasUpcomingMessagesInCache())
+                {
+                    if (await _messageService.HasUpcomingMessagesFile())
+                    {
+                        // Messages Ran out
 
-					var response = await WebApiService.GetProfile();
-					var user = response.Payload;
+                        // Load User
+                        await GetUser();
 
-					foreach (var item in user.MessageCategorySettings)
-					{
-						item.Enabled = item.Title.Contains("Top 100");
-					}
+                        var response = await WebApiService.GetProfile();
+                        var user = response.Payload;
 
-					await WebApiService.SaveProfile(user);
-				}
+                        foreach (var item in user.MessageCategorySettings)
+                        {
+                            item.Enabled = item.Title.Contains("Top 100");
+                        }
 
-				await _messageService.UpdateUpcomingMessages();
-				await ReloadMessages();
-			}
+                        await WebApiService.SaveProfile(user);
+                    }
+
+                    await _messageService.UpdateUpcomingMessages();
+                    await ReloadMessages();
+                }
+            }catch(Exception ex){
+                
+            }
 		}
 
 		private async Task RefreshSettings()
