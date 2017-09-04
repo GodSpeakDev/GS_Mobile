@@ -228,7 +228,7 @@ namespace GodSpeak
 					}
 					else
 					{
-						_mailService.SendMail(new string[] { "curtis@givegodspeak.com" }, null, null, "I Want to Share with My Church", "Hi,\rI'm interested in learning more about how to share with my fellow congregation members");
+						_mailService.SendMail(new string[] { "curtis@givegodspeak.com" }, null, null, "I Want to Share with My Church", "Hi,\nI'm interested in learning more about how to share with my fellow congregation members.");
 						//_browserTask.ShowWebPage(string.Format("http://go.givegodspeak.com/SignUp/{0}", (await SessionService.GetUser()).InviteCode));
 						CloseActionMenuCommand.Execute();
 					}
