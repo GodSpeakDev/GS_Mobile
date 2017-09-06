@@ -39,6 +39,11 @@ namespace GodSpeak
 
 			var response = await WebApiService.ForgotPassword(new ForgotPasswordRequest() {Email=Email});
 
+			if (CancellationToken.IsCancellationRequested)
+			{
+				return;
+			}
+
 			if (response.IsSuccess)
 			{
 				await this.DialogService.ShowAlert(Text.SuccessPopupTitle, Text.ForgotPasswordSuccessfully);

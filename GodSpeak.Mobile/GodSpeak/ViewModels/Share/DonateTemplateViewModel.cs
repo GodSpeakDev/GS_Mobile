@@ -53,6 +53,11 @@ namespace GodSpeak
                 var response = await WebApiService.DonateInvite ();
                 HudService.Hide ();
 
+				if (CancellationToken.IsCancellationRequested)
+				{
+					return;
+				}
+
                 if (response.IsSuccess) 
 				{
 					await SessionService.SaveUser(response.Payload);

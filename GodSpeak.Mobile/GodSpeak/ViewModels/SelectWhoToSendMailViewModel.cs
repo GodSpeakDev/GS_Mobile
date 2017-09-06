@@ -97,6 +97,11 @@ namespace GodSpeak
 
 		private void RefreshContactList()
 		{
+			if (CancellationToken.IsCancellationRequested)
+			{
+				return;
+			}
+
 			if (_deviceContacts == null)
 			{
 				Contacts = new ObservableCollection<SelectableItem<Contact>>();

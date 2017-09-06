@@ -106,6 +106,11 @@ namespace GodSpeak
 			var response = await WebApiService.GetImpact();
 			this.HudService.Hide();
 
+			if (CancellationToken.IsCancellationRequested)
+			{
+				return;
+			}
+
 			if (response.IsSuccess)
 			{
 				_allImpactDays = response.Payload;
