@@ -10,6 +10,7 @@ using System.Net.Http.Headers;
 using System.IO;
 using PCLStorage;
 using System.Linq;
+using System.Threading;
 
 namespace GodSpeak.Api
 {
@@ -81,22 +82,35 @@ namespace GodSpeak.Api
 			return apiResponse;
         }
 
-		public new async Task<ApiResponse<List<ImpactDay>>> GetImpact()
+		public new async Task<ApiResponse<List<ImpactDay>>> GetImpact(CancellationTokenSource cancellationToken)
 		{			
             AddAuthToken(_settingsService.Token);
             var impactRequest = await DoGet<List<ImpactDay>>(ImpactDaysUri);
-			if (impactRequest.IsSuccess)
+
+			if (cancellationToken.IsCancellationRequested)
 			{
-				await _fileService.WriteTextAsync(ImpactFile, JsonConvert.SerializeObject(impactRequest.Payload));
+				return impactRequest;
 			}
-			else
+
+			try
 			{
-				if (await _fileService.ExistsAsync(ImpactFile))
+				if (impactRequest.IsSuccess)
 				{
-					var json = await _fileService.ReadTextAsync(ImpactFile);
-					impactRequest.StatusCode = System.Net.HttpStatusCode.OK;
-					impactRequest.Payload = JsonConvert.DeserializeObject<List<ImpactDay>>(json);
+					await _fileService.WriteTextAsync(ImpactFile, JsonConvert.SerializeObject(impactRequest.Payload));
 				}
+				else
+				{
+					if (await _fileService.ExistsAsync(ImpactFile))
+					{
+						var json = await _fileService.ReadTextAsync(ImpactFile);
+						impactRequest.StatusCode = System.Net.HttpStatusCode.OK;
+						impactRequest.Payload = JsonConvert.DeserializeObject<List<ImpactDay>>(json);
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				tracer.Trace(MvxTraceLevel.Error, "Impact Error", () => ex.StackTrace);
 			}
 
 			return impactRequest;

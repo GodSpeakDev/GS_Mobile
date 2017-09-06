@@ -62,6 +62,11 @@ namespace GodSpeak
 			});
 			HudService.Hide();
 
+			if (CancellationToken.IsCancellationRequested)
+			{
+				return;
+			}
+
 			if (referrerResponse.IsSuccess)
 			{
 				this.ShowViewModel<HomeViewModel>(new { comesFromRegisterFlow = true });

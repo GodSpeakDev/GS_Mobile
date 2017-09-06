@@ -77,6 +77,11 @@ namespace GodSpeak
 			_comesFromRegisterFlow = comesFromRegisterFlow;
 			var response = await WebApiService.GetAcceptedInvites ();
 
+			if (CancellationToken.IsCancellationRequested)
+			{
+				return;
+			}
+
             if (response.IsSuccess) 
 			{
                 _acceptedInvites = new ObservableCollection<ItemCommand<AcceptedInvite>> (

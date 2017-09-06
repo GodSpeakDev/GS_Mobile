@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
 using GodSpeak.Api.Dtos;
+using System.Threading;
 
 namespace GodSpeak
 {
@@ -361,7 +362,7 @@ namespace GodSpeak
             };
 		}
 
-        public async Task<ApiResponse<List<ImpactDay>>> GetImpact ()
+        public async Task<ApiResponse<List<ImpactDay>>> GetImpact (CancellationTokenSource source)
         {
             await Task.Delay (delay);
             return new ApiResponse<List<ImpactDay>> () {

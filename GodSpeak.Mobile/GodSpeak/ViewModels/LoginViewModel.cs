@@ -96,6 +96,11 @@ namespace GodSpeak
             var response = await WebApiService.Login (new LoginRequest () { Email = Email, Password = Password });
             HudService.Hide ();
 
+			if (CancellationToken.IsCancellationRequested)
+			{
+				return;
+			}
+
             if (response.IsSuccess) 
 			{
                 await SessionService.SaveUser (response.Payload);
@@ -124,14 +129,23 @@ namespace GodSpeak
         {
             var input = await this.DialogService.ShowInputPopup (Text.RecoverPasswordTitle, Text.RecoverPasswordText, new InputOptions () { Placeholder = Text.EmailPlaceholder }, Text.SendInstructions, Text.AnonymousNevermind);
 
-            if (input.SelectedButton == Text.SendInstructions) {
+            if (input.SelectedButton == Text.SendInstructions) 
+			{
                 this.HudService.Show ();
                 var response = await WebApiService.ForgotPassword (new ForgotPasswordRequest () { Email = input.InputText });
                 this.HudService.Hide ();
 
-                if (response.IsSuccess) {
+				if (CancellationToken.IsCancellationRequested)
+				{
+					return;
+				}
+
+                if (response.IsSuccess) 
+				{
                     await this.DialogService.ShowAlert (Text.RecoverPasswordTitle, string.Format (Text.RecoverPasswordSuccessText, input.InputText), Text.AnonymousSuccessButtonTitle);
-                } else {
+                } 
+				else 
+				{
                     await HandleResponse (response);
                 }
             }

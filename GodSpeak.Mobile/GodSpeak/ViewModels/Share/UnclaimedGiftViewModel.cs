@@ -113,13 +113,20 @@ namespace GodSpeak
 
 		private void RefreshContactList()
 		{
-			var contacts = _deviceContacts.Where(x => (
-				string.IsNullOrEmpty(SearchText)
-				||
-				(x.Item.FirstName != null && x.Item.FirstName.ToLower().Contains(SearchText.ToLower())) ||
-				x.Item.LastName != null && x.Item.LastName.ToLower().Contains(SearchText.ToLower())));
+			if (_deviceContacts == null)
+			{
+				Contacts = new ObservableCollection<SelectableItem<Contact>>();
+			}
+			else
+			{
+				var contacts = _deviceContacts.Where(x => (
+					string.IsNullOrEmpty(SearchText)
+					||
+					(x.Item.FirstName != null && x.Item.FirstName.ToLower().Contains(SearchText.ToLower())) ||
+					x.Item.LastName != null && x.Item.LastName.ToLower().Contains(SearchText.ToLower())));
 
-			Contacts = new ObservableCollection<SelectableItem<Contact>>(contacts);
+				Contacts = new ObservableCollection<SelectableItem<Contact>>(contacts);
+			}
 		}
 
 		private void DoInviteThemCommand()

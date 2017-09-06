@@ -36,6 +36,11 @@ namespace GodSpeak
 		{			
 			var response = await WebApiService.GetDidYouKnow();
 
+			if (CancellationToken.IsCancellationRequested)
+			{
+				return;
+			}
+
 			if (response.IsSuccess)
 			{
 				BoxTitle = response.Message;

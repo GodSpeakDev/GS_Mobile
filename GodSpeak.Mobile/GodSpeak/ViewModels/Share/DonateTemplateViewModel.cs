@@ -47,11 +47,17 @@ namespace GodSpeak
         private async void DoDonateCommand ()
         {
             var currentUser = await SessionService.GetUser ();
-            if (currentUser.InviteBalance > 0) {
+            if (currentUser.InviteBalance > 0) 
+			{
 
                 HudService.Show ();
                 var response = await WebApiService.DonateInvite ();
                 HudService.Hide ();
+
+				if (CancellationToken.IsCancellationRequested)
+				{
+					return;
+				}
 
                 if (response.IsSuccess) 
 				{

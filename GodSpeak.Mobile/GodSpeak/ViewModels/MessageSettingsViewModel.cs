@@ -182,6 +182,11 @@ namespace GodSpeak
             HudService.Show (Text.RetrievingSettings);
 			var response = await WebApiService.GetProfile ();
 
+			if (CancellationToken.IsCancellationRequested)
+			{
+				return;
+			}
+
 			if (response.IsSuccess)
 			{
 				User = response.Payload;

@@ -34,12 +34,20 @@ namespace GodSpeak
         {
             var response = await WebApiService.GetInviteBundles (new GetInviteBundlesRequest ());
 
-            if (response.IsSuccess) {
+			if (CancellationToken.IsCancellationRequested)
+			{
+				return;
+			}
+
+            if (response.IsSuccess) 
+			{
                 Bundles = new ObservableCollection<SelectModel<InviteBundle>> (response.Payload.Select (x => new SelectModel<InviteBundle> () {
                     Model = x,
                     Command = TapPurchaseCommand
                 }));
-            } else {
+            } 
+			else 
+			{
                 await HandleResponse (response);
             }
         }
@@ -57,6 +65,12 @@ namespace GodSpeak
             if (result) 
 			{
                 var purchaseResponse = await _webApi.PurchaseInvite (new PurchaseInviteRequest () { Guid = bundle.InviteBundleId });
+
+				if (CancellationToken.IsCancellationRequested)
+				{
+					return;
+				}
+
                 if (purchaseResponse.IsSuccess) 
 				{
                     await this.DialogService.ShowAlert (Text.PurchaseSuccessTitle, Text.PurchaseSuccessText);

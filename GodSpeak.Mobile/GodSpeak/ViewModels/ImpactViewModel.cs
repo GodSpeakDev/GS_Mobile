@@ -112,8 +112,13 @@ namespace GodSpeak
 			// --- CORRECT IMPLEMENTATION
 
 			this.HudService.Show();
-			var response = await WebApiService.GetImpact();
+			var response = await WebApiService.GetImpact(CancellationToken);
             this.HudService.Hide();
+
+			if (CancellationToken.IsCancellationRequested)
+			{
+				return;
+			}
 
 			if (response.IsSuccess)
 			{

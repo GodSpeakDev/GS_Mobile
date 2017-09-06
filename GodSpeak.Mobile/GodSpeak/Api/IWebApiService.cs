@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using GodSpeak.Api.Dtos;
+using System.Threading;
 
 namespace GodSpeak
 {
@@ -16,7 +17,7 @@ namespace GodSpeak
         Task<ApiResponse<User>> SaveProfile (User user);
 		Task<ApiResponse<string>> SendReferral(SendReferralRequest request);
 
-        Task<ApiResponse<List<ImpactDay>>> GetImpact ();
+        Task<ApiResponse<List<ImpactDay>>> GetImpact (CancellationTokenSource cancellationToken);
         Task<ApiResponse<GetInvitesResponse>> GetInvites (GetInvitesRequest request);
         Task<ApiResponse<List<InviteBundle>>> GetInviteBundles (GetInviteBundlesRequest request);
         Task<ApiResponse<string>> PurchaseInvite (PurchaseInviteRequest request);

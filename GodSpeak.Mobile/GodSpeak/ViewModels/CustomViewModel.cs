@@ -4,11 +4,14 @@ using System.Threading.Tasks;
 using GodSpeak.Resources;
 using System.Collections.Generic;
 using GodSpeak.Services;
+using System.Threading;
 
 namespace GodSpeak
 {
     public class CustomViewModel : MvxViewModel
     {
+		protected CancellationTokenSource CancellationToken { get; private set; }
+
         public IDialogService DialogService { get; private set; }
 		public IProgressHudService HudService { get; private set; }
 		public ISessionService SessionService { get; private set; }
@@ -27,10 +30,13 @@ namespace GodSpeak
 			SessionService = sessionService;
 			WebApiService = webApiService;
 			SettingsService = settingsService;
+
+			CancellationToken = new CancellationTokenSource();
         }
 
         protected virtual void DoCloseCommand ()
         {
+			CancellationToken.Cancel();
             this.Close (this);
         }
 
