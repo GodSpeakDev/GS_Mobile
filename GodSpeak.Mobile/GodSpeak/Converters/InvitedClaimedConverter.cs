@@ -7,12 +7,14 @@ using System.Collections.ObjectModel;
 
 namespace GodSpeak
 {
-	public class InvitedClaimedConverter : IValueConverter
+	public class InvitedClaimedConverter : ImpactConverter, IValueConverter
 	{
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
 			var impactedDays = value as ObservableCollection<ImpactDay>;
-			return impactedDays.Sum(x => x.InvitesClaimed);
+			var total = impactedDays.Sum(x => x.InvitesClaimed);
+
+			return GetTextForCount(total);
 		}
 
 		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

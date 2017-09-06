@@ -94,7 +94,7 @@
 				<Image
 					Grid.Column="0"
 					Source="scripture_icon.png"
-					HeightRequest="40"					
+					HeightRequest="30"					
 				/>
 				<views:CustomLabel 	
 					Grid.Column="1"
@@ -102,6 +102,7 @@
 					HorizontalOptions="Start"
 					VerticalOptions="Center"
 					Style="{StaticResource ImpactValue}"
+					FontSize="{Binding ShownImpactDays, Converter={StaticResource DeliveredScriptureFontSizeConverter}}"
 				/>				
 				<views:CustomLabel 																				
 					Grid.Column="2"
@@ -114,7 +115,7 @@
 				<Image
 					Grid.Column="4"
 					Source="gift_icon.png"
-					HeightRequest="40"							
+					HeightRequest="30"							
 				/>
 				<views:CustomLabel 	
 					Grid.Column="5"
@@ -123,6 +124,7 @@
 					VerticalOptions="Center"
 					VerticalTextAlignment="Center"
 					Style="{StaticResource ImpactValue}"
+					FontSize="{Binding ShownImpactDays, Converter={StaticResource InvitedClaimedFontSizeConverter}}"
 				/>				
 				<views:CustomLabel																	
 					Grid.Column="6"
