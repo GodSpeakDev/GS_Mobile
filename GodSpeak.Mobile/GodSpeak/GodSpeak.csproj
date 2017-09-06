@@ -438,6 +438,10 @@
     <Compile Include="CustomComponents\MenuBackground.cs" />
     <Compile Include="MvvmCross\Messages\ShowActionMenuMessage.cs" />
     <Compile Include="Services\ISmsService.cs" />
+    <Compile Include="Converters\DeliveredScriptureFontSizeConverter.cs" />
+    <Compile Include="Converters\InvitedClaimedFontSizeConverter.cs" />
+    <Compile Include="Converters\ImpactConverter.cs" />
+    <Compile Include="Converters\ImpactFontConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />
