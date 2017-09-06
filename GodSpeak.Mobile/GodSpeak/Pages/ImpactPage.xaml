@@ -29,8 +29,7 @@
 			/>
 			<StackLayout
 				AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"
-				AbsoluteLayout.LayoutBounds="0,1,1,100"
-				VerticalOptions="End"
+				AbsoluteLayout.LayoutBounds="0,1,1,AutoSize"
 				>
 				<Frame
 					Padding="5"
