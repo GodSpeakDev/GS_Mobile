@@ -7,7 +7,6 @@ namespace GodSpeak
 	{
 		public object GetFontSizeForCount(int total)
 		{
-			total = 2555;
 			var isIPhone5 = Device.RuntimePlatform == Device.iOS && App.ScreenWidth == 320;
 			var isIos = Device.RuntimePlatform == Device.iOS;
 

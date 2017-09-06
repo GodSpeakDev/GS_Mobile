@@ -4,8 +4,7 @@ namespace GodSpeak
 	public class ImpactConverter
 	{
 		public object GetTextForCount(int total)
-		{
-			total = 2555;
+		{			
 			if (total >= 1000)
 			{
 				var totalDecimal = total / 1000.0;
