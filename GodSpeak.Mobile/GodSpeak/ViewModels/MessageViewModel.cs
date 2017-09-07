@@ -187,7 +187,7 @@ namespace GodSpeak
 					}
 					else
 					{
-						_browserTask.ShowWebPage("http://go.givegodspeak.com/GiftiTunes");
+						_browserTask.ShowWebPage("http://go.givegodspeak.com/GiftiTunes/FromAndroid");
 						CloseActionMenuCommand.Execute();
 					}
 				}));
