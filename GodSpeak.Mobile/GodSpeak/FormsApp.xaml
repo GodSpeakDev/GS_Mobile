@@ -28,6 +28,8 @@
 			<godspeak:VerseFormatter x:Key="VerseFormatterConverter" />
 			<godspeak:NotMinDateConverter x:Key="NotMinDateConverter" />
 			<godspeak:ImageLayoutOptionsConverter x:Key="ImageLayoutOptionsConverter" />
+			<godspeak:DeliveredScriptureFontSizeConverter x:Key="DeliveredScriptureFontSizeConverter" />
+			<godspeak:InvitedClaimedFontSizeConverter x:Key="InvitedClaimedFontSizeConverter" />
 			
 			<!-- Global Values -->
 			<x:Double x:Key="ElementHeight">42</x:Double>
@@ -211,7 +213,7 @@
 			<Style x:Key="ImpactDescription" TargetType="godspeak:CustomLabel">
 				<Setter Property="TextColor" Value="{StaticResource secondaryColor}" />				
 				<Setter Property="FontWeight" Value="Light" />
-				<Setter Property="FontSize" Value="14" />
+				<Setter Property="FontSize" Value="12" />
 			</Style>
 
 			<Style x:Key="TextShoppingCartItemTitle" TargetType="godspeak:CustomLabel">

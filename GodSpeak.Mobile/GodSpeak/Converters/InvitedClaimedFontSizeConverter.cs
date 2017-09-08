@@ -7,19 +7,19 @@ using System.Collections.ObjectModel;
 
 namespace GodSpeak
 {
-	public class DeliveredScriptureConverter : ImpactConverter, IValueConverter
+	public class InvitedClaimedFontSizeConverter : ImpactFontConverter, IValueConverter
 	{
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
 			var impactedDays = value as ObservableCollection<ImpactDay>;
-			var total = impactedDays.Sum(x => x.ScripturesDelivered);
+			var total = impactedDays.Sum(x => x.InvitesClaimed);
 
-			return GetTextForCount(total);
+			return GetFontSizeForCount(total);
 		}
 
 		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
 		{
 			throw new NotImplementedException();
-		}
+		}	
 	}
 }

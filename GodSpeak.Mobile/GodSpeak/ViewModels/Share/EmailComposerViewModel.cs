@@ -93,6 +93,11 @@ namespace GodSpeak
 			var response = await WebApiService.Share(request);
 			HudService.Hide();
 
+			if (CancellationToken.IsCancellationRequested)
+			{
+				return;
+			}
+
 			if (response.IsSuccess)
 			{
 				await DialogService.ShowAlert(Text.SuccessPopupTitle, Text.InviteSentSuccessfully);

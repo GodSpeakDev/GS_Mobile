@@ -148,11 +148,20 @@ namespace GodSpeak
             CountryCodes = countries.Select (c => c.Code).ToArray ();
 
 			var user = await WebApiService.GetProfile ();
-            if (user.IsSuccess) {
+
+			if (CancellationToken.IsCancellationRequested)
+			{
+				return;
+			}
+
+            if (user.IsSuccess) 
+			{
                 SetUserInfo (user.Payload);
                 HudService.Hide ();
                 RaiseAllPropertiesChanged ();
-            } else {
+            } 
+			else 
+			{
                 await HandleResponse (user);
             }
         }
@@ -188,9 +197,17 @@ namespace GodSpeak
             var response = await WebApiService.SaveProfile (user);
             HudService.Hide ();
 
-            if (response.IsSuccess) {
+			if (CancellationToken.IsCancellationRequested)
+			{
+				return;
+			}
+
+            if (response.IsSuccess) 
+			{
                 this.Close (this);
-            } else {
+            } 
+			else 
+			{
                 await HandleResponse (response);
             }
         }

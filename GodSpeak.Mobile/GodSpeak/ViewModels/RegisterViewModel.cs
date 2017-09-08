@@ -171,6 +171,11 @@ namespace GodSpeak
             HudService.Show ();
             var response = await WebApiService.RegisterUser (request);
 
+			if (CancellationToken.IsCancellationRequested)
+			{
+				return;
+			}
+
             if (response.IsSuccess) 
 			{
                 if (Image != null && Image != "profile_placeholder.png") {

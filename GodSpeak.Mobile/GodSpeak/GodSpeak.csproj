@@ -426,6 +426,10 @@
       <DependentUpon>ContactCell.xaml</DependentUpon>
     </Compile>
     <Compile Include="CustomComponents\CustomEditor.cs" />
+    <Compile Include="Converters\DeliveredScriptureFontSizeConverter.cs" />
+    <Compile Include="Converters\InvitedClaimedFontSizeConverter.cs" />
+    <Compile Include="Converters\ImpactConverter.cs" />
+    <Compile Include="Converters\ImpactFontConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

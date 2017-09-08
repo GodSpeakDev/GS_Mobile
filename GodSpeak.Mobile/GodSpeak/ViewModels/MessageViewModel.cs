@@ -539,6 +539,11 @@ namespace GodSpeak
 
 			var messages = await _messageService.GetDeliveredMessages();
 
+			if (CancellationToken.IsCancellationRequested)
+			{
+				return;
+			}
+
 			Messages = new ObservableCollection<GroupedCollection<Message, DateTime>>
 			(messages
 			 .OrderByDescending(x => x.DateTimeToDisplay)
@@ -584,6 +589,11 @@ namespace GodSpeak
 
 			var messages = await _messageService.GetDeliveredMessages();
 
+			if (CancellationToken.IsCancellationRequested)
+			{
+				return;
+			}
+
 			Messages = new ObservableCollection<GroupedCollection<Message, DateTime>>
 			(messages
 			 .OrderByDescending(x => x.DateTimeToDisplay)
@@ -595,6 +605,11 @@ namespace GodSpeak
 		{
 			var currentUser = await SessionService.GetUser();
 			var response = await WebApiService.GetImpact();
+
+			if (CancellationToken.IsCancellationRequested)
+			{
+				return;
+			}
 
 			if (response.IsSuccess)
 			{

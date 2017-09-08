@@ -75,7 +75,10 @@ namespace GodSpeak
         {
             var profileResponse = await WebApiService.GetProfile ();
 
-
+			if (CancellationToken.IsCancellationRequested)
+			{
+				return;
+			}
 
             if (profileResponse.IsSuccess) {
                 await SessionService.SaveUser (profileResponse.Payload);
