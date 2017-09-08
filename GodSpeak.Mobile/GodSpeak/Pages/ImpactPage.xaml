@@ -78,58 +78,76 @@
 				BackgroundColor="{x:Static views:ColorHelper.PrimaryNavBar}"
 				AbsoluteLayout.LayoutFlags="XProportional,WidthProportional"
 				Margin="{StaticResource PaddingHeaderOnlyTop}"
-				AbsoluteLayout.LayoutBounds="0,50,1,AutoSize"
+				AbsoluteLayout.LayoutBounds="0,50,1,76"
 				Padding="10,5"
+                RowSpacing="0" 
 			>
 				<Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
 					<ColumnDefinition Width="auto" />
-					<ColumnDefinition Width="auto" />
-					<ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="auto" />
 					<ColumnDefinition Width="*" />
-					<ColumnDefinition Width="auto" />
-					<ColumnDefinition Width="auto" />
-					<ColumnDefinition Width="auto" />
 				</Grid.ColumnDefinitions>	
-				<Image
-					Grid.Column="0"
-					Source="scripture_icon.png"
-					HeightRequest="30"					
-				/>
-				<views:CustomLabel 	
-					Grid.Column="1"
-					Text="{Binding ShownImpactDays, Converter={StaticResource DeliveredScriptureConverter}}"
-					HorizontalOptions="Start"
-					VerticalOptions="Center"
-					Style="{StaticResource ImpactValue}"
-					FontSize="{Binding ShownImpactDays, Converter={StaticResource DeliveredScriptureFontSizeConverter}}"
-				/>				
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <StackLayout 
+                    Orientation="Horizontal"
+                    Grid.Column="1"
+                    Grid.Row="0">
+                    <Image
+                        
+                        Source="scripture_icon.png"
+                        HeightRequest="30"                  
+                    />
+                    <views:CustomLabel  
+                        Text="{Binding ShownImpactDays, Converter={StaticResource DeliveredScriptureConverter}}"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Style="{StaticResource ImpactValue}"
+                        FontSize="{Binding ShownImpactDays, Converter={StaticResource DeliveredScriptureFontSizeConverter}}"
+                    />              
+                </StackLayout>
+				
 				<views:CustomLabel 																				
-					Grid.Column="2"
+					Grid.Column="1"
+                    Grid.Row="1"
 					Text="{x:Static res:Text.ScripturesDelivered}"
-					VerticalOptions="Center"
-					VerticalTextAlignment="Center"
-					HorizontalOptions="Start"					
+					VerticalOptions="Start"
+                    MinimumWidthRequest="100"
+					VerticalTextAlignment="Start"
+					HorizontalOptions="StartAndExpand"					
 					Style="{StaticResource ImpactDescription}"
 				/>
-				<Image
-					Grid.Column="4"
-					Source="gift_icon.png"
-					HeightRequest="30"							
-				/>
-				<views:CustomLabel 	
-					Grid.Column="5"
-					Text="{Binding ShownImpactDays, Converter={StaticResource InvitedClaimedConverter}}"
-					HorizontalOptions="Start"
-					VerticalOptions="Center"
-					VerticalTextAlignment="Center"
-					Style="{StaticResource ImpactValue}"
-					FontSize="{Binding ShownImpactDays, Converter={StaticResource InvitedClaimedFontSizeConverter}}"
-				/>				
+
+                <StackLayout 
+                    Orientation="Horizontal"
+                    Grid.Column="3"
+                    Grid.Row="0">
+    				<Image
+    					Source="gift_icon.png"
+    					HeightRequest="30"							
+    				/>
+                    
+    				<views:CustomLabel 	
+    					Text="{Binding ShownImpactDays, Converter={StaticResource InvitedClaimedConverter}}"
+    					HorizontalOptions="Start"
+    					VerticalOptions="Center"
+    					VerticalTextAlignment="Center"
+    					Style="{StaticResource ImpactValue}"
+                        MinimumWidthRequest="40"
+    					FontSize="{Binding ShownImpactDays, Converter={StaticResource InvitedClaimedFontSizeConverter}}"
+    				/>			
+                </StackLayout>
 				<views:CustomLabel																	
-					Grid.Column="6"
+					Grid.Column="3"
+                    Grid.Row="1"
+
 					Text="{x:Static res:Text.GiftsClaimed}"
-					HorizontalOptions="Start"
-					VerticalOptions="Center"
+					HorizontalOptions="StartAndExpand"
+                    VerticalOptions="Start"
 					Style="{StaticResource ImpactDescription}"
 				/>
 			</Grid>
