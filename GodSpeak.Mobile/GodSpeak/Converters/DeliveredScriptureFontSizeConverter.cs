@@ -13,7 +13,7 @@ namespace GodSpeak
 		{
 			var impactedDays = value as ObservableCollection<ImpactDay>;
 			var total = impactedDays.Sum(x => x.ScripturesDelivered);
-
+            return 35;
 			return GetFontSizeForCount(total);
 		}
 

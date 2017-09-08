@@ -5,13 +5,13 @@ namespace GodSpeak
 	{
 		public object GetTextForCount(int total)
 		{			
-			if (total >= 1000)
+			if (total >= 100000)
 			{
 				var totalDecimal = total / 1000.0;
 				var integerNumber = total / 1000;
 				var rest = total % 1000;
 
-				var numberOfDecimals = 3 - integerNumber.ToString().ToCharArray().Length;
+				var numberOfDecimals = 3 - integerNumber.ToString().ToCharArray().Length ;
 
 				if (rest == 0)
 				{
@@ -24,7 +24,8 @@ namespace GodSpeak
 			}
 			else
 			{
-				return total;
+                return String.Format("{0:n0}", total);
+				
 			}
 		}
 	}

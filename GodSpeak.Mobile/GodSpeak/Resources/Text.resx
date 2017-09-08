@@ -491,14 +491,12 @@ If so, we’ll send you their gift!</value>
 	<data
 		name="ScripturesDelivered"
 		xml:space="preserve">
-    	<value>Scriptures
-Delivered</value>
+    	<value>Scriptures Delivered</value>
   	</data>
 	<data
 		name="GiftsClaimed"
 		xml:space="preserve">
-    	<value>Gifts
-&amp; Shares</value>
+    	<value>Gifts &amp; Shares</value>
   	</data>
 	<data
 		name="ShareTitle"
