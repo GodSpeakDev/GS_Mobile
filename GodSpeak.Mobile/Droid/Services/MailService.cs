@@ -7,12 +7,13 @@ using Android.Runtime;
 using Android.Text;
 using Android.Views;
 using Android.Widget;
+using System.Collections.Generic;
 
 namespace GodSpeak.Droid
 {
 	public class MailService : IMailService
 	{
-		public void SendMail(string[] to, string[] cc = null, string[] bcc = null, string subject = null, string body = "")
+		public void SendMail(string[] to, string[] cc = null, string[] bcc = null, string subject = null, string body = "", string[] files = null)
 		{			
 			Intent emailIntent = new Intent(Intent.ActionSend);
 			emailIntent.SetType("application/image");
@@ -21,6 +22,18 @@ namespace GodSpeak.Droid
 			emailIntent.PutExtra(Intent.ExtraEmail, to);
 			emailIntent.PutExtra(Intent.ExtraCc, cc);
 			emailIntent.PutExtra(Intent.ExtraBcc, bcc);
+
+			var uris = new List<Android.Net.Uri>();
+			if (files != null)
+			{
+				foreach (var file in files)
+				{
+					var uri = Android.Net.Uri.FromFile(new Java.IO.File(file));	
+					uris.Add(uri);
+				}
+
+				emailIntent.PutParcelableArrayListExtra(Intent.ExtraStream, uris.ToArray());
+			}
 
 			(Xamarin.Forms.Forms.Context as Activity).StartActivity(Intent.CreateChooser(emailIntent, "Send mail..."));
 		}
