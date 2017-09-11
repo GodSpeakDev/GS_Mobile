@@ -15,7 +15,7 @@ namespace GodSpeak.Droid
 	{
 		public void SendMail(string[] to, string[] cc = null, string[] bcc = null, string subject = null, string body = "", string[] files = null)
 		{			
-			Intent emailIntent = new Intent(Intent.ActionSend);
+			Intent emailIntent = new Intent(Intent.ActionSendMultiple);
 			emailIntent.SetType("application/image");
 			emailIntent.PutExtra(Intent.ExtraSubject, subject);
 			emailIntent.PutExtra(Intent.ExtraText, body);
@@ -23,7 +23,7 @@ namespace GodSpeak.Droid
 			emailIntent.PutExtra(Intent.ExtraCc, cc);
 			emailIntent.PutExtra(Intent.ExtraBcc, bcc);
 
-			var uris = new List<Android.Net.Uri>();
+			var uris = new List <IParcelable>();
 			if (files != null)
 			{
 				foreach (var file in files)
@@ -32,7 +32,7 @@ namespace GodSpeak.Droid
 					uris.Add(uri);
 				}
 
-				emailIntent.PutParcelableArrayListExtra(Intent.ExtraStream, uris.ToArray());
+				emailIntent.PutParcelableArrayListExtra(Intent.ExtraStream, uris);
 			}
 
 			(Xamarin.Forms.Forms.Context as Activity).StartActivity(Intent.CreateChooser(emailIntent, "Send mail..."));
