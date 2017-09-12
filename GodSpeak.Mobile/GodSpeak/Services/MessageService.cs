@@ -115,12 +115,6 @@ namespace GodSpeak
 
 		private async Task CacheUpcomingMessages(List<Message> messages)
 		{
-			var fileExists = await _fileService.ExistsAsync(UpcomingMessagesFile);
-			if (fileExists)
-			{
-				await _fileService.DeleteFileAsync(UpcomingMessagesFile);
-			}
-
 			await _fileService.WriteTextAsync(UpcomingMessagesFile, Newtonsoft.Json.JsonConvert.SerializeObject(messages));
 		}
 
@@ -174,13 +168,7 @@ namespace GodSpeak
 		}
 
 		private async Task CacheDeliveredMessages(List<Message> messages)
-		{
-			var fileExists = await _fileService.ExistsAsync(DeliveredMessagesFile);
-			if (fileExists)
-			{
-				await _fileService.DeleteFileAsync(DeliveredMessagesFile);
-			}
-
+		{			
 			var json = Newtonsoft.Json.JsonConvert.SerializeObject(messages);
 			await _fileService.WriteTextAsync(DeliveredMessagesFile, json);
 			_loggingService.Trace(string.Format("DELIVERED FILE: {0}", json));
