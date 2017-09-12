@@ -60,13 +60,19 @@ namespace GodSpeak.Droid
 
 		string GetDocsFolder()
 		{
-			return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 		}
 
 		public string GetFilePath(string filename)
 		{
-			string docsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            string docsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 			return Path.Combine(docsPath, filename);
-		}	
+		}
+
+		public string GetPublicFilePath(string filename)
+		{
+			string externalStoragePath = Android.OS.Environment.ExternalStorageDirectory.Path;
+			return Path.Combine(externalStoragePath, filename);
+		}
 	}
 }

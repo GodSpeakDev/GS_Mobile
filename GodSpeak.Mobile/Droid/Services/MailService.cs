@@ -13,10 +13,17 @@ namespace GodSpeak.Droid
 {
 	public class MailService : IMailService
 	{
-		public void SendMail(string[] to, string[] cc = null, string[] bcc = null, string subject = null, string body = "", string[] files = null)
+        private FileService _fileService;
+
+        public MailService (IFileService fileService)
+        {
+            _fileService = fileService as FileService;
+        }
+
+		public async void SendMail(string[] to, string[] cc = null, string[] bcc = null, string subject = null, string body = "", string[] files = null)
 		{			
 			Intent emailIntent = new Intent(Intent.ActionSendMultiple);
-			emailIntent.SetType("application/image");
+			emailIntent.SetType("text/plain");
 			emailIntent.PutExtra(Intent.ExtraSubject, subject);
 			emailIntent.PutExtra(Intent.ExtraText, body);
 			emailIntent.PutExtra(Intent.ExtraEmail, to);
@@ -28,7 +35,18 @@ namespace GodSpeak.Droid
 			{
 				foreach (var file in files)
 				{
-					var uri = Android.Net.Uri.FromFile(new Java.IO.File(file));	
+                    var content = await _fileService.ReadTextAsync(file);
+
+                    var filePieces = file.Split('/');
+					var fileName = filePieces[filePieces.Length - 1];
+
+                    var publicPath = _fileService.GetPublicFilePath(fileName);
+
+                    await _fileService.DeleteFileAsync(publicPath);
+                    await _fileService.WriteTextAsync(publicPath, content);
+
+                    var javaFile = new Java.IO.File(publicPath);
+					var uri = Android.Net.Uri.FromFile(javaFile);
 					uris.Add(uri);
 				}
 
@@ -36,6 +54,6 @@ namespace GodSpeak.Droid
 			}
 
 			(Xamarin.Forms.Forms.Context as Activity).StartActivity(Intent.CreateChooser(emailIntent, "Send mail..."));
-		}
+        }
 	}
 }
