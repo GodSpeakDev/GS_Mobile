@@ -143,9 +143,19 @@ namespace GodSpeak
         public async void Init ()
         {
             HudService.Show ();
-            var countries = (await WebApiService.GetCountries ()).Payload;
-            Countries = countries.Select (c => c.Title).ToArray ();
-            CountryCodes = countries.Select (c => c.Code).ToArray ();
+            var countriesResponse = (await WebApiService.GetCountries ());
+
+			if (countriesResponse.IsSuccess)
+			{
+				var countries = countriesResponse.Payload;
+				Countries = countries.Select(c => c.Title).ToArray();
+				CountryCodes = countries.Select(c => c.Code).ToArray();
+			}
+			else
+			{
+				HudService.Hide ();
+				await HandleResponse(countriesResponse);	
+			}
 
 			var user = await WebApiService.GetProfile ();
 
@@ -161,7 +171,7 @@ namespace GodSpeak
                 RaiseAllPropertiesChanged ();
             } 
 			else 
-			{
+			{				
                 await HandleResponse (user);
             }
         }

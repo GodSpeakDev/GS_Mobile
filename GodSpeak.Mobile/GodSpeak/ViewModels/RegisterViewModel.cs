@@ -147,9 +147,18 @@ namespace GodSpeak
 
         async Task PopulateCountries ()
         {
-            var countries = (await WebApiService.GetCountries ()).Payload;
-            Countries = countries.Select (c => c.Title).ToArray ();
-            CountryCodes = countries.Select (c => c.Code).ToArray ();
+            var countriesResponse = (await WebApiService.GetCountries ());
+
+			if (countriesResponse.IsSuccess)
+			{
+				var countries = countriesResponse.Payload;
+				Countries = countries.Select(c => c.Title).ToArray();
+				CountryCodes = countries.Select(c => c.Code).ToArray();
+			}
+			else
+			{
+				await HandleResponse(countriesResponse);
+			}
         }
 
         private async void DoSaveCommand ()

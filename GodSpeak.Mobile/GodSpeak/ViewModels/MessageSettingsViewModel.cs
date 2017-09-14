@@ -73,6 +73,11 @@ namespace GodSpeak
 
 		private bool HasAnyChange()
 		{
+            if (Groups.All(group => !group.Any()))
+            {
+                return false;
+            }
+
 			if (NumberOfMessages != User.MessageDayOfWeekSettings[0].NumOfMessages)
 			{
 				return true;
@@ -281,7 +286,7 @@ namespace GodSpeak
 
 		protected async override void DoCloseCommand()
 		{
-			if (Groups.All(group => group.Any(item => item.IsEnabled)))
+            if (Groups.All(group => !group.Any()) || Groups.All(group => group.Any(item => item.IsEnabled)))
 			{
 				base.DoCloseCommand();
 			}

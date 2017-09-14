@@ -10,6 +10,7 @@ using System.Net.Http.Headers;
 using System.IO;
 using PCLStorage;
 using System.Linq;
+using System.Net;
 
 namespace GodSpeak.Api
 {
@@ -254,11 +255,7 @@ namespace GodSpeak.Api
 			}
 			catch (Exception ex)
 			{
-				tracer.Trace(MvxTraceLevel.Error, uri, ex.Message);
-				return new ApiResponse()
-				{
-					StatusCode = System.Net.HttpStatusCode.InternalServerError
-				};
+				return HandleException(ex, uri);
 			}
 		}
 
@@ -276,11 +273,7 @@ namespace GodSpeak.Api
 			}
 			catch (Exception ex)
 			{
-				tracer.Trace(MvxTraceLevel.Error, uri, ex.Message);
-				return new ApiResponse<T>()
-				{
-					StatusCode = System.Net.HttpStatusCode.InternalServerError
-				};
+				return HandleException<T>(ex, uri);
 			}
 		}
 
@@ -298,11 +291,7 @@ namespace GodSpeak.Api
 			}
 			catch (Exception ex)
 			{
-				tracer.Trace(MvxTraceLevel.Error, uri, ex.Message);
-				return new ApiResponse<T>()
-				{
-					StatusCode = System.Net.HttpStatusCode.InternalServerError
-				};
+				return HandleException<T>(ex, uri);
 			}
 		}
 
@@ -317,11 +306,7 @@ namespace GodSpeak.Api
 			}
 			catch (Exception ex)
 			{
-				tracer.Trace(MvxTraceLevel.Error, uri, ex.Message);
-				return new ApiResponse<T>()
-				{
-					StatusCode = System.Net.HttpStatusCode.InternalServerError
-				};
+				return HandleException<T>(ex, uri);
 			}
 		}
 
@@ -346,6 +331,30 @@ namespace GodSpeak.Api
 			}
 			catch (Exception ex)
 			{
+				return HandleException<T>(ex, uri);
+			}
+		}
+
+		private ApiResponse<T> HandleException<T>(Exception ex, string uri)
+		{
+			if (ex is TaskCanceledException)
+			{
+				tracer.Trace(MvxTraceLevel.Error, uri, ex.Message);
+				return new ApiResponse<T>()
+				{
+					StatusCode = System.Net.HttpStatusCode.RequestTimeout
+				};
+			}
+			else if (ex is WebException || ex is HttpRequestException)
+			{
+				tracer.Trace(MvxTraceLevel.Error, uri, ex.Message);
+				return new ApiResponse<T>()
+				{
+					StatusCode = System.Net.HttpStatusCode.RequestTimeout
+				};
+			}
+			else
+			{
 				tracer.Trace(MvxTraceLevel.Error, uri, ex.Message);
 				return new ApiResponse<T>()
 				{
@@ -353,6 +362,35 @@ namespace GodSpeak.Api
 				};
 			}
 		}
+
+		private ApiResponse HandleException(Exception ex, string uri)
+		{
+			if (ex is TaskCanceledException)
+			{
+				tracer.Trace(MvxTraceLevel.Error, uri, ex.Message);
+				return new ApiResponse()
+				{
+					StatusCode = System.Net.HttpStatusCode.RequestTimeout
+				};
+			}
+			else if (ex is WebException || ex is HttpRequestException)
+			{
+				tracer.Trace(MvxTraceLevel.Error, uri, ex.Message);
+				return new ApiResponse()
+				{
+					StatusCode = System.Net.HttpStatusCode.RequestTimeout
+				};
+			}
+			else
+			{
+				tracer.Trace(MvxTraceLevel.Error, uri, ex.Message);
+				return new ApiResponse()
+				{
+					StatusCode = System.Net.HttpStatusCode.InternalServerError
+				};
+			}
+		}
+
 
 		protected async Task<ApiResponse> ParseResponse(string uri, HttpResponseMessage apiResponse)
 		{
