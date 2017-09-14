@@ -59,6 +59,10 @@ namespace GodSpeak
 
 				BackToLoginPage();
 			}
+			else if (response.StatusCode == System.Net.HttpStatusCode.RequestTimeout)
+			{
+				await DialogService.ShowAlert(response.Title ?? Text.ErrorPopupTitle, response.Message ?? Text.ErrorPopupRequestTimeout);
+			}
 			else
 			{
 				await DialogService.ShowAlert(response.Title ?? Text.ErrorPopupTitle, response.Message ?? Text.ErrorPopupText);

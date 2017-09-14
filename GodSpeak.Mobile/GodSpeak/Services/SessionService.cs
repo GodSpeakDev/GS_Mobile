@@ -50,9 +50,25 @@ namespace GodSpeak
 		}
 
 		private async Task<User> MakeUserCall() 
-		{
+		{			
 			var result = await _webApiService.GetProfile();
-			return result.Payload;
+			if (result.IsSuccess)
+			{
+				return result.Payload;
+			}
+			else if (result.StatusCode == System.Net.HttpStatusCode.RequestTimeout)
+			{
+				_getUserTask = null;
+				return new User()
+				{
+					Token = _settingsService.Token,
+					Email = _settingsService.Email
+				};
+			}
+			else
+			{
+				return null;
+			}
 		}
 	}
 }

@@ -11,6 +11,7 @@ using System.IO;
 using PCLStorage;
 using System.Linq;
 using System.Threading;
+using System.Net;
 
 namespace GodSpeak.Api
 {
@@ -189,6 +190,7 @@ namespace GodSpeak.Api
         {
             AddAuthToken (_settingsService.Token);
             return await DoGet<User> (ProfileUri);
+
         }
 
         public new async Task<ApiResponse<User>> SaveProfile (User user)
@@ -302,11 +304,7 @@ namespace GodSpeak.Api
             }
 			catch (Exception ex)
 			{
-				tracer.Trace(MvxTraceLevel.Error, uri, ex.Message);
-				return new ApiResponse()
-				{
-					StatusCode = System.Net.HttpStatusCode.InternalServerError
-				};
+				return HandleException(ex, uri);
 			}
         }
 
@@ -331,11 +329,7 @@ namespace GodSpeak.Api
             }
 			catch (Exception ex)
 			{
-				tracer.Trace(MvxTraceLevel.Error, uri, ex.Message);
-				return new ApiResponse<T>()
-				{
-					StatusCode = System.Net.HttpStatusCode.InternalServerError
-				};
+				return HandleException<T>(ex, uri);
 			}
         }
 
@@ -360,11 +354,7 @@ namespace GodSpeak.Api
             }
 			catch (Exception ex)
 			{
-				tracer.Trace(MvxTraceLevel.Error, uri, ex.Message);
-				return new ApiResponse<T>()
-				{
-					StatusCode = System.Net.HttpStatusCode.InternalServerError
-				};
+				return HandleException<T>(ex, uri);
 			}
         }
 
@@ -386,49 +376,99 @@ namespace GodSpeak.Api
             }
 			catch (Exception ex)
 			{
-				tracer.Trace(MvxTraceLevel.Error, uri, ex.Message);
-				return new ApiResponse<T>()
-				{
-					StatusCode = System.Net.HttpStatusCode.InternalServerError
-				};
+				return HandleException<T>(ex, uri);
 			}
         }
 
         protected async Task<ApiResponse<T>> DoGet<T> (string uri, Dictionary<string, string> args)
         {
-            try
-            {
-                var builder = new StringBuilder("?");
+			try
+			{
+				var builder = new StringBuilder("?");
 
-                foreach (var pair in args)
-                {
-                    if (builder.Length != 1)
-                        builder.Append("&");
-                    builder.Append($"{pair.Key}={System.Net.WebUtility.UrlDecode(pair.Value)}");
-                };
+				foreach (var pair in args)
+				{
+					if (builder.Length != 1)
+						builder.Append("&");
+					builder.Append($"{pair.Key}={System.Net.WebUtility.UrlDecode(pair.Value)}");
+				};
 
-                var requestUri = uri + builder;
-                tracer.Trace(MvxTraceLevel.Diagnostic, "api-get", $"METHOD: {requestUri}");
-                var apiResponse = await client.GetAsync(requestUri);
+				var requestUri = uri + builder;
+				tracer.Trace(MvxTraceLevel.Diagnostic, "api-get", $"METHOD: {requestUri}");
+				var apiResponse = await client.GetAsync(requestUri);
 
 				var retryCount = 0;
 				while (!apiResponse.IsSuccessStatusCode && retryCount++ < MaximumRequestRetries)
 				{
 					await Task.Delay(retryCount * 100);
-					apiResponse = await client.GetAsync(requestUri);					
+					apiResponse = await client.GetAsync(requestUri);
 				}
 
-                return await ParseResponse<T>(uri, apiResponse);
-            }
-            catch (Exception ex)
+				return await ParseResponse<T>(uri, apiResponse);
+			}			
+			catch (Exception ex)
             {
-                tracer.Trace(MvxTraceLevel.Error, uri, ex.Message);
-                return new ApiResponse<T>()
-                {
-                    StatusCode = System.Net.HttpStatusCode.InternalServerError
-                };
+                return HandleException<T>(ex, uri);
             }
         }
+
+        private ApiResponse<T> HandleException<T>(Exception ex, string uri)
+        {
+
+            if (ex is TaskCanceledException)
+			{
+				tracer.Trace(MvxTraceLevel.Error, uri, ex.Message);
+				return new ApiResponse<T>()
+				{
+					StatusCode = System.Net.HttpStatusCode.RequestTimeout
+				};
+			}
+            else if  (ex is WebException || ex is HttpRequestException)
+			{
+				tracer.Trace(MvxTraceLevel.Error, uri, ex.Message);
+				return new ApiResponse<T>()
+				{
+					StatusCode = System.Net.HttpStatusCode.RequestTimeout
+				};
+			}
+            else
+            {
+				tracer.Trace(MvxTraceLevel.Error, uri, ex.Message);
+				return new ApiResponse<T>()
+				{
+					StatusCode = System.Net.HttpStatusCode.InternalServerError
+				};
+            }			
+        }
+
+		private ApiResponse HandleException(Exception ex, string uri)
+		{
+
+			if (ex is TaskCanceledException)
+			{
+				tracer.Trace(MvxTraceLevel.Error, uri, ex.Message);
+				return new ApiResponse()
+				{
+					StatusCode = System.Net.HttpStatusCode.RequestTimeout
+				};
+			}
+			else if (ex is WebException || ex is HttpRequestException)
+			{
+				tracer.Trace(MvxTraceLevel.Error, uri, ex.Message);
+				return new ApiResponse()
+				{
+					StatusCode = System.Net.HttpStatusCode.RequestTimeout
+				};
+			}
+			else
+			{
+				tracer.Trace(MvxTraceLevel.Error, uri, ex.Message);
+				return new ApiResponse()
+				{
+					StatusCode = System.Net.HttpStatusCode.InternalServerError
+				};
+			}
+		}
 
         protected async Task<ApiResponse> ParseResponse (string uri, HttpResponseMessage apiResponse)
         {
