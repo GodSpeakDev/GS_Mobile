@@ -156,7 +156,7 @@ namespace GodSpeak.Droid
 		private void ShowMessage(Message message)
 		{
 			var alertDialog = new AlertDialog.Builder(Xamarin.Forms.Forms.Context)
-								 .SetTitle("God Speak")
+								 .SetTitle("GodSpeak")
 								 .SetMessage(new VerseFormatter().Convert(message.Verse.Text, null, null, null).ToString())
 								 .SetCancelable(false)
 								 .SetPositiveButton("Ok", (sender, e) => { });
@@ -206,7 +206,7 @@ namespace GodSpeak.Droid
 		private void SendNotification(Message message)
 		{
 			Notification.Builder builder = new Notification.Builder(ApplicationContext)
-				.SetContentTitle("God Speak")
+				.SetContentTitle("GodSpeak")
 				.SetSmallIcon(Resource.Drawable.app_icon)
 				.SetContentText(new VerseFormatter().Convert(message.Verse.Text, null, null, null).ToString());
 

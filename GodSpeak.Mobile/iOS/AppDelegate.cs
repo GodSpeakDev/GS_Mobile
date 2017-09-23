@@ -119,7 +119,7 @@ namespace GodSpeak.iOS
 				return;
 			}
 
-			var alert = new UIAlertView("God Speak", notification.AlertBody, null, "Ok");
+			var alert = new UIAlertView("GodSpeak", notification.AlertBody, null, "Ok");
 			alert.Show();
 
 			Mvx.Resolve<IMvxMessenger>().Publish(new MessageDeliveredMessage(this));
