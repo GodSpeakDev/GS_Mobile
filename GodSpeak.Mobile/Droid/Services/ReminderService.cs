@@ -163,7 +163,7 @@ namespace GodSpeak.Droid
 		private void ShowMessage(Message message)
 		{
 			var alertDialog = new AlertDialog.Builder(Xamarin.Forms.Forms.Context)
-								 .SetTitle("God Speak")
+								 .SetTitle("GodSpeak")
 								 .SetMessage(new VerseFormatter().Convert(message.Verse.Text, null, null, null).ToString())
 								 .SetCancelable(false)
 								 .SetPositiveButton("Ok", (sender, e) => { });

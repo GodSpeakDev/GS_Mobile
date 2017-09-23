@@ -125,7 +125,7 @@ namespace GodSpeak.iOS
 
         public override void ReceivedLocalNotification (UIApplication application, UILocalNotification notification)
         {
-            var alert = new UIAlertView ("God Speak", notification.AlertBody, null, "Ok");
+            var alert = new UIAlertView ("GodSpeak", notification.AlertBody, null, "Ok");
 			alert.Show();
 
 			Mvx.Resolve<IMvxMessenger>().Publish(new MessageDeliveredMessage(this));
