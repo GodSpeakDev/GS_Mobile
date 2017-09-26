@@ -104,12 +104,7 @@ namespace GodSpeak
 
         private async Task CacheUpcomingMessages (List<Message> messages)
         {
-            var fileExists = await _fileService.ExistsAsync (UpcomingMessagesFile);
-            if (fileExists) {
-                await _fileService.DeleteFileAsync (UpcomingMessagesFile);
-            }
-
-            await _fileService.WriteTextAsync (UpcomingMessagesFile, Newtonsoft.Json.JsonConvert.SerializeObject (messages));
+			await _fileService.WriteTextAsync(UpcomingMessagesFile, Newtonsoft.Json.JsonConvert.SerializeObject(messages));
         }
 
         private void UpdateReminders (List<Message> messages)
@@ -137,24 +132,44 @@ namespace GodSpeak
         private async Task<List<Message>> GetAlreadyDeliveredMessages ()
         {
             var fileExists = await _fileService.ExistsAsync (DeliveredMessagesFile);
-            if (!fileExists) {
+            if (!fileExists) 
+			{
                 return new List<Message> ();
-            } else {
-                var fileContent = await _fileService.ReadTextAsync (DeliveredMessagesFile);
-                return JsonConvert.DeserializeObject<List<Message>> (fileContent);
+            } 
+			else 
+			{
+				try
+				{
+					var fileContent = await _fileService.ReadTextAsync(DeliveredMessagesFile);
+					var messages = JsonConvert.DeserializeObject<List<Message>>(fileContent);
+					return messages;
+				}
+				catch (Exception ex)
+				{
+					_loggingService.Exception(ex);
+					return new List<Message>();
+				}
             }
         }
 
         private async Task CacheDeliveredMessages (List<Message> messages)
-        {
-            var fileExists = await _fileService.ExistsAsync (DeliveredMessagesFile);
-            if (fileExists) {
-                await _fileService.DeleteFileAsync (DeliveredMessagesFile);
-            }
-
+        {            
 			var json = Newtonsoft.Json.JsonConvert.SerializeObject(messages);
-            await _fileService.WriteTextAsync (DeliveredMessagesFile, json);
-			_loggingService.Trace(string.Format("DELIVERED FILE: {0}", json)); 
+
+			for (int i = 0; i < 3; i++)
+			{
+				try
+				{					
+					await _fileService.WriteTextAsync(DeliveredMessagesFile, json);
+					_loggingService.Trace(string.Format("DELIVERED FILE: {0}", json));
+					break;
+				}
+				catch (Exception ex)
+				{
+					_loggingService.Exception(ex);
+					await Task.Delay(100);
+				}
+			}
         }
     }
 }

@@ -24,6 +24,8 @@ namespace GodSpeak
 		private MvxSubscriptionToken _newMessageToken;
 		private MvxSubscriptionToken _openActionMenuToken;
 		private IMvxWebBrowserTask _browserTask;
+		private ILoggingService _loggingService;
+
 		private bool _isAlreadyStarted = false;
 
 		public Action<MenuItem> HighlightHint
@@ -322,13 +324,14 @@ namespace GodSpeak
 
         public MessageViewModel (
             IDialogService dialogService, IProgressHudService hudService, ISessionService sessionService, IWebApiService webApiService, ISettingsService settingsService,
-            IMessageService messageService, IMvxMessenger messenger, IMvxWebBrowserTask browserTask, IMailService mailService, ISmsService smsService) : base (dialogService, hudService, sessionService, webApiService, settingsService)
+            IMessageService messageService, IMvxMessenger messenger, IMvxWebBrowserTask browserTask, IMailService mailService, ISmsService smsService, ILogManager logManager) : base (dialogService, hudService, sessionService, webApiService, settingsService)
         {
             _smsService = smsService;
             _mailService = mailService;
             _messageService = messageService;
             _messenger = messenger;
 			_browserTask = browserTask;
+			_loggingService = logManager.GetLog();
 
             Messages = new ObservableCollection<GroupedCollection<Message, DateTime>> ();
 			InitMenu();
@@ -563,8 +566,10 @@ namespace GodSpeak
                     await _messageService.UpdateUpcomingMessages();
                     await ReloadMessages();
                 }
-            }catch(Exception ex){
-                
+            }
+			catch(Exception ex)
+			{
+				_loggingService.Exception(ex); 
             }
 		}
 

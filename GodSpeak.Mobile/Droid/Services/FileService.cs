@@ -8,32 +8,37 @@ namespace GodSpeak.Droid
 {
 	public class FileService : IFileService
 	{
+		private static object locker = new object();
+
 		public FileService()
 		{
 		}
 
 		public Task<bool> ExistsAsync(string filename)
 		{
-			bool exists = File.Exists(GetFilePath(filename));
-			return Task<bool>.FromResult(exists);
+			lock (locker)
+			{
+				bool exists = File.Exists(GetFilePath(filename));
+				return Task<bool>.FromResult(exists);
+			}
 		}
 
-		public async Task<string> ReadTextAsync(string filename)
+		public Task<string> ReadTextAsync(string filename)
 		{
-			var filePath = GetFilePath(filename);
-			using (StreamReader reader = File.OpenText(filePath))
-			{
-				return await reader.ReadToEndAsync();
-			}
+			lock (locker)
+            {
+                var filePath = GetFilePath(filename);
+                return Task.FromResult(File.ReadAllText(filePath));
+            }
 		}
 
 		public async Task WriteTextAsync(string filename, string text)
 		{
-			var filePath = GetFilePath(filename);
-			using (StreamWriter writer = File.CreateText(filePath))
-			{
-				await writer.WriteAsync(text);
-			}
+			lock (locker)
+			{    			
+                var filePath = GetFilePath(filename);
+				File.WriteAllText(filePath, text);
+            }
 		}
 
 		public Task<IEnumerable<string>> GetFilesAsync()
@@ -46,8 +51,11 @@ namespace GodSpeak.Droid
 
 		public Task DeleteFileAsync(string filename)
 		{
-			File.Delete(GetFilePath(filename));
-			return Task.FromResult(true);
+			lock (locker)
+            {
+                File.Delete(GetFilePath(filename));
+                return Task.FromResult(true);
+            }
 		}
 
 		string GetDocsFolder()

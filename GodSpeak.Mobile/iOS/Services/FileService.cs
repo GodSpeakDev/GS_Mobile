@@ -8,51 +8,54 @@ namespace GodSpeak.iOS
 {
 	public class FileService : IFileService
 	{
+		private static object locker = new object();
+
 		public FileService()
 		{
 		}
 
 		public Task<bool> ExistsAsync(string filename)
 		{
-			bool exists = File.Exists(GetFilePath(filename));
-			return Task<bool>.FromResult(exists);
+			lock (locker)
+			{
+				bool exists = File.Exists(GetFilePath(filename));
+				return Task<bool>.FromResult(exists);
+			}
 		}
 
-		public async Task<string> ReadTextAsync(string filename)
+		public Task<string> ReadTextAsync(string filename)
 		{
-			var filePath = GetFilePath(filename);
-			using (StreamReader reader = File.OpenText(filePath))
+			lock (locker)
 			{
-				return await reader.ReadToEndAsync();
+				var filePath = GetFilePath(filename);
+				return Task.FromResult(File.ReadAllText(filePath));
 			}
 		}
 
 		public async Task WriteTextAsync(string filename, string text)
 		{
-            try
-            {
-                var filePath = GetFilePath(filename);
-                using (StreamWriter writer = File.CreateText(filePath))
-                {
-                    await writer.WriteAsync(text);
-                }
-            }catch(Exception ex){
-                
-            }
+			lock (locker)
+			{
+				var filePath = GetFilePath(filename);
+				File.WriteAllText(filePath, text);
+			}
 		}
 
 		public Task<IEnumerable<string>> GetFilesAsync()
 		{
 			IEnumerable<string> filenames =
-				from filepath in Directory.EnumerateFiles(GetDocsFolder())
-				select Path.GetFileName(filepath);
+				Directory.EnumerateFiles(GetDocsFolder()).Select(x => Path.GetFileName(x));
+
 			return Task<IEnumerable<string>>.FromResult(filenames);
 		}
 
 		public Task DeleteFileAsync(string filename)
 		{
-			File.Delete(GetFilePath(filename));
-			return Task.FromResult(true);
+			lock (locker)
+			{
+				File.Delete(GetFilePath(filename));
+				return Task.FromResult(true);
+			}
 		}
 
 		string GetDocsFolder()
