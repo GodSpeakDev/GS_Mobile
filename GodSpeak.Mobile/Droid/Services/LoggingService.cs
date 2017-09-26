@@ -65,5 +65,17 @@ namespace GodSpeak.Droid
 				Trace(MvxTraceLevel.Error, tag, "Exception during trace of {0} {1}", level, message);
 			}
 		}
+
+		public void Exception(Exception ex)
+		{
+			try
+			{
+				_log.Error(string.Format("{0} {1} {2} {3}", ex.Message, ex, ex.Data, ex.StackTrace));
+			}
+			catch (System.Exception ex2)
+			{
+
+			}
+		}
 	}
 }

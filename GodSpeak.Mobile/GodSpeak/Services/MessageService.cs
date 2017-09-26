@@ -154,24 +154,40 @@ namespace GodSpeak
 			{
 				return new List<Message>();
 			}
-			else
+			else 
 			{
-				var fileContent = await _fileService.ReadTextAsync(DeliveredMessagesFile);
-				var list = JsonConvert.DeserializeObject<List<Message>>(fileContent);
-                if (list == null)
-                {
-                    list = new List<Message>();
-                }
-
-                return list;
-			}
+				try
+				{
+					var fileContent = await _fileService.ReadTextAsync(DeliveredMessagesFile);
+					var messages = JsonConvert.DeserializeObject<List<Message>>(fileContent);
+					return messages ?? new List<Message>();
+				}
+				catch (Exception ex)
+				{
+					_loggingService.Exception(ex);
+					return new List<Message>();
+				}
+            }
 		}
 
 		private async Task CacheDeliveredMessages(List<Message> messages)
 		{			
 			var json = Newtonsoft.Json.JsonConvert.SerializeObject(messages);
-			await _fileService.WriteTextAsync(DeliveredMessagesFile, json);
-			_loggingService.Trace(string.Format("DELIVERED FILE: {0}", json));
+
+			for (int i = 0; i< 3; i++)
+			{
+				try
+				{					
+					await _fileService.WriteTextAsync(DeliveredMessagesFile, json);
+					_loggingService.Trace(string.Format("DELIVERED FILE: {0}", json));
+					break;
+				}
+				catch (Exception ex)
+				{
+					_loggingService.Exception(ex);
+					await Task.Delay(100);
+				}
+			}
 		}
 	}
 }

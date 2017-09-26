@@ -11,5 +11,6 @@ namespace GodSpeak
 		void Warn(string text, params object[] args);
 		void Error(string text, params object[] args);
 		void Fatal(string text, params object[] args);
+		void Exception(Exception ex);
 	}
 }

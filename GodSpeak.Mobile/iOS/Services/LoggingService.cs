@@ -124,5 +124,17 @@ namespace GodSpeak.iOS
                 
             }
 		}
+
+		public void Exception(Exception ex)
+		{
+			try
+			{
+				_log.Error(string.Format("{0} {1} {2} {3}", ex.Message, ex, ex.Data, ex.StackTrace));
+			}
+			catch (System.Exception ex2)
+			{
+
+			}
+		}
 	}
 }
